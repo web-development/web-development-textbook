@@ -6,7 +6,7 @@ order: 30
 
 Der `canvas` Tag kann auf zwei Arten verwendet werden: für 2d und 3d Grafik.
 Als 2d Grafik ist der Canvas einfach ein Rechteck aus Pixeln, auf das
-man mit Javascript zeichnen und Bilder einkopieren kann:
+man mit JavaScript zeichnen und Bilder einkopieren kann:
 
 ![Bild](/images/canvas.png)
 
@@ -15,7 +15,7 @@ verwendet: später gezeichnets übermalt früher gezeichnetes.  Egal ob Text, Li
 Bild, alles wird in einzelne Pixel verwandelt.  Man kann später nicht mehr identifizieren
 welches Pixel vom Text, oder welches vom Bild stammt.
 
-### Canvas und Javascript
+### Canvas und JavaScript
 
 Um den Canvas zu nutzen braucht es immer zwei Schritte:
 erst die DOM-Node des Canvas finden, dann den 2d-Kontext dieses

@@ -199,7 +199,7 @@ Noch mehr Eingabefelder, die eher selten gebraucht werden.
 
 
 |Unsichtbares = Verstecktes Feld |`<input type="hidden" name="source" value="wikipedia">`|
-|Button ohne Auftrag, für Javascript-Programme|`<input type="button" value="Extrafenster" onclick="...">`|
+|Button ohne Auftrag, für JavaScript-Programme|`<input type="button" value="Extrafenster" onclick="...">`|
 |Bildfeld, liefert angeklickte x+y Koordinaten.|`<input type="image" name="position" src="austria.gif">`|
 |Datei-Upload*|Wählen Sie ein Bild aus: `<input type="file" name="bilddatei">`|
 {: class="table table-condensed table-bordered" style="width:auto"}

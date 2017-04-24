@@ -222,10 +222,10 @@ lokales Koordinatensystem definieren.
 </xml>
 
 
-## SVG mit Javascript erzeugen
+## SVG mit JavaScript erzeugen
 
 Der SVG-Tag kann direkt in einem HTML-Dokument verwendet werden, so wie auf dieser Seite.
-Wenn man SVG-Nodes mit Javascript in das DOM einfügen will braucht man
+Wenn man SVG-Nodes mit JavaScript in das DOM einfügen will braucht man
 eine neue Variante des `createElement` befehls: create Element with Namespace.
 Der Namespace für SVG ist `http://www.w3.org/2000/svg`.
 
@@ -259,7 +259,7 @@ $svg.append($circle);
 ## Mehr
 
 * [RFC zu SVG](http://www.w3.org/TR/SVG11/)
-* [Raphael Javascript Library](http://raphaeljs.com/)
+* [Raphael JavaScript Library](http://raphaeljs.com/)
 * [Tutorial: SVG in Webseiten verwenden: Hintergrundbild, Bild, Data-URL](http://css-tricks.com/using-svg/)
 * [Tutorial: CSS Animationen auf SVG anwenden](http://tympanus.net/codrops/2013/02/06/interactive-infographic-with-svg-and-css-animations/)
 * [Tutorial: SMIL Animationen in SVG verwenden](https://developer.mozilla.org/en-US/docs/SVG/SVG_animation_with_SMIL)

@@ -1,21 +1,21 @@
 --- 
-title: Javascript die Sprache
+title: JavaScript die Sprache
 index: true
-intro: Im ersten Teil des Buches wurde Javascript bereits vorgestellt.  Nun wollen wir uns genauer mit Javascript als Programmiersprache beschäftigen.
+intro: Im ersten Teil des Buches wurde JavaScript bereits vorgestellt.  Nun wollen wir uns genauer mit JavaScript als Programmiersprache beschäftigen.
 ---
 
 
 
 ### Was Sie wissen sollten
-* In welcher Version von Javascript sie arbeiten
+* In welcher Version von JavaScript sie arbeiten
 * Was eine Closure ist
-* Das Javascript eine objektorientierte Sprache ist
-* Wie Prototypen für die Vererbung in Javascript verwendet werden
+* Das JavaScript eine objektorientierte Sprache ist
+* Wie Prototypen für die Vererbung in JavaScript verwendet werden
 
 
 ### Was Sie können sollten
-* Funktionen in Javascript verwenden
-* Objekte in Javascript verwenden
+* Funktionen in JavaScript verwenden
+* Objekte in JavaScript verwenden
 
 
 

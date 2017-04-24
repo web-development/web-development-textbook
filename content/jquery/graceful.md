@@ -47,7 +47,7 @@ __|__
 ### Version 2
 
 In einem Versuch die Seite zu verbessern ersetzen wir nun die 
-Links durch den Aufruf einer Javascript-Funktion:
+Links durch den Aufruf einer JavaScript-Funktion:
 
 <htmlcode caption="Version 2">
 <div id="navigation">
@@ -69,7 +69,7 @@ die das Ziel ganz oben im Fenster anzeigt.
 
 Mit `return false` wird die "normale" Funktion des Links deaktiviert.
 
-<javascript caption="Javascript für Version 1">
+<javascript caption="JavaScript für Version 1">
 function scrollToMe(id) {
   var top  = $(id).offset().top;
   $('body').animate({ scrollTop: top }, 800);
@@ -79,7 +79,7 @@ function scrollToMe(id) {
 
 §
 
-Diese Version ist kein Beispiel für gutes Javascript:
+Diese Version ist kein Beispiel für gutes JavaScript:
 in manchen Browsern funktioniert das Scrollen der Seite mit `scrollTop` nicht.
 
 Mit dieser Version haben wir
@@ -91,7 +91,7 @@ Mit dieser Version haben wir
 Wir haben dabei beide Prinzipien gebrochen
 
 * kein progressive enhancement: Links funktionieren nicht mehr
-* kein unobstrusive javascript: Javascript-Code direkt in HTML-Attributen
+* kein unobstrusive javascript: JavaScript-Code direkt in HTML-Attributen
 
 ### Version 3
 
@@ -137,7 +137,7 @@ $(document).ready( function () {
 
 Diese Variante funktioniert schon besser:
 
-* die klassischen Links funktionier für Browser ohne Javascript
+* die klassischen Links funktionier für Browser ohne JavaScript
 * für manche javascript-fähige Browser eine Animation eingefügt
 * für manche javascript-fähige Browser ist die Animation immer noch kaputt
 
@@ -145,8 +145,8 @@ Wir haben damit schon ein Prinzip eingehalten, und sind
 beim anderen Prinzipien auf halben Weg
 
 * teilweise progressive enhancement: 
-  * Links funktionieren für Browser ohne Javascript
-  * in der Javascript-Variante bleibt die URL immer gleich
+  * Links funktionieren für Browser ohne JavaScript
+  * in der JavaScript-Variante bleibt die URL immer gleich
 * unobstrusive javascript: erfüllt
 
 
@@ -202,16 +202,16 @@ wird eine entsprechende Meldung angezeigt
 §
 
 Diese Variante behebt das Problem mit nicht-funktionierenden
-Javascript-Browsern:
+JavaScript-Browsern:
 
-* die klassischen Links funktionier für Browser ohne Javascript
-* die klassische Version wird auch für "animations-unfähige" Javascript Browser verwendet
+* die klassischen Links funktionier für Browser ohne JavaScript
+* die klassische Version wird auch für "animations-unfähige" JavaScript Browser verwendet
 * für manche javascript-fähige Browser funktioniert die Animation
 
 Es bleibt aber noch in Problem:
 
 * teilweise progressive enhancement: 
-  * in der Javascript-Variante bleibt die URL immer gleich
+  * in der JavaScript-Variante bleibt die URL immer gleich
 * unobstrusive javascript: erfüllt
 
 
@@ -230,7 +230,7 @@ Diese "Navigierbarkeit" ist auch ein klassisches Problem von AJAX-Applikationen,
 die Lösung die wir hier entwickeln funktioniert auch dort:
 
 In die Funktion `scrollToMe` wird eine Zeile eingefügt.
-Mit dem History-Objekt kann man den Browser von Javascript aus "navigieren":
+Mit dem History-Objekt kann man den Browser von JavaScript aus "navigieren":
 mit `history.back()` zum Beispiel einen Schritt zurück gehen.
 
 Mit `history.pushState()` kann man zu einer neuen Seite navigieren,
@@ -254,14 +254,14 @@ function scrollToMe(event) {
 
 §
 
-Mit dieser Variante haben wir  für die Javascript-Browser
+Mit dieser Variante haben wir  für die JavaScript-Browser
 alle Funktionalität der einfachen HTML-Version wiederhergestellt.
 Und zusätzlich gibt es eventuell noch eine schöne Animation.
 
 Damit sind beide Prinzipien voll erfüllt:
 
 * progressive enhancement - alle Browser erhalten die maximal mögliche Funktionalität
-* unobstrusive javascript - kein Javascript-Code im HTML
+* unobstrusive javascript - kein JavaScript-Code im HTML
 
 
 §

@@ -61,9 +61,9 @@ wurden im Array `$_COOKIES`[*](http://php.net/manual/en/reserved.variables.cooki
 Neue Cookies können Sie mit `setcookie()`[*](http://www.php.net/manual/en/function.setcookie.php) setzen. 
 
 
-### Cookies in Javascript
+### Cookies in JavaScript
 
-Im Client können Cookies mit Javascript gelesen und geschrieben werden. Dies
+Im Client können Cookies mit JavaScript gelesen und geschrieben werden. Dies
 funktioniert über eine Zuweisung an die Eigenschaft document.cookie.
 
 Achtung: beim lesenden Zugriff auf diese Eigenschaft enthält man einen String
@@ -83,11 +83,11 @@ alert(document.cookie);  // Zeigt immer noch die ALTEN Cookies !!!
 
 Erst wenn ein neuer Request an den Server erfolgt, werden die neu gesetzten
 Cookies mit gesendet: erst wenn die Antwort wieder dargestellt wird, sind die
-neuen Cookies in Javascript über document.cookie lesbar!
+neuen Cookies in JavaScript über document.cookie lesbar!
 
-### Libraries für Cookies in Javascript
+### Libraries für Cookies in JavaScript
 
-Um das Lesen, Setzen und Löschen von Cookies in Javascript zu vereinfachen git
+Um das Lesen, Setzen und Löschen von Cookies in JavaScript zu vereinfachen git
 es zwei gute Libraries:
 
 * die Funktionen von [Quirksmode](http://www.quirksmode.org/js/cookies.html) ein

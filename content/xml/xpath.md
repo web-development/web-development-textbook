@@ -51,7 +51,7 @@ echo "<h1>Das Bild</h1>";
 echo "<img src='$bild_url'>";
 </php>
 
-## XPath in Javascript
+## XPath in JavaScript
 
 XPath kann man verwenden um das HTML-Dokument selbst zu durchsuchen:
 Der folgende Code sucht alle `h2`-Element im aktuellen Dokument, und
@@ -69,8 +69,8 @@ while (thisNode) {
 §
 
 In folgendem Beispiel wird ein String mit XML (den man z.B. schon
-serverseitig geladen und ins Javascript Eingefügt hat) in
-Javascript geparsed und mit XPath abgefragt.  [Demo](/images/js-und-xml-xpath.html)
+serverseitig geladen und ins JavaScript Eingefügt hat) in
+JavaScript geparsed und mit XPath abgefragt.  [Demo](/images/js-und-xml-xpath.html)
 
 <javascript>
 var xml_string, parser, doc, iterator, thisNode;

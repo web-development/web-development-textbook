@@ -197,7 +197,7 @@ wie Event-Handler direkt im HTML definiert werden können:
 </script>
 </htmlcode>
 
-Mit der Methode `addEventListener` kann das auch von Javascript aus erfolgen. 
+Mit der Methode `addEventListener` kann das auch von JavaScript aus erfolgen. 
 
 ### Farb-Beispiel
 
@@ -279,7 +279,7 @@ Im HTML-Code fügen wir dafür einen span-Tag ein:
 
 §
 
-Im Javascript-Code können wir nun das Event an den span-Tag binden. Dafür müssen
+Im JavaScript-Code können wir nun das Event an den span-Tag binden. Dafür müssen
 wir erst eine Funktion definieren, die aufgerufen werden soll, hier heisst die
 funktion removeMe. Mit addEventListener können wir dann die Funktion als
 zuständig für das click-event am spam `.removthis` definieren.

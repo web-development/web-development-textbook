@@ -1,14 +1,14 @@
 --- 
 title: jQuery - Einführung
 index: true
-intro: Mit der einfachen Schreibweise von jQuery lernen Sie schneller und einfacher Javascript-Programm zu erstellen.
+intro: Mit der einfachen Schreibweise von jQuery lernen Sie schneller und einfacher JavaScript-Programm zu erstellen.
 ---
 
 
 # Was Sie wissen sollten
-* Ich kann die Fachbegriffe „unobstrusive Javascript“ / „graceful degradation“ / „progressive enhancement“ erklären
-* Ich weiss, dass Javascript-Funktionen in Variablen gespeichert werden können, was der Unterschied zwischen `f = c();` und `f = c;` ist· 
-* Ich weiss, dass Javascript-Funktionen ohne Namen definiert werden können, wie man so eine anonyme Funktion definiert und verwendet.
+* Ich kann die Fachbegriffe „unobstrusive JavaScript“ / „graceful degradation“ / „progressive enhancement“ erklären
+* Ich weiss, dass JavaScript-Funktionen in Variablen gespeichert werden können, was der Unterschied zwischen `f = c();` und `f = c;` ist· 
+* Ich weiss, dass JavaScript-Funktionen ohne Namen definiert werden können, wie man so eine anonyme Funktion definiert und verwendet.
 
 # Was Sie können sollten
 * Ich kann mit jQuery Teile einer Webseite aus- und einblenden

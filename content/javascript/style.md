@@ -8,8 +8,8 @@ Viele hier erwähnten Punkte sind nicht spezifisch für Javascascript.
 
 ## Menschenfreundliche Programmierung
 
-Aus Sicht des Javascript Interpreters gibt es viele, viele Arten dasselbe
-Programm zu schreiben - der Javascript-Interpreter wird es immer gleich verstehen.
+Aus Sicht des JavaScript Interpreters gibt es viele, viele Arten dasselbe
+Programm zu schreiben - der JavaScript-Interpreter wird es immer gleich verstehen.
 Aus Sicht eines Menschen, der das Programm liest, sind manche Versionen leichter
 verständlich und manche weniger leicht.
 
@@ -92,7 +92,7 @@ while( i < 10 ) {
 
 ### Fixe Werte durch Variablen ersetzen
 
-Nebenbemerkung: In Javascript gibt es keine Konstanten im Sinne von C/C++/Java: Der Wert jeder Variable kann
+Nebenbemerkung: In JavaScript gibt es keine Konstanten im Sinne von C/C++/Java: Der Wert jeder Variable kann
 im Lauf des Programms verändert werden.  
 
 Wenn in einem Programm dieselbe Zahl mehrmals vorkommt kann das ein Hinweis
@@ -304,7 +304,7 @@ Argumente.
 Dieses Kapitel beschreibt u.a. einen Teil der Coding Conventions von Douglas Crockford.
 
 * [Code Conventions for the JavaScript Programming Language](https://developer.mozilla.org/en/JavaScript/Reference/Operators/instanceof)
-* [Crockford, Douglas(2008): Javascript, the good parts. O'Reilly.](http://www.amazon.de/JavaScript-Parts-Working-Shallow-Grain/dp/0596517742/)
+* [Crockford, Douglas(2008): JavaScript, the good parts. O'Reilly.](http://www.amazon.de/JavaScript-Parts-Working-Shallow-Grain/dp/0596517742/)
 * [Crockford, Douglas(2008): Das Beste an JavaScript. O'Reilly.](http://www.amazon.de/Das-Beste-JavaScript-Douglas-Crockford/dp/3897218763/)
 
 Das Beispiel für nicht-lesbaren Code wurde mit dem Google Closure Compiler erzeugt.

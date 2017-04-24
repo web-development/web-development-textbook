@@ -4,13 +4,13 @@ order: 5
 ---
 
 
-Bis zum Jahre 2015 wurden Variablen in Javascript gar nicht oder mit `var` deklariert.
-Seit Javascript 2015 gibt es auch `let` und `const`.
+Bis zum Jahre 2015 wurden Variablen in JavaScript gar nicht oder mit `var` deklariert.
+Seit JavaScript 2015 gibt es auch `let` und `const`.
 
 
 ## Sichtbarkeit von Variablen mit var
 
-In einer Funktion in Javascript sind lokale und globale
+In einer Funktion in JavaScript sind lokale und globale
 Variablen sichtbar.  Da Funktionen auch innerhalb von
 Funktionen definiert werden können sind in folgendem Code
 die Variablen a, b und c in der innern Funktion f sichtbar
@@ -38,7 +38,7 @@ console.log(y);  // ReferenceError: y is not defined
 
 §
 
-Eine Besonderheit von Javascript Variablen die mit `var` deklariert
+Eine Besonderheit von JavaScript Variablen die mit `var` deklariert
 wurden ist das "Hochziehen" (auf englisch: hoisting): Alle
 Variablen-Deklarationen werden an den Anfang der jeweiligen Funktion 
 vorverlegt.  Falls auch eine Zuweisung eines Wertes erfolgt
@@ -81,7 +81,7 @@ function g() { // function - scope
 
 ## Konstanten mit `const`
 
-Da Javascript eine dynamische Sprache ist haben Konstanten  eine
+Da JavaScript eine dynamische Sprache ist haben Konstanten  eine
 geringe Bedeutung. Für einfache Werte verhalten Sie sich wie erwartet:
 
 <javascript>

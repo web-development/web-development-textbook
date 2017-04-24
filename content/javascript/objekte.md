@@ -3,12 +3,12 @@ title: Objekte + Prototypen
 order: 20
 ---
 
-Javascript ist eine objektorientierte Sprache. Achtung, hier kommt es leicht zu einem Missverständniss: 
+JavaScript ist eine objektorientierte Sprache. Achtung, hier kommt es leicht zu einem Missverständniss: 
 Objektorientierung hat nicht zwingend etwas mit Klassen zu tun, sondern eben mit Objekten.  Und während
-z.B. in Java, C++, C#, PHP diese Objekte immer in Klassen organisiert sind, ist das in Javascript nicht
+z.B. in Java, C++, C#, PHP diese Objekte immer in Klassen organisiert sind, ist das in JavaScript nicht
 zwingend der Fall.
 
-Trotzdem gibt es in Javascript Mechanismen wie Vererbung und Komposition.
+Trotzdem gibt es in JavaScript Mechanismen wie Vererbung und Komposition.
 In diesem Kapitel lernen wir diese Mechanismen kennen.
 
 ## Ein einzelnes Objekt 
@@ -31,7 +31,7 @@ console.log( hs.alter() );  // 20
 ## Konstruktur-Funktion für mehrere gleiche Objekte
 
 Sollen mehrere gleichartige Objekte erzeugt werden, dann
-geschieht das in Javascript mit einer Konstruktur Funktion: 
+geschieht das in JavaScript mit einer Konstruktur Funktion: 
 
 <javascript caption="Konstruktor für Objekte">
 function Studiengang(name, seit, hochschule) {
@@ -76,7 +76,7 @@ Wie funktioniert das?  Die Antwort lautet:  mit dem Prototypen.
 
 ## Objekt und Konstruktor und Prototyp
 
-Wie im vorigen Kapitel kurz erläutert ist jede Funktion in Javascript auch ein Objekt.
+Wie im vorigen Kapitel kurz erläutert ist jede Funktion in JavaScript auch ein Objekt.
 Man kann zur Funktion Attribute speichern.  Es gibt ein Attribut mit einer speziellen Bedeutung
 bei einer Konstruktor-Funktion: das Attribut `prototype`: prototype verweist auf ein Objekt,
 in dem weitere Methoden und Attribute für alle Objekte die mit diesem Konstruktor erzeugt wurden
@@ -119,7 +119,7 @@ mmtm.min    // findet min Attribut des Prototypen,
 
 Wird ein Attribut oder eine Methode an einem Objekt gesucht, und
 kann direkt am Objekt nicht gefunden werden, dann durchsucht
-der Javascript-Interpreter als nächstes den Prototypen des Konstruktors.
+der JavaScript-Interpreter als nächstes den Prototypen des Konstruktors.
 
 Attribute direkt im Objekt überschreiben die Attribute des Prototypen: im Beispiel
 wird das Attribut `min` direkt im Objekt gefunden, hier ist kein Zugriff auf den Protypen nötig.
@@ -128,9 +128,9 @@ wird das Attribut `min` direkt im Objekt gefunden, hier ist kein Zugriff auf den
 ![Abbildung: Objekt mit Konstruktor](/images/objekt-mit-prototyp.png)
 
 
-## Javascript 2015 Schreibweise mit `class`
+## JavaScript 2015 Schreibweise mit `class`
 
-In Javascript 2015 wurde eine neue Schreibweise für Objekte und Konstruktoren
+In JavaScript 2015 wurde eine neue Schreibweise für Objekte und Konstruktoren
 eingeführt. Die Funktionsweise der Objekte, Konstruktur-Funktionen und Prototypen
 wurde dadurch nicht verändert.
 
@@ -179,7 +179,7 @@ mmtm.min    // findet min Attribut des Prototypen,
 
 ## Vertiefung
 
-Dies war nur ein erster Einstieg in die objektorientierte Programmierung mit Javascript.
-Details zu einigen wichtigen Befehlen in der Javascript-Referenz bei Mozilla:
+Dies war nur ein erster Einstieg in die objektorientierte Programmierung mit JavaScript.
+Details zu einigen wichtigen Befehlen in der JavaScript-Referenz bei Mozilla:
 
 * [instanceof](https://developer.mozilla.org/en/JavaScript/Reference/Operators/instanceof)

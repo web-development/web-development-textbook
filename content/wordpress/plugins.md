@@ -29,5 +29,5 @@ Der Event Kalender http://www.wp-eventscalendar.com/  Ermöglicht das erstellen 
 
 Flash
 ------
-Das Plugin WP-SWFObject5 ermöglicht die Einbindung von SWF-Dateien. Nachdem die SWF-Datei hochgeladen wurde können Sie mit dem Code \[SWF\]pfadzurdatei, breite, höhe\[/SWF\] im Eingabfeld für Artikel oder für Seiten die Datei einbinden. Dieser Code wird in HTML und Javascript übersetzt. Die Optionen können unter Einstellungen ⇒ WP-SWFObject verändert werden.
+Das Plugin WP-SWFObject5 ermöglicht die Einbindung von SWF-Dateien. Nachdem die SWF-Datei hochgeladen wurde können Sie mit dem Code \[SWF\]pfadzurdatei, breite, höhe\[/SWF\] im Eingabfeld für Artikel oder für Seiten die Datei einbinden. Dieser Code wird in HTML und JavaScript übersetzt. Die Optionen können unter Einstellungen ⇒ WP-SWFObject verändert werden.
 

@@ -8,7 +8,7 @@ Arrays und Objekten in Javscript deklarativ anschreiben.
 
 §
 
-JSON ist ein Teil der Javascript Syntax, eine deklarative
+JSON ist ein Teil der JavaScript Syntax, eine deklarative
 Art Datenstrukturen zu definieren.
 
 (Folgende Beispiel für JSON wurde aus der Graph API von Facebook abgerufen
@@ -46,11 +46,11 @@ o.category_list[0].name = "Education";
 
 Die deklarative Schreibweise in JSON ist aber einfacher lesbar
 
-## JSON und Javascript
+## JSON und JavaScript
 
 Für den Datenaustausch mit JSON muss die JSON-Schreibweise als String
 ausgegeben werden, bzw. ein String der JSON-Schreibweise enthält in
-eine Javascript Datenstruktur zurück verwandelt werden.  Die Umwandlung
+eine JavaScript Datenstruktur zurück verwandelt werden.  Die Umwandlung
 in einen String nennt man auch "Serialisierung"[&rarr;](http://de.wikipedia.org/wiki/Serialisierung).
 
 <javascript caption="(De)Serialisierung von JSON">
@@ -61,8 +61,8 @@ o      = JSON.parse(string);
 §
 
 Es gäbe noch eine zweite Art den String in eine Javscript-Datenstruktur
-umzuwandeln: Der Javascript-Befehl `eval` interpretiert einen String
-als Javascript Code und führt das Programm aus.
+umzuwandeln: Der JavaScript-Befehl `eval` interpretiert einen String
+als JavaScript Code und führt das Programm aus.
 
 <javascript caption="eval">
 json_string = "{ 'dies': 'und das' }";
@@ -73,7 +73,7 @@ console.log(o);
 In diesem Beispiel ist ganz klar was passiert - weil `json_string` ja
 lokal definier wird.  Für die Behandlung von unbekannten Daten ist `eval`
 nicht geeignet. Wir wollen ja nur den Datenaustausch ermöglichen, und nicht,
-dass beliebiger Javascript Code ausgeführt wird.
+dass beliebiger JavaScript Code ausgeführt wird.
 
 ## Referenz
 

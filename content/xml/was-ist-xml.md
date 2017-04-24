@@ -174,5 +174,5 @@ Darstellung in diesem Browser:
 </math>
 
 
-Alternative: [MathJAX](http://www.mathjax.org/) ist eine Javascript Library die MathML und LaTeX darstellen kann.
+Alternative: [MathJAX](http://www.mathjax.org/) ist eine JavaScript Library die MathML und LaTeX darstellen kann.
 

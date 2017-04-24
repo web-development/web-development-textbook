@@ -40,8 +40,8 @@ Im rechten Formular wird diese Redundanz vermieden.
 
 ## Vertiefung
 
-Wir haben bisher Formulare betrachtet, die nur HTML, nicht aber Javascript
-verwenden. Erst mit Javascript kann man Formulare wirklich flexibel bauen.
+Wir haben bisher Formulare betrachtet, die nur HTML, nicht aber JavaScript
+verwenden. Erst mit JavaScript kann man Formulare wirklich flexibel bauen.
 Und erst mit Serverseitiger Programmierung (z.B. in PHP oder Ruby) kann man
 die eingegebenen Daten wirklich verarbeiten.
 

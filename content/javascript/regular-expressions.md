@@ -16,9 +16,9 @@ Basierend auf [http://xkcd.com/208/](http://xkcd.com/208/) von Randall Munroe - 
 
 §
 
-Regular Expressions sind keine Besonderheit von Javascript. Viele UNIX Kommandozeilen-Befehle
+Regular Expressions sind keine Besonderheit von JavaScript. Viele UNIX Kommandozeilen-Befehle
 und die meisten Programmiersprachen bieten Regular Expressions an.  Egal ob Sie also mit vi, grep, mod_rewrite,
-Javascript, C++ oder Ruby arbeiten, alles was Sie über Regular Expressions lernen
+JavaScript, C++ oder Ruby arbeiten, alles was Sie über Regular Expressions lernen
 zahlt sich aus!
 
 [Reguläre Ausdrücke](http://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck) sind 
@@ -33,7 +33,7 @@ sagt man auf Halb-Englisch: "der Pattern matched".
 
 ## Verwendung von Regular Expressions
 
-In Javascript gibt es viele verschiedene Schreibweise für Regular Expressions,
+In JavaScript gibt es viele verschiedene Schreibweise für Regular Expressions,
 wir beginnen mit der Methode `match` des String-Objekts:
 
 <javascript caption="match">
@@ -410,14 +410,14 @@ mit Hilfe von RegEx zu parsen.
 Das funktioniert aber nicht.  Das müssten Sie an dieser Stelle
 einfach mal glauben - den Beweis überlassen wir der "Theoretischen Informatik".
 
-Wenn Sie also in Javascript oder PHP HTML oder XML parsen wollen, dann
+Wenn Sie also in JavaScript oder PHP HTML oder XML parsen wollen, dann
 verwenden Sie dafür einen der vielen fertigen Parser.
 
 Wenn Sie aus einem längeren HTML-Dokument "unverschachtelte" Teile wie
 z.B. `<img>` Tags herausholen wollen, dann könnsn Sie das mit Regular Expressions machen.
 Aber nichts komplizierteres.
 
-## Ersetzen mit Regular Expression in Javascript
+## Ersetzen mit Regular Expression in JavaScript
 
 Ein häufiger Anwendungsfall von RegEx ist "Suchen und Ersetzen"
 

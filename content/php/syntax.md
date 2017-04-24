@@ -340,11 +340,11 @@ Der Operator bestimmt also den Typ!
 
 §
 
-In Javascript ist es 
+In JavaScript ist es 
 genau umgekehrt: da entscheidet der Datentyp  
 über die Bedeutung des Operators:
 
-![Abbildung: Bespiel für den Operator + in Javascript (Firebug)](/images/php-javascript-plus.png)
+![Abbildung: Bespiel für den Operator + in JavaScript (Firebug)](/images/php-javascript-plus.png)
 
 Arrays
 ------

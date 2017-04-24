@@ -71,7 +71,7 @@ Editor.prototype.circle = function( x,y,r,att, text ) {
 Circle und Rectangle funktionieren sehr ähnlich, deswegen werden sie hier gemeinsam
 beschreiben.  Als SVG-Elemente betrachtet gibt es größere Unterschiede: so wird die
 Position eines `<circles>` über die Attribute `cx` und `cy` gesetzt, die Position eines
-`<rect>` über `x` und `y`.  Diese Unterschiede werden durch die neu erstellen Javascript-Objekte
+`<rect>` über `x` und `y`.  Diese Unterschiede werden durch die neu erstellen JavaScript-Objekte
 möglichst verborgen.
 
 Die Signatur der Konstruktur-Funktion sind:
@@ -186,15 +186,15 @@ Wenn die Funktion onMouseDown aufgerufen wird enthält
 `this` das angeklickte Element, und `e` enthält ein Event-Objekt mit
 weiteren Details.
 
-### Problemstellung: vom DOM-Element zum Javascript-Objekt
+### Problemstellung: vom DOM-Element zum JavaScript-Objekt
 
-In unserem Javascript-Programm wird ein Kreis nicht alleine durch
-die SVG-Node `<circle>` repräsentiert, sondern durch ein Javascript-Objekt
+In unserem JavaScript-Programm wird ein Kreis nicht alleine durch
+die SVG-Node `<circle>` repräsentiert, sondern durch ein JavaScript-Objekt
 das mit dem Konstruktor `Circle` erzeugt wurde.
 
-Wie kann die Listener-Funktion Zugriff zu diesem Javascript-Objekt erhalten?
+Wie kann die Listener-Funktion Zugriff zu diesem JavaScript-Objekt erhalten?
 
-Ein Versuch wäre, das Javascript-Objekt im SVG-Element zu speichern.
+Ein Versuch wäre, das JavaScript-Objekt im SVG-Element zu speichern.
 zum Beispiel in einem Data-Attribut. In HTML5 darf man ja zu jedem
 Tag / Element beliebige neue Attribute dazu erfinden, solange der
 Name des Attributs mit "data-" beginnt.
@@ -207,9 +207,9 @@ Name des Attributs mit "data-" beginnt.
 
 §
 
-Ein Data-Attribut könnte man mit Javascript setzen. Hier ein Versuch:
+Ein Data-Attribut könnte man mit JavaScript setzen. Hier ein Versuch:
 
-<javascript caption="Javascript-Objekte in einem Data-Attribut in der DOM speichern - geht nicht">
+<javascript caption="JavaScript-Objekte in einem Data-Attribut in der DOM speichern - geht nicht">
 // Versuch ein Objekt zu speichern
 c = document.getElementById("circle_1");
 c.setAttribute("data-myobject", { color: 'red', no: 42 } ); 
@@ -223,13 +223,13 @@ console.log(o)  // ergibt "[object Object]"
 Beim Speichern in der DOM wurde also mein Objekt in einen String umgewandelt,
 und nur der String wurde gespeichert.  
 
-**Es ist nicht möglich beliebige Javascript-Objekte in der DOM zu speicher!**
+**Es ist nicht möglich beliebige JavaScript-Objekte in der DOM zu speicher!**
 
 
 ### Lösungs-Ansatz mit Closure 
 
-Die übliche Lösung in Javascript ist die Verwendung von Closures: die Event-Listener-Funktion
-ist eine Closure, die das Javascript-Objekt kennt, und deswegen darauf Zugriff hat.
+Die übliche Lösung in JavaScript ist die Verwendung von Closures: die Event-Listener-Funktion
+ist eine Closure, die das JavaScript-Objekt kennt, und deswegen darauf Zugriff hat.
 
 <javascript caption="Event-Listener-Funktion als Closure">
 function addDragability( jsobj, element ) {

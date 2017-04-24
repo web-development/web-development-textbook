@@ -73,7 +73,7 @@ Der Teil, der im `<FilesMatch>`-Tag eingeschlossen ist gilt für alle Dateien im
 Der Teil der Konfiguration, der im `<Location>`-Tag eingeschlossen ist gilt nur für den Ordner `/fhintranet` im Webspace. Der Teil, der im `<FilesMatch>`-Tag eingeschlossen ist gilt für alle Dateien im Webspace, deren Name auf `.bak` endet.
 
 
-Die Schreibwiese bei FilesMatch ist einen „Pattern" - ein Suchmusters. Patterns und Pattern-Matching werden Sie in Javascript, in PHP und in vielen Konfigurationsdateien wieder verwenden.
+Die Schreibwiese bei FilesMatch ist einen „Pattern" - ein Suchmusters. Patterns und Pattern-Matching werden Sie in JavaScript, in PHP und in vielen Konfigurationsdateien wieder verwenden.
 
 Das Dollar-Zeichen am Ende des Patterns bedeutet, dass `bak` am Ende des Dateinamens stehen muß. Eine Datei mit Namen test.bak.txt wäre also nicht betroffen. Vor dem Punkt muß man einen Backslash `\` schreiben, weil der Punkt alleine als Joker gelten würde. Der Pattern `.bak$` (ohne Backslash) würde also auch den Dateinamen schlabberdibak oder bik_bak erkennen, weil der Punkt für das i oder den Unterstich stehen könnte.
 

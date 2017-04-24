@@ -7,7 +7,7 @@ Zeichnen im Canvas
 -------------------
 Der Canvas-Tag stellt eine rechteckige Zeichenfläche zur Verfügung. Es handelt sich dabei um eine Matrix von Pixeln, siehe SVG für Vektor-Grafik.
 
-Der Canvas wird durch zwei Objekte in Javascript repräsentiert: ein Canvas-Objekt und ein Context-Objekt. Zuerste müssen wir diese beiden Objekte finden und in Variablen speichern:
+Der Canvas wird durch zwei Objekte in JavaScript repräsentiert: ein Canvas-Objekt und ein Context-Objekt. Zuerste müssen wir diese beiden Objekte finden und in Variablen speichern:
 
 <javascript>
 let my_canvas = document.getElementById("c");

@@ -3,12 +3,12 @@ title: Funktionen und Closures
 order: 15
 ---
 
-Javascript baut nicht nur auf die Traditionen der
+JavaScript baut nicht nur auf die Traditionen der
 objektorientierten Programmierung auf, sondern auch
 auf die der Funktionalen Programmierung[&rarr;](http://de.wikipedia.org/wiki/Funktionale_Programmierung).
 
 In diesem Kapitel lernen wir die Besonderheiten
-von Funktionen in Javascript kennen, darunter
+von Funktionen in JavaScript kennen, darunter
 auch Closures [&rarr;](http://de.wikipedia.org/wiki/Closure).
 
 

@@ -4,7 +4,7 @@ order: 40
 ---
 
 Wie im vorigen Kapitel gelernt ist AJAX die englische Abkürzung für „Asynchrones 
-Javascript und XML“. Mit AJAX kann man Webseiten verbessern – man kann sie aber 
+JavaScript und XML“. Mit AJAX kann man Webseiten verbessern – man kann sie aber 
 auch verschlechtern.
 
 ## Schlechte Verwendung von AJAX
@@ -46,8 +46,8 @@ gelernt, in diesem Kapitel kommt ein zweites, technischeres dazu:
 
 **Progressive Enhancement** wurde im Kapitel 
 [jQuery](/jquery/unobstrusive/) bereits vorgestellt: Eine Webseite sollte
-auch im primitivsten Ausgabegerät noch funktionieren, also z.B. ohne Javascript.
-Was Javascript an zusätzlichen Features bringt soll nicht auf Kosten der
+auch im primitivsten Ausgabegerät noch funktionieren, also z.B. ohne JavaScript.
+Was JavaScript an zusätzlichen Features bringt soll nicht auf Kosten der
 Grundfunktion geben, sondern nur die vorhandene Funktion erweitern.
 
 

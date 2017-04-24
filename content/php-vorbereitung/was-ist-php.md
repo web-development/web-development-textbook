@@ -4,7 +4,7 @@ order: 20
 ---
 PHP ist eine Programmiersprache die oft am Webserver verwendet wird, um HTML dynamisch zu erzeugen. 
 
-Sie ist im Vergleich zu anderen Programmiersprachen wie C++  oder Javascript
+Sie ist im Vergleich zu anderen Programmiersprachen wie C++  oder JavaScript
 recht '''simple'''  in der Schreibweise und etwas '''altmodisch'''. Gerade deswegen eignet sie sich gut für Programmier-EinsteigerInnen. Viele bekannte open source Web-Applikationen sind in PHP geschrieben.
 
 Neben PHP werden viele andere Sprachen am Webserver verwendet: ruby (on rails),

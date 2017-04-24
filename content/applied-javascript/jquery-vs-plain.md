@@ -1,10 +1,10 @@
 ---
-title: jQuery und reines Javascript
+title: jQuery und reines JavaScript
 order: 10
 ---
 
-Im ersten Teil des Buches, in den Kapiteln [Formular und Javascript](/formulare/javascript/),
-[Javascript DOM](/javascript-dom/) und [jQuery](/jQuery/) wurde Javascript und jQuery bereits vorgestellt.
+Im ersten Teil des Buches, in den Kapiteln [Formular und JavaScript](/formulare/javascript/),
+[JavaScript DOM](/javascript-dom/) und [jQuery](/jQuery/) wurde JavaScript und jQuery bereits vorgestellt.
 
 Nun wollen wir dieselben Themen nocheinmal genauer betrachten.
 
@@ -19,14 +19,14 @@ Element, manchmal mehrere.
 Wenn man mit einem jQuery Objekt arbeitet muss man sich also
 bewusst sein, arbeitet man immer in der Mehrzahl, nie in der Einzahl.
 
-Um die jQuery Objekte besser von anderen Javascript Variablen 
+Um die jQuery Objekte besser von anderen JavaScript Variablen 
 unterscheiden zu können werden wir ihre Variablennamen immer mit
 einem Dollar beginnen.
 
 §
 
 <javascript caption="von jQuery zu DOM und umgekehrt: Eine Node">
-// von Javascript zu jQuery
+// von JavaScript zu jQuery
 
 // Eine Node nach ID auswählen 
 node = document.getElementById("id");
@@ -35,7 +35,7 @@ node = document.getElementById("id");
 $q = $(node);
 
 __|__
-// von jQuery nach Javascript
+// von jQuery nach JavaScript
 
 // Eine Node mit ID auswählen 
 $q = $("#idname");
@@ -48,10 +48,10 @@ node = $q[0];
 §
 
 Wenn mehrere Nodes gefunden werden muss das in jQuery nicht
-besonders behandelt werden, in reinem Javascript schon:
+besonders behandelt werden, in reinem JavaScript schon:
 
 <javascript caption="von jQuery zu DOM und umgekehrt: mehrere Nodes">
-// plain Javascript
+// plain JavaScript
 // Nodes mit CSS-Selektor auswählen
 arr = document
         .querySelectorAll(".class");
@@ -89,7 +89,7 @@ while( i < $q.length ) {
 Wie wählt man Nodes aus der DOM aus?
 
 <javascript caption="DOM Selektieren">
-// plain Javascript
+// plain JavaScript
 
 // Eine Node nach ID auswählen
 node = document.getElementById("id");
@@ -120,7 +120,7 @@ $q = $("h2");
 Wie wandert man durch den DOM-Baum?
 
 <javascript caption="DOM Traversieren">
-// plain Javascript
+// plain JavaScript
 
 // hinauf zur Eltern-Node
 p = node.parentNode;
@@ -155,7 +155,7 @@ $n = $q.next('p');
 
 ## Attribute
 
-Wie liest man Attribute aus, wie setzt man sie? Das ist in reinem Javascript
+Wie liest man Attribute aus, wie setzt man sie? Das ist in reinem JavaScript
 sogar etwas einfacher als mit jQuery: die Attribute sind einfach Eigenschaften
 des jeweiligen Nodes und könnnen direkt manipuiert werden.
 
@@ -163,7 +163,7 @@ jQuery erleichtert einerseits das Verarbeiten einer ganzen Liste von Nodes,
 und bietet andererseites ein paar besser verständliche Werte für Attribute:
 
 <javascript caption="Attribute lesen und setzen">
-// plain Javascript - nur erstes h2!
+// plain JavaScript - nur erstes h2!
 document.querySelector('h2').align;
 document.querySelector('h2')
   .align = 'center';
@@ -196,7 +196,7 @@ $('input[id][name$=_no]')
 
 Bei der Manipulation von CSS ist zu beachten: die Schreibweise
 von CSS-Eigenschaften mit einem Minus-Zeichen lässt sich nicht
-nach Javascript übertragen.  In Javscript wird deswegen aus 
+nach JavaScript übertragen.  In Javscript wird deswegen aus 
 `background-color` die Eigenschaft `backgroundColor`.
 
 <javascript caption="Style setzen">
@@ -249,7 +249,7 @@ $('#foo').hasClass('bar');
 Wie fügt man eine Node in die DOM ein?
 
 <javascript caption="Node in die DOM einfügen">
-// plain Javascript
+// plain JavaScript
 
 // Text einfügen
 t= document.createTextNode("Hello"); 
@@ -295,7 +295,7 @@ $n.append($l);
 Wie kopiert oder verschiebt man eine vorhandene Node?
 
 <javascript caption="Node clonen">
-// plain Javascript
+// plain JavaScript
 
 // dolly kopieren und einfügen
 var d2 = document
@@ -335,7 +335,7 @@ $('#da').append($('kirk').remove());
 Wie fügt man einen Event-Handler ein?
 
 <javascript caption="Events">
-// plain Javascript
+// plain JavaScript
 node.addEventListener("click", f);
 __|__
 // jQuery 
@@ -345,12 +345,12 @@ $n.on("click", f);
 ## Wann brauche ich jQuery? Wann brauche ich ein Framework?
 
 Als jQuery im Jahre 2006 erschien brachte es große Fortschritte
-gegenüber "reinem Javascript".  In den Jahren seither hat jQuery
-die Weiterentwicklung von Javascript beeinflusst: so wurde 
+gegenüber "reinem JavaScript".  In den Jahren seither hat jQuery
+die Weiterentwicklung von JavaScript beeinflusst: so wurde 
 querySelector und querySelectorAll erst nach jQuery in den 
-Javascript Standard aufgenommen, und landet z.B. in Firefox 3.5 im Juni 2009.
+JavaScript Standard aufgenommen, und landet z.B. in Firefox 3.5 im Juni 2009.
 
-Die "reine Javascript" Lösung bringt bessere Performance,
+Die "reine JavaScript" Lösung bringt bessere Performance,
 besonders auf mobilen Endgeräten, wo das Laden der Liberary und
 der Speicherverbrauch durch die Libraray größere Auswirkungen
 haben als am Desktop.

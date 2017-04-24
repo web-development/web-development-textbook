@@ -3,7 +3,7 @@ title: Formulardaten Prüfen mit jQuery
 order: 50
 ---
 Im Kapitel über Formulare haben Sie gelernt, 
-wie Sie mit Javascript die Daten eines Webformulars prüfen können 
+wie Sie mit JavaScript die Daten eines Webformulars prüfen können 
 bevor das Formular abgesendet wird. 
 
 Das Submit-Event des Formulars wird nun in der jQuery Schreibweise

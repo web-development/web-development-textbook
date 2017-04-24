@@ -113,9 +113,9 @@ bevor die Ausgabe beginnt.  Im `catch`-Block wird eine Webseite
 erzeugt, die gar nichts mit der "normalen" Ausgabe der Seite zu
 tun hat.
 
-## Exkurs: Exceptions in Javascript
+## Exkurs: Exceptions in JavaScript
 
-Die Verwendung und Schreibweise ist in Javascript so ähnlich, dass es sich
+Die Verwendung und Schreibweise ist in JavaScript so ähnlich, dass es sich
 gar nicht lohnt näher darauf einzugehen. Siehe 
 [Rauschmayer(2012): Ausnahmebehandlung in JavaScript in mag.js Nr.1](http://www.magjs.de/2012-01/rauschmayer/rauschmayer.html)
 

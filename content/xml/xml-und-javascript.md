@@ -1,11 +1,11 @@
 ---
-title: XML und Javascript
+title: XML und JavaScript
 order: 40
 ---
 
 
 Wir [haben schon glernt](/javascript-dom/dom/) wie man mit
-Javascript das Document Object Model (DOM) eines HTML-Dokuments
+JavaScript das Document Object Model (DOM) eines HTML-Dokuments
 manipuliert.  Auch ein XML Dokument hat ein DOM, man kann
 es mit den gleichen Methoden manipulieren.
 

@@ -3,7 +3,7 @@ title: Funktionen und this
 order: 10
 ---
 
-Sie kennen schon mehrere Arten eine Funktion in Javascript zu definieren:
+Sie kennen schon mehrere Arten eine Funktion in JavaScript zu definieren:
 
 <javascript caption="Funktionen definieren">
   function r1( s, x ) {
@@ -27,7 +27,7 @@ Sie kennen schon mehrere Arten eine Funktion in Javascript zu definieren:
 
 §
 
-Seit Javascript 2015 gibt es doch eine Schriebweise: die Arrow Function
+Seit JavaScript 2015 gibt es doch eine Schriebweise: die Arrow Function
 
 <javascript caption="Arrow Function">
   ( s, x ) => {
@@ -89,7 +89,7 @@ gibt es noch mehrere zusätzliche Arten eine Funktion aufzurufen:
 
 ## Was ist this?
 
-Die Variable `this` hat eine besondere Bedeutung in Javascript Funktionen.
+Die Variable `this` hat eine besondere Bedeutung in JavaScript Funktionen.
 Erst einmal verweist `this` auf das `window` Objekt:
 
 <javascript caption="this in einer normalen Funktion">
@@ -225,7 +225,7 @@ die Eigenschaften des MouseEvents zeigt:
 
 §
 
-Es gibt noch eine besondere Art eine Funktion in Javascript aufzurufen: mit `new`.
+Es gibt noch eine besondere Art eine Funktion in JavaScript aufzurufen: mit `new`.
 Damit wird die Funktion als Konstruktor für ein Objekt verwendet. Es ist üblich
 Konstruktur-Funktionen mit großen Anfangsbuchstaben zu benennen. 
 
@@ -244,13 +244,13 @@ ein neues Objekt vorhanden, und über `this` zugänglich. Dieses
 Objekt ist auch automatisch Rückgabewert der Funktion.
 
 Arrow Funktionen können nicht als Constructor verwendet werden.
-Dafür gibt es in Javascript 2015 `class` und `constructor` als Alternative.
+Dafür gibt es in JavaScript 2015 `class` und `constructor` als Alternative.
 
 §
 
 ## Eine Funktion ist ein Objekt
 
-Jede Funktion in Javascript ist auch ein Objekt. Sie kann Attribute haben,
+Jede Funktion in JavaScript ist auch ein Objekt. Sie kann Attribute haben,
 die man mit der ganz normalen Schreibweise setzten kann:
 
 <javascript caption="Funktion mit einem Attribut">

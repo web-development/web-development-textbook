@@ -13,5 +13,5 @@ Was Sie alle wissen sollten
 
 Was Sie können sollten
 
-* Cookies von PHP und Javascript aus setzen und auslesen
+* Cookies von PHP und JavaScript aus setzen und auslesen
 * Die Sessions von PHP in Ihrem PHP-Programm benutzen

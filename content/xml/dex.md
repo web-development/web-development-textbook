@@ -18,5 +18,5 @@ intro: Sie lernen wohlgefomtes und valides XML kennen.
 * eine DTD lesen und verstehen, ein dazu passendes XML-Dokument erstellen
 * Testen ob XML Daten wohlgeformt und valide sind
 * Mit PHP XML laden, manipulieren und ausgeben
-* Mit Javascript XML laden, manipulieren und ausgeben
+* Mit JavaScript XML laden, manipulieren und ausgeben
 * Dabei eventuell XPath verwenden

@@ -169,7 +169,7 @@ vorhergehenden Suche noch ein Cookie haben.)
 
 §
 
-Im zweiten Beispiel gibt Frau Hacker neben einem Bild noch etwas Javascript ein:
+Im zweiten Beispiel gibt Frau Hacker neben einem Bild noch etwas JavaScript ein:
 
 <htmlcode>
 Hallo Welt 
@@ -180,7 +180,7 @@ Hallo Welt
 </script>
 </htmlcode>
 
-Mit der einen Zeile Javascript wir das Cookie an die URL des Bildes angefügt, das Ergebnis ist z.B:
+Mit der einen Zeile JavaScript wir das Cookie an die URL des Bildes angefügt, das Ergebnis ist z.B:
 
 <htmlcode>
 <img id="hack_tool" alt="harmloses bild" 
@@ -190,7 +190,7 @@ src="http://hacker.net/bild.php?keks=PHPSESSID=6b454e966f9fc9b9a9d5126ffb076115"
 So kann Frau Hacker das Cookie einer BesucherIn Ihres Gästebuchs entwenden. Sie
 kann nun das Cookie verwenden um als eingeloggter User Ihre Seite zu benützen!
 
-Lassen Sie niemals, niemals, niemals zu, dass Fremde Javascript in Ihre Site einspeisen können!
+Lassen Sie niemals, niemals, niemals zu, dass Fremde JavaScript in Ihre Site einspeisen können!
 
 §
 
@@ -198,11 +198,11 @@ Noch hat unsere Applikation dieses Problem nicht: Wenn Frau Hacker Ihren Code
 z.B. in das Profil einer Person eingibt wir der Code htmlescaped angezeigt und
 „wirkt nicht“:
 
-![Eingegebener HTML+Javascript-Code wird escaped und dargestellt](/images/html-escaped.png)
+![Eingegebener HTML+JavaScript-Code wird escaped und dargestellt](/images/html-escaped.png)
 
 ### Eingabe von HTML
 
-Die Eingabe des HTML-Codes können Sie mit einem Javascript-Editor wie TinyMCE
+Die Eingabe des HTML-Codes können Sie mit einem JavaScript-Editor wie TinyMCE
 erleichtern. TinyMCE verwandelt eine normale Textarea in einen wysiwyg-Editor:
 
 ![Normale Textarea (oben) kann mit TinyMCE in einen wysiwyg-Editor (unten) verwandelt werden](/images/tinymce.png)

@@ -5,7 +5,7 @@ order: 10
 
 ## Verwendung
 
-URLs werden in CSS und HTML an vielen Stellen verwendet: bei Links und Bilder, beim Verweis auf externe Stylesheets, externe Javascript-Dateien, etc.  An all diesen Stellen können Sie URLs in den hier beschriebenen Schreibweisen verwenden.
+URLs werden in CSS und HTML an vielen Stellen verwendet: bei Links und Bilder, beim Verweis auf externe Stylesheets, externe JavaScript-Dateien, etc.  An all diesen Stellen können Sie URLs in den hier beschriebenen Schreibweisen verwenden.
 
 Die „absolute“ und „relative“ Schreibweise wurde von den Pfadangaben im UNIX-Dateisystem übernommen; auch die Pfadangaben von Windows funktionieren ähnlich.
 

@@ -37,7 +37,7 @@ XSS vermeinden kann man mit zwei Verteidigungs-Linien:
 ## Eingabe validieren in PHP
 
 Achtung: der PHP Befehl `strip_tags` enfernt keine Attribute aus erlaubten Tags, es ist
-also ganz leicht möglich Javascript in einem `onmouseover` Attribut einzuschummeln.
+also ganz leicht möglich JavaScript in einem `onmouseover` Attribut einzuschummeln.
 
 Statt dessen sollte man einen HTML-Filter wie [HTML Purifier](http://htmlpurifier.org/) verwenden.
 
@@ -48,7 +48,7 @@ Drei Beispiele, und die dafür passenden PHP-Befehle:
 
 1. in einer URL - `urlencode` 
 2. in HTML - `htmlspecialchars` 
-3. in Javascript, als Wert einer Variable - `json_encode`
+3. in JavaScript, als Wert einer Variable - `json_encode`
 
 Es gibt aber noch viele andere Kontexte!
 

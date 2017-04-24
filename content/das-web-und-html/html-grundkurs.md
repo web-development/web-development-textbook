@@ -384,7 +384,7 @@ Dateigröße möglichst gering ist.
 Weitere Arten Bilder zu erstellen werden wir später genauer betrachten: Mit
 responsive images kann man verschieden große Bilder für verschiedene
 Ausgabegeräte anbieten. Mit dem 
-canvas-Tag und Javascript kann man Bilder zeichnen. 
+canvas-Tag und JavaScript kann man Bilder zeichnen. 
 
 
 Links

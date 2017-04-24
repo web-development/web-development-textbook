@@ -1,12 +1,12 @@
 ---
-title: Besondere Javascript-Schreibwesen in jQuery
+title: Besondere JavaScript-Schreibwesen in jQuery
 order: 20
 ---
 jQuery Code ist auf den ersten Blick nicht einfach lesbar. Wenn man ein paar Grundprinzipien verstanden hat profitiert man aber von den ungewohnten Schreibweisen: der Code bleibt relativ kurz.
 
 Mein Name ist Dollar
 ---------------------
-In Javascript kann das Dollar-Zeichen in Bezeichnen (Variablennamen, Funktionsnamen) verwendet werden. jQuery nutzt diese Besondernheit von Javascript aus und definiert eine Funktion und ein Objekt mit dem Dollarzeichen als Namen. Hier eine kleine Lese-Schule:
+In JavaScript kann das Dollar-Zeichen in Bezeichnen (Variablennamen, Funktionsnamen) verwendet werden. jQuery nutzt diese Besondernheit von JavaScript aus und definiert eine Funktion und ein Objekt mit dem Dollarzeichen als Namen. Hier eine kleine Lese-Schule:
 
 Eine Funktion mit dem Namen $ wird mit einem Argument aufgerufen, das Argument ist ein String:
 
@@ -52,7 +52,7 @@ Dabei kann man auch Zeilenumbrüche verwenden, folgender Code hat genau die glei
 
 Funktionen als first-class citizens
 --------------------------------------
-In Javascript können Funktionen zur Laufzeit erzeugt werden, in Variablen gespeichert werden, haben eine Identität auch wenn sie keinen Namen haben. Betrachten wir eine ganz normale Funktion:
+In JavaScript können Funktionen zur Laufzeit erzeugt werden, in Variablen gespeichert werden, haben eine Identität auch wenn sie keinen Namen haben. Betrachten wir eine ganz normale Funktion:
 
 <javascript>
   function create_gold() { 
@@ -67,7 +67,7 @@ Sie kennen schon die Schreibweise für den Aufruf der Funktion: auch wenn die Fu
   gold1 = create_gold();
 </javascript>
 
-In Javascript gibt es eine zweite, ähnliche Scheibweise ohne die runden Klammern. Dabei wird die Funktion nicht aufgerufen, sondern in der Variable `f` gespeichert:
+In JavaScript gibt es eine zweite, ähnliche Scheibweise ohne die runden Klammern. Dabei wird die Funktion nicht aufgerufen, sondern in der Variable `f` gespeichert:
 
 <javascript>
   f = create_gold;

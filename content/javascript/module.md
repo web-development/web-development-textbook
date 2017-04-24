@@ -3,21 +3,21 @@ title: Module
 order: 45
 ---
 
-Wie kann man Javascript-Code in größere Einheiten
+Wie kann man JavaScript-Code in größere Einheiten
 organisieren?  Wo doch die Sprache keine Unterstütztung
 für Namespaces oder Kapselung bietet?
 
 Eine Lösung für diese Fragestellung ist der Modul-Pattern,
-hier beschrieben nach [Stefanov(2010): Javascript Patterns](http://shop.oreilly.com/product/9780596806767.do), Kapitel 5.
+hier beschrieben nach [Stefanov(2010): JavaScript Patterns](http://shop.oreilly.com/product/9780596806767.do), Kapitel 5.
 Siehe auch [Osmani(2012): Learning JavaScript Design Patterns](http://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript).
 
 ## Viele Skripte, ein Namensraum
 
-Häuft werden in einer Webseite Javascript-Programm aus
+Häuft werden in einer Webseite JavaScript-Programm aus
 verschiedenen Quellen kombiniert.  Die Webseite
 enthält z.B. 
 
-* Javascript der Website selbst, zu Prüfung von Formulardaten und für Animationen
+* JavaScript der Website selbst, zu Prüfung von Formulardaten und für Animationen
 * für Zugriffs-Statistiken, z.B. [Google Analytics](http://support.google.com/googleanalytics/bin/answer.py?hl=en&answer=174090)
 * für das Teilen von Inhalten auf Sozialen Netzwerkden, z.B. [Facebook-Like-Button](https://developers.connect.facebook.com/docs/reference/plugins/like/)
 * für Feedback zu Webseite z.B. [UserVoice](http://uservoice.com)
@@ -26,12 +26,12 @@ enthält z.B.
 
 Mit ein bisschen Copy-und-Paste kann man die verschiedenen
 Programme schnell in die eigene Webseite einbauen. All diese
-Programme laufen dann im selben Javascript Interpreter ab,
+Programme laufen dann im selben JavaScript Interpreter ab,
 und benutzen einen gemeinsamen globalen Namensraum.
 
 ## Namensraum imitieren
 
-Um einen Namensraum zu imitieren kann man ein Objekt in Javascript verwenden.
+Um einen Namensraum zu imitieren kann man ein Objekt in JavaScript verwenden.
 
 Die linke Version erzeugt 5 globale Namen. Oder, um genauer zu sein: sie
 erzeugt 3 Eigenschaften und 2 Methoden des `window`-Objekts. Würde ein

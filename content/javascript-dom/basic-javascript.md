@@ -1,11 +1,11 @@
 ---
-title: Basic Javascript
+title: Basic JavaScript
 order: 20
 ---
-Ein vollständiges Beispiel für eine Webseite mit Javascript-Programm, auch
+Ein vollständiges Beispiel für eine Webseite mit JavaScript-Programm, auch
 [live im browser](/images/farbfeld.html).
 
-<htmlcode caption="Vollständige Webseite mit Javascript">
+<htmlcode caption="Vollständige Webseite mit JavaScript">
 <head>
 <body id="farbfeld">
 <h1>Farbwahl</h1>
@@ -23,23 +23,23 @@ function setcolor( c ) {
 </body>
 </htmlcode>
 
-In dieser Webseite ist an vier Stellen Javascript zu finden. Im `script` Tag am Ende des body, und dreimal in einem Attribut des `input`-Tags. Wie Sie sehen ist Javascript sehr eng mit HTML und CSS verzahnt. 
+In dieser Webseite ist an vier Stellen JavaScript zu finden. Im `script` Tag am Ende des body, und dreimal in einem Attribut des `input`-Tags. Wie Sie sehen ist JavaScript sehr eng mit HTML und CSS verzahnt. 
 
-Wer ein bestehende Website warten oder verändern will muss mindestens den bestehenden Javascript-Code erkennen können, um ihn nicht zu beschädigen. D.h. auch Leute die nur Design und keine Programmierung machen brauchen ein Grundverständnis von Javascript.
+Wer ein bestehende Website warten oder verändern will muss mindestens den bestehenden JavaScript-Code erkennen können, um ihn nicht zu beschädigen. D.h. auch Leute die nur Design und keine Programmierung machen brauchen ein Grundverständnis von JavaScript.
 
-Es ist also erst einmal zu klären wie Javascript in HTML eingebunden wird. 
+Es ist also erst einmal zu klären wie JavaScript in HTML eingebunden wird. 
 
-Einbindung von Javascript
+Einbindung von JavaScript
 --------------------------
 
-* externe Javascript-Datei
+* externe JavaScript-Datei
 * mit &lt;script>-Tag
-* Javascript in einer URL
+* JavaScript in einer URL
 * onevent-Attribute
 
-### Externe Javascript-Datei
+### Externe JavaScript-Datei
 
-Man kann Javascript-Programme in eigenen Dateien speichern, diese haben traditionell die Endung .js. Wir werden später eine Javascript-Library namens jQuery verwendet. Mit dem `script`-Tag wird die externe Javascript-Datei eingebunden: 
+Man kann JavaScript-Programme in eigenen Dateien speichern, diese haben traditionell die Endung .js. Wir werden später eine JavaScript-Library namens jQuery verwendet. Mit dem `script`-Tag wird die externe JavaScript-Datei eingebunden: 
 
 
 <htmlcode>
@@ -49,7 +49,7 @@ Man kann Javascript-Programme in eigenen Dateien speichern, diese haben traditio
 Wird der `script`-Tag auf diese Weise (mit dem Attribut src) verwendet, dann darf er keinen Inhalt zwischen `<script>` und `</script>` enthalten. Achtung: die Schreibweise ohne Ende-Tag: `<script src="jquery">` ist nicht erlaubt!
 
 ### Der &lt;script>-Tag 
-Javascript-Programme können im HTML-Code mit dem `script`-Tag eingebettet
+JavaScript-Programme können im HTML-Code mit dem `script`-Tag eingebettet
 werden. Das Programm wird dann beim Aufbau der Seite ausgeführt, siehe auch
 [live im Browser](/images/countdown.html)
 
@@ -65,31 +65,31 @@ werden. Das Programm wird dann beim Aufbau der Seite ausgeführt, siehe auch
   <p><strong>Peng!</strong>
 </htmlcode>
 
-Dieses Programm ist übrigens ein gutes Beispiel für ein veraltetes Javascript-Programm. Die Methode `document.write()`, der hier für die Ausgabe verwendet wird, wurde durch das DOM größteteils ersetzt. Nur sehr wenige Leute müssen bei sehr wenigen Gelegenheiten noch `document.write()` verwenden - z.B. die AutorInnen der Javascript-Libaries wie John Resig von jQuery.
+Dieses Programm ist übrigens ein gutes Beispiel für ein veraltetes JavaScript-Programm. Die Methode `document.write()`, der hier für die Ausgabe verwendet wird, wurde durch das DOM größteteils ersetzt. Nur sehr wenige Leute müssen bei sehr wenigen Gelegenheiten noch `document.write()` verwenden - z.B. die AutorInnen der JavaScript-Libaries wie John Resig von jQuery.
 
-### Javascript in einer URL
+### JavaScript in einer URL
 
-Als URL kann man auch ein kleines Javascript-Programm angeben, z. B. bei einem Link:
+Als URL kann man auch ein kleines JavaScript-Programm angeben, z. B. bei einem Link:
 
 <htmlcode>
-  <a href="javascript:location='http://www.google.at/'">zu Google nur mit Javascript</a>
+  <a href="javascript:location='http://www.google.at/'">zu Google nur mit JavaScript</a>
 </htmlcode>
 
-Die “Javascript-in-einer-URL”- Schreibweise ist in HTML-Seiten nicht sehr sinnvoll, da sie für Browser ohne Javascript-Fähigkeit die Links unbrauchbar macht.  
+Die “JavaScript-in-einer-URL”- Schreibweise ist in HTML-Seiten nicht sehr sinnvoll, da sie für Browser ohne JavaScript-Fähigkeit die Links unbrauchbar macht.  
 
-Hier eine Version die dem Prinzip der „graceful degradation“ entspricht. Sie funktioniert mit und ohne Javascript sinnvoll:
+Hier eine Version die dem Prinzip der „graceful degradation“ entspricht. Sie funktioniert mit und ohne JavaScript sinnvoll:
 
 <htmlcode>
   <a href="http://www.google.at" onclick="ok=confirm('go?'); return ok;">google</a>
 </htmlcode>
 
-Ohne Javascript ist es ein ganz normaler Link zu google.
+Ohne JavaScript ist es ein ganz normaler Link zu google.
 
-Mit Javascript erscheint ein Dialog, je nach Antwort wird der Link entweder aufgerufen oder nicht. Das funktioniert gleich wie beim onsubmit-Attribut des form-Tags: Wenn der Event-Handler `false` zurückgibt wird das Event unterbrochen.
+Mit JavaScript erscheint ein Dialog, je nach Antwort wird der Link entweder aufgerufen oder nicht. Das funktioniert gleich wie beim onsubmit-Attribut des form-Tags: Wenn der Event-Handler `false` zurückgibt wird das Event unterbrochen.
 
 ###  Die onevent - Attribute ###
 
-Meist werden Javascript-Programme so geschrieben, dass sie nicht gleich beim Laden der Seite starten, sondern erst wenn gewisse Ereignisse (Events) eintreten.
+Meist werden JavaScript-Programme so geschrieben, dass sie nicht gleich beim Laden der Seite starten, sondern erst wenn gewisse Ereignisse (Events) eintreten.
 
 Ein paar typische Events mit ihren typischen HTML-Tags:
 
@@ -128,7 +128,7 @@ Das Programm wird ausgeführt wenn auf den Button geklickt wird. Das Programm mu
   <form onsubmit="...">
 </htmlcode>
 
-Das Programm wird ausgeführt wenn der Einsende-Knopf des Formulars betätigt wird, aber bevor die Daten wirklich gesendet werden. Falls der Javascript-Code false zurückgibt werden die Daten aber nicht versandt! 
+Das Programm wird ausgeführt wenn der Einsende-Knopf des Formulars betätigt wird, aber bevor die Daten wirklich gesendet werden. Falls der JavaScript-Code false zurückgibt werden die Daten aber nicht versandt! 
 
 §
 
@@ -138,7 +138,7 @@ Das Programm wird ausgeführt wenn der Einsende-Knopf des Formulars betätigt wi
   <a href="..." onclick="...">
 </htmlcode>
 
-Das Programm wird ausgeführt wenn der Link angeklickt wird. Falls der Javascript-Code false zurückgibt wird der Link aber nicht aktiviert!
+Das Programm wird ausgeführt wenn der Link angeklickt wird. Falls der JavaScript-Code false zurückgibt wird der Link aber nicht aktiviert!
 
 §
 
@@ -167,16 +167,16 @@ Das Programm wird ausgeführt wenn das Gerät die Verbindung zum Internet
 verliert, bzw. wieder erhält.
 
 
-Syntax von Javascript
+Syntax von JavaScript
 ----------------------
 
-Javascript hat eine ähnliche Schreibweise wie die Sprachen aus der C-Familie (C, C++, Java, Perl, PHP): Anweisung wird mit einem Strichpunkt (Semikolon) getrennt, Blöcke werden mit geschwungenen Klammern gebildet. 
+JavaScript hat eine ähnliche Schreibweise wie die Sprachen aus der C-Familie (C, C++, Java, Perl, PHP): Anweisung wird mit einem Strichpunkt (Semikolon) getrennt, Blöcke werden mit geschwungenen Klammern gebildet. 
 
-Javascript ist eine objektorientierte Programmiersprache. Was bedeutet objektorientierung? Die Grundidee ist, dass ein Objekt nicht nur eine Variable ist, die Daten speichert, sondern zusätzlich auch noch Funktionen existieren können, die zu diesem Objekt gehören.
+JavaScript ist eine objektorientierte Programmiersprache. Was bedeutet objektorientierung? Die Grundidee ist, dass ein Objekt nicht nur eine Variable ist, die Daten speichert, sondern zusätzlich auch noch Funktionen existieren können, die zu diesem Objekt gehören.
 
 §
 
-Zum Beispiel das Objekt `document` ist bei Javascript im Browser immer vorhanden. Es repräsentiert die aktuell geladene Webseite. Dieses Dokument hat einige Eigenschaften (Variablen) und einige Methoden (Funktionen):
+Zum Beispiel das Objekt `document` ist bei JavaScript im Browser immer vorhanden. Es repräsentiert die aktuell geladene Webseite. Dieses Dokument hat einige Eigenschaften (Variablen) und einige Methoden (Funktionen):
 
 <javascript>
 // document.location          
@@ -191,18 +191,18 @@ document.write("hi");  // die Methode write (über)schreibt die webseite
 
 Folgendes Beispiel verwendet die Methode `getElementById` des `document`-Objekts um ein bestimmtes `div` in der Webseite auszuwählen. 
 
-![Abbildung 57: Javascript-Beispiel in FireBug auf der Website http://everytimezone.com/](/images/image254.png)
+![Abbildung 57: JavaScript-Beispiel in FireBug auf der Website http://everytimezone.com/](/images/image254.png)
 
 ### Variablen
 
-In andere Programmiersprachen müssen Variablen deklariert werden (ein Datentyp für die Variable wird festgelegt) und initialisiert werden (ein erster Wert wird in die Variable gespeichert). In Javascript war die Deklaration lange nicht nötig. Wenn eine Variable zum ersten Mal im Programm erwähnt wird, wird sie vom Interpreter angelegt. 
+In andere Programmiersprachen müssen Variablen deklariert werden (ein Datentyp für die Variable wird festgelegt) und initialisiert werden (ein erster Wert wird in die Variable gespeichert). In JavaScript war die Deklaration lange nicht nötig. Wenn eine Variable zum ersten Mal im Programm erwähnt wird, wird sie vom Interpreter angelegt. 
 
 Auch die folgenden Beispiele können Sie direkt in der Console ausprobieren wie in der Abbildung gezeigt: Wenn Sie einen Ausdruck eintippen wird er ausgewertet. Mit dem Befehl console.log( … ) können Sie direkt auf die Console schreiben. 
 
 
-![Abbildung 58: Javascript Console in Firebug](/images/image264.png)
+![Abbildung 58: JavaScript Console in Firebug](/images/image264.png)
 
-Mit Javascript 2015 gibt nun drei Arten eine Variable zu deklarieren:
+Mit JavaScript 2015 gibt nun drei Arten eine Variable zu deklarieren:
 
 <javascript caption="deklaration">
 var a;  // altmodisch
@@ -216,7 +216,7 @@ Die Details zu `let` und `const` lernen Sie später im Kapitel [Variablen und Sc
 
 ### Datentypen
 
-Variablen in Javascript können Zahlen, Strings, Arrays, Objekte enthalten – der Interpreter trennt Variablen nicht nach verschiedenen Datentypen:
+Variablen in JavaScript können Zahlen, Strings, Arrays, Objekte enthalten – der Interpreter trennt Variablen nicht nach verschiedenen Datentypen:
 
 <javascript>
   a = 10;               // typeof(a) == "number"
@@ -226,14 +226,14 @@ Variablen in Javascript können Zahlen, Strings, Arrays, Objekte enthalten – d
   a = undefined;    // typeof(a) == "undefined"
 </javascript>
 
-Bei Zahlen in Javascript wird nicht zwischen integer und float unterschieden: 
+Bei Zahlen in JavaScript wird nicht zwischen integer und float unterschieden: 
 bis 2<sup>53</sup> (9.007.199.254.740.992)  können Ganzzahlen gespeichert werden,
 darüber nur noch floats.  Die Details
 können Sie in [How numbers are encoded in JavaScript](http://www.2ality.com/2012/04/number-encoding.html) nachlesen.
 
 ### Strings
 
-In Javascript gibt es drei Arten Strings zu schreiben.
+In JavaScript gibt es drei Arten Strings zu schreiben.
 
 <javascript caption="drei Arten Strings zu schreiben">
 a = "Hallo"; 
@@ -242,11 +242,11 @@ c = `Hallo ${b}, der brutto Preis ist ${100 * 1.5}`;
 </javascript>
 
 Die letzte, genannt  **template literals**, erlaubt das einbinden von Variablen und das
-Auswerten von Javascript-Expressions.  Siehe auch [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
+Auswerten von JavaScript-Expressions.  Siehe auch [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
 
 ### Arrays
 
-Arrays in Javascript können wie in C mit eckigen Klammern und Integer-Index ausgelesen werden: `b[0]`, `b[1]`, …  Aber eigentlich sind Arrays schon Objekte. 
+Arrays in JavaScript können wie in C mit eckigen Klammern und Integer-Index ausgelesen werden: `b[0]`, `b[1]`, …  Aber eigentlich sind Arrays schon Objekte. 
 
 Für das Erzeugen des Arrays gibt es zwei Schreibweisen
 
@@ -300,7 +300,7 @@ Für das Erzeugen von Objekten gibt es zwei Schreibweisen: die JSON-Schreibweise
 
 ### Zugriff auf Eigenschaften
 
-Eine Besonderheit von Javascript (die sie nicht in anderen Programmiersprachen finden werden) ist, dass Eigenschaften eines Objekts nicht nur über die Punkt-Schreibweise, sondern auch über eckige Klammern – also wie ein Array – angesprochen werden können:
+Eine Besonderheit von JavaScript (die sie nicht in anderen Programmiersprachen finden werden) ist, dass Eigenschaften eines Objekts nicht nur über die Punkt-Schreibweise, sondern auch über eckige Klammern – also wie ein Array – angesprochen werden können:
 
 <javascript>
   alert("Das Shirt ist " + c.farbe ); 
@@ -317,7 +317,7 @@ In den eckigen Klammern steht nun ein String. Dieser könnte auch in einer Varia
 ### Einfache Schleife 
 
 Neben der `while` und `for` Schleife mit index 
-gibt es in Javascript noch möglichkeiten über
+gibt es in JavaScript noch möglichkeiten über
 die Werte in einem Array zu iterieren **ohne** den
 index zu benötigen:
 

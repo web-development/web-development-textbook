@@ -1,14 +1,14 @@
 ---
-title: Formular und Javascript
+title: Formular und JavaScript
 order: 40
 ---
-Am Beispiel eines Formular werden wir nun einfaches Javascript kennen lernen. Die Details von Javascript werden in den nächsten Kaptieln, hier geht es nur um ein erstes Kennenlernen.
+Am Beispiel eines Formular werden wir nun einfaches JavaScript kennen lernen. Die Details von JavaScript werden in den nächsten Kaptieln, hier geht es nur um ein erstes Kennenlernen.
 
-Javascript Einbetten
+JavaScript Einbetten
 ---------------------
-Javascript kann innerhalb des `<script>`-Tags irgendwo in den HTML-Code eingefügt werden.
+JavaScript kann innerhalb des `<script>`-Tags irgendwo in den HTML-Code eingefügt werden.
 
-<htmlcode caption="Berechnungen in Javascript, in einem script-Tag">
+<htmlcode caption="Berechnungen in JavaScript, in einem script-Tag">
 <h1>Hallo Welt</h1>
 <script>
       var pi,r,a;
@@ -25,12 +25,12 @@ Ohne Output merkt man aber gar nichts davon, das dieses Programm läuft.
 In Firefox kann man mit der Konsole von Firebug die Variablen auslesen wie in Abbildung 52 gezeigt.
 
 
-![Abbildung 52: Mit firebug den Wert einzelnen Javascript-Variablen  auslesen](/images/image239.png)
+![Abbildung 52: Mit firebug den Wert einzelnen JavaScript-Variablen  auslesen](/images/image239.png)
 
 In Google Chrome gibt es ebenfalls eine Console wie in Abbildung gezeigt, das entsprechende Fenster wird geöffnet wenn Sie irgendwo in der Webseite mit der rechten Maustaste klicken, und „Element überprüfen“ auswählen:
 
 
-![Abbildung 53: Mit Chrome den Wert einzelnen Javascript-Variablen  auslesen](/images/image240.png)
+![Abbildung 53: Mit Chrome den Wert einzelnen JavaScript-Variablen  auslesen](/images/image240.png)
 
 
 Popup-Fenster
@@ -45,12 +45,12 @@ var antwort = prompt("welche Daten sollen gelöscht werden. Keine Angabe löscht
 
 ![Darstellung der Popup-Fenster in den Browsern Firefox, Chrome, Opera auf Mac](/images/popups.png)
 
-Achtung: So können Sie zwar bei gutgläubigen Menschen Herzinfarkte auslösen, aber Sie können mit Javascript nicht wirklich Dateien löschen.
+Achtung: So können Sie zwar bei gutgläubigen Menschen Herzinfarkte auslösen, aber Sie können mit JavaScript nicht wirklich Dateien löschen.
 
 Formulare
 ----------
 
-Mit der Konsole von Firebug können Sie auch Formulare genauer untersuchen. Achtung! Wir geben ab jetzt allen Formular-Eingabefeldern nicht nur einen name, sondern auch eine id, das erleichtert die Handhabung in Javascript!
+Mit der Konsole von Firebug können Sie auch Formulare genauer untersuchen. Achtung! Wir geben ab jetzt allen Formular-Eingabefeldern nicht nur einen name, sondern auch eine id, das erleichtert die Handhabung in JavaScript!
 
 
 <htmlcode>
@@ -89,7 +89,7 @@ Mit dem Befehl `document.write()` kann Text/Code in den HTML-Code eingefügt wer
 <p>Hallo HTML</p>
 </htmlcode>
 
-Der Browser interpretiert das Javascript und fügt das Ergebnis zu einem
+Der Browser interpretiert das JavaScript und fügt das Ergebnis zu einem
 HTML-Dokument zusammen. 
 
 §
@@ -127,7 +127,7 @@ Ein Anwendungsbeispiel dieses Befehls: Ich will ein Dropdown-Menü mit vielen Ei
 
 §
 
-Ich ersetze also die option-Tags durch eine Schleife in Javascript:
+Ich ersetze also die option-Tags durch eine Schleife in JavaScript:
 
 <htmlcode>
 <form>
@@ -144,15 +144,15 @@ Ich ersetze also die option-Tags durch eine Schleife in Javascript:
 </form>
 </htmlcode>
 
-Mit Ansicht &rarr; Quelltext sieht man den Javascript-Code, In Firebug sieht man das Ergebnis:
+Mit Ansicht &rarr; Quelltext sieht man den JavaScript-Code, In Firebug sieht man das Ergebnis:
 
 
-Sollte man diese Möglichkeit nutzen?  Der Nachteil: Falls Javascript nicht funktioniert, hat mein Eingabefeld keine Optionen. Deswegen wäre es wahrscheinlich besser, die Optionen als HTML anzugeben.
+Sollte man diese Möglichkeit nutzen?  Der Nachteil: Falls JavaScript nicht funktioniert, hat mein Eingabefeld keine Optionen. Deswegen wäre es wahrscheinlich besser, die Optionen als HTML anzugeben.
 
 
 Ereignisse und Ereignisgesteuerte Programmierung
 -------------------------------------------------
-Javascript ist hauptsächlich eine Programmiersprache für das „Frontend“, für die
+JavaScript ist hauptsächlich eine Programmiersprache für das „Frontend“, für die
 Gestaltung von Benutzerschnittstellen. Für grafische Benutzerschnittstellen hat
 sich ein besonderer Programmierstil entwickelt: die ereignisgesteuerte
 Programmierung. Dieser Stil kommt auch in Actionscript (in Flash), in Visual
@@ -190,16 +190,16 @@ Eingabefeld und einem span-tag für die Ausgabe.
   <span id="out"></span>
 </htmlcode>
 
-Für die Formulierung „Wenn in das Feld in ein neuer Wert eingegeben wird, dann...“  gibt es ein passendes Event in HTML/Javascript: onchange. Die wird als Attribut in den HTML-Code des Eingabefeldes geschrieben:
+Für die Formulierung „Wenn in das Feld in ein neuer Wert eingegeben wird, dann...“  gibt es ein passendes Event in HTML/JavaScript: onchange. Die wird als Attribut in den HTML-Code des Eingabefeldes geschrieben:
 
 <htmlcode>
-  <input value="0" name="in"  onchange="hier Javascript">
+  <input value="0" name="in"  onchange="hier JavaScript">
   <span id="out"></span>   
 </htmlcode>
 
 §
 
-In das Attribut kann nun Javascript-Code eingefügt werden der die richtige Berechnung vornimmt und das Ergebnis in das richtige Element schreibt:
+In das Attribut kann nun JavaScript-Code eingefügt werden der die richtige Berechnung vornimmt und das Ergebnis in das richtige Element schreibt:
 
 <htmlcode>
 <input value="0" name="in" 
@@ -207,7 +207,7 @@ In das Attribut kann nun Javascript-Code eingefügt werden der die richtige Bere
 <span id="out"></span>   
 </htmlcode>
 
-Betrachten wir die Javascript-Befehl im Detail: Es handelt sich um eine
+Betrachten wir die JavaScript-Befehl im Detail: Es handelt sich um eine
 Zuweisung mit `=`.
 
 Auf der rechten Seite der Zuweisung befindet sich die Variable `this`, diese
@@ -215,7 +215,7 @@ verweist auf das Element, das das Event ausgelöst hat, in diesem Fall also das
 Eingabefeld. Mit `this.value` kann aus dem Eingabefeld der eingegebene Wert (als
 String) ausgelesen werden.
 
-Dieser Wert wird nun mit 100 multipliziert. In Javascript ist dabei keine explizite Typ-Umwandlung von String zu Zahl nötig, das erledigt der Javascript-Compiler automatisch. Das Ergebnis auf der rechten Seite ist also eine Zahl, z.B. 300.
+Dieser Wert wird nun mit 100 multipliziert. In JavaScript ist dabei keine explizite Typ-Umwandlung von String zu Zahl nötig, das erledigt der JavaScript-Compiler automatisch. Das Ergebnis auf der rechten Seite ist also eine Zahl, z.B. 300.
 
 Auf der linken Seite der Zuweisung wird zuerst mit
 `document.getElementById('out')` ein bestimmter HTML-Tag ausgewählt, hier ist es
@@ -225,7 +225,7 @@ zurückverwandelt (z.B. "300").
 
 §
 
-Nun wäre es natürlich unpraktisch in das onchange-Attribut ein längeres Javascript-Programm zu schreiben. Dafür kann man in Javascript Funktionen definieren, die dann nur noch aufgerufen werden. Z.B. um die Gesamtsumme im Bestellformular zu berechnen ist eine Funktion praktisch:
+Nun wäre es natürlich unpraktisch in das onchange-Attribut ein längeres JavaScript-Programm zu schreiben. Dafür kann man in JavaScript Funktionen definieren, die dann nur noch aufgerufen werden. Z.B. um die Gesamtsumme im Bestellformular zu berechnen ist eine Funktion praktisch:
 
 <htmlcode>
 <head>
@@ -250,8 +250,8 @@ Bei den einzelnen Berechnungen für die einzelnen Bücher wird jeweils zum Schlu
 
 §
 
-Achtung: beim „rechnen“ mit Eingabefelder von Javascript tritt häufig folgender
-Fehler auf: in Javascript werden die Datentypen number, string, boolean, object zwar unterschieden, 
+Achtung: beim „rechnen“ mit Eingabefelder von JavaScript tritt häufig folgender
+Fehler auf: in JavaScript werden die Datentypen number, string, boolean, object zwar unterschieden, 
 aber nicht deklariert. Es kann in einer Variable einmal ein
 String und einmal eine Zahl gespeichert sein:
 
@@ -303,7 +303,7 @@ Mit HTML5 kann man mit den Attributen `required` und `pattern` einfache Prüfung
 vornehmen. Das Formular kann erst gesendet werden, wenn alle Prüfungen erfüllt
 sind.
 
-Mit Javascript kann man noch komplizierte Prüfungen vornehmen, und ebenfalls
+Mit JavaScript kann man noch komplizierte Prüfungen vornehmen, und ebenfalls
 verhindern, dass das Formular abgesendet werden kann.
 
 Dafür gibt es das Event „onsubmit“ im form-Tag. 

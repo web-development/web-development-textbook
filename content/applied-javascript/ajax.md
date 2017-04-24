@@ -14,28 +14,28 @@ verwendet werden: Asynchrone Requests.
 
 ## Was ist AJAX?
 
-AJAX ist die englische Abkürzung für „Asynchrones Javascript und XML“. In
+AJAX ist die englische Abkürzung für „Asynchrones JavaScript und XML“. In
 diesem Kapitel lernen Sie was das genau bedeutet, und dass sich hinter dem X
 zum Schluss  auch andere Format verbergen können
 
 Ein Beispiel für die Verwendung von AJAX ist das in Abbildung 50 gezeigte Eingabefeld: 
 schon während des Eintippens eines Suchwortes wird eine Anfrage an den Webserver 
 geschickt.  Dieser antwortet mit einer Liste von vorgeschlagenen Namen.  Diese Liste 
-wird mit Javascript in einer <div> unterhalb des Eingabefelds angezeigt:
+wird mit JavaScript in einer <div> unterhalb des Eingabefelds angezeigt:
  
 ![Abbildung 50: Vorschläge für die Eingabe werden über AJAX geladen](/images/image375.png)
 
 Mit AJAX wird hier eine HTTP-Anfrage gesendet. Der Unterschied zu einer 
 „normalen“ HTTP-Anfrage:  Bei einer „normalen“ HTTP-Anfrage schaltet der Browser auf 
 „Warten“, eine neue vollständige Webseite wird geladen und angezeigt.
-Asynchron heisst: der Request wird abgesetzt, das Javascript-Programm läuft sofort 
+Asynchron heisst: der Request wird abgesetzt, das JavaScript-Programm läuft sofort 
 weiter, die UserIn kann weiterhin mit der Webseite interagieren. Erst wenn die Antwort 
 des Servers vorliegt wird die normale Darstellung der Seite kurz unterbrochen und ein 
-Javascript-Programm fügt die Daten in die Seite ein. 
+JavaScript-Programm fügt die Daten in die Seite ein. 
 
-### Im Javascript Programm
+### Im JavaScript Programm
 
-Auf der Ebene des Javascript Programm-Codes sieht der Unterschied zwischen 
+Auf der Ebene des JavaScript Programm-Codes sieht der Unterschied zwischen 
 synchron und asynchron so aus:
 
 <javascript caption="synchron">
@@ -82,15 +82,15 @@ Seite wird im Browser dargestellt.  Diese Verhalten des Browsers ist uns
 schon bekannt.
 
 Nun kommt der neue Teil:  das Eintippten des ersten Buchstabens ins
-Eingabefeld löst ein Javascript-Programm aus, das einen AJAX-Request absetzt.
+Eingabefeld löst ein JavaScript-Programm aus, das einen AJAX-Request absetzt.
 Am Netzwerk ist das ein ganz normaler HTTP Request, für den Server gibt
 es keinen Unterschied zu jedem anderen Request.  
 
 Was anders ist, ist das Verhalten des Browsers: Wenn die Daten des Response
 einlangen wird **nicht** die Seite gelöscht, sondern es wird eine
-Javascript-Funktion in der Seite aufgerufen, die die Daten entgegen nimmt.
+JavaScript-Funktion in der Seite aufgerufen, die die Daten entgegen nimmt.
 Für das Autocomple-Verhalten bestehen die Daten aus einer Liste von Vorschlägen,
-die Javascript-Funktion zeigt diese Vorschläge unterhalb des Eingabefeldes an.
+die JavaScript-Funktion zeigt diese Vorschläge unterhalb des Eingabefeldes an.
 
 ![AJAX Ablauf](/images/ajax-sequence-diagram.svg)
 
@@ -101,18 +101,18 @@ die Javascript-Funktion zeigt diese Vorschläge unterhalb des Eingabefeldes an.
 Das X am Ende von AJAX steht für XML – das stimmt aber nicht: die Daten vom Server 
 können im XML-Format gesendet werden, aber genauso auch als HTML oder reiner 
 Text oder JSON. Man könnte das X in AJAX auch als „X-beliebiges Format“ deuten.
-Das wichtigste Javascript-Konstrukt für AJAX ist das XMLHTTPRequestObject., das der 
-Javascript-Interpreter des Browsers zur Verfügungs stellt. Leider gibt es bei diesem 
+Das wichtigste JavaScript-Konstrukt für AJAX ist das XMLHTTPRequestObject., das der 
+JavaScript-Interpreter des Browsers zur Verfügungs stellt. Leider gibt es bei diesem 
 Objekt Unterschiede zwischen den Browsern. Um diese Unannehmlichkeiten zu 
 vermeiden, sollte man fertige Libraries verwenden, die die Browser-Unterschiede 
 verbergen.
 
-## Simples Javascript Beispiel
+## Simples JavaScript Beispiel
 
 Im ersten AJAX Beispiel wird der Output eines PHP-Counters in eine HTML-Seite 
 eingebunden. 
 
-<htmlcode caption="Counter einbinden mit Javascript">
+<htmlcode caption="Counter einbinden mit JavaScript">
 <html>
 <head>
   <title>AJAX counter</title>
@@ -149,14 +149,14 @@ eingebunden.
 </html>
 </htmlcode>
 
-Für den Fall das Javascript nicht funktioniert wird die ganze Counter-Zeile nicht
-angezeigt (display:none als style).  Falls Javascript funktioniert wird die
+Für den Fall das JavaScript nicht funktioniert wird die ganze Counter-Zeile nicht
+angezeigt (display:none als style).  Falls JavaScript funktioniert wird die
 Zeile eingeblendet.
 
 Das `XMLHttpRequest` Objekt liefert verschiedene Events, hier wird nur für das `load` Event
 eine Funktion als Listener angebracht.  Mit der `open` methode wird der HTTP-Request
 konfiguriert, aber erst mit `send` wirklich abgeschickt.  Da er Request asynchron erfolgt
-geht der Javascript-Interpreter sofort von Zeile 23 in Zeile 24 weiter, und wartet
+geht der JavaScript-Interpreter sofort von Zeile 23 in Zeile 24 weiter, und wartet
 nicht auf den HTTP-Response.
 
 Erst sehr viel später, wenn der HTTP-Response vorliegt, wird die Funktion
@@ -165,11 +165,11 @@ in der Variable `this`.
 
 ## Simples jQuery Beispiel
 
-jQuery bietet einige Vereinfachungen gegenüber Javascript:
+jQuery bietet einige Vereinfachungen gegenüber JavaScript:
 die Funktion `load` erledigt nicht nur den AJAX Request, sondern
 auch das Einfügen des Rückgabewerts in eine DOM Node:
 
-<htmlcode caption="Counter einbinden mit Javascript">
+<htmlcode caption="Counter einbinden mit JavaScript">
   <html>
   <head>
     <title>AJAX counter</title>

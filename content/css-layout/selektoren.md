@@ -5,7 +5,7 @@ order: 30
 
 Im Kapitel [CSS Selektoren](/css/basic-selectors/) haben Sie CSS schon
 einige Selektoren
-kennen gelernt. In der CSS 2.1 Spezifikation werden u.a. 
+kennengelernt. In der CSS 2.1 Spezifikation werden u.a. 
 folgende Schreibweisen für Selektoren beschrieben:
 
 |Name|Muster |Beschreibung|
@@ -54,14 +54,14 @@ Pseudo Classes
 ---------
 
 Wir haben im Zusammenhang mit Links schon die Pseudo Classes `:link` und
-`:visited` kennen gelernt, und im Zusammenhang mit Interaktion `:hover` und
+`:visited` kennengelernt, und im Zusammenhang mit Interaktion `:hover` und
 `:focus`.
 
 Es gibt noch eine Hand voll weiterer Pseudo Classes:
 
 * `:first-child` selektiert ein Element nur, wenn es das erste Kind seiner Eltern-Node ist
 * `:first-letter`  selektiert nur den ersten Buchstaben!  Das funktioniert auch,
-  wenn der Buchstabe gar keine eigenen Node in der DOM ist!
+  wenn der Buchstabe gar kein eigener Node im DOM ist!
 * `:first-word`  selektiert das erste Wort.  Das funktioniert auch,
   wenn das Wort      gar keine eigenen Node in der DOM ist!
 * `::selection` der aktuell ausgewählte Bereich, siehe [css-tricks](http://css-tricks.com/examples/DifferentSelectionColors/)

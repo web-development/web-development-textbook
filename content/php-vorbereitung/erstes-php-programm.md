@@ -16,7 +16,7 @@ folgendem Beispiel ist beides falsch:
 ![Abbildung 125: So funktioniert PHP nicht: ohne Webserver, falsche Dateiendung](/images/image327.png)
 
 Wenn die URL mit **file:///** beginnt, öffnet der Browser die Datei
-direkt vom Filesystem, es ist keine Webserver involviert.  Dann kann PHP nicht
+direkt vom Filesystem, es ist kein Webserver involviert.  Dann kann PHP nicht
 funktionieren!
 
 ![Vergleich von file: und http:](/images/php-no-webserver.svg)
@@ -73,7 +73,7 @@ Die Funktion existiert also seit PHP 4 Version 4.2.0 und auch in PHP 5.
 §
 
 Wenn Sie Webspace mieten liegt die Entscheidung über die PHP Version aber nicht bei Ihnen: 
-wenn Ihr Webspace-Provider nur einen veraltete PHP-Interpreter anbietet
+wenn Ihr Webspace-Provider nur einen veralteten PHP-Interpreter anbietet,
 können Sie das nicht ändern!
 Das sollten Sie auf jeden Fall klären bevor Sie den Mietvertrag abschließen.
 Und Sie sollten auf Ihrem Entwicklungsrechner die gleiche PHP Version

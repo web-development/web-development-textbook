@@ -24,11 +24,11 @@ Abbildung 25 zeigt einige derzeit (2015) mögliche Bildschirm-Auflösungen.
 
 basierend auf http://en.wikipedia.org/wiki/Image:Vector_Video_Standards2.svg
 
-Vergleichen Sie die höchsten hier dargestellte Auflösungen mit der geringsten Auflösungen. Da Breite und Höhe (mehr als) verdreifacht sind, steht bei der höchsten Auflösung also (mehr als) die neunfache Fläche zur Verfügung!
+Vergleichen Sie die höchste hier dargestellte Auflösung mit der geringsten Auflösung. Da Breite und Höhe (mehr als) verdreifacht sind, steht bei der höchsten Auflösung also (mehr als) die neunfache Fläche zur Verfügung!
 
 §
 
-Abbildung 26 zeigt Statistiken über die Bildschirmauflösung von w3schools.org von 2000 bis 2011. In diesem Zeitraum hat sich die Mehrheit langsam von 800x600 (bis 2003) auf 1024x768 (bis 2008) und schließlich auf höhre Auflösungen verschoben. Achtung: Auf Grund des Messverfahrens werden hier wahrscheinlich nur Desktops erfaßt, nicht mobile Geräte.
+Abbildung 26 zeigt Statistiken über die Bildschirmauflösung von w3schools.org von 2000 bis 2011. In diesem Zeitraum hat sich die Mehrheit langsam von 800x600 (bis 2003) auf 1024x768 (bis 2008) und schließlich auf höhere Auflösungen verschoben. Achtung: Auf Grund des Messverfahrens werden hier wahrscheinlich nur Desktops erfaßt, nicht mobile Geräte.
 
  
 ![Abbildung 26: Statistik über die Bildschirmauflösung,](/images/display-stats.png)
@@ -38,7 +38,7 @@ Abbildung 26 zeigt Statistiken über die Bildschirmauflösung von w3schools.org 
 Pixeldichte
 -----------
 
-Die Angabe der Auflösung erfolgt in Pixel – die reale Größe des Ausgabegerätes (24“ Desktop, 13“ Laptop, mobiles Endgerät) ist bei gleicher Pixel-Auflösung sehr unterschiedlich! Mobile Geräte haben eine geringe Auflösung, aber eine höhere Pixeldichte:
+Die Angabe der Auflösung erfolgt in Pixel – die reale Größe des Ausgabegerätes (24“ Desktop, 13“ Laptop, mobiles Endgerät) ist bei gleicher Pixel-Auflösung sehr unterschiedlich! Mobile Geräte haben eine geringe Auflösung, aber eine hhohe Pixeldichte:
 
 |Gerät|Erscheinungsjahr|Pixel|Diagonale Inch|Pixel per Inch|
 |+----|+---------------|+----|+-------------|+-------------|

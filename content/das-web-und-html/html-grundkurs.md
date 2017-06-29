@@ -3,12 +3,12 @@ title: HTML Grundkurs
 order: 30
 ---
 Wir werden HTML in der Version 5 verwendet. Die wichtigsten HTML-Tags (Links, Bilder, 
-Tabellen, Formulare) werden Sie bald auswendig können. Alle Details können Sie Intenet 
+Tabellen, Formulare) werden Sie bald auswendig können. Alle Details können Sie im Internet
 nachschlagen. 
 
-HTML hat sich in den ca. 20 Jahren seines Bestehens weit entwickelt. Die Version 5, die wir 
+HTML hat sich in den ca. 20 Jahren seines Bestehens rasant weiterentwickelt. Die Version 5, die wir 
 verwenden, ist ein relativ neuer Standard, der aber in den aktuellen Versionen der gängigen 
-Browsern bereits umgesetzt ist. 
+Browser bereits umgesetzt ist. 
 
 §
 
@@ -26,8 +26,8 @@ Der Arbeitsablauf beim Erstellen von HTML ist eine endlose Schleife:
 1. Code im Editor eintippen
 2. Abspeichern
 3. Zum Browser wechseln
-4. Neu Laden, das Ergebnis betrachten
-5. meistens: nicht zufrieden mit dem Ergebnis sein, zurück zu 1.
+4. Neuladen, das Ergebnis betrachten
+5. Meistens: nicht zufrieden mit dem Ergebnis sein, zurück zu 1.
 
 Es gibt verschiedene Online-Tools um HTMl auszuprobieren:
 
@@ -37,17 +37,17 @@ Zeichensatz
 -----------
 
 HTML-Dateien bestehen aus reinem Text, in unserem Falle entweder aus Text im Format 
-ISO 8859-1 (Latin-1)  oder im Format utf-8. Mit Latin-1 ist man auf das
+ISO 8859-1 (Latin-1)  oder im Format UTF-8. Mit Latin-1 ist man auf das
 lateineische Alphabet mit westeuropäischen Sonderzeichen beschränkt - man kann
 im selben Dokument nicht auch grieschische, hebräische, arabische, japanische
-Zeichen darstellen.  Mit utf-8 hat man den gesamten Zeichensatz der Menschheit
-zur Verfügung. Mein Empfehlung lautet: immer utf-8 verwenden.
+Zeichen darstellen.  Mit UTF-8 hat man den gesamten Zeichensatz der Menschheit
+zur Verfügung. Mein Empfehlung lautet: immer UTF-8 verwenden.
 
  
 ![Abbildung 8: Auswahl des Charactersets „Unicode“  ](/images/image037.jpg)
 
 Diese Abbildung zeigt wie die Charactersets in Windows- und Mac-Programmen
-dargestellt werden. Links im Bild, in Notepad, wird ISO 8859-1 als ANIS
+dargestellt werden. Links im Bild, in Notepad, wird ISO 8859-1 als ANSI
 bezeichnet. Rechts im Bild, im Mac-Programm Textwrangler, ist die Bezeichnung
 klarer. 
 
@@ -98,7 +98,7 @@ Whitespace
 Sogenannter "whitespace  <!-- XE "whitespace" -->  " - das sind mehrere Leerzeichen, 
 Tabulatoren und Zeilenumbrüche hintereinander – wird vom Browser völlig ignoriert. Ob Sie 
 also in Ihrer HTML-Datei ein Leerzeichen oder 7 Leerzeilen einfügen macht keinen 
-Unterschied. (gar kein Leerzeichen oder ein Leerzeichen macht schon einen Unterschied) 
+Unterschied (gar kein Leerzeichen oder ein Leerzeichen macht schon einen Unterschied).
 Die folgenden beiden Dokumente sind also äquivalent:
 
 <htmlcode caption="Zeilenumbruch im Code ist egal, Darstellung gleich">
@@ -154,7 +154,7 @@ Das Attribut bli, welches nicht zu HTML gehört, also kein Browser kennt, wird w
 unbekannte Attribute einfach ignoriert. 
 
 Der Wert eines Attributes muß in XHTML immer in Anführungszeichen geschrieben
-werden, in HTML kann man die Anführungszeichen weglasse, dann endet der Wert
+werden, in HTML kann man die Anführungszeichen weglassen, dann endet der Wert
 beim nächsten Leerzeichen.
 
 <htmlcode>
@@ -236,8 +236,8 @@ Text formatieren
 ----------------
 
 Wir unterscheiden zwischen HTML-Tags die Blöcke definieren, und solchen die das nicht tun. 
-Blockbildende Tags beanspruchen immer einen rechteckigen Bereich bei der Ausgabe, nicht 
-blockbildende Tags tun das nicht.
+Blockbildende Tags beanspruchen immer einen rechteckigen Bereich bei der Ausgabe, 
+nicht-blockbildende Tags tun das nicht.
  
 ![Abbildung 9: Darstellung von blockbildenden (grau hinterlegten) und nicht-blockbildenden (rot hinterlegten) Tags](/images/image042.png)
 
@@ -316,7 +316,7 @@ Die logischen Tags geben die genaue Darstellung nicht vor.
 Physische Tags geben die genaue Darstellung vor. Das sind eigentlich „altmodische 
 Tags“,  besonders der font-Tag wurde schon um das Jahr 2000 herum durch Stylesheets 
 vollständig ersetzt, und sollte möglichst nicht mehr verwendet werden. Sie werden 
-diese Tag in „alten“ Dokumenten aber noch finden:
+diese Tags in „alten“ Dokumenten aber noch finden:
 
 <htmlcode caption="veraltete Tags zum formatieren von Text">
 Eine <b>fette</b> Sache                      (VERALTET!)
@@ -325,7 +325,7 @@ Eine <i>schräge</i> Sache                    (VERALTET!)
 <font color="red">rot</font>                 (VERALTET!)
 </htmlcode>
 
-Heute verwendet man CSS im `style`-Attribut statt dessen:
+Heute verwendet man CSS im `style`-Attribut stattdessen:
 
 <htmlcode caption="veraltete Tags zum formatieren von Text">
 <span style="font-family:Arial;">Text</span> (aktuelle Schreibweise)

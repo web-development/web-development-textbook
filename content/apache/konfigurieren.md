@@ -50,7 +50,7 @@ Wenn man die Konfiguration von Apache verändert braucht es drei Schritte um die
 2. Apache neu starten
 3. Im Webbrowser die entsprechende Seite neu laden
 
-Wenn man die Haupt-Konfigurationsdatei von Apache nicht ändern kann gibt es eine Alternative: Man kann eine Datei namens  `.htaccess` in den Webspace hoch laden, diese Datei kann einige der Konfigurations-Anweisungen für den Apache Webserver enthalten.
+Wenn man die Haupt-Konfigurationsdatei von Apache nicht ändern kann gibt es eine Alternative: Man kann eine Datei namens  `.htaccess` in den Webspace hochladen, diese Datei kann einige der Konfigurations-Anweisungen für den Apache Webserver enthalten.
 
 Achtung: ob die `.htaccess` Datei wirksam ist oder nicht wird in httpd.conf festgelegt. Man kann die `.htaccess` Datei nicht selbst aktivieren falls sie nicht funktionieren.
 

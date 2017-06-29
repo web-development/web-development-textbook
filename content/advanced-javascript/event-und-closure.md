@@ -23,7 +23,7 @@ erzeugt werden können.
 
 ### Editor
 
-Die Konstruktur-Funktion des **Editor** Objekts nimmt folgende Argumente
+Die Konstruktor-Funktion des **Editor** Objekts nimmt folgende Argumente
 
 * `css_selector` - ein String, wird als CSS-Selector interpretiert. Der Inhalt des ausgewählten DOM-Elements wird gelöscht, statt dessen wird der Editor angezeigt
 * `w` - optional eine Zahl oder ein String der eine Zahl enthält. Breite des Editors. Default Wert 600.
@@ -36,8 +36,8 @@ Das **Editor** Objekt hat folgende Attribute:
 
 Das **Editor** Objekt hat folgende Methoden
 
-* `rectangle` - Erzeugt ein Objekt mit dem `Rectangle`-Konstruktur, fügt es in der renderlist ein
-* `circle` - Erzeugt ein Objekt mit dem `Circle`-Konstruktur, fügt es in der renderlist ein
+* `rectangle` - Erzeugt ein Objekt mit dem `Rectangle`-Konstruktor, fügt es in der Renderlist ein
+* `circle` - Erzeugt ein Objekt mit dem `Circle`-Konstruktor, fügt es in der Renderlist ein
 
 §
 
@@ -69,12 +69,12 @@ Editor.prototype.circle = function( x,y,r,att, text ) {
 ### Circle und Rectangle
 
 Circle und Rectangle funktionieren sehr ähnlich, deswegen werden sie hier gemeinsam
-beschreiben.  Als SVG-Elemente betrachtet gibt es größere Unterschiede: so wird die
+beschrieben.  Als SVG-Elemente betrachtet gibt es größere Unterschiede: so wird die
 Position eines `<circles>` über die Attribute `cx` und `cy` gesetzt, die Position eines
 `<rect>` über `x` und `y`.  Diese Unterschiede werden durch die neu erstellen Javascript-Objekte
 möglichst verborgen.
 
-Die Signatur der Konstruktur-Funktion sind:
+Die Signatur der Konstruktor-Funktion sind:
 
 * Rectangle(x,y,w,h,att,canvas)
 * Circle(x,y,r,att, canvas )
@@ -138,7 +138,7 @@ Circle.prototype.setPosition = function ( position ) {
 Wie funktioniert Drag-and-Drop?  Wir haben die Events `mousedown`, `mouseup` und `mousemove` zur Verfügung.
 
 * Wenn die Maus-Taste gedrückt wird, und der Mauszeiger über einem Rechteck oder Kreis steht, dann beginnt das Drag-and-Drop. Die Position der Maus und des Objekt zu diesem Start-Zeitpunkt müssen gespeichert werden.
-* Wenn die Maus sich beweget, und wir in einem Drag-and-Drop sind, dann wird die differenz zwischen aktueller Maus-Position und der Start-Position berechnet. Das ergibt einen Translations-Vektor. Dieser Vektor wird zur Startposition des Objekts addiert und ergibt die aktuelle Position des Objekts. ("Drag")
+* Wenn die Maus sich bewegt, und wir in einem Drag-and-Drop sind, dann wird die Differenz zwischen aktueller Maus-Position und der Start-Position berechnet. Das ergibt einen Translations-Vektor. Dieser Vektor wird zur Startposition des Objekts addiert und ergibt die aktuelle Position des Objekts. ("Drag")
 * Wenn die Maus los gelassen wird wird Drag-and-Drop beendet
 
 ### Mausposition
@@ -254,7 +254,7 @@ addDragability( other_jsobj, other_element );
 Wenn man die Beschreibung von Drag-and-Drop nochmal betrachtet ...
 
 * Wenn die Maus-Taste gedrückt wird, und der Mauszeiger über einem Rechteck oder Kreis steht, dann beginnt das Drag-and-Drop. Die Position der Maus und des Objekt zu diesem Start-Zeitpunkt müssen gespeichert werden.
-* Wenn die Maus sich beweget, und wir in einem Drag-and-Drop sind, dann wird die Differenz zwischen aktueller Maus-Position und der Start-Position berechnet. Das ergibt einen Translations-Vektor. Dieser Vektor wird zur Startposition des Objekts addiert und ergibt die aktuelle Position des Objekts. ("Drag")
+* Wenn die Maus sich bewegt, und wir in einem Drag-and-Drop sind, dann wird die Differenz zwischen aktueller Maus-Position und der Start-Position berechnet. Das ergibt einen Translations-Vektor. Dieser Vektor wird zur Startposition des Objekts addiert und ergibt die aktuelle Position des Objekts. ("Drag")
 * Wenn die Maus los gelassen wird wird Drag-and-Drop beendet
 
 und das nun in Event-Listener umsetzen will kommt man zu folgender Struktur

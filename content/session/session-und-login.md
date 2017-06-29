@@ -3,7 +3,7 @@ title: Session und Login
 order: 20
 ---
 
-HTTP ist "statelesse" - jeder HTTP Request ist ein isoliertes Ereignis, der
+HTTP ist "stateless" - jeder HTTP Request ist ein isoliertes Ereignis, der
 Server kann nicht erkennen ob Requests zusammen gehören.
 
 ![HTTP als "stateless protocol"](/images/stateless-http.svg)
@@ -89,7 +89,7 @@ Das Logout erfolgt ebenfalls mit der Methode POST:
 
 §
 
-Das Logout ist etwas umständlich zu Programmieren: das Cookie, das von PHP gesetzt wurde, muß man nun selbst löschen. Dazu wird das „Ablaufdatum“ des Cookies auf ein Datum in der Vergangenheit gesetzt, dann wird der Browser es löschen.
+Das Logout ist etwas umständlich zu programmieren: das Cookie, das von PHP gesetzt wurde, muß man nun selbst löschen. Dazu wird das „Ablaufdatum“ des Cookies auf ein Datum in der Vergangenheit gesetzt, dann wird der Browser es löschen.
 
 <php>
 // Löschen aller Session-Variablen.

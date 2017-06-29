@@ -3,7 +3,7 @@ title: Beispiel RSS
 order: 100
 ---
 
-RSS ist ein Format um die Daten eines Blogs maschienenlesbar anzubieten.
+RSS ist ein Format um die Daten eines Blogs maschinenlesbar anzubieten.
 Wo bietet z.B. der Wordpress Blog `http://multimediatechnology.at/` 
 unter der URL `http://multimediatechnology.at/feed/` die gleichen Inhalte
 wie die Homepage des Blogs im RSS Format an.

@@ -35,7 +35,7 @@ $stm->execute();
 Die OWASP empfiehlt:
 
 1. Den Interpreter gänzlich vermeiden, oder
-2. Eine Schnittstelle benutzen es dem Interpreter erlaubt zwischen Code und Daten zu unterscheiden (z.B., prepared statements, stored procedures in der Datenbank), oder
+2. Eine Schnittstelle benutzen, die es dem Interpreter erlaubt zwischen Code und Daten zu unterscheiden (z.B., prepared statements, stored procedures in der Datenbank), oder
 3. Den Input von der Userin/dem User geeignet codieren bevor er an den Interpreter weiter gegeben wird
 
 Im dritten und schlechtesten Fall ist weiter zu beachten:

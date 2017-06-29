@@ -15,13 +15,13 @@ Asymmetrische Kryptosysteme.
 
 Klassische Verschlüsselung kennt nur einen Schlüssel: er wird
 zum ver- und zum ent-schlüsseln verwendet.  Das ist eigentlich unpraktisch:
-wenn ich ein problem habe eine lange Botschaft ohne Abhören oder Manipulation von A nach B zu bringen,
+wenn ich ein Problem habe eine lange Botschaft ohne Abhören oder Manipulation von A nach B zu bringen,
 und sie deswegen verschlüssle, dann ist mir ja nicht geholfen: jetzt muss ich erst
-den gezeimen Schlüssel sicher (ohne Abhören oder Manipulation) von A nach B bringen. Das Problem
+den geheimen Schlüssel sicher (ohne Abhören oder Manipulation) von A nach B bringen. Das Problem
 hat jetzt einen kleinern Umfang, aber das Grundproblem bleibt bestehen.
 
 Bei einem asymmetrischen Verschlüsselungsverfahren gibt es zwei verschiedene
-Schlüssel: einen öffentlichen und einen privaten:
+Schlüssel: einen Öffentlichen und einen Privaten:
 
 ![Ver- und Entschlüsseln](/images/public_key_crypto.svg)
 

@@ -62,7 +62,7 @@ Um einen style für einen einzelnen Tag zu definieren, müssen Sie innerhalb des
 
 Sie können innerhalb einer HTML-Datei sowohl eine externe Style Sheet Datei verwenden (eingebunden durch eine entsprechende Anweisung im head Bereich) als auch eine lokale Definition im head Bereich angeben, als auch spezielle Angaben für einzelne Tags erstellen. 
 
-Was passiert nun, wenn die verschiedenen Style-Deklarationen sich widersprechen? Die Angaben bei einem einzelnen Tag haben immer Vorrang. danach folgen die lokalen Angabe im head Bereich und erst zum Schluß die externe Datei. „Je näher beim Tag desto stärker wirkt es.“
+Was passiert nun, wenn die verschiedenen Style-Deklarationen sich widersprechen? Die Angaben bei einem einzelnen Tag haben immer Vorrang. Danach folgen die lokalen Angabe im head Bereich und erst zum Schluß die externe Datei. „Je näher beim Tag desto stärker wirkt es.“
 
 Klassen, IDs, SPANs und DIVs
 -----------------------------
@@ -129,7 +129,7 @@ Maßeinheiten in Stylesheets
 
 Für Längen- und Größen-Angaben gibt es mehrere Maßeinheiten: vw (Hundertstel der Viewport-Breite), vh (Hunderstel der Viewport-Höhe), px (Pixel) , em (=Breite des Buchstaben M) , ex (Höhe des Buchstaben X),  % (Prozent), cm (Zentimeter), in (Inch).   Einige davon sind relativ (em = relativ zur Schriftgröße, px = relativ zur Pixel-Größe am aktuellen Ausgabemedium), andere absolut (Centimeter, Inch). Die absoluten Angaben kann man derzeit nur bei der Ausgabe auf Papier sinnvoll verwenden.  [Demo](/images/css-masse.html)
 
-Farbangaben können auf mehrer Arten erfolgen: mit einigen Farbwörtern (red, green,…) oder mit der Angabe von rot-, grün- und blau-Anteil (jeweils Werte von 0 bis 255) in verschiedenen Schreibweisen: Dezimal `rgb(16,0,255)`, hexadezimal `#10F` oder zweistellig hexadezimal `#1000FF`. Mit CSS3 ist auch die Angabe eines Alpha-Wertes möglich: Hier ein Braun-Ton der nur zu 20% deckend ist, und zu 80% den darunter liegenden Content bzw. das Hintergrundbild durchscheinen lässt: `rgba(153, 134, 117, 0.2);`
+Farbangaben können auf mehrere Arten erfolgen: mit einigen Farbwörtern (red, green,…) oder mit der Angabe von rot-, grün- und blau-Anteil (jeweils Werte von 0 bis 255) in verschiedenen Schreibweisen: Dezimal `rgb(16,0,255)`, hexadezimal `#10F` oder zweistellig hexadezimal `#1000FF`. Mit CSS3 ist auch die Angabe eines Alpha-Wertes möglich: Hier ein Braun-Ton der nur zu 20% deckend ist, und zu 80% den darunter liegenden Content bzw. das Hintergrundbild durchscheinen lässt: `rgba(153, 134, 117, 0.2);`
 
 Tool-Tipp: Mit dem Firefox AddOn Colorzilla kann man die Farben einer Webseite auslesen und in verschiedenen Schreibweisen kopieren:
 

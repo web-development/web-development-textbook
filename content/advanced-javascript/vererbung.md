@@ -5,7 +5,7 @@ order: 30
 
 
 Hinter den "Klassen" von Javascript versteckt sich in Wirklichkeit
-an anderer Mechanismus: Prototypen.  
+ein anderer Mechanismus: Prototypen.  
 
 
 ## Objekt und Konstruktor und Prototyp
@@ -71,7 +71,7 @@ Details zu einigen wichtigen Befehlen in der Javascript-Referenz bei Mozilla:
 
 ## Vererbung
 
-Eine Konstruktur-Funktion kann von einem Objekt erben, und zwar über den Prototypen:
+Eine Konstruktor-Funktion kann von einem Objekt erben, und zwar über den Prototypen:
 
 <javascript caption="Vererbung von Attributen">
   // ----- Pet ---------

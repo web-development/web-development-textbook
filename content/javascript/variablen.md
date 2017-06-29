@@ -11,8 +11,8 @@ Seit Javascript 2015 gibt es auch `let` und `const`.
 
 ## Sichtbarkeit von Variablen mit `let` und Konstanten mit `const`
 
-let und const haben einen Block-Scope, können also auf kleiner
-Bereich beschränkt werden als Variablen mit var:
+let und const haben einen Block-Scope, können also auf kleinere
+Bereiche beschränkt werden als Variablen mit var:
 
 
 <javascript>
@@ -143,7 +143,7 @@ Eine Besonderheit von Javascript Variablen die mit `var` deklariert
 wurden ist das "Hochziehen" (auf englisch: hoisting): Alle
 Variablen-Deklarationen werden an den Anfang der jeweiligen Funktion 
 vorverlegt.  Falls auch eine Zuweisung eines Wertes erfolgt
-bleibt diese Zuweisung an der Ursprünglichen Stelle im Code.
+bleibt diese Zuweisung an der ursprünglichen Stelle im Code.
 
 <javascript caption="Sichtbarkeit von a, b, c in Funktionen">
   function g( x ) {

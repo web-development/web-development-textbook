@@ -43,7 +43,7 @@ das SQL etwas "injiziert" wird.
 ### SQL Injection verhindern
 Dieses Problem kann vermeiden indem man die Eingabe genau überprüft. In diesem
 Beispiel also: nur wenn es sich bei `id` um eine ganze Zahl handelt, darf sie
-verwendet werde. Das kann man auf verschiedene Arten prüfen, 
+verwendet werden. Das kann man auf verschiedene Arten prüfen, 
 z.B. mit der Funktion `filter_var`: 
 
 <php caption="Eingabeprüfung mit filter_var">

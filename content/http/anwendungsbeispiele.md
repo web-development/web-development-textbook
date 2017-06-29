@@ -175,12 +175,12 @@ Damit wäre der gesamte Web-Traffic nicht mehr abhörbar.
 
 Proxies
 --------
-Das HTTP-Protokoll sieht die Möglichkeit von Proxies vor. Ein Proxie ist eine „Zwischenstation“ die HTTP-Verkehr weitergibt, der Proxy agiert also auf der einen Seite als HTTP-Server, auf der anderen Seite als HTTP-Client. Im Browser kann ein Proxie konfiguriert werden:
+Das HTTP-Protokoll sieht die Möglichkeit von Proxies vor. Ein Proxy ist eine „Zwischenstation“ die HTTP-Verkehr weitergibt, der Proxy agiert also auf der einen Seite als HTTP-Server, auf der anderen Seite als HTTP-Client. Im Browser kann ein Proxy konfiguriert werden:
 
 
 ![Abbildung 135: Proxy-Konfiguration in Firefox: Extras - Einstellungen - Erweitert - Netzwerk – Verbindung](/images/image343.png)
 
-Ist ein Proxy konfiguriert dann baut der Browser die HTTP-Verbindung nicht direkt zum Zielrechner auf, sondern zum Proxy, und verändert die Form der ersten Zeile der HTTP-Anfrage: die vollständige URL wird angegebe:
+Ist ein Proxy konfiguriert dann baut der Browser die HTTP-Verbindung nicht direkt zum Zielrechner auf, sondern zum Proxy, und verändert die Form der ersten Zeile der HTTP-Anfrage: die vollständige URL wird angegeben:
 
     GET http://www.sbg.ac.at/pr/ HTTP/1.1
 

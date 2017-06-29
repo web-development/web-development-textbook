@@ -212,7 +212,7 @@ einbinden:
 Auf https://code.jquery.com/ui/ findet man die Links zu:
 
 * Dem "base" Theme - das ist die CSS Datei
-* der aktuellen jquery UI version, minified - das ist die Javscript Datei.
+* der aktuellen jquery UI version, minified - das ist die Javascript Datei.
 
 <css caption="einbindung des themes in einer css datei">
   @import "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css";
@@ -257,7 +257,7 @@ Die Antwort muss ein JSON-Dokument sein: Ein Array von Objekten:
 Die Attribute `id` und `label` des Objekts werden verwendet, alle anderen
 werden ignoriert.
 
-Wenn die Daten erfolgreich vom Server geladen wurden, wird eine funktion aufgerufen (`select`).
+Wenn die Daten erfolgreich vom Server geladen wurden, wird eine Funktion aufgerufen (`select`).
 
 Zum Testen kann man das Backend zuerst faken: einfach eine statische JSON-Datei
 unter dem Namen `search.json` abspeichern, und schon funktioniert es.
@@ -303,8 +303,8 @@ sind nach Anzahl der Zugriffen gestaffelt, im Mai 2017 waren die Preise:
 
 ![Preise von openweathermap.org](/images/openweathermap-preise.png)
 
-Beim Zugriff auf die API muss jeweils der API-Key als parameter
-mit gesendet werden:
+Beim Zugriff auf die API muss jeweils der API-Key als Parameter
+mitgesendet werden:
 
 <javascript caption="Zugriff auf die openweathermap API">
 $.get("http://api.openweathermap.org/data/2.5/weather?&units=metric&q=London,uk&apikey=....", 

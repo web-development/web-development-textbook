@@ -7,7 +7,7 @@ Diese Abbildung zeigt die wichtigsten Fachbegriffe von git:
 
 ![Abbildung 141: Fachbegriffe und wichtigste Aktionen mit git](/images/image356.png)
 
-Als **working copy** werden die Dateien und Ordner bezeichnet, die auf meinem lokalen Rechner aktuell im Filsystem sichtbar sind. Mit diesen kann ich also „ganz normal“ arbeiten: editieren, im Browser betrachten, etc.
+Als **working copy** werden die Dateien und Ordner bezeichnet, die auf meinem lokalen Rechner aktuell im Filesystem sichtbar sind. Mit diesen kann ich also „ganz normal“ arbeiten: editieren, im Browser betrachten, etc.
 
 Im **lokalen Repository** (local repository) verwaltet und speichert git alle „alten Versionen“ der Dateien. Mein lokales Repository unterscheidet sich technisch nicht von anderen Repositories, die ich als remote Repositories ansprechen kann.
 
@@ -16,7 +16,7 @@ mit dem Befehl **add** in den Zustand **staged** versetzten.  Ich sammle Schritt
 für Schritt die Dateien zusammen, die ich gemeinsam **committen** will.
 
 Mit dem Befehl **commit** werden die gestageden Dateien im lokalen Repository
-abgespeichert, und erhalten dort einen eindeutigen Hash und eine Meldund (die
+abgespeichert, und erhalten dort einen eindeutigen Hash und eine Meldung (die
 ich dazu eingebe).
 
 Mit dem Befehl **push** kann ich die commits aus meinem lokalen Repository
@@ -36,7 +36,7 @@ Zuerst muss ich entscheiden welche Dateien / Änderungen zum Commit gehören.
       git add form.html
       git add bestellung.php
 
-Nun befinden sich die Änderungn von form.html und bestellung.html in der staging area, und sind bereit für einen commit. Dazu gebe ich noch einen kurzen Kommentar ein:
+Nun befinden sich die Änderungen von form.html und bestellung.html in der staging area, und sind bereit für einen commit. Dazu gebe ich noch einen kurzen Kommentar ein:
 
       git commit –m 'bestellformular von get auf post umgestellt – wir sind restful!'
 

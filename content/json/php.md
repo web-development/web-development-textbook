@@ -41,7 +41,7 @@ echo json_encode( $array );
 // {"foo":10,"bar":30,"baz":30,"0":"a"}
 </php>
 
-In JSON gibt es keine entsprechung für das Assoziative Array
+In JSON gibt es keine Entsprechung für das Assoziative Array
 in PHP. Deswegen wird es als Objekt dargestellt.  Wenn man
 dieses Objekt wieder in JSON zurück wandelt erhält man aber
 ein PHP Objekt mit einer Property "0":

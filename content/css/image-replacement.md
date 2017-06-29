@@ -37,7 +37,7 @@ und will das Bild nur über CSS darstellen:
 </htmlcode>
 
 Ein Beispiel für so eine Situation ist z.B: ein Wordpress Theme. In der `h1` 
-wird der Titel des Blogs angezeit, die Gestaltung der Darstellung erfolgt nur mit CSS.
+wird der Titel des Blogs angezeigt, die Gestaltung der Darstellung erfolgt nur mit CSS.
 
 
 Image Replacement

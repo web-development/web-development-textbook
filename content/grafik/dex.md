@@ -1,7 +1,7 @@
 --- 
 title: Grafik im Browser
 index: true
-intro: In diesem Kapitel werde verschiedene Möglichkeiten für Grafik im Browser vorgestellt
+intro: In diesem Kapitel werden verschiedene Möglichkeiten für Grafik im Browser vorgestellt
 ---
 
 

@@ -8,7 +8,7 @@ für das Informatik- oder Medieninformatik-Studium.
 
 
 Das Buch wurde ursprünglich von Brigitte Jellinek an der FH Salzburg
-zur Verwendung im Studiengang MultiMediaTechnology geschreiben, und 2012
+zur Verwendung im Studiengang MultiMediaTechnology geschrieben, und 2012
 unter der CC-NC-SA Lizenz auf github publiziert. 
 
 ### Aufbau
@@ -26,10 +26,10 @@ Das Ergebnis von Teil 1 dieses Kurses sollte sein:
 * Ich kann **statische Webseiten erstellen**, und habe auch schon eine kleine Web-Site vollständig umgesetzt.
 * Ich verstehe wie das Web funktioniert, kann das beschreiben, dabei die **Fachwörter** Browser, Webserver, HTTP, URL, HTML, CSS, Javascript, PHP richtig verwenden.
 * Ich kann HTML5, CSS3, Javascript und PHP **Code erkennen und lesen**, weiss welche Aspekte der Website von welchem Code beeinflusst werden.
-* Ich kann im HTML, CSS und einfachem Javscript Code **Fehler suchen**, finden und beheben.
+* Ich kann im HTML, CSS und einfachem Javascript Code **Fehler suchen**, finden und beheben.
 * Ich verstehe wie **Ereignisse (Events)** in Javascript verwendet werden, kann einfache User-Interaktion mit Clicks programmieren.
 * Ich kenne die Problemstellung der Browserkompatiblität und verschiedener Ausgabegeräte für Webseiten, und kann meine Webseiten so gestalten, dass sie **in allen Browsern** verwendbar sind.
-* Ich kenne die **Arbeitsteilung** in einem Web-Projekt und kann meinen (technischen) Teil beitragen. Ich kann das von DesignerInnen von AutorInnen gelieferte Material einbinden.
+* Ich kenne die **Arbeitsteilung** in einem Web-Projekt und kann meinen (technischen) Teil beitragen. Ich kann das von DesignerInnen und von AutorInnen gelieferte Material einbinden.
 
 Und ein ganz konkretes Arbeitsergebnis:
 

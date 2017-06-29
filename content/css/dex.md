@@ -1,7 +1,7 @@
 --- 
 title: CSS - Einstieg
 index: true
-intro: Sie lernen mit Cascading Stylesheets (CSS) einfache Formatierungen in der Webseite vorzunehmen.
+intro: Sie lernen mit Cascading Stylesheets (CSS) einfache Formatierungen an der Webseite vorzunehmen.
 ---
 
 ### Was Sie wissen sollten
@@ -12,7 +12,7 @@ intro: Sie lernen mit Cascading Stylesheets (CSS) einfache Formatierungen in der
 
 ### Was Sie können sollten
 * Ich kann ein einfaches Stylesheet für ein HTML-Dokument erstellen. 
-* Ich kann Bei Vorgabe einer bestimmten visuellen Darstellung und eines HTML-Dokuments ein geeignetes Stylesheet erstellen, das zu dieser Darstellung führt
+* Ich kann bei Vorgabe einer bestimmten visuellen Darstellung und eines HTML-Dokuments ein geeignetes Stylesheet erstellen, das zu dieser Darstellung führt
 * Ich kann mit Hilfe von Firebug oder durch Lesen des Codes herausfinden welche CSS-Regeln zu einer bestimmten Darstellung in einer (fremden) Webseite führen
 * Ich kann die Korrektheit des CSS-Codes mit dem CSS-Validator des World Wide Web Consortium überprüfen. 
 * Ich kann Fehler in einem CSS-Dokument ausbessern bis es valide ist.

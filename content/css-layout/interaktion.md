@@ -7,7 +7,7 @@ Mit dem Selektor `:hover` wird eine CSS-Regel nur angewandt
 wenn sich der Maus-Cursor über dem Element befindet. 
 `:focus` hat eine ähnliche Bedeutung bei der Steuerung mit der Tastatur.
 
-Achtung: auf Touch-Geräten wie Tables und Smartphones gibt 
+Achtung: auf Touch-Geräten wie Tablets und Smartphones gibt 
 es derzeit kein `:hover`! Deswegen sollte man `:hover` nur zur 
 Dekoration, nicht aber für wichtige Funktionen verwenden!
 

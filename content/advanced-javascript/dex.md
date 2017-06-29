@@ -13,7 +13,7 @@ intro: Fortgeschrittene Javascript Themen
 
 # Was Sie können sollten
 
-* Javascript Code der Prototypen verwendet lesen, verstehen, modifiezieren
+* Javascript Code der Prototypen verwendet, lesen, verstehen, modifizieren können
 
 
 ## Vertiefung

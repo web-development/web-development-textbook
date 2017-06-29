@@ -2,7 +2,7 @@
 title: TCP/IP und DNS
 order: 20
 ---
-Um das Protokoll des Web zu verstehen erst ein paar Grundsätzliche Informationen zur Funktionsweise des Internet. Genaueres erfahren Sie in einer seperaten Lehrveranstaltung zum Thema Computer-Netwerke.
+Um das Protokoll des Web zu verstehen erst ein paar grundsätzliche Informationen zur Funktionsweise des Internets. Genaueres erfahren Sie in einer seperaten Lehrveranstaltung zum Thema Computer-Netwerke.
 
 Das Internet
 -----------
@@ -16,12 +16,12 @@ Die **Besitzverhältnisse** sind kompliziert: die Leitungen und Computer gehöre
 Firmen, Universitäten, Schulen, Vereinen, Privatpersonen.  
 
 Was hält das Internet dann zusammen? Das **Internet Protokoll**. Aufbauend auf die Grund-Netze 
-(z.B. Ethernet) muss jeder Computer am Internet (genannt „Host“) diese Protokoll-Familie 
-implementieren. Zwischen den Netzen vermitteln **Router** die Pakete von einem Netz zum nächsten.
+(z.B. Ethernet) muss jeder Computer im Internet (genannt „Host“) diese Protokoll-Familie 
+implementieren. Zwischen den Netzen vermitteln **Router** die Pakete von einem Netz zum Nächsten weiterleiten.
 
 ### IP-Adressen
 
-Die eindeutigen Adressen für Hosts am Internet werden zentral verwaltet. 
+Die eindeutigen Adressen für Hosts im Internet werden zentral verwaltet. 
 Die Internet Assigned Numbers Authority (IANA) hat diese Aufgabe an 
 Organisationen auf den verschiedenen Kontinenten verteilt, in Europa an das 
 Réseaux IP Européens Network Coordination Centre (RIPE NCC). 

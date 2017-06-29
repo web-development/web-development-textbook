@@ -15,9 +15,9 @@ Neben der Verwendung für kleine Effekte im Browser hat Javascript noch weitere 
 
 * Als „AJAX“ zum Nachladen von Daten – das macht das Web viel interaktiver und angenehmer in der Benutzung. 
 
-* Mit Javascript können Webseiten auch „offline“ – also ohne Verbindung zum Internet und dem Webserver – im Browser weiterarbieten. 
+* Mit Javascript können Webseiten auch „offline“ – also ohne Verbindung zum Internet und dem Webserver – im Browser weiterarbeiten. 
 
-* Der Server Node JS ist ein (Web)Server, den man mit Javascript programmieren kann. Er wird besonders für realtime-applikationen im Web eingesetzt, z.B. für Spiele.
+* Der Server Node JS ist ein (Web)Server, den man mit Javascript programmieren kann. Er wird besonders für Echtzeit-Applikationen im Web eingesetzt, z.B. für Spiele.
 
 * Javascript wird in einigen Programmen als Makro-Sprache verwendet, z.B. seit 2003 in Indesign und Illustrator.
 

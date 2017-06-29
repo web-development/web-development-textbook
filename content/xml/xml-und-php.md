@@ -6,7 +6,7 @@ order: 35
 
 In PHP gibt es mehrere Libraries zur Verarbeitung von XML. In der offiziellen
 Doku sind unter [XML Manipulation](http://at1.php.net/manual/en/refs.xml.php) 13 verschiedene
-angeführt. Wir werden 2 davon näher betrachten.
+angeführt. Wir werden zwei davon näher betrachten.
 
 
 

@@ -36,7 +36,7 @@ Achtung: Wenn man bei der ErrorDocument-Anweisung einen falschen Pfad angibt ers
 
 Der Zugriff auf den Webserver, oder auf bestimmte Ordner und Dateien am Webserver kann beschränkt werden. Dabei sind verschiedene Kriterien denkbar: Zugriff nur für bestimmte Browser, Zugriff nur mit Passwort, Zugriff nur von Computern die innerhalb der FH sind.
 
-Das letzte Kriterium ist das einfachste:  Alle Computer innerhalb der FH haben eine IP-Adresse die mit 10. beginnt. Die Zugriffsbeschränkung erfolgt mit den Konfigurations-Anweisungen Deny, Allow und Order:
+Das letzte Kriterium ist das Einfachste:  Alle Computer innerhalb der FH haben eine IP-Adresse die mit 10. beginnt. Die Zugriffsbeschränkung erfolgt mit den Konfigurations-Anweisungen Deny, Allow und Order:
 
 <apache>
 Order deny,allow
@@ -46,7 +46,7 @@ Allow from 10.
 
 §
 
-Aber meist will man nicht den Zugriff auf den ganzen Server sperren, sondern auf einen Bestimmten Ordner oder auf bestimmte Dateien. Dafür wird in der Apache Konfigurations-Datei eine Schreibweise verwendet, die an HTML oder XML erinnert:
+Aber meist will man nicht den Zugriff auf den ganzen Server sperren, sondern auf einen bestimmten Ordner oder auf bestimmte Dateien. Dafür wird in der Apache Konfigurations-Datei eine Schreibweise verwendet, die an HTML oder XML erinnert:
 
 <apache>
   <Location /fhintranet>
@@ -73,7 +73,7 @@ Der Teil, der im `<FilesMatch>`-Tag eingeschlossen ist gilt für alle Dateien im
 Der Teil der Konfiguration, der im `<Location>`-Tag eingeschlossen ist gilt nur für den Ordner `/fhintranet` im Webspace. Der Teil, der im `<FilesMatch>`-Tag eingeschlossen ist gilt für alle Dateien im Webspace, deren Name auf `.bak` endet.
 
 
-Die Schreibwiese bei FilesMatch ist einen „Pattern" - ein Suchmusters. Patterns und Pattern-Matching werden Sie in Javascript, in PHP und in vielen Konfigurationsdateien wieder verwenden.
+Die Schreibweise bei FilesMatch ist einen „Pattern" - ein Suchmusters. Patterns und Pattern-Matching werden Sie in Javascript, in PHP und in vielen Konfigurationsdateien wieder verwenden.
 
 Das Dollar-Zeichen am Ende des Patterns bedeutet, dass `bak` am Ende des Dateinamens stehen muß. Eine Datei mit Namen test.bak.txt wäre also nicht betroffen. Vor dem Punkt muß man einen Backslash `\` schreiben, weil der Punkt alleine als Joker gelten würde. Der Pattern `.bak$` (ohne Backslash) würde also auch den Dateinamen schlabberdibak oder bik_bak erkennen, weil der Punkt für das i oder den Unterstich stehen könnte.
 

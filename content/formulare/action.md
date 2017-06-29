@@ -25,7 +25,7 @@ HTML-Code des Formulars aus:
 <form action="mailto:ich@priv.at" method="POST" enctype="text/plain">
 </htmlcode>
 
-Achtung: diese Art die Daten zu senden ist sehr fehleranfällig: hierfür muß am Client-Computer nicht nur der Browser funktionieren, sondern auch das E-Mail Programm. Das E-Mail Programm muß richtig konfiguriert sein. Das ist auf vielen Computern am Internet nicht der Fall, oft werden die Daten also nicht erfolgreich versandt sondern gehen verloren.
+Achtung: diese Art die Daten zu senden ist sehr fehleranfällig: hierfür muß am Client-Computer nicht nur der Browser funktionieren, sondern auch das E-Mail Programm. Das E-Mail Programm muß richtig konfiguriert sein. Das ist auf vielen Computern im Internet nicht der Fall, oft werden die Daten also nicht erfolgreich versandt sondern gehen verloren.
 
               
 ![Abbildung 48: Formular per E-Mail oder über den Webserver senden](/images/image225.png)
@@ -37,7 +37,7 @@ Deswegen sollten Sie diese Methode nicht verwenden, sondern immer über den Webs
 Daten senden mit Methode GET
 -----------------------------
 
-Wird im Form-Tag als Action eine URL mit http angegeben dann werden die Daten an den Webserver gesendet. Dabei gibt es zwei Methoden: GET und POST. GET ist die einfachere. 
+Wird im Form-Tag als Action eine URL mit http angegeben dann werden die Daten an den Webserver gesendet. Dabei gibt es zwei Methoden: GET und POST. GET ist die Einfachere. 
 
 In Abbildung 49 sehen Sie ein (leicht vereinfachtes) Bestellformular für Flugzeuge das die Methode GET verwendet.
 
@@ -45,7 +45,7 @@ In Abbildung 49 sehen Sie ein (leicht vereinfachtes) Bestellformular für Flugze
 ![Abbildung 49: Formular mit Methode GET](/images/image230.png)
 
 Wenn die UserIn auf „Bestellung absenden“ drückt, baut der Browser aus der
-action und den Namen und Werten der einzelnen Eingabefelder eine URL zusammen,
+Action, den Namen und den Werten der einzelnen Eingabefelder eine URL zusammen,
 die dann aufgerufen wird.
 
 
@@ -108,10 +108,10 @@ konstruieren und aufrufen. Die **URL** (und nicht das Formular) ist also eine
 Nun könnte man meinen: "Wenn ich die URL geheim halte ist es doch keine öffentliche Schnittstelle".
 Das ist aber ein Trugschluss: auch eine "geheime" URL, die ich nie bewusst öffentlich mache
 wird öffentlich werden.  URLs sind im Browser-Cache gespeichert, werden im Browser vorgeschlagen
-wenn ich eine URL eintippe, sind in Logfile von Proxies gespeichert.  Selbst URLs die ich blos
-im Skype-Chat weitergegen habe, sind dritten bekannt, wie [diese Untersuchung von Heise zeigt](http://www.heise.de/security/meldung/Vorsicht-beim-Skypen-Microsoft-liest-mit-1857620.html)
+wenn ich eine URL eintippe, sind in Logfiles von Proxies gespeichert.  Selbst URLs die ich blos
+im Skype-Chat weitergegeben habe, sind Dritten bekannt, wie [diese Untersuchung von Heise zeigt](http://www.heise.de/security/meldung/Vorsicht-beim-Skypen-Microsoft-liest-mit-1857620.html)
 
-Das "geheimhalten" einer URL ist also keine geeignete Sicherheitsmaßnahme!
+Das "Geheimhalten" einer URL ist also keine geeignete Sicherheitsmaßnahme!
 Wenn ich eine Webseite vor Zugriffen schützen will brauche ich dazu Passwörter
 und https, siehe [Authentisieren nach RFC 2617](/http/http/#slide-18)
 und [HTTPS](/http/http/slide.html#slide-19), beide im Kapitel HTTP, und 

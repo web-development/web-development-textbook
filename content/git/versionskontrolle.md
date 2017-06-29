@@ -25,7 +25,7 @@ Die englische Wikipedia enthält einen Überblick über verschiedene Systeme:
 
 Dabei sind drei historische Entwicklungsschritte erkennbar:
 
-* Nur Lokal: das System ist auf die Verwaltung vom Daten im lokalen Filesystem ausgelegt. 
+* Nur Lokal: das System ist auf die Verwaltung von Daten im lokalen Filesystem ausgelegt. 
 * Client-Server: Daten werden in einem zentralen Repository gespeichert.
 * Verteilt: Jeder Arbeitsplatz hat ein eigenes Repository, kann auch "offline" arbeiten.
 

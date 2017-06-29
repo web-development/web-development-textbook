@@ -4,7 +4,7 @@ order: 10
 ---
 
 Mit JSON kann man Datenstrukturen aus null, true, false, Zahlen, Strings,
-Arrays und Objekten in Javscript deklarativ anschreiben.
+Arrays und Objekten in Javascript deklarativ anschreiben.
 
 §
 
@@ -60,7 +60,7 @@ o      = JSON.parse(string);
 
 §
 
-Es gäbe noch eine zweite Art den String in eine Javscript-Datenstruktur
+Es gäbe noch eine zweite Art den String in eine Javascript-Datenstruktur
 umzuwandeln: Der Javascript-Befehl `eval` interpretiert einen String
 als Javascript Code und führt das Programm aus.
 

@@ -33,7 +33,7 @@ sql> INSERT INTO departments VALUES('Marketing')
 §
 
 Ein  **unique constraint** kann man auch einer anderen Spalte,
-oder einer kombination von Spalten auferlegen.
+oder einer Kombination von Spalten auferlegen.
 
 
 <sql>
@@ -46,7 +46,7 @@ CREATE TABLE users (
 
 ## Referenzielle Integrität
 
-Bei einer Beziehung macht es Sinn, die existenz des Fremdschlüssels
+Bei einer Beziehung macht es Sinn, die Existenz des Fremdschlüssels
 in der anderen Tabelle mit einem **foreign key constraint** sicher zu
 stellen.  
 

@@ -13,7 +13,7 @@ Die visuelle Darstellung des Blogs wird durch ein „Theme“ festgelegt. Viele 
 
 Achtung: wenn Sie nach Themes googlen werden Sie auch viele Themes mit eingebautem SPAM finden! Deswegen
 ist es besser das offizielle Verzeichnis zu verwenden, oder das Theme genau zu
-utnersuchen.
+untersuchen.
 
 §
 
@@ -55,7 +55,7 @@ definiert.
 Widgets
 --------
 
-Viele der angebotenen Widgets sind erst sinnvoll wenn der Blog viele Einträge hat. z.B. ein Kalender oder ein Archiv. Eine Empfehlung für die ersten drei Widgets, die ein neuer Blog haben sollte: Ein kurzer Text, ein Suchfeld und die neusten Artikel:
+Viele der angebotenen Widgets sind erst sinnvoll wenn der Blog viele Einträge hat. z.B. ein Kalender oder ein Archiv. Eine Empfehlung für die ersten drei Widgets, die ein neuer Blog haben sollte: Ein kurzer Text, ein Suchfeld und die neuesten Artikel:
 
                   
 ![Abbildung 117: Empfehlung für einen neuen Blog: Drei Widgets: Text, Suche, Letzte Artikel](/images/wordpress-widgets.png)
@@ -97,7 +97,7 @@ Search
 :    zeigt ein Suchfeld für die Volltextsuche an. 
 
 Neueste Artikel 
-:    zeigt die Titel der neuesten Artikel an. Das ist besonders wichtig wenn LeserInnen über eine Google-Suche auf der Seite eines alten Artikels landen. Durch die „neuesten Artikel“ werden sie vielleicht weiter in den Blog hinein gelockt.
+:    zeigt die Titel der neuesten Artikel an. Das ist besonders wichtig wenn LeserInnen über eine Google-Suche auf der Seite eines alten Artikels landen. Durch die „neuesten Artikel“ werden sie vielleicht weiter in den Blog hineingelockt.
 
 Schlagworte (englisch: tags) 
 :    können zu Artikeln vergeben werden und sind dann über diese Navigation auffindbar. Es ist sinnvoll kurze Wörter als tags zu verwenden die schon bei delicious oder Digg bekannt sind.

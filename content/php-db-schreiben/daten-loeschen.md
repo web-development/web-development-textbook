@@ -42,7 +42,7 @@ das SQL etwas "injiziert" wird.
 
 Dieses Problem kann vermeiden indem man die Eingabe genau überprüft. In diesem
 Beispiel also: nur wenn es sich bei `id` um eine ganze Zahl handelt, darf sie
-verwendet werde. Das kann man auf verschiedene Arten prüfen, 
+verwendet werden. Das kann man auf verschiedene Arten prüfen, 
 z.B. mit der Funktion `filter_var`: 
 
 <php caption="Eingabeprüfung mit filter_var">
@@ -93,7 +93,7 @@ normale query zu wiederholen.
 
 ### SQL Injection gibt es nicht nur bei DELETE
 
-Wir haben diese Attacke am Beispil einer Löschoperation kennen gelert.
+Wir haben diese Attacke am Beispiel einer Löschoperation kennengelernt.
 Aber auch ein einfaches `SELECT` kann mittels SQL Injection missbraucht werden
 um zusätzliche Informationen aus der Datenbank auszulesen, die wir nicht
 vorgesehen haben.

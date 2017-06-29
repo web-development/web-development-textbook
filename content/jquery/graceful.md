@@ -137,7 +137,7 @@ $(document).ready( function () {
 
 Diese Variante funktioniert schon besser:
 
-* die klassischen Links funktionier für Browser ohne Javascript
+* die klassischen Links funktionieren für Browser ohne Javascript
 * für manche javascript-fähige Browser eine Animation eingefügt
 * für manche javascript-fähige Browser ist die Animation immer noch kaputt
 
@@ -204,7 +204,7 @@ wird eine entsprechende Meldung angezeigt
 Diese Variante behebt das Problem mit nicht-funktionierenden
 Javascript-Browsern:
 
-* die klassischen Links funktionier für Browser ohne Javascript
+* die klassischen Links funktionieren für Browser ohne Javascript
 * die klassische Version wird auch für "animations-unfähige" Javascript Browser verwendet
 * für manche javascript-fähige Browser funktioniert die Animation
 
@@ -218,7 +218,7 @@ Es bleibt aber noch in Problem:
 
 ### Version 5
 
-In der klassischen Version ändert sich beim navigieren zwischen den
+In der klassischen Version ändert sich beim Navigieren zwischen den
 Ankern jeweils die URL im Browser.  Wenn ich ein Ziel annavigiere,
 und dann die URL kopiere um einen Link zu setzen / mir eine Bookmark setze,
 dann verweist die URL die ich verwende wirklich wieder genauf auf das Ziel.

@@ -6,7 +6,7 @@ Der Zusammenhang zwischen Web-Formular, http-Request und den Arrays `$_POST` und
 
 Daten prüfen
 --------------
-Die Daten aus einem Web-Formular werden vom PHP-Interpreter verarbeitet, die Codierung aufgelöst und die Daten dann in mehreren superglobalen12 Arrays zur Verfügung gestellt:
+Die Daten aus einem Web-Formular werden vom PHP-Interpreter verarbeitet, die Codierung aufgelöst und die Daten dann in mehreren superglobalen Arrays zur Verfügung gestellt:
 
 $_GET
 : Dieses Array enthält die Parameter einer GET-Anfrage. 

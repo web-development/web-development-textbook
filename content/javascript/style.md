@@ -95,7 +95,7 @@ while( i < 10 ) {
 
 Wenn in einem Programm dieselbe Zahl mehrmals vorkommt kann das ein Hinweis
 sein, dass man eine Konstante oder constiable verwenden sollte. Folgendes Programm
-zeichnet ein Rechteck in ein neu geschaffens SVG:
+zeichnet ein Rechteck in ein neu geschaffenes SVG:
 
 <javascript caption="Rechteck zeichnen - mit fixen Zahlen">
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");

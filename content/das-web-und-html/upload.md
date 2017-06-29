@@ -27,7 +27,7 @@ Folge-Fehler fallen damit auch weg.
 ![Abbildung 12:  Fehlermeldung des Validators](/images/image052.png)
 
 Die Fehlermeldung in Abbildung 12 geht auf einen Tippfehler zurück: der schließende Tag 
-wurde falsch geschreiben. 
+wurde falsch geschrieben. 
 
 §
 
@@ -46,7 +46,7 @@ Upload
 Die fertige Webseite muss auf einem Webserver veröffentlicht werden. In der FH Salzburg steht Ihnen 
 dafür der  Webserver users.multimediatechnology.at zur Verfügung. 
 Um die Daten vom eigenen Computer auf den Webserver zu laden gibt es verschiedene 
-Methoden, die wichtigsten sind FTP,  <!-- XE "FTP" -->   WebDAV,  <!-- XE "WebDAV" -->  SFTP.
+Methoden, die Wichtigsten sind FTP,  <!-- XE "FTP" -->   WebDAV,  <!-- XE "WebDAV" -->  SFTP.
 
 Bei jeder Upload-Methode brauchen Sie folgende Informationen: den Namen des Servers, Usernamen, 
 Passwort, in welchen Ordner Sie die Daten speichern, unter welcher URL die Daten im Web 

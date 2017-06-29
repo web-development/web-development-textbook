@@ -12,7 +12,7 @@ Die Darstellung einer HTML-Seite durch den Browser erfolgt von oben nach unten, 
     p { background-color:#CCCCCC; }
     em { background-color:#FFFF66; }
 
-Bei der Darstellung im Browser kann der nicht-blockbildender Tag em dabei auf mehrere Zeilen verteilt werden und nimmt dann mehrere rechteckige Bereiche ein, der blockbildende Tag p wird immer als ein Rechteck dargestellt:
+Bei der Darstellung im Browser kann der nicht-blockbildende Tag em dabei auf mehrere Zeilen verteilt werden und nimmt dann mehrere rechteckige Bereiche ein, der blockbildende Tag p wird immer als ein Rechteck dargestellt:
 
 ![Abbildung 33: Darstellung von blockbildenden und nicht-blockbildenden Tags](/images/image128.png)
 
@@ -144,7 +144,7 @@ Mit der Deklaration `position: absolute` wird ein Tag aus der normalen Darstellu
 herausgenommen und über dem restlichen Inhalt der Seite platziert. 
 Mit `top` und `left` kann die linke obere Ecke des Elements positioniert werden. 
 (oder mit `bottom` und `right` die rechte unter Ecke).
-In folgendem Beispiel wird ein absolut positiniertes Menü kombiniert mit
+In folgendem Beispiel wird ein absolut positioniertes Menü kombiniert mit
 einem Inhalt mit `margin-left` - sonst würde das Menü den Inhalt verdecken!
 
 <css>

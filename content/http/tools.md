@@ -35,7 +35,7 @@ Mit Firefox Developer Tools oder Chrome Dev Tools kann nur den Verkehr zwischen 
 also weniger als Wireshark.
 Aber: die Tools im Browser können auch HTTPS-Verbindungen abhören, die der
 Browser selbst aufgebaut hat.  Wireshark
-würde hier nur die Verschlüsselten Daten sehen.
+würde hier nur die verschlüsselten Daten sehen.
 
 Der "Network Monitor" in Firefox Developer Tools zeigt mehrere Requests auf einmal an.
 In dieser Ansicht kann man gut sehen wie lange die Beantwortung jeweils dauert:

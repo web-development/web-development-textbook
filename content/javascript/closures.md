@@ -83,7 +83,7 @@ Closures kann man zum Beispiel verwenden um einen Countdown zu erzeugen:
 
 Wozu werden Closures verwendet?  Eine erste Anwendung sind Eventhandler.
 Betrachten wir eine Funktion die bei  `addEventListener` oder in jQuery bei `on`
-als Eventhanlder angegeben wird:
+als Eventhandler angegeben wird:
 
 <javascript caption="Eventhandler wird übergeben">
   button.on('click', do_something);

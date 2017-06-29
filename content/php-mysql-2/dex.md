@@ -1,6 +1,6 @@
 ---
 title: Schreiben in die Datenbank
-intro: Als zweiten Schritt in der Arbeit mit der Datenbank lernen Sie nun Datein zu schreiben, zu ändern und zu löschen.
+intro: Als zweiten Schritt in der Arbeit mit der Datenbank lernen Sie nun Daten zu schreiben, zu ändern und zu löschen.
 ---
 
 <script>document.location="/php-db-schreiben/";</script>

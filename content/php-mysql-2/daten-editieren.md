@@ -195,7 +195,7 @@ Lassen Sie niemals, niemals, niemals zu, dass Fremde Javascript in Ihre Site ein
 §
 
 Noch hat unsere Applikation dieses Problem nicht: Wenn Frau Hacker Ihren Code
-z.B. in das Profil einer Person eingibt wir der Code htmlescaped angezeigt und
+z.B. in das Profil einer Person eingibt wird der Code htmlescaped angezeigt und
 „wirkt nicht“:
 
 ![Eingegebener HTML+Javascript-Code wird escaped und dargestellt](/images/html-escaped.png)

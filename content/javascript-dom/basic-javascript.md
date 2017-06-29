@@ -65,7 +65,7 @@ werden. Das Programm wird dann beim Aufbau der Seite ausgeführt, siehe auch
   <p><strong>Peng!</strong>
 </htmlcode>
 
-Dieses Programm ist übrigens ein gutes Beispiel für ein veraltetes Javascript-Programm. Die Methode `document.write()`, der hier für die Ausgabe verwendet wird, wurde durch das DOM größteteils ersetzt. Nur sehr wenige Leute müssen bei sehr wenigen Gelegenheiten noch `document.write()` verwenden - z.B. die AutorInnen der Javascript-Libaries wie John Resig von jQuery.
+Dieses Programm ist übrigens ein gutes Beispiel für ein veraltetes Javascript-Programm. Die Methode `document.write()`, der hier für die Ausgabe verwendet wird, wurde durch das DOM größtenteils ersetzt. Nur sehr wenige Leute müssen bei sehr wenigen Gelegenheiten noch `document.write()` verwenden - z.B. die AutorInnen der Javascript-Libaries wie John Resig von jQuery.
 
 ### Javascript in einer URL
 
@@ -241,7 +241,7 @@ b = 'Welt';
 c = `Hallo ${b}, der brutto Preis ist ${100 * 1.5}`;
 </javascript>
 
-Die letzte, genannt  **template literals**, erlaubt das einbinden von Variablen und das
+Die letztgenannte Möglichkeit  **template literals**, erlaubt das Einbinden von Variablen und das
 Auswerten von Javascript-Expressions.  Siehe auch [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
 
 ### Arrays
@@ -317,7 +317,7 @@ In den eckigen Klammern steht nun ein String. Dieser könnte auch in einer Varia
 ### Einfache Schleife 
 
 Neben der `while` und `for` Schleife mit index 
-gibt es in Javascript noch möglichkeiten über
+gibt es in Javascript noch Möglichkeiten über
 die Werte in einem Array zu iterieren **ohne** den
 index zu benötigen:
 

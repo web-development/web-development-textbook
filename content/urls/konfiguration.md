@@ -12,7 +12,7 @@ verfügen auch über diese Fähigkeiten, werden aber anders konfiguriert.
 Viele Webserver werden auf einem UNIX-Betriebssystem betrieben. Die UNIX-Dateisysteme unterscheiden bei Datei- und Ordnernamen zwischen Groß- und Kleinschreibung, sind also „case-sensitive“. Der Rechner auf dem Sie Webseiten erstellen läuft wahrscheinlich unter Windows oder MacOS; dort sind die Dateisysteme „case-insensitive“.
 
 Ein Link auf die Datei `bild.JPG` funktioniert unter Windows oder MacOS auch
-dann, wenn er `bild.jpg` geschreiben wird.
+dann, wenn er `bild.jpg` geschrieben wird.
 
 Liegt die Datei aber dann am (UNIX-)Webserver, so funktioniert der Link nicht mehr! 
 `bild.jpg` und `bild.JPG` sind zwei unterschiedliche Dateien!
@@ -44,7 +44,7 @@ Die Apache-Konfigurationsanweisung dazu lautet
 
     DirectoryIndex index.html
 
-Achtung: die Konfiguration ist am Internet Information Server normalerweise anders, dort wird die Datei `default.htm` verwendet!
+Achtung: die Konfiguration ist im Internet Information Server normalerweise anders, dort wird die Datei `default.htm` verwendet!
 
 ## Directory Index Datei existiert nicht
 
@@ -52,7 +52,7 @@ Was passiert wenn keine Datei mit dem richtigen Namen vorhanden ist? entweder ei
 
 ![Abbildung 43: Zugriff auf einen Ordner ohne Standard-Dokument (index.html): Auflistung oder Fehlermeldung](/images/apache-directory-index.png)
 
-Die entsprechenden Apache-Konfigurationsanweisung dazu sind:
+Die entsprechenden Apache-Konfigurationsanweisungen dazu sind:
 
     Options +Indexes
     Options -Indexes
@@ -89,7 +89,7 @@ Der Link von einem User-Webspace zum nächsten funktioniert also so:
                               +    ../~fhs111111/test   =
     http://multimediatechnology.at/~fhs111111/test
 
-Oder relative zum Webserver:
+Oder relativ zum Webserver:
 
     http://multimediatechnology.at/~fhs303030/test.html   
                               +   /~fhs111111/test   =

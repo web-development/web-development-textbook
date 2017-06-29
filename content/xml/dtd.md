@@ -66,13 +66,13 @@ aber `<option><b>nur</b> grün</option>` nicht, da Tags verboten sind.
 
 ### Kinder-Element ("Element Content")
 
-Hat ein Tag nur Kinder-Elemente, aber keine reinen Text als Inhalt,
+Hat ein Tag nur Kinder-Elemente, aber keinen reinen Text als Inhalt,
 dann spricht man von "Element Content". 
 
 Für die Angabe von Kinder-Elementen gibt es dann eine
 eigene kleine Sprache, mit der die Reihenfolge und Anzahl
 der Kinder-Element festgelegt wird. Damit kann man
-auch komplizierte Bedingungen zusammen bauen:
+auch komplizierte Bedingungen zusammenbauen:
 
 * Eine Liste von Kinder-Elementen mit einer fixen Reihenfolge: mit Kommas
 * Eine Auswahl von Kinder-Elementen (entweder/oder): mit einem senkrechten Strich

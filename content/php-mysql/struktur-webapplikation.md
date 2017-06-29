@@ -32,7 +32,7 @@ Die folgende Tabelle zeigt alle (geplanten) Seiten der Applikation im Überblick
 
 Jede einzelne Seite ist mit Hilfe von includes aufgebaut. Dabei werden immer die
 Dateien `functions.php` (mit dem Aufbau der Datenbank-Verbindung), `header.php` und 
-`footer.php` inkluidert.
+`footer.php` inkludiert.
 
 <php>
 <?

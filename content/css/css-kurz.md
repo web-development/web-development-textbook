@@ -50,7 +50,7 @@ Wichtige Argumente für den Einsatz von Stylesheets sind:
 
 * Zusätzliche Gestaltungsmöglichkeiten
 * Einheitliche Gestaltung von mehreren Webseiten
-* Arbeitsteilung zwischen DesignerInnen (die CSS erstellen) und RedakteuerInnen (die Inhalte erstellen)
+* Arbeitsteilung zwischen DesignerInnen (die CSS erstellen) und RedakteurInnen (die Inhalte erstellen)
 
 Aber Achtung: CSS ist nicht die Lösung jedes Problems:
 
@@ -83,13 +83,13 @@ An Hand dieses Beispieles werden nun die ersten Stylesheet-Befehle erklärt. Die
 
 Interpretation
 -----------
-Zuerst werden wir die Schriften im Dokument festlegen.  Achtung: Welche Schriften auf dem Endgerät zur Verfügung stehen ist nicht bekannt, deswegen kann man mehrere Schriften angegeben. Diese Liste wird vom Browser von links nach rechts abgearbeitet,die erste Schrift die er findet, verwendet er. (Man kann Schriften auch verlinken - aber das ist mehr ein Thema für MMA).
+Zuerst werden wir die Schriften im Dokument festlegen.  Achtung: Welche Schriften auf dem Endgerät zur Verfügung stehen ist nicht bekannt, deswegen kann man mehrere Schriften angegeben. Diese Liste wird vom Browser von links nach rechts abgearbeitet, die erste Schrift die gefunden wird, wird verwendet. (Man kann Schriften auch verlinken - aber das ist mehr ein Thema für MMA).
 
 In Zeile 2 bis 5 werden zwei Anweisungen für Fließtext gegeben (HTML-Tag &lt;p&gt;): die Schriftfamilie in Zeile 3 und die Schriftgröße in Zeile 4. 
 
 In Zeile 3 Vergleichen Sie Zeile 3 mit Zeile 7: Schriftnamen die ein Leerzeichen enthalten müssen in Anführungszeichen gesetzt werden, wie "Trebuchet MS" in Zeile 6. 
 
-Das letzte Wort in Zeile 7 „sans-serif“ ist ein CSS-Kürzel für „irgendeine serifenlose Schrift“. Es empfiehlt sich am Ende einer Schriftliste ein solches Kürzel als Standardwert „wenn alle Stricke reißen“  anzugeben,dabei sind folgende Werte möglich:
+Das letzte Wort in Zeile 7 „sans-serif“ ist ein CSS-Kürzel für „irgendeine serifenlose Schrift“. Es empfiehlt sich am Ende einer Schriftliste ein solches Kürzel als Standardwert „wenn alle Stricke reißen“  anzugeben, dabei sind folgende Werte möglich:
 
 
 CSS erforschen mit Firebug

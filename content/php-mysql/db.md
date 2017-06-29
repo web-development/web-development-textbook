@@ -139,7 +139,7 @@ phpMyAdmin
 ---------
 
 PhpMyAdmin ist ein häufig verwendetes Tool zur Verwaltung von MySQL Datenbanken.
-Es ist in PHP geschreiben, kann also im Webspace installiert und über
+Es ist in PHP geschrieben, kann also im Webspace installiert und über
 den Browser verwendet werden.  
 
 ![phpMyAdmin](/images/phpmyadmin.png)

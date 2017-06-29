@@ -11,7 +11,7 @@ Nun wollen wir dieselben Themen nocheinmal genauer betrachten.
 
 ## das jQuery Objekt
 
-Alle Funktionen die wir hier disskutieren werden geben immer
+Alle Funktionen die wir hier diskutieren werden geben immer
 ein jQuery Objekt zurück, dass eine Liste von Nodes anhalten
 kann.  Manchmal ist diese Liste leer, manchmal enthält sie nur ein
 Element, manchmal mehrere.  
@@ -196,7 +196,7 @@ $('input[id][name$=_no]')
 
 Bei der Manipulation von CSS ist zu beachten: die Schreibweise
 von CSS-Eigenschaften mit einem Minus-Zeichen lässt sich nicht
-nach Javascript übertragen.  In Javscript wird deswegen aus 
+nach Javascript übertragen.  In Javascript wird deswegen aus 
 `background-color` die Eigenschaft `backgroundColor`.
 
 <javascript caption="Style setzen">
@@ -352,7 +352,7 @@ Javascript Standard aufgenommen, und landet z.B. in Firefox 3.5 im Juni 2009.
 
 Die "reine Javascript" Lösung bringt bessere Performance,
 besonders auf mobilen Endgeräten, wo das Laden der Liberary und
-der Speicherverbrauch durch die Libraray größere Auswirkungen
+der Speicherverbrauch durch die Library größere Auswirkungen
 haben als am Desktop.
 
 Siehe auch

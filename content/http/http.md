@@ -11,7 +11,7 @@ Ablauf im Überblick
 ---------------------
 Egal ob der Vorgang durch das Eintippen einer URL oder durch das Anklicken eines Links gestartet wird — das Laden einer Webseite über HTTP funktioniert immer gleich. 
 
-1. Der **Browser** analysiert die **URL**: falls Sie eine IP-Adresse enthält geht’s weiter zum nächsten Schritt. Falls sie einen Domain Namen enthält wird dieser mittels DNS-Lookup in die entsprechende IP-Adresse übersetzt.
+1. Der **Browser** analysiert die **URL**: falls sie eine IP-Adresse enthält geht’s weiter zum nächsten Schritt. Falls sie einen Domain Namen enthält wird dieser mittels DNS-Lookup in die entsprechende IP-Adresse übersetzt.
 2. Der Browser baut eine **TCP-Verbindung** zum Server auf, falls in der URL nicht anders angegeben wird  dabei Port 80 angesteuert.
 3. Der Browser sendet über die TCP-Verbindung einen **HTTP-Request**; dieser besteht aus einer ersten Zeile (Request-Line), mehreren Header-Zeilen und manchmal einem Body.
 4. Der **Webserver** nimmt den Request entgegen und analysiert ihn. Der Webserver entscheidet, ob er zur Beantwortung der Anfrage nur eine bestimmte Datei aus dem Dateisystem zu liest, oder ein Programm aufruft.

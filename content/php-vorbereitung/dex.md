@@ -6,7 +6,7 @@ intro: Sie machen erste, vorsichtige Schritte in PHP.
 * Dass PHP eine Skriptsprache ist, die am Webserver interpretiert wird. 
 * Dass nur der Output von PHP an den Browser übertragen wird, also der Source-Code niemals lesbar ist. 
 * Dass Apache eine Webserver-Software ist.
-* Dass MySQL ein relationale Datenbank-System ist.
+* Dass MySQL ein relationales Datenbank-System ist.
 * Dass PHP, Apache und MySQL open source Software sind.
 
 ### Was Sie können sollten

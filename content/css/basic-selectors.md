@@ -3,7 +3,7 @@ title: CSS Selektoren
 order: 40
 ---
 
-Um CSS Selektoren zu verstehen muss man das Document Object Betrachten:
+Um CSS Selektoren zu verstehen muss man das Document Object betrachten:
 die Darstellung des HTML-Dokuments als Baum:
 
 ![Document Object Model und Selektor](/images/html-und-dom.png)
@@ -55,7 +55,7 @@ oder `h2`, oder `a`:
 ![Document Object Model und Selektor](/images/selector-group.png)
 
 (Achtung Falle: für Links mit dem `a` Tag gelten noch zusätzliche Regeln,
-siehe weiter Unten.)
+siehe weiter unten.)
 
 
 Descendant Selector
@@ -73,7 +73,7 @@ Achtung: `div` wird nur zur Auswahl benützt, wird aber selber nicht ausgewählt
 ![Document Object Model und Selektor](/images/selector-desc.png)
 
 (Achtung Falle: für Links mit dem `a` Tag gelten noch zusätzliche Regeln,
-siehe weiter Unten.)
+siehe weiter unten.)
 
 
 Links formatieren

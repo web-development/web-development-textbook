@@ -2,7 +2,7 @@
 title: Dateien und Ordnern in PHP
 order: 30
 ---
-In diesem Kapitel wird beschreiben, wie PHP mit Dateien und Ordnern arbeiten kann und welche Web-spezifischen Probleme dabei auftreten.
+In diesem Kapitel wird beschrieben, wie PHP mit Dateien und Ordnern arbeiten kann und welche Web-spezifischen Probleme dabei auftreten.
 
 Ordner auflisten
 -----------------

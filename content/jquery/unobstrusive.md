@@ -9,7 +9,7 @@ In Zusammenhang mit jQuery werden die Fachbegriffe „graceful degradation“, �
 
 Die Library jQuery unterstützt das Prinzip der „graceful degradation“ – auch ohne Javascript sind Webseiten mit jQuery immer noch gut verwendbar. Dieses Prinzip wird auch „progressive enhancement“ genannt, und bezieht sich nicht nur auf Javascript, sondern auch auf andere „Zusatz-Technologien“ wie z.B. Flash.
 
-Die Idee ist dabei immer die Gleich: man baut die Webseite zuerst ohne Javascript, und fügt dann Javascript hinzu (ohne die Verwendbarkeit ohne Javscript zu zerstören). Der Inhalt (Content) der Webseite bleibt auch ohne Javascript zugänglich.
+Die Idee ist dabei immer die Gleich: man baut die Webseite zuerst ohne Javascript, und fügt dann Javascript hinzu (ohne die Verwendbarkeit ohne Javascript zu zerstören). Der Inhalt (Content) der Webseite bleibt auch ohne Javascript zugänglich.
 
 
 ![Abbildung 60: Die Rolle von Content, Darstellung und Programmierung (Unobstrusive Javascript)](/images/image267.png)
@@ -18,7 +18,7 @@ Die Idee ist dabei immer die Gleich: man baut die Webseite zuerst ohne Javascrip
 
 Von dieser Herangehensweise profitieren nicht nur Blinde, Menschen mit veralteten Browsern oder exotischen Ausgabegeräte. Auch für Suchmaschinen wie Google oder andere Programme die die Information aus den Webseiten weiter verarbeiten ist dieses Prinzip hilfreich.
 
-Um zu testen, ob das wirkliche funktioniert kann man ganz einfach mit dem Firefox-AddOn QuickJava testen. Wie hier gezeigt kann Javascript mit einem Klick deaktiviert werden.
+Um zu testen, ob das wirklich funktioniert kann man ganz einfach mit dem Firefox-AddOn QuickJava testen. Wie hier gezeigt kann Javascript mit einem Klick deaktiviert werden.
 
 
 ![Abbildung 61: Javascript deaktivieren mit QuickJava in Firefox](/images/image269.png)
@@ -26,10 +26,10 @@ Um zu testen, ob das wirkliche funktioniert kann man ganz einfach mit dem Firefo
 ## Grenzen von Graceful Degradation
 
 Es gibt Websites, bei denen dieser Ansatz nicht funktionieren kann.
-z.B. für einen Shooter als Browsergame kann man nicht nicht eine
+z.B. für einen Shooter als Browsergame kann man nicht eine
 Javascript-Freie Alternative anbieten.
 
-Für viele Apps funktioniert das aber.  Probieren Sie z.B. gmail ohne javascript
+Für viele Apps funktioniert das aber.  Probieren Sie z.B. gmail ohne Javascript
 aus, oder das Webmail der FH (zimbra).  Die Interaktion ist etwas
 umständlicher, aber man kann alle Features der Mail benutzen.
 
@@ -52,4 +52,4 @@ Bei der Verwendung von jQuery bleibt der HTML-Code „javascript-frei“: jQuery
 
 ## jquery vom CDN
 
-Die URL http://code.jquery.com/jquery-latest.js kann man für alle Webseiten die online sind verwenden: hinter code.jquery.com steht nicht nur ein Server, sondern das [NetDNA](http://www.netdna.com/) CDN (Content Delivery Network). Nur wenn man offline Entwickeln will muss man die Library wirklich herunterladen.
+Die URL http://code.jquery.com/jquery-latest.js kann man für alle Webseiten die online sind verwenden: hinter code.jquery.com steht nicht nur ein Server, sondern das [NetDNA](http://www.netdna.com/) CDN (Content Delivery Network). Nur wenn man offline entwickeln will muss man die Library wirklich herunterladen.

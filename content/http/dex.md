@@ -4,7 +4,7 @@ intro: Das Protokoll des Web wird vorgestellt.
 ---
 
 ### Was Sie alle wissen sollten
-* Das Computer am Internet über IP-Adressen oder Domain Names addressierbar sind
+* Das Computer im Internet über IP-Adressen oder Domain Names addressierbar sind
 * Wie http-Request und http-Response prinzipiell aufgebaut sind, 
 * dass GET und POST die wichtigsten Methoden des Request sind, 
 * dass 200 und 404 die wichtigsten Status-Codes des Responds sind

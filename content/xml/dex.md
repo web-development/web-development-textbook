@@ -11,7 +11,7 @@ intro: Sie lernen wohlgefomtes und valides XML kennen.
 * Dass wohlgeformtes XML den allgemeinen Regeln von XML entspricht, ohne Einschränkung welche Tags + Attribute verendet werden
 * Dass valides XML den Regeln einer einer bestimmten DTD entspricht, also Tags + Attribute vorgeschrieben sind
 * Dass man mit XPath Daten aus einer XML-Datei abfragen/adressieren kann
-* dass RSS, MathML, SVG Beispiele für XML sind
+* Dass RSS, MathML, SVG Beispiele für XML sind
 
 ### Was Sie können sollten
 * XML lesen und modifizieren können

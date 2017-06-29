@@ -11,8 +11,8 @@ intro: Sie lernen mit dem Versionskontrollsystem git Ihre Dateien zu verwalten.
 
 ### Was Sie alle können sollten
 * Als Einzelperson mit einem git repository arbeiten, d.h.:
-* ein private/public key pair erzeugen
-* ihren ssh client so configurieren, dass er ihren private key verwendet
+* Ein private/public key pair erzeugen
+* Ihren ssh client so konfigurieren, dass er Ihren private key verwendet
 * Ein git repository clonen
 * Neue Dateien stagen, committen und pushen.
 * Den Status des git repositories auf verschiedene Arten abfragen

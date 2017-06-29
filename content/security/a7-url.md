@@ -10,13 +10,13 @@ Die OWASP beschreibt dieses Problem allgemein so:
 ## Nur was serverseitig geprüft wird ist sicher
 
 Bei der Programmierung von Web-Applikationen muss man sich immer bewusst sein,
-dass Alles was im Client passiert, bzw vom Client geschickt wird, manipuliert werden kann.
+dass alles was im Client passiert, bzw vom Client geschickt wird, manipuliert werden kann.
 Meine serverseitigen Programme müssen jeden Input den sie bekommen selbst prüfen, und können
 sich nicht darauf verlassen dass so eine Prüfung bereits am Client passiert ist.
 
 Gängige Fehleinschätzungen dieser Art sind:
 
-* Wenn ich keinen Link zu dieser Seite hin setzte, dann findet die Seite eh niemand.
+* Wenn ich keinen Link zu dieser Seite hinsetze, dann findet die Seite eh niemand.
 * Das ist falsch! 
 * Wenn ich die Daten in ein hidden-field im Formular schreibe, können sie nicht verändert werden
 * Das ist falsch! 

@@ -10,7 +10,7 @@ Während Texte in Beiträgen und Seiten gespeichert werden, müssen Bild-, Audio
 
 ### Speicherung von Medien
 
-Die hochgeladenen Dateien werden einen Unter-Ordner von wp-content/uploads hochgeladen, und haben damit euch eine entsprechende URL. Die folgnde Abbildung zeigt den relevanten Teil der Ordnerstruktur:
+Die hochgeladenen Dateien werden einen Unter-Ordner von wp-content/uploads hochgeladen, und haben damit euch eine entsprechende URL. Die folgende Abbildung zeigt den relevanten Teil der Ordnerstruktur:
 
 
 ![Abbildung 111: Ordnerstruktur für hochgeladene Attachment-Dateien (Audio, Video)](/images/wordpress-uploads.png)

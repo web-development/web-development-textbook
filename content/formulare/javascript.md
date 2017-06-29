@@ -2,7 +2,7 @@
 title: Formular und Javascript
 order: 40
 ---
-Am Beispiel eines Formular werden wir nun einfaches Javascript kennen lernen. Die Details von Javascript werden in den nächsten Kaptieln, hier geht es nur um ein erstes Kennenlernen.
+Am Beispiel eines Formulars werden wir nun einfaches Javascript kennen lernen. Die Details von Javascript werden in den nächsten Kapiteln erfahren, hier geht es nur um ein erstes Kennenlernen.
 
 Javascript Einbetten
 ---------------------
@@ -84,7 +84,7 @@ Mit dem Befehl `document.write()` kann Text/Code in den HTML-Code eingefügt wer
 <htmlcode>
 <h1>Hallo Welt</h1>
 <script>
-    document.write("<p>Hallo Javscript</p>");
+    document.write("<p>Hallo Javascript</p>");
 </script>
 <p>Hallo HTML</p>
 </htmlcode>
@@ -101,7 +101,7 @@ wird nie abgespeichert! Mit Firebug kann man den erzeugen Code aber sehen:
 
 <htmlcode>
 <h1>Hallo Welt</h1>
-<p>Hallo Javscript</p>
+<p>Hallo Javascript</p>
 <p>Hallo HTML</p>
 </htmlcode>
 
@@ -167,7 +167,7 @@ Im Webbrowser sind solche Ereignisse z.B.:
 * Klicken auf einen Link
 * Eintippen in ein Textfeld
 * Anklicken einer Checkbox
-* Absenden eines Formulares
+* Absenden eines Formulars
 
 Eine Liste der wichtigsten Events bzw. on-Attributen für HTML-Tags finden Sie in der [DOM Level 2 Event Specification](http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-eventgroupings-htmlevents-h3).
 
@@ -250,7 +250,7 @@ Bei den einzelnen Berechnungen für die einzelnen Bücher wird jeweils zum Schlu
 
 §
 
-Achtung: beim „rechnen“ mit Eingabefelder von Javascript tritt häufig folgender
+Achtung: beim „Rechnen“ mit Eingabefelder von Javascript tritt häufig folgender
 Fehler auf: in Javascript werden die Datentypen number, string, boolean, object zwar unterschieden, 
 aber nicht deklariert. Es kann in einer Variable einmal ein
 String und einmal eine Zahl gespeichert sein:
@@ -278,7 +278,7 @@ Hier der Output des Programms:
 
 §
 
-Der `+` Operator verhält sich also je nach Datentype des ersten Arguments verschieden: steht links des Plus-Zeichens eine Zahl, dann erfolgt eine Addition. Steht links des Plus-Zeichens ein String, dann erfolgt eine String-Konkatenation; ein Aneinanderfügen von Text.
+Der `+` Operator verhält sich also je nach Datentyp des ersten Arguments verschieden: steht links des Plus-Zeichens eine Zahl, dann erfolgt eine Addition. Steht links des Plus-Zeichens ein String, dann erfolgt eine String-Konkatenation; ein Aneinanderfügen von Text.
 
 Eingabefelder in Web-Formularen liefern immer einen String. Deswegen ist es falsch, sie einfach zu addieren. `100 + 200 + 0 + 0 + 0 + 0` wäre `1002000000`. Bei der Multiplikation mit `*` tritt dieses Problem nicht auf, da der Stern keine zweite Bedeutung hat. 
 

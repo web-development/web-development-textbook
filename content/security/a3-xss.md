@@ -17,7 +17,7 @@ Der schlimmste Fall wäre die Installation eines sogenannten XSS Proxies, der es
 
 Diese Attacke wird "über die Bande gespielt", es ist ein Drama mit drei Rollen:
 
-* Hilda Harmlos stellt eine Webseite mit XSS-Schwachstelle aufs Netz, zum Beispiel mit einem Forum.
+* Hilda Harmlos stellt eine Webseite mit XSS-Schwachstelle ins Netz, zum Beispiel mit einem Forum.
 * Alyssa P. Hacker erstellt einen Forum-Eintrag der die XSS-Schwachstelle ausnutzt.
 * Peter Publikum will das Forum lesen, und wird dabei attackiert.
 
@@ -29,9 +29,9 @@ harmlose Seite.
 Cross Site Scripting kann komplett vermieden werden, wenn man niemals Input von BenutzerInnen auf der Webseite wiedergibt.
 Das ist ein seltener, aber sehr sicherer Fall.
 
-XSS vermeinden kann man mit zwei Verteidigungs-Linien:
+XSS vermeiden kann man mit zwei Verteidigungs-Linien:
 
-* Schon bei der Eingabe (mit einer white-list) alles Entfernen was nicht harmlos ist. 
+* Schon bei der Eingabe (mit einer white-list) alles entfernen was nicht harmlos ist. 
 * Bei der Ausgabe immer ein geeignetes Escaping verwenden
 
 ## Eingabe validieren in PHP

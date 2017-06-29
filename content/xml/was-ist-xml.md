@@ -20,7 +20,7 @@ zum Beispiel RSS, SVG, oder XHTML.
 
 Mit HTML5 hat sich HTML von diesem Stammbaum emanzipiert: HTML5 ist
 nicht mehr eine Sprache, sondern zuerst das Document Object Model (DOM) 
-als "in memory representation" im Browesr, und einige APIS für das DOM. 
+als "in memory representation" im Browser, und einige APIS für das DOM. 
 Ausgehend davon werden zwei Darstellungsweisen definiert: HTML und XML.  
 
 ## Geschichte von XML
@@ -42,7 +42,7 @@ Rund um XML gibt es eine gut ausgebaute Infrastruktur:
 In allen Programmiersprachen gibt es Libraries um XML zu verarbeiten,
 viele Programmier-Editoren unterstützen die Bearbeitung von XML.
 Zusätzlich gibt es noch eigene Sprachen zur Definition von XML
-und um XML Abzufragen.
+und um XML abzufragen.
 
 In den letzten Jahren hat sich mit JSON ein
 anderes, noch einfachers Format für den Datenaustausch etabliert.
@@ -61,13 +61,13 @@ Drei XML-Sprachen die im Web verwendet werden:
 Scalable Vector Graphics (SVG, engl. „skalierbare Vektorgrafik“) ist die vom 
 World Wide Web Consortium (W3C) empfohlene Spezifikation zur Beschreibung 
 zweidimensionaler Vektorgrafiken. Sie wird von den meisten Browsern
-nativ untersützt [&rarr; can i use svg](http://caniuse.com/#feat=svg-html5).  SVG ist eine XML-Sprache. 
+nativ unterstützt [&rarr; can i use svg](http://caniuse.com/#feat=svg-html5).  SVG ist eine XML-Sprache. 
 
 <br clear="left">
 
 ### RSS
 
-RSS ist ein Format um die Inhalte eines Blogs maschienenlesbar anzubieten.
+RSS ist ein Format um die Inhalte eines Blogs maschinenlesbar anzubieten.
 Wo bietet z.B. der Wordpress Blog `http://multimediatechnology.at/` 
 unter der URL `http://multimediatechnology.at/feed/` die gleichen Inhalte
 wie die Homepage des Blogs im RSS Format an.

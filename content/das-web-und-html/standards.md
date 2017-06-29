@@ -3,7 +3,7 @@ title: Drei Standards definieren das Web
 order: 20
 ---
 
-Für diese Lehrbuch ist eine technische Sicht auf das World Wide Web die relevante. 
+Für diese Lehrbuch ist die technische Sicht auf das World Wide Web relevant. 
 Das World Wide Web ist also ein verteiltes (Client/Server) Informationssystem, 
 das durch folgende drei Standards definiert wird:
 
@@ -29,11 +29,11 @@ Nach diesem Prinzip funktionieren Web, E-Mail, SFTP:
 |:--------|:-------|:-------|
 |Web|Webbrowser  <!-- XE "Webbrowser" --> - lädt Webseiten vom Server und stellt sie dar|Webserver  <!-- XE "Webserver" -->   – liefert auf Anfrage die Webseiten|
 |E-Mail|E-Mail  <!-- XE "E-Mail" --> Programm – lädt E-Mails vom Server, zeigt sie an, kann neue E-Mails an einen Server schicken der sie zustellt, …|Mailserver – speichert E-Mail in verschiedenen Postfächern, leitet E- Mail weiter (an den Server der EmpfängerIn)|
-|SFTP|SFTP-Client  <!-- XE "SFTP" -->   – lädt Dateien (verlüsselt) von einem Server herunter oder auf einen Server hinauf|SFTP-Server – speichert Dateien|
+|SFTP|SFTP-Client  <!-- XE "SFTP" -->   – lädt Dateien (verschlüsselt) von einem Server herunter oder auf einen Server hinauf|SFTP-Server – speichert Dateien|
 {: class="table table-condensed table-bordered" style="width:auto"}
 
 
-Eine Alternative zu Client/Server ist Peer-zu-Peer  <!-- XE "Peer-zu-Peer" -->  . Dabei sind alle 
+Eine Alternative zu Client/Server ist Peer-to-Peer  <!-- XE "Peer-zu-Peer" -->  . Dabei sind alle 
 beteiligten Computer gleichberechtigt, es gibt keine verschiedenen Rollen. Nach diesem 
 Prinzip funktionieren Datei-Tauschbörsen.
 
@@ -73,7 +73,7 @@ zugenommen: Smartphones und Tablets.
 ![Aufstieg und Fall des PCs, zitiert aus asymco.com/2012](/images/rise-and-fall-pc.png)
 
 Auf diesen neuen Geräten gibt es auch Webbrowser - teilweise spezialisierte Software (Android Browser), teilweise
-adaptionen der klassischen Desktop Browser (Firefox).
+Adaptionen der klassischen Desktop Browser (Firefox).
  
 ![Browser auf mobilen Geräten: Handys und iPad, 2010](/images/image031.png)
 
@@ -167,7 +167,7 @@ ziffer    = "0" |  "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
 </plain>
 
 Eine letzte Ableitungsregel liest man so: eine `ziffer` ist entweder eine `0` oder
-eine `1` oder ... oder eine `9`.  Ein `jahr` ist vier ziffern hintereinander.
+eine `1` oder ... oder eine `9`.  Ein `jahr` ist vier Ziffern hintereinander.
 
 §
 
@@ -476,7 +476,7 @@ HTTP so aus (hier 9 Schritte am Beispiel der URL `http://multimediatechnology.at
 2.	Der Browser analysiert die URL und ermittelt daraus den Domain Namen des Webservers (`multimediatechnology.at`), löst diese über DNS zur IP-Adresse auf, das Ergebnis lautet `193.170.119.85`
 3.	Der Browser baut eine TCP-Verbindung zu `193.170.119.85`, Port 80 auf
 4.	Er sendet einen HTTP-Request:  `GET /web-communities/ HTTP/1.0\n\n`
-5.	Der Webserver nimmt die Anfrage entgegen und analysiert sie. Meistens interpretiert er sie als Aufforderung, eine bestimmte Datei von der Platte zu lesen. In diesem Fall aber wird ein PHP Programm gestartet, dass Daten aus einer MySQL Datenbank abfragt und als HTML aufbereitet.
+5.	Der Webserver nimmt die Anfrage entgegen und analysiert sie. Meistens interpretiert er sie als Aufforderung, eine bestimmte Datei von der Platte zu lesen. In diesem Fall aber wird ein PHP Programm gestartet, das Daten aus einer MySQL Datenbank abfragt und als HTML aufbereitet.
 6.	Der Webserver schickt einen HTTP-Response an den Browser, diese enthält einen Statuscode, z. B. `200 OK`, einige Zusatzinformationen und dann die eigentlichen Daten des Dokuments (den erzeugten HTML-Code)
 7.	Der Browser nimmt das Dokument in Empfang und stellt es dar
 8.	Der Browser scrollt das Dokument bis zur Textmarke `master`
@@ -491,7 +491,7 @@ speichern mit wem er gerade Daten ausgetauscht hat, um die nächste Anfrage
 durchführen/beantworten zu können. Ein Protokoll mit dieser Eigenschafft nennt man 
 "zustandslos" ("stateless").  <!-- XE "stateless" -->    <!-- XE "zustandslos" -->  Dadurch ist es sehr einfach einen Server zu programmieren. 
 
-Das war ein sehr einfachs Beispiel, wie das Protokoll ablaufen kann. Einen tieferne Einblick in HTTP erhalten Sie im Kapitel [http](/http/).
+Das war ein sehr einfaches Beispiel, wie das Protokoll ablaufen kann. Einen tieferen Einblick in HTTP erhalten Sie im Kapitel [http](/http/).
 
 Quellen und weiter Lektüre
 ---------

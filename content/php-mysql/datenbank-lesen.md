@@ -64,7 +64,7 @@ Anfangsposition[*](http://dev.mysql.com/doc/refman/5.6/en/select.html#idp7228502
 §
 
 In der Datenbank sind Personen, deren Profil nicht angezeigt werden soll, mit
-`profile_visible=0` gekennzeichnet. Im SQL-Statement wird sicher gestellt, dass
+`profile_visible=0` gekennzeichnet. Im SQL-Statement wird sichergestellt, dass
 nur sichtbare Profil angezeigt werden. 
 
 §
@@ -169,7 +169,7 @@ Einen bestimmten Datensatz lesen
 ---------------------------------
 Wenn Sie die Datei `person.php` mit einem Parameter aufrufen `person.php?id=586`
 soll eine bestimmte Person aus der Datenbank angezeigt werden. Dafür wird der
-Parameter aus dem `$_GET` – Array ausgelesen und sicher gestellt, dass es sich
+Parameter aus dem `$_GET` – Array ausgelesen und sichergestellt, dass es sich
 wirklich um eine Zahl handelt.
 
 

@@ -10,4 +10,4 @@ intro: Mit Javascript lernen Sie die wichtigste Programmiersprache des Web kenne
 * Ich weiss, dass Javascript eine Programmiersprache im Web-Browser ist. Dass Javascript Kompatiblitätsprobleme hat, aber trotzdem die einzige Chance ist, Webseiten interaktiver zu machen.
 
 ### Was Sie können sollten
-* Ich kann mit den Javascript und dem DOM alle Elemente in eine Webseite manipulieren.
+* Ich kann mit Javascript und dem DOM alle Elemente in eine Webseite manipulieren.

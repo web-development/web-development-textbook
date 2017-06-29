@@ -25,10 +25,10 @@ console.log( hs.alter() );  // 20
 </javascript>
 
 
-## Konstruktur-Funktion für mehrere gleiche Objekte
+## Konstruktor-Funktion für mehrere gleiche Objekte
 
 Sollen mehrere gleichartige Objekte erzeugt werden, dann
-geschieht das in Javascript mit einer Konstruktur Funktion: 
+geschieht das in Javascript mit einer Konstruktor Funktion: 
 
 <javascript caption="Konstruktor für Objekte">
 function Studiengang(name, seit, hochschule) {
@@ -75,7 +75,7 @@ Wie funktioniert das?  Die Antwort lautet:  mit dem Prototypen.
 ## Klassen
 
 In Javascript 2015 wurde eine neue Schreibweise für Objekte und Konstruktoren
-eingeführt. Die Funktionsweise der Objekte, Konstruktur-Funktionen und Prototypen
+eingeführt. Die Funktionsweise der Objekte, Konstruktor-Funktionen und Prototypen
 wurde dadurch nicht verändert.
 
 <javascript caption="Methoden und Attribute definieren mit dem Prototyp">

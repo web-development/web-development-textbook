@@ -23,7 +23,7 @@ Zusammenspiel funktioniert?**
 REST ist – nach der Analyse von Fielding – die zugrundeliegende **Architektur** des
 Webs.  Wenn man versucht, beim Bau einer Web-Applikation die Prinzipien von REST
 einzuhalten dann wird diese Applikation sich besonders gut in die vorhandene
-Infrastruktur des Web (Server, Browser, Proxies, Caches, etc.) einpassen und davon profitieren.
+Infrastruktur des Web (Server, Browser, Proxies, Caches, etc.) einfügen und davon profitieren.
 
 Wenn man REST missachtet wird die Infrastruktur nicht funktionieren.
 
@@ -76,7 +76,7 @@ im Webserver umschreiben kann, mit der RewriteEngine von Apache.
 * http://ich.multimediatechnology.at/projekt-1/person/nina_nocheinbeispiel
 * http://ich.multimediatechnology.at/projekt-1/person/klaus_maria_nachname
 
-Im Beispiel der  Portfolio-Applikation könnte man das auch erreich,
+Im Beispiel der  Portfolio-Applikation könnte man das auch erreichen,
 z.B. könnte man in die Datei `.htaccess` im Ordner projekt-1 schreiben:
 
 <plain filename=".htaccess">
@@ -267,7 +267,7 @@ BibliothekarIn darf zugreifen. Alle anderen erhalten keinen Zugriff sondern den 
 
 §
 
-**Achtung**: wir haben schon ein Szenario kennen gelernt, wo die
+**Achtung**: wir haben schon ein Szenario kennengelernt, wo die
 Zeitbeschränkung von Sessions einen Sinn macht: Zum Verhindern von
 [Cross Site Request Forgeries - CSRF](/security/a8-csrf/).  Das
 ist aber nur bei Operationen sinnvoll, die etwas am Server ändern,

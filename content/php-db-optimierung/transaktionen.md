@@ -25,7 +25,7 @@ wenn er es bereits zu Beginn der Transaktion war.
 **Isolation** bedeutet: Bei gleichzeitiger Ausführung mehrerer 
 Transaktionen dürfen sich diese nicht gegenseitig beeinflussen.
 
-**Dauerhaftigkeit** bedeutete
+**Dauerhaftigkeit** bedeutet:
 Die Auswirkungen einer Transaktion müssen im Datenbestand dauerhaft bestehen bleiben.  Die Effekte von Transaktionen dürfen also nicht „mit der Zeit verblassen“ oder „aus Versehen verloren gehen“. 
 
 
@@ -67,7 +67,7 @@ COMMIT;
 ## Probleme ohne Transaktionen
 
 Bei Datenbanken können durch mangelnde Transaktionsisolation 
-die folgenden Anomalie auftreten:
+die folgenden Anomalien auftreten:
 
 * Lost Updates: Zwei Transaktionen modifizieren parallel denselben Datensatz und nach Ablauf dieser beiden Transaktionen wird nur die Änderung von einer von ihnen übernommen.
 * Dirty Read: Daten einer noch nicht abgeschlossenen Transaktion werden von einer anderen Transaktion gelesen.
@@ -76,7 +76,7 @@ die folgenden Anomalie auftreten:
 
 ## Weniger gute Transaktionen
 
-Mit `SET TRANSACTION ISOLATION LEVEL ...` kann eine weniger gut
+Mit `SET TRANSACTION ISOLATION LEVEL ...` kann eine weniger gute
 Version von Transaktionen  aktiviert werden.  Die möglichen
 Werte sind (laut Postgres):
 

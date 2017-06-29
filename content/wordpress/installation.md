@@ -7,7 +7,7 @@ Voraussetzung ist, dass in Ihrem Webspace PHP und MySQL möglich sind.
 
 1. Finden Sie heraus wie der Zugang zur Datenbank funktioniert: Datenbankname, Username, Passwort
 2. Laden Sie die aktuelle Version von Wordpress von als zip-Datei auf Ihren Desktop-Computer herunter. Packen Sie die zip-Datei aus, dabei muss die Ordner-Struktur erhalten bleiben.
-3. Laden Sie das Gesamtpaket (allen Dateien und Unterordner) auf Ihren Webspace hoch. Damit ist der Aufwändige teil erledigt, weiter geht es (fast) nur mit dem Browser weiter.
+3. Laden Sie das Gesamtpaket (allen Dateien und Unterordner) auf Ihren Webspace hoch. Damit ist der aufwändige Teil erledigt, weiter geht es (fast) nur mit dem Browser weiter.
 4. Öffnen Sie die Seite über den Webbrowser, folgen Sie den weiteren Anweisungen um einen ersten Account anzulegen.
 
 §
@@ -33,7 +33,7 @@ define('DB_HOST',     'localhost');
 
 §
 
-Wenn Sie mehrere Wordpresse mit nur einer Datenbank betreiben gibt es eine weitere Frage: den Tabellen Prefix – die verschiedenen Wordpresse legen jeweils ca. 12 Tabellen an, damit diese Tabellen nicht alle den gleichen Namen haben wird der Prefix verwendet: z.B. beim ersten Wordpress beginnt der Tabellenname immer mit wp_ beim zweiten mit devblog_.
+Wenn Sie mehrere Wordpress-Seiten mit nur einer Datenbank betreiben gibt es eine weitere Frage: den Tabellen Prefix – die verschiedenen Wordpress-Seiten legen jeweils ca. 12 Tabellen an, damit diese Tabellen nicht alle den gleichen Namen haben wird der Prefix verwendet: z.B. beim der ersten Wordpress-Seite beginnt der Tabellenname immer mit wp_ beim zweiten mit devblog_.
 
 <php caption="Datei wp-config.php">
 // You can have multiple installations in one database

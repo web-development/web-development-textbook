@@ -33,7 +33,7 @@ normalerweise keinen Zugriff hätte.
 ## Weiterleitung in PHP
 
 Wie in Kapitel [PHP erzeugt nicht nur HTML](/http/php-erzeugt/) gezeigt,
-werden Weiterleitungen in PHP mit der Funktion `header` implmenentiert:
+werden Weiterleitungen in PHP mit der Funktion `header` implementiert:
 
 <php caption="Weiterleitung in PHP">
 <?php
@@ -57,7 +57,7 @@ header("Location: " + $_GET['url'] ); // so nicht programmieren!
 §
 
 Die sicherste Variante ist die verwendung einer Whitelist. Hier
-wird sicher gestellt dass nur and die vorgegebenen URLs weitergeleitet wird:
+wird sichergestellt dass nur an die vorgegebenen URLs weitergeleitet wird:
 
 <php caption="Weiterleitung in PHP - mit Whitelist">
 <?php

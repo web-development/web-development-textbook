@@ -23,7 +23,7 @@ Für eine Web-Applikation muss man dabei mindestens folgende Schichte beachten:
 * Webserver, z.B. Apache
 * Framework, z.B. ZEND Framework, Rails
 * Fremd-Applikation, z.B. Wordpress, Redmine
-* Selbstgeschreibene Applikation
+* Selbstgeschriebene Applikation
 
 Jeder dieser Schichten gilt es richtig zu konfigurieren
 und Sicherheits-Updates einzuspielen.
@@ -48,7 +48,7 @@ Dafür gibt es oft schon fertige Konfigurationen, oder Tutorials
 
 Keine Software ist sicher, in jeder Software werden Sicherheitsprobleme
 entdeckt. Die relevante Fragen sind: werden Sicherheitsprobleme die
-bekannt werden möglichst schnell behoben? Und in folge: Wenn ein Update
+bekannt werden möglichst schnell behoben? Und in Folge: Wenn ein Update
 zur Verfügung steht, wird es möglichst schnell installiert?
 
 * [Heise Security](http://www.heise.de/security/)

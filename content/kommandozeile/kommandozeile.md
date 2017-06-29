@@ -13,7 +13,7 @@ so wie mit dem Teletype:
 Wenn Sie professionell im Web Development arbeiten wollen, werden Sie auch die
 Kommandozeile brauchen. Sie ist kein einfaches, aber ein mächtiges Werkzeug.
 
-Die GUIs (Graphical User Interfaces) die Sie bisher benutz haben sind besonders
+Die GUIs (Graphical User Interfaces) die Sie bisher benutzt haben sind besonders
 für Ungeübte geeignet: Durch hinkucken und rumklicken kann man oft herausfinden
 wie ein Programm funktioniert.  Man kann z.B. die Menüpunkte studieren um sich
 zu orientieren, oder die Icons betrachten.

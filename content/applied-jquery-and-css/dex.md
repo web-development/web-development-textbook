@@ -13,7 +13,7 @@ intro: An Hand einiger praktischer Beispiele lernen Sie jQuery besser kennen.
 
 * Ich kann mit jQuery komplexe Überprüfungen in einem Formular vornehmen, und das Absenden der Daten verhindern
 * Ich kann mit jQuery auf eine Scrollen der Webseite reagieren
-* Ich kann Mit jQuery dynamische Formulare gestalten
+* Ich kann mit jQuery dynamische Formulare gestalten
 
 
 ## Vertiefung

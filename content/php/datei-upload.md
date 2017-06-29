@@ -50,7 +50,7 @@ Die Mindestanforderungen an ein Upload-Skript lauten also:
 
 Die Verarbeitung von hochgeladenen Dateien ist wesentlich komplizierter als die Behandlung anderen Requests: Die Dateien werden vom PHP-Interpreter temporär gespeichert. Das PHP-Programm kann die Dateien dann an einen permanenten Speicherort kopieren (falls das die Zugriffsrechte erlauben)
 
-Die Details zu den Hochgeladenen Dateien sind im Array `$_FILES` gespeichert, in folgendem Beispiel hatte das Eingabefeld den Namen „bild“: 
+Die Details zu den hochgeladenen Dateien sind im Array `$_FILES` gespeichert, in folgendem Beispiel hatte das Eingabefeld den Namen „bild“: 
 
 `$_FILES['bild']['name']`
 : Der Originalname der Datei am Client. 

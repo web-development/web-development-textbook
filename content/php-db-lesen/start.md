@@ -143,7 +143,7 @@ Mit der Methode `setAttribute` wird hier festgelegt,
 dass die gelesenen Datensätze aus der Datenbank in PHP als
 Objekt dargestellt werden. (Die Alternative wäre ein assoziatives Array.)
 
-Für die Applikation die in den nächsten 2 Kapitel beschreiben wird
+Für die Applikation die in den nächsten zwei Kapiteln beschrieben wird
 werden diese Optionen vorausgesetzt.
 
 ### Anweisung an die Datenbank
@@ -175,4 +175,4 @@ ist ein "Statement-Handle". Dieses Objekt bietet verschiedene
 Methoden an, mit denen man dann wirklich die Daten aus der DB holen kann.
 
 Doch bevor wir hier ins Detail gehen werden wir uns
-im nächsten Kapitel die Struktur eine Beispiel-Applikation ansehen.
+im nächsten Kapitel die Struktur einer Beispiel-Applikation ansehen.

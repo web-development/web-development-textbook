@@ -44,7 +44,7 @@ Damit kann man für die verschiedenen Zustände innerhalb ein und deselben
 HTML Dokuments jeweis eine URL definieren.  Damit funktionieren das
 verlinken, Lesezeichen setzen, u.s.w. wieder.
 
-Webseite die Javascript und pushState in dieser weise nutzen nennt
+Webseite die Javascript und pushState in dieser Weise nutzen nennt
 man "Single Page Apps" (SPA).  
 
 ## Siehe auch

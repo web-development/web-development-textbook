@@ -24,7 +24,7 @@ beschreibt  Wilson Miner die Entwicklung solch einer Grafik:
 
 Mit etwas CSS kann man von den Rechtecken zu anderen Formen gelangen.
 Auf der Webseite [CSS Tricks: The Shapes of CSS](https://css-tricks.com/examples/ShapesOfCSS/) beschreibt
-Chris Coyier wie man mit `border-radius` und transparenten rahmen
+Chris Coyier wie man mit `border-radius` und transparenten Rahmen
 Kreise, Ellipsen, Dreiecke und so weiter bauen kann:
 
 ![Bild der Dreiecks](/images/dreieck.png)
@@ -53,5 +53,5 @@ Von David DeSandro gibt es ein ausführliches [Tutorial](http://desandro.github.
 
 ## Resume
 
-Im zweifelsfall sollten Sie immer die einfachste technische Lösung
+Im Zweifelsfall sollten Sie immer die einfachste technische Lösung
 für ihr Problem wählen. Bei Grafik kann das ganz oft einfaches HTML + CSS sein.

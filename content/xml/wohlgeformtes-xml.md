@@ -67,7 +67,7 @@ Tags werden wie in HTML begonnen und beendet: `<p>....</p>`.
 Tags ohne "Ende" müssen mit einem Slash am Ende
 markiert werden: `<br />`.
 
-Das weglassen schießender Tags ist in XML nicht gestattet!
+Das Weglassen schließender Tags ist in XML nicht gestattet!
 Tags in XML sind case sensitive.
 
 Einen Tag samt Inhalt nennt man "Element".

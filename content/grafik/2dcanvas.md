@@ -11,7 +11,7 @@ man mit Javascript zeichnen und Bilder einkopieren kann:
 ![Bild](/images/canvas.png)
 
 Das Koordinatensystem des Canvas beginnt links oben. Es wird der "Painters Algorithm"
-verwendet: später gezeichnets übermalt früher gezeichnetes.  Egal ob Text, Linie,
+verwendet: später gezeichnetes übermalt früher gezeichnetes.  Egal ob Text, Linie,
 Bild, alles wird in einzelne Pixel verwandelt.  Man kann später nicht mehr identifizieren
 welches Pixel vom Text, oder welches vom Bild stammt.
 

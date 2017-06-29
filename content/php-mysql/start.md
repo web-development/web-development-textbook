@@ -45,7 +45,7 @@ weiteren Teile der DSN anthält kann man in der [Dokumentation des jeweiligen PD
 
 Für den MySQL Treiber sind das der Name der Datenbank `dbname` und der `host`,
 eventuell der `port`.  Alternativ kann man die Verbindung statt über Host und
-Port über den UNIX-Socket aufbauen, den Pfad zum socket gibt man unter
+Port über den UNIX-Socket aufbauen, den Pfad zum Socket gibt man unter
 `unix_socket` an.
 
 §
@@ -158,7 +158,7 @@ Zeichensatz für die gelesenen Text-Daten festgelegt.  Das
 macht natürlich nur Sinn, wenn die Daten in der Datenbank
 wirklich als UTF-8 gespeichert sind!
 
-Für die Applikation die in den nächsten 2 Kapitel beschreiben wird
+Für die Applikation die in den nächsten 2 Kapitel beschrieben wird
 werden diese Optionen vorausgesetzt.
 
 ### Anweisung an die Datenbank
@@ -190,4 +190,4 @@ ist ein "Statement-Handle". Dieses Objekt bietet verschiedene
 Methoden an, mit denen man dann wirklich die Daten aus der DB holen kann.
 
 Doch bevor wir hier ins Detail gehen werden wir uns
-im nächsten Kapitel die Struktur eine Beispiel-Applikation ansehen.
+im nächsten Kapitel die Struktur einer Beispiel-Applikation ansehen.

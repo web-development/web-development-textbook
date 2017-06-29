@@ -25,10 +25,10 @@ zahlt sich aus!
 [Reguläre Ausdrücke](http://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck) sind 
 ein Konzept aus der Theoretischen Informatik. Diese ursprünglichen regulären Ausdrücke
 bieten nur 3 Operatoren an.  Bei der Umsetzung in diversen UNIX-Tools und Programmiersprachen
-wurden mehr und mehr Operatoren eingeführt. Zur unterscheidung nenne ich diese
+wurden mehr und mehr Operatoren eingeführt. Zur Unterscheidung nenne ich diese
 erweiterten Ausdrücke mit dem englischen Begriff Regular Expressions oder kurz RegEx.
 
-Regular Expressions nennt man of auch Muster (en: patterns), man spricht von
+Regular Expressions nennt man oft auch Muster (en: patterns), man spricht von
 Mustersuche (en: pattern matching). Wenn ein Muster auf ein Zeichenkette zutrifft
 sagt man auf Halb-Englisch: "der Pattern matched".
 

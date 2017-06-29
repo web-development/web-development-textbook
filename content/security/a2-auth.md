@@ -29,13 +29,13 @@ mitgeschickt werden.  Dies geschieht zum Beispiel in einem Cookie.
 
 Wenn es gelingt diese Information abzuhören und wieder zu verwenden, 
 dann erhält man den gleichen Zugang wie die eigentliche UserIn. Diese
-Art der Angriffs nennt man "Replay Attacke" - ein Request wird abehört und
+Art des Angriffs nennt man "Replay Attacke" - ein Request wird abehört und
 gleich wieder verwendet.
 
 Um Passwörter ebenso wie Session Ids und Cookies vor dem Abhören zu 
 schützen muss man den gesamten HTTP-Request verschlüssen - das ist über SSL/TLS möglich.
 Ein weiterer Punkt wo diese Informationen eventuell aufscheinen sind Logfiles.
-Auch beim Logging sollte man diese Informationen vorher ausfiltern oder verschlüsseln.
+Auch beim Logging sollte man diese Informationen vorher rausfiltern oder verschlüsseln.
 
 ## Nicht selbst implementieren
 

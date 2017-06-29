@@ -9,7 +9,7 @@ Die OWASP beschreibt dieses Problem allgemein so:
 
 ## Maßnahmen
 
-1. Klärung der Bedrohungen, vor denen die Daten zu schüt - zen sind (z. B. Innen - und Außentäter) und sicherstellen , dass vertrauliche Daten bei der Übertragung/Speicherung geeignet durch Verschlüsselung geschützt werden .  
+1. Klärung der Bedrohungen, vor denen die Daten zu schützen sind (z. B. Innen - und Außentäter) und sicherstellen , dass vertrauliche Daten bei der Übertragung/Speicherung geeignet durch Verschlüsselung geschützt werden .  
 2.  Kein unnötiges Speichern vertraulicher Daten. Löschung nicht mehr benötigter Daten.  Daten, die es nicht gibt, können auch nicht gestohlen werden.
 3.  Sicherstellen, dass starke Algorithmen und Schlüssel verwendet werden.
 4.  Sicherstellen, dass Passwörter mit einem speziell für Passwortschutz entwickelten Algorithmus gespeichert werden.

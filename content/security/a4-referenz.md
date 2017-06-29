@@ -44,7 +44,7 @@ statt IDs verwendet. Sie sind auch unter dem namen "friendly urls" und (z.B. in 
 
 Die Verwendung von Slugs hat mehrere Vorteile:
 
-1. Das erraten eines weiteren Keys ist nicht so leicht wie bei Zahlen
+1. Das Erraten eines weiteren Keys ist nicht so leicht wie bei Zahlen
 2. URLs werden dadurch leichter lesbar und sind leichter zu erinnern
 3. Auch Suchmaschinen lesen den Text des Slugs, die Seite kann auch unter den Stichwörtern des Slugs gefunden werden
 
@@ -76,7 +76,7 @@ Eine denkbar schlechte Implementiereung dieser Galerie wäre:
   ?>
 </htmlcode>
 
-Mit diesem Programm kann man durch einfaches ändern der URL beliebige
+Mit diesem Programm kann man durch einfaches Ändern der URL beliebige
 Dateien am Server "erforschen". 
 
 Gegen diese Art von Attacke kann man an mehreren Linien verteidigen:

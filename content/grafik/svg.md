@@ -39,7 +39,7 @@ Darstellung im Browser werden sie mit dem [Painters Algorithm](http://de.wikiped
 "spätere" Objekte übermalen "frühere" Objekte. Deswegen überdeckt das blaue Rechteck
 im Beispiel den grünen Kreis.
 
-Inline SVG wird heute von den aktuellen Browsersn unterstütz, siehe
+Inline SVG wird heute von den aktuellen Browsern unterstützt, siehe
 [can i use](http://caniuse.com/#feat=svg-html5)
 
 
@@ -106,7 +106,7 @@ Viele Attribute kann man alternativ auch über CSS definieren.
 ### Pfad und Polygon
 
 Für Pfade und Polygone wird eine Kurzschreibweise verwendet, bei der mehrere Punkte in
-ein einziges Attribut `d` des Tags geschreiben werden. Ein Pfad besteht aus Befehlen und Koordinaten.
+ein einziges Attribut `d` des Tags geschrieben werden. Ein Pfad besteht aus Befehlen und Koordinaten.
 Zwischen den Koordinaten kann man Kommas und beliebigen Whitespace einfügen.
 
 <xml caption="SVG">
@@ -117,7 +117,7 @@ Zwischen den Koordinaten kann man Kommas und beliebigen Whitespace einfügen.
 §
 
 Wird der Befehl als Großbuchstaben geschrieben, dann werden die Koordinaten
-absolut interpretier, bei einem Kleinbuchstaben werden sie relativ interpretiert.
+absolut interpretiert, bei einem Kleinbuchstaben werden sie relativ interpretiert.
 Folgende Befehle erwarten eine fixe Anzahl von Koordinaten:
 
 |Buchstabe | Befehl          | Parameter | Beschreibung                                             |
@@ -282,7 +282,7 @@ lokales Koordinatensystem definieren.
 ## Animation
 
 Fast jedes Attribut in SVG kann animiert werden. In folgendem
-Beispiel wird as Attribut `startOffset` des Elements `textPath`
+Beispiel wird das Attribut `startOffset` des Elements `textPath`
 animiert:
 
 <xml caption="SVG Animation">

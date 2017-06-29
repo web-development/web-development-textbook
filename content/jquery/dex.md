@@ -12,7 +12,7 @@ intro: Mit der einfachen Schreibweise von jQuery lernen Sie schneller und einfac
 
 # Was Sie können sollten
 * Ich kann mit jQuery Teile einer Webseite aus- und einblenden
-* Ich kann Mit jQuery dynamische Formulare gestalten
+* Ich kann mit jQuery dynamische Formulare gestalten
 
 
 ## Vertiefung

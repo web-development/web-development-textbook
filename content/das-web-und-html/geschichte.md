@@ -10,7 +10,7 @@ es in den Jahren 1989, 1990, 1991 als EDV-Mitarbeiter am CERN  <!-- XE "CERN" --
 Schweiz entwickelt.
 
 Zu dieser Zeit – Anfang der 90er Jahre – war das Internet ein rein akademisches Projekt mit 
-sehr geringen Bandbreite,  <!-- XE "Bandbreite" -->  wie folgendes „fact sheet“ aus der Zeit 
+sehr geringer Bandbreite,  <!-- XE "Bandbreite" -->  wie folgendes „fact sheet“ aus der Zeit 
 dokumentiert:
 
 §
@@ -109,7 +109,7 @@ verändert wie Wissen gesammelt werden kann.
 
 ![Abbildung: Facebook 2004 und 2010](/images/facebook.png)
  
-Dass ich am Web speichern kann wer meine FreundInnen sind, um dann mit diesen FreundInnen kurze "Status-meldungen" auszutausche - das wurde erst im 21.Jahrhundert erfunden. Wie geht es weiter?
+Dass ich am Web speichern kann wer meine FreundInnen sind, um dann mit diesen FreundInnen kurze "Statusmeldungen" austausche - das wurde erst im 21.Jahrhundert erfunden. Wie geht es weiter?
 
 Weitere Quellen
 --------------

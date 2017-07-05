@@ -46,7 +46,7 @@ fertig gestellt ist kann man das Programm weiter verbessern: besser lesbar mache
 
 Eine Veränderung am Programm, die die Funktionalität unverändert lässt, und andere Aspekte
 des Programmes verbessert, nennt man **Refactoring**. Dabei geht man in kleinen Schritten vor:
-zum Beispiel in einem Schritt einen constiablennamen verändern, im nächsten Schritt Code in
+zum Beispiel in einem Schritt einen variablennamen verändern, im nächsten Schritt Code in
 eine Funktion zusammen fassen, im nächsten Schritt einen Funktionsnamen ändern, ... nach jedem
 einzelnen Schritt ist das Programm wieder funktionstüchtig.
 
@@ -56,18 +56,18 @@ passenden log-message machen.
 Wenn man Code liest, und Stellen entdeckt, die man verbessern könnte, dann nennt man
 die üblen Stellen **Code Smells**.
 
-## constiablen
+## Variablen
 
-Der Name einer constiable soll Auskunft über ihre Bedeutung, ihre Rolle im Programm geben. 
-constiablen sollen so kurz wie möglich, aber nicht kürzer sein.
+Der Name einer Variable soll Auskunft über ihre Bedeutung, ihre Rolle im Programm geben. 
+Variablen sollen so kurz wie möglich, aber nicht kürzer sein.
 
-### Konvenelle constiablennamen
+### Konventionelle Variablennamen
 
 Aus der Mathematik wurde Konventionen übernommen, z.B. dass i,j,k als Zähler für Schleifen
 verwendet werden; x,y,z für Koordinaten. Diese Konvention muss man nicht einhalten,
 aber man sollte nicht gegen sie arbeiten:
 
-<javascript caption="Kurze constiablennamen und Konventionen aus der Mathematik">
+<javascript caption="Kurze Variablennamen und Konventionen aus der Mathematik">
 // gegen die Konvention
 const x=0;
 const i,k;
@@ -94,7 +94,7 @@ while( i < 10 ) {
 
 
 Wenn in einem Programm dieselbe Zahl mehrmals vorkommt kann das ein Hinweis
-sein, dass man eine Konstante oder constiable verwenden sollte. Folgendes Programm
+sein, dass man eine Konstante oder variable verwenden sollte. Folgendes Programm
 zeichnet ein Rechteck in ein neu geschaffens SVG:
 
 <javascript caption="Rechteck zeichnen - mit fixen Zahlen">
@@ -145,7 +145,7 @@ es macht also Sinn eine Konstante zu verwenden:
 Nun kann man auch die Breite des Rahmens in einer Konstanten speichern:
 
 
-<javascript caption="Rechteck zeichnen - mit constiable für Rahmenbreite">
+<javascript caption="Rechteck zeichnen - mit variable für Rahmenbreite">
   const svg_width  = 1024;
   const svg_height = 768;
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -191,7 +191,7 @@ const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 svg.setAttribute("width",  svg_width);
 svg.setAttribute("height", svg_height);
 
-const frame = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+let frame = document.createElementNS("http://www.w3.org/2000/svg", "rect");
 frame.setAttribute( 'x', 1 );
 frame.setAttribute( 'y', 1 );
 frame.setAttribute( 'width', 20 );
@@ -201,8 +201,8 @@ frame.setAttribute( 'stroke-width',  1);
 frame.setAttribute( 'fill', 'red' );
 svg.appendChild( frame );
 
-const frame_border_width = 10;
-const frame = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+let frame_border_width = 10;
+frame = document.createElementNS("http://www.w3.org/2000/svg", "rect");
 frame.setAttribute( 'x', 21 );
 frame.setAttribute( 'y', 1 );
 frame.setAttribute( 'width', 20 );
@@ -212,8 +212,8 @@ frame.setAttribute( 'stroke-width',  1);
 frame.setAttribute( 'fill', 'red' );
 svg.appendChild( frame );
 
-const frame_border_width = 10;
-const frame = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+frame_border_width = 10;
+frame = document.createElementNS("http://www.w3.org/2000/svg", "rect");
 frame.setAttribute( 'x', 41 );
 frame.setAttribute( 'y', 1 );
 frame.setAttribute( 'width', 20 );
@@ -232,7 +232,7 @@ Da der einzige Unterschied zwischen den kopierten Code-Zeilen die
 X-Koordinate ist, und diese stetig ansteigt, kann man hier eine 
 Schleife verwenden, um den Code wiederzuverwenden.
 
-Aus der Schleifenconstiable i = 0, 1, 2 kann ganz einfach
+Aus der Schleifenvariable i = 0, 1, 2 kann ganz einfach
 die X-Koordinate x = 1, 21, 41 berechnet werden: 
 
 `x = i * 20 + 1;`
@@ -246,7 +246,6 @@ svg.setAttribute("height", svg_height);
 
 var i=0;
 while( i < 3 ) {
-
   const frame = document.createElementNS("http://www.w3.org/2000/svg", "rect");
   frame.setAttribute( 'x', i * 20 + 1 );
   frame.setAttribute( 'y', 1 );

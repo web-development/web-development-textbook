@@ -78,3 +78,9 @@ SELECT substring(name from 1 for 20) AS name, time, yes_rsvp_count FROM events O
 Time: 0.775 ms
 </sql>
 
+
+## Siehe auch
+
+* [Latency Numbers Every Programmer Should Know ](https://gist.github.com/jboner/2841832)
+* [Latency Numbers, Humanized](https://gist.github.com/hellerbarde/2843375#file-latency_humanized-markdown)
+* [prezi](https://prezi.com/pdkvgys-r0y6/latency-numbers-for-programmers-web-development/)

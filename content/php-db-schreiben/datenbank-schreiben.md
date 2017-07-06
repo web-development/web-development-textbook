@@ -11,9 +11,9 @@ Hier der Plan für die einzelnen Seiten dieser Applikation:
 | Titel           | Dateiname       |  Methode / Parameter |  Beschreibung                                |
 | Person löschen  | person_delete.php |  POST id            |  Löscht die Person mit der angegeben id.    |
 | Person einfügen | person_new.php  |  GET                 |  Zeigt Eingabeformular für eine neue Person  |
-| Person einfügen | person_new.php  | POST isfemale,title,firstname,surname,email,type,profile_visible,description | Legt eine neue Person an. |
+| Person einfügen | person_new.php  | POST isfemale, title, firstname, surname, email, type, profile_visible, description | Legt eine neue Person an. |
 | Person bearbeiten | person_edit.php | GET id |  Zeigt Bearbeitungs-Formuar an |
-| Person bearbeiten | person_edit.php | POST id,isfemale,title,firstname,surname,email,type,profile_visible,description|  Speichert neue Daten zur Person id |
+| Person bearbeiten | person_edit.php | POST id, isfemale, title, firstname, surname, email, type, profile_visible, description|  Speichert neue Daten zur Person id |
 {: class="table table-condensed table-bordered" style="width:auto"}
 
 Warum wird hier manchmal GET und manchmal POST als Methode verwendet?

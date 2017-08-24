@@ -18,6 +18,7 @@ intro: Sie lernen mit dem Versionskontrollsystem git Ihre Dateien zu verwalten.
 * Den Status des git repositories auf verschiedene Arten abfragen
 
 ### Weitere Informationsquellen
+* [Git Magic](http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/de/) 
 * [Das git community book](http://book.git-scm.com/)
 * [Deutsche Referenz zu git](http://weinimo.de/Git-Hilfen/)
 * [A Visual Git Reference](http://marklodato.github.com/visual-git-guide/index-en.html)

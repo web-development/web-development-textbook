@@ -4,7 +4,9 @@ pages:
   stage: deploy
   script:
     - bundle install
-    - nanoc compile LANG=en_US.UTF-8
+    - export LANG=en_US.UTF-8
+    - echo $LANG
+    - nanoc compile 
     - cp -a output/* public/
   artifacts:
     paths:

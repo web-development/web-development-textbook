@@ -6,7 +6,7 @@ gem "rake"
 gem "curb"
 gem "nanoc", '~>3.8.0'
 gem "kramdown"
-#gem "nokogiri"
+gem "nokogiri"
 gem "adsf"
 gem "mime-types"
 gem "json"

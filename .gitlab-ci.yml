@@ -3,7 +3,8 @@ pages:
     - ruby:2.3.3
   stage: deploy
   script:
-    - bundle install
+    - cp Gemfile.gitlab-ci Gemfile
+    - bundle install  -j4
     - export LANG=en_US.UTF-8
     - export LC_CTYPE=en_US.UTF-8
     - echo $LANG $LC_CTYPE

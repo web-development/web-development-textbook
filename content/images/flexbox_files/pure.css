@@ -1,5 +1,6 @@
 .container_to_inspect { background-color: lightgreen;}
 
+ul { margin: 0;}
 .header ul{
   list-style-type: none;
   display: flex;
@@ -70,7 +71,6 @@ body {
 
 .page_container {
   color: #3c3c3c;
-  -webkit-text-size-adjust: 100%;
 }
 
 

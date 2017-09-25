@@ -3,24 +3,24 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Demo-Page Flexbox</title>
+  <title>Demo-Seite für Flexbox</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"> </head>
 
 <body>
   <div class="page_container">
     <div class="header">
-      <p>Change the size of your browser window to see the full effect!</p>
       <ul>
         <li>Flexbox Demo pages:
-          <li><a onClick="set_flex_css(0, cssLoaded);">no flexbox</a></li>
+          <li><a onClick="set_flex_css(0, cssLoaded);">ohne flexbox</a></li>
 
-          <li><a onClick="set_flex_css(1, cssLoaded);">basic flexbox</a></li>
-          <li><a onClick="set_flex_css(2, cssLoaded);">flexbox with fixed width elements</a></li>
-          <li><a onClick="set_flex_css(3, cssLoaded);">fixed width elements, wrap</a></li>
-          <li><a onClick="set_flex_css(4, cssLoaded);">fixed width elements, wrap, no overflow</a></li>
+          <li><a onClick="set_flex_css(1, cssLoaded);">mit flexbox</a></li>
+          <li><a onClick="set_flex_css(2, cssLoaded);">+ fixer breite</a></li>
+          <li><a onClick="set_flex_css(3, cssLoaded);">+ wrap</a></li>
+          <li><a onClick="set_flex_css(4, cssLoaded);">+ overflow hidden</a></li>
       </ul>
+      <p>Verändere die Breite des Browsers-Fensters und beobachte wie sich das Layout ändert!</p>
+
     </div>
-    <div class="separator big"> <a href="https://portfolio.multimediatechnology.at/editions/masterprojekte">Masterprojekte</a> </div>
     <div class="projects">
       <div class="project_partial">
         <a href="https://portfolio.multimediatechnology.at/projects/2013-james">
@@ -71,41 +71,6 @@
           <div class="title big sans hyphenate"> Zeit ist Held </div> MultiMediaArt (2012) </div>
       </div>
     </div>
-    <div class="separator big"> <a href="https://portfolio.multimediatechnology.at/editions/bachelorprojekte-web-2015">Bachelorprojekte</a> </div>
-    <div class="projects">
-      <div class="project_partial"> <a href="https://portfolio.multimediatechnology.at/projects/2015-rigid-buddies"></a> <a href="https://portfolio.multimediatechnology.at/projects/2015-rigid-buddies">
-     <img alt="Rigid Buddies" title="Rigid Buddies" srcset="https://portfolio2.s3.amazonaws.com/system/projects/1658/cover/thumb_cover.png 1x, https://portfolio2.s3.amazonaws.com/system/projects/1658/cover/thumb_2x_cover.png 2x" src="flexbox_files/thumb_cover_004.png">
-   </a>
-        <div class="description">
-          <div class="title big sans hyphenate"> Rigid Bud­dies </div> MultiMediaArt &amp; MultiMediaTechnology (2015) </div>
-      </div>
-      <div class="project_partial"> <a href="https://portfolio.multimediatechnology.at/projects/2014-yokaisho"></a>
-        <div class="awards"></div> <a href="https://portfolio.multimediatechnology.at/projects/2014-yokaisho">
-   <img alt="YoKaisho" title="YoKaisho" srcset="https://portfolio2.s3.amazonaws.com/system/projects/1622/cover/thumb_cover.png 1x, https://portfolio2.s3.amazonaws.com/system/projects/1622/cover/thumb_2x_cover.png 2x" src="flexbox_files/thumb_cover.png">
- </a>
-        <div class="description">
-          <div class="title big sans hyphenate"> Yo­Kais­ho </div> MultiMediaArt &amp; MultiMediaTechnology (2014) </div>
-      </div>
-      <div class="project_partial"> <a href="https://portfolio.multimediatechnology.at/projects/2015-mapmap-v2"></a> <a href="https://portfolio.multimediatechnology.at/projects/2015-mapmap-v2">
-   <img alt="mapMap-v2" title="mapMap-v2" srcset="https://portfolio2.s3.amazonaws.com/system/projects/1873/cover/thumb_cover.jpg 1x, https://portfolio2.s3.amazonaws.com/system/projects/1873/cover/thumb_2x_cover.jpg 2x" src="flexbox_files/thumb_cover_005.jpg">
- </a>
-        <div class="description">
-          <div class="title big sans hyphenate"> map­Map-v2 </div> MultiMediaTechnology (2015) </div>
-      </div>
-      <div class="project_partial"> <a href="https://portfolio.multimediatechnology.at/projects/2015-origin"></a>
-        <div class="awards"></div> <a href="https://portfolio.multimediatechnology.at/projects/2015-origin">
-   <img alt="Origin" title="Origin" srcset="https://portfolio2.s3.amazonaws.com/system/projects/1773/cover/thumb_cover.jpg 1x, https://portfolio2.s3.amazonaws.com/system/projects/1773/cover/thumb_2x_cover.jpg 2x" src="flexbox_files/thumb_cover.jpg">
- </a>
-        <div class="description">
-          <div class="title big sans hyphenate"> Ori­gin </div> MultiMediaArt &amp; MultiMediaTechnology (2015) </div>
-      </div>
-      <div class="project_partial"> <a href="https://portfolio.multimediatechnology.at/projects/2015-flumen"></a> <a href="https://portfolio.multimediatechnology.at/projects/2015-flumen">
-   <img alt="Flumen" title="Flumen" srcset="https://portfolio2.s3.amazonaws.com/system/projects/1864/cover/thumb_cover.jpg 1x, https://portfolio2.s3.amazonaws.com/system/projects/1864/cover/thumb_2x_cover.jpg 2x" src="flexbox_files/thumb_cover_007.jpg">
- </a>
-        <div class="description">
-          <div class="title big sans hyphenate"> Flu­men </div> MultiMediaArt &amp; MultiMediaTechnology (2015) </div>
-      </div>
-    </div>
     <div class="separator big"> <a href="http://web-development.github.io/css-layout/layout/">Das CSS dahinter</a> </div>
     <div>
       <p>CSS für den Container: </p>
@@ -125,6 +90,9 @@
       <div class="project_partial"> </div>
       <div class="project_partial"> </div>
     </div>
+
+
+
     <link rel="stylesheet" media="all" href="flexbox_files/pure.css">
     <link rel="stylesheet" media="all" id="flex_sheet" href="flexbox_files/flex0.css">
 

@@ -1,6 +1,6 @@
 function cssLoaded() {
 
-  display_css_properties_of('.container_to_inspect', '#display_1', ["display", "flex-wrap", "overflow"]);
+  display_css_properties_of('.container_to_inspect', '#display_1', ["display", "justify-content", "flex-wrap", "overflow"]);
   display_css_properties_of('.element_to_inspect', '#display_2', ["width", "flex-shink", "margin-left", "margin-right"]);
 }
 

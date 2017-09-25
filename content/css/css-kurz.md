@@ -67,14 +67,14 @@ Das Stylesheet definiert für die einzelnen HTML-Tags wie sie dargestellt werden
 <htmlcode caption="Hintergrundfarbe, Schriftfamilie, Schriftgröße mit CSS festlegen">
 <style type="text/css">
   p {
-    font-family: Calibri, Helvetica, Arial, sans-serif; 
-    font-size: 13px;
+    font-family: Libertine, serif;
+    font-size: 22px;
   }
   h1,h2 {
-    font-family: "Trebuchet MS", Verdana, Arial, sans-serif;
+    font-family: Biolinum, sans-serif;
   }
-  h1 { font-size: 24px; }
-  h2 { font-size: 20px; }
+  h1 { font-size: 32px; }
+  h2 { font-size: 24px; }
   body { background-color: green; }
 </style>
 </htmlcode>
@@ -83,18 +83,20 @@ An Hand dieses Beispieles werden nun die ersten Stylesheet-Befehle erklärt. Die
 
 Interpretation
 -----------
-Zuerst werden wir die Schriften im Dokument festlegen.  Achtung: Welche Schriften auf dem Endgerät zur Verfügung stehen ist nicht bekannt, deswegen kann man mehrere Schriften angegeben. Diese Liste wird vom Browser von links nach rechts abgearbeitet,die erste Schrift die er findet, verwendet er. (Man kann Schriften auch verlinken - aber das ist mehr ein Thema für MMA).
+Zuerst werden wir die Schriften im Dokument festlegen.  Achtung: Welche Schriften auf dem Endgerät zur Verfügung stehen, bzw. ob das Nachladen von Fonts wirklich klappt ist nicht bekannt, deswegen kann man mehrere Schriften angegeben. Diese Liste wird vom Browser von links nach rechts abgearbeitet,die erste Schrift die er findet, verwendet er. 
 
 In Zeile 2 bis 5 werden zwei Anweisungen für Fließtext gegeben (HTML-Tag &lt;p&gt;): die Schriftfamilie in Zeile 3 und die Schriftgröße in Zeile 4. 
 
-In Zeile 3 Vergleichen Sie Zeile 3 mit Zeile 7: Schriftnamen die ein Leerzeichen enthalten müssen in Anführungszeichen gesetzt werden, wie "Trebuchet MS" in Zeile 6. 
-
-Das letzte Wort in Zeile 7 „sans-serif“ ist ein CSS-Kürzel für „irgendeine serifenlose Schrift“. Es empfiehlt sich am Ende einer Schriftliste ein solches Kürzel als Standardwert „wenn alle Stricke reißen“  anzugeben,dabei sind folgende Werte möglich:
+Das letzte Wort in Zeile 7 „sans-serif“ ist ein CSS-Kürzel für „irgendeine serifenlose Schrift“. Es empfiehlt sich am Ende einer Schriftliste ein solches Kürzel als Standardwert „wenn alle Stricke reißen“  anzugeben,dabei sind folgende Werte möglich:  `serif`,  `sans-serif`,  `cursive`, `fantasy`,   `monospace`.
 
 
-CSS erforschen mit Firebug
+
+CSS erforschen mit Developer Tools
 ---------------------------
-Sie haben nun einen kurzen Einblick in die Schreibweise und die Möglichkeiten von Stylesheets. Genug um Stylesheets von Webseiten zu lesen um neue Möglichkeiten kennen zu lernen. Beim Lesen und Verstehen von CSS hilft das Firefox Add-On „Firebug“.
+Sie haben nun einen kurzen Einblick in die Schreibweise und die Möglichkeiten von Stylesheets. Genug um Stylesheets von Webseiten zu lesen um neue Möglichkeiten kennen zu lernen. Beim Lesen und Verstehen von CSS helfen die Developer Tools des Browsers.
+
+
+
 
 
 ![Abbildung 19: Firefox Add-On Firebug](/images/image072.png)

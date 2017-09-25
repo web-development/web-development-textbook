@@ -1,0 +1,20 @@
+/*  4 = fixed width elements, wrap, no overflow */
+
+
+.projects {
+  height: 275px;
+  overflow: hidden;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.project_partial {
+  flex-shrink: 0;
+  width: 160px;
+  height: 275px;
+  overflow: hidden;
+  color: white;
+  position: relative;
+}

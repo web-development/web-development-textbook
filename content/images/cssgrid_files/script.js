@@ -1,7 +1,8 @@
 function cssLoaded() {
   display_css_properties_of('.page_container', '#show_css', ["display","grid-template-columns", "grid-template-rows", "grid-template-areas"]);
   let path = $('#grid_sheet').attr('href');
-  $('#show_name').html("Stylesheet " + path );
+  let filename = path.replace('cssgrid_files/','');
+  $('#show_name').html("Stylesheet " + filename );
 }
 
 
@@ -14,8 +15,8 @@ function display_css_properties_of(to_inspect, display, list_of_props) {
 }      
 
 
-function set_css(no, callback, display) {
-  let filename = 'grid' + no + '.css';
+function set_css(name, callback, display) {
+  let filename =  name + '.css';
   let path = 'cssgrid_files/' + filename;
   $('#grid_sheet').attr({'href': path});
 

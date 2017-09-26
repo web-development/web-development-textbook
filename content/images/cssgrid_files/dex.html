@@ -12,9 +12,9 @@
       <p>
       <ul>
         <li>CSS Grid Demo page:
-        <li><a onClick="set_css('no', cssLoaded, '#show_name');">ohne grid</a></li>
-        <li><a onClick="set_css('grid', cssLoaded, '#show_name');">mit grid</a></li>
-        <li><a onClick="set_css('responsive', cssLoaded, '#show_name');">responsive grid</a></li>
+        <li><a href="./no">ohne grid</a></li>
+        <li><a href="./grid">mit grid</a></li>
+        <li><a href="./responsive">responsive grid</a></li>
         <li>Verändere die Breite des Browsers-Fensters!</li>
       </ul>
       </p>
@@ -61,16 +61,25 @@
   </div>
 
 
-    <link rel="stylesheet" media="all" href="cssgrid_files/pure.css">
-    <link rel="stylesheet" media="all" id="grid_sheet" href="cssgrid_files/responsive.css">
-    <script src="../assets/js/jquery.min.js"></script>
-
-<!--
+    <link rel="stylesheet" media="all" href="pure.css">
+    <link rel="stylesheet" media="all" id="grid_sheet" href="responsive.css">
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
     <script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
--->
-    <script src="cssgrid_files/script.js"></script>
+    <script src="script.js"></script>
 
     <script>
+
+     function handle(ctx, next) {
+        let style = ctx.path.substr(1);
+        console.log(`set_css(${style})`);
+        set_css(style, cssLoaded, '#show_name');
+      }
+      page.base('/images/cssgrid_files');
+      page.redirect('/', '/responsive')
+      page('*', handle)
+      page({ hashbang:true })
+
+
       $(document).ready(function() {
         cssLoaded();
         $(window).resize(cssLoaded);

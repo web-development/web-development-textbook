@@ -1,6 +1,6 @@
 function insert_stylesheet_link(path,display) {
   let filename = path.replace('cssgrid_files/','');
-  let h = "Stylesheet <a href='" + path + "'>" + filename + "</a>";
+  let h = "Stylesheet <a href='" + filename + "'>" + filename + "</a>";
   console.log(`inserting html ${h} into ${display}`);
   $(display).html(h);
 
@@ -26,7 +26,7 @@ function display_css_properties_of(to_inspect, display, list_of_props) {
 
 function set_css(name, callback, display) {
   let filename =  name + '.css';
-  let path = 'cssgrid_files/' + filename;
+  let path =  filename;
   $('#grid_sheet').attr({'href': path});
 
   let img = document.createElement('img');

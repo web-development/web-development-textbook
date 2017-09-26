@@ -76,7 +76,10 @@
       }
       page.base('/images/cssgrid');
       page.redirect('/', '/responsive')
-      page('*', handle)
+      page('/responsive', handle);
+      page('/no', handle);
+      page('/grid', handle);
+
       page({ hashbang:true })
 
 

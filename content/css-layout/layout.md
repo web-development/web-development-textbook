@@ -131,7 +131,7 @@ Flexbox
 Flexbox erlaubt flexible Layouts, und wird für kleinere Komponenten
 in der Seite eingesetzt, zum Beisiel für eine Bildergallerie.
 
-[Demo-Seite](/images/flexbox.html)
+[Demo-Seite](/images/flexbox/)
 
 
 

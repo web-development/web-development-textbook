@@ -1,14 +1,14 @@
-/*  2 = fixed width elements */
+/*  3 = fixed width elements, wrap */
 
 
 .projects {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .project_partial {
   flex-shrink: 0;
-
   width: 160px;
   height: 275px;
   overflow: hidden;

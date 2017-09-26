@@ -11,8 +11,7 @@
     <div class="header">
       <ul>
         <li>Flexbox Demo pages:
-          <li><a onClick="set_flex_css(0, cssLoaded);">ohne flexbox</a></li>
-
+          <li><a href="./0">ohne flexbox</a></li>
           <li><a onClick="set_flex_css(1, cssLoaded);">mit flexbox</a></li>
           <li><a onClick="set_flex_css(2, cssLoaded);">+ fixer breite</a></li>
           <li><a onClick="set_flex_css(3, cssLoaded);">+ wrap</a></li>
@@ -70,7 +69,7 @@
           <div class="title big sans hyphenate"> Zeit ist Held </div> MultiMediaArt (2012) </div>
       </div>
     </div>
-    <div class="separator big"> <a href="http://web-development.github.io/css-layout/layout/">Das CSS dahinter</a> </div>
+    <div class="separator big" id="display_2">Stylesheet ...</div>
     <div>
       <p>CSS für den Container: </p>
       <p>
@@ -92,15 +91,39 @@
 
 
 
-    <link rel="stylesheet" media="all" href="flexbox_files/pure.css">
-    <link rel="stylesheet" media="all" id="flex_sheet" href="flexbox_files/flex0.css">
+    <link rel="stylesheet" media="all" href="pure.css">
+    <link rel="stylesheet" media="all" id="flex_sheet" href="flex0.css">
 
     <script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script src="flexbox_files/script.js"></script>
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+
+    <script src="script.js"></script>
 
     <script>
       $(document).ready(function() {
         cssLoaded();
+      });
+
+     function handle(ctx, next) {
+        let style = ctx.path.substr(1);
+        console.log(`set_flex_css(${style})`);
+        set_flex_css(style, cssLoaded);
+      }
+      page.base('/images/flexbox');
+      page.redirect('/', '/0')
+      page('/0', handle);
+      page('/1', handle);
+      page('/2', handle);
+      page('/3', handle);
+      page('/4', handle);
+
+
+      page({ hashbang:true })
+
+
+      $(document).ready(function() {
+        cssLoaded();
+        $(window).resize(cssLoaded);
       });
     </script>
 </body>

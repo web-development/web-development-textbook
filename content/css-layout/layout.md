@@ -124,6 +124,8 @@ mit einen Grid, einem Gitternetz dass man über die ganze Seite legt:
 
 [Demo-Seite](/images/cssgrid/)
 
+Siehe auch [CSS Tricks: Complete Guide to CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
+
 
 Flexbox
 ------------------------
@@ -134,7 +136,7 @@ in der Seite eingesetzt, zum Beisiel für eine Bildergallerie.
 [Demo-Seite](/images/flexbox/)
 
 
-
+Siehe auch [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
 
 Viele Methoden

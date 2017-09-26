@@ -12,31 +12,38 @@
       <p>  
       <ul>
         <li>CSS Grid Demo page:
-          <li><a onClick="set_css(0, cssLoaded);">ohne grid</a></li>
-
-          <li><a onClick="set_css(4, cssLoaded);">mit grid</a></li>
+        <li><a onClick="set_css(0, cssLoaded, '#show_name');">ohne grid</a></li>
+        <li><a onClick="set_css(1, cssLoaded, '#show_name');">mit grid</a></li>
+        <li>Verändere die Breite des Browsers-Fensters!</li>
       </ul>        
-        Verändere die Breite des Browsers-Fensters und beobachte wie sich das Layout ändert!
       </p>
     </div>
 
   <div class="page_container">
     <section class="headline"><h1>Piet Mondrian</h1></section>
-    <section class="description"><strong>Piet Mondrian</strong> war ein niederländischer Maler der klassischen Moderne. Der Künstler, der die Stilrichtung des Neoplastizismus schuf, gilt als wichtigster Vertreter des niederländischen Konstruktivismus sowie der von Theo van Doesburg so bezeichneten Konkreten Kunst. Er gehörte mit seinem späteren Werk zu den Begründern der abstrakten Malerei.</section>
+    <section class="description"><strong>Piet Mondrian</strong> war ein niederländischer Maler der klassischen Moderne. Der Künstler, der die Stilrichtung des Neoplastizismus schuf, gilt als wichtigster Vertreter des niederländischen Konstruktivismus sowie der Konkreten Kunst. Mit seinem  späteren Werk gehört er zu den Begründern der abstrakten Malerei.</section>
+    <section class="portrait"></section>
     <section class="facts">
       <ul>
         <li>Pieter Cornelis Mondriaan</li>
         <li>* 7. März 1872 in Amersfoort, NL</li>
         <li> † 1. Februar 1944 in New York City, USA</li>
       </ul>
-    </section>    
-    <section class="r2">r2</section>
-    <section class="schwarz">schwarz</section>
-    <section class="s2">s2</section>
-    <section class="css" id="show"></section>
-    <section class="g2">g2</section>
+    </section>   
+    <section class="navigation">
+      <ul>
+        <li>Text <a href="https://de.wikipedia.org/wiki/Piet_Mondrian">deutsche Wikipedia</a></li>
+        <li>Bild <a href="https://de.wikipedia.org/wiki/Piet_Mondrian#/media/File:Mondrian_Zelfportret.jpg">Wikicommons</a></li>
+        <li>Programmierung <a href="https://web-development.github.io/css-layout/layout/">Brigitte Jellinek</a></li>
+      </ul>      
+    </section>
+    <section class="stylename" id="show_name"></section>
+    <section class="css" id="show_css"></section>
 
-    <section class="w1"> </section>
+    <section class="rot"></section>
+    <section class="gelb"></section>
+
+    <section class="w1">w1</section>
     <section class="w2">w2</section>
     <section class="w3">w3</section>
     <section class="w4">w4</section>
@@ -46,13 +53,13 @@
     <section class="w8">w8</section>
     <section class="w9">w9</section>
     <section class="w10">w10</section>
-    <section class="w12">w12</section>
     <section class="w11">w11</section>
+
   </div>
 
 
     <link rel="stylesheet" media="all" href="cssgrid_files/pure.css">
-    <link rel="stylesheet" media="all" id="grid_sheet" href="cssgrid_files/grid4.css">
+    <link rel="stylesheet" media="all" id="grid_sheet" href="cssgrid_files/grid1.css">
     <script src="../assets/js/jquery.min.js"></script>
 
 <!--

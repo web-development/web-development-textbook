@@ -4,49 +4,48 @@ body {
   background-color: white;
   font-family: "Droid Serif", serif, arial;
   font-size: 12px;
+  margin: 0; 
+  padding: 0;
+}
+
+p{ margin:0; padding:0; }
+
+
+.headline    { grid-area: headline;    }
+.description { grid-area: description; }
+.portrait    { grid-area: portrait;    }
+.facts       { grid-area: facts;       }
+.navigation  { grid-area: navigation;  }
+.stylename   { grid-area: stylename;   }
+.css         { grid-area: css;         }
+.rot  { grid-area: rot;  }
+.gelb { grid-area: gelb; }
+
+.portrait { 
+  background: transparent url(mondrian_zelfportretx2.jpg) no-repeat;
+  background-size: contain;
+  width: 270px;
+  height: 350px;  
 }
 
 
-.gelb { 
-  grid-area: gelb;
+@media screen and (min-resolution: 2dppx) {
+  background: transparent url(mondrian_zelfportretx2.jpg) no-repeat;
 }
 
-.facts { 
-  grid-area: facts; 
-}
-.headline { 
-  grid-area: headline; 
-}
 
-.description { 
-  grid-area: description; 
-}
-.r2 { 
-  grid-area: r2; 
-}
+.w1 { grid-area: w1; }
+.w2 { grid-area: w2; }
+.w3 { grid-area: w3; }
+.w4 { grid-area: w4; }
+.w5 { grid-area: w5; }
+.w6 { grid-area: w6; }
+.w7 { grid-area: w7; }
+.w8 { grid-area: w8; }
+.w9 { grid-area: w9; }
+.w10 { grid-area: w10; }
+.w11 { grid-area: w11; }
 
-.schwarz { 
-  grid-area: schwarz; 
-}
-.s2 { 
-  grid-area: s2; 
-}
-.css { 
-  grid-area: css; 
-}
-
-.w1 { grid-area: w1 }
-.w2 { grid-area: w2 }
-.w3 { grid-area: w3 }
-.w4 { grid-area: w4 }
-.w5 { grid-area: w5 }
-.w6 { grid-area: w6 }
-.w7 { grid-area: w7 }
-.w8 { grid-area: w8 }
-.w9 { grid-area: w9 }
-.w10 { grid-area: w10 }
-.w11 { grid-area: w11 }
-.w11 { grid-area: w12 }
 
 
 
@@ -64,15 +63,15 @@ ul { margin: 0;}
   padding: 6px 12px;  
 }
 
-.header ul li {
+.header ul li + li{
+  margin-left: 3em;
 }
 
 .header ul li a {
-  color: white;
-  margin-left: 3em;
+  color: lightblue;
 }
 .header ul li a:hover {
-  color: lightblue;
+  color: blue;
 }
 
 

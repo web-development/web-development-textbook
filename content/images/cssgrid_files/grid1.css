@@ -1,18 +1,21 @@
+/* Desktop */
+@media screen and (min-width: 1200px)  {
 
 
-
+}
 
 /* mondriaan !!!! */
 
-@media screen and (min-width: 1200px) and (max-width: 1300px) {
+@media screen and (min-width: 1100px) and (max-width: 1200px) {
+
     .page_container {
       background-color: black;
       /*
       background-image:  url(mondriaan.jpg);
       background-size: cover;
       */
-      height:1265px;
-      width:1265px;
+      height:1200px;
+      width:1200px;
 
       display: grid;
 
@@ -20,13 +23,13 @@
       grid-template-rows: 114fr 306fr 305fr 131fr 129fr 70fr 46fr;
       grid-gap: 25px 25px;  
 
-      grid-template-areas:  "w1 w1       w2       w2   headline   headline   w3"
-                            "w4 description      description      description  facts  facts  w3"
-                            "w4 description      description      description  w11    w12    w3"
-                            "w5 schwarz  schwarz  w6   w7     w7     w3"
-                            "g2 schwarz  schwarz  w8   css   css   r2"
-                            "g2 w9       w9       s2   css   css   r2"
-                            "g2 w9       w9       w10  w10    w10    r2";
+      grid-template-areas:  "w1    w1           w2           w2           headline  headline  w3"
+                            "w4    description  description  description  facts     facts     w3"
+                            "w5    description  description  description  portrait  w11       w3"
+                            "w5    navigation   navigation   w6           w7        w7        w3"
+                            "gelb  navigation   navigation   w8           css       css       rot"
+                            "gelb  w9           w9           stylename    css       css       rot"
+                            "gelb  w9           w9           w10          w10       w10       rot";
     }
 
     section {
@@ -40,6 +43,10 @@
       line-height: 40px;
       vertical-align: bottom;
     }
+
+    .headline { 
+      background-color: #EBBB5B; 
+    }    
 
     .headline h1 {
       font-size: 40px;   
@@ -60,11 +67,18 @@
       font-size: 18px;
       padding-top: 14px;
       line-height:;
-    }    
+    } 
+
     ul {
       list-style-type: square;
       padding-left: 30px;
     }
+
+    .stylename { 
+      font-size: 40px;   
+      color: white;
+      background-color: #191910; 
+    }    
 
     .css { 
       background-color: #024276; 
@@ -72,28 +86,32 @@
       font-size: 12px;
       line-height: 20px;
       padding-top: 6px;
+      overflow: auto;
     }    
 
-    .headline { 
+    .portrait { 
+      width: auto;
+      height: auto;
       background-color: #EBBB5B; 
+      background-size: cover;
+    }
+
+    .navigation { 
+      padding-top: 15px;
+
+      background-color: #191910; 
+      color: white;
     }
 
 
-    .g2 { 
+
+    .gelb { 
       background-color: #EBBB5B; 
     }
-
-
-    .r2 { 
+    .rot { 
       background-color: #DD4232; 
-    }
+    }    
 
-    .schwarz { 
-      background-color: #191910; 
-    }
-    .s2 { 
-      background-color: #191910; 
-    }
 
 
 }

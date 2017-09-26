@@ -74,7 +74,7 @@ Gesamtbreite inklusive Rahmen = 0px + 10px + 10px + 160px + 10px + 10px + 0px = 
 
 ![Abbildung 36a: width im Box-Model mit box-sizing: border-box](/images/image134-border.png)
 
-§
+
 
 Zentrieren mit Auto
 ---------------
@@ -110,116 +110,35 @@ das Bild nach links, der Text rutscht rechts davon nach oben.
 
 §
 
-Bei Bildern funktioniert float besonders einfach, weil das Bild schon eine fixe
-Breite hat. Wird ein anderer HTML-Tag mit float versehen muß man auch die Breite
-des Tags setzen um einen sichtbaren Effekt zu erzielen. Soll ein Absatz nach
-rechts gehen, dann muss man dafür die Breite noch setzen.
-
-<htmlcode>
-p { margin: 0px; }
-#slim { 
-    float:right;
-    width:33%;
-}
-</htmlcode>
-
-[Beispiel als Demo-Seite](/images/floatp.html)
-    
-![Abbildung 38: Ein Absatz mit float](/images/image138.png)
-
-§
-
-Wenn viele Elemente mit `float` positioniert werden, die die gleiche Höhe haben,
-entsteht ein besonders flexibles Layout: im folgenden Beispiel 
-werden je nach zur Verfügung stehendem Platz drei oder vier Bilder nebeneinander dargestellt:
-  
-![Abbildung 39: Zwei Darstellungen der Bildergalerie mit float](/images/image140.png)
+Float wurde vor der Einführung von Flexbox und CSS Grid für viele
+Layout Aufgaben verwendet.  Heute kommt es nur noch in der hier
+beschriebenen Weise bei Bildern zum Einsatz. 
 
 
 
-
-Absolute Positionierung
+CSS Grid
 ------------------------
-Mit der Deklaration `position: absolute` wird ein Tag aus der normalen Darstellung 
-herausgenommen und über dem restlichen Inhalt der Seite platziert. 
-Mit `top` und `left` kann die linke obere Ecke des Elements positioniert werden. 
-(oder mit `bottom` und `right` die rechte unter Ecke).
-In folgendem Beispiel wird ein absolut positiniertes Menü kombiniert mit
-einem Inhalt mit `margin-left` - sonst würde das Menü den Inhalt verdecken!
 
-<css>
-#navi {
-  position: absolute;
-  width: 80px;
-  top:    0px;
-  left:   0px;
-}
-__|__
-#content {
-  margin-left: 100px;
-}
+Um das Layout einer ganzen Seite zu gestalten arbeitet man
+mit einen Grid, einem Gitternetz dass man über die ganze Seite legt:
+
+[Demo-Seite](/images/cssgrid.html)
+
+
+Flexbox
+------------------------
+
+Flexbox erlaubt flexible Layouts, und wird für kleinere Komponenten
+in der Seite eingesetzt, zum Beisiel für eine Bildergallerie.
+
+[Demo-Seite](/images/flexbox.html)
 
 
 
-</css>
 
-§
- 
-![Abbildung 40: Kombination von absoluter Positionierung und margin-left](/images/image142.png)
-
-Koordinatensystem
-------------
-
-Die Koordinaten (`top` und `left`) beziehen sich normalerweise auf die linke obere Ecke des Browserfenster. 
-
-Ein Element mit der Eigenschaft `position: absolute` oder `position: relative` bildet für seine untergeordneten Elemente ein neues Koordinationsystem. In folgendem Code definiert das main-div ein neues Koordinatensystem, das navi-div ist also in der linken oberen Ecke des main-div und nicht in der linken oberen Ecke des Browser-Fensters positioniert. 
-
-<htmlcode>
-<div id="main">
-  <div id="content">
-    <h1>Inhalt</h1>
-    <p>Hier der Inhalt.</p>
-    <p>Hier der Inhalt.</p>
-    <p>Hier der Inhalt.</p>
-    <p>Hier der Inhalt.</p>
-  </div>
-  <div id="navi">
-    <p>a</p>
-    <p>b</p>
-    <p>c</p>
-    <p>d</p>
-    <p>e</p>
-  </div>
-</div>
-__|__
-#main {
-  border: 1px red solid;
-  position:relative;
-  width: 700px;
-  margin: 0px auto;
-} 
-#content {
-  margin-left: 120px;
-  background-color: yellow;
-}
-#navi {
-  position: absolute;
-  width: 80px;
-  top:0px;
-  left:0px;
-}
-</htmlcode>
-
-
-[Beispiel-Seite](/images/koord.html)
 
 Viele Methoden
 -------------
 
 Wie Sie gesehen haben gibt es viele CSS-Properties die
-das Layout beeinflussen.  Manche davon passen zusammen,
-andere widersprechen sich.  So macht es keinen Sinn 
-absolute Positionierung mit Float zu kombinieren.
-
-Mit der Zeit werden Sie Erfahrungen sammeln und auch Ihren
-eigenen Stil entwickeln.
+das Layout beeinflussen. 

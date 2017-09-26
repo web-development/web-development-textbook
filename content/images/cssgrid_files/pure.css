@@ -4,7 +4,7 @@ body {
   background-color: white;
   font-family: "Droid Serif", serif, arial;
   font-size: 12px;
-  margin: 0; 
+  margin: 0;
   padding: 0;
 }
 
@@ -13,7 +13,7 @@ p{ margin:0; padding:0; }
 
 .headline    { grid-area: headline;    }
 .description { grid-area: description; }
-.portrait    { grid-area: portrait;    }
+.portrait    { grid-area: portrait;    }
 .facts       { grid-area: facts;       }
 .navigation  { grid-area: navigation;  }
 .stylename   { grid-area: stylename;   }
@@ -21,11 +21,11 @@ p{ margin:0; padding:0; }
 .rot  { grid-area: rot;  }
 .gelb { grid-area: gelb; }
 
-.portrait { 
+.portrait {
   background: transparent url(mondrian_zelfportretx2.jpg) no-repeat;
   background-size: contain;
   width: 270px;
-  height: 350px;  
+  height: 350px;
 }
 
 

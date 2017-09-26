@@ -4,41 +4,43 @@
 <head>
   <meta charset="utf-8">
   <title>Demo-Seite für CSS Grid</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-    <div class="header">      
-      <p>  
+    <div class="header">
+      <p>
       <ul>
         <li>CSS Grid Demo page:
         <li><a onClick="set_css('no', cssLoaded, '#show_name');">ohne grid</a></li>
         <li><a onClick="set_css('grid', cssLoaded, '#show_name');">mit grid</a></li>
+        <li><a onClick="set_css('responsive', cssLoaded, '#show_name');">responsive grid</a></li>
         <li>Verändere die Breite des Browsers-Fensters!</li>
-      </ul>        
+      </ul>
       </p>
     </div>
 
   <div class="page_container">
     <section class="headline"><h1>Piet Mondrian</h1></section>
-    <section class="description"><strong>Piet Mondrian</strong> war ein niederländischer Maler der klassischen Moderne. Der Künstler, der die Stilrichtung des Neoplastizismus schuf, gilt als wichtigster Vertreter des niederländischen Konstruktivismus sowie der Konkreten Kunst. Mit seinem  späteren Werk gehört er zu den Begründern der abstrakten Malerei.</section>
     <section class="portrait"></section>
+
+    <section class="description"><strong>Piet Mondrian</strong> war ein niederländischer Maler der klassischen Moderne. Der Künstler, der die Stilrichtung des Neoplastizismus schuf, gilt als wichtigster Vertreter des niederländischen Konstruktivismus sowie der Konkreten Kunst. Mit seinem  späteren Werk gehört er zu den Begründern der abstrakten Malerei.</section>
     <section class="facts">
       <ul>
         <li>Pieter Cornelis Mondriaan</li>
         <li>* 7. März 1872 in Amersfoort, NL</li>
         <li> † 1. Februar 1944 in New York City, US</li>
       </ul>
-    </section>   
+    </section>
     <section class="navigation">
       <h2>Quellen</h2>
       <ul>
         <li>Text <a href="https://de.wikipedia.org/wiki/Piet_Mondrian">deutsche Wikipedia</a></li>
         <li>Bild <a href="https://de.wikipedia.org/wiki/Piet_Mondrian#/media/File:Mondrian_Zelfportret.jpg">Wikicommons</a></li>
         <li>Code <a href="https://web-development.github.io/css-layout/layout/">Brigitte Jellinek</a></li>
-      </ul>      
+      </ul>
     </section>
-    <section class="stylename" id="show_name"></section>
+    <section class="stylename" id="show_name">xxx</section>
     <section class="css" id="show_css"></section>
 
     <section class="rot"></section>
@@ -60,7 +62,7 @@
 
 
     <link rel="stylesheet" media="all" href="cssgrid_files/pure.css">
-    <link rel="stylesheet" media="all" id="grid_sheet" href="cssgrid_files/grid.css">
+    <link rel="stylesheet" media="all" id="grid_sheet" href="cssgrid_files/responsive.css">
     <script src="../assets/js/jquery.min.js"></script>
 
 <!--
@@ -71,6 +73,7 @@
     <script>
       $(document).ready(function() {
         cssLoaded();
+        $(window).resize(cssLoaded);
       });
     </script>
 </body>

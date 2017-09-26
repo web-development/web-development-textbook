@@ -1,0 +1,26 @@
+.page_container {
+  padding: 10px;
+  max-width: 80em;
+  margin: 0 auto;
+}
+
+section {
+  margin: 10px 0 10px 0;
+}
+
+.portrait {
+  float: right;
+  margin: 0;
+}
+
+.stylename::before {
+  content: "Zur Implementierung";
+  font-size: 18px;
+  font-weight: bold;
+  display:block;
+  margin: 10px 0 0 0;
+}
+
+.stylename, .css {
+    font-family: monospace;
+}

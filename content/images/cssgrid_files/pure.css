@@ -1,0 +1,127 @@
+
+
+body {
+  background-color: white;
+  font-family: "Droid Serif", serif, arial;
+  font-size: 12px;
+}
+
+
+.gelb { 
+  grid-area: gelb;
+}
+
+.facts { 
+  grid-area: facts; 
+}
+.headline { 
+  grid-area: headline; 
+}
+
+.description { 
+  grid-area: description; 
+}
+.r2 { 
+  grid-area: r2; 
+}
+
+.schwarz { 
+  grid-area: schwarz; 
+}
+.s2 { 
+  grid-area: s2; 
+}
+.css { 
+  grid-area: css; 
+}
+
+.w1 { grid-area: w1 }
+.w2 { grid-area: w2 }
+.w3 { grid-area: w3 }
+.w4 { grid-area: w4 }
+.w5 { grid-area: w5 }
+.w6 { grid-area: w6 }
+.w7 { grid-area: w7 }
+.w8 { grid-area: w8 }
+.w9 { grid-area: w9 }
+.w10 { grid-area: w10 }
+.w11 { grid-area: w11 }
+.w11 { grid-area: w12 }
+
+
+
+
+/* menü */
+
+ul { margin: 0;}
+.header ul{
+  list-style-type: none;
+  display: flex;
+  background: #2c2c2c;
+  background: linear-gradient(left, #2c2c2c 0%, #5e5e5c 100%);  
+  color: #ddd;
+  font-family: 'Droid Sans', arial;
+  padding: 6px 12px;  
+}
+
+.header ul li {
+}
+
+.header ul li a {
+  color: white;
+  margin-left: 3em;
+}
+.header ul li a:hover {
+  color: lightblue;
+}
+
+
+/* latin */
+
+@font-face {
+  font-family: 'Droid Serif';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Droid Serif Italic'), local('DroidSerif-Italic'), url(https://fonts.gstatic.com/s/droidserif/v7/cj2hUnSRBhwmSPr9kS589weOulFbQKHxPa89BaxZzA0.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin */
+
+@font-face {
+  font-family: 'Droid Serif';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Droid Serif Regular'), local('DroidSerif-Regular'), url(https://fonts.gstatic.com/s/droidserif/v7/0AKsP294HTD-nvJgucYTaIgp9Q8gbYrhqGlRav_IXfk.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin */
+
+@font-face {
+  font-family: 'Droid Serif';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Droid Serif Bold'), local('DroidSerif-Bold'), url(https://fonts.gstatic.com/s/droidserif/v7/QQt14e8dY39u-eYBZmppwf79_ZuUxCigM2DespTnFaw.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin */
+
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Droid Sans Regular'), local('DroidSans-Regular'), url(https://fonts.gstatic.com/s/droidsans/v7/s-BiyweUPV0v-yRb-cjciAzyDMXhdD8sAj6OAJTFsBI.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+/* latin */
+
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Droid Sans Bold'), local('DroidSans-Bold'), url(https://fonts.gstatic.com/s/droidsans/v7/EFpQQyG9GqCrobXxL-KRMWaVI6zN22yiurzcBKxPjFE.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}

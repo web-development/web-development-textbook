@@ -1,0 +1,99 @@
+
+
+
+
+/* mondriaan !!!! */
+
+@media screen and (min-width: 1200px) and (max-width: 1300px) {
+    .page_container {
+      background-color: black;
+      /*
+      background-image:  url(mondriaan.jpg);
+      background-size: cover;
+      */
+      height:1265px;
+      width:1265px;
+
+      display: grid;
+
+      grid-template-columns: 140fr 131fr 152fr 283fr 190fr 166fr 30fr;
+      grid-template-rows: 114fr 306fr 305fr 131fr 129fr 70fr 46fr;
+      grid-gap: 25px 25px;  
+
+      grid-template-areas:  "w1 w1       w2       w2   headline   headline   w3"
+                            "w4 description      description      description  facts  facts  w3"
+                            "w4 description      description      description  w11    w12    w3"
+                            "w5 schwarz  schwarz  w6   w7     w7     w3"
+                            "g2 schwarz  schwarz  w8   css   css   r2"
+                            "g2 w9       w9       s2   css   css   r2"
+                            "g2 w9       w9       w10  w10    w10    r2";
+    }
+
+    section {
+      background-color: white;
+
+      background-image: linear-gradient(transparent 50%, rgba(255,255,255,.5) 50%);
+      background-size: 40px 40px;
+
+
+      padding: 3px;
+      line-height: 40px;
+      vertical-align: bottom;
+    }
+
+    .headline h1 {
+      font-size: 40px;   
+      line-height: 40px;
+      padding-top: 43px;
+      margin: 0;
+      padding-left: 28px;
+    }
+
+    .description { 
+      background-color: #DD4232; 
+      font-size: 40px;   
+      padding-top: 7px;
+    }    
+
+    .facts { 
+      background-color: #EBBB5B; 
+      font-size: 18px;
+      padding-top: 14px;
+      line-height:;
+    }    
+    ul {
+      list-style-type: square;
+      padding-left: 30px;
+    }
+
+    .css { 
+      background-color: #024276; 
+      color: white;
+      font-size: 12px;
+      line-height: 20px;
+      padding-top: 6px;
+    }    
+
+    .headline { 
+      background-color: #EBBB5B; 
+    }
+
+
+    .g2 { 
+      background-color: #EBBB5B; 
+    }
+
+
+    .r2 { 
+      background-color: #DD4232; 
+    }
+
+    .schwarz { 
+      background-color: #191910; 
+    }
+    .s2 { 
+      background-color: #191910; 
+    }
+
+
+}

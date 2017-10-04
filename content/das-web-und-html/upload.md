@@ -77,7 +77,7 @@ Achten Sie beim Upload darauf, dass die Ordnerstruktur  <!-- XE "Ordnerstruktur"
 Position der Dateien beibehalten wird; nur dann funktionieren die relativen
 Links!  <!-- XE "relativer Link"   -->  <!-- XE "Link:relativ" -->  
 
-Dreamweaver und FireFTP bieten Hilfe beim Erhalt der Struktur. In der folgenden
+PHPStorm und FireFTP bieten Hilfe beim Erhalt der Struktur. In der folgenden
 Abbildung wurde rechts
 (am lokalen Computer) eine Datei ausgewählt und dann der Button „Datei 
 bereitstellen“ gedrückt. Dreamweaver beachtet, dass die Datei lokal im Ordner html-ue1 

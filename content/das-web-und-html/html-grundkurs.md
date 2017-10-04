@@ -6,17 +6,17 @@ Wir werden HTML in der Version 5 verwendet. Die wichtigsten HTML-Tags (Links, Bi
 Tabellen, Formulare) werden Sie bald auswendig können. Alle Details können Sie Intenet 
 nachschlagen. 
 
-HTML hat sich in den ca. 20 Jahren seines Bestehens weit entwickelt. Die Version 5, die wir 
-verwenden, ist ein relativ neuer Standard, der aber in den aktuellen Versionen der gängigen 
-Browsern bereits umgesetzt ist. 
+HTML hat sich in den ca. 20 Jahren seines Bestehens weit entwickelt. Die Version 5, wurde im Jahr 2014 veröffentlicht und wird heute von allen
+Browsern unterstützt. 
 
 §
 
-In den letzten 10 Jahren wurde auch XHTML neben HTML verwendet. Das X von XHTML 
+In den Jahren davor wurde auch XHTML neben HTML verwendet. Das X von XHTML 
 steht für die Kompatibilität mit XML  <!-- XE "XML" -->  . Die Dateien haben dabei weiterhin die 
 Endung .htm oder .html (nur sehr selten oder .xhtm, .xhtml). Im Unterschied zu HTML war 
 XHTML strenger in der Schreibweise. Am Web finden Sie sowohl Tutorials zu HTML als 
-auch zu XHTML – lassen Sie sich davon nicht verwirren!
+auch zu XHTML – lassen Sie sich davon nicht verwirren, sondern lernen
+sie nur aktuelle HTML5.
 
 
 Arbeitsablauf

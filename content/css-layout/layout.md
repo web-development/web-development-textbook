@@ -120,7 +120,7 @@ CSS Grid
 ------------------------
 
 Um das Layout einer ganzen Seite zu gestalten arbeitet man
-mit einen Grid, einem Gitternetz dass man über die ganze Seite legt:
+mit einen Grid, einem Gitternetz das man über die ganze Seite legt:
 
 [Demo-Seite](/images/cssgrid/)
 

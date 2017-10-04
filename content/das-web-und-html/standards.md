@@ -85,6 +85,9 @@ Die Dokumente, die im Webbrowser dargestellt werden nennt man Webseiten. Eine We
 Eine Webseite kann – im Gegensatz zu einer Seite in einem Buch – beliebig lang sein. Ist 
 die Seite zu groß / zu lang für das Browser-Fenster, dann erscheint ein Scrollbalken  <!-- XE "Scrollen" -->  mit dem man den Rest der Seite erreichen kann, wie in der nächsten Abbildung gezeigt.
 
+![Ein Browser zeigt eine lange Webseite an](/images/image033.png)
+
+
 Website
 -------
 
@@ -93,7 +96,6 @@ dem englischen Wort Website  <!-- XE "Website" -->  . Eine Website besteht aus m
 Webseiten, die zusammen gehören und untereinander verlinkt sind. Achtung: es gibt kein Wort <strike>Webside</strike>. 
 
  
-![Ein Browser zeigt eine lange Webseite an](/images/image033.png)
 
 Webserver
 ---

@@ -3,7 +3,7 @@ title: HTML Grundkurs
 order: 30
 ---
 Wir werden HTML in der Version 5 verwendet. Die wichtigsten HTML-Tags (Links, Bilder, 
-Tabellen, Formulare) werden Sie bald auswendig können. Alle Details können Sie Intenet 
+Tabellen, Formulare) werden Sie bald auswendig können. Alle Details können Sie im Internet 
 nachschlagen. 
 
 HTML hat sich in den ca. 20 Jahren seines Bestehens weit entwickelt. Die Version 5, die wir 
@@ -29,7 +29,7 @@ Der Arbeitsablauf beim Erstellen von HTML ist eine endlose Schleife:
 4. Neu Laden, das Ergebnis betrachten
 5. meistens: nicht zufrieden mit dem Ergebnis sein, zurück zu 1.
 
-Es gibt verschiedene Online-Tools um HTMl auszuprobieren:
+Es gibt verschiedene Online-Tools, um HTMl auszuprobieren:
 
 * [Slowparse](http://toolness.github.com/slowparse/demo/) erklärt die Struktur von HTML, hilft Fehler zu finden
 
@@ -38,7 +38,7 @@ Zeichensatz
 
 HTML-Dateien bestehen aus reinem Text, in unserem Falle entweder aus Text im Format 
 ISO 8859-1 (Latin-1)  oder im Format utf-8. Mit Latin-1 ist man auf das
-lateineische Alphabet mit westeuropäischen Sonderzeichen beschränkt - man kann
+lateinische Alphabet mit westeuropäischen Sonderzeichen beschränkt - man kann
 im selben Dokument nicht auch grieschische, hebräische, arabische, japanische
 Zeichen darstellen.  Mit utf-8 hat man den gesamten Zeichensatz der Menschheit
 zur Verfügung. Mein Empfehlung lautet: immer utf-8 verwenden.
@@ -150,7 +150,7 @@ __|__
 Unbekannte Tags und Attribute
 -------------------
 
-Das Attribut bli, welches nicht zu HTML gehört, also kein Browser kennt, wird wie andere 
+Das Attribut `bli`, welches nicht zu HTML gehört, also kein Browser kennt, wird wie andere 
 unbekannte Attribute einfach ignoriert. 
 
 Der Wert eines Attributes muß in XHTML immer in Anführungszeichen geschrieben
@@ -162,7 +162,7 @@ beim nächsten Leerzeichen.
      width=50 height=15>
 </htmlcode>
 
-ACHTUNG: ein häufiger Fehler ist es, das zweite Anführungszeichen zu vergessen:
+ACHTUNG! Ein häufiger Fehler ist es, das zweite Anführungszeichen zu vergessen:
 
 <htmlcode>
   <img alt="Das ist neu!" src="neu.gif >
@@ -497,7 +497,7 @@ finden.  Dazu noch ein Literaturhinweis:
 
 
 Moderne Webseiten werden mit CSS-Layouts gestaltet.
-Heute verwendet man Tabellen wirklich nur noch zur Darstellung von Tabellen. 
+Heute verwendet man Tabellen wirklich nur noch zur Darstellung von Tabellen – und, auch wenn man das lieber verschweigen möchte, E-Mail-Layouts! 
 
 
 Weitere Quellen

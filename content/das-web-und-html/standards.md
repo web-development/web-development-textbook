@@ -50,7 +50,7 @@ mit grafischer Oberflächen stark zur Verbreitung des World Wide Web beigetragen
 die Browser Opera  <!-- XE "Opera" -->    <!-- XE "Browser:Opera" -->,   Mozilla  <!-- XE "Mozilla" -->    <!-- XE "Browser:Mozilla" -->  
 und Chrome (in Versionen aus verschiedenen Jahren).
  
-![Webbrowser: Mosaic (1993), Opera(2004) und Mozilla(2004), Chrome(2011)](/images/browsers.png)
+![Webbrowser: Mosaic (1993), Opera(2004) und Mozilla(2004), Chrome(2011)](/images/das-web-und-html/browsers.png)
 
 §
 
@@ -75,7 +75,7 @@ zugenommen: Smartphones und Tablets.
 Auf diesen neuen Geräten gibt es auch Webbrowser - teilweise spezialisierte Software (Android Browser), teilweise
 adaptionen der klassischen Desktop Browser (Firefox).
  
-![Browser auf mobilen Geräten: Handys und iPad, 2010](/images/image031.png)
+![Browser auf Smartphones, 2010](/images/das-web-und-html/browser-am-smartphone.png)
 
 Webseite
 --------

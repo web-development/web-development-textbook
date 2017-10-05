@@ -133,7 +133,12 @@ Darstellung, Ersatztext).
 <img src="neu.gif" alt="Das ist neu!">
 </htmlcode>
 
-Es ist egal, in welcher Reihenfolge Sie die Attribute schreiben:
+Es ist egal, in welcher Reihenfolge Sie die Attribute schreiben.
+
+
+Der Wert eines Attributes muß in XHTML immer in Anführungszeichen geschrieben
+werden, in HTML kann man die Anführungszeichen weglasse, dann endet der Wert
+beim nächsten Leerzeichen.
 
 <htmlcode>
 <img alt="Das ist neu!" src="neu.gif">
@@ -141,25 +146,10 @@ Es ist egal, in welcher Reihenfolge Sie die Attribute schreiben:
 
 
 __|__
-<img  alt="Das ist Neu!"  
-    bli="bla, blo" 
-    src="neu.gif"    
-    >
-</htmlcode>
-
-Unbekannte Tags und Attribute
--------------------
-
-Das Attribut bli, welches nicht zu HTML gehört, also kein Browser kennt, wird wie andere 
-unbekannte Attribute einfach ignoriert. 
-
-Der Wert eines Attributes muß in XHTML immer in Anführungszeichen geschrieben
-werden, in HTML kann man die Anführungszeichen weglasse, dann endet der Wert
-beim nächsten Leerzeichen.
-
-<htmlcode>
-<img alt="Das ist Neu!" src="neu.gif" 
-     width=50 height=15>
+<img 
+  alt="Das ist Neu!" 
+  src="neu.gif" 
+  width=50 height=15>
 </htmlcode>
 
 ACHTUNG: ein häufiger Fehler ist es, das zweite Anführungszeichen zu vergessen:
@@ -168,20 +158,39 @@ ACHTUNG: ein häufiger Fehler ist es, das zweite Anführungszeichen zu vergessen
   <img alt="Das ist neu!" src="neu.gif >
 </htmlcode>
 
+
+
+
+
 Kompatibilität 
 --------------
 
 Jeder Browser (egal ob Chrome, Firefox, Safari, Microsoft Internet Explorer, Opera,...) kann 
 jedes HTML-Dokument darstellen. Mit jedem Editor (egal ob Notepade, vim, Dreamweaver, WebStrom, Eclipse,... ) kann jedes HTML-Dokument bearbeitet werden. 
 
-So soll das Web funktionieren.   (Die schweren Fälle, wo es manchmal doch nicht
-funktioniert, verschieben wir auf etwas später.)
+So soll das Web funktionieren.  
 
-§
 
-Neue Tags, die z. B. ein 
+### Unbekannte Attribute
+
+
+Neue Attribute Tags, die z. B. ein 
 Browser nicht erkennt, sind zu ignorieren – es gibt 
 **keine Fehlermeldungen**!
+
+Das Attribut bli, welches nicht zu HTML gehört, also kein Browser kennt, wird wie andere 
+unbekannte Attribute einfach ignoriert. 
+
+
+<htmlcode>
+<img  alt="Das ist Neu!"
+    bli="bla, blo" 
+    src="neu.gif"
+    >
+</htmlcode>
+
+### Unbekannte Tags
+
 
 Wenn das W3C in HTML Version 21 beispielsweise den neuen Tag `<jump>` (hüpfenden Text) 
 einführen würde, können Sie diesen Tag auf Ihrer Webseite verwenden. Der Text würde 
@@ -198,7 +207,8 @@ supercoole
 Webseite!!!!</p>
 </htmlcode>
 
-§
+
+### Graceful Degradation
 
 Bevor Sie also einen neuen Tag einsetzen, sollten Sie sich darüber klar sein, welche 
 Versionen der Browser diesen Tag darstellen und wie viel Prozent Ihres Zielpublikums schon 
@@ -226,8 +236,7 @@ noch Plätze im Kurs frei</p>
 </ul>
 </htmlcode>
 
-Diese Herangehensweise an Neuerungen nennt man „graceful degradation“ 
-<!--XE graceful degradation --> – davon werden Sie noch viel hören.
+Diese Herangehensweise an Neuerungen nennt man „graceful degradation“.
 
 Hinweis: Der &lt;jump&gt;–Tag ist ein Scherz, den gibt es nicht wirklich, und wird es hoffentlich 
 nie geben. 
@@ -235,15 +244,28 @@ nie geben.
 Text formatieren
 ----------------
 
-Wir unterscheiden zwischen HTML-Tags die Blöcke definieren, und solchen die das nicht tun. 
-Blockbildende Tags beanspruchen immer einen rechteckigen Bereich bei der Ausgabe, nicht 
-blockbildende Tags tun das nicht.
- 
-![Abbildung 9: Darstellung von blockbildenden (grau hinterlegten) und nicht-blockbildenden (rot hinterlegten) Tags](/images/image042.png)
+Die in diesem Kapitel gezeigten Tags finden Sie auch
+auf der [Demo Seite](/images/das-web-und-html/text.html).
 
-Der em-Tag ist nicht-blockbildend und wird im zweiten Absatz auf zwei Zeilen umgebrochen. 
+
+Wir unterscheiden zwischen HTML-Tags die Blöcke definieren, und solchen die das nicht tun,
+genannt "inline" Tags. 
+Blockbildende Tags beanspruchen immer einen rechteckigen Bereich bei der Ausgabe, inline 
+Tags tun das nicht.
+ 
+![Abbildung 9: Darstellung von blockbildenden (grau hinterlegten) und nicht-blockbildenden (rot hinterlegten) Tags](/images/das-web-und-html/block-vs-inline.png)
+
+In diesem Beispiel sieht man drei Absätze (blockbildene p-Tags, grau eingefärbt), die
+jeweils einen em-Tag (inline-tag, rot eingefärbt) enthalten.
+Die inline-Tags werden je nach Platzbedarf umgebrochen und auf mehrere Zeilen verteilt. 
+Die blockbildenden Tags bleiben immer Rechtecke.
 
 ### Blockbildende Tags für Text
+
+Der Inhalt einens Absatzes (Paragraph) `p` wird
+je nach Schriftgröße und vorhanenem Platz neu umgebrochen.
+Der Zeilenumbruch ist also nicht aufgabe des Autors, der Autorin,
+sondern des Webbrowsers.
 
 <htmlcode caption="Normaler Fließ-Text">
 <p>Text text text, text text. Text 
@@ -252,14 +274,14 @@ text, text text. Text und text text,
 text text. </p>
 </htmlcode>
 
-In folgendem Beispiel wird schon ein bisschen CSS verwendet, hier
-mit Hilfe des Attributes `style`. CSS ist für die Darstellung von
-HTML zuständig, hier verwenden wir es um den Text im Absatz zu zentrieren.
+In folgendem Beispiel wird mit dem Attribut `style` ein bisschen CSS verwendet. 
+CSS ist für die Darstellung von
+HTML zuständig. Hier wird der Text im Absatz zentriert.
 
 <htmlcode caption="Zentrierter Text">
 <p style="text-align:center;">Text 
-text text, text text. Text text 
-text, text text. Text text text, 
+Zentrierter text text, text text. Text text 
+text, text text. Zentrierter text text text, 
 text text. Text und text text, text 
 text. </p>
 </htmlcode>
@@ -307,11 +329,12 @@ in logische und physische Elemente.
 
 Die logischen Tags geben die genaue Darstellung nicht vor. 
 
-|Gewünschte Darstellung|Code|
-|:---|:---|
-|Sehr stark betonter Text (meist fett)|Eine <strong>wichtige</strong> Sache|
-|Betonter Text (meist kursiv)|und eine <em>interessante</em> Sache|
-{: class="table table-condensed table-bordered" style="width:auto"}
+<htmlcode caption="inline Tags zum formatieren von Text">
+Eine <strong>sehr wichtige</strong> Sache     (stark betont, meist fett)
+und eine <em>interessante</em> Sache.         (betont, meist kursiv)
+</htmlcode>
+
+§
 
 Physische Tags geben die genaue Darstellung vor. Das sind eigentlich „altmodische 
 Tags“,  besonders der font-Tag wurde schon um das Jahr 2000 herum durch Stylesheets 
@@ -356,27 +379,55 @@ jedes Bild einen Alternativtext  <!-- XE "Alternativtext" -->   (Attribut alt  <
 Abbildung 10 zeigt die Verwendung dieses Features am Beispiel eines Wetterberichts.
  
  
-![Abbildung 10: Wetterbericht mit Bildern und ohne Bilder (nur ALT-Texte)](/images/wetter-alt.png)
+![Abbildung 10: Wetterbericht mit Bildern und ohne Bilder (nur ALT-Texte)](/images/das-web-und-html/wetter-alt.png)
 
-Als Datenformate für <img>-Bilder werden drei Pixel-Formate von vielen Browsern 
-unterstützt, erst seit kurzem auch das Vektor-Format svg:
+Als Datenformate für <img>-Bilder werden ein Vektor-Format und drei Pixel-Formate von vielen Browsern 
+unterstützt:
 
-svg
-: Vektor-Format, das Bild kann beliebig groß oder klein dargestellt werden.  
+### svg
 
-gif
-: Palette von 255 Farben + 1 Transparenz-Farbe (kein Alpha). „animiertes 
-Gif“ enthält mehrere Bilder, die der Reihe nach angezeigt werden (Daumenkino). 
-Besonders geeignet für Bilder mit klaren Kanten, einfärbigen Flächen, wenigen 
-Farben, z. B. Comics, Logos.   <!-- XE "gif" -->  
+![Beispiel für ein SVG Bild: rechteck und kreis](/images/das-web-und-html/example-svg.svg)
 
-jpg
-: Millionen von Farben, variable Kompression, keine Transparenz. 
-Besonders geeignet für Bilder mit Farbverläufen, z. B. Photos.   <!-- XE "jpg" -->  
+Vektor-Format, das Bild kann beliebig groß oder klein dargestellt werden.  
 
-png
-: Palette von 255 oder von x Farben, mit Alpha-Transparenz.  <!-- XE "png" -->  
 
+### gif
+
+![Beispiel für ein gif Bild: Animation](/images/das-web-und-html/example-gif.gif)
+
+(Bild: Internet Meme, Quelle unbekannt)
+
+Palette von 255 Farben plus einer Transparenz-Farbe (kein Alpha). Ein „animiertes 
+Gif“ enthält mehrere Bilder, die der Reihe nach angezeigt werden . 
+
+Wurde früher für Bilder mit klaren Kanten, einfärbigen Flächen, wenigen 
+Farben verwendet, z. B. Comics, Logos.  Das macht man heute mit SVG.
+So bleiben nur die animierten gifs als Anwendungfall.
+
+
+### jpg
+
+![Beispiel für ein jpg Bild: verschiedene Kompression](/images/das-web-und-html/example-jpg.jpg)
+
+(Bild von [Michael Gäbler und AzaToth](https://commons.wikimedia.org/wiki/File:Felis_silvestris_silvestris_small_gradual_decrease_of_quality.png), CC-SA)
+
+Millionen von Farben, variable Kompression, keine Transparenz. 
+Besonders geeignet für Bilder mit Farbverläufen, z. B. Photos.   
+
+In Wirklichkeit würde man die Kompressionsrate nicht so extrem hoch
+setzen wie im linken Drittel des Bildes.
+
+
+### png
+
+![Beispiel für ein PNG Bild: Würfel mit Alpha-Transparnz](/images/das-web-und-html/example-png.png)
+
+(Bild von [Ed g2s](https://commons.wikimedia.org/wiki/File:PNG_transparency_demonstration_1.png), CC-SA)
+Weniger Kompression als JPG, aber Alpha-Transparenz. 
+
+
+
+§
 
 Ideal wäre, das Format auszuwählen, in dem das Bild nichts an Qualität verliert, und die 
 Dateigröße möglichst gering ist. 

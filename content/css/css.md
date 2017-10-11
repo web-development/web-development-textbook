@@ -147,7 +147,8 @@ Für Längen- und Größen-Angaben gibt es mehrere Maßeinheiten:
 
 * vw (Hundertstel der Viewport-Breite), 
 * vh (Hunderstel der Viewport-Höhe), 
-* px (Pixel) , em (=Breite des Buchstaben M) , 
+* px (Pixel), 
+* em (=Breite des Buchstaben M), 
 * ex (Höhe des Buchstaben X),  
 * % (Prozent), 
 * cm (Zentimeter), 

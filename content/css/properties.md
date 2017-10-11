@@ -6,19 +6,21 @@ order: 25
 Schrift
 -----------------------------
 
-Dieses Beispiel zeigt weitere wichtige Beispiele für Properties:
+Dieses Beispiel zeigt zusätlich zu den schon bekannten
+ein paar weitere  Properties für die Gestaltung der Schrift:
 
 <css>
-h1,h2 { 
-  font-family: "Trebuchet MS", Verdana, Arial, sans-serif;
+h1,h2 {
+  font-family: Roboto, sans-serif;
   font-size: 18px;
-  letter-spacing: 0.4em
-  font-style: italic;
-  font-variant: small-caps;
   font-weight: bold;
-  text-decoration: underline; 
-  text-transform: uppercase;
-  text-shadow: orange 0 -2px;
+  font-style: italic;
+
+  letter-spacing: 0.4em;  //  Abstand zw. Buchstaben
+  font-variant: small-caps;    // Kapitälchen
+  text-decoration: underline;  // unterstrichen
+  text-transform: uppercase;   // alles Großbuchstaben
+  text-shadow: orange 0 -2px;  // Schatten Effekt
 }
 </css>
 
@@ -30,6 +32,8 @@ installiert sind, und andererseits kann man auf Schriften verweisen, die im Web
 gespeichert sind.  Eine praktische Möglichkeit Webfonts aus den Web zu laden
 bietet [http://www.google.com/webfonts](http://www.google.com/webfonts)
 
+Bei Google findet man nur gratis-fonts.  Es gibt aber auch Fonts für die
+man Lizenzgebühren zahlen muss.
 
 
 Absätze

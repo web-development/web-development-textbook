@@ -143,13 +143,44 @@ Die Worte „besonders interessante“ erscheinen rot.
 Maßeinheiten in Stylesheets
 -----------------------------
 
-Für Längen- und Größen-Angaben gibt es mehrere Maßeinheiten: vw (Hundertstel der Viewport-Breite), vh (Hunderstel der Viewport-Höhe), px (Pixel) , em (=Breite des Buchstaben M) , ex (Höhe des Buchstaben X),  % (Prozent), cm (Zentimeter), in (Inch).   Einige davon sind relativ (em = relativ zur Schriftgröße, px = relativ zur Pixel-Größe am aktuellen Ausgabemedium), andere absolut (Centimeter, Inch). Die absoluten Angaben kann man derzeit nur bei der Ausgabe auf Papier sinnvoll verwenden.  [Demo](/images/css-masse.html)
+Für Längen- und Größen-Angaben gibt es mehrere Maßeinheiten: 
 
-Farbangaben können auf mehrer Arten erfolgen: mit einigen Farbwörtern (red, green,…) oder mit der Angabe von rot-, grün- und blau-Anteil (jeweils Werte von 0 bis 255) in verschiedenen Schreibweisen: Dezimal `rgb(16,0,255)`, hexadezimal `#10F` oder zweistellig hexadezimal `#1000FF`. Mit CSS3 ist auch die Angabe eines Alpha-Wertes möglich: Hier ein Braun-Ton der nur zu 20% deckend ist, und zu 80% den darunter liegenden Content bzw. das Hintergrundbild durchscheinen lässt: `rgba(153, 134, 117, 0.2);`
+* vw (Hundertstel der Viewport-Breite), 
+* vh (Hunderstel der Viewport-Höhe), 
+* px (Pixel) , em (=Breite des Buchstaben M) , 
+* ex (Höhe des Buchstaben X),  
+* % (Prozent), 
+* cm (Zentimeter), 
+* in (Inch).   
+
+Einige davon sind relativ (em = relativ zur Schriftgröße, px = relativ zur Pixel-Größe am aktuellen Ausgabemedium), andere absolut (Centimeter, Inch). Die absoluten Angaben kann man derzeit nur bei der Ausgabe auf Papier sinnvoll verwenden.  [Demo](/images/css-masse.html)
+
+### Farben
+
+Farbangaben können auf mehrer Arten erfolgen: mit einigen Farbwörtern (red, green,…) oder mit der Angabe von rot-, grün- und blau-Anteil in verschiedenen Schreibweisen: 
+
+
+* Dezimal `rgb(16,0,255)`, 
+* hexadezimal `#10F` oder 
+* zweistellig hexadezimal `#1000FF`.
+
+ Mit CSS3 ist auch die Angabe eines Alpha-Wertes möglich: Hier ein Braun-Ton der nur zu 20% deckend ist, und zu 80% den darunter liegenden Content bzw. das Hintergrundbild durchscheinen lässt: 
+
+ * `rgba(153, 134, 117, 0.2);`
+
+ §
 
 Tool-Tipp: Mit den Developer Tools in Firefox kann man die Farben einer Webseite auslesen:
 
 ![Abbildung 20: Colorzilla Pipette zum auslesen einer Farbe und Colorzilla Menü zum kopieren des Codes](/images/css/pipette.png)
 
-Wird in einem Stylesheet auf eine URL verwiesen (z.B. auf die URL eines Hintergrundbildes), dann kommt die Schreibweise `url(http://absolute.com/bild.gif)` oder `url(relativ/bild.gif)` zum Einsatz. Achtung: die relative URL bezieht sich auf das Stylesheet (nicht die HTML-Datei in der es verwendet wird).
+
+### URLs
+
+Wird in einem Stylesheet auf eine URL verwiesen (z.B. auf die URL eines Hintergrundbildes), dann kommt die Schreibweise 
+
+* `url(http://absolute.com/bild.gif)` oder 
+* `url(relativ/bild.gif)` 
+
+zum Einsatz. Achtung: die relative URL bezieht sich auf das Stylesheet (nicht die HTML-Datei in der es verwendet wird).
 

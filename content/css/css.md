@@ -19,6 +19,10 @@ p {
 }
 </css>
 
+§
+
+![](/images/css/rules-declarations.png)
+
 Eine Stylesheet-Regel („Rule“)  besteht aus einem Selektor gefolgt von einer geschwungenen Klammer die eine oder mehrere Deklarationen enthalten kann. 
 
 Der einfachste Selektor besteht aus dem Namen eines einzelnen HTML-Tags. Sie können auch mehrere Elemente durch ein Komma trennen. In diesem Falle werden für alle Elemente die selben Style -Angaben definiert, (siehe h1,h2 in obigem Beispiel). 
@@ -66,7 +70,12 @@ Was passiert nun, wenn die verschiedenen Style-Deklarationen sich widersprechen?
 
 Klassen, IDs, SPANs und DIVs
 -----------------------------
-Wenn Sie mit den Style-Angaben den p-Tag umformatieren, betrifft das alle p-Tags in der Webseite. Oft möchten Sie aber ein oder zwei Absätze anders formatieren als die anderen Absätze. Zu diesem Zweck können Sie sich im Stylesheet noch weitere Formatvorlagen - sogenannte "Klassen" - definieren:
+Wenn Sie mit den Style-Angaben den p-Tag umformatieren, betrifft das alle p-Tags in der Webseite.
+
+
+### Klassen
+
+Oft möchten Sie aber ein oder zwei Absätze anders formatieren als die anderen Absätze. Zu diesem Zweck können Sie sich im Stylesheet noch weitere Formatvorlagen - sogenannte "Klassen" - definieren:
 
 <css>
 .wichtig { color: red; }
@@ -86,6 +95,10 @@ Zur „normalen“ Wirkung des HTML-Tags kommt nun die Formatierung durch die Kl
 <p class="wichtig eilmeldung">Ein wichtiger Absatz als Eilmeldung</p>
 </htmlcode>
 
+
+### ids
+
+
 Zur eindeutigen Kennzeichnung von Tags wird das Attribut id verwendet:
 
 <htmlcode>
@@ -99,6 +112,9 @@ Auf diese eindeutigen IDs kann in CSS mit der Raute (englisch: „hash sign“) 
 <css>
 #impressum { background-color: #DDD; }
 </css>
+
+
+### Kombinationen
 
 Sowohl Klassen als auch IDs können mit Tags kombiniert werden um einen komplexen Selektor zu bilden, aber das macht nur bei Klassen wirklich Sinn:
 
@@ -114,7 +130,7 @@ p#impressum { background-color:#ddd; } /* == nur der p-Tag mit der id #impressum
 b#impressum { background-color:#ddd; }   /* nix! */
 </css>
 
-Die Firefox-Erweiterung Firebug zeigt Tags, Klassen und IDs in dieser Schreibweise an:
+### div und span
 
 Es wird öfter vorkommen, dass Sie einem Bereich eine bestimmte Klasse zuweisen möchten, ohne dass ein passender Tag vorhanden ist. Hier können Sie die  beiden Tags &lt;span&gt; und &lt;div&gt; verwenden, die beide selber kaum Eigenschaft aufweisen. &lt;span&gt; eignet sich für die Verwendung in Fließtext, &lt;div&gt; ist ein blockbildender Tag.
 
@@ -131,9 +147,9 @@ Für Längen- und Größen-Angaben gibt es mehrere Maßeinheiten: vw (Hundertste
 
 Farbangaben können auf mehrer Arten erfolgen: mit einigen Farbwörtern (red, green,…) oder mit der Angabe von rot-, grün- und blau-Anteil (jeweils Werte von 0 bis 255) in verschiedenen Schreibweisen: Dezimal `rgb(16,0,255)`, hexadezimal `#10F` oder zweistellig hexadezimal `#1000FF`. Mit CSS3 ist auch die Angabe eines Alpha-Wertes möglich: Hier ein Braun-Ton der nur zu 20% deckend ist, und zu 80% den darunter liegenden Content bzw. das Hintergrundbild durchscheinen lässt: `rgba(153, 134, 117, 0.2);`
 
-Tool-Tipp: Mit dem Firefox AddOn Colorzilla kann man die Farben einer Webseite auslesen und in verschiedenen Schreibweisen kopieren:
+Tool-Tipp: Mit den Developer Tools in Firefox kann man die Farben einer Webseite auslesen:
 
-![Abbildung 20: Colorzilla Pipette zum auslesen einer Farbe und Colorzilla Menü zum kopieren des Codes](/images/image073.png)
+![Abbildung 20: Colorzilla Pipette zum auslesen einer Farbe und Colorzilla Menü zum kopieren des Codes](/images/css/pipette.png)
 
 Wird in einem Stylesheet auf eine URL verwiesen (z.B. auf die URL eines Hintergrundbildes), dann kommt die Schreibweise `url(http://absolute.com/bild.gif)` oder `url(relativ/bild.gif)` zum Einsatz. Achtung: die relative URL bezieht sich auf das Stylesheet (nicht die HTML-Datei in der es verwendet wird).
 

@@ -6,7 +6,7 @@ order: 40
 Um CSS Selektoren zu verstehen muss man das Document Object Betrachten:
 die Darstellung des HTML-Dokuments als Baum:
 
-![Document Object Model und Selektor](/images/html-und-dom.png)
+![Document Object Model und Selektor](/images/css/html-und-dom.png)
 
 Bei der Beschreibung des Baumes verwendet man folgende Fachbegriffe:
 
@@ -23,7 +23,7 @@ Universal Selector
 
 Der Selektor `*` wählt alle Elemente des Baums aus:
 
-![Document Object Model und Selektor](/images/selector-universal.png)
+![Document Object Model und Selektor](/images/css/selector-universal.png)
 
 Type Selector 
 ---------
@@ -36,7 +36,7 @@ zum Beispiel wählt `li`  alle Listen-Elemente aus:
 </css>
 
 
-![Document Object Model und Selektor](/images/selector-type.png)
+![Document Object Model und Selektor](/images/css/selector-type.png)
 
 
 Group Selector
@@ -52,7 +52,7 @@ oder `h2`, oder `a`:
 </css>
 
 
-![Document Object Model und Selektor](/images/selector-group.png)
+![Document Object Model und Selektor](/images/css/selector-group.png)
 
 (Achtung Falle: für Links mit dem `a` Tag gelten noch zusätzliche Regeln,
 siehe weiter Unten.)
@@ -70,7 +70,7 @@ Achtung: `div` wird nur zur Auswahl benützt, wird aber selber nicht ausgewählt
 </css>
 
 
-![Document Object Model und Selektor](/images/selector-desc.png)
+![Document Object Model und Selektor](/images/css/selector-desc.png)
 
 (Achtung Falle: für Links mit dem `a` Tag gelten noch zusätzliche Regeln,
 siehe weiter Unten.)

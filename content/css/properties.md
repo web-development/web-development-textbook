@@ -16,13 +16,19 @@ h1,h2 {
   font-weight: bold;
   font-style: italic;
 
-  letter-spacing: 0.4em;  //  Abstand zw. Buchstaben
-  font-variant: small-caps;    // Kapitälchen
+  letter-spacing: 0.2ex;  //  Abstand zw. Buchstaben
   text-decoration: underline;  // unterstrichen
-  text-transform: uppercase;   // alles Großbuchstaben
   text-shadow: orange 0 -2px;  // Schatten Effekt
 }
+h1 {
+  text-transform: uppercase;   // alles Großbuchstaben
+}
+h2 {
+  font-variant: small-caps;    // Kapitälchen
+}
 </css>
+
+[Demo](/images/css/text-css.html)
 
 Webfonts
 --------
@@ -38,16 +44,14 @@ man Lizenzgebühren zahlen muss.
 
 Absätze
 ---------
-Wie immer in HTML erfolgt der Zeilenumbruch automatisch. Mit CSS können Sie verschiedene Aspekte des Absatz-Layoutes steuern, einige davon sind in Abbildung 18 gezeigt:
+Wie immer in HTML erfolgt der Zeilenumbruch automatisch. Mit CSS können Sie verschiedene Aspekte des Absatz-Layoutes steuern, einige davon sind hier gezeigt:
 
 
-![Abbildung 18: Absatz mit CSS Formatanweisungen: text-indent und line-height](/images/image066.png)
+![Abbildung 18: Absatz mit CSS Formatanweisungen: text-indent und line-height](/images/css/absatz.png)
 
 Mit `text-align` können Sie die Ausrichtung des Texts im Absatz festlegen: `left`, `right`, `center` oder `justify` (Blocksatz). Blocksatz wurd am Web bis jetzt wenig verwendet, da die Browser lange keine Silbentrennung durchführten. Dadurch entstanden bei Blocksatz oft häßliche Löcher im Text. Seit dem Jahr 2011 unterstützen erste Browser die Silbentrennung, damit wird `justify` besser verwendbar.
 
-Die erste Zeile des Absatzes kann einen separaten Einzug haben, den Sie mit `text-indent` festlegen. Die Zeilenhöhe wird mit `line-height` festgelegt. Hier ist es sinnvoll für längere Texte einen etwas erhöhten Wert festzulegen (z. B. `1.5em` – d.h.1,5 mal die Breite des Buchstaben M in dieser Schrift) da die Standard-Darstellung der Browser etwas zu eng ist um gut lesbar zu sein. 
-
-§
+Die erste Zeile des Absatzes kann einen separaten Einzug haben, den Sie mit `text-indent` festlegen. Die Zeilenhöhe wird mit `line-height` festgelegt. Hier ist es sinnvoll für längere Texte einen etwas erhöhten Wert festzulegen (z. B. `1.5em` – d.h.1,5 mal die Breite des Buchstaben M in dieser Schrift) da die Standard-Darstellung der Browser etwas zu eng ist um gut lesbar zu sein.
 
 <css>
 p {
@@ -63,13 +67,13 @@ p {
 Box Model
 ---------
 
-Jeder blockbildende Tag (z. B. h1, h2, p, blockquote, div, …) hat einen Rahmen, Innen- und Außenabstand. Diese werden mit den Deklarationen border, padding und margin festgelegt. Ein Hintergrundbild und/oder eine Hintergrundfarbe des Tags reicht immer bis zum Rahmen, aber nicht darüber hinaus. 
+Jeder blockbildende Tag (z. B. h1, h2, p, blockquote, div, …) hat einen Rahmen, Innen- und Außenabstand. Diese werden mit den Deklarationen border, padding und margin festgelegt. Ein Hintergrundbild und/oder eine Hintergrundfarbe des Tags reicht immer bis zum Rahmen, aber nicht darüber hinaus.
 
-![Abbildung 21: Darstellung des Box Models von hicksdesign.co.uk](/images/image083.png)
+[Demo](/images/css/box.html)
 
-Die Ausdehnung von margin, padding und border kann man besonders gut mit der Firefox-Erweiterung Firebug erforschen wie in Abbildung 22 gezeigt. 
 
-![Abbildung 22: margin, border, padding in Firebug](/images/image085.png)
+![Darstellung des Box Models in den Firefox Developer Tools](/images/css/boxmodel.png)
+
 
 Dabei wird direkt in der Webseite der Außenabstand (margin) gelb und der Innenabstand (padding) dunkelviolett hinterlegt. 
 

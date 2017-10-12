@@ -10,7 +10,7 @@ Heute spielt er noch eine Rolle bei der Arbeitsteilung zwischen
 Development und Design, z.B. beim Erstellen von Wordpress Themes.
 
 
-Bild 
+Bild
 ----
 
 Auf jeder Seite im Blog soll das Logo angezeigt werden, das ist

@@ -1,33 +1,41 @@
 ---
 title: Responsive Design 
-order: 15
+order: 25
 ---
 
-Responsive Design 
+Responsive Design
 --------------------
 
-Große Unterschiede im Platz kann man mit Mediaqueries in CSS behandeln. Die Verwendung von Mediaqueries wurde 2010 in einem Artikel von Ethan Marcotte in "A List Apart" unter dem Begriff "Responsive Webdesign" popularisiert [&rarr;](http://www.alistapart.com/articles/responsive-web-design/). 
+Große Unterschiede im Platz kann man mit Mediaqueries in CSS behandeln. Die Verwendung von Mediaqueries wurde 2010 in einem Artikel von Ethan Marcotte in "A List Apart" unter dem Begriff "Responsive Webdesign" popularisiert [&rarr;](http://www.alistapart.com/articles/responsive-web-design/).
 
-![Das erste Beispiel für "Responsive Webdesign": Darstellung der Seite auf verschiedenen Breiten](/images/responsive.png)
+In diesem ersten Beispiel von responsive Design werden drei verschiedene Layouts
+für verschiedene Größen angeboten. Der Inhalt und das HTML Dokument bleiben dabei gleich.
 
-### Mobile First
+![Das erste Beispiel für "Responsive Webdesign": Darstellung der Seite auf verschiedenen Breiten](/images/css-layout/responsive.png)
 
-Luke Wroblewski schlug schon 2009 unter dem Slogan "Mobile First" vor, zuerst die mobile Version der Website zu gestalten, und davon dann die "größeren" Versionen abzuleiten [&rarr;](http://www.lukew.com/ff/entry.asp?933).
-
-
-### Mediaqueries
+§
 
 Die technische Umsetzung des verschiedenen Layouts ist relativ einfach: Mediaqueries erlauben eine "Verzweigung" in CSS.
 
 <css caption="CSS mit Mediaqueries: Nur wenn Darstellung am Screen, und Breite kleiner gleich 480 Pixel">
 @media screen and (max-width: 480px) {
   .column {
-    float: none;
+    width: 100px;
   }
   /* weitere Regeln für kleine Screens */
 }
 /* allgemein gültige Regeln */
 </css>
+
+
+### Mobile First
+
+Luke Wroblewski schlug 2009 unter dem Slogan "Mobile First" vor, zuerst die mobile Version der Website zu gestalten, und davon dann die "größeren" Versionen abzuleiten [&rarr;](http://www.lukew.com/ff/entry.asp?933).
+
+
+### Mediaqueries
+
+
 
 Bilder und Responsive Design
 ----------
@@ -50,12 +58,12 @@ dasselbe Pixel-Bild für verschiedene Darstellungen verwenden.
 # Responsive Images
 
 Mobile Geräte mit sehr hoher Pixeldichte stellen das Web Design vor ein
-Dilemma: soll ich - wegen der Pixeldichte - riesige Bilder ausliefern?  
+Dilemma: soll ich - wegen der Pixeldichte - riesige Bilder ausliefern?
 Oder - weil es ein mobiles Gerät ist, und die Datenübertragung über
 das Handy-Netz so langsam und teuer ist - doch kleine Bilder ausliefern?
 
 Um dieses Dilemma zu umgehen wurde das neue Attribute "srcset" für den **img**-Tag entwickelt.
-Ausser vom Internet Explorer wird das Attribut 2016 von 
+Ausser vom Internet Explorer wird das Attribut 2016 von
 allen Browsern unterstützt [caniuse srcset](http://caniuse.com/#feat=srcset).
 
 Mit diesem Attribut kann man mehrere Varianten eines Bildes hinterlegen,

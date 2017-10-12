@@ -2,25 +2,14 @@
 title: Rahmenbedingungen 
 order: 10
 ---
-Wie in Kapitel 1 beschrieben gibt es viele verschiedene Ausgabegeräte für Webseiten. Für die Gestaltung des Layouts von Webseiten spielt dabei die Bildschirmgröße bzw. die Auflösung eine wichtige Rolle. 
+Wie im Kapitel [Das Web und HTML](/das-web-und-html/)  beschrieben gibt es viele verschiedene Ausgabegeräte für Webseiten. Für die Gestaltung des visuellen Layouts von Webseiten spielt dabei die die Auflösung und die Pixeldichte eine wichtige Rolle.
 
 Auflösung
 -----------
-Zuerst stellt sich die Frage: woher weiß ich, wie hoch die Auflösung am Computer meiner LeserIn ist?  Woher weiß ich, wie viel Platz im Browserfenster zur Verfügung steht?
 
-Die Antwort lautet: ich weiß es nicht, und es gibt keine zuverlässige Methode, mit der man diese Information in jedem Fall herausfinden kann. Es gibt eine Meßmethode mit Hilfe der Programmiersprache Javascript, mit der man die Größe des Browserfensters messen kann – das Ergebnis der Messung ist natürlich dadurch verfälscht, dass Browser ohne Javascript ganz aus der Messung herausfallen. Diese Beschränkung sollten Sie bei den folgenden Überlegungen immer beachten. 
+Hier ein Überblick über mögliche Bildschirm-Auflösungen:
 
-Wir werden `Media Queries` kennen lernen - das ist eine Methode um in CSS auf
-die Größe des Browserfensters zu reagieren.
-
-Alle Messmethoden die uns zur Verfügung stehen sind unvollständig.
-
-§
-
-Abbildung 25 zeigt einige derzeit (2015) mögliche Bildschirm-Auflösungen. 
-
- 
-![Abbildung 25: einige mögliche Bildschirmauflösungen und Seitenverhältnisse 2011,](/images/Vector_Video_Standards2.svg)
+![Bildschirmauflösungen und Seitenverhältnisse](/images/css-layout/Vector_Video_Standards2.svg)
 
 basierend auf http://en.wikipedia.org/wiki/Image:Vector_Video_Standards2.svg
 
@@ -28,9 +17,10 @@ Vergleichen Sie die höchsten hier dargestellte Auflösungen mit der geringsten 
 
 §
 
-Abbildung 26 zeigt Statistiken über die Bildschirmauflösung von w3schools.org von 2000 bis 2011. In diesem Zeitraum hat sich die Mehrheit langsam von 800x600 (bis 2003) auf 1024x768 (bis 2008) und schließlich auf höhre Auflösungen verschoben. Achtung: Auf Grund des Messverfahrens werden hier wahrscheinlich nur Desktops erfaßt, nicht mobile Geräte.
+Die typische Auflösung hat sich über Jahre stark verändert. Diese Statistik
+von w3schools.org reicht von 2000 bis 2016. In diesem Zeitraum hat sich die Mehrheit langsam von 800x600 (bis 2003) auf 1024x768 (bis 2008) und schließlich auf höhre Auflösungen verschoben. Achtung: Das
+war bevor mobile Endgeräte wichtig wurden.
 
- 
 ![Abbildung 26: Statistik über die Bildschirmauflösung,](/images/display-stats.png)
 
 [Datenquelle: w3schools](http://www.w3schools.com/browsers/browsers_display.asp)
@@ -38,7 +28,7 @@ Abbildung 26 zeigt Statistiken über die Bildschirmauflösung von w3schools.org 
 Pixeldichte
 -----------
 
-Die Angabe der Auflösung erfolgt in Pixel – die reale Größe des Ausgabegerätes (24“ Desktop, 13“ Laptop, mobiles Endgerät) ist bei gleicher Pixel-Auflösung sehr unterschiedlich! Mobile Geräte haben eine geringe Auflösung, aber eine höhere Pixeldichte:
+Die Angabe der Auflösung erfolgt in Pixel – die reale Größe des Ausgabegerätes (24“ Desktop, 13“ Laptop, mobiles Endgerät) ist bei gleicher Pixel-Auflösung sehr unterschiedlich! Mobile Geräte haben oft eine  höhere Pixeldichte:
 
 |Gerät|Erscheinungsjahr|Pixel|Diagonale Inch|Pixel per Inch|
 |+----|+---------------|+----|+-------------|+-------------|
@@ -58,16 +48,15 @@ Die Angabe der Auflösung erfolgt in Pixel – die reale Größe des Ausgabeger�
 {: class="table table-condensed table-bordered" style="width:auto"}
 
 
+Hier findet man einen Faktor 6 zwischen hächster und geringster Pixeldichte.
+
 Brutto-Fläche vs. Netto-Fläche
 ---------------------------------
-Von diesen „Brutto-Angaben“ über die Größe der zur Verfügung stehenden Fläche sind nun noch der Platz für den Fensterrahmen des Browsers, für Scrollbalken, Symbolleisten, und eventuell eingeblendete Favoritenleisten abzuziehen, um den „netto“ verbleibenden Raum für die Gestaltung der Webseite zu erhalten. Abbildung 27 zeigt diese Problematik am Beispiel von Firefox. 
-
- 
-![Abbildung 27: Platzbedarf von Browser-Elementen: firefox ohne Sidebar, Internet Explorer mit Favoriten](/images/image100.png)
+Von diesen „Brutto-Angaben“ über die Größe der zur Verfügung stehenden Fläche sind nun noch der Platz für den Fensterrahmen des Browsers, für Scrollbalken, Symbolleisten, und eventuell eingeblendete Favoritenleisten abzuziehen, um den „netto“ verbleibenden Raum für die Gestaltung der Webseite zu erhalten.
 
 Umgang mit der Problematik
 ----------------------------------
-Wie gehen WebdesignerInnen mit den verschiedenen Auflösungen um? Ein paar Varianten:
+Wie gehen WebdesignerInnen mit den verschiedenen Auflösungen und Pixeldichten um? Ein paar Varianten:
 
 1. Ignorieren und für die eigene Bildschirmauflösung entwerfen.  Manchmal in Kombination mit der Beschriftung „best viewed at 1600x1200“
 2. Ignorieren dass es viele Bildschirmauflösungen gibt, und für das Minimum entwerfen. 

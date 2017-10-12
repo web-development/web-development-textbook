@@ -22,7 +22,7 @@ Dazu gibt es im HTTP Protokoll eine ganz klare Vorschrift in
 
    ... the GET and HEAD methods SHOULD NOT have the significance of taking an action
    other than retrieval. These methods ought to be considered "safe".
-   This allows user agents [= browsers] to represent other methods, such as POST, PUT
+   This allows user agents (= browsers) to represent other methods, such as POST, PUT
    and DELETE, in a special way, so that the user is made aware of the
    fact that a possibly unsafe action is being requested.
 

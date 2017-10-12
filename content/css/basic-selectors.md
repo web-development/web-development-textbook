@@ -82,7 +82,7 @@ Links formatieren
 Der &lt;a&gt;-Tag wird in HTML für zwei sehr unterschiedliche Dinge verwendet: zum Setzen von Links und zum Setzen von Textmarken (auch ‚Anker’ genannt):
 
 <htmlcode>
-  <h1><a name="unis"></a>Universitäten</h1>   
+  <h1><a name="unis"></a>Universitäten</h1>
   <a href="http://www.uni-salzburg.at/">Uni Salzburg</a>
 </htmlcode>
 

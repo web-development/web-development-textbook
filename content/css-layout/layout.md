@@ -7,31 +7,75 @@ Welche Gestaltungsmöglichkeiten bietet CSS nun?
 
 ### Text
 
-Die Darstellung einer HTML-Seite durch den Browser erfolgt von oben nach unten, je nach Sprache von links nach rechts oder von rechts nach links. Dabei wird zwischen blockbildenden Tags und nicht-blockbildenden Tags unterschieden. In Abbildung 33 wurden &lt;p&gt; und &lt;em&gt;-Tags verwendet und mit folgendem Stylesheet formatiert:
+Die Darstellung einer HTML-Seite durch den Browser erfolgt von oben nach unten, je nach Sprache von links nach rechts oder von rechts nach links. Dabei wird zwischen blockbildenden Tags und nicht-blockbildenden Tags unterschieden. In folgendem Beipiel wird
+der blockbindente Tag `p` und der inline-Tag `span` verwendet.
 
     p { background-color:#CCCCCC; }
-    em { background-color:#FFFF66; }
+    span { background-color:#FFFF66; }
 
-Bei der Darstellung im Browser kann der nicht-blockbildender Tag em dabei auf mehrere Zeilen verteilt werden und nimmt dann mehrere rechteckige Bereiche ein, der blockbildende Tag p wird immer als ein Rechteck dargestellt:
+Bei der Darstellung im Browser wird der Text innheralb der Paragraphen je nach
+zu verfügung stehenem Platz umgebrochen:
 
-![Abbildung 33: Darstellung von blockbildenden und nicht-blockbildenden Tags](/images/image128.png)
+<div class="resizable">
+<p style="background-color:#ddd">Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+I am a block level element - p for paragraph.  Ich bin ein blockbildender Tag, nämlich ein Pargraph P. I am a block level element - p for paragraph. <span style="background-color: red;">Und ein span
+in der Mitte. And some inline content  right here.</span> Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+I am a block level element - p for paragraph.
+</p>
+
+<p style="background-color:#ddd">Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+I am a block level element - p for paragraph.  Ich bin ein blockbildender Tag, nämlich ein Pargraph P.  <span style="background-color: red;">Und ein span
+in der Mitte. And some inline content  right here.</span> Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+
+</p>
+<p style="background-color:#ddd">Ich bin ein blockbildender Tag, nämlich ein Pargraph P. I am a block level element - p for paragraph. <span style="background-color: red;">Und ein span
+in der Mitte. And some inline content  right here.</span> Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+I am a block level element - p for paragraph.
+</p>
+</div>
+
+
 
 ### Bild im Text
 
-Ein Bild wird dabei wie ein Wort im Text behandelt, und nicht etwa frei auf der Webseite positioniert.  Wenn Sie das Bild wie in Abbildung 34 mitten in einen Absatz hinein setzen, ergibt das meist ein sehr hässliches Layout. 
+Ein Bild wird dabei wie ein Wort im Text behandelt, und nicht etwa frei auf der Webseite positioniert.  Wenn Sie das Bild wie hier mitten in einen Absatz hinein setzen, ergibt das meist ein sehr hässliches Layout:
 
-![Abbildung 34: Bild mitten im Absatz](/images/image130.png)
+<div class="resizable">
+  <p style="background-color:#ddd">Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+  I am a block level element - p for paragraph.  Ich bin ein blockbildender Tag, nämlich ein Pargraph P. I am a block level element - p for paragraph. 
+  <img src="/images/css-layout/silhouette_hand.svg" style="height: 24px;">
+  Das Bild der Hand stammt von <a href="https://commons.wikimedia.org/wiki/File:Silhouette_hand.svg">SimonWaldherr</a>.
+  Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+  I am a block level element - p for paragraph.
+  </p>
+</div>
+
 
 ### Umbruch von Wörtern
 
-Lange konnten Browser keine Wörter trennen und umbrechen, ein langes „Wort“
-konnte dadurch die Breite eines Elements überschreiten. In Abbildung 35 können Sie sehen, wie Microsoft Internet Explorer 7.0 eine lange URL nicht umbricht. 
+Browser können lange Wörter umbrechen:
 
-![Abbildung 35: Darstellung eines Absatzes mit Rahmen und fixer Breite, der lange Wörter enthält, in MSIE 7.0](/images/image132.png)
 
-CSS bietet ab Version 3 verschiedene Möglichkeiten diese Fälle zu behandeln, z.b mit der Eigenschaft `text-overflow` [&rarr;](http://css3clickchart.com/#text-overflow)
+<div class="resizable">
+  <p style="background-color:#ddd">Das Rindfleisch­etikettierungs­überwachungs­aufgaben­übertragungs­gesetz (RflEttÜAÜG) war
+    im Jahre 1999 im deutschen Bundesland Mecklenburg-Vorpommern Teil eines Gesetzesvorhabens.
+    <br>
+    Quelle: https://de.wikipedia.org/wiki/Rindfleischetikettierungs%C3%BCberwachungsaufgaben%C3%BCbertragungsgesetz
+    <br>
+    Dieser Absatz hat keine besondren CSS-Eigenschaften.
+  </p>
 
-Derzeit ist es immer noch notwendig im Text die Soll-Bruchstellen als `&shy;` einzutragen, damit der Browser dann den Zeilenumbruch korrekt durchführen kann. Die Library [hyphenator.js](https://code.google.com/p/hyphenator/) bietet den Umbruch u.a. für englische und deutsche Texte an.
+  <p style="background-color:#ddd" class="hyphenate">Das Rindfleisch­etikettierungs­überwachungs­aufgaben­übertragungs­gesetz (RflEttÜAÜG) war
+    im Jahre 1999 im deutschen Bundesland Mecklenburg-Vorpommern Teil eines Gesetzesvorhabens.
+    <br>
+        Quelle: https://de.wikipedia.org/wiki/Rindfleischetikettierungs%C3%BCberwachungsaufgaben%C3%BCbertragungsgesetz
+    <br>
+    Dieser Absatz hat keine die Eigenschaften  <kbd>  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;</kbd>
+  </p>
+</div>
+
 
 Width und Auto
 ---------------

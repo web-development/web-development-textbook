@@ -119,6 +119,45 @@ Das ist ein Beispiel aus Helmers:
 [Beautiful UI styling with CSS3 text-shadow, box-shadow, and border-radius](http://dev.opera.com/articles/view/beautiful-ui-styling-with-css3-text-shadow-box-shadow-and-border-radius/), dort finden
 sich noch viele ausführlichere Beispiele.
 
+### Box Sizing
+
+Je nach `box-sizing` müssen Sie die Werte von padding, border, margin dazu
+addieren um den Gesamt-Platzbedarf zu errechnen, oder nicht: der default ist
+unpraktisch: bei `box-sizing: content-box` wird die Breiten-Angabe Width nur auf
+den Inhalt angewendet:
+
+<css>
+box-sizing: content-box;
+width: 200px; 
+padding: 10px; 
+border-width: 10px; 
+margin: 32px 0px
+</css>
+
+Um die Gesamtbreite der sichtbaren Box auszurechnen muss man noch rahmen und padding
+dazu addieren:  10px + 10px + 200px + 10px + 10px = 240px
+
+![Abbildung 36: width im Box-Model mit box-sizing: content-box](/images/image134.png)
+
+§
+
+Viel praktischer ist `box-sizing: border-box`: 
+
+<css>
+box-sizing: border-box;
+width: 200px; 
+padding: 10px; 
+border-width: 10px; 
+margin: 32px 0px
+</css>
+
+Gesamtbreite inklusive Rahmen = 200px.
+Platz für den Inhalt = 200px - (10px + 10px + 10px + 10px) =  160px 
+
+![Abbildung 36a: width im Box-Model mit box-sizing: border-box](/images/image134-border.png)
+
+
+
 Absatz mit `<p>`
 --------------
 

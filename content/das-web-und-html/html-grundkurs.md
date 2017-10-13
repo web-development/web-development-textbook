@@ -252,8 +252,27 @@ Wir unterscheiden zwischen HTML-Tags die Blöcke definieren, und solchen die das
 genannt "inline" Tags. 
 Blockbildende Tags beanspruchen immer einen rechteckigen Bereich bei der Ausgabe, inline 
 Tags tun das nicht.
- 
-![Abbildung 9: Darstellung von blockbildenden (grau hinterlegten) und nicht-blockbildenden (rot hinterlegten) Tags](/images/das-web-und-html/block-vs-inline.png)
+
+
+
+<div class="resizable">
+<p style="background-color:#ddd">Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+I am a block level element - p for paragraph.  Ich bin ein blockbildender Tag, nämlich ein Pargraph P. I am a block level element - p for paragraph. <em style="background-color: red;">Und ein em
+in der Mitte. And some inline content  right here.</em> Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+I am a block level element - p for paragraph.
+</p>
+
+<p style="background-color:#ddd">Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+I am a block level element - p for paragraph.  Ich bin ein blockbildender Tag, nämlich ein Pargraph P.  <em style="background-color: red;">Und ein em
+in der Mitte. And some inline content  right here.</em> Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+
+</p>
+<p style="background-color:#ddd">Ich bin ein blockbildender Tag, nämlich ein Pargraph P. I am a block level element - p for paragraph. <em style="background-color: red;">Und ein em
+in der Mitte. And some inline content  right here.</em> Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+I am a block level element - p for paragraph.
+</p>
+</div>
+
 
 In diesem Beispiel sieht man drei Absätze (blockbildene p-Tags, grau eingefärbt), die
 jeweils einen em-Tag (inline-tag, rot eingefärbt) enthalten.

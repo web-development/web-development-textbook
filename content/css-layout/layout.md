@@ -81,48 +81,6 @@ Width und Auto
 ---------------
 Normalerweise nimmt ein Block die maximal zur Verfügung stehende Breite ein. Mit
 `width` kann eine andere Breite eines Blocks definiert werden:
-
-<css>
-div#main {  width:500px; }
-</css>
-
-Je nach `box-sizing` müssen Sie die Werte von padding, border, margin dazu
-addieren um den Gesamt-Platzbedarf zu errechnen, oder nicht: der default ist
-`box-sizing: content-box`.
-
-§
-
-<css>
-box-sizing: content-box;
-width: 200px; 
-padding: 10px; 
-border-width: 10px; 
-margin: 32px 0px
-</css>
-
-Gesamtbreite inklusive Rahmen = 0px + 10px + 10px + 200px + 10px + 10px + 0px = 240px
-
-![Abbildung 36: width im Box-Model mit box-sizing: content-box](/images/image134.png)
-
-§
-
-<css>
-box-sizing: border-box;
-width: 200px; 
-padding: 10px; 
-border-width: 10px; 
-margin: 32px 0px
-</css>
-
-Gesamtbreite inklusive Rahmen = 0px + 10px + 10px + 160px + 10px + 10px + 0px = 200px
-
-![Abbildung 36a: width im Box-Model mit box-sizing: border-box](/images/image134-border.png)
-
-
-
-Zentrieren mit Auto
----------------
-
 Um einen Element zu zentrieren kann margin mit Wert auto verwendet werden, der den zur Verfügung stehenden Platz automatisch gleichmäßig verteilt. 
 
 [Demo-Seite dazu](/images/width-auto.html)
@@ -148,25 +106,116 @@ im Text behandelt. Im zweiten Absatz „floated“ das Bild nach rechts,
 der Text rutscht links davon nach oben. Im dritten Absatz „floated“ 
 das Bild nach links, der Text rutscht rechts davon nach oben. 
 
-[Beispiel als Demo-Seite](/images/float.html)
+[Beispiel als Demo-Seite](/images/css-layout/float.html)
 
-![Abbildung 37: Bilder mit float](/images/image136.png)
-
-§
+![Bilder mit float](/images/css-layout/float-img.png)
 
 Float wurde vor der Einführung von Flexbox und CSS Grid für viele
 Layout Aufgaben verwendet.  Heute kommt es nur noch in der hier
-beschriebenen Weise bei Bildern zum Einsatz. 
-
+beschriebenen Weise bei Bildern zum Einsatz.
 
 
 CSS Grid
 ------------------------
 
 Um das Layout einer ganzen Seite zu gestalten arbeitet man
-mit einen Grid, einem Gitternetz das man über die ganze Seite legt:
+mit einen Grid, einem Gitternetz das man über die ganze Seite legt.
+
+![Layout mit CSS Grid](/images/css-layout/grid.png)
+
+Das Grid wird normalerweise nicht angzeigt.  Die hier gezeigte Ansicht
+mit den strichlierten Linien kann man in den Firefox Developertools mit
+einem Klick auf das grid-symbol aktivieren:
+
+
+![Grid Ansicht einschalten in Firefox](/images/css-layout/switch-on-grid.png)
+
 
 [Demo-Seite](/images/cssgrid/)
+
+
+### Das Grid definieren
+
+Das Grid wird über die Breiter der Spalten (columns) und die Höhe der
+Zeilen definiert (rows):
+
+<css>
+.page_container {
+  display: grid;
+  grid-template-columns: 270px 5fr 3fr;
+  grid-template-rows: 60px 2fr 210px;
+}
+</css>
+
+Dabei kann die  neue Maßeinheit `fr` (für fraction, Bruchteil) verwendet werden:
+Nachdem von der Gesamtbreite die absoluten Breitenangaben abezogen wurden,
+wird der restliche Platz im Verhältnis der fractions verteilt.
+
+Also zum Beispiel:
+
+* Nehmen wir an es stehen für das oben definierte Grid 1280px in der Breite zur Verfügung
+* davon gehen 270px an die erste Spalte
+* bleiben 1010px
+* diese werden nun im Verhältnis 5 zu 3 auf Spalte zwei und drei verteilt
+* das ergibt 5 * ( 1010px / 8 ) = 631.25px für die zweite Spalte
+* und 3 * ( 1010px / 8 ) = 378.75px für die zweite Spalte
+
+
+Wenn Sie die Breite des Fensters für die [Demo-Seite](/images/cssgrid/) ändern
+werden die neu berechneten Werte angezeigt.
+
+
+### Areas definieren
+
+Mit der Property `grid-template-areas` können nun Namen
+für die einzelnen Felder des Grids vergeben werden:
+
+<css>
+.page_container {
+  display: grid;
+
+  grid-template-columns: 270px 5fr 3fr;
+  grid-template-rows: 60px 2fr 210px;
+
+  grid-template-areas:  ".              headlineArea     subheadArea"
+                        "portrait_area  descriptionArea  codeArea"
+                        ".              factsArea        sourceArea";
+}
+</css>
+
+Ein Punkt steht für ein Feld das frei bleibt.
+Eine Area kann auch mehrere Felder des Grids überspannen,
+muss aber immer in Rechteck bilden (keine beliebige Tetris-Form).
+
+<css>
+  grid-template-areas:  "headlineArea  headlineArea     subheadArea"
+                        "portraitArea  descriptionArea  codeArea"
+                        "factsArea     descriptionArea  sourceArea";
+</css>
+
+
+### Areas mit Inhalt belegen
+
+
+Nun kann der Inhalt in das Grid - genauer: in die Area - eingefüllt werden.
+Das erfolgt rein in CSS, es ist keine Veränderung im HTML notwendig.
+
+
+<css>
+header {
+  grid-area: headlineArea;
+  background-color: #EBBB5B;
+  padding-top: 19px;
+}
+
+section#description {
+  grid-area: descriptionArea;
+  background-color: white;
+}
+</css>
+
+
+
 
 Siehe auch [CSS Tricks: Complete Guide to CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
 

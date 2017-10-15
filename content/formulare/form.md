@@ -9,7 +9,7 @@ noch in einem sehr strengen, sehr strukturierten Rahmen. Zwei
 typische Anwendungsgebiete für Web-Formulare sind: das Eingabeformular der
 Suchmaschine Google und ein Bestellformular.
  
-![Abbildung 44: Formulare in Webseiten](/images/image173.png)
+![Abbildung 44: Formulare in Webseiten](/images/formulare/formulare.png)
 
 ## Tags für Formulare
 

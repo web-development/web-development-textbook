@@ -95,8 +95,5 @@ CSS erforschen mit Developer Tools
 Sie haben nun einen kurzen Einblick in die Schreibweise und die Möglichkeiten von Stylesheets. Genug um Stylesheets von Webseiten zu lesen um neue Möglichkeiten kennen zu lernen. Beim Lesen und Verstehen von CSS helfen die Developer Tools des Browsers.
 
 
-
-
-
-![Abbildung 19: Firefox Add-On Firebug](/images/image072.png)
+![Abbildung 19: Firefox Add-On Firebug](/images/css/firefox-developer-tools.png)
 

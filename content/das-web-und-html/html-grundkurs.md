@@ -44,7 +44,7 @@ Zeichen darstellen.  Mit utf-8 hat man den gesamten Zeichensatz der Menschheit
 zur Verfügung. Mein Empfehlung lautet: immer utf-8 verwenden.
 
  
-![Abbildung 8: Auswahl des Charactersets „Unicode“  ](/images/image037.jpg)
+![Auswahl des Charactersets „Unicode“  ](/images/das-web-und-html/charset-auswahl.png)
 
 Diese Abbildung zeigt wie die Charactersets in Windows- und Mac-Programmen
 dargestellt werden. Links im Bild, in Notepad, wird ISO 8859-1 als ANIS

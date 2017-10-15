@@ -1,9 +1,11 @@
 ---
 title: Details zu Layout
-order: 25
+order: 15
 ---
 
-Welche Gestaltungsmöglichkeiten bietet CSS nun?
+In diesem Kapitel werden weitere Properties vorgestellt,
+die das Layout mit CSS ermöglichen.
+
 
 ### Text
 
@@ -136,9 +138,20 @@ Fallen bei der absoluten Positionierung
 ------------------------
 
 Mit der Deklaration `position: absolute` wird ein Tag aus der normalen Darstellung 
-herausgenommen und über dem restlichen Inhalt der Seite platziert. 
-Mit `top` und `left` kann die linke obere Ecke des Elements positioniert werden. 
-(oder mit `bottom` und `right` die rechte unter Ecke).
+herausgenommen und über dem restlichen Inhalt der Seite platziert.
+
+Wenn man nicht explizit ein Koordinatensystem  mit `position: relative` angibt,
+dann gilt die linke obere Ecke des Browserfensters als Ursprung.
+
+Das führt oft zu Verwirrung, zum Beipiel wenn der meiste Inhalt der Seite
+zentriert ist, sich also je nach Fensterbreite verschriebt, und dann ein Element
+absolut darauf platziert wird.
+
+[Beispiel-Seite](/images/css-layout/unkoordiniert.html)
+
+
+§
+
 In folgendem Beispiel wird ein absolut positiniertes Menü kombiniert mit
 einem Inhalt mit `margin-left` - sonst würde das Menü den Inhalt verdecken!
 
@@ -160,7 +173,8 @@ __|__
 
 §
  
-![Abbildung 40: Kombination von absoluter Positionierung und margin-left](/images/image142.png)
+![Abbildung 40: Kombination von absoluter Positionierung und margin-left](/images/css-layout/image142.png)
+
 
 Koordinatensystem
 ------------

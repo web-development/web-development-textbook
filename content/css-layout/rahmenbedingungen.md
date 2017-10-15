@@ -1,6 +1,6 @@
 ---
 title: Rahmenbedingungen 
-order: 10
+order: 20
 ---
 Wie im Kapitel [Das Web und HTML](/das-web-und-html/)  beschrieben gibt es viele verschiedene Ausgabegeräte für Webseiten. Für die Gestaltung des visuellen Layouts von Webseiten spielt dabei die die Auflösung und die Pixeldichte eine wichtige Rolle.
 

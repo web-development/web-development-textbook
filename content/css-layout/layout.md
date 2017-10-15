@@ -127,23 +127,21 @@ Tag.
 
 <htmlcode>
 <div class="project_partial">
+
   <img src="cover.jpg">
+
   <div class="badge"></div>
+
 </div>
 __|__
 .project_partial {
   position: relative;
-  width: 160px;
-  height: 275px;
   background-color: #292927;
 }
 .project_partial .badge {
   position: absolute;
   background-image: url(badge_topleft.png);
-  height: 170px;
-  width: 160px;
-  top: 0px
-  left: 0px
+  /* top: 0px; left: 0px; */
 }
 </htmlcode>
 
@@ -168,5 +166,7 @@ Siehe auch [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-g
 Viele Methoden
 -------------
 
-Wie Sie gesehen haben gibt es viele CSS-Properties die
-das Layout beeinflussen.
+Neben den drei hier gezeigten gibt es noch viele weitere
+Methoden um das Layout der Seite zu beeinflussen.
+Für einen ersten Einstieg reichen die hier gezeigten,
+später sollten Sie noch [weitere Details](/css-layout/details) kennen lernen.

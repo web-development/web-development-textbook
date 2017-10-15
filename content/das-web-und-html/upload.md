@@ -15,8 +15,8 @@ Für eine strenge Prüfung  <!-- XE "Prüfung:von HTML Code" -->
 des HTML-Codes kann man den Validator des W3C verwenden:
 
 [http://validator.w3.org/](http://validator.w3.org/)
- 
-![Abbildung 11:  Der HTML-Validator des World Wide Web Consortiums](/images/image050.png)
+
+![Abbildung 11:  Der HTML-Validator des World Wide Web Consortiums](/images/das-web-und-html/w3-validator.png)
 
 §
 
@@ -24,7 +24,7 @@ Die Fehlermeldungen des Validators muss man sorgfältig lesen, von oben nach unt
 durcharbeiten und reparieren. Mit etwas Glück repariert man das erste Problem und viele 
 Folge-Fehler fallen damit auch weg.
  
-![Abbildung 12:  Fehlermeldung des Validators](/images/image052.png)
+![Abbildung 12:  Fehlermeldung des Validators](/images/das-web-und-html/w3-validator-error.png)
 
 Die Fehlermeldung in Abbildung 12 geht auf einen Tippfehler zurück: der schließende Tag 
 wurde falsch geschreiben. 
@@ -34,7 +34,7 @@ wurde falsch geschreiben.
 Wenn der Code dem HTML-Standard entspricht erscheint eine 
 Erfolgsmeldung:
  
-![Abbildung 13:   Erfolgsmeldung des Validators](/images/image053.png)
+![Abbildung 13:   Erfolgsmeldung des Validators](/images/das-web-und-html/w3-validator-ok.png)
 
 Bei der Verwendung von HTML5 erscheint aber immer noch ein Warning, dass
 der Validator experimentell sei. Das kann man ignorieren.
@@ -73,45 +73,27 @@ Ein paar Programme zum Upload:
 
 §
 
-Achten Sie beim Upload darauf, dass die Ordnerstruktur  <!-- XE "Ordnerstruktur" -->   und die relative 
+Achten Sie beim Upload darauf, dass die Ordnerstruktur   und die relative 
 Position der Dateien beibehalten wird; nur dann funktionieren die relativen
-Links!  <!-- XE "relativer Link"   -->  <!-- XE "Link:relativ" -->  
+Links!
 
-PHPStorm und FireFTP bieten Hilfe beim Erhalt der Struktur. In der folgenden
-Abbildung wurde rechts
-(am lokalen Computer) eine Datei ausgewählt und dann der Button „Datei 
-bereitstellen“ gedrückt. Dreamweaver beachtet, dass die Datei lokal im Ordner html-ue1 
-liegt, und lädt Sie in den entsprechenden Ordner am Webserver hoch.
- 
-![Abbildung 14: Site-Fenster von Dreamweaver – Upload einer Datei automatisch in den richtigen Ordner](/images/dreamweaver-upload.png)
+PHPStorm und FireFTP bieten Hilfe beim Erhalt der Struktur. Sie können
+im linken Teil des Fensters eine Datei auswählen, und durch klicken des
+Buttons mit dem Pfeil nach rechts in den richtigen Ordner hochladen.
 
-§
+Mit Drag-and-Drop kann man es aber auch schaffen, die Datei in den falschen
+Ordner hochzuladen. Dann funktionieren die relativen Links nicht mehr.
 
-Diese Abbildung zeigt, was Sie nicht tun sollten: die Datei mit Drag-and-Drop in den falschen 
-Ordner am Webserver hinaufladen.  Dann funktionieren die relativen Links nicht mehr.
- 
-![Abbildung 15:  Upload mit Dreamweaver in den falschen Ordner](/images/dreamweaver-upload-falsch.png)
+![Upload einer Datei in den falschen Ordner](/images/das-web-und-html/upload-falsch.png)
 
 §
 
-Bevor Sie mit WebStorm ihre Site hochladen können müssen Sie unter
+
+Bevor Sie mit PHPStorm ihre Site hochladen können müssen Sie unter
 Tools → Deployment → Configuration die richtige Konfiguration eintragen:
 
-![Bearbeiten der Deployment-Konfiguration in WebStrom](/images/webstorm-deployment.png)
+![Bearbeiten der Deployment-Konfiguration in PHPStrom](/images/das-web-und-html/phpstorm-upload-config.png)
 
-§
-
-Bevor Sie FTP im Dreamweaver Site-Fenster benutzen können müssen Sie 
-(Unter SITE → SITES VERWALTEN → BEARBEITEN → ERWEITERT → REMOTE-INFORMATIONEN) die richtige 
-Konfiguration eintragen.
-
-![Abbildung 16: Bearbeiten der FTP-Information in Dreamweaver](/images/dreamweaver-upload-config.png)
-
-§
-
-Das Dateien-Fenster kann in Dreamweaver auf zwei Arten dargestellt werden:
-
-![Abbildung 17: Dateien-Fenster in Dreamweaver: Umschalten zwischen 2 Ansichten + Upload](/images/image064.png)
 
 §
 

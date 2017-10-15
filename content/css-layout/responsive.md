@@ -46,13 +46,13 @@ Bilder waren lange Zeit ein Grund, warum das Layout von Webseiten nicht flexibel
 Als Bildformate für `<img>` Tags in Webseiten wurden lange nur Pixel-Formate unterstützt. Diese Formate (jpg, png, gif) sind eigentlich für die Darstellung bei einer bestimmten Größe gedacht. Die Vergrößerte Darstellung von Pixel-Bildern liefert keine guten Ergebnisse:
 
 
-![Abbildung 29: Ausschnitte aus einem Pixel Bild, vom Browser (Firefox) in 3 Stufen vergrößert dargestellt](/images/image117.png)
+![Abbildung 29: Ausschnitte aus einem Pixel Bild, vom Browser (Firefox) in 3 Stufen vergrößert dargestellt](/images/css-layout/pixel-image-zoom.png)
 
 Aktuelle Browser sind aber sehr gut bei der verkleinerten Darstellung von Pixel-Bildern, man kann also
 dasselbe Pixel-Bild für verschiedene Darstellungen verwenden.
 
 
-![Abbildung 30: Pixel Bild wird vom Browser (Firefox) in 3 Stufen verkleinert dargestellt](/images/image119.png)
+![Abbildung 30: Pixel Bild wird vom Browser (Firefox) in 3 Stufen verkleinert dargestellt](/images/css-layout/pixel-image-smaller.png)
 
 
 # Responsive Images
@@ -83,15 +83,15 @@ Der folgende Screenshot wurde auf einem Macbook mit Retinadisplay erstellt,
 in der oberen Variante wird das "normale" Bild dargestellt, darunter das in
 der **2x** Version.
 
-![Ausschnitt aus der Demo-Seite](/images/vergleich.jpg)
+![Ausschnitt aus der Demo-Seite](/images/css-layout/vergleich.jpg)
 
 Die Demo-Seite zeigt drei Abstufungen:
 
-[Demo-Seite für "Responsive Images"](/images/responsive-images.html)
+[Demo-Seite für "Responsive Images"](/images/responsive-images/index.html)
 
 Das kann man auch mit Hintergrundbilder machen:
 
-[Demo-Seite für "Responsive Background Images"](/images/responsive-background-images.html)
+[Demo-Seite für "Responsive Background Images"](/images/responsive-images/background.html)
 
 
 ### Vektor

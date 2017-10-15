@@ -114,7 +114,7 @@ Server Side
 Das Einfügen der inkuldierten Datei erfolgt auf dem Server. 
 Der Client erhält das vollständige HTML-Dokument inklusive Navigation, und merkt von der Inkludierung nichts. Mit ANSICHT → SEITENQUELLTEXT ANZEIGEN kann man den PHP-Code nicht sehen. 
 
-![Abbildung 41: Original PHP-Datei am Server und Quelltext-Ansicht im Webbrowser](/images/image145.png)
+![Abbildung 41: Original PHP-Datei am Server und Quelltext-Ansicht im Webbrowser](/images/php/view-source.png)
 
 
 Ergebnis

@@ -1,6 +1,6 @@
 ---
 title: Navigationsmenü
-order: 25
+order: 95
 ---
 
 Wenn man mit CSS ein Navigationsmenü gestaltet dann sollte man von einem HTML-Code ausgehen der auch ohne CSS gut benutzbar bleibt ( „graceful degradation“), und der nur mit CSS umgestaltet wird.

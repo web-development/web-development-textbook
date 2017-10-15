@@ -79,33 +79,47 @@ siehe weiter Unten.)
 Links formatieren
 --------------
 
-Der &lt;a&gt;-Tag wird in HTML für zwei sehr unterschiedliche Dinge verwendet: zum Setzen von Links und zum Setzen von Textmarken (auch ‚Anker’ genannt):
+Der Browser unterscheidet bei der Darstellugn von Links zwischen denen  die schon einmal besucht wurden (visited) und neuen Links (link).
 
-<htmlcode>
-  <h1><a name="unis"></a>Universitäten</h1>
-  <a href="http://www.uni-salzburg.at/">Uni Salzburg</a>
-</htmlcode>
-
-Textmarken sind normalerweise unsichtbar, Links sind normalerweise blau oder violett und unterstrichen. 
-
-Um die Darstellung von Links zu verändern muss man in CSS als Selektor `:link`
-oder `:visited` als Selektoren verwenden. Der Browser unterscheidet dabei zwischen Links die schon einmal besucht wurden (visited) und neuen Links. 
+Die Default Einstellung der Browser entspricht ungefähr folgendem CSS:
 
 <css>
-  a:link, a:visited { text-decoration: none; }
-  a:link    {color:blue}
-  a:visited {color:#FF00FF }
+  a:any-link, a:-webkit-any-link { text-decoration: underline; }
+  a:link    { color:blue; }
+  a:visited { color:#FF00FF; }
 </css>
+
+Achtung: `:any-link` ist noch experimentell, und wird (im Herbst 2017) nur in Firefox
+schon in dieser Schreibweise akzeptiert.  In den anderen Browsern muss man noch
+die Schreibweise mit vorgestelltem `-webkit` verwenden.
+
+§
 
 Im folgenden Beispiel werden die Links mit einem Icon markiert:
 
 <css>
-  a:link, a:visited { 
+  a:link, a:visited {
      background-image:    url(icon-link.gif);
      background-position: center right;
      background-repeat:   no-repeat;
-     padding-right:       9px; 
-  } 
+     padding-right:       9px;
+  }
 </css>
 
+[Demo](/images/css/link-icon.html)
 
+
+### Interaktion
+
+Die Pseudo-Klassen `:hover` und `:active` gelten  bevor ein Link wirklich geladen wird:
+`:hover` schlägt an wenn die Maus sich über dem Element befindet. Danache 
+wird `:active` wirksam, wenn der Link wirklich mit Klick oder Touch ausgelöst wird:
+
+
+[Demo](/images/css/hover-active.html)
+
+
+Und noch viel mehr
+-----------
+
+Im Kapitel [CSS Selektoren im Detail](/css-layout/selektoren/) geht es weiter.

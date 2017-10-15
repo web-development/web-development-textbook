@@ -1,5 +1,5 @@
 ---
-title: CSS für Interaktion
+title: CSS Sprites
 order: 27
 ---
 

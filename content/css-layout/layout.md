@@ -1,6 +1,6 @@
 ---
 title: CSS für Layout
-order: 20
+order: 10
 ---
 
 Welche Gestaltungsmöglichkeiten bietet CSS für das Layout einer Webseite?

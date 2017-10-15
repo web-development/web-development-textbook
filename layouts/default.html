@@ -7,7 +7,7 @@
 		
 			<% if @item[:title] %>
                           <div class="page-header">
-				<h2 class="title"><a name="slide-0"></a><%= @item[:title] %></h2>
+				<h2 class="title"><a id="slide-0"></a><%= @item[:title] %></h2>
                                 <a href="<%= @item.rep_named(:slide).path %>">als Präsentation ▻</a>
                           </div>
 			<% end %>

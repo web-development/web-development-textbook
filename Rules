@@ -38,7 +38,7 @@ class Nanoc3::Filter
       @string = content.dup
 
       @pending = ""
-      @output = "<a name='slide-1'></a>"
+      @output = "<a id='slide-1'></a>"
       i = 2
 
       until @string.empty?
@@ -48,7 +48,7 @@ class Nanoc3::Filter
 
         @output << match.pre_match
 
-        @output << "\n<a class='slide_break' name='slide-#{i}' href='slide.html#slide-#{i}'>▻</a>\n\n"
+        @output << "\n<a class='slide_break' id='slide-#{i}' href='slide.html#slide-#{i}'>▻</a>\n\n"
         i += 1
         if match[0] =~ /§/ then
           # discard match

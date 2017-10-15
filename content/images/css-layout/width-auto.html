@@ -22,15 +22,19 @@
 </head>
 <body>
     <div id="main">
-        <h1>Centered box with margin auto</h1>
+        <h1>Zentrieren einer Box</h1>
     
-        <p>you can only use <span>text-align: center</span> on
-        text (duh!) not on a block-level element like <span>div</span>.
-        The trick is to use the <span>margin</span> of the block-level 
-        element. With the value <span>auto</span> the available space
-        left and right of the element ist automatically distributed
-        equally.</p>
-    
+        <p>Achtung: <span>text-align: center</span> funktioniert
+            nur für Text (no-na!), nicht für einen ganzen Block wie div.</p>
+        <p>In diesem Beispiel wird ein div-Tag mit Hilfe von margin auto zentriert.
+            Der div-Tag hat eine Breite kleiner 100%. Der verbleibende
+            Platz wird automatisch gleichmäßig verteilt.</p>
+            <pre>
+margin: 0px auto;
+width: 60%;
+</pre>
+
+
         <p>you can only use <span>text-align: center</span> on
         text (duh!) not on a block-level element like <span>div</span>.
         The trick is to use the <span>margin</span> of the block-level 

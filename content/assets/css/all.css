@@ -1,8 +1,8 @@
 .resizable {
-  resize: horizontal; 
-  overflow: scroll; 
-  border: 2px #ddd solid; 
-  padding: 10px; 
+  resize: both;
+  overflow: scroll;
+  border: 2px #ddd solid;
+  padding: 10px;
   font-size: 10px;
   position: relative;
 }
@@ -13,9 +13,7 @@
   hyphens: auto;
 }
 
-.resizable *, .resizable * * {
-  font-size: 12px !important;
-}
+
 
 .resizable::after {
   content: "resize";

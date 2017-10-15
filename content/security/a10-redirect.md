@@ -1,5 +1,5 @@
 ---
-title: Ungeprüfte Um- und Weiterleitungen
+title: Ungeprüfte Um- und Weiterleitungen
 order: 100
 ---
 

@@ -180,6 +180,6 @@ Jeder Tag kann mittels CSS ein oder mehrere Hintergrundbilder erhalten (`backgro
 
 
 Bitte beachten Sie: Der Inhalt der Seite sollte trotz Hintergrundbild
-immer noch lesbar sein! diesem Beispiel wurde auf Teile des
-Textes ein weisser `text-shadow` gelegt.  Erhöht er der Schatten die  Lesbarkeit?
+ lesbar sein! In diesem Beispiel wurde auf Teile des
+Textes ein weißer `text-shadow` gelegt.  Erhöht der Schatten die  Lesbarkeit?
 

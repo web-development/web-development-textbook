@@ -1,6 +1,6 @@
 ---
 title: Responsive Design 
-order: 25
+order: 40
 ---
 
 Responsive Design

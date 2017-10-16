@@ -1,6 +1,6 @@
 ---
 title: CSS Selektoren im Detail
-order: 30
+order: 90
 ---
 
 Im Kapitel [CSS Selektoren](/css/basic-selectors/) haben Sie CSS schon

@@ -1,6 +1,6 @@
 ---
 title: Details zu Layout
-order: 15
+order: 20
 ---
 
 In diesem Kapitel werden weitere Properties vorgestellt,

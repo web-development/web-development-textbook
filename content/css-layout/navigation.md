@@ -1,6 +1,6 @@
 ---
 title: Navigationsmenü
-order: 95
+order: 50
 ---
 
 Wenn man mit CSS ein Navigationsmenü gestaltet dann sollte man von einem HTML-Code ausgehen der auch ohne CSS gut benutzbar bleibt ( „graceful degradation“), und der nur mit CSS umgestaltet wird.
@@ -19,19 +19,23 @@ Der Ausgangspunkt für ein Navigationsmenü ist eine Liste mit Links:
 </nav>
 </htmlcode>
 
-Ohne CSS wird die Liste ganz normal dargestellt [Demo](/images/navi-demo.html).
+Ohne CSS wird die Liste ganz normal dargestellt [Demo](/images/navi/demo.html).
 
 §
 
 Mit CSS kann man daraus ein vertikales Menü machen, dazu wird mit
-`list-style-type: none` der Listenpunkt `li` zu einem normalen Tag. 
+`list-style-type: none` der Listenpunkt `li` zu einem normalen Tag.
+
+Der Link selbst `a` wird mit `display:block` zu einem blockbildenden
+Element. Das hat den vorteil, dass das ganze Rechteck als Link wirkt,
+und nicht nur der Text.
 
 <css>
-.unsichtbar {display:none;}
+.unsichtbar { display:none;}
 
 nav li {
    list-style-type:none;
-   margin-bottom:1px; 
+   margin-bottom:1px;
 }
 
 nav li a:link {
@@ -46,44 +50,49 @@ nav li a:link {
 
 Der eigentliche Link wird zu einem blockbildenden Element gemacht.
 Damit ist dann das ganze Rechteck anklickbar, nicht nur der Text selbst.
-[Demo](/images/navi-demo-1.html)
+[Demo](/images/navi/demo-1.html)
 
 Horizontales Menü
 ------------------
 
-Mit Hilfe von `float` kann man das Menü auch horizontal darstellen, dazu muß nur
-ein `float` eingefügt und der `margin` anders gesetzt werden:
+Mit Hilfe von `flex` kann man das Menü auch horizontal darstellen:
 
 <css>
+.unsichtbar {display:none;}
+nav ul {
+  padding-left: 0;
+  display:flex;
+}
+
 nav li {
-   list-style-type:none;
-   margin-right:1px; 
+  list-style-type:none;
+  margin-right: 1px;
 }
 
 nav li a:link {
-   text-decoration: none;
-   font-weight: bold;
-   display: block;
-   background: #6C6;
-   width: 6em;
-   padding: 0.2em;
-
-   float:left;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  background:#6C6;
+  width:6em;
+  padding: 0.2em;
 }
 </css>
 
-[Demo](/images/navi-demo-2.html)
+[Demo](/images/navi/demo-2.html)
 
-PHP für Navigationsmenü 
+PHP für Navigationsmenü
 -----------------------------------------
-Das Navigationsmenü sollte natürlich in allen Seiten der Site gleich vorhanden sein. 
-Dazu könnte man den Code in alle HTML-Dateien kopieren. Wenn man 
+Das Navigationsmenü sollte natürlich in allen Seiten der Site gleich vorhanden sein.
+Dazu könnte man den Code in alle HTML-Dateien kopieren. Wenn man
 dann eine neue Seite einfügen will, muss man wiederum alle Seiten editieren.
 
-Deswegen bietet es sich an, bei dieser Gelegenheit von einfachem HTML auf PHP umzusteigen. 
-PHP ist eine Programmiersprache am Webserver mit der wir uns im Sommersemester intensiv beschäftigen werden.
+Deswegen bietet es sich an, bei dieser Gelegenheit von einfachem HTML auf PHP umzusteigen.
+PHP ist eine Programmiersprache am Webserver mit der wir uns im Sommersemester 
+intensiv beschäftigen werden.
 
-Dazu müssen alle HTML-Dateien die Endung .php erhalten, im Navigationsmenü sieht das dann so aus:
+Zur Umstellung müssen alle HTML-Dateien die Endung `.php` erhalten, 
+im Navigationsmenü sieht das dann so aus:
 
 <htmlcode>
 <nav>
@@ -99,7 +108,7 @@ Dazu müssen alle HTML-Dateien die Endung .php erhalten, im Navigationsmenü sie
 
 §
 
-Das Navigationsmenü wird nun in einer separaten Datei gespeichert, 
+Das Navigationsmenü wird nun in einer separaten Datei gespeichert,
 z.B. `navi.php`.  In den einzelnen Seiten wird das Menü dann mit `include` eingebunden:
 
 <htmlcode>

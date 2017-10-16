@@ -108,7 +108,7 @@ Dabei wird direkt in der Webseite der Außenabstand (margin) gelb und der Innena
 
 ### border-box
 
-Achtung: Im traditionelle Box model bezieht sich die Breite (width) auf
+Achtung: Im traditionelle Box Model bezieht sich die Breite (width) auf
 den Inhalt, padding, border und margin muss man erst dazu zählen, um den
 Gesamt-Platzbedarf zu errechnen. Mit der Deklaration `box-sizing: border-box` 
 kann man auf ein besseres Box-Model umschalten: dann gibt width die Gesamt-Breite an.  
@@ -116,9 +116,9 @@ kann man auf ein besseres Box-Model umschalten: dann gibt width die Gesamt-Breit
 
 <css>
 box-sizing: border-box;
-width: 200px; 
-padding: 10px; 
-border-width: 10px; 
+width: 200px;
+padding: 10px;
+border-width: 10px;
 margin: 32px 0px
 </css>
 

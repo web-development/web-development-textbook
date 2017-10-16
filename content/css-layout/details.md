@@ -176,51 +176,5 @@ __|__
 ![Abbildung 40: Kombination von absoluter Positionierung und margin-left](/images/css-layout/image142.png)
 
 
-Koordinatensystem
-------------
-
-Die Koordinaten (`top` und `left`) beziehen sich normalerweise auf die linke obere Ecke des Browserfenster. 
-
-Ein Element mit der Eigenschaft `position: absolute` oder `position: relative` bildet für seine untergeordneten Elemente ein neues Koordinationsystem. In folgendem Code definiert das main-div ein neues Koordinatensystem, das navi-div ist also in der linken oberen Ecke des main-div und nicht in der linken oberen Ecke des Browser-Fensters positioniert. 
-
-<htmlcode>
-<div id="main">
-  <div id="content">
-    <h1>Inhalt</h1>
-    <p>Hier der Inhalt.</p>
-    <p>Hier der Inhalt.</p>
-    <p>Hier der Inhalt.</p>
-    <p>Hier der Inhalt.</p>
-  </div>
-  <div id="navi">
-    <p>a</p>
-    <p>b</p>
-    <p>c</p>
-    <p>d</p>
-    <p>e</p>
-  </div>
-</div>
-__|__
-#main {
-  border: 1px red solid;
-  position:relative;
-  width: 700px;
-  margin: 0px auto;
-} 
-#content {
-  margin-left: 120px;
-  background-color: yellow;
-}
-#navi {
-  position: absolute;
-  width: 80px;
-  top:0px;
-  left:0px;
-}
-</htmlcode>
-
-
-[Beispiel-Seite](/images/css-layout/koord.html)
-
 
 

@@ -8,7 +8,7 @@ Welche Gestaltungsmöglichkeiten bietet CSS für das Layout einer Webseite?
 
 CSS Grid
 ------------------------
-Seit Frühjahr 2017 wird CSS Grid in Browsern unterstützt.
+Seit [Frühjahr 2017](https://caniuse.com/#search=grid) wird CSS Grid in Browsern unterstützt.
 Damit legt man ein Gitternetz über die ganze Seite:
 
 ![Layout mit CSS Grid](/images/css-layout/grid.png)
@@ -154,11 +154,105 @@ __|__
 Flexbox
 ------------------------
 
+Seit [2014](https://caniuse.com/#search=flex) wird Flexbox in allen Browsern unterstützt.
+
 Flexbox arbeitet nur in einer Dimension. Es wird für kleinere Komponenten
-in der Seite eingesetzt, zum Beisiel für eine Bildergallerie.
+in der Seite eingesetzt, zum Beispiel für eine Bildergalerie.
 
 [Demo-Seite](/images/flexbox/)
 
+### Flexbox definieren
+
+Der Container legt die Richtung fest: entweder horizontal (in einer Zeile = `row`) oder vertikal
+(in einer Spalte = `column`):
+
+<htmlcode>
+<div class="project_partial">
+  <div class="project_partial">...</div>
+  <div class="project_partial">...</div>
+  <div class="project_partial">...</div>
+  <div class="project_partial">...</div>
+  <div class="project_partial">...</div>
+  <div class="project_partial">...</div>
+</div>
+__|__
+.project {
+  display: flex;
+  flex-direction: row;
+}
+.project_partial {
+  width: 160px;
+  height: 275px;
+}
+</htmlcode>
+
+### Platz verteilen oder Elemente strecken
+
+Der Platz zwischen den Elementen kann auf verschiedene Art verteilt werden:
+linksbündig, rechtsbündig, zentriert, mit Platz dazwischen oder Platz rundum.
+
+<css>
+.projects {
+    justify-content: flex-start;   /* alle möglichst weit links */
+}
+</css>
+
+Siehe [justify-content](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#article-header-id-6)
+
+Oder die Elemente können sich ausdehnen, um den Platz einzunehmen:
+
+
+<css>
+.project_partial {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+</css>
+
+Siehe [flex-grow](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#article-header-id-10)
+
+
+### Wrap
+
+Wenn zu viele Elemente für eine Zeile vorhanden sind, 
+können sie auf eine nächste Zeile umgebrochen werden:
+
+<css>
+.projects {
+  flex-wrap: wrap;
+}
+</css>
+
+### Flexbox verschachteln
+
+Wenn man vertikale und horizontale Flexboxen ineinander schachtelt
+kann man auch ein zweidimensionales Layout erzielen - so wie mit
+CSS Grid.  Das HTML Dokument muss aber dabei diese Struktur genau
+nachbauen. 
+
+
+<div class="resizable">
+  <div style="display:flex; flex-direction: row;">
+    <nav style="border: 5px green solid;margin-right: 1px;">
+      Navi Navi Navi Navi Navi Navi Navi Navi Navi
+    </nav>
+    <div style="display:flex; flex-direction: column; border: 5px green solid;padding: 1px;">
+      <section style="border: 5px #ddd solid;margin-bottom: 1px;">
+        <p><b>
+          Flexbox  in Flexbox
+        </b></p>
+      </section>
+      <section style="border: 5px #ddd solid;">
+        <p>
+          Wird eine Flexbox in eine Flexbox geschachtelt, dann
+          braucht das entsprechend verschachtelete HTML Tags.
+          Wäre hier nicht CSS Grid eine einfachere Lösung?
+          Das sollte man überlegen!
+        </p>
+      </section>
+    </div>
+  </div>
+</div>
 
 Siehe auch [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 

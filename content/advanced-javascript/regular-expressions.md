@@ -13,7 +13,7 @@ Mit Regular Expressions kann man die Welt retten:
 
 ![](/images/regex-hero.png)
 
-Basierend auf [http://xkcd.com/208/](http://xkcd.com/208/) von Randall Munroe - verändert und verwendet unter der [CC-BY-NC](http://creativecommons.org/licenses/by-nc/2.5/) Lizenz
+Basierend auf [http://xkcd.com/208/](http://xkcd.com/208/) von Randall Munroe - verändert und verwendet unter der [CC-BY-NC](https://creativecommons.org/licenses/by-nc/2.5/) Lizenz
 
 §
 

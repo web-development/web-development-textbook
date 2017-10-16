@@ -18,7 +18,7 @@ require "json"
 class Nanoc3::Filter
   class Peek < Nanoc3::Filter
     identifier :peek
-    def run(content, params={})
+    def run(content, params={} )
       puts "#{content.length} bytes of content."
       content
     end
@@ -27,7 +27,7 @@ class Nanoc3::Filter
   class NoSlides < Nanoc3::Filter
     identifier :noslides
     def run(content, params={})
-      @output = content.dup.gsub(/^.*§.*$/,'');
+      @output =  content.dup.gsub(/^.*§.*$/,'');
       @output
     end
   end

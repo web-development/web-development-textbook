@@ -55,6 +55,8 @@ diese werden nun im Verhältnis 5 zu 3 auf Spalte zwei und drei verteilt:
 Wenn Sie die Breite des Fensters für die [Demo-Seite](/images/cssgrid/) ändern
 werden die neu berechneten Werte angezeigt.
 
+Hinweis: `fr` ersetzt damit die Prozentzahlen die früher verwendet wurden!
+
 
 ### Areas definieren
 

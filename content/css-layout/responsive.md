@@ -35,7 +35,12 @@ Luke Wroblewski schlug 2009 unter dem Slogan "Mobile First" vor, zuerst die mobi
 
 ### Mediaqueries
 
+siehe auch [MDN](https://developer.mozilla.org/de/docs/Web/CSS/Media_Queries)
 
+
+### Featurequeries
+
+siehe auch [MDN](https://developer.mozilla.org/de/docs/Web/CSS/@supports)
 
 Bilder und Responsive Design
 ----------

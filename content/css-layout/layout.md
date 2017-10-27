@@ -112,6 +112,7 @@ section#description {
 
 Siehe auch [CSS Tricks: Complete Guide to CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
 
+Siehe auch [CSS Grid by Example](https://gridbyexample.com/examples/)
 
 
 Absolute Positionierung

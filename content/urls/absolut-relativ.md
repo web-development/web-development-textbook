@@ -12,7 +12,7 @@ Die „absolute“ und „relative“ Schreibweise wurde von den Pfadangaben im 
 ## Beispiel
 
 In der Beispiel-Datei
-[http://web-development.github.com/images/urls.html](/images/urls.html) sind folgende drei URLs enthalten:
+[http://web-development.github.com/images/urls/index.html](/urls/index.html) sind folgende drei URLs enthalten:
 
 **absolut**
 : beginnt mit Protokoll `http://web-development.github.com/images/you-are-here.jpg`

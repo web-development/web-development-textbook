@@ -17,6 +17,9 @@
   box-sizing: border-box;
   width: 100%;
   padding: 20px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .csstransitions.csstransforms .deck-container:not(.deck-menu) > .slide .slide {
   position: relative;

@@ -63,14 +63,14 @@ der nur Text darstellt, aber keine Bilder. Daneben sehen Sie eine
 Blindenschrift übersetzt. Mit diesem Webbrowser und diesem Ausgabegerät können Blinde 
 im Web surfen. 
     
-![Text-Only Browser "lynx" und Braille Ausgabegerät](/images/anderebrowser.png)
+![Text-Only Browser "lynx" und Braille Ausgabegerät](/images/das-web-und-html/anderebrowser.png)
 
 §
 
 In den letzten Jahren haben mobile Geräte mit Internetzugang stark an Bedeutung 
 zugenommen: Smartphones und Tablets. 
 
-![Aufstieg und Fall des PCs, zitiert aus asymco.com/2012](/images/rise-and-fall-pc.png)
+![Aufstieg und Fall des PCs, zitiert aus asymco.com/2012](/images/das-web-und-html/rise-and-fall-pc.png)
 
 Auf diesen neuen Geräten gibt es auch Webbrowser - teilweise spezialisierte Software (Android Browser), teilweise
 adaptionen der klassischen Desktop Browser (Firefox).
@@ -85,7 +85,7 @@ Die Dokumente, die im Webbrowser dargestellt werden nennt man Webseiten. Eine We
 Eine Webseite kann – im Gegensatz zu einer Seite in einem Buch – beliebig lang sein. Ist 
 die Seite zu groß / zu lang für das Browser-Fenster, dann erscheint ein Scrollbalken  <!-- XE "Scrollen" -->  mit dem man den Rest der Seite erreichen kann, wie in der nächsten Abbildung gezeigt.
 
-![Ein Browser zeigt eine lange Webseite an](/images/image033.png)
+![Ein Browser zeigt eine lange Webseite an](/images/das-web-und-html/lange-seite.png)
 
 
 Website

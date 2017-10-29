@@ -12,7 +12,7 @@ dauern. Wenn man alle Bilder in ein Bild vereinigt muss nur noch
 eine Datei geladen werden.  Das ist die Idee von CSS-Sprites.
 
 
-![Abbildung 42: CSS Sprites von Yahoo](/images/yahoo-spritemap.png)
+![Abbildung 42: CSS Sprites von Yahoo](/images/css/yahoo-spritemap.png)
 
   So könnte der CSS Code aussehen:
 

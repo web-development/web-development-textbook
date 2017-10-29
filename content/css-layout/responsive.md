@@ -114,7 +114,7 @@ Die Schriftgröße im Browser unterliegt nur bedingte der Kontrolle durch HTML u
 Je nach Schriftgröße und zur Verfügung stehendem Platz im Browser-Fenster wird der Browser die Absätze geeignet in Zeilen umbrechen, wie in Abbildung 31 gezeigt. 
 
 
-![Abbildung 31: Darstellung von Text bei verschiedenen Fensterbreiten und Schriftgrößen](/images/zeilenumbruch.png)
+![Abbildung 31: Darstellung von Text bei verschiedenen Fensterbreiten und Schriftgrößen](/images/css-layout/zeilenumbruch.png)
 
 Skalieren
 ----------
@@ -124,7 +124,7 @@ verschiedene Methoden: entweder die Bilder werden mit der Schrift vergrößert u
 verkleinert (heute default), oder nur der Text wird verändern, die Bilder aber bleiben gleich. 
 Hier das entsprechende Menü in Firefox. 
 
-![Abbildung 32: Zoom Menü in Firefox](/images/zoom.png)
+![Abbildung 32: Zoom Menü in Firefox](/images/css-layout/zoom.png)
 
 Vertiefung
 ----------

@@ -48,7 +48,7 @@ Der Child Selector ist auf direkte Kinder beschränkt.
 </css>
 
 
-![Document Object Model und Selektor](/images/selector-child.png)
+![Document Object Model und Selektor](/images/css-layout/selector-child.png)
 
 Pseudo Classes
 ---------
@@ -75,7 +75,7 @@ Es gibt noch eine Hand voll weiterer Pseudo Classes:
 </css>
 
 
-![Document Object Model und Selektor](/images/selector-firstchild.png)
+![Document Object Model und Selektor](/images/css-layout/selector-firstchild.png)
 
 
 Adjacent selector
@@ -89,7 +89,7 @@ Dieser Selector wählt das direkte Geschwister-Node aus.
 </css>
 
 
-![Document Object Model und Selektor](/images/selector-adj.png)
+![Document Object Model und Selektor](/images/css-layout/selector-adj.png)
 
 
 
@@ -103,7 +103,7 @@ Wenn man mehrere Selektoren kombiniert hat das Komma die geringste Präzedenz:
 </css>
 
 
-![Document Object Model und Selektor](/images/selector-precedence.png)
+![Document Object Model und Selektor](/images/css-layout/selector-precedence.png)
 
 
 CSS Selektoren Üben

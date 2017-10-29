@@ -27,29 +27,32 @@ HTML-Code des Formulars aus:
 
 Achtung: diese Art die Daten zu senden ist sehr fehleranfällig: hierfür muß am Client-Computer nicht nur der Browser funktionieren, sondern auch das E-Mail Programm. Das E-Mail Programm muß richtig konfiguriert sein. Das ist auf vielen Computern am Internet nicht der Fall, oft werden die Daten also nicht erfolgreich versandt sondern gehen verloren.
 
-              
-![Abbildung 48: Formular per E-Mail oder über den Webserver senden](/images/image225.png)
+
+![Formular per E-Mail oder über den Webserver senden](/images/formulare/mail-or-http.png)
 
 
-Deswegen sollten Sie diese Methode nicht verwenden, sondern immer über den Webserver senden!
+Deswegen sollten Sie diese Methode nicht verwenden, sondern immer über einen Webserver senden!
 
 
 Daten senden mit Methode GET
 -----------------------------
 
-Wird im Form-Tag als Action eine URL mit http angegeben dann werden die Daten an den Webserver gesendet. Dabei gibt es zwei Methoden: GET und POST. GET ist die einfachere. 
+Wird im Form-Tag als Action eine URL mit http(s) angegeben dann werden die Daten #an den Webserver gesendet. Dabei gibt es zwei Methoden: GET und POST. GET ist die einfachere.
 
-In Abbildung 49 sehen Sie ein (leicht vereinfachtes) Bestellformular für Flugzeuge das die Methode GET verwendet.
+§
+
+Hier sehen Sie ein (leicht vereinfachtes) Bestellformular für Flugzeuge das die Methode GET verwendet.
 
 
-![Abbildung 49: Formular mit Methode GET](/images/image230.png)
+![Formular mit Methode GET](/images/formulare/action-get.png)
 
 Wenn die UserIn auf „Bestellung absenden“ drückt, baut der Browser aus der
 action und den Namen und Werten der einzelnen Eingabefelder eine URL zusammen,
 die dann aufgerufen wird.
 
 
-![Abbildung 50: URL einer GET-Anfrage](/images/image232.png)
+![Abbildung 50: URL einer GET-Anfrage](/images/formulare/action-got.png)
+
 
 ## URL der GET-Anfrage
 
@@ -69,7 +72,9 @@ Die URL wird zusammengestellt aus:
     * Eingegebener / angeklickter Wert
 
 Falls dabei Sonderzeichen vorkommen  (z.B. Leerzeichen, Zeilenumbrüche, Umlaute,
-Fragezeichen, kaufmännisches Und) werden diese wie folgt encodiert: Statt
+Fragezeichen, kaufmännisches Und) werden diese wie folgt encodiert: 
+
+Statt
 Leerzeichen wird ein `+` oder `%20` gesetzt, bei allen anderen Zeichen wird ein `%`
 gefolgt von der Hexadezimaldarstellung des ASCII-Code gesetzt  (siehe rfc 2396).
 Diese Codierung nennt man URL-Encoding. (siehe
@@ -98,11 +103,14 @@ Gerade bei Suchmaschinen wird diese Möglichkeit oft genutzt: z.B. durch die Suc
 
 ![Abbildung 51: Suchfeld von Firefox](/images/image237.png)
 
+§
 
 Wenn Sie eine Web-Applikation erstellen müssen Sie auch darauf gefasst sein,
 dass die UserInnen nicht nur ihre Web-Formulare verwenden, sondern auch URLs
 konstruieren und aufrufen. Die **URL** (und nicht das Formular) ist also eine
 **öffentliche Schnittstelle** zu Ihrem Programm!
+
+§
 
 
 Nun könnte man meinen: "Wenn ich die URL geheim halte ist es doch keine öffentliche Schnittstelle".
@@ -115,7 +123,7 @@ Das "geheimhalten" einer URL ist also keine geeignete Sicherheitsmaßnahme!
 Wenn ich eine Webseite vor Zugriffen schützen will brauche ich dazu Passwörter
 und https, siehe [Authentisieren nach RFC 2617](/http/http/#slide-18)
 und [HTTPS](/http/http/slide.html#slide-19), beide im Kapitel HTTP, und 
-das [Kapitel Session](/session/).
+das [Kapitel über Sessions](/session/).
 
 
 ## Pricing Attack
@@ -132,6 +140,7 @@ Ein lehrreiches Beispiel aus der Frühzeit des Web: es gab einst Webshops, die d
 </form>
 </htmlcode>
 
+§
 Das gibt der KundIn die Chance ein „Gegenangebot“ zu senden (als „pricing attack“ bekannt):
 
 <htmlcode>

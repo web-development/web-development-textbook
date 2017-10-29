@@ -2,6 +2,7 @@
 title: Formular und Javascript
 order: 40
 ---
+
 Am Beispiel eines Formular werden wir nun einfaches Javascript kennen lernen. Die Details von Javascript werden in den nächsten Kaptieln, hier geht es nur um ein erstes Kennenlernen.
 
 Javascript Einbetten
@@ -22,15 +23,15 @@ Ohne Output merkt man aber gar nichts davon, das dieses Programm läuft.
 
 ### Konsole
 
-In Firefox kann man mit der Konsole von Firebug die Variablen auslesen wie in Abbildung 52 gezeigt.
+In den Developer Tools von Firefox kann man die Variablen auslesen:
 
 
-![Abbildung 52: Mit firebug den Wert einzelnen Javascript-Variablen  auslesen](/images/image239.png)
+![Mit Firefox Developer Tools den Wert einzelnen Javascript-Variablen  auslesen](/images/formulare/ff-console-variable.png)
 
-In Google Chrome gibt es ebenfalls eine Console wie in Abbildung gezeigt, das entsprechende Fenster wird geöffnet wenn Sie irgendwo in der Webseite mit der rechten Maustaste klicken, und „Element überprüfen“ auswählen:
+In Google Chrome gibt es ebenfalls eine Console, das entsprechende Fenster wird geöffnet wenn Sie irgendwo in der Webseite mit der rechten Maustaste klicken, und „Element überprüfen“ auswählen:
 
 
-![Abbildung 53: Mit Chrome den Wert einzelnen Javascript-Variablen  auslesen](/images/image240.png)
+![Mit Chrome den Wert einzelnen Javascript-Variablen  auslesen](/images/formulare/chrome-console-variable.png)
 
 
 Popup-Fenster
@@ -43,31 +44,31 @@ var ja_nein = confirm("sollen die daten nicht gelöscht werden?");
 var antwort = prompt("welche Daten sollen gelöscht werden. Keine Angabe löscht alles");
 </javascript>
 
-![Darstellung der Popup-Fenster in den Browsern Firefox, Chrome, Opera auf Mac](/images/popups.png)
+![Darstellung der Popup-Fenster in den Browsern Firefox, Chrome, Opera auf Mac](/images/formulare/popups.png)
 
 Achtung: So können Sie zwar bei gutgläubigen Menschen Herzinfarkte auslösen, aber Sie können mit Javascript nicht wirklich Dateien löschen.
 
 Formulare
 ----------
 
-Mit der Konsole von Firebug können Sie auch Formulare genauer untersuchen. Achtung! Wir geben ab jetzt allen Formular-Eingabefeldern nicht nur einen name, sondern auch eine id, das erleichtert die Handhabung in Javascript!
+Mit der Konsole von Firebug können Sie auch Formulare genauer untersuchen. Achtung! Wir geben ab jetzt allen Formular-Eingabefeldern nicht nur einen `name`, sondern auch eine `id`, das erleichtert die Handhabung in Javascript!
 
 
 <htmlcode>
-<form method="get" action="mail.php"> 
+<form method="get" action="mail.php">
 <label for="mail">E-Mail:
    <input type="text" name="mail" id="mail">
 </label>
-<label>Hochschule:   
-    <input type="text" name="hochschule" id="hochschule"> 
-</label> 
+<label>Hochschule:
+    <input type="text" name="hochschule" id="hochschule">
+</label>
 <input type="submit" value="speichern">
 </form>
 </htmlcode>
 
 §
 
-![Abbildung 54: Mit Firebug Formulare und Eingabefelder auslesen](/images/image242.png)
+![Mit Firefox Developer Tools Formulare und Eingabefelder auslesen](/images/formulare/manipulate-form-js.png)
 
 
 Mit `document.getElementById` kann man also das einen bestimmten Tag  ansprechen, wenn man die id kennt.
@@ -75,90 +76,13 @@ Mit `document.getElementById` kann man also das einen bestimmten Tag  ansprechen
 Jedes Eingabefeld bietet mit value den aktuell eingegeben Wert (als String) an, hier z.B. `document.getElementById("hochschule").value`.  Die letzten beiden Zeilen in der Konsole zeigen, dass es auch umgekehrt funktioniert: man kann auch Werte ins Eingabefeld hineinschreiben, der neue Werte wird sofort im Browser angezeigt.
 
 
-document.write
----------------
-
-Mit dem Befehl `document.write()` kann Text/Code in den HTML-Code eingefügt werden.
-
-
-<htmlcode>
-<h1>Hallo Welt</h1>
-<script>
-    document.write("<p>Hallo Javscript</p>");
-</script>
-<p>Hallo HTML</p>
-</htmlcode>
-
-Der Browser interpretiert das Javascript und fügt das Ergebnis zu einem
-HTML-Dokument zusammen. 
-
-§
-
-Achtung: Das resultierende HTML-Dokument existiert
-nur im Haupt-Speicher des einen Computers auf dem der Browser gerade läuft, es
-wird nie abgespeichert! Mit Firebug kann man den erzeugen Code aber sehen:
-
-
-<htmlcode>
-<h1>Hallo Welt</h1>
-<p>Hallo Javscript</p>
-<p>Hallo HTML</p>
-</htmlcode>
-
-§
-
-Ein Anwendungsbeispiel dieses Befehls: Ich will ein Dropdown-Menü mit vielen Einträgen, bin aber zu faul um alle `option`-Tags einzutippen.
-
-<htmlcode>
-<form>
- <select name="anzahl" id="anzahl">
-   <option>1</option>
-   <option>2</option>
-   <option>3</option>
-   <option>4</option>
-   <option>5</option>
-   <option>6</option>
-   <option>7</option>
-   ...
- </select>
- <input type="submit">
-</form>
-</htmlcode>
-
-§
-
-Ich ersetze also die option-Tags durch eine Schleife in Javascript:
-
-<htmlcode>
-<form>
-  <select name="Anzahl" id="Anzahl">
-    <script language="javascript">
-      var i=0;
-      while(i <= 50) {
-        document.write("<option>" + i + "</option>");
-        i++;
-      }
-    </script>
-  </select>
-  <input type="submit">
-</form>
-</htmlcode>
-
-Mit Ansicht &rarr; Quelltext sieht man den Javascript-Code, In Firebug sieht man das Ergebnis:
-
-
-Sollte man diese Möglichkeit nutzen?  Der Nachteil: Falls Javascript nicht funktioniert, hat mein Eingabefeld keine Optionen. Deswegen wäre es wahrscheinlich besser, die Optionen als HTML anzugeben.
-
-
 Ereignisse und Ereignisgesteuerte Programmierung
 -------------------------------------------------
-Javascript ist hauptsächlich eine Programmiersprache für das „Frontend“, für die
+Javascript entstand als Programmiersprache für das „Frontend“, für die
 Gestaltung von Benutzerschnittstellen. Für grafische Benutzerschnittstellen hat
 sich ein besonderer Programmierstil entwickelt: die ereignisgesteuerte
-Programmierung. Dieser Stil kommt auch in Actionscript (in Flash), in Visual
-Basic, u.s.w. zum Einsatz.
-
-Dabei lösen Ereignis, die die BenutzerIn setzt, bestimmte Programmteile aus.
+Programmierung. Dieser Stil kommt immer Einsatz, wenn es um Schnittstellen zu Menschen geht,
+und auf die Eingaben von Menschen reagiert werden soll.
 
 ## Events im Browser
 
@@ -169,7 +93,8 @@ Im Webbrowser sind solche Ereignisse z.B.:
 * Anklicken einer Checkbox
 * Absenden eines Formulares
 
-Eine Liste der wichtigsten Events bzw. on-Attributen für HTML-Tags finden Sie in der [DOM Level 2 Event Specification](http://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-eventgroupings-htmlevents-h3).
+Eine Liste der gültigen Events bzw. on-Attributen für HTML-Tags finden Sie im [Mozilla Developer Networ (MDN)](https://developer.mozilla.org/de/docs/Web/Events).  Aber für den Anfang
+werden Sie mit viel weniger Events auskommen!
 
 ## Beispiel
 
@@ -186,15 +111,15 @@ Betrachten wir zuerst einen Schritt der Berechnung alleine an einem vereinfachte
 Eingabefeld und einem span-tag für die Ausgabe.
 
 <htmlcode>
-  <input value="0" name="in">
-  <span id="out"></span>
+<input value="0" name="in">
+<span id="out"></span>
 </htmlcode>
 
 Für die Formulierung „Wenn in das Feld in ein neuer Wert eingegeben wird, dann...“  gibt es ein passendes Event in HTML/Javascript: onchange. Die wird als Attribut in den HTML-Code des Eingabefeldes geschrieben:
 
 <htmlcode>
-  <input value="0" name="in"  onchange="hier Javascript">
-  <span id="out"></span>   
+<input value="0" name="in"  onchange="hier Javascript">
+<span id="out"></span>
 </htmlcode>
 
 §
@@ -202,10 +127,18 @@ Für die Formulierung „Wenn in das Feld in ein neuer Wert eingegeben wird, dan
 In das Attribut kann nun Javascript-Code eingefügt werden der die richtige Berechnung vornimmt und das Ergebnis in das richtige Element schreibt:
 
 <htmlcode>
-<input value="0" name="in" 
+<input value="0" name="in"
   onchange="document.getElementById('out').innerHTML = this.value * 100">
-<span id="out"></span>   
+<span id="out"></span>
 </htmlcode>
+
+
+<input value="0" name="in"
+  onchange="document.getElementById('out').innerHTML = this.value * 100">
+<span id="out"></span>
+
+
+§
 
 Betrachten wir die Javascript-Befehl im Detail: Es handelt sich um eine
 Zuweisung mit `=`.
@@ -229,17 +162,17 @@ Nun wäre es natürlich unpraktisch in das onchange-Attribut ein längeres Javas
 
 <htmlcode>
 <head>
-<script language="javascript">
-function compute() { 	
+<script>
+function compute() {
 
-  document.getElementById('outtotal').innerHTML =  	      
+  document.getElementById('outtotal').innerHTML =
 
-    document.getElementById('in1').value * 100 		
-  + document.getElementById('in2').value * 200 		
-  + document.getElementById('in3').value * 0 		
-  + document.getElementById('in4').value * 1000 		
-  + document.getElementById('in5').value * 10 		
-  + document.getElementById('in6').value * 5 
+    document.getElementById('in1').value * 100
+  + document.getElementById('in2').value * 200
+  + document.getElementById('in3').value * 0
+  + document.getElementById('in4').value * 1000
+  + document.getElementById('in5').value * 10
+  + document.getElementById('in6').value * 5
 }
 </script>
 </head>
@@ -250,30 +183,33 @@ Bei den einzelnen Berechnungen für die einzelnen Bücher wird jeweils zum Schlu
 
 §
 
-Achtung: beim „rechnen“ mit Eingabefelder von Javascript tritt häufig folgender
-Fehler auf: in Javascript werden die Datentypen number, string, boolean, object zwar unterschieden, 
+Achtung: beim „Rechnen“ mit Eingabefelder von Javascript tritt häufig folgender
+Fehler auf: in Javascript werden die Datentypen number, string, boolean, object zwar unterschieden,
 aber nicht deklariert. Es kann in einer Variable einmal ein
 String und einmal eine Zahl gespeichert sein:
 
 <htmlcode>
   var a,b,c;
   a = 10;
-  document.write("wie viel ist 10 plus 20? ");
-  document.write(a + 20);
+  console.log(`wie viel ist ${a} plus 20?`);
+  console.log(a + 20);
   a = "zehn";
-  document.write("wie viel ist 10 plus 20? ");
-  document.write(a + 20);
+  console.log(`wie viel ist ${a} plus 20?`);
+  console.log(a + 20);
   a = "10";
-  document.write("wie viel ist 10 plus 20? ");
-  document.write(a + 20);
+  console.log(`wie viel ist ${a} plus 20?`);
+  console.log(a + 20);
 </htmlcode>
 
 Hier der Output des Programms:
 
 <plain>
-  wie viel ist 10 plus 20? 30
-  wie viel ist 10 plus 20? zehn20
-  wie viel ist 10 plus 20? 1020
+wie viel ist 10 plus 20?
+30
+wie viel ist zehn plus 20?
+zehn20 debugger eval code:7:3
+wie viel ist 10 plus 20?
+1020
 </plain>
 
 §
@@ -286,11 +222,11 @@ Mit der Funktion `parseInt()` können Sie einen String in eine Integer-Zahl verw
 
 <javascript>
   a = "10";
-  document.write("&lt;br /&gt;wie viel ist 10 plus 20? ");
-  document.write(parseInt(a) + 20);
+  console.log(`wie viel ist ${a} plus 20?`);
+  console.log(parseInt(a) + 20);
 </javascript>
 
-gibt das erwartete ergebnis
+gibt das erwartete Ergebnis
 
 <plain>
   wie viel ist 10 plus 20? 30
@@ -299,9 +235,14 @@ gibt das erwartete ergebnis
 
 Formular prüfen
 -----------------
-Mit HTML5 kann man mit den Attributen `required` und `pattern` einfache Prüfungen 
+Mit HTML5 kann man mit den Attributen `required` und `pattern` einfache Prüfungen
+der Eingabe
 vornehmen. Das Formular kann erst gesendet werden, wenn alle Prüfungen erfüllt
 sind.
+
+[Demo](/images/formulare/form.html#required_and_pattern)
+
+§
 
 Mit Javascript kann man noch komplizierte Prüfungen vornehmen, und ebenfalls
 verhindern, dass das Formular abgesendet werden kann.
@@ -335,7 +276,7 @@ function formularok() {
 </head>
 
 <body>
-  <form name     = "pizzaformular" 
+  <form name     = "pizzaformular"
         action   = "bestellung.php"
         onsubmit = "wert=formularok(); return wert;">
   .... viele eingabefelder ...

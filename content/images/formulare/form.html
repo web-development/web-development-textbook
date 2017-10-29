@@ -35,13 +35,13 @@
   <body>
     <article>
     <h1>Form Tag</h1>
-    <form method="get" action="bestellung.html">
+    <form method="get" action="submitted.html">
       Bitte schicken Sie den Newsletter an die E-Mail Adresse:
       <input type="text"   name="email">
       <input type="submit" value="Ja, ich will!">
     </form>
     <h1>Text Eingabe</h1>
-    <form action="bestellung.html">
+    <form action="submitted.html">
       <label>Textfeld <input type="text" name="mail"></label>
       <label>Textfeld E-Mail <input type="email" name="mail2"></label>
       <label>Passwort-Feld <input type="password" name="meinpasswort"></label>
@@ -51,18 +51,18 @@
       <input type="reset">
     </form>
 
-    <h1>Attribute für Textfelder</h1>
-    <form action="bestellung.html">
+    <h1 id="required_and_pattern">Attribute für Textfelder</h1>
+    <form action="submitted.html">
       <label>mit Default-Wert <input type="text" name="vorname" value="Lara"></label>
-      <label>muss eingegeben werden <input type="email" name="nachname" required></label>
+      <label>e-mail muss eingegeben werden <input type="email" name="nachname" required></label>
       <label>mit Placeholder <input type="email" name="mail" placeholder="ich@some.net"></label>
-      <label>mit Eingabeprüfung <input type="email" name="mail2" required
+      <label>e-mail und Eingabeprüfung mit pattern <input type="email" name="mail2" required
         placeholder="somebody@fh-salzburg.ac.at"
         pattern=".*@fh-salzburg\.ac\.at" title="nur E-mail Adressen der FH Salzburg"></label> <input type="submit">
     </form>
 
     <h1>Ja/Nein Frage</h1>
-    <form action="bestellung.html">
+    <form action="submitted.html">
       <label><input type="checkbox" name="schlag"> mit Schlagobers</label>
       <input type="submit">
     </form>
@@ -70,7 +70,7 @@
 
 
     <h1>Auswahl mit Radio Buttons</h1>
-    <form action="bestellung.html">
+    <form action="submitted.html">
       <label><input type="radio" name="size" value="XL">XL</label>
       <label><input type="radio" name="size" value="L">L</label>
       <label><input type="radio" name="size" value="M">M</label>
@@ -78,7 +78,7 @@
       <input type="submit">
     </form>
     <h1>Auswahl mit Menü</h1>
-    <form action="bestellung.html">
+    <form action="submitted.html">
       <select name="size2">
         <option>XL</option>
         <option selected>L</option>
@@ -88,7 +88,7 @@
       <input type="submit">
     </form>
     <h1>Auswahl mit Menü und Leer-option</h1>
-    <form action="bestellung.html">
+    <form action="submitted.html">
       <select name="size3">
         <option>---Bitte Auswählen---</option>
         <option>XL</option>
@@ -100,7 +100,7 @@
     </form>
 
     <h1>Mehrfach-Auswahl mit Liste</h1>
-    <form action="bestellung.html">
+    <form action="submitted.html">
       <select name="html" size="4" multiple="multiple">
         <option>im Code, notepad++</option>
         <option>im Code, vim</option>
@@ -110,7 +110,7 @@
       <input type="submit">
     </form>
     <h1>Spezialisierte Eingabefelder</h1>
-    <form action="bestellung.html">
+    <form action="submitted.html">
       <label>Datum <input type="date" min="2010-08-01" max="2011-08-31" value="2010-08-14"></label>
       <label>Range <input type="range" min="0" max="50" value="10"> </label>
       <label>Number <input type="number" step="1" min="-5" max="10" value="0"></label>
@@ -119,7 +119,7 @@
 
     <h1>Buttons</h1>
 
-    <form action="bestellung.html">
+    <form action="submitted.html">
       <input type="text" value="schreib hier!">
       <input type="submit">
       <input type="reset">
@@ -129,7 +129,7 @@
 
     <h1>Weitere Spezial-Felder</h1>
 
-    <form action="bestellung.html" enctype="multipart/form-data" method="post">
+    <form action="submitted.html" enctype="multipart/form-data" method="post">
       <label>unsichtbares feld ist unsichtbar <input type="hidden" name="source"
         value="wikipedia"></label>
       <label>Bildfeld (liefert Koordinaten) <input type="image" name="position" src="image202.png"></label>
@@ -139,8 +139,8 @@
 
     <h1>Ordnung</h1>
 
-    <form action="bestellung.html">
-      <fieldset> 
+    <form action="submitted.html">
+      <fieldset>
         <legend>Kreditkarte</legend>
         <label><input name="nr" placeholder="0000 0000 0000 0000"></label>
         <label style="display:inline;"><input type="radio" name="kk" value="Master"> Master</label>

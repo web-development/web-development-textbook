@@ -3,8 +3,8 @@ title: HTML Grundkurs
 order: 30
 ---
 Wir werden HTML in der Version 5 verwendet. Die wichtigsten HTML-Tags (Links, Bilder, 
-Tabellen, Formulare) werden Sie bald auswendig können. Alle Details können Sie Intenet 
-nachschlagen. 
+Tabellen, Formulare) werden Sie bald auswendig können. Alle Details können Sie Intenet
+nachschlagen.
 
 HTML hat sich in den ca. 20 Jahren seines Bestehens weit entwickelt. Die Version 5, wurde im Jahr 2014 veröffentlicht und wird heute von allen
 Browsern unterstützt. 

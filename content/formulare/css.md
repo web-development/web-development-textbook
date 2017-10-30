@@ -1,0 +1,91 @@
+---
+title: CSS und Formular
+order: 17
+---
+
+Wie ordne ich die Beschriftungen und Eingabefelder
+eines Formualares an?
+
+Mit CSS Grid:
+
+
+![Beispiel CSS Grid und Formular](/images/formulare/grid-layout-form.png)
+
+
+[Beispiel CSS Grid und Formular](/images/formulare/grid-form.html)
+
+
+§
+
+
+Dabei verwenden wir das CSS Grid ohne zu wissen, wie viele Eingabfelder
+das Formular im Ende enthalten wird.
+
+Wir definieren nur zwei Spalten:
+
+<css>
+form {
+  display: grid;
+  grid-template-columns: [labels] auto [controls] 1fr;
+  grid-gap: 10px;
+}
+</css>
+
+In eckigen Klammern werden hier die Namen für die beiden
+ersten senkrechten Linien des Grid festgelegt: `labels` und `controls`.
+
+
+### Überzählige Element im grid
+
+Was soll mit überzähligen Kinder-Tags des grids passieren?
+Das wird mit der Property  `grid-auto-flow` festgelegt:
+
+Das Grid kann um zusätzliche Zeilen erweiteret werden, um zusätzliche
+Spalten, oder es können Lücken im Grid aufgefüllt werden:
+
+* `grid-auto-flow: rows`
+* `grid-auto-flow: columns`
+* `grid-auto-flow: dense`
+
+Im Fall des Formulars sollen neue Zeilen eingefügt werden.
+
+<css>
+form {
+  display: grid;
+  grid-template-columns: [labels] auto [controls] 1fr;
+  grid-gap: 10px;
+  grid-auto-flow: rows;
+}
+</css>
+
+### Grössere Zellen
+
+Die `fieldsets` sollen beide Spalten überspannen.
+Das erreichen wir mit der Property `grid-column`:
+
+
+<css>
+form > fieldset {
+  grid-column: span 2;
+}
+</css>
+
+Ein fieldset Tag der ein direktes Kind eines form Tags ist,
+soll zwei Spalten überspannen.
+
+### Absende-Button positionieren
+
+Der absende Button  `<input type="submit" value="Submit Booking">` soll
+nicht in der linken sonder in der rechten Spalte positiniert werden.
+
+<css>
+form > input[type=submit] {
+  grid-column: controls;
+}
+</css>
+
+Der name `controls` bezieht sich dabei auf die  mit `grid-template-columns`
+definierte Namen für die Linien.
+
+
+

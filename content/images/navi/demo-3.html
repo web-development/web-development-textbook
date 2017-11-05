@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8">
     <style>
-    .unsichtbar {display:none;}
     nav ul {
       padding-left: 0;
+      display:flex;
+      margin: 0;
     }
 
     nav li {
-      float:left;
       list-style-type:none;
-      margin-right:1px; 
+      margin-right:1px;
     }
 
     nav li a:link {
@@ -27,19 +27,41 @@
       background:#9f9;
     }
 
+    nav li a.current {
+      background:#ddd;
+    }
+
     </style>
   </head>
   <body>
     <h1>Demo: Navigation</h1>
     <p>Zurück zum <a href="/css-layout/navigation/">Kapitel Navigation</a></p>
     <nav>
-    <h3 class="unsichtbar">Seitenauswahl</h3>
-    <ul>
-        <li><a href="demo.html">home</a></li>
-        <li><a href="demo-1.html">vertikal</a></li>
-        <li><a href="demo-2.html">horizontal</a></li>
-        <li><a href="demo-3.html">fancy</a></li>
+    <ul id="menu">
+      <li><a href="demo.html">home</a></li>
+      <li><a href="demo-1.html">vertikal</a></li>
+      <li><a href="demo-2.html">horizontal</a></li>
+      <li><a href="demo-3.html">fancy</a></li>
+      <li><a href="demo-4.html">burger</a></li>
     </ul>
     </nav>
+
+    <footer>
+      <p>Diese Version vergleicht <kbd>document.location</kbd> mit den
+      URLs in der Navigation, und markiert den link zur aktuellen seite
+      mit der Klasse <kbd>current</kbd>.</p>
+    </footer>
+
+    <script>
+      var nav = document.getElementById('menu'),
+        anchor = nav.getElementsByTagName('a'),
+        current = new URL(window.location);
+        for (var i = 0; i < anchor.length; i++) {
+          console.log(anchor[i].href);
+          if(anchor[i].href == current) {
+              anchor[i].classList.add( "current" );
+          }
+      }
+    </script>
   </body>
 </html>

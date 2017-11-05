@@ -18,7 +18,7 @@ Vergleichen Sie die höchsten hier dargestellte Auflösungen mit der geringsten 
 §
 
 Die typische Auflösung hat sich über Jahre stark verändert. Diese Statistik
-von w3schools.org reicht von 2000 bis 2016. In diesem Zeitraum hat sich die Mehrheit langsam von 800x600 (bis 2003) auf 1024x768 (bis 2008) und schließlich auf höhre Auflösungen verschoben. Achtung: Das
+von w3schools.org reicht von 2000 bis 2016. In diesem Zeitraum hat sich die Mehrheit langsam von 800x600 (bis 2003) auf 1024x768 (bis 2008) und schließlich auf höhere Auflösungen verschoben. Achtung: Das
 war bevor mobile Endgeräte wichtig wurden.
 
 ![Abbildung 26: Statistik über die Bildschirmauflösung,](/images/css-layout/display-stats.png)

@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <style>
-    .unsichtbar {display:none;}
 
     nav ul {
       padding-left: 0;
@@ -11,7 +10,7 @@
 
     nav li {
       list-style-type:none;
-      margin-bottom:1px; 
+      margin-bottom:1px;
     }
 
     nav li a:link {
@@ -22,18 +21,22 @@
       width:6em;
       padding: 0.2em;
     }
+
+    nav li a:link:hover {
+      background:#9f9;
+    }
     </style>
   </head>
   <body>
     <h1>Demo: Navigation</h1>
     <p>Zurück zum <a href="/css-layout/navigation/">Kapitel Navigation</a></p>
     <nav>
-    <h3 class="unsichtbar">Seitenauswahl</h3>
     <ul>
         <li><a href="demo.html">home</a></li>
         <li><a href="demo-1.html">vertikal</a></li>
         <li><a href="demo-2.html">horizontal</a></li>
         <li><a href="demo-3.html">fancy</a></li>
+        <li><a href="demo-4.html">burger</a></li>
     </ul>
     </nav>
   </body>

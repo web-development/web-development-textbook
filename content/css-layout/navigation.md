@@ -5,11 +5,10 @@ order: 50
 
 Wenn man mit CSS ein Navigationsmenü gestaltet dann sollte man von einem HTML-Code ausgehen der auch ohne CSS gut benutzbar bleibt ( „graceful degradation“), und der nur mit CSS umgestaltet wird.
 
-Der Ausgangspunkt für ein Navigationsmenü ist eine Liste mit Links:
+Der Ausgangspunkt für ein Navigationsmenü ist eine Liste mit Links in einem `nav` Tag:
 
 <htmlcode>
 <nav>
-  <h3 class="unsichtbar">Seitenauswahl</h3>
   <ul>
     <li><a href="index.html">home</a></li>
     <li><a href="ort.html">ort</a></li>
@@ -21,18 +20,19 @@ Der Ausgangspunkt für ein Navigationsmenü ist eine Liste mit Links:
 
 Ohne CSS wird die Liste ganz normal dargestellt [Demo](/images/navi/demo.html).
 
-§
+Vertikales Menü
+------------------
 
-Mit CSS kann man daraus ein vertikales Menü machen, dazu wird mit
+Mit CSS kann man daraus ein vertikales Menü machen. 
+
+Zuerst wird mit
 `list-style-type: none` der Listenpunkt `li` zu einem normalen Tag.
 
 Der Link selbst `a` wird mit `display:block` zu einem blockbildenden
-Element. Das hat den vorteil, dass das ganze Rechteck als Link wirkt,
+Element. Das hat den Vorteil, dass das ganze Rechteck als Link wirkt,
 und nicht nur der Text.
 
 <css>
-.unsichtbar { display:none;}
-
 nav li {
    list-style-type:none;
    margin-bottom:1px;
@@ -55,13 +55,15 @@ Damit ist dann das ganze Rechteck anklickbar, nicht nur der Text selbst.
 Horizontales Menü
 ------------------
 
-Mit Hilfe von `flex` kann man das Menü auch horizontal darstellen:
+Mit Hilfe von `flex` kann man das Menü auch horizontal darstellen.
+Die Default-Richtung von `flex-direction` ist ja `row`, und damit ein
+horizontales Menü.
 
 <css>
 .unsichtbar {display:none;}
 nav ul {
   padding-left: 0;
-  display:flex;
+  display: flex;
 }
 
 nav li {
@@ -80,6 +82,26 @@ nav li a:link {
 </css>
 
 [Demo](/images/navi/demo-2.html)
+
+
+Responsive Navigation mit Burger Menü
+------------------
+
+
+Für sehr kleien Ausgabegeräte wie Smartphones sind horizontale
+Navigationsmenüs nicht gut geeignet.  Dort reduziert man das Navigationsmenü
+auf einen einzigen Button, der dann das Navigationsmenü ein- bzw. ausblendet:
+
+
+![Burger Menu in Action](/images/css-layout/burger-menu.png)
+
+Als Symbol für diese Art von Menü werden oft drei vertikale Stricke verwendet,
+auch  [Hamburger Icon](https://de.wikipedia.org/wiki/Hamburger-Men%C3%BC-Icon)
+genannt.
+
+
+[Demo](/images/navi/demo-4.html)
+
 
 PHP für Navigationsmenü
 -----------------------------------------

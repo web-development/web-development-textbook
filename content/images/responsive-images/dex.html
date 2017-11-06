@@ -5,35 +5,36 @@
     <title>Demo Seite für Responsive Images</title>
     <style>
       img { 
-        width: 1353px; height: 461px;
-        /* clip-path: polygon(0% 0%, 10% 0%, 10% 100%, 0% 100%, 0% 0%); */
+        width: 350px; height: 350px;
+        margin: 10px;
+      }
+      .gallery {
+        display:flex;
+        justify-content: center;
+        flex-wrap: wrap;
       }
     </style>
   </head>
   <body>
-    <h1>Bild in drei Versionen</h1>
+    <h1>Bild in vier Versionen</h1>
     <ul>
-    <li>salzburg.jpg 1353x461 Auflösung, 248K Dateigröße</li>
-    <li>salzburg_2x.jpg 2706x922 Auflösung, 832K Dateigröße</li>
-    <li>salzburg_3x.jpg 4059x1383 Auflösung, 1.5MB Dateigröße</li>
-    <li>salzburg_4x.jpg 5412x1844 Auflösung,  2.4MB Dateigröße</li>
+    <li>japanischer-garten_1.jpg 350x350 Auflösung</li>
+    <li>japanischer-garten_2x.jpg 701x701 Auflösung</li>
+    <li>japanischer-garten_3x.jpg 1401x1401 Auflösung</li>
+    <li>japanischer-garten_4x.jpg 1401x1401 Auflösung</li>
   </ul>
 
   <h2>der Code</h2>
 
-  <kbd>&lt;img src="salzburg.jpg" srcset="salzburg.jpg 1x, salzburg_2x.jpg 2x, salzburg_3x.jpg 3x, salzburg_4x.jpg 4x"&gt;</kbd>
+  <kbd>&lt;img src="japanischer-garten_1x.jpg" srcset="japanischer-garten_1x.jpg 1x, japanischer-garten_2x.jpg 2x, japanischer-garten_3x.jpg 3x, japanischer-garten_4x.jpg 4x"&gt;</kbd>
 
+  <div class="gallery">
+    <img class="x1" src="japanischer-garten_1x.jpg">
+    <img class="x2" src="japanischer-garten_1x.jpg" srcset="japanischer-garten_1x.jpg 1x, japanischer-garten_2x.jpg 2x">
 
-    <p>Bild in Größe 1353px mal 461px</p>
-    <img src="salzburg.jpg">
-    <p>Bild in Größe 1353px mal 461px, mit Version mit doppelter Auflösung</p>
-    <img src="salzburg.jpg" srcset="salzburg.jpg 1x, salzburg_2x.jpg 2x">
+    <img class="x3" src="japanischer-garten_1x.jpg" srcset="japanischer-garten_1x.jpg 1x, japanischer-garten_2x.jpg 2x, japanischer-garten_3x.jpg 3x">
 
-    <p>Bild in Größe 1353px mal 461px, mit Version mit doppelter und dreifacher Auflösung</p>
-    <img src="salzburg.jpg" srcset="salzburg.jpg 1x, salzburg_2x.jpg 2x, salzburg_3x.jpg 3x">
-
-    <p>Bild in Größe 1353px mal 461px, mit Version mit doppelter und 3x und 4x Auflösung</p>
-    <img src="salzburg.jpg" srcset="salzburg.jpg 1x, salzburg_2x.jpg 2x, salzburg_3x.jpg 3x, salzburg_4x.jpg 4x">
-  </body>
+    <img class="x4" src="japanischer-garten_1x.jpg" srcset="japanischer-garten_1x.jpg 1x, japanischer-garten_2x.jpg 2x, japanischer-garten_3x.jpg 3x, japanischer-garten_4x.jpg 4x">
+  </div>
   </body>
 </html>

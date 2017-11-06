@@ -1,7 +1,8 @@
 ---
-title: Responsive Design 
+title: Responsive Design
 order: 40
 ---
+
 
 Responsive Design
 --------------------
@@ -109,7 +110,7 @@ Mit dem Format SVG steht auch ein vektor-basiertes Bildformat für das Web zur V
 
 Schriftgröße
 ---------------
-Die Schriftgröße im Browser unterliegt nur bedingte der Kontrolle durch HTML und CSS Code. Das „letzte Wort“ hat hier die LeserIn, die die Schrift größer oder kleiner stellen kann. z.B. in MSIE unter Ansicht → Schriftgrad, in Firefox mit der Tastenkombination STRG + oder STRG – 
+Die Schriftgröße im Browser unterliegt nur bedingte der Kontrolle durch HTML und CSS Code. Das „letzte Wort“ hat hier die LeserIn, die die Schrift größer oder kleiner stellen kann. z.B. in MSIE unter Ansicht → Schriftgrad, in Firefox mit der Tastenkombination STRG + oder STRG –
 
 Je nach Schriftgröße und zur Verfügung stehendem Platz im Browser-Fenster wird der Browser die Absätze geeignet in Zeilen umbrechen, wie in Abbildung 31 gezeigt. 
 

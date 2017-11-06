@@ -93,7 +93,7 @@ der **2x** Version.
 
 ![Ausschnitt aus der Demo-Seite](/images/css-layout/vergleich.jpg)
 
-Die Demo-Seite zeigt drei Abstufungen:
+Die Demo-Seite zeigt vier Abstufungen:
 
 [Demo-Seite für "Responsive Images"](/images/responsive-images/index.html)
 

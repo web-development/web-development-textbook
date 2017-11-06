@@ -50,6 +50,10 @@ Die Angabe der Auflösung erfolgt in Pixel – die reale Größe des Ausgabeger�
 
 Hier findet man einen Faktor 6 zwischen hächster und geringster Pixeldichte.
 
+Mit mydevice.io kann man den aktuellen Browser
+vermessen. Dort gibt es auch eine [ausführlichere Liste](https://mydevice.io/devices/) von aktuellen
+Geräten.
+
 Brutto-Fläche vs. Netto-Fläche
 ---------------------------------
 Von diesen „Brutto-Angaben“ über die Größe der zur Verfügung stehenden Fläche sind nun noch der Platz für den Fensterrahmen des Browsers, für Scrollbalken, Symbolleisten, und eventuell eingeblendete Favoritenleisten abzuziehen, um den „netto“ verbleibenden Raum für die Gestaltung der Webseite zu erhalten.

@@ -85,6 +85,8 @@ Das Bild wird immer mit der gleichen Größe an virtuellen Pixel dargestellt.
 Es stehen aber noch Versionen mit doppelter und vierfacher Höhe und Breite
 zur Verfügung, die der Browser laden und darstellen kann.
 
+§
+
 Der folgende Screenshot wurde auf einem Macbook mit Retinadisplay erstellt,
 in der oberen Variante wird das "normale" Bild dargestellt, darunter das in
 der **2x** Version.
@@ -99,6 +101,8 @@ Das kann man auch mit Hintergrundbilder machen:
 
 [Demo-Seite für "Responsive Background Images"](/images/responsive-images/background.html)
 
+
+Zur Erzeugung von vielen Abstufungen kann man den [Responsive IMage Breakpoints Generator](http://www.responsivebreakpoints.com/) verwenden.
 
 ### Vektor
 
@@ -117,15 +121,15 @@ Je nach Schriftgröße und zur Verfügung stehendem Platz im Browser-Fenster wir
 
 ![Abbildung 31: Darstellung von Text bei verschiedenen Fensterbreiten und Schriftgrößen](/images/css-layout/zeilenumbruch.png)
 
-Skalieren
+Zoomen
 ----------
 
-Beim Vergrößern und Verkleinern der Schriftgröße verwenden die Browser zwei
-verschiedene Methoden: entweder die Bilder werden mit der Schrift vergrößert und
-verkleinert (heute default), oder nur der Text wird verändern, die Bilder aber bleiben gleich. 
-Hier das entsprechende Menü in Firefox. 
+Alle Browser bieten das Vergrößern und Verkleinern der Webseite an,
+meist mit einer Tastenkombination mit `+` bzw. `-`.
+Dabei werden die CSS Pixel vergrößert bzw. verkleinert.  Die Größe des
+Viewport und die CSS pixel-ratio verändern sich also, dadurch werden
+andere Mediaqueries schlagend.
 
-![Abbildung 32: Zoom Menü in Firefox](/images/css-layout/zoom.png)
 
 Vertiefung
 ----------

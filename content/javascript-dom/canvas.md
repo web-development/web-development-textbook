@@ -20,6 +20,29 @@ Eine gute Möglichkeit Canvas auszuprobieren ist [dieses jsfiddle](http://jsfidd
 
 §
 
+Die Darstellung des Canvas funktioniert erst mal nur bei
+einem `devicePixelRatio` von 1 gut.  Für höhere Pixeldichte muss
+man die Größe des Canvas extra setzen:
+
+<javascript>
+  let canvas = document.getElementById(id);
+  let ctx = canvas.getContext("2d");
+
+  let scale = window.devicePixelRatio;
+  console.log(`creating a canvas with ${canvas_width} x ${canvas_height} css pixels at devicePixelRatio ${window.devicePixelRatio}`);
+
+  // set canvas.width to real pixels - will never be used again!
+  canvas.width = canvas_width * scale;
+  canvas.height = canvas_height * scale;
+  ctx.scale(scale,scale)
+
+  // set style.width to virtual pixels, we will work with virtual pixels from now on
+  canvas.style.width = canvas_width + "px";
+  canvas.style.height = canvas_height + "px";
+</javascript>
+
+§
+
 Achsenparallelle Rechtecke zeichnet man mit fillRect:
 
 <javascript>

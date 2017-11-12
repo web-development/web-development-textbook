@@ -13,21 +13,23 @@ Typische Verwendung
 
 Neben der Verwendung für kleine Effekte im Browser hat Javascript noch weitere wichtige Anwendungsgebiete:
 
-* Als „AJAX“ zum Nachladen von Daten – das macht das Web viel interaktiver und angenehmer in der Benutzung. 
+* Als „AJAX“ zum Nachladen von Daten – das macht das Web viel interaktiver und angenehmer in der Benutzung.
 
-* Mit Javascript können Webseiten auch „offline“ – also ohne Verbindung zum Internet und dem Webserver – im Browser weiterarbieten. 
+* Mit Javascript können Webseiten auch „offline“ – also ohne Verbindung zum Internet und dem Webserver – weiterarbieten. Am Smartphone wird diese Art von Webseiten als  „progressive Web App“  bezeichnet.
 
-* Der Server Node JS ist ein (Web)Server, den man mit Javascript programmieren kann. Er wird besonders für realtime-applikationen im Web eingesetzt, z.B. für Spiele.
+* Der Server Node JS ist ein (Web)Server, den man mit Javascript programmieren kann. Er wird besonders für Realtime-Applikationen im Web eingesetzt, z.B. für Chats oder Spiele.
 
-* Javascript wird in einigen Programmen als Makro-Sprache verwendet, z.B. seit 2003 in Indesign und Illustrator.
+* Javascript wird in einigen Programmen als Makro-Sprache verwendet, z.B. in Indesign, Illustrator und in Unity.
 
 * Die No-SQL Datenbanken CouchDB und MongoDB verwendet Javascript als Abfragesprache.
 
-* Unter dem Namen Actionscript wird eine Variante von Javascript in Flash verwendet. 
+Und nur noch historisch interessant:
+
+* Unter dem Namen Actionscript wurde früher eine Variante von Javascript in Flash verwendet.
 
 Javascript und Java
 --------------------
-Es gibt noch eine zweite Programmiersprache mit sehr ähnlichem Namen: Java. Die beiden zu verwechseln ist recht peinlich. Die Verwechslung ist übrigens beabsichtigt: Im Jahr 1995 gab es einen großen Hype rund um Java, Netscape wollte davon profitieren und nannte die neue Skriptsprache im Browser „Javascript“. 
+Es gibt noch eine zweite Programmiersprache mit sehr ähnlichem Namen: Java. Die beiden zu verwechseln ist recht peinlich. Die Verwechslung ist übrigens beabsichtigt: Im Jahr 1995 gab es einen großen Hype rund um Java, Netscape wollte davon profitieren und nannte die neue Skriptsprache im Browser „Javascript“.
 
 
 
@@ -46,37 +48,43 @@ Es gibt noch eine zweite Programmiersprache mit sehr ähnlichem Namen: Java. Die
 Geschichte von Javascript
 --------------------------
 
-Javascript wurde ursprünglich bei Netscape von Brendan Eich erfunden, und dann von verschiedenen Herstellern weiterentwickelt. Es war eines der Schlachtfelder im Browser-War: Microsoft und Netscape versuchten durch verschiedene Implementierungen die Position des eigenen Browsers zu verbessern und Webseiten im gegnerischen Browser unbrauchbar zu machen. 
+Javascript wurde ursprünglich bei Netscape von Brendan Eich erfunden, und dann von verschiedenen Herstellern weiterentwickelt. Es war eines der Schlachtfelder im Browser-War: Microsoft und Netscape versuchten durch verschiedene Implementierungen die Position des eigenen Browsers zu verbessern und Webseiten im "gegnerischen" Browser unbrauchbar zu machen.
 
-Erst nachträglich gab es (partielle) Einigung auf Standards. Mit dem ECMA-Standard 262 wurde die Syntax fixiert. Sie wird von der Arbeitsgruppe ECMA TC39, in der u.a. Personen von Browser-Herstellern vertreten sind weiter entwickelt.  Die aktuelle Version die Sie erlernen ist '''ECMA Script 2015 / ES6'''.  
+Erst nachträglich gab es (partielle) Einigung auf Standards. Mit dem ECMA-Standard 262 wurde die Syntax fixiert. Sie wird von der Arbeitsgruppe ECMA TC39, in der u.a. Personen von Browser-Herstellern vertreten sind weiter entwickelt.  Die aktuelle Version die Sie erlernen ist '''ECMA Script 2015 / ES6'''.
 
-Mit dem „Document Object Model“ (DOM) wurde der Zugriff auf die Webseite vereinheitlicht. Die Entwicklung dieser API liegt beim W3C. Libraries wie Prototype oder jQuery ebenen die letzten Unterschiede noch aus. 
+Mit dem „Document Object Model“ (DOM) wurde der Zugriff auf die Webseite vereinheitlicht.
+Libraries wie jQuery ebenen die letzten Unterschiede in den Browser-Implementierungen noch aus.
 
-Lange Zeit waren kleine Javascript-Programme eine relative unabhängige Ergänzung für Web-Applikationen. Ein Beispiel dafür wäre ein Javascript-Kalender der die Eingabe eines Datums in ein Eingabefeld erleichtert. 
-
-Seit 2005 wir unter dem Schlagwort AJAX Javascript eng mit der serverseitigen Webapplikation verzahnt: AJAX steht für asynchrones Nachladen von Teilen der Webseite über Javascript. 
-
-Seit ca. 2008 sind offline-fähige Javascript-Applikationen möglich: Der Browser speichert alle notwendigen Teil der Website permanent ab, und kann die Applikation auch benutzen wenn keine Internetverbindung (mehr) besteht. Dies Applikationen haben z.B: auf dem iPad eine große Bedeutung.
-
-![Abbildung 56: Offline Applikation everytimezone.com](/images/image252.png)
-
-Unter den Stichwort „HTML5“ sind auch viele Neuerungen in Javascript, viele neue APIs gemeint: File API, Websockets,  Storage, WebGL, ...
+Die Entwicklung dieser API ist nun Teil von HTML5 und liegt beim W3C. Unter den Stichwort „HTML5“ sind auch viele Neuerungen in Javascript, viele neue APIs gemeint: File API, Websockets,  Storage, WebGL, ...
 
 
+Anwendung von Javascript
+-----------------
 
+Lange Zeit waren kleine Javascript-Programme eine relative unabhängige Ergänzung für Web-Applikationen. Ein Beispiel dafür wäre ein [Data Table](https://datatables.net/)
+der in eine HTML Tabelle die möglichkeit zum Sortieren nach eine Spalte einbaut.
+
+Große Web Applikationen wie outlook oder gmail zeigten aber bald, dass auch komplexe
+Programme im Browser möglich sind. Um diese umzusetzen gibt es heute clientseitige
+Frameworks wie Angular oder React.
+
+Web Applikationen wurden seit ca. 2008 Schritt für Schritt mehr und mehr offline-fähige.
+Heute nennt man solche Applikationen "Progressive Web Apps" (PWA). [pwa.rocks](https://pwa.rocks)
+zeigt eine Sammlsung solcher Apps.
 
 
 
 Document Object Model
 ----------------------
 
-Das Document Object Model (DOM) ist ein allgemeines Modell wie ein Dokument (die Webseite oder auch ein XML- Dokument) von einer objektorientierten Skriptsprache aus manipuliert werden kann. Am 1. Oktober 1998 wurde das DOM eine offizielle W3-Empfehlung (recommendation) in der Version 1. 0. 
+Das Document Object Model (DOM) ist ein allgemeines Modell wie ein Dokument (die Webseite oder auch ein XML- Dokument) von einer objektorientierten Skriptsprache aus manipuliert werden kann.
 
 Das DOM einer Webseite kann man sich als Baum vorstellen, ähnlich der Ordnerstruktur im Dateisystem.  Sie kennen diese Idee schon von CSS und den CSS-Selektoren.
 
-In folgendem Beispiel ist der markierte `li`-Tag innerhalb des `ul`-Tags mit klasse `.sub`, der `li`-Tag enthält wiederum einen `a`-Tag. 
+In folgendem Beispiel ist der markierte `a`-Tag innerhalb eines `li`-Tags, und
+der wiederum innerhalb eines  `uk`-Tag mit Klassen `nav` und `nav-list`.
 
-![Abbildung: Bild des DOM, erzeugt mit dem DOM Inspektor von Mozilla](/images/dom.png)
+![Abbildung: Bild des DOM, erzeugt mit den Firefox DeveloperTools](/images/javascript-dom/dom.png)
 
 Wenn man mit Javascript irgendeinen Teil der Webseite verändern will verändert man diesen Baum. Mögliche Veränderungen wären:
 

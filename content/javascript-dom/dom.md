@@ -159,7 +159,7 @@ Dieses div kann man dann clonen, falls man mehrere Pizzen braucht:
   first_pizza.insertBefore(new_pizza, null);
 </javascript>
 
-[Beispiel live im Browser](/images/moreformjs.html)
+[Beispiel live im Browser](/images/javascript-dom/moreformjs.html)
 
 
 Manipulieren der Klassen
@@ -255,7 +255,7 @@ So können wir zum Beispiel die Hintergrundfarbe des Buttons verwenden:
 </script>
 </htmlcode>
 
-Programm [live im browser](/images/farbfeld-dom.html)
+Programm [live im browser](/images/javascript-dom/farbfeld-dom.html)
 
 
 ### Pizza-Beispiel
@@ -263,7 +263,7 @@ Programm [live im browser](/images/farbfeld-dom.html)
 Hier wieder am Beispiel des Pizza-Bestellformulars: mit einem kleinen „x“ in der rechten obere Ecke soll man eine Pizza löschen können.
 
 
-![Abbildung 59: Pizza löschen mit Klick auf das x in der rechten oberen Ecke](/images/image265.png)
+![Abbildung 59: Pizza löschen mit Klick auf das x in der rechten oberen Ecke](/images/javascript-dom/pizza-x.png)
 
 Im HTML-Code fügen wir dafür einen span-Tag ein:
 

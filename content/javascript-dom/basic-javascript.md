@@ -3,7 +3,7 @@ title: Basic Javascript
 order: 20
 ---
 Ein vollständiges Beispiel für eine Webseite mit Javascript-Programm, auch
-[live im browser](/images/farbfeld.html).
+[live im browser](/images/javascript-dom/farbfeld.html).
 
 <htmlcode caption="Vollständige Webseite mit Javascript">
 <head>
@@ -33,25 +33,29 @@ Einbindung von Javascript
 --------------------------
 
 * externe Javascript-Datei
-* mit &lt;script>-Tag
+* mit `<script>`-Tag
 * Javascript in einer URL
 * onevent-Attribute
 
 ### Externe Javascript-Datei
 
-Man kann Javascript-Programme in eigenen Dateien speichern, diese haben traditionell die Endung .js. Wir werden später eine Javascript-Library namens jQuery verwendet. Mit dem `script`-Tag wird die externe Javascript-Datei eingebunden: 
+Man kann Javascript-Programme in eigenen Dateien speichern, diese haben traditionell die 
+Endung `.js`. Wir werden später eine Javascript-Library namens jQuery verwendet. 
+Mit dem `script`-Tag wird die externe Javascript-Datei eingebunden: 
 
 
 <htmlcode>
   <script src="jquery.js" type="text/javascript"></script>
 </htmlcode>
 
-Wird der `script`-Tag auf diese Weise (mit dem Attribut src) verwendet, dann darf er keinen Inhalt zwischen `<script>` und `</script>` enthalten. Achtung: die Schreibweise ohne Ende-Tag: `<script src="jquery">` ist nicht erlaubt!
+Wird der `script`-Tag auf diese Weise (mit dem Attribut src) verwendet, dann darf er 
+keinen Inhalt zwischen `<script>` und `</script>` enthalten. Achtung: 
+die Schreibweise ohne Ende-Tag: `<script src="jquery">` ist nicht erlaubt!
 
 ### Der &lt;script>-Tag 
 Javascript-Programme können im HTML-Code mit dem `script`-Tag eingebettet
 werden. Das Programm wird dann beim Aufbau der Seite ausgeführt, siehe auch
-[live im Browser](/images/countdown.html)
+[live im Browser](/images/javascript-dom/countdown.html)
 
 <htmlcode>
   <h1>Selbstzerstörung</h1>
@@ -87,6 +91,8 @@ Ohne Javascript ist es ein ganz normaler Link zu google.
 
 Mit Javascript erscheint ein Dialog, je nach Antwort wird der Link entweder aufgerufen oder nicht. Das funktioniert gleich wie beim onsubmit-Attribut des form-Tags: Wenn der Event-Handler `false` zurückgibt wird das Event unterbrochen.
 
+<a href="http://www.google.at" onclick="ok=confirm('go?'); return ok;">google</a>
+
 ###  Die onevent - Attribute ###
 
 Meist werden Javascript-Programme so geschrieben, dass sie nicht gleich beim Laden der Seite starten, sondern erst wenn gewisse Ereignisse (Events) eintreten.
@@ -108,7 +114,7 @@ Das Programm wird ausgeführt, nachdem die ganze Seite geladen und fertig darges
   <a href="..." onmouseover="...">
 </htmlcode>
 
-Das Programm wird ausgeführt wenn die Maus über den Link bewegt wird (auch: onmouseout). (Achtung: funktioniert nicht auf Touch-Devices – so wie :hover)
+Das Programm wird ausgeführt wenn die Maus über den Link bewegt wird (auch: `onmouseout`). (Achtung: funktioniert nicht auf Touch-Devices – so wie `:hover`)
 
 
 §
@@ -172,46 +178,52 @@ Syntax von Javascript
 
 Javascript hat eine ähnliche Schreibweise wie die Sprachen aus der C-Familie (C, C++, Java, Perl, PHP): Anweisung wird mit einem Strichpunkt (Semikolon) getrennt, Blöcke werden mit geschwungenen Klammern gebildet. 
 
-Javascript ist eine objektorientierte Programmiersprache. Was bedeutet objektorientierung? Die Grundidee ist, dass ein Objekt nicht nur eine Variable ist, die Daten speichert, sondern zusätzlich auch noch Funktionen existieren können, die zu diesem Objekt gehören.
+Javascript ist eine objektorientierte Programmiersprache. Was bedeutet objektorientierung? Die Grundidee ist, dass ein Objekt nicht nur eine Variable ist, die Daten speichert, sondern zusätzlich auch noch Methoden existieren können, die zu diesem Objekt gehören.
 
 §
 
 Zum Beispiel das Objekt `document` ist bei Javascript im Browser immer vorhanden. Es repräsentiert die aktuell geladene Webseite. Dieses Dokument hat einige Eigenschaften (Variablen) und einige Methoden (Funktionen):
 
 <javascript>
-// document.location          
+// document.location
 // diese Eigenschaft speichert die aktuelle URL
-// wenn man einen neuen Wert in location speichert surft der Browser hin
-document.location = "http://io9.com";  
+// wenn man einen neuen Wert in location speichert
+// surft der Browser hin
+document.location = "http://io9.com";
 
-document.write("hi");  // die Methode write (über)schreibt die webseite
+// die Methode write
+// (über)schreibt die webseite
+document.write("hi");
 </javascript>
-             
+
 §
 
-Folgendes Beispiel verwendet die Methode `getElementById` des `document`-Objekts um ein bestimmtes `div` in der Webseite auszuwählen. 
+Folgendes Beispiel verwendet die Methode `getElementById` des `document`-Objekts um ein bestimmtes Element in der Webseite auszuwählen, und dann die Eigenschaft `textContent`
+um den Text zu verändern:
 
-![Abbildung 57: Javascript-Beispiel in FireBug auf der Website http://everytimezone.com/](/images/image254.png)
+![Abbildung 58: Javascript Console in Firebug: Manipulation von Wikipedia](/images/javascript-dom/js-console.png)
+
 
 ### Variablen
 
-In andere Programmiersprachen müssen Variablen deklariert werden (ein Datentyp für die Variable wird festgelegt) und initialisiert werden (ein erster Wert wird in die Variable gespeichert). In Javascript war die Deklaration lange nicht nötig. Wenn eine Variable zum ersten Mal im Programm erwähnt wird, wird sie vom Interpreter angelegt. 
+In andere Programmiersprachen müssen Variablen deklariert werden (ein Datentyp für die Variable wird festgelegt) und initialisiert werden (ein erster Wert wird in die Variable gespeichert). In Javascript gibt es keine Deklaration des Datentypes: jede Variable kann jeden Datentyp enthalten.
 
-Auch die folgenden Beispiele können Sie direkt in der Console ausprobieren wie in der Abbildung gezeigt: Wenn Sie einen Ausdruck eintippen wird er ausgewertet. Mit dem Befehl console.log( … ) können Sie direkt auf die Console schreiben. 
+Auch die folgenden Beispiele können Sie direkt in der Console ausprobieren wie in der Abbildung gezeigt: Wenn Sie einen Ausdruck eintippen wird er ausgewertet. Mit dem Befehl console.log( … ) können Sie direkt auf die Console schreiben.
 
 
-![Abbildung 58: Javascript Console in Firebug](/images/image264.png)
+![Abbildung 58: Javascript Console in Firebug](/images/javascript-dom/js-console-vars.png)
 
 Mit Javascript 2015 gibt nun drei Arten eine Variable zu deklarieren:
 
 <javascript caption="deklaration">
 var a;  // altmodisch
 
-let b;    // neumodisch, variable
-const c;  // neumodisch, konstante
+let b;    // neumodisch, Variable
+const c;  // neumodisch, Konstante
 </javascript>
 
-Die Details zu `let` und `const` lernen Sie später im Kapitel [Variablen und Scope](/javascript/variablen/)
+Die Details zu `let` und `const` lernen Sie später 
+im Kapitel [Variablen und Scope](/javascript/variablen/)
 
 
 ### Datentypen
@@ -236,7 +248,7 @@ können Sie in [How numbers are encoded in JavaScript](http://www.2ality.com/201
 In Javascript gibt es drei Arten Strings zu schreiben.
 
 <javascript caption="drei Arten Strings zu schreiben">
-a = "Hallo"; 
+a = "Hallo";
 b = 'Welt';
 c = `Hallo ${b}, der brutto Preis ist ${100 * 1.5}`;
 </javascript>
@@ -246,21 +258,22 @@ Auswerten von Javascript-Expressions.  Siehe auch [MDN](https://developer.mozill
 
 ### Arrays
 
-Arrays in Javascript können wie in C mit eckigen Klammern und Integer-Index ausgelesen werden: `b[0]`, `b[1]`, …  Aber eigentlich sind Arrays schon Objekte. 
+Arrays in Javascript können wie in C mit eckigen Klammern und Integer-Index ausgelesen werden: `b[0]`, `b[1]`, …  Aber eigentlich sind Arrays schon Objekte.
 
 Für das Erzeugen des Arrays gibt es zwei Schreibweisen
 
 <javascript>
   var b;
   b = ["eins", 2, 3.141, true];           // JSON-Schreibweise
-  b = new Array("eins", 2, 3.141, true);  // Objekt-Schreibweise  
+  b = new Array("eins", 2, 3.141, true);  // Objekt-Schreibweise
   // typeof(b) == "object"
 </javascript>
 
 §
 
-Die Werte im Array können verschiedene Daten haben (String, Number, Boolean,...). Die Größe des Arrays ist nicht beschränkt, die aktuelle Länge des Arrays kann aus der Eigenschaft .length ausgelesen werden.
-[Beispiel live im Browser](/images/jsarray.html)
+Die Werte im Array können verschiedene Daten haben (String, Number, Boolean,...). Die Größe des Arrays ist nicht beschränkt, die aktuelle Länge des Arrays kann aus der Eigenschaft 
+`.length ausgelesen werden.
+[Beispiel live im Browser](/images/javascript-dom/jsarray.html)
 
 <javascript>
   var i,t;
@@ -270,23 +283,25 @@ Die Werte im Array können verschiedene Daten haben (String, Number, Boolean,...
       t += "Index " + i    + "\n";
       t += "Wert  " + b[i] + "\n";
       i++;
-  }   
+  }
   alert(t);
 </javascript>
 
 ### Objekte
 
-Für das Erzeugen von Objekten gibt es zwei Schreibweisen: die JSON-Schreibweise mit geschwungenen Klammern eignet sich gut für einmalige Objekte. Will man mehrere Objekte mit denselben Eigenschaften erzeugen, dann ist eine Construktor-Funktion besser geeignet.
+Für das Erzeugen von Objekten gibt es zwei Schreibweisen: die JSON-Schreibweise mit geschwungenen Klammern eignet sich gut für einmalige Objekte. Will man mehrere Objekte mit denselben Eigenschaften erzeugen, dann ist eine Klasse mit Konstruktor besser geeignet.
 
 <javascript>
   var c;
-  c = {"farbe" : "rot", "beschriftung": "int pi == 3", "verkauft": true};  
+  c = {"farbe" : "rot", "beschriftung": "int pi == 3", "verkauft": true};
 
   // Construktor-Funktion
-  function Shirt( f, b, v ) {
+  class Shirt {
+    constructor( f, b, v ) {
       this.farbe        = f;
       this.beschriftung = b;
       this.verkauft     = v;
+    }
   }
   d = new Shirt("rot", "int pi == 3", true);
 
@@ -303,7 +318,7 @@ Für das Erzeugen von Objekten gibt es zwei Schreibweisen: die JSON-Schreibweise
 Eine Besonderheit von Javascript (die sie nicht in anderen Programmiersprachen finden werden) ist, dass Eigenschaften eines Objekts nicht nur über die Punkt-Schreibweise, sondern auch über eckige Klammern – also wie ein Array – angesprochen werden können:
 
 <javascript>
-  alert("Das Shirt ist " + c.farbe ); 
+  alert("Das Shirt ist " + c.farbe );
   alert("Das Shirt ist " + c["farbe"] );
 </javascript>
 
@@ -314,10 +329,10 @@ In den eckigen Klammern steht nun ein String. Dieser könnte auch in einer Varia
   alert("Die Beschriftung lautet " + c[e] );
 </javascript>
 
-### Einfache Schleife 
+### Einfache Schleife
 
-Neben der `while` und `for` Schleife mit index 
-gibt es in Javascript noch möglichkeiten über
+Neben der `while` und `for` Schleife mit index
+gibt es in Javascript noch Möglichkeiten über
 die Werte in einem Array zu iterieren **ohne** den
 index zu benötigen:
 

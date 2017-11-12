@@ -6,11 +6,11 @@ order: 50
 Zeile zu einem Formular hinzufügen
 -------------------
 Ohne Javascript sind Web Formulare statisch. Um Eingabelemente hinzuzufügen
-oder zu löschen braucht man Javascript. 
+oder zu löschen braucht man Javascript.
 
-In diesem Beispiel verwenden wir Javascript, um ein Pizza-Bestellformular zu verändern. 
+In diesem Beispiel verwenden wir Javascript, um ein Pizza-Bestellformular zu verändern.
 
-Die wichtigsten DOM-Befehle für dieses Beispiel sind `cloneNode()` und `insertBefore()`. 
+Die wichtigsten DOM-Befehle für dieses Beispiel sind `cloneNode()` und `insertBefore()`.
 Mit `cloneNode` können wir die Kopie eines einzelnen DOM-Knoten oder eines ganzen DOM-Baums erstellen. 
 Dieser Klon ist zuerst einmal nicht Teil des Originaldokuments. Man muss ihn erst wieder
 einfügen:
@@ -61,4 +61,4 @@ Deswegen sieht eine Zeile des Pizza-Bestellformulars so aus:
 
 §
 
-Fertiges Formular [Demo](/images/example_js_add_to_form.html)
+Fertiges Formular [Demo](/images/javascript-dom/example_js_add_to_form.html)

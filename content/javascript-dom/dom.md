@@ -62,6 +62,22 @@ document.getElementById("person_25").setAttribute("style", "display:none");
 
 Achtung: Falls der Tag schon ein Style-Attribute hatte wurde dieses überschrieben.  Der Wert des Attributes ist ein einfacher String.
 
+### Manipulieren der Klassen
+
+Statt den Style direkt zu manipulieren, könnte
+man eine Klasse setzen:
+
+
+<javascript>
+document.getElementById("person_25").classList.add('sichtbar');
+document.getElementById("person_25").classList.remove('sichtbar');
+document.getElementById("person_25").classList.toggle('sichtbar');
+if( document.getElementById("person_25").classList.contains('sichtbar') ) {
+  // wird nur ausgeführt falls person sichtbar
+}
+</javascript>
+
+
 ### Selektieren
 
 Man kann CSS-Selektoren verwenden um Element auszuwählen, und zwar mit der Methode `document.querySelectorAll()`:
@@ -159,22 +175,9 @@ Dieses div kann man dann clonen, falls man mehrere Pizzen braucht:
   first_pizza.insertBefore(new_pizza, null);
 </javascript>
 
-[Beispiel live im Browser](/images/javascript-dom/moreformjs.html)
+[Beispiel live im Browser](/images/javascript-dom/example_js_add_to_form.html)
 
 
-Manipulieren der Klassen
--------------------------
-
-
-
-<javascript>
-document.querySelector('#foo').classList.add('bar');
-document.querySelector('#foo').classList.remove('bar');
-document.querySelector('#foo').classList.toggle('bar');
-if( document.querySelector('#foo').classList.contains('bar') ) {
-  // 
-}
-</javascript>
 
 
 

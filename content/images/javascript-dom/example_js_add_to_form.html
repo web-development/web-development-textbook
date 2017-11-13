@@ -16,7 +16,7 @@
       margin-bottom: 20px;
     }
     label  {
-      font-weight: bold;		
+      font-weight: bold;
     }
     form {
       width: 600px;
@@ -52,7 +52,7 @@
         <label>anything else?<input name="comment[]" type="text"></label>
       </p>
     </div>
-    
+
     <input id="more" value="add another pizza" type="button">
     <p>
       <input type="submit">
@@ -74,7 +74,7 @@
       let new_pizza = p.cloneNode(true);
       new_pizza.children[0].children[0].addEventListener("click", removeMe);
       f.insertBefore(new_pizza, p);
-    }		
+    }
     function start(){
       document.querySelector(".removethis").addEventListener("click", dontRemoveMe);
       document.getElementById("more").addEventListener("click", addPizza);

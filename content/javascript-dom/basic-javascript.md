@@ -45,7 +45,7 @@ Mit dem `script`-Tag wird die externe Javascript-Datei eingebunden:
 
 
 <htmlcode>
-  <script src="jquery.js" type="text/javascript"></script>
+  <script src="jquery.js"></script>
 </htmlcode>
 
 Wird der `script`-Tag auf diese Weise (mit dem Attribut src) verwendet, dann darf er 

@@ -85,10 +85,10 @@ Width und Auto
 ---------------
 Normalerweise nimmt ein Block die maximal zur Verfügung stehende Breite ein. Mit
 `width` kann eine andere Breite eines Blocks definiert werden:
-Um einen Element zu zentrieren kann margin mit Wert auto verwendet werden, der den zur Verfügung stehenden Platz automatisch gleichmäßig verteilt. 
+Um einen Element zu zentrieren kann margin mit Wert auto verwendet werden, der den zur Verfügung stehenden Platz automatisch gleichmäßig verteilt.
 
 <div class="resizable">
-<div style="width: 60%; margin: 0 auto; background-color: #ddd;">
+<div style="max-width: 60%; margin: 0 auto; background-color: #ddd;">
 <p>Der Margin wird links und rechts gleich verteilt mit "auto"</p>
 <p><kbd>
 div {<br>
@@ -98,6 +98,13 @@ div {<br>
 }</kbd></p>
 </div>
 </div>
+
+
+Statt einer fixen Breite  `width: 900px`  kann man eine maximale Breite
+mit `max-width: 900px` angeben.  Stehen weniger als 900px zur Verfügung
+dann wird diese CSS Anweisung ignoriert, und der Block nimmt wieder 100% der
+Breite ein.
+
 
 Float
 ------

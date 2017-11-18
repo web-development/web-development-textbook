@@ -265,5 +265,8 @@ Viele Methoden
 
 Neben den drei hier gezeigten gibt es noch viele weitere
 Methoden um das Layout der Seite zu beeinflussen.
+
 Für einen ersten Einstieg reichen die hier gezeigten,
 später sollten Sie noch [weitere Details](/css-layout/details) kennen lernen.
+
+Eine gute englischsprachige Quelle dazu ist [learnlayout.com](http://learnlayout.com/)

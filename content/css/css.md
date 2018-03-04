@@ -13,7 +13,7 @@ h1,h2 {
 body {
   margin-left: 150px;
   background-color: white;
-} 
+}
 p {
   text-align: justify;
 }
@@ -184,4 +184,24 @@ Wird in einem Stylesheet auf eine URL verwiesen (z.B. auf die URL eines Hintergr
 * `url(relativ/bild.gif)` 
 
 zum Einsatz. Achtung: die relative URL bezieht sich auf das Stylesheet (nicht die HTML-Datei in der es verwendet wird).
+
+### Variablen in CSS
+
+Für Werte die mehrmals verwendet werden kann man Variablen setzen:
+
+
+<css>
+:root {
+  --important-color: darkcyan;
+  --text-on-important-color: darkcyan;
+}
+
+h1 {
+  color: var(--important-color);
+}
+nav {
+  background-color: var(--important-color);
+  color: var(--text-on-important-color);
+}
+</css>
 

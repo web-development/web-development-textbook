@@ -16,4 +16,9 @@ task :clean do
   FileUtils.rm_r('output') if File.exist?('output')
 end
 
+task :test do
+  require 'html-proofer'
+  HTMLProofer.check_directory('output').run
+end
+
 task :default => 'compile'

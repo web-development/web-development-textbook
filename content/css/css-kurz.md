@@ -40,9 +40,9 @@ Die html-Datei
 </htmlcode>
 
 <css caption="Die Datei fh.css">
-h1 { 
+h1 {
   font-family: Arial;
-  color: blue; 
+  color: blue;
 }
 p:first-letter {
   font-size: large;

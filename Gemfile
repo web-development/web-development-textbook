@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.4.2'
 
+gem 'html-proofer'
 gem "rake"
 gem "curb"
 gem "nanoc", '~>3.8.0'

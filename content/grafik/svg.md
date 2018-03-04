@@ -454,7 +454,9 @@ Für fortgeschrittene Animationen kann  man zusätzlich die Library [gsap](http:
 ## Mehr
 
 * [RFC zu SVG](http://www.w3.org/TR/SVG11/)
+* [Understanding SVG Coordinate Systems and Transformations](http://www.sarasoueidan.com/blog/svg-coordinate-systems/)
 * [Snap Javascript Library für die Erzeugung von SVG](http://snapsvg.io/)
 * [gsap Library for Animation in SVG](http://github.com/greensock/GreenSock-JS/)
 * [Tutorial: SVG in Webseiten verwenden: Hintergrundbild, Bild, Data-URL](http://css-tricks.com/using-svg/)
+* [SVG in the movies](https://moviecode.tumblr.com/post/72085619482/in-an-episode-of-doctor-who-the-doctor-is-seen)
 

@@ -57,3 +57,8 @@ Und ein ganz konkretes Arbeitsergebnis:
 
 
 
+## Literatur, andere Quellen
+
+* [Estelle Weyl](http://estelle.github.io/)
+* [Sara Soueidan](http://www.sarasoueidan.com/article-archives/)
+

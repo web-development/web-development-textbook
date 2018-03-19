@@ -37,9 +37,9 @@ Das erste Argument wird in der [Dokumentation](http://www.php.net/manual/en/pdo.
 als "Data Source Name" bezeichnet und enthält mehrere Informationen, die in
 einen String gepackt werden.
 
-Ein Beispiel für einen Postgres DSN ist `"psql:dbname=portfolio_playground;host=localhost"`.
-Ein DSN beginnt immer mit einem Kürzel für die Datebank, hier also `psql`.  Welche
-weiteren Teile der DSN anthält kann man in der [Dokumentation des jeweiligen PDO Datenbank Treibers](http://www.php.net/manual/en/ref.pdo-psql.connection.php) nachlesen.
+Ein Beispiel für einen Postgres DSN ist `"pgsql:dbname=portfolio_playground;host=localhost"`.
+Ein DSN beginnt immer mit einem Kürzel für die Datebank, hier also `pgsql`.  Welche
+weiteren Teile der DSN anthält kann man in der [Dokumentation des jeweiligen PDO Datenbank Treibers](http://www.php.net/manual/en/ref.pdo-pgsql.connection.php) nachlesen.
 
 Für den Postgres Treiber sind das der Name der Datenbank `dbname` und der `host`,
 eventuell der `port`.  Alternativ kann man die Verbindung statt über Host und
@@ -66,7 +66,7 @@ So sieht die Datei `config.php` aus:
 $DB_NAME = "portfolio_playground"; 
 $DB_USER = "mmtuser"; 
 $DB_PASS = "****";
-$DSN     = "psql:dbname=$DB_NAME;host=localhost";
+$DSN     = "pgsql:dbname=$DB_NAME;host=localhost";
 </php>
 
 Warum zwei Dateien?  Weil wir die Zugangsdaten (Username, Passwort)

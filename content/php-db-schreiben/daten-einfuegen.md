@@ -8,6 +8,7 @@ Hier das einfachste Programm, das ein neues Werk speichert:
 <php caption="Einfügen von Daten in die Datenbank - mit Sicherheitsproblem!">
 $t = $_POST['title'];
 $dbh->query("INSERT INTO projects (title) VALUES ('$t')");
+// Beispielcode mit Sicherheitslücke - NICHT verwenden!
 </php>
 
 §
@@ -16,32 +17,36 @@ Aber was passiert wenn ein Werk den Titel
 „That’s it“ haben soll? Dann wird folgendes SQL-Statement ausgeführt:
 
 <sql>
-INSERT INTO projects (titel) VALUES ('That's it')
+INSERT INTO projects (title) VALUES ('That's it')
 </sql>
 
 Das kann nicht funktionieren: das einfache Anführungszeichen beendet den String
-und es bleibt `s it` übrig. Die Fehlermeldung von MySQL lautet:
+und es bleibt `s it` übrig. Die Fehlermeldung von Postgres lautet:
 
 <plain>
-#1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 's it')' at line 1
+ERROR:  syntax error at or near "s"
 </plain>
 
-### die falsche Lösung
+### Die Falsche Lösung
 
 Für dieses Problem gab es in PHP bis Version 5.3.0 eine **einfache** und **falsche** Lösung:
 
 Urspünglich veränderte PHP automatisch alle Daten die über GET, POST und
 Cookies hereinkommen: Vor alle Anführungszeichen wird ein Backslash eingefügt.
 Aus „That's it“ wird also automatisch „That\\'s it“, das SQL-Statement
-funktioniert wieder:
+funktioniert jetzt für MySQL:
 
 <sql>
 INSERT INTO werk (titel) VALUES ('That\'s it')
 </sql>
 
-Diese Automatik funktioniert aber leider nur für einige Datenbanken.
-Andere Datenbanken haben anderen Quoting-Konventionen, in
-anderen Kontexten muss man ganz anders Escapen.
+Diese Automatik funktioniert aber leider **nur** für MySQL, 
+nicht aber für Postgres. Da müsste es heissen:
+
+<sql>
+INSERT INTO werk (titel) VALUES ('That''s it')
+</sql>
+
 
 §
 
@@ -66,11 +71,7 @@ print_r($_POST);
 echo("</pre>");
 </php>
 
-In Wirklichkeit konnte man die magic quotes bis Version nicht ganz abschalten, wie man in der
-PHP-Doku nachlesen kann[&rarr;](http://at.php.net/manual/de/security.magicquotes.disabling.php).
-Das Problem betrifft allerdings nur Array-Parameter.
-
-### die richtige Lösung
+### Die Richtige Lösung
 
 Wenn die magic quotes abgeschalten sind, kann man das SQL-Problem besser lösen: mit prepared statements. 
 
@@ -90,7 +91,7 @@ $sth = $dbh->prepare(
       VALUES
     (DEFAULT, ?, ?, ?, ?)");
 
-// Variante 3: nur mySQL (mit NULL für den autoincrement id-Wert)
+// Variante 3: nur MySQL (mit NULL für den autoincrement id-Wert)
 $sth = $dbh->prepare(
   "INSERT INTO users
     (id,  firstname,surname,email,profile_visible)
@@ -112,8 +113,7 @@ $sth->execute(
 §
 
 Beim Einfügen in die Users-Tabelle kann es leicht zu Problemen kommen: Die
-Tabelle verlangt, zum Beispiel, für email einen eindeutigen Eintrag. Wenn man
-hier einfach nichts eingibt, ergibt das einen Fehler.
+Tabelle verlangt für manche Spalten eine eingabe.
 
 So weit wollen Sie es nicht kommen lassen: Sie sollten die Eingaben aus dem
 Webformular schon vor dem INSERT prüfen und dann ausführliche, vollständige,

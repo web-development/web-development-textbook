@@ -9,7 +9,7 @@ das als Parameter die `id` der Person erhält, die gelöscht werden soll:
 <php caption="Skript person_delete.php mit Sicherheitslücke!">
 $id   = $_POST['id'];
 $dbh->exec("DELETE FROM users WHERE id=$id" );  
-// NICHT so implementieren!
+// Beispielcode mit Sicherheitslücke - NICHT verwenden!
 </php>
 
 §
@@ -35,8 +35,8 @@ DELETE FROM users WHERE id=9 OR 1=1
 </sql>
 
 Und dieses Statement löscht nicht einen Datensatz sondern alle Datensätze. Diese
-Art von Attacke auf eine Web-Applikation nennt man „SQL Injection“, weil in
-das SQL etwas "injiziert" wird.
+Art von Attacke auf eine Web-Applikation nennt man „SQL Injection“, weil Alyssa
+es gschafft hat ihr SQL hinein zu "injiziert".
 
 ### SQL Injection verhindern
 
@@ -93,10 +93,16 @@ normale query zu wiederholen.
 
 ### SQL Injection gibt es nicht nur bei DELETE
 
-Wir haben diese Attacke am Beispil einer Löschoperation kennen gelert.
+Wir haben diese Attacke am Beispiel einer Löschoperation kennen gelernt.
 Aber auch ein einfaches `SELECT` kann mittels SQL Injection missbraucht werden
 um zusätzliche Informationen aus der Datenbank auszulesen, die wir nicht
 vorgesehen haben.
+
+<php caption="SELECT mit Sicherheitslücke!">
+$id   = $_POST['id'];
+$dbh->exec("SELECT * FROM comments WHERE id=$id");  
+// Beispielcode mit Sicherheitslücke - NICHT verwenden!
+</php>
 
 Die Attacke mit `1=1` ermöglicht das Lesen von Datensätzen aus derselben Tabelle:
 
@@ -114,9 +120,9 @@ $query = "SELECT id, name FROM cities WHERE name = '$name'";
 $dbh->query($query);
 </php>
 
-<plain caption"attacke">
+<shell caption="attacke">
 hallo' UNION SELECT id, password FROM users WHERE '' LIKE '%
-</plain>
+</shell>
 
 Wird hier eine Query zusammen gebaut, die eine zweite Tabelle ausliest:
 
@@ -134,7 +140,7 @@ immer prepared Statements!
 <php caption="sicherer code">
 $query = "SELECT id, name FROM cities WHERE name=?";
 $sth = $dbh->execute($query);
-$sth->execute($name);
+$sth->execute( array($name) );
 </php>
 
 

@@ -68,15 +68,14 @@ $get_id = $_GET['id'];
 try{
   include "config.php";
 
-  if( ! $DB_NAME ) {
+  if( ! $DSN ) {
     throw(new Exception( "DB nicht konfiguriert. config.php anlegen!" ));
   }
 
-  $dbh = new PDO("mysql:dbname=$DB_NAME", $DB_USER, $DB_PASS);
+  $dbh = new PDO($DSN, $DB_USER, $DB_PASS);
   /* das folgende Attribut aktiviert die Exceptions */
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-  $dbh->exec('SET CHARACTER SET utf8') ;
 
   $sth  = $dbh->prepare( "SELECT * FROM users WHERE id=?" );
   $sth->execute(array($get_id));

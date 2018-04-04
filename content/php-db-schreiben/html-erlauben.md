@@ -128,13 +128,13 @@ EOM;
 
 Markdown ist eine sehr simple Formatierungs-Sprache - viel einfacher als HTML.
 
-<markdown caption="Beispiel für einen Text in Markdown">
+<plain caption="Beispiel für einen Text in Markdown">
   ### Abspeichern von HTML
 
   Bevor wir das eingegeben HTML abspeichern, wollen wir es
   streng kontrollieren: Im Profil sollen nur die HTML-Tags
   `<p>` und `<b>` verwendet werden können, mehr nicht. 
-</markdown>
+</plain>
 
 Dieses Format wird in der Datenbank gespeichert. Erst bei
 der Ausgabe als HTML wird Markdown in HTML verwandelt.

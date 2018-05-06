@@ -111,6 +111,9 @@ objekt.method_2("Eis");
 objekt.method_2(objekt.prop1);
 </javascript>
 
+Achtung: Wenn das Objekt serialisiert wird, also in einem String
+gespeichert wird (um es in LocalStorage zu speichern oder 
+über HTTP zu verschicken) dann gehen die Funktionen verloren!
 
 ## Was ist this?
 

@@ -8,19 +8,19 @@ Mein Name ist Dollar
 ---------------------
 In Javascript kann das Dollar-Zeichen in Bezeichnen (Variablennamen, Funktionsnamen) verwendet werden. jQuery nutzt diese Besondernheit von Javascript aus und definiert eine Funktion und ein Objekt mit dem Dollarzeichen als Namen. Hier eine kleine Lese-Schule:
 
-Eine Funktion mit dem Namen $ wird mit einem Argument aufgerufen, das Argument ist ein String:
+Eine Funktion mit dem Namen `$ wird mit einem Argument aufgerufen, das Argument ist ein String:
 
 <javascript>
   $("a")
 </javascript>
 
-Eine Funktion mit dem Namen $ wird mit einem Argument aufgerufen, das Argument ist das document-Objekt:
+Eine Funktion mit dem Namen `$`  wird mit einem Argument aufgerufen, das Argument ist das document-Objekt:
 
 <javascript>
   $(document)
 </javascript>
 
-Das Objekt mit dem Namen $ hat eine Methode get. Diese wird mit zwei Argumenten aufgerufen:
+Das Objekt mit dem Namen `$`  hat eine Methode `get. Diese wird mit zwei Argumenten aufgerufen:
 
 <javascript>
   $.get("backend.php", callback)
@@ -28,7 +28,7 @@ Das Objekt mit dem Namen $ hat eine Methode get. Diese wird mit zwei Argumenten 
 
 Chaining – eine Kette von Methodenaufrufen
 ---------------------------------------------
-Die meisten jQuery-Methoden geben wieder ein jQuery-Objekt zurück. In folgendem Code sind o1, o2, o3 jeweils jQuery-Objekte.  Jedes jQuery-Objekt bietet die Methoden addClass und append an.
+Die meisten jQuery-Methoden geben wieder ein jQuery-Objekt zurück. In folgendem Code sind `o1`, `o2`, `o3` jeweils jQuery-Objekte.  Jedes jQuery-Objekt bietet die Methoden addClass und append an.
 
 <javascript>
   o1 = $('h1');
@@ -36,7 +36,7 @@ Die meisten jQuery-Methoden geben wieder ein jQuery-Objekt zurück. In folgendem
   o3 = o2.append(":");
 </javascript>
 
-Wenn man die “Zwischen-Objekte” o1, o2, o3 nicht wirklich noch einmal verwenden will, dann braucht man sie auch nicht in einer Variable zu speichern. Eine alternative Schreibweise ist dann:
+Wenn man die “Zwischen-Objekte” `o1`, `o2`, `o3` nicht wirklich noch einmal verwenden will, dann braucht man sie auch nicht in einer Variable zu speichern. Eine alternative Schreibweise ist dann:
 
 <javascript>
   $('h1').addClass("gag").append(":");
@@ -131,6 +131,15 @@ Da die Funktion `nach_dem_laden` nur einmal verwendet wird, ist es eigentlich ni
         // Your code here 
   }); 
 </javascript>
+
+Seit ES6 kann man die anonyme Funktion noch kürzer schreiben, als Arrow Function:
+
+<javascript>
+  $(document).ready( () => { 
+        // Your code here 
+  }); 
+</javascript>
+
 
 Zur Beruhigung: auch wenn Sie die Schreibweise jetzt noch nicht ganz durchschauen können Sie jQuery erfolgreich verwenden. Sie können die drei Zeilen einfach mit copy-und-paste in eine Webseite übertragen und Ihren eigenen Code dann einfügen. (Wahrscheinlich arbeiten die meisten DesignerInnen so mit jQuery.) Wenn Sie aber hauptberuflich in der Programmierung arbeiten wollen, dann müssen Sie das eines Tages genau verstehen!
 

@@ -3,6 +3,37 @@ title: Graceful Degradation
 order: 15
 ---
 
+
+## graceful und progressive
+
+Die Library jQuery unterstützt das Prinzip der „graceful degradation“ – auch ohne Javascript sind Webseiten mit jQuery immer noch gut verwendbar. Dieses Prinzip wird auch „progressive enhancement“ genannt, und bezieht sich nicht nur auf Javascript, sondern auch auf andere „Zusatz-Technologien“ wie z.B. Flash.
+
+Die Idee ist dabei immer die Gleich: man baut die Webseite zuerst ohne Javascript, und fügt dann Javascript hinzu (ohne die Verwendbarkeit ohne Javscript zu zerstören). Der Inhalt (Content) der Webseite bleibt auch ohne Javascript zugänglich.
+
+
+![Abbildung 60: Die Rolle von Content, Darstellung und Programmierung (Unobstrusive Javascript)](/images/image267.png)
+
+§
+
+Von dieser Herangehensweise profitieren nicht nur Blinde, Menschen mit veralteten Browsern oder exotischen Ausgabegeräte. Auch für Suchmaschinen wie Google oder andere Programme die die Information aus den Webseiten weiter verarbeiten ist dieses Prinzip hilfreich.
+
+Um zu testen, ob das wirkliche funktioniert kann man ganz einfach mit dem Firefox-AddOn QuickJava testen. Wie hier gezeigt kann Javascript mit einem Klick deaktiviert werden.
+
+
+![Abbildung 61: Javascript deaktivieren mit Javascript Toggle in Firefox](/images/javascript-toggle.png)
+
+## Grenzen von Graceful Degradation
+
+Es gibt Websites, bei denen dieser Ansatz nicht funktionieren kann.
+z.B. für einen Shooter als Browsergame kann man nicht nicht eine
+Alternative ohne Javascript anbieten.
+
+Für viele Apps funktioniert das aber.  Probieren Sie z.B. gmail ohne javascript
+aus, oder das Webmail der FH (zimbra).  Die Interaktion ist etwas
+umständlicher, aber man kann alle Features der Mail benutzen.
+
+## Ein praktisches Beispiel
+
 Die Aufgabenstellung: ein einer langen Webseite sind mehrere Anker-Punkte
 mit `<a name=...>` gesetzt, über ein Navigationsmenü soll man diese erreichen
 können.  [Diese Seite](http://brigitte-jellinek.at) zeigt ein funktionierendes
@@ -33,15 +64,6 @@ __|__
   z-index: 10;
   bottom: -1px;
 }
-
-
-
-
-
-
-
-
-
 </htmlcode>
 
 ### Version 2
@@ -90,8 +112,8 @@ Mit dieser Version haben wir
 
 Wir haben dabei beide Prinzipien gebrochen
 
-* kein progressive enhancement: Links funktionieren nicht mehr
-* kein unobstrusive javascript: Javascript-Code direkt in HTML-Attributen
+* kein Progressive Enhancement: Links funktionieren nicht mehr
+* kein Unobstrusive Javascript: Javascript-Code direkt in HTML-Attributen
 
 ### Version 3
 
@@ -108,29 +130,35 @@ Die Navigation wird wieder zurück-gestellt auf normale HTML-Links:
 </div>
 </htmlcode>
 
-Die Funktion `scrollToMe` wird als Eventhandler implementiert:
-sie erwartet ein Event als Argument und die angeklickte Node
-in der Variablen `this`.  Ausserdem verwendet die Funktion
-die jQuery-Methode `preventDefault` um das "normale" Verhalten
-des Links zu unterbinden.
 
-In der letzten Zeile wird an alle Links in der Navigation
-die Funktion `scrollToMe` als Eventhandler für `click` angefügt.
+An diese Links wird ein neuer Eventhandler angefügt, abernicht mit `onclick`
+im HTML, sondern mit jquery. 
 
 <javascript caption="Version 3">
 $(document).ready( function () {
-
-  function scrollToMe(event) {
-    var link = $(this).attr('href'),
-        top  = $(link).offset().top;
-    $('body').animate({
-      scrollTop: top
-    }, 800);
-    event.preventDefault();
-  }
-
   $('#navigation a').on('click', scrollToMe);
 });
+</javascript>
+
+§
+
+Die Funktion `scrollToMe` wird als Eventhandler implementiert:
+sie erwartet ein Event als Argument und die angeklickte Node
+in der Variablen `this`.  
+
+Ausserdem verwendet die Funktion
+die jQuery-Methode `preventDefault` um das "normale" Verhalten
+des Links zu unterbinden.
+
+<javascript caption="Version 3">
+function scrollToMe(event) {
+  var link = $(this).attr('href'),
+      top  = $(link).offset().top;
+  $('body').animate({
+    scrollTop: top
+  }, 800);
+  event.preventDefault();
+}
 </javascript>
 
 §
@@ -150,7 +178,6 @@ beim anderen Prinzipien auf halben Weg
 * unobstrusive javascript: erfüllt
 
 
-
 ### Version 4
 
 Im nächsten Schritt werden wir sicher stellen, dass die Animation
@@ -164,7 +191,7 @@ Achtung: hier gibt es einen falschen und einen richtigen Ansatz:
 Die erste Variante funktioniert nicht: die Selbstoffenbarung der Browser
 kann falsch sein, ich kenne nicht alle Browser und ihre Fähigkeiten.
 Siehe auch
-[Zakas(2009): Feature detection is not browser detection. In NCZOnline.](http://www.nczonline.net/blog/2009/12/29/feature-detection-is-not-browser-detection/)
+[Feature & Browser Detection im jQuery learning center](https://learn.jquery.com/code-organization/feature-browser-detection/)
 
 
 Die Funktion `scrollToMe` bleibt unverändert.
@@ -191,16 +218,6 @@ angeboten.
 
 §
 
-Nebenbemerkung: In ganz seltenen Fällen muss man doch Browser Detection machen.
-Eine Gute Library dafür ist [HTML5 please](http://api.html5please.com/).
-Damit kann man eine Liste von Features angeben die erfüllt sein
-müssen damit die Seite funktioniert.  Ist das nicht der Fall, dann
-wird eine entsprechende Meldung angezeigt
-
-![HTML5 please Fehlermeldung](/images/html5please.png)
-
-§
-
 Diese Variante behebt das Problem mit nicht-funktionierenden
 Javascript-Browsern:
 
@@ -214,8 +231,6 @@ Es bleibt aber noch in Problem:
   * in der Javascript-Variante bleibt die URL immer gleich
 * unobstrusive javascript: erfüllt
 
-
-
 ### Version 5
 
 In der klassischen Version ändert sich beim navigieren zwischen den
@@ -226,11 +241,21 @@ dann verweist die URL die ich verwende wirklich wieder genauf auf das Ziel.
 Dieses Verhalten ist erstrebenswert, wird aber von der "animierten" Version
 derzeit nicht geliefert.
 
-Diese "Navigierbarkeit" ist auch ein klassisches Problem von AJAX-Applikationen,
-die Lösung die wir hier entwickeln funktioniert auch dort:
+(Diese "Navigierbarkeit" ist auch ein klassisches Problem von AJAX-Applikationen,
+die Lösung die wir hier entwickeln funktioniert auch dort)
 
 In die Funktion `scrollToMe` wird eine Zeile eingefügt.
-Mit dem History-Objekt kann man den Browser von Javascript aus "navigieren":
+
+<javascript caption="Version 4">
+function scrollToMe(event) {
+  var link = $(this).attr('href');
+  ...
+  window.history.pushState( {}, "Thema " + link, link);
+}
+</javascript>
+
+
+Mit dem `window.history` Objekt kann man den Browser von Javascript aus "navigieren":
 mit `history.back()` zum Beispiel einen Schritt zurück gehen.
 
 Mit `history.pushState()` kann man zu einer neuen Seite navigieren,
@@ -244,14 +269,6 @@ Beide Methoden erwarten drei Argumente - ein Objekt und zwei Strings -
 aber nur das letzte Argument wird derzeit benutzt. Es ist ein String mit der
 URL die geladen werden soll.
 
-<javascript caption="Version 4">
-function scrollToMe(event) {
-  var link = $(this).attr('href');
-  ...
-  window.history.pushState( {}, "Thema " + link, link);
-}
-</javascript>
-
 §
 
 Mit dieser Variante haben wir  für die Javascript-Browser
@@ -264,7 +281,4 @@ Damit sind beide Prinzipien voll erfüllt:
 * unobstrusive javascript - kein Javascript-Code im HTML
 
 
-§
 
-History auch in HTML4 Browsern verwenden:
-https://github.com/balupton/History.js/

@@ -7,7 +7,7 @@ jQuery bietet eine etwas kürzere Schriebweise statt addEventListener an. Z.B. d
 In folgendem Beispiel ist es das `mouseover` event:
 
 <javascript>
-$("a").on('mouseover', function(){
+$("a").on('mouseover', function(event){
   // code wird bei mouseover ausgeführt
 });
 </javascript>
@@ -19,7 +19,7 @@ Um den angeklickten Tag als jQuery Objekt zu erhalten kann man wieder
 die Funktion `$` verwenden:
 
 <javascript>
-$("a").on('mouseover', function(){
+$("a").on('mouseover', function(event){
   $(this).find("span").show();
 });
 </javascript>

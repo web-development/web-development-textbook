@@ -2,10 +2,10 @@
 title: Rahmenbedingungen 
 order: 30
 ---
-Wie im Kapitel [Das Web und HTML](/das-web-und-html/)  beschrieben gibt es viele verschiedene Ausgabegeräte für Webseiten. Für die Gestaltung des visuellen Layouts von Webseiten spielt dabei die die Auflösung und die Pixeldichte eine wichtige Rolle.
 
-Auflösung
------------
+Wie im Kapitel [Das Web und HTML](/das-web-und-html/) beschrieben gibt es viele verschiedene Ausgabegeräte für Webseiten. Für die Gestaltung des visuellen Layouts von Webseiten spielt dabei die die Auflösung und die Pixeldichte eine wichtige Rolle.
+
+## Auflösung
 
 Hier ein Überblick über mögliche Bildschirm-Auflösungen:
 
@@ -25,10 +25,9 @@ war bevor mobile Endgeräte wichtig wurden.
 
 [Datenquelle: w3schools](http://www.w3schools.com/browsers/browsers_display.asp)
 
-Pixeldichte
------------
+## Pixeldichte
 
-Die Angabe der Auflösung erfolgt in Pixel – die reale Größe des Ausgabegerätes (24“ Desktop, 13“ Laptop, mobiles Endgerät) ist bei gleicher Pixel-Auflösung sehr unterschiedlich! Mobile Geräte haben oft eine  höhere Pixeldichte:
+Die Angabe der Auflösung erfolgt in Pixel – die reale Größe des Ausgabegerätes (24“ Desktop, 13“ Laptop, mobiles Endgerät) ist bei gleicher Pixel-Auflösung sehr unterschiedlich! Mobile Geräte haben oft eine höhere Pixeldichte:
 
 |Gerät|Erscheinungsjahr|Pixel|Diagonale Inch|Pixel per Inch|
 |+----|+---------------|+----|+-------------|+-------------|
@@ -47,32 +46,31 @@ Die Angabe der Auflösung erfolgt in Pixel – die reale Größe des Ausgabeger�
 |12” Macbook 'Retina'|03/2015| 2304 × 1440|12 in |226 ppi|
 {: class="table table-condensed table-bordered" style="width:auto"}
 
-
 Hier findet man einen Faktor 6 zwischen hächster und geringster Pixeldichte.
 
 Mit mydevice.io kann man den aktuellen Browser
 vermessen. Dort gibt es auch eine [ausführlichere Liste](https://mydevice.io/devices/) von aktuellen
 Geräten.
 
-Brutto-Fläche vs. Netto-Fläche
----------------------------------
-Von diesen „Brutto-Angaben“ über die Größe der zur Verfügung stehenden Fläche sind nun noch der Platz für den Fensterrahmen des Browsers, für Scrollbalken, Symbolleisten, und eventuell eingeblendete Favoritenleisten abzuziehen, um den „netto“ verbleibenden Raum für die Gestaltung der Webseite zu erhalten.
+## Viele Auflösungen
 
-Umgang mit der Problematik
-----------------------------------
+![Vergleich der Auflösungen](/images/resolutions.jpg)
+
+## Umgang mit der Problematik
+
 Wie gehen WebdesignerInnen mit den verschiedenen Auflösungen und Pixeldichten um? Ein paar Varianten:
 
-1. Ignorieren und für die eigene Bildschirmauflösung entwerfen.  Manchmal in Kombination mit der Beschriftung „best viewed at 1600x1200“
-2. Ignorieren dass es viele Bildschirmauflösungen gibt, und für das Minimum entwerfen. 
-3. Zwei oder drei Entwürfe, die den gleichen Inhalt für verschiedene Auflösungen unterschiedlich darstellen.
+1.  Ignorieren und für die eigene Bildschirmauflösung entwerfen. Manchmal in Kombination mit der Beschriftung „best viewed at 1600x1200“
+2.  Ignorieren dass es viele Bildschirmauflösungen gibt, und für das Minimum entwerfen.
+3.  Zwei oder drei Entwürfe, die den gleichen Inhalt für verschiedene Auflösungen unterschiedlich darstellen.
 
 §
 
 Dazu ein strenges Urteil:
 
-1. ist völlig inadäquat für das Medium Web. „best viewed“ ist eine Zumutung für alle LeserInnen auf "unpassenden"  Ausgabegeräten. Stellen Sie sich vor, am Eingang eines Gebäudes wäre neben der Treppe ein Schild angebracht „nur benutzbar für Leute die Treppen steigen können“. Das Problem wurde erkannt, und absichtlich nicht gelöst?
-2. Zeigt schon ein Minimum an Wissen über das Web, ignoriert aber die gestalterische Herausforderung des Mediums. Weil solch ein Entwurf auf einem Bildschirm mit hoher Auflösung sehr klein auf einer großen leeren Fläche erscheint wird es spöttisch „Briefmarkenlayout“ genannt.
-3. Nur das verdient wirklich die Bezeichnung „Webdesign“.
+1.  ist völlig inadäquat für das Medium Web. „best viewed“ ist eine Zumutung für alle LeserInnen auf "unpassenden" Ausgabegeräten. Stellen Sie sich vor, am Eingang eines Gebäudes wäre neben der Treppe ein Schild angebracht „nur benutzbar für Leute die Treppen steigen können“. Das Problem wurde erkannt, und absichtlich nicht gelöst?
+2.  Zeigt schon ein Minimum an Wissen über das Web, ignoriert aber die gestalterische Herausforderung des Mediums. Weil solch ein Entwurf auf einem Bildschirm mit hoher Auflösung sehr klein auf einer großen leeren Fläche erscheint wird es spöttisch „Briefmarkenlayout“ genannt.
+3.  Nur das verdient wirklich die Bezeichnung „Webdesign“.
 
 Im nächsten Kapitel werden mit "Responsive Design" und "Responsive Images" die aktuellen
 Antworten im Web Design vorgestellt.

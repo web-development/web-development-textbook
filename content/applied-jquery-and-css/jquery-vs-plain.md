@@ -20,7 +20,7 @@ Wenn man mit einem jQuery Objekt arbeitet muss man sich also
 bewusst sein, arbeitet man immer in der Mehrzahl, nie in der Einzahl.
 
 Um die jQuery Objekte besser von anderen Javascript Variablen 
-unterscheiden zu können werden wir ihre Variablennamen immer mit
+unterscheiden zu können werden wir ihre Variablennamen ab jetzt immer mit
 einem Dollar beginnen.
 
 §

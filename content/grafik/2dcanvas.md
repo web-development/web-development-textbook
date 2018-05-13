@@ -111,14 +111,19 @@ my_context.stroke();
 
 ### Bild kopieren
 
+Achtung: das Laden des Originalbildes dauert lange. Wenn der Kopierbefehl `drawImage` zu früh durchgeführt wird ist das Bild noch nicht geladen und das leere Bild wird kopiert. Deswegen starten wir den Kopierbefehl erst beim `load` Event des  Bildes.
+
 <javascript>
-var canvas = document.getElementById("e");
-var context = canvas.getContext("2d");
-var image = document.getElementById("the_img_tag");
-context.drawImage(image, 0, 0);
+let canvas = document.getElementById("e");
+let context = canvas.getContext("2d");
+let image = document.getElementById("the_img_tag");
+image.addEventListener('load', function(){
+  context.drawImage(image, 0, 0);
+});
+the_img.src = "/images/grafik/dolly.jpg";
 </javascript>
 
-<img id="the_img_tag" src="/images/grafik/dolly.jpg">
+<img id="the_img_tag">
 
 Bild von Dolly dem Klon-Schaf - Photograf [Toni Barros](https://www.flickr.com/photos/12793495@N05/3233344867/).
 

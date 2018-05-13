@@ -63,8 +63,13 @@ my_context = retina_init("c4");
 draw(my_context);
 
 my_context = retina_init("c5");
-let image = document.getElementById("the_img_tag");
-for (let x = 0; x < 700; x += 110) {
-  y = -17 * Math.random();
-  my_context.drawImage(image, x, y);
-}
+
+let the_img = document.getElementById("the_img_tag");
+
+the_img.addEventListener("load", function() {
+  for (let x = 0; x < 700; x += 110) {
+    y = -17 * Math.random();
+    my_context.drawImage(the_img, x, y);
+  }
+});
+the_img.src = "/images/grafik/dolly.jpg";

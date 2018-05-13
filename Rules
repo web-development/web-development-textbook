@@ -16,6 +16,61 @@ require "curb"
 require "json"
 
 class Nanoc3::Filter
+  class ResponsiveImages < Nanoc3::Filter
+    identifier :responsive_images
+    def run(content, params={} )
+      @string = content.dup
+
+      @pending = ""
+      @output = ""
+
+      until @string.empty?
+        # looking for        <img src="/images/balken.png" alt="Bild der Balkengrafik" />
+        match = scan_until /<img src="([^"]*)"([^>]*)\/>/
+
+        break if !match
+        file, rest = match.captures
+
+        #@output << match[0]
+
+        @output << match.pre_match
+
+        @output << "<img src='#{file}' "
+        @output << srcset(file)
+        @output << rest
+        @output << ">"
+      end # until @string.empty?
+
+      @output << @string
+      @output << ""
+
+      @output
+    end
+
+    def srcset(file)
+      pattern = "content" + file.gsub('.', '*.')
+      files = Dir.glob(pattern)
+      set = files.map do |filename| 
+        if match = filename.match(/@(\d)x/)
+          "#{filename.gsub('content','')} #{match[1]}x"
+        else
+          "#{filename.gsub('content','')} 1x"
+        end
+      end
+
+      return "" if set.length < 2
+      puts "        srcset for #{file}: #{set.length} versions"
+      "srcset='#{set.join ', '}' "
+    end
+
+    def scan_until(regex)
+      match = @string.match(regex)
+      return unless match
+      @string = match.post_match
+      match
+    end    
+  end
+
   class Peek < Nanoc3::Filter
     identifier :peek
     def run(content, params={} )
@@ -239,6 +294,7 @@ Nanoc3::Filter.register '::Nanoc3::Filter::Slides',        :slides
 Nanoc3::Filter.register '::Nanoc3::Filter::NoSlides',      :noslides
 Nanoc3::Filter.register '::Nanoc3::Filter::SlideBreaks',  :slide_breaks
 Nanoc3::Filter.register '::Nanoc3::Filter::Peek',          :peek
+Nanoc3::Filter.register '::Nanoc3::Filter::ResponsiveImages', :responsive_images
 
 preprocess do
   @chapterOrder = [
@@ -363,6 +419,7 @@ compile '*' do
     layout 'dex'
   else
     filter :slide_breaks
+    filter :responsive_images
     layout 'default'
   end
 end

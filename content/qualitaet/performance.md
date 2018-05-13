@@ -110,7 +110,16 @@ auch nur eine Version des Bildes einzubinden.
 ### Kleinste Version eines Bildes ausliefern
 
 Für alle Pixelformate gilt: je mehr Pixel, desto größer die Datei, desto länger
-die Ladezeit. Es macht also nie Sinn, eine größeres Bild auszuliefern, als
+die Ladezeit.
+
+<plain>
+    227.886 pizza-500x333.jpg
+    756.789 pizza-1000x666.jpg
+  2.483.297 pizza-2000x1331.jpg
+  8.655.545 pizza-4000x2662.jpg
+</plain>
+
+Es macht also nie Sinn, eine größeres Bild auszuliefern, als
 dann wirklich angezeigt wird.
 
 ![Vergleich der Auflösungen](/images/resolutions.jpg)
@@ -120,13 +129,6 @@ verschiedene Varianten
 des Bildes für verschiedene Auflösungen und Pixeldichten, siehe
 [Kapitel Responsive Design](/css-layout/responsive/index.html#slide-9).
 
-```
-    227.886 pizza-500x333.jpg
-    756.789 pizza-1000x666.jpg
-  2.483.297 pizza-2000x1331.jpg
-  8.655.545 pizza-4000x2662.jpg
-```
-
 ### jpeg für Photos verwenden
 
 Das Bildformat `jpg` eignet sich besonders gut für Farbverläufe und viele Farben.
@@ -135,10 +137,10 @@ Die Kompression von `png` funktioniert nur dann wirklich gut, wenn es einfärbig
 Flächen gibt - was in Photos fast nie vorkommt. Meist ersetzt man heute `png` durch
 `svg`.
 
-```
+<plain>
   8.655.545  pizza-4000x2662.jpg
  12.544.974  pizza-4000x2662.png
-```
+</plain>
 
 ## Links
 

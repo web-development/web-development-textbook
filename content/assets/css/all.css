@@ -583,6 +583,7 @@ code {
   color: #d14;
   background-color: #f7f7f9;
   border: 1px solid #e1e1e8;
+  white-space: pre;  
 }
 pre {
   display: block;

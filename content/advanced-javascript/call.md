@@ -3,7 +3,6 @@ title: Funktion Aufrufen
 order: 10
 ---
 
-§
 
 Zusätzlich zum einfachen Aufruf mit Funktionsname, Klammern, Argumenten `f(x)`
 gibt es noch mehrere zusätzliche Arten eine Funktion aufzurufen: 
@@ -28,6 +27,8 @@ Das erste Argument der Funktionen `call` und `apply`  gibt das Objekt an, auf de
   objekt.f.call(anderes_objekt, "hallo ", 10);
   objekt.f.apply(anderes_objekt, [  "hallo ", 10 ]  );
 </javascript>
+
+§
 
 Es gibt noch eine dritte method `bind` die nur `this` neu festsetzt,
 und die funktion sonst unverändert lässt:

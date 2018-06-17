@@ -1,7 +1,10 @@
 ---
-title: Cross Site Scripting (XSS)
-order: 30
+title: A7 - XSS
+order: 70
 ---
+
+Auf Platz 7 der OWASP Top 10 2017 (Platz 3 in OWASP 2013).
+
 
 Die OWASP beschreibt dieses Problem allgemein so:
 

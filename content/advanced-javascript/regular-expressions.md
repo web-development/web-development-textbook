@@ -28,7 +28,7 @@ bieten nur 3 Operatoren an.  Bei der Umsetzung in diversen UNIX-Tools und Progra
 wurden mehr und mehr Operatoren eingeführt. Zur unterscheidung nenne ich diese
 erweiterten Ausdrücke mit dem englischen Begriff Regular Expressions oder kurz RegEx.
 
-Regular Expressions nennt man of auch Muster (en: patterns), man spricht von
+Regular Expressions nennt man oft auch Muster (en: patterns), man spricht von
 Mustersuche (en: pattern matching). Wenn ein Muster auf ein Zeichenkette zutrifft
 sagt man auf Halb-Englisch: "der Pattern matched".
 
@@ -160,7 +160,7 @@ Auswahl stehen fasst man sie in einer "Zeichen-Klasse" (en: "character class") z
 
 Achtung!  Eine Erwähnung der Zeichenklasse matched genau ein Zeichen im String, nicht mehrere Zeichen!
 
-<patterntester name="hallos" pattern="hall\[oia\]">
+<patterntester name="hallos" pattern="hall[oia]">
 halli
 hallo
 halla
@@ -180,7 +180,7 @@ stehen.
 </javascript>
 
 
-<patterntester name="buchstaben" pattern="\[a-z\]">
+<patterntester name="buchstaben" pattern="[a-z]">
 a
 b
 c
@@ -203,7 +203,7 @@ Klammer erwähnt werden:
 </javascript>
 
 
-<patterntester name="U-Bahnen" pattern="u\[^1234\]">
+<patterntester name="U-Bahnen" pattern="u[^1234]">
 u1
 u2
 u3
@@ -446,10 +446,11 @@ s.replace(/Voldemort/g,
           "Er, dessen Name nicht genannt werden darf,");
 </javascript>
 
-Dass ihr jeweils ein anderer Fall notwendig wäre
+Dass im zweiten Satz ein anderer Fall notwendig wäre,
+und wie man das dann richtige formuliert, 
 kann eine Regular Expression nicht erkennen.  Dafür gibt es
-eine eigene Wissenschaft: die Computer-Linguistik, die arbeitet
-an dem Problem, hat es aber noch nicht gelöst.
+eine eigene Wissenschaft: die [Computer-Linguistik](https://de.wikipedia.org/wiki/Computerlinguistik) beschäftigt
+sich mit der Analyse, Synthese und Übersetzung von natürlichen Sprachen.
 
 ## RegEx in PHP
 

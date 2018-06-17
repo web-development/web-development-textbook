@@ -21,7 +21,7 @@ zum Schluss  auch andere Format verbergen können
 Ein Beispiel für die Verwendung von AJAX ist das in Abbildung 50 gezeigte Eingabefeld: 
 schon während des Eintippens eines Suchwortes wird eine Anfrage an den Webserver 
 geschickt.  Dieser antwortet mit einer Liste von vorgeschlagenen Namen.  Diese Liste 
-wird mit Javascript in einer <div> unterhalb des Eingabefelds angezeigt:
+wird mit Javascript in einer `div` unterhalb des Eingabefelds angezeigt:
  
 ![Abbildung 50: Vorschläge für die Eingabe werden über AJAX geladen](/images/image375.png)
 

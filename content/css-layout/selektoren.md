@@ -29,7 +29,7 @@ Mit CSS3 kommen u.a. folgende Selektoren dazu:
 |Attribute Selector: Begins with|E\[attr^="stringl"\] a\[href^="mailto:"\]|Stimmt mit jedem Element überein, bei dem der Wert des Attributs mit dem geforderten String beginnt.|
 |The Target pseudo-class|:target|Stimmt mit dem Element überein, dessen ID mit dem Anker in der URL übereinstimmt. Z.B. bei URL http://at.at/index.html#kontakt stimmt  :target mit &lt;div id="kontakt"&gt; überein|
 |The UI element states pseudo-classes|:enabled :disabled :checked|Diese Selektoren beziehen sich auf mögliche Zustände von Eingabefeldern – die werden aber erst im nächsten Kapitel erklärt. |
-|Root pseudo-class|:root|Stimmt mit der Wurzel des DOM überein, immer <html>|
+|Root pseudo-class|:root|Stimmt mit der Wurzel des DOM überein, immer &lt;html&gt;|
 |:nth-child() pseudo-class |:first-child :nth-child(13) :nth-child(odd) :nth-child(even) :nth-child(3n+1) :last-child|Zählt die Geschwister des Elements, stimmt mit dem Element überein wenn die Zahl bestimmte Bedingungen erfüllt: erstes Kind, 13.Kind, ungerade Zahl, gerade Zahl, ….(auch Moduleo 3, 4, n)… letztes.|
 |:nth-of-type() pseudo-class |img:nth-of-type(odd) { float: right; } img:nth-of-type(even) { float: left; } |Zählt die Elemente dieses Typs, die bis zu dieser Stelle in der DOM vorkamen, …. Im Beispiel also die geraden / ungeraden Bilder.|
 Empty pseudo-class|:empty |Element ist ganz leer – enthält weder Kinder-Knoten noch Text.|

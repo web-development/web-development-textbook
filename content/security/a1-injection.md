@@ -1,17 +1,19 @@
 ---
-title: Injection
+title: A1 - Injection
 order: 10
 ---
+
+Auf Platz 1 der OWASP Top 10 2017.
 
 Die OWASP beschreibt dieses Problem allgemein so:
 
 > Injection-Schwachstellen tauchen auf, wenn eine Anwendung nicht vertrauenswürdige Daten an einen Interpreter weiterleitet. Injection Schwachstellen sind weit verbreitet, besonders in altem Code; sie finden sich in SQL-, LDAP- und XPath-Anfragen, Systembefehlen, Programm-parametern usw.
 
-Wir haben im Kapitel [PHP MYSQL 2 &rarr; Löschen](/php-mysql-2/daten-loeschen/) schon die SQL Injection behandelt.
+Wir haben im Kapitel [PHP DB Schreiben &rarr; Löschen](/php-db-schreiben/daten-loeschen/) schon SQL Injection behandelt.
 Zur Verhinderung von SQL-Injection steht uns in PHP die Prepared Statements zur Verfügung:
 
 <php caption="Prepared Statements verhindern SQL Injection">
-$query = $dbh->prepare("SELECT * FROM users WHERE id=?");
+$query = $dbh->prepare('SELECT * FROM users WHERE id=?');
 $query->execute(array( $_GET['pid'] ) );
 </php>
 
@@ -24,11 +26,25 @@ die als Input vom User/der Userin kommen werden mit `execute` an die Datenbank
 Eine zweite Schreibweise für prepared Statement ist noch besser lesbar: dabei
 werden statt der Fragezeichen benannte Platzhalter verwendet:
 
-<php caption="Prepared Statements mit benanntem ">
-$stm = $dbh->prepare ( "SELECT * FROM USERS WHERE USERNAME LIKE :name" );
-$stm->bindParam(":name", $_POST['name'] );
+<php caption="Prepared Statements mit benanntem Parameter">
+$stm = $dbh->prepare ( 'SELECT * FROM USERS WHERE USERNAME LIKE :name' );
+$stm->bindParam(':name', $_POST['name'] );
 $stm->execute();
 </php>
+
+
+## Prepared Statement falsch verwenden
+
+Man kann auch mit prepared statments noch Code schreiben, der für Injections anfällig ist.
+Wenn man nämlich im String der an prepare übergeben wird Variablen einbettet: 
+
+
+<php caption="Prepared Statements falsch gmacht">
+$stm = $dbh->prepare ( "UPDATE users SET newsletter = ? WHERE USERNAME = '$name'" );
+$query->execute(array( $_GET['newsletter'] ) );
+$stm->execute();
+</php>
+
 
 ## OWASP Empfehlungen
 
@@ -36,7 +52,7 @@ Die OWASP empfiehlt:
 
 1. Den Interpreter gänzlich vermeiden, oder
 2. Eine Schnittstelle benutzen es dem Interpreter erlaubt zwischen Code und Daten zu unterscheiden (z.B., prepared statements, stored procedures in der Datenbank), oder
-3. Den Input von der Userin/dem User geeignet codieren bevor er an den Interpreter weiter gegeben wird
+3. Den Input von der Userin/dem User geeignet escapen bevor er an den Interpreter weiter gegeben wird
 
 Im dritten und schlechtesten Fall ist weiter zu beachten:
 

@@ -21,3 +21,8 @@ intro: Mit Formularen gestalten Sie ihre Webseite interaktiver.
 * Ich kann mit Javascript einfache Berechnungen in einem Formular vornehmen.
 * Ich kann ein Javascript-Programm schreiben, das die Daten in einem Formular prüft bevor Sie abgesendet werden, und ein Absenden verhindert wenn die Daten nicht passen.
 
+
+## Weitere Quellen
+
+* [Autofill](https://cloudfour.com/thinks/autofill-what-web-devs-should-know-but-dont/)
+* [Conversational Forms](https://github.com/space10-community/conversational-form)

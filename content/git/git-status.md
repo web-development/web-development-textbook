@@ -78,7 +78,7 @@ Mit git log kann man die alten Commits anzeigen:
 git log optionen
 ------
 
-für git log gibt es viele verschiedene optionen, die verschiedene Details anzeigen, z.B. --numstat zeitgt die Anzahl der hinzugefügten und gelöschten Zeilen in jeder veränderten Datei
+für git log gibt es viele verschiedene optionen, die verschiedene Details anzeigen, z.B. --numstat zeigt die Anzahl der hinzugefügten und gelöschten Zeilen in jeder veränderten Datei
 
       D:\Webprojekte\wp2>git log –numstat
       commit d01a7db9b741b14dfb95dc810b4c002122565560

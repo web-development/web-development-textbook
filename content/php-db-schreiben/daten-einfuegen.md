@@ -58,22 +58,10 @@ sollten Sie die `magic_quotes` abschalten:
 php_flag magic_quotes_gpc off
 </code>
 
-Mit folgendem Programm können Sie testen, ob auf dem Server magic quotes ein- oder ausgeschalten sind:
-
-<php caption="Testen ob magic quotes eingeschalten sind">
-if (get_magic_quotes_gpc() ) {
-  echo "mit magic quotes";
-} else {
-  echo "ohne magic quotes";
-}
-echo("<pre>");
-print_r($_POST);
-echo("</pre>");
-</php>
 
 ### Die Richtige Lösung
 
-Wenn die magic quotes abgeschalten sind, kann man das SQL-Problem besser lösen: mit prepared statements. 
+Wenn die magic quotes abgeschalten sind, kann man das Problem besser lösen: mit prepared statements. 
 
 <php caption="Einfügen von Daten in die Datenbank mit prepared statements">
 
@@ -110,10 +98,10 @@ $sth->execute(
 // noch ohne Fehlerbehandlung
 </php>
 
-§
+## Fehlerbehandlung
 
 Beim Einfügen in die Users-Tabelle kann es leicht zu Problemen kommen: Die
-Tabelle verlangt für manche Spalten eine eingabe.
+Tabelle verlangt für manche Spalten eine Eingabe.
 
 So weit wollen Sie es nicht kommen lassen: Sie sollten die Eingaben aus dem
 Webformular schon vor dem INSERT prüfen und dann ausführliche, vollständige,

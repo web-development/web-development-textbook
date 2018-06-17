@@ -16,7 +16,7 @@ und für Mac OS und Windows verfügbar: [Homepage](http://www.sourcetreeapp.com/
 PHPStorm
 ------
 
-PHPstorm und PHPStorm sind IDEs für Web Projekte.
+WebStorm,  PHPStorm und RubyMine sind IDEs für Web Projekte (von derselben Firma).
 Die Interaktion mit einem Versionskontrollsystem ist eingebaut.
 [Homepage](http://www.jetbrains.com/phpstorm/)
 ![](/images/git-phpstrom-722.png)

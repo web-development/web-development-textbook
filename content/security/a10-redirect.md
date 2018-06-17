@@ -1,7 +1,10 @@
 ---
-title: Ungeprüfte Um- und Weiterleitungen
-order: 100
+title: Weiterleitungen
+order: 120
 ---
+
+Auf Platz 10 der OWASP Top 10 2013. In den OWASP Top 10 2017 nicht mehr enthalten.
+
 
 Die OWASP beschreibt dieses Problem allgemein so:
 

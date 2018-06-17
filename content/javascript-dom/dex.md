@@ -11,3 +11,8 @@ intro: Mit Javascript lernen Sie die wichtigste Programmiersprache des Web kenne
 
 ### Was Sie können sollten
 * Ich kann mit den Javascript und dem DOM alle Elemente in eine Webseite manipulieren.
+
+
+## Weitere Quellen
+
+* [what the web can do today](https://whatwebcando.today/)

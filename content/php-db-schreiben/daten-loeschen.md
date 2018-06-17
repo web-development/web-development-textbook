@@ -78,7 +78,8 @@ Mit `execute`[*](http://www.php.net/manual/en/pdostatement.execute.php)
 wird das Statement ausgeführt, dabei werden die Platzhalter durch echte Daten
 ersetzt.  Das Schöne daran: es wird dabei nicht mehr ein SQL-Statement als
 String gebaut, sondern die einzufügenden Daten werden binär an den
-Datenbankserver übertragen. Darin enthaltene SQL-Fragement können keinen Schaden
+Datenbankserver übertragen. Darin enthaltene SQL-Fragement werden niemals
+als SQL interpretiert, nd können keinen Schaden
 anrichten.
 
 §

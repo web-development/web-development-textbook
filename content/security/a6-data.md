@@ -1,7 +1,10 @@
 ---
-title: Verlust der Vertraulichkeit sensibler Daten
-order: 60
+title: A3 - Sensible Daten
+order: 25
 ---
+
+Auf Platz 3 der OWASP Top 10 2017.
+
 
 Die OWASP beschreibt dieses Problem allgemein so:
 

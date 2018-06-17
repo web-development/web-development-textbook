@@ -1,7 +1,9 @@
 ---
-title: Cross-Site Request Forgery (CSRF)
-order: 80
+title: CSRF
+order: 110
 ---
+
+Auf Platz 8 der OWASP Top 10 2013. In den OWASP Top 10 2017 nicht mehr enthalten.
 
 Die CSRF ist ein Angriff "über die Bande":  Um Site C zu attackieren, wird auf Site B Code hinterlegt. Wenn Userin Alice mit Site B interagiert wird ohne ihr Wissen eine HTTP-Request an Site C geschickt. Da Alice bei C schon eingeloggt ist wird dieser Request "erfolgreich" durchgeführt.
 

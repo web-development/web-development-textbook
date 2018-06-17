@@ -1,7 +1,7 @@
-desc "Compile the site"
+histordesc "Compile the site"
 task :compile => [:clean] do
   puts "Compiling site"
-  out = `bundle exec nanoc compile`
+  out = `bundle exec nanoc compile > logs/compile.log 2>&1`
 
   if $?.to_i == 0
     puts  "Compilation succeeded"

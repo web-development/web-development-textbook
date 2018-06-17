@@ -57,8 +57,8 @@ Um die höhere Auflösung optimal zu nutzen sind vier Schritte notwendig:
 
 * Verhältnis (virtuelle zu reale) Pixel aus `window.devicePixelRatio` auslesen
 * `scale` des Kontexts auf diesen Wert setzen (aber erst nach den folgenden beiden Schritten)
-* `width` und `height` des Canvas auf die virtuelle (kleinere) Pixelzahl setzen
-* `width` und `height` des Canvas Style auf die physikalische (größere) Pixelzahl setzen
+* `width` und `height` des Canvas auf die  physikalische (größere) Pixelzahl setzen
+* `width` und `height` des Canvas Style auf die virtuelle (kleinere) Pixelzahl setzen, mit 'px' 
 
 Achtung: beim Style erfolgt die Angabe mit Größeneinheit, also mit `px`, bei allen anderen Eigenschaften als reine Zahl!
 
@@ -141,6 +141,9 @@ Aufbauend auf den Canvas gibt es viele Libraries, z.B:
 
 * [Library Isomer](http://jdan.github.io/isomer/)
 * [Phaser Game Engin](http://phaser.io/)
+* [Impact.js](http://impactjs.com/)  
+
+[Diskussion zu HTML5 Games auf Steam](https://news.ycombinator.com/item?id=17080985)
 
 Mit der `getUserMedia` API kann man von einer Webcam entweder
 Standbilder oder Video Streams übertragen. Die Kombination

@@ -54,7 +54,7 @@ Wie immer in HTML erfolgt der Zeilenumbruch automatisch.
 Die Standard-Darstellung von Absätzen erklärt sich über den `margin-top` 
 und `margin-bottom` des `&lt;p&gt;`-Tags:
 
-![Standard-Darstellung von Absätzen (<p>) im Browser](/images/css/p-default-margin.png)
+![Standard-Darstellung von Absätzen (p-Tag) im Browser](/images/css/p-default-margin.png)
 
 
 Mit CSS können Sie verschiedene Aspekte des Absatz-Layoutes verändern, einige davon sind hier gezeigt:

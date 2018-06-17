@@ -1,7 +1,9 @@
 ---
-title: Sicherheitsrelevante Fehlkonfiguration
-order: 50
+title: A6 - Fehlkonfiguration
+order: 60
 ---
+
+Auf Platz 6 der OWASP Top 10 2017.
 
 Die OWASP beschreibt dieses Problem allgemein so:
 

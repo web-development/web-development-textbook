@@ -1,7 +1,10 @@
 ---
-title: Authentifizierung und Session-Management
+title: A2 - Authentifizierung
 order: 20
 ---
+
+Auf Platz 2 der OWASP Top 10 2017.
+
 
 Rund um Authentifizierung und Session-Management treten viele Probleme auf.
 

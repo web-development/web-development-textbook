@@ -32,10 +32,9 @@ Auf WebGL basieren viele Game Engines für das Web. z.B:
 
 ![Physics Turbulenz](/images/turbulenz.png)
 
-[Turbulenz](http://biz.turbulenz.com/developers)
+* [Turbulenz](http://biz.turbulenz.com/developers)
 
-
-siehe auch [html5gameengine.com](https://html5gameengine.com/tag/webgl)
+Einen Überblick bietet [html5gameengine.com](https://html5gameengine.com/tag/webgl)
 
 
 

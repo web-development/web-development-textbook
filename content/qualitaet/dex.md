@@ -9,8 +9,9 @@ intro: In diesem abschließenden Kapitel blicken wir zurück und disskutieren ve
 ### Was Sie wissen sollten
 
 * Ich bin mir bewusst, dass es verschiedene Qualitätskriterien für das Web gibt, die teilweise im Widerspruch zueinander stehen
-* Aus dem Bereich Design und Usability kenne ich Ästhetik, Ausrichtung am Zeilpublikum, Übersichtlichkeit, Reaktionszeit, Responsive Design als Qualitätskriterien
-* Aus dem Bereich Development kenne ich Code Qualität, Lesbarkeit und Wartbarkeit, Web Standards, Browser Kompatiblität, Graceful Degradation, Performance, Durchsatz, Skalierbarkeit und Sicherheit als Qualitätskriterien
+* Aus dem Bereich Design und Usability kenne ich Ästhetik, Ausrichtung am Zeilpublikum, Übersichtlichkeit, Barrierefreiheit, Reaktionszeit, Responsive Design als Qualitätskriterien
+* Aus dem Bereich Development kenne ich Code Qualität, Lesbarkeit und Wartbarkeit, Browser Kompatiblität, Graceful Degradation, Performance und Sicherheit als Qualitätskriterien
+* Als rechtliche Rahmenbedingung kenne ich die DSGVO
 
 ### Was Sie können sollten
 
@@ -18,6 +19,3 @@ intro: In diesem abschließenden Kapitel blicken wir zurück und disskutieren ve
 * Ich kann mit einem Kunden verschiedenen Qualitätsansprüche aushandeln
 
 
-### Referenz
-
-* [Marcy Sutton on A Web for Everybody](http://vimeo.com/118697675)

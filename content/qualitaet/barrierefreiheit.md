@@ -6,7 +6,7 @@ order: 10
 
 Der deutsche Begriff „Barrierefreiheit“ entspricht dem englischen
 Begriff „Accessability“.  Ein Tipp zur Recherche: der englische Begriff wird manchmal als 
-a11y abgekürzt - a, gefolgt von 11 buchstaben, geflogt von y.
+a11y abgekürzt - a, gefolgt von 11 Buchstaben, gefolgt von y.
 
 
 Barrierefreiheit ist ein Thema das 
@@ -14,7 +14,7 @@ von Stadtplanung und Architektur bis zur Gestaltung einzelner
 Produkte und Dienstleistungen viele Fachgebiete betrifft.
 
 Als WebprogrammierInnen liegt es in unserer Verantwortung
-Webseiten und Applikationen barrierefrei zu gestalten:
+Webseiten und Webapplikationen barrierefrei zu gestalten:
 
 
 „**Barrierefreies Internet** sind Web-Angebote, die von
@@ -181,5 +181,5 @@ p {
 * Kalbag, Laura. Accessibility for everyone.  A Book Apart, 2017. ISBN-13: 978-1937557614.
 * [Accessability Weekly, Newsletter](https://a11yweekly.com/)
 * [What's new in WCAG 2.1](http://adrianroselli.com/2017/08/whats-new-in-wcag-2-1.html)
-
+* [Marcy Sutton: Radically Accessible Internet Applications](https://marcysutton.com/talk/radically-accessible-internet-applications-beyond-tellerrand/)
 

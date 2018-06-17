@@ -118,7 +118,7 @@ Mit dem Datenschutz-Anpassungsgesetz 2018 hat Österreich das „Datenschutzgese
 * [Heise Artikel: Keine Strafen: Österreich zieht neuem Datenschutz die Zähne ](https://www.heise.de/newsticker/meldung/Keine-Strafen-Oesterreich-zieht-neuem-Datenschutz-die-Zaehne-4031217.html)
 
 
-# Links 
+## Links 
 
 * [DSGVO in einfachen Worten](https://eu-datenschutz-grundverordnung.net/eu-dsgvo/)
 * [Datenschutz Behörde Österreich](https://www.dsb.gv.at/)

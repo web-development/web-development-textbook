@@ -44,55 +44,13 @@ Bilder waren lange Zeit ein Grund, warum das Layout von Webseiten nicht flexibel
 
 ### Pixel
 
-Als Bildformate für `<img>` Tags in Webseiten wurden lange nur Pixel-Formate unterstützt. Diese Formate (jpg, png, gif) sind eigentlich für die Darstellung bei einer bestimmten Größe gedacht. Die Vergrößerte Darstellung von Pixel-Bildern liefert keine guten Ergebnisse:
+Als Bildformate für `<img>` Tags in Webseiten wurden lange nur Pixel-Formate unterstützt. Diese Formate (jpg, png, gif) sind  für die Darstellung bei einer bestimmten Größe gedacht. Die Vergrößerte Darstellung von Pixel-Bildern liefert keine guten Ergebnisse:
 
 ![Abbildung 29: Ausschnitte aus einem Pixel Bild, vom Browser (Firefox) in 3 Stufen vergrößert dargestellt](/images/css-layout/pixel-image-zoom.png)
 
-Aktuelle Browser sind aber sehr gut bei der verkleinerten Darstellung von Pixel-Bildern, man kann also
-dasselbe Pixel-Bild für verschiedene Darstellungen verwenden.
-
-![Abbildung 30: Pixel Bild wird vom Browser (Firefox) in 3 Stufen verkleinert dargestellt](/images/css-layout/pixel-image-smaller.png)
-
-# Responsive Images
-
-Mobile Geräte mit sehr hoher Pixeldichte stellen das Web Design vor ein
-Dilemma: soll ich - wegen der Pixeldichte - riesige Bilder ausliefern?
-Oder - weil es ein mobiles Gerät ist, und die Datenübertragung über
-das Handy-Netz so langsam und teuer ist - doch kleine Bilder ausliefern?
-
-Um dieses Dilemma zu umgehen wurde das neue Attribute "srcset" für den **img**-Tag entwickelt.
-Ausser vom Internet Explorer wird das Attribut 2016 von
-allen Browsern unterstützt [caniuse srcset](http://caniuse.com/#feat=srcset).
-
-Mit diesem Attribut kann man mehrere Varianten eines Bildes hinterlegen,
-der Browser entscheidet welche Version er lädt und darstellt.
-
-<htmlcode>
-  <img src="salzburg.jpg" style="width: 1353px; height: 461px;"
-       srcset="salzburg.jpg, salzburg@2x.jpg 2x, salzburg@4x.jpg 4x">
-</htmlcode>
-
-Das Bild wird immer mit der gleichen Größe an virtuellen Pixel dargestellt.
-Es stehen aber noch Versionen mit doppelter und vierfacher Höhe und Breite
-zur Verfügung, die der Browser laden und darstellen kann.
-
-§
-
-Der folgende Screenshot wurde auf einem Macbook mit Retinadisplay erstellt,
-in der oberen Variante wird das "normale" Bild dargestellt, darunter das in
-der **2x** Version.
-
-![Ausschnitt aus der Demo-Seite](/images/css-layout/vergleich.jpg)
-
-Die Demo-Seite zeigt vier Abstufungen:
-
-[Demo-Seite für "Responsive Images"](/images/responsive-images/index.html)
-
-Das kann man auch mit Hintergrundbilder machen:
-
-[Demo-Seite für "Responsive Background Images"](/images/responsive-images/background.html)
-
-Zur Erzeugung von vielen Abstufungen kann man den [Responsive IMage Breakpoints Generator](http://www.responsivebreakpoints.com/) verwenden.
+Die Verkleinerte Darstellung ist eine Verschwendung: Wenn ich ein Bild herunterladen muss, dass doppelt So breit und
+doppelt so hoch ist, wie mein Browser darstellen kann, dann sind das viermal so viele Daten, und damit eine viermal
+so lange wartezeit!
 
 ### Vektor
 
@@ -104,7 +62,7 @@ Mit dem Format SVG steht auch ein vektor-basiertes Bildformat für das Web zur V
 
 ## Schriftgröße
 
-Die Schriftgröße im Browser unterliegt nur bedingte der Kontrolle durch HTML und CSS Code. Das „letzte Wort“ hat hier die LeserIn, die die Schrift größer oder kleiner stellen kann. z.B. in MSIE unter Ansicht → Schriftgrad, in Firefox mit der Tastenkombination STRG + oder STRG –
+Die Schriftgröße im Browser unterliegt nur bedingte der Kontrolle durch HTML und CSS Code. Das „letzte Wort“ hat hier die LeserIn, die die Schrift größer oder kleiner stellen kann. z.B. in MSIE unter Ansicht → Schriftgrad, in Firefox mit der Tastenkombination `STRG +` oder `STRG –`.
 
 Je nach Schriftgröße und zur Verfügung stehendem Platz im Browser-Fenster wird der Browser die Absätze geeignet in Zeilen umbrechen, wie in Abbildung 31 gezeigt.
 
@@ -118,8 +76,6 @@ Dabei werden die CSS Pixel vergrößert bzw. verkleinert. Die Größe des
 Viewport und die CSS pixel-ratio verändern sich also, dadurch werden
 andere Mediaqueries schlagend.
 
-## Vertiefung
 
-* [Responsive Images](https://blog.ycombinator.com/how-to-use-responsive-images/)
-* [Responsive Tables](http://blog.cloudfour.com/picking-responsive-tables-solution/)
-* [Bildgrößen verändern mit Seam Carving](https://www.youtube.com/watch?v=6NcIJXTlugc)
+
+TODO: Typische Beispiele für Responsive Design

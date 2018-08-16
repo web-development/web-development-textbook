@@ -130,7 +130,7 @@ Bild  in die Seite einfügt (Englisch: Image). Die wichtigsten Attribute von
 Darstellung, Ersatztext). 
 
 <htmlcode>
-<img src="neu.gif" alt="Das ist neu!">
+<img src="neu.svg" alt="Das ist neu!">
 </htmlcode>
 
 Es ist egal, in welcher Reihenfolge Sie die Attribute schreiben.
@@ -141,21 +141,21 @@ werden, in HTML kann man die Anführungszeichen weglasse, dann endet der Wert
 beim nächsten Leerzeichen.
 
 <htmlcode>
-<img alt="Das ist neu!" src="neu.gif">
+<img alt="Das ist neu!" src="neu.svg">
 
 
 
 __|__
 <img 
   alt="Das ist Neu!" 
-  src="neu.gif" 
+  src="neu.svg" 
   width=50 height=15>
 </htmlcode>
 
 ACHTUNG: ein häufiger Fehler ist es, das zweite Anführungszeichen zu vergessen:
 
 <htmlcode>
-  <img alt="Das ist neu!" src="neu.gif >
+  <img alt="Das ist neu!" src="neu.svg">
 </htmlcode>
 
 
@@ -185,7 +185,7 @@ unbekannte Attribute einfach ignoriert.
 <htmlcode>
 <img  alt="Das ist Neu!"
     bli="bla, blo" 
-    src="neu.gif"
+    src="neu.svg"
     >
 </htmlcode>
 
@@ -382,13 +382,13 @@ auf die Datei des Bildes.  <!-- XE "Bild" --> Als Attribut src  <!-- XE "src" --
 absolute oder relative URL angeben:
 
 <htmlcode caption="Bilder">
-<img src="http://www.google.at/intl/de_at/images/logo.gif" alt="Google">  
-<img src="neu.gif"> 
-<img src="10prozent.gif" alt="jetzt 10% verbilligt!"> 
+<img src="http://www.google.at/intl/de_at/images/logo.svg" alt="Google">  
+<img src="neu.svg"> 
+<img src="10prozent.svg" alt="jetzt 10% verbilligt!"> 
     (mit Ersatztext, weil das Bild wichtige Information enthält)
-<img src="zierleiste.gif" alt=""> 
+<img src="zierleiste.svg" alt=""> 
     (ohne Ersatztext, weil das Bild zur zur Dekoration dient)
-<img src="neu.gif" style="float:left;" alt="neu"> 
+<img src="neu.svg" style="float:left;" alt="neu"> 
     (Bild nach links, Text fließt rechts vorbei)
 </htmlcode>
 
@@ -421,7 +421,8 @@ Gif“ enthält mehrere Bilder, die der Reihe nach angezeigt werden .
 
 Wurde früher für Bilder mit klaren Kanten, einfärbigen Flächen, wenigen 
 Farben verwendet, z. B. Comics, Logos.  Das macht man heute mit SVG.
-So bleiben nur die animierten gifs als Anwendungfall.
+So bleiben nur die animierten gifs als Anwendungfall, und selbst die werden
+oft durch Video ersetzt.
 
 
 ### jpg
@@ -436,6 +437,9 @@ Besonders geeignet für Bilder mit Farbverläufen, z. B. Photos.
 In Wirklichkeit würde man die Kompressionsrate nicht so extrem hoch
 setzen wie im linken Drittel des Bildes.
 
+Die Variante "progressive jpg" macht die Wartezeit beim Laden des Bildes interessanter:
+
+
 
 ### png
 
@@ -443,6 +447,13 @@ setzen wie im linken Drittel des Bildes.
 
 (Bild von [Ed g2s](https://commons.wikimedia.org/wiki/File:PNG_transparency_demonstration_1.png), CC-SA)
 Weniger Kompression als JPG, aber Alpha-Transparenz. 
+
+
+### Weitere Formate
+
+Es gibt noch viele weitere Bildformate die im Web benutzt werden können - mit etwas Aufwand.
+Aber für den Anfang reichen svg, gif, jpg und png aus. Diese Formate werden sicher von allen
+Browsern unterstützt. 
 
 
 
@@ -471,7 +482,7 @@ Link zu Webseite im selben Ordner (relative URL)
 Link zu E-Mail Adresse
     <a href="mailto:aa@bb.cc">Mail</a>
 Bild als Link
-    <a href="seite2.htm"><img src="mehr.gif"alt="zur Seite 2"></a>
+    <a href="seite2.htm"><img src="mehr.svg"alt="zur Seite 2"></a>
 </htmlcode>
 
 Gesamt-Struktur einer Webseite
@@ -575,3 +586,4 @@ Weitere Quellen
 
 * [Characters, Symbols and the Unicode Miracle](http://www.youtube.com/watch?v=MijmeoH9LT4) YouTube Video von Computerphile
 * [utf-8](https://de.wikipedia.org/wiki/UTF-8) in der deutschen Wikipedia
+

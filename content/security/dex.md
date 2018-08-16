@@ -21,3 +21,5 @@ Was Sie können sollten
 Quellen
 
 * [OWASP Top 10, 2017](https://www.owasp.org/index.php/Category:OWASP_Top_Ten_Project)
+* [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+* [Feature Policy](https://caniuse.com/#feat=feature-policy)

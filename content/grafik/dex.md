@@ -6,10 +6,13 @@ intro: In diesem Kapitel werde verschiedene Möglichkeiten für Grafik im Browse
 
 
 ### Was Sie wissen sollten
+
 * Dass es viele verschiedene Möglichkeiten gibt im Browser Grafik darzustellen
 
 
 ### Was Sie können sollten
+
+* Responsive Images für Pixel-Bilder nutzen
 * HTML und CSS für Grafik nutzen 
 * Mit SVG Vektorgrafik und Animationen darstellen
 * Mit 2d Canvas zeichnen und Bilder darstellen

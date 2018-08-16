@@ -1,4 +1,4 @@
-histordesc "Compile the site"
+desc "Compile the site"
 task :compile => [:clean] do
   puts "Compiling site"
   out = `LANG=en_US.UTF-8 bundle exec nanoc compile > logs/compile.log 2>&1`

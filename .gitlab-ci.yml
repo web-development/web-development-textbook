@@ -5,11 +5,10 @@ pages:
   script:
     - cp Gemfile.gitlab-ci Gemfile
     - bundle install  -j4
-    - export LC_ALL=en_US.UTF-8
-    - export LANG=en_US.UTF-8
-    - export LANGUAGE=en_US.UTF-8
-    - export LC_CTYPE=en_US.UTF-8
-    - echo $LC_ALL $LANG $LANGUAGE $LC_CTYPE
+    - export LC_ALL=C.UTF-8
+    - export LANG=C
+    - export LANGUAGE=C.UTF-8
+    - echo $LC_ALL $LANG $LANGUAGE 
     - locale
     - nanoc compile
     - cp -a output/* public/

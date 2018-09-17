@@ -11,6 +11,7 @@ pages:
     - echo $LC_ALL $LANG $LANGUAGE 
     - locale
     - nanoc compile
+    - mkdir -p public
     - cp -a output/* public/
   artifacts:
     paths:

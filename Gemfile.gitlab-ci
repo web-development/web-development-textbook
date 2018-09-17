@@ -3,7 +3,8 @@ source 'https://rubygems.org'
 ruby '2.3.3'
 
 #gem "rake"
-#gem "curb"
+gem "curb"
+gem "curl"
 gem "nanoc", '~>3.8.0'
 gem "kramdown"
 #gem "nokogiri"
@@ -13,3 +14,4 @@ gem "json"
 #gem "listen"
 #gem 'rb-fsevent', '~> 0.9'
 #gem 'guard-nanoc'
+#

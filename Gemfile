@@ -5,6 +5,7 @@ ruby '2.4.2'
 gem 'html-proofer'
 gem "rake"
 gem "curb"
+gem "curl"
 gem "nanoc", '~>3.8.0'
 gem "kramdown"
 gem "nokogiri"

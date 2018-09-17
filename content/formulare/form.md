@@ -72,9 +72,20 @@ Eingabefeldern - normalerweise unverschlüsselt.
 
 |mit Default-Wert|`<input type="text" name="vorname" value="Lara">`|<input type="text" name="vorname" value="Lara">|
 |mit Placeholder|`<input placeholder="ich@some.net" type="email">`|<input type="email" name="mail" placeholder="ich@some.net">
+|mit Auto-Vervollständigung|`<input type="email" autocomplete="email">`|<input type="email" name="mail"  autocomplete="email">
 |muss eingegeben werden|`<input type="email" name="nachname" required>`|<input type="email" name="nachname" required>
 |mit Eingabeprüfung (siehe [html5pattern](http://html5pattern.com/)) |`<input pattern=".*@fh-salzburg\.ac\.at" type="email">`|<input pattern=".*@fh-salzburg\.ac\.at">
 {: class="table table-condensed table-bordered" style="width:auto"}
+
+
+Der **Default Wert** ist ein echter Wert, der beim Einsenden des Formulars gesendet wird.
+Der **Placeholder** hingegen wird nur angezeigt, gilt aber nicht als eingegeben Daten.
+
+Die **Auto-Vervollständigung** ist besonders bei beschränkten Eingabemöglichkeiten
+wie am Smartphone praktisch. Es gibt viele [mögliche Werte](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-autocomplete).
+
+Die Bedingungen **required** und **pattern** müssen erfüllt sein, sonst kann das
+Formular gar nicht abgesendet werden.
 
 
 ## Ja/Nein Frage

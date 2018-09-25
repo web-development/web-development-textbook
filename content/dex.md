@@ -30,11 +30,11 @@ Das Ergebnis von Teil 1 dieses Kurses sollte sein:
 * Ich kann in HTML, CSS und einfachem Javscript Code **Fehler suchen**, finden und beheben.
 * Ich kann Text, Links, Aufzählungen, Überschriften, Tabellen und einfache Formulare in eine Webseite einfügen.
 * Ich kann mit CSS die Schriftarten, Farben, Zeilenabstände einer Seite verändern.
-* Ich kann mit CSS Grid das Layout einer Webseite bestimmen.
+* Ich kann mit CSS Grid und Flexbox das Layout einer Webseite bestimmen.
 * Ich kenne die Problemstellung der verschiedener Ausgabegeräte mit verschiedener Auflösung und Pixeldichte. Ich verwende **Responsive Design** und CSS **Media Queries** um Webseiten so gestalten, dass sie sowohl auf Smart Phones, Laptops, als auch auf Desktop Rechnern verwendbar sind. 
 * Ich kenne die **Arbeitsteilung** in einem Web-Projekt. Ich kann das von DesignerInnen und AutorInnen gelieferte Material in Webseiten einbinden, und verwende dabei die passenden Dateiformate.
 * Ich verstehe wie **Ereignisse (Events)** in Javascript verwendet werden, kann einfache User-Interaktion mit Clicks programmieren.
-* Ich kann die **Qualität** einer Webseite beurteilen. Ich kann mehrere Qualitäts-Kriterien benennen und kann sie bei einem spezifischen Projekt gegeneinander abwägen.
+
 
 Und ganz konkrete Arbeitsergebnisse:
 
@@ -51,9 +51,6 @@ Die Lernergebnisse von Teil 2 sind:
 * Ich verwende **AJAX** um Daten in mein Frontend zu laden. 
 * Ich kann die **Qualität** einer Webseite beurteilen. Ich kann mehrere Qualitäts-Kriterien benennen und kann sie bei einem spezifischen Projekt gegeneinander abwägen.
 
-Und ein ganz konkretes Arbeitsergebnis:
-
-* In meinem Blog zeige ich mehrere Artikel über Aspekte einer Web-Applikation inklusive Code-Beispielen und Demos.
 
 
 

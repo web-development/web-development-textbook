@@ -38,7 +38,7 @@ Zeilen (rows) definiert:
 </css>
 
 Dabei kann die  neue Maßeinheit `fr` (für fraction, Bruchteil) verwendet werden:
-Nachdem von der Gesamtbreite die absoluten Breitenangaben abezogen wurden,
+Nachdem von der Gesamtbreite die absoluten Breitenangaben abgezogen wurden,
 wird der restliche Platz im Verhältnis der fractions verteilt.
 
 Also zum Beispiel:

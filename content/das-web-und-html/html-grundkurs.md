@@ -6,8 +6,7 @@ Wir werden HTML in der Version 5 verwendet. Die wichtigsten HTML-Tags (Links, Bi
 Tabellen, Formulare) werden Sie bald auswendig können. Alle Details können Sie Intenet
 nachschlagen.
 
-HTML hat sich in den ca. 20 Jahren seines Bestehens weit entwickelt. Die Version 5, wurde im Jahr 2014 veröffentlicht und wird heute von allen
-Browsern unterstützt. 
+HTML hat sich in den ca. 20 Jahren seines Bestehens weit entwickelt. Die Version 5 wurde im Jahr 2014 veröffentlicht und wird heute von allen Browsern unterstützt. 
 
 §
 
@@ -208,38 +207,6 @@ Webseite!!!!</p>
 </htmlcode>
 
 
-### Graceful Degradation
-
-Bevor Sie also einen neuen Tag einsetzen, sollten Sie sich darüber klar sein, welche 
-Versionen der Browser diesen Tag darstellen und wie viel Prozent Ihres Zielpublikums schon 
-eine passende Browser-Version benutzen. Meist können Sie eine Seite so gestalten, dass 
-auch mit älteren Browsern der gesamte Inhalt lesbar ist. 
-
-
-<htmlcode caption="In älteren Browser geht die Information verloren">
-<p>Zu den hüpfenden Terminen 
-sind noch Plätze im Kurs frei: 
-</p> 
-<ul> 
-<li><jump>Montag</jump></li> 
-<li>Dienstag</li> 
-<ul>
-</htmlcode>
-
-
-<htmlcode caption="In allen Browser wird die Information dargestellt">
-<p>Zu den markierten Terminen sind 
-noch Plätze im Kurs frei</p> 
-<ul> 
-<li><jump>Montag *</jump></li> 
-<li>Dienstag</li> 
-</ul>
-</htmlcode>
-
-Diese Herangehensweise an Neuerungen nennt man „graceful degradation“.
-
-Hinweis: Der &lt;jump&gt;–Tag ist ein Scherz, den gibt es nicht wirklich, und wird es hoffentlich 
-nie geben. 
 
 Text formatieren
 ----------------
@@ -282,7 +249,7 @@ Die blockbildenden Tags bleiben immer Rechtecke.
 ### Blockbildende Tags für Text
 
 Der Inhalt einens Absatzes (Paragraph) `p` wird
-je nach Schriftgröße und vorhanenem Platz neu umgebrochen.
+je nach Schriftgröße und vorhandenem Platz neu umgebrochen.
 Der Zeilenumbruch ist also nicht aufgabe des Autors, der Autorin,
 sondern des Webbrowsers.
 
@@ -305,6 +272,8 @@ text text. Text und text text, text
 text. </p>
 </htmlcode>
 
+§
+
 Überschriften werden für die Strukturierung des Textes verwendet,
 mehr als 3 Ebenen braucht man selten:
 
@@ -314,9 +283,9 @@ mehr als 3 Ebenen braucht man selten:
 <h3>Überschriftstext</h3>
 </htmlcode>
 
-Neu in HTML5 ist der `nav` Tag zur Auszeichnung von
+Der `nav` Tag dient zur Auszeichnung von
 Navigations-Menüs. Achtung: dieser Tag hat erst mal
-keine sichtbare Wirkung. 
+keine sichtbare Wirkung.
 
 <htmlcode caption="Bereich mit Navigations-Menü, Links">
 <nav>  

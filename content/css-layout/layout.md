@@ -123,7 +123,7 @@ Absolute Positionierung
 Mit der Deklaration `position: absolute` wird ein Tag aus der normalen Darstellung
 herausgenommen und über dem restlichen Inhalt platziert.
 Dazu muss aber erst eine Koordinatensystem angelegt werden, auf das sich
-die Position bezieht. Das geschicht mit `position: relative` in einem übergeordneten
+die Position bezieht. Das geschieht mit `position: relative` in einem übergeordneten
 Tag. 
 
 
@@ -149,7 +149,7 @@ __|__
 </htmlcode>
 
 
-[Beispiel-Seite](/images/css-absolute/index.html)
+[Beispiel-Seite](/images/css-absolute/test.html)
 
 
 
@@ -170,7 +170,7 @@ Der Container legt die Richtung fest: entweder horizontal (in einer Zeile = `row
 (in einer Spalte = `column`):
 
 <htmlcode>
-<div class="project_partial">
+<div class="project">
   <div class="project_partial">...</div>
   <div class="project_partial">...</div>
   <div class="project_partial">...</div>

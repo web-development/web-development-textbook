@@ -858,6 +858,9 @@ select,
   width: auto;
   height: auto;
 }
+label input[type="checkbox"], label input[type="radio"] {
+  display: inline;
+}
 label input, label textarea, label select {
   display: block;
 }

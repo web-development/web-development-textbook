@@ -40,9 +40,9 @@ Die DSGVO führt im Artikel 5 explizit folgende sechs Grundsätze für die Verar
 
 * Rechtmäßigkeit, Transparenz
 * Zweckbindung (Verarbeitung nur für festgelegte, eindeutige und legitime Zwecke)
-* Datenminimierung („dem Zweck angemessen und erheblich sowie auf das […] notwendige Maß beschränkt“)
-* Richtigkeit („es sind alle angemessenen Maßnahmen zu treffen, damit [personenbezogene Daten] unverzüglich gelöscht oder berichtigt werden“)
-* Speicherbegrenzung (Daten müssen „in einer Form gespeichert werden, die die Identifizierung der betroffenen Personen nur so lange ermöglicht, wie es […] erforderlich ist“)
+* Datenminimierung („dem Zweck angemessen und erheblich sowie auf das ... notwendige Maß beschränkt“)
+* Richtigkeit („es sind alle angemessenen Maßnahmen zu treffen, damit &#91;personenbezogene Daten&#92; unverzüglich gelöscht oder berichtigt werden“)
+* Speicherbegrenzung (Daten müssen „in einer Form gespeichert werden, die die Identifizierung der betroffenen Personen nur so lange ermöglicht, wie es ... erforderlich ist“)
 * Integrität und Vertraulichkeit („angemessene Sicherheit der personenbezogenen Daten“, „einschließlich Schutz vor unbefugter oder unrechtmäßiger Verarbeitung und vor unbeabsichtigtem Verlust, unbeabsichtigter Zerstörung oder unbeabsichtigter Schädigung“)
 
 

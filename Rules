@@ -59,7 +59,7 @@ class Nanoc3::Filter
       end
 
       return "" if set.length < 2
-      puts "        srcset for #{file}: #{set.length} versions"
+      # puts "        srcset for #{file}: #{set.length} versions"
       "srcset='#{set.join ', '}' "
     end
 
@@ -453,6 +453,8 @@ compile '*', :rep => :slide do
   filter :pattern_tester
   filter :code_blocks
   filter :kramdown
+  filter :responsive_images
+
   #filter filters[item[:extension].to_sym] || item[:extension].to_sym
   filter :slides
   if item[:homepage]

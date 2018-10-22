@@ -3,6 +3,9 @@ title: Responsive Design
 order: 40
 ---
 
+Wie gehen wir mit der Herausforderung der verschiedenen 
+Auflösungen und Pixeldichten um?
+
 ## Responsive Design
 
 Große Unterschiede im Platz kann man mit Mediaqueries in CSS behandeln. Die Verwendung von Mediaqueries wurde 2010 in einem Artikel von Ethan Marcotte in "A List Apart" unter dem Begriff "Responsive Webdesign" popularisiert [&rarr;](http://www.alistapart.com/articles/responsive-web-design/).
@@ -16,7 +19,7 @@ für verschiedene Größen angeboten. Der Inhalt und das HTML Dokument bleiben d
 
 Die technische Umsetzung des verschiedenen Layouts ist relativ einfach: Mediaqueries erlauben eine "Verzweigung" in CSS.
 
-<css caption="CSS mit Mediaqueries: Nur wenn Darstellung am Screen, und Breite kleiner gleich 480 Pixel">
+<css caption="CSS mit Mediaqueries">
 @media screen and (max-width: 480px) {
   .column {
     width: 100px;
@@ -30,13 +33,32 @@ Die technische Umsetzung des verschiedenen Layouts ist relativ einfach: Mediaque
 
 Luke Wroblewski schlug 2009 unter dem Slogan "Mobile First" vor, zuerst die mobile Version der Website zu gestalten, und davon dann die "größeren" Versionen abzuleiten [&rarr;](http://www.lukew.com/ff/entry.asp?933).
 
-### Mediaqueries
+![/images/responsive/mobile-first.jpg](/images/responsive/mobile-first.jpg)
 
-siehe auch [MDN](https://developer.mozilla.org/de/docs/Web/CSS/Media_Queries)
+[Bild: (CC BY-NC) Sauce Babilonia](https://www.flickr.com/photos/saucef/7184615025)
 
-### Featurequeries
 
-siehe auch [MDN](https://developer.mozilla.org/de/docs/Web/CSS/@supports)
+### Mediaqueries and Featurequeries
+
+<css caption="CSS Medaqueries Beispiel">
+@media print {
+  body { font-size: 10pt; }
+}
+
+@media screen {
+  body { font-size: 13px; }
+}  
+
+@supports not (display: grid) {
+  div {
+    float: right;
+  }
+}
+</css>
+
+siehe auch [MDN: media features](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Media_features) und [MDN: features queries](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports)
+
+
 
 ## Bilder und Responsive Design
 
@@ -78,4 +100,104 @@ andere Mediaqueries schlagend.
 
 
 
-TODO: Typische Beispiele für Responsive Design
+## Beispiel
+
+Die [Demo Seite für CSS Grid](/images/cssgrid/#!/responsive) ist responsive.
+
+![/images/css-layout/example-responsive.png](/images/css-layout/example-responsive.png)
+
+§
+
+Für Smartphones ist kein Grid vorgesehen:
+
+<css>
+@media screen and (max-width: 660px)  {
+  .page_container {
+    padding: 10px;
+    max-width: 80em;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  ...
+}
+</css>
+
+§
+
+Für Tablets gilt ein Grid mit zwei Spalten:
+
+<css>
+@media screen and (min-width: 660px) and (max-width: 1150px)  {
+
+    .page_container {
+      display: grid;
+
+      grid-template-columns: 2fr 3fr;
+      grid-template-rows: 60px 403px 1fr 1fr 60px 3fr;
+
+      grid-template-areas:  "w1        headline "
+                            "portrait  description"
+                            "w2        facts"
+                            "w2        navigation"
+                            "w2        stylename"
+                            "w2        css";
+    }
+    ....
+}
+</css>
+
+§
+
+für Desktops ein Grid mit drei Spalten:
+
+<css>
+@media screen and (min-width: 1200px)  {
+
+    .page_container {
+      display: grid;
+
+      grid-template-columns: 270px 5fr 3fr;
+      grid-template-rows: 60px 2fr 210px;
+
+      grid-template-areas:  "w1        headline     stylename"
+                            "portrait  description  css"
+                            "w2        facts        navigation";
+    }
+    ...
+}
+</css>
+
+
+§
+
+und als Easter Egg ist noch eine ganz verrücktes Grid dabei:
+
+![/images/css-layout/easteregg-responsive.png](/images/css-layout/easteregg-responsive.png)
+
+<css>
+@media screen and (min-width: 1150px) and (max-width: 1200px) {
+
+    .page_container {
+      height:1200px;
+      width:1200px;
+
+      display: grid;
+
+      grid-template-columns: 140fr 131fr 152fr 283fr 190fr 166fr;
+      grid-template-rows: 114fr 306fr 305fr 131fr 129fr 70fr;
+
+      background-color: black;
+      grid-gap: 25px 25px;
+
+      grid-template-areas:  
+        "w1    w1           w2           w2           headline  headline"
+        "w4    description  description  description  facts     facts"
+        "w5    description  description  description  portrait  w11"
+        "w5    navigation   navigation   w6           w7        w7"
+        "gelb  navigation   navigation   w8           css       css"
+        "gelb  w9           w9           stylename    css       css"
+        "gelb  w9           w9           w10          w10       w10";
+    }
+    ...
+}
+</css>

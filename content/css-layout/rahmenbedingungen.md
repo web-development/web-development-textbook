@@ -37,19 +37,18 @@ Die Angabe der Auflösung erfolgt in Pixel – die reale Größe des Ausgabeger�
 |Apple iPhone3|06/2009|480 × 320|3.5 in |163 ppi|
 |15” Macbook Pro 'Retina'|06/2012|2880 × 1800|15.4 in |220 ppi|
 |Apple iPhone4|06/2010|960 × 640|3.5 in|326 ppi |
-|Apple iPad 3rd gen|03/2011|2048×1536|12 in|264 ppi |
-|Apple IPhone7|10/2016|1334×750|4.7 in |326 ppi|
-|Amazon Kindle Paperwhite|12/2012|768×1024|6 in |212 ppi |
-|ASUS Zenbook UX305|04/2015|3200 x 1800|13.3 in |577 ppi|
+|Apple iPad 3rd gen|03/2011|2048 × 1536|12 in|264 ppi |
+|Apple iPhone XS|10/2018|2436 × 1125|5.8 in |458 ppi|
 |Google Nexus One |1/2010|800 × 480|3.7 in |254 ppi |
-|Samsung Galaxy S7|2/2016|2560×1440 pixel|5.1 in |577 ppi |
+|Samsung Galaxy S7|2/2016|2560 × 1440 pixel|5.1 in |577 ppi |
+|Samsung Galaxy S9|2/2018|2960 × 1440 pixel|5.8 in |570 ppi |
 |12” Macbook 'Retina'|03/2015| 2304 × 1440|12 in |226 ppi|
 {: class="table table-condensed table-bordered" style="width:auto"}
 
-Hier findet man einen Faktor 6 zwischen hächster und geringster Pixeldichte.
+Hier findet man einen Faktor 6 zwischen höchster und geringster Pixeldichte.
 
-Mit mydevice.io kann man den aktuellen Browser
-vermessen. Dort gibt es auch eine [ausführlichere Liste](https://mydevice.io/devices/) von aktuellen
+Mit [mydevice.io](https://www.mydevice.io/) kann man den aktuellen Browser
+vermessen. Dort gibt es auch eine [ausführlichere Liste](https://www.mydevice.io/#compare-devices) von aktuellen
 Geräten.
 
 ## Viele Auflösungen

@@ -270,3 +270,6 @@ Für einen ersten Einstieg reichen die hier gezeigten,
 später sollten Sie noch [weitere Details](/css-layout/details) kennen lernen.
 
 Eine gute englischsprachige Quelle dazu ist [learnlayout.com](http://learnlayout.com/)
+
+Der Artikel [Use Cases For Flexbox](https://www.smashingmagazine.com/2018/10/flexbox-use-cases/) von Rachel Andrews erklärt gut in welchen Fällen man Grid und in welchen Fällen man Flexbox verwenden kann.
+

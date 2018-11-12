@@ -38,10 +38,10 @@ Es gibt noch eine zweite Programmiersprache mit sehr ähnlichem Namen: Java. Die
 | Wer hat’s erfunden?  | Netscape / Brendan Eich  | Sun / James Gosling |
 |                      | Interpretiert Sprache    | Kompilierte Sprache |
 | Typen                | Wenige Datentypen, Probleme werden erst zur Laufzeit erkannt | Datentypen und Klassen werden streng unterschieden und zur Compilezeit geprüft |
-|  Objektorientierung |  Objekte und Prototypen  |  Objekte und Klassen |
+|  Objektorientierung |  Objekte und Prototypen (Klassen als "syntactic sugar") |  Objekte und Klassen |
 | Verwendung           | Im Webbrowser, am Webserver (node.js), in Flash, in Illustrator und Indesign | Überall (Chipkarten, am Server, im Browser, im Handy) |
 | Projekte | Früher nur winzige Projekte (z.B: Animations-Effekt),  in den letzten Jahren: JS Frontend als wichtiger Teil einer Webappliaktion wie Facebook, Gmail, etc. | Alle, auch Großprojekte mit vielen Jahren Entwicklungszeit |
-| Wer |  Auch Web-DesignerInnen | Nur InformatikerInnen |
+| Wer |  Manchmal auch Web-DesignerInnen | Nur hauptberufliche ProgrammiererInnen |
 {: class="table table-condensed table-bordered" style="width:auto"}
 
 
@@ -50,12 +50,14 @@ Geschichte von Javascript
 
 Javascript wurde ursprünglich bei Netscape von Brendan Eich erfunden, und dann von verschiedenen Herstellern weiterentwickelt. Es war eines der Schlachtfelder im Browser-War: Microsoft und Netscape versuchten durch verschiedene Implementierungen die Position des eigenen Browsers zu verbessern und Webseiten im "gegnerischen" Browser unbrauchbar zu machen.
 
-Erst nachträglich gab es (partielle) Einigung auf Standards. Mit dem ECMA-Standard 262 wurde die Syntax fixiert. Sie wird von der Arbeitsgruppe ECMA TC39, in der u.a. Personen von Browser-Herstellern vertreten sind weiter entwickelt.  Die aktuelle Version die Sie erlernen ist '''ECMA Script 2015 / ES6'''.
+Erst nachträglich gab es (partielle) Einigung auf Standards. Mit dem ECMA-Standard 262 wurde die Syntax fixiert. Sie wird von der Arbeitsgruppe ECMA TC39, in der u.a. Personen von Browser-Herstellern vertreten sind weiter entwickelt.  
 
 Mit dem „Document Object Model“ (DOM) wurde der Zugriff auf die Webseite vereinheitlicht.
 Libraries wie jQuery ebenen die letzten Unterschiede in den Browser-Implementierungen noch aus.
 
 Die Entwicklung dieser API ist nun Teil von HTML5 und liegt beim W3C. Unter den Stichwort „HTML5“ sind auch viele Neuerungen in Javascript, viele neue APIs gemeint: File API, Websockets,  Storage, WebGL, ...
+
+Die aktuelle Version die Sie erlernen ist die Untermenge von ''ECMA Script ES8'', die derzeit schon im Browsern unterstützt wird.
 
 
 Anwendung von Javascript

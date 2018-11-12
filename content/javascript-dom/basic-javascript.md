@@ -6,20 +6,19 @@ Ein vollständiges Beispiel für eine Webseite mit Javascript-Programm, auch
 [live im browser](/images/javascript-dom/farbfeld.html).
 
 <htmlcode caption="Vollständige Webseite mit Javascript">
-<head>
 <body id="farbfeld">
-<h1>Farbwahl</h1>
-<form>
-  <input type="button" value="Rot"  onclick="setcolor('red')">
-  <input type="button" value="Grün" onclick="setcolor('#0F0')">
-  <input type="button" value="Blau" onclick="setcolor('blue')">
-</form>
-<script>
-function setcolor( c ) {
-  b = document.getElementById('farbfeld');
-  b.style.backgroundColor = c
-}
-</script>
+  <h1>Farbwahl</h1>
+  <form>
+    <input type="button" value="Rot"  onclick="setcolor('red')">
+    <input type="button" value="Grün" onclick="setcolor('#0F0')">
+    <input type="button" value="Blau" onclick="setcolor('blue')">
+  </form>
+  <script>
+  function setcolor( c ) {
+    b = document.getElementById('farbfeld');
+    b.style.backgroundColor = c
+  }
+  </script>
 </body>
 </htmlcode>
 
@@ -51,6 +50,15 @@ Mit dem `script`-Tag wird die externe Javascript-Datei eingebunden:
 Wird der `script`-Tag auf diese Weise (mit dem Attribut src) verwendet, dann darf er 
 keinen Inhalt zwischen `<script>` und `</script>` enthalten. Achtung: 
 die Schreibweise ohne Ende-Tag: `<script src="jquery">` ist nicht erlaubt!
+
+Man kann das Javascript Programm auch von einem anderen Server laden, zum Beispiel von einem [CDN](https://de.wikipedia.org/wiki/Content_Delivery_Network).  Dann verwendet man zusätzlich noch das `integrity` attribut, um sicher zu Stellen dass genau der Javascript-Code geladen wird, den man haben wollte, und ihn niemand verändert hat:
+
+
+<htmlcode>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</htmlcode>
+
+![](images/javascript-dom/sri.png)
 
 ### Der &lt;script>-Tag 
 Javascript-Programme können im HTML-Code mit dem `script`-Tag eingebettet

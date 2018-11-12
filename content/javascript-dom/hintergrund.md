@@ -64,15 +64,15 @@ Anwendung von Javascript
 -----------------
 
 Lange Zeit waren kleine Javascript-Programme eine relative unabhängige Ergänzung für Web-Applikationen. Ein Beispiel dafür wäre ein [Data Table](https://datatables.net/)
-der in eine HTML Tabelle die möglichkeit zum Sortieren nach eine Spalte einbaut.
+der in eine HTML Tabelle die Möglichkeit zum Sortieren nach eine Spalte einbaut.
 
 Große Web Applikationen wie outlook oder gmail zeigten aber bald, dass auch komplexe
 Programme im Browser möglich sind. Um diese umzusetzen gibt es heute clientseitige
-Frameworks wie Angular oder React.
+Frameworks wie React, Vue oder Angular.
 
 Web Applikationen wurden seit ca. 2008 Schritt für Schritt mehr und mehr offline-fähige.
 Heute nennt man solche Applikationen "Progressive Web Apps" (PWA). [pwa.rocks](https://pwa.rocks)
-zeigt eine Sammlsung solcher Apps.
+zeigt eine Sammlung solcher Apps.
 
 
 

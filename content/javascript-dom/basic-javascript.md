@@ -311,11 +311,11 @@ Will man mehrere Objekte mit denselben Eigenschaften erzeugen, dann ist eine Kla
 
 <javascript>
   class Shirt {
-    constructor( f, b, v ) {
-      this.farbe        = f;
-      this.beschriftung = b;
-      this.verkauft     = v;
-    }
+      constructor( f, b, v ) {
+          this.farbe        = f;
+          this.beschriftung = b;
+          this.verkauft     = v;
+      }
   }
   var d = new Shirt("rot", "int pi == 3", true);
 
@@ -353,7 +353,73 @@ index zu benötigen mit einer `for ... of` schleife:
   let liste = [10, 20, 30];
 
   for (let element of liste) {
-    console.log(element);
+      console.log(element);
   }
 </javascript>
+
+
+### Verzweigungen
+
+`if`, `else`, `else if` und die Operatoren für boolsche Werte funktionieren wie in c#:
+
+
+<javascript>
+  let windy = false;
+  let rainy = true;
+
+  if (! windy && ( rainy || sunny )) {
+      console.log("Umbrella !");
+  } else {
+      console.log("No umbrella !");
+  }
+</javascript>
+
+
+§
+
+`switch` funktioniert genau wie in C#:
+
+<javascript>
+  switch (cardNr) {
+      case 14:
+          console.log("Ass");
+          break;
+      case 13:
+          console.log("Koenig");
+          break;
+      case 12:
+          console.log("Dame");
+          break;
+      case 11:
+          console.log("Bube");
+          break;
+      default:
+          console.log(`unbekannte Karte Nr. ${cardNr}`);
+          break;
+  }
+</javascript>
+
+
+### Funktionen 
+
+Funktionen sind in Javascript etwas simpler als in C#, da die
+Typ-Deklarationen entfallen.  Das Keyword `function` wird vor dem neu
+definierten Funktionsnamen verwendet:
+
+<javascript>
+  function add( a, b ) { 
+      return a+b; 
+  }
+
+  console.log(40, 2);  // gibt 42
+</javascript>
+
+
+### Konventionen
+
+Sowohl für Variablen als auch für Funktionen wird meist "Camel Case" verwendet, mit
+einem kleinen Anfangsbuchstaben, z.b.  `addNumbers`,  `deleteAllTheListItems`.
+
+
+
 

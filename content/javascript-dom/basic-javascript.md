@@ -222,13 +222,13 @@ Auch die folgenden Beispiele können Sie direkt in der Console ausprobieren wie 
 
 ![Abbildung 58: Javascript Console in Firebug](/images/javascript-dom/vars-in-js-console.png)
 
-Mit Javascript 2015 gibt nun drei Arten eine Variable zu deklarieren:
+Ab Javascript 2015 (ES6) gibt drei Arten eine Variable zu deklarieren:
 
 <javascript caption="deklaration">
-var a;  // altmodisch
+var a;  // alt
 
-let b;    // neumodisch, Variable
-const c;  // neumodisch, Konstante
+let b;    // neu, Variable
+const c;  // neu, Konstante
 </javascript>
 
 Die Details zu `let` und `const` lernen Sie später 
@@ -259,7 +259,7 @@ In Javascript gibt es drei Arten Strings zu schreiben.
 <javascript caption="drei Arten Strings zu schreiben">
 a = "Hallo";
 b = 'Welt';
-c = `Hallo ${b}, der brutto Preis ist ${100 * 1.5}`;
+c = `Hallo ${name}, der brutto Preis ist ${netto * 1.2}`;
 </javascript>
 
 Die letzte, genannt  **template literals**, erlaubt das einbinden von Variablen und das
@@ -267,9 +267,7 @@ Auswerten von Javascript-Expressions.  Siehe auch [MDN](https://developer.mozill
 
 ### Arrays
 
-Arrays in Javascript können wie in C mit eckigen Klammern und Integer-Index ausgelesen werden: `b[0]`, `b[1]`, …  Aber eigentlich sind Arrays schon Objekte.
-
-Für das Erzeugen des Arrays gibt es zwei Schreibweisen
+Arrays in Javascript können wie in C# mit eckigen Klammern und Integer-Index ausgelesen werden: `b[0]`, `b[1]`. Für das Erzeugen des Arrays gibt es zwei Schreibweisen
 
 <javascript>
   var b;
@@ -298,13 +296,20 @@ Die Werte im Array können verschiedene Daten haben (String, Number, Boolean,...
 
 ### Objekte
 
-Für das Erzeugen von Objekten gibt es zwei Schreibweisen: die JSON-Schreibweise mit geschwungenen Klammern eignet sich gut für einmalige Objekte. Will man mehrere Objekte mit denselben Eigenschaften erzeugen, dann ist eine Klasse mit Konstruktor besser geeignet.
+Für das Erzeugen von Objekten gibt es zwei Schreibweisen: die JSON-Schreibweise mit geschwungenen Klammern eignet sich gut für einmalige Objekte. 
 
 <javascript>
   var c;
   c = {"farbe" : "rot", "beschriftung": "int pi == 3", "verkauft": true};
 
-  // Construktor-Funktion
+  alert("Das Shirt ist " + c.farbe ); // gibt “Das Shirt ist rot”  
+
+  alert(typeof c); // gibt  "object"  
+</javascript>
+
+Will man mehrere Objekte mit denselben Eigenschaften erzeugen, dann ist eine Klasse mit Konstruktor besser geeignet.
+
+<javascript>
   class Shirt {
     constructor( f, b, v ) {
       this.farbe        = f;
@@ -312,14 +317,11 @@ Für das Erzeugen von Objekten gibt es zwei Schreibweisen: die JSON-Schreibweise
       this.verkauft     = v;
     }
   }
-  d = new Shirt("rot", "int pi == 3", true);
+  var d = new Shirt("rot", "int pi == 3", true);
 
-  alert("Das Shirt ist " + c.farbe ); // gibt “Das Shirt ist rot”
   alert("Das Shirt ist " + d.farbe ); // gibt “Das Shirt ist rot”
 
-  // typeof c === "object"
-  // c.constructor === Shirt
-  // d.constructor === Object
+  alert(typeof d); // gibt  "object"  
 </javascript>
 
 ### Zugriff auf Eigenschaften
@@ -327,15 +329,17 @@ Für das Erzeugen von Objekten gibt es zwei Schreibweisen: die JSON-Schreibweise
 Eine Besonderheit von Javascript (die sie nicht in anderen Programmiersprachen finden werden) ist, dass Eigenschaften eines Objekts nicht nur über die Punkt-Schreibweise, sondern auch über eckige Klammern – also wie ein Array – angesprochen werden können:
 
 <javascript>
-  alert("Das Shirt ist " + c.farbe );
-  alert("Das Shirt ist " + c["farbe"] );
+  console.log("die Farbe des shrits ist")
+  console.log( c.farbe    );
+  console.log( c["farbe"] );
 </javascript>
 
 In den eckigen Klammern steht nun ein String. Dieser könnte auch in einer Variable gespeichert sein:
 
 <javascript>
   e = "beschriftung";
-  alert("Die Beschriftung lautet " + c[e] );
+  console.log("Die Beschriftung lautet ")
+  console.log( c[e] );
 </javascript>
 
 ### Einfache Schleife
@@ -343,7 +347,7 @@ In den eckigen Klammern steht nun ein String. Dieser könnte auch in einer Varia
 Neben der `while` und `for` Schleife mit index
 gibt es in Javascript noch Möglichkeiten über
 die Werte in einem Array zu iterieren **ohne** den
-index zu benötigen:
+index zu benötigen mit einer `for ... of` schleife:
 
 <javascript>
   let liste = [10, 20, 30];

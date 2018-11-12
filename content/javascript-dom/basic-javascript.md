@@ -130,9 +130,10 @@ Das Programm wird ausgeführt wenn die Maus über den Link bewegt wird (auch: `o
 
 <htmlcode>
   <input type="button" onclick="...">
+  <input type="submit" onclick="...">
 </htmlcode>
 
-Das Programm wird ausgeführt wenn auf den Button geklickt wird. Das Programm muß `true` oder `false` zurückgeben um anzuzeigen ob die normale Funktion des Buttons wirklich ausgeführt werden soll. 
+Das Programm wird ausgeführt wenn auf den Button geklickt wird. Beim `type="submit"` muss das Javscript-Programm  `true` oder `false` zurückgeben um anzuzeigen ob die normale Submit-Funktion  wirklich ausgeführt werden soll. 
 
 
 §
@@ -219,7 +220,7 @@ In andere Programmiersprachen müssen Variablen deklariert werden (ein Datentyp 
 Auch die folgenden Beispiele können Sie direkt in der Console ausprobieren wie in der Abbildung gezeigt: Wenn Sie einen Ausdruck eintippen wird er ausgewertet. Mit dem Befehl console.log( … ) können Sie direkt auf die Console schreiben.
 
 
-![Abbildung 58: Javascript Console in Firebug](/images/javascript-dom/js-console-vars.png)
+![Abbildung 58: Javascript Console in Firebug](/images/javascript-dom/vars-in-js-console.png)
 
 Mit Javascript 2015 gibt nun drei Arten eine Variable zu deklarieren:
 

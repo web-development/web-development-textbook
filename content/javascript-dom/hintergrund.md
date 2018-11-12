@@ -8,6 +8,8 @@ Anwendungsgebiet
 
 Javascript ist eine Programmiersprache die in HTML eingebettet und vom Browser interpretiert wird. Im Browser ist der Wirkungsbereich von Javascript auf das Fenster und das aktuelle Dokument beschränkt – es kann nicht die Festplatte formatieren oder Excel starten. 
 
+Laut [TIOBE Index](https://www.tiobe.com/tiobe-index/) ist Javascript auf Platz 6 oder 7 der Programmiersprachen, aber bei [Stackoverflow](https://insights.stackoverflow.com/survey/2018/#technology) ist es die beliebteste Programmiersprache.
+
 Typische Verwendung
 -------------------
 

@@ -86,7 +86,7 @@ Das Document Object Model (DOM) ist ein allgemeines Modell wie ein Dokument (die
 Das DOM einer Webseite kann man sich als Baum vorstellen, ähnlich der Ordnerstruktur im Dateisystem.  Sie kennen diese Idee schon von CSS und den CSS-Selektoren.
 
 In folgendem Beispiel ist der markierte `a`-Tag innerhalb eines `li`-Tags, und
-der wiederum innerhalb eines  `uk`-Tag mit Klassen `nav` und `nav-list`.
+der wiederum innerhalb eines  `ul`-Tag mit Klassen `nav` und `nav-list`.
 
 ![Abbildung: Bild des DOM, erzeugt mit den Firefox DeveloperTools](/images/javascript-dom/dom.png)
 

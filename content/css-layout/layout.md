@@ -273,3 +273,7 @@ Eine gute englischsprachige Quelle dazu ist [learnlayout.com](http://learnlayout
 
 Der Artikel [Use Cases For Flexbox](https://www.smashingmagazine.com/2018/10/flexbox-use-cases/) von Rachel Andrews erklärt gut in welchen Fällen man Grid und in welchen Fällen man Flexbox verwenden kann.
 
+Weitere Quellen
+---------
+
+* [Flexbugs](https://github.com/philipwalton/flexbugs) - bekannte Probleme mit Flexbox

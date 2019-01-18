@@ -136,6 +136,7 @@ Tutorials
 
 * [Dive into Canvas](http://diveintohtml5.info/canvas.html)
 * [MDN Canvas Tutorial](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images)
+* [even more canvas tutorials](https://www.html5canvastutorials.com/)
 
 Aufbauend auf den Canvas gibt es viele Libraries, z.B:
 

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Demo of paint api</title>
+</head>
+
+<body>
+    <h1>Demo of paint api</h1>
+    <script>
+    CSS.paintWorklet.addModule('paint-boxes.js');
+    CSS.paintWorklet.addModule('paint-slanted-bg.js');
+    </script>
+    <style>
+    body {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    h1 {
+      width: 100%;
+      background-color: #ffbf00;
+      color: #ff5e00;
+    }
+    div {
+      flex: 1;
+      border: 3px solid black; 
+      padding: 10px;   
+    }
+    div.div-1 {
+      background: #0081ff;
+      --rough-fill: #0081ff;
+    }
+
+    div.div-2 {
+      background: 8100ff;      
+      --rough-fill: #8100ff;
+    }
+
+    h1 {
+      background: hsl(276, 100%, 50%);
+    }
+    @supports (background: paint(slanted-bg)) {
+      h1 {
+        padding: 0 30px;
+        background: paint(slanted-bg);
+        --slanted-width: 10px;
+        --slanted-main-color: #ffbf00;
+        --slanted-second-color: #ff5e00;
+      }
+    }
+    @supports (border-image-source: paint(rough-boxes)) {
+        div {
+            border-image-source: paint(rough-boxes);
+            border-image-slice: 0 fill;
+            border-image-outset: 10px;
+            background: none;
+            --rough-stroke: black;
+            --rough-stroke-width: 4px;
+            --rough-roughness: 5;            
+        }
+    }
+    </style>
+    <div class=div-1>
+      <p>
+      Diese Demo zeigt zwei divs mit einer
+      beonderen Art von 'border-image'. Es wird ein PaintWorklet verwendet
+      um die Rahmen zu ziehen und dabei auch den Hintergrund der ganzen
+      Box auszumalen.
+      </p>
+      <p>In CSS wird das PaintWorklet blos aufgerufen</p>
+      <pre>border-image-source: paint(rough-boxes);</pre>
+    </div>
+    <div class=div-2>
+      In Javascript wird das Worklet mit <kbd>CSS.paintWorklet.addModule('<a href="paint-boxes.js">paint-boxes.js</a>');</kbd> aus
+      einer anderen Datei geladen.  Der Javascript-Code ist insgesamt sehr lang:
+      ca. 150 Zeilen. 
+    </div>
+</body>
+</html>

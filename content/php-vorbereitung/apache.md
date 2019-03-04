@@ -10,29 +10,33 @@ Im Gegensatz zu anderen freien Software Projekten waren in der Apache Group von 
 Heute betreibt die "Apache Group" neben dem Webserver noch viele weitere
 wichtige Open Source Software Projekte.
 
-Apachefriends und XAMPP
+Apache und PHP und Datenbank
 ------------------------
-Die „apachefriends“ bieten den Webserver Apache in einem Paket mit der Programmiersprache PHP und der Datenbank MySQL für Windows an. Dieses Gesamtpaket heißt dann XAMPP. Eine sehr freundliche Installations-Anleitung ist auch dabei.
+
+Für eine komplette Entwicklungsumgebung braucht man Apache, PHP und eine Datenbank.
+
+Auf MacOS ist schon ein Apache installiert, man kann mit brew PHP und postgresql dazu
+installieren: 
+
+Bitnami bietet ein Paket an, das alle drei Teile gemeinsam installiert: den [WAPP Stack](https://bitnami.com/stack/wapp) für Windows, den [MAPP Stack](https://bitnami.com/stack/mapp/installer) für MacOS und den [LAPP Stack](https://bitnami.com/stack/lapp/installer) für Linux.
+
+Diese Stack sind besonders für den Anfang geeignet. Wer schon mehr
+Erfahrung mit dem Installieren auf Mac hat kann alternativ auch
+[brew](https://gist.github.com/karlhillx/5cd68430aeb25e5e242a3e2c30f238d1) zur Installation
+verwenden.
 
 
-![Abbildung 122: Webseite von apachefriends.org, download von XAMPP](/images/image324.png)
-
-Die Alternative zur Distribution XAMPP wäre, jeden Teil einzeln zu besorgen: Apache von httpd.apache.org, PHP von php.net, und MySQL von MySQL.com herunter laden, die drei Pakete separat installieren, und dann versuchen, sie richtig zu kombinieren. 
-
-Auf Mac OS ist Apache und PHP schon installiert, nur mysql muss man noch
-installieren.
-
-Apache und MySQL starten
+Apache und Datenbank starten
 -------------------------
-Wenn die Installation von Apache und MySQL auf Windows funktioniert hat, findet
+Wenn die Installation von Apache und Postgres funktioniert hat, findet
 man nicht – wie bei anderen Programmen – einen Eintrag im Programm-Menü. Weder
-Apache noch PHP noch MySQL haben eine grafische Oberfläche. Apache und MySQL
-sind „Server“ (oder, wie es unter Windows heisst: „Dienste“), die man starten muss.
+Apache noch PHP noch Postgresql haben eine grafische Oberfläche. Apache und Postgresql
+sind „Server“ (oder, wie es unter Windows heisst: „Dienste“). 
 
-Man kann Apache und MySQL auf zwei Arten starten: als Windows-Dienst oder über das in  Abbildung 119 gezeigte XAMPP Control Panel. 
+Mit dem MAPP/WAPP/LAPP Paket wird ein Control Panel installiert,
+über das man Webserver und Datenbank starten kann:
 
-
-![Abbildung 123: XAMPP Control Panel zum Starten und Stoppen von Apache](/images/image325.png)
+![MAPP Control Panel](/images/php-vorbereitung/mapp-stack-panel.png)
 
 Apache als Windows-Dienst
 --------------------------
@@ -41,13 +45,14 @@ bereits installierten Dienste und kann diese starten und anhalten.
 
 ![Abbildung 124: Dienste von Windows: MySQL und Apache2 sind schon gestartet](/images/image326.png)
 
+
 Webserver stoppen
 ------------------
 Egal wie man Apache gestartet hat: erst mit einem Browser kann man die Funktionstüchtigkeit des Webservers wirklich testen. Als URL verwendet man http://localhost/. 
 
 
-Apache und MySQL brauchen Hauptspeicher: Apache ca. 40 MB, MySQL fast 400 MB.
+Apache und die Datenbank brauchen Hauptspeicher.
 Wer gleichzeitig mit vielen anderen Programmen arbeitet und extrem wenig
-Hauptspeicher im Computer hat, sollte also MySQL und Apache nach Gebrauch wieder
+Hauptspeicher im Computer hat, sollte die Server also nach Gebrauch wieder
 beenden. 
 

@@ -2,17 +2,21 @@
 title: Was ist PHP? Was passiert am Webserver?
 order: 20
 ---
-PHP ist eine Programmiersprache die oft am Webserver verwendet wird, um HTML dynamisch zu erzeugen. 
+PHP ist eine Programmiersprache die oft am Webserver "im Backend" verwendet wird.  
 
-Sie ist im Vergleich zu anderen Programmiersprachen wie C++  oder Javascript
-recht '''simple'''  in der Schreibweise und etwas '''altmodisch'''. Gerade deswegen eignet sie sich gut für Programmier-EinsteigerInnen. Viele bekannte open source Web-Applikationen sind in PHP geschrieben.
+Viele bekannte Open Source Applikationen sind in PHP geschrieben: Viele Content Management System wie [Wordpress](https://wordpress.org/) oder [Drupal](https://www.drupal.org/), Shop-Systeme wie [Magento](https://magento.com/), [MediaWiki](https://www.mediawiki.org/wiki/MediaWiki) (die Software der Wikipedia), [ownCloud](https://owncloud.org/), die Lern-Plattoform
+[Moodle](https://moodle.org/), [LimeSurvey](https://www.limesurvey.org/) für Umfragen,
+und viele, viele mehr.
 
-Neben PHP werden viele andere Sprachen am Webserver verwendet: ruby (on rails),
-c#, java, python, ... 
+Aber auch hinter komerziellen Produkten steckt oft PHP: zum Beispiel [Facebook](https://code.fb.com/tag/php/)
+oder [tumblr](https://engineering.tumblr.com/tagged/php)
+
+Neben PHP werden viele andere Sprachen im Backend verwendet: ruby (on rails),
+java, python, c#, ... aber wir beginnen mit PHP.
 
 §
 
-![Abbildung: So funktioniert PHP](/images/php-sequence-diagram.svg)
+![Abbildung: So funktioniert PHP](/images/php-vorbereitung/php-sequence-diagram.svg)
 
 
 Das PHP-Programm wird gestartet um die Anfrage des Browsers zu beantworten. Nachdem diese Aufgabe erfüllt ist, wird das PHP-Programm wieder beendet. Die Laufzeit ist also sehr, sehr kurz! 

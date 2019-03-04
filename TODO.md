@@ -6,3 +6,4 @@ https://github.com/rsms/inter
 
 
 * https://github.com/toddmotto/public-apis für fetch, oder gleich haveibeenowned
+* http://iso25000.com/index.php/en/22-english/iso-iec-25010  software qualität

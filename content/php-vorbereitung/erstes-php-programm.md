@@ -15,7 +15,7 @@ folgendem Beispiel ist beides falsch:
 
 ![Abbildung 125: So funktioniert PHP nicht: ohne Webserver, falsche Dateiendung](/images/image327.png)
 
-Wenn die URL mit **file:///** beginnt, öffnet der Browser die Datei
+Wenn die URL mit <kbd>file:///</kbd> beginnt, öffnet der Browser die Datei
 direkt vom Filesystem, es ist keine Webserver involviert.  Dann kann PHP nicht
 funktionieren!
 
@@ -55,7 +55,8 @@ Mit Ansicht-&gt;Quelltext kann man nun im Browser nur noch den HTML-Code sehen, 
 PHP Versionen
 --------------
 Der Befehl phpinfo() liefert Informationen zur PHP-Installation. In der letzten Abbildung sehen 
-Sie z.B. dass PHP in der Version 5.0.5 verwendet wird.
+Sie z.B. dass PHP in der Version 5.0.5 verwendet wird - eine veraltete Version. Im Jahr
+2019 sollten Sie nur mindestens PHP 7 verwenden.
 
 Zwischen den verschiedenen PHP-Versionen gibt es eklatante Unterschiede, 
 verschiedene PHP-Versionen sind **nicht** **kompatibel**. 
@@ -64,11 +65,13 @@ neue PHP-Version umstellt, müssen Sie eventuell den Code Ihres Programmes
 anpassen!
 
 In der PHP-Dokumentation sind diese Unterschiede bei den einzelnen Befehlen 
-aufgeführt, z.B. bei der Funktion array_fill() ist in der Dokumentation angegeben: 
+aufgeführt, z.B. bei der Funktion [ldap_sort](http://php.net/manual/de/function.ldap-sort.php) ist in der Dokumentation angegeben: 
 
-    (PHP 4 >= 4.2.0, PHP 5)
+    PHP 4 >= 4.2.0, PHP 5, PHP 7
 
-Die Funktion existiert also seit PHP 4 Version 4.2.0 und auch in PHP 5. 
+    Warnung: Dieses Feature ist seit PHP 7.0.0 DEPRECATED (veraltet). Sich auf diese Funktion zu verlassen ist in keiner Weise empfehlenswert.
+
+Die Funktion existiert also seit PHP 4 Version 4.2.0 und wird nach PHP 7 abgeschafft. 
 
 §
 
@@ -76,8 +79,9 @@ Wenn Sie Webspace mieten liegt die Entscheidung über die PHP Version aber nicht
 wenn Ihr Webspace-Provider nur einen veraltete PHP-Interpreter anbietet
 können Sie das nicht ändern!
 Das sollten Sie auf jeden Fall klären bevor Sie den Mietvertrag abschließen.
-Und Sie sollten auf Ihrem Entwicklungsrechner die gleiche PHP Version
-verwenden die am Webspace installiert ist.
+
+Auf dem Entwicklungsrechner verwendet man immer exakt die Version von PHP,
+die am Webspace installiert ist.
 
 Dokumentation
 --------------

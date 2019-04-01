@@ -1,5 +1,5 @@
 ---
-title: Constraints und Transaktionen in der DB
+title: Änderungen, Constraints und Transaktionen in der DB
 intro: Sie lernen die fortgeschrittenen Fächigkeiten einer relationalen Datenbank kennen.
 ---
 

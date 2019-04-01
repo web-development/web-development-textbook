@@ -84,7 +84,7 @@ if( $ext != '.jpg' ) {
 $uploadfile = $uploaddir . $filename;
 
 if (move_uploaded_file($_FILES['bild']['tmp_name'], $uploadfile)) {
-  echo "Datei erfolgreich hochgeladen nach <a href='upload/'>upload/</a>\n";
+  echo "Datei erfolgreich hochgeladen.\n";
 } else {
   echo "Problem beim Speichern der Datei.\n";
 }

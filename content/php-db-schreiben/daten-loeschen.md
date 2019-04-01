@@ -41,7 +41,7 @@ es gschafft hat ihr SQL hinein zu "injiziert".
 ### SQL Injection verhindern
 
 Dieses Problem kann vermeiden indem man die Eingabe genau überprüft. In diesem
-Beispiel also: nur wenn es sich bei `id` um eine ganze Zahl handelt, darf sie
+Beispiel also: nur wenn es sich bei `id` um eine ganze Zahl handelt darf diese
 verwendet werde. Das kann man auf verschiedene Arten prüfen, 
 z.B. mit der Funktion `filter_var`: 
 
@@ -51,11 +51,14 @@ if( ! $id = filter_var( $_GET['id'], FILTER_VALIDATE_INT ) ) {
   echo("variable id is false!");
   exit;
 }
+$dbh->exec("DELETE FROM users WHERE id=$id" );  
 </php>
 
 §
 
-Oft sieht man auch Eingabeprüfungen mit Regular Expressions - die müssen Sie noch nicht verstehen:
+Oft sieht man auch Eingabeprüfungen mit Regular Expressions.
+Diese braucht man nur in Fällen wo es keinen fertigen
+Filter von `filter_var` gibt - also fast nie.
 
 <php caption="Eingabeprüfung mit Regular Expression">
 if( ! preg_match( '/^\d+$/', $id ) ) {
@@ -64,6 +67,7 @@ if( ! preg_match( '/^\d+$/', $id ) ) {
     exit;
 }
 </php>
+
 
 §
 

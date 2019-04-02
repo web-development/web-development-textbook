@@ -1,6 +1,6 @@
 ---
 title: Änderungen an der Datenbank
-order: 10
+order: 35
 ---
 
 Der erste Entwurf der Datenbank ist wahrscheinlich nicht der letzte.
@@ -56,6 +56,7 @@ ALTER TABLE distributors RENAME COLUMN address TO city;
 </sql>
 
 
+
 ## Constraint entfernen und neu setzen
 
 Mit diesen Befehlen können wir das alte Constraint entfernen,
@@ -72,7 +73,20 @@ REFERENCES zimmer(zinr)
 ON DELETE CASCADE;
 </sql>
 
-Aber wie führen wir diese SQL Befehle am besten aus?
+§
+
+Leider gibt es nicht für Alles ein einfaches `ALTER` statement.
+Wenn man eine Tabelle mit einem `PRIMARY KEY` als `INTEGER` angelegt hat
+und im Nachhinein ein `SERIAL` daraus machen will ist das sehr viel Arbeit:
+
+
+<sql>
+-- CREATE TABLE gast (kunr INTEGER PRIMARY KEY, 
+CREATE SEQUENCE gast_kunr_seq OWNED BY gast.kunr;
+SELECT setval('gast_kunr_seq', coalesce(max(kunr), 1)) FROM gast;
+ALTER TABLE gast ALTER COLUMN kunr SET DEFAULT nextval('gast_kunr_seq');
+</sql>
+
 
 §
 

@@ -3,7 +3,7 @@ title: Langsam Scrollen
 order: 25
 ---
 
-Wenn ein "interner" Link, ein Link zu einer Textmarke
+Das Ziel dieser Übung ist: Wenn ein "interner" Link, ein Link zu einer Textmarke
 in derselben Seite, angeklickt wird, dann soll das Fenster
 langsam zur Zielposition scrollen, so dass man besser nachvollziehen kann
 dass der Link innerhalb der Seite erfolgte.
@@ -31,7 +31,7 @@ auf die `<section>` mit der id `order`:
     <footer id="contact">
 </htmlcode>
 
-Wird so ein interner Link angeklick, erfolgt die Darstellung der
+Wird so ein interner Link angeklick, erfolgt die neue Darstellung der
 Seite blitzschnell. Es ist schwer zu erkennen, dass man sich nun nicht
 auf einer neuen, anderern Seite befindet, sondern einfach nur weiter
 unten auf derselben Seite.
@@ -40,19 +40,21 @@ Die Lösung: langsam scrollen.
 
 ## Normalen Link verhindern
 
-TODO: jquery enfernen
-
-Als ersten Schritt verwenden wir jQuery um das `click` event
+Als ersten Schritt setzen wir einen EventListener
+umd das `click` event
 abzufangen, und mit `preventDefault` das "normale" Verhalten des Links zu
 unterbinden.
 
 <javascript>
-$("a").on('click', function(event) {
-    event.preventDefault();
-    ...
-});
+// let l = .... ein link in der Seite ...
+l.addEventListener('click', scroll_to_link);
+function scroll_to_link(ev) {
+  console.log(`link geclickt. wird ignoriert!`);
+  ev.preventDefault();
+}
 </javascript>
 
+Damit sind die Links erst mal kaputt:
 Im Event-Handler ist die Variable `this` gesetzt: sie verweist
 auf das angeklickte Element der Webseite. In diesem Fall ist das
 immer ein `a`-Tag. Mit der Methode `href` könnte man die vollständige

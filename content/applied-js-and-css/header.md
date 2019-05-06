@@ -28,22 +28,63 @@ header{
   z-index: 10;
   width: 100%;
   color: #fff;
-  padding: 35px 100px 0;
+  height: 70px;
+  background-color: transparent;
+  padding-top: 0px;  
 }
 </css>
 
-## Klasse Vorbereiten
+## Style verändern? Nein Danke!
 
-Die zwei Zustände des Headers (schwarz und etwas kleiner, vs. transparent und etwas größer)
-unterscheiden wir mit einer Klasse `.shrunk`:
+Nun könnten wir mit Javascript
+direkt den stype des headers verändern
+
+vorher:
+
+`<header style="padding-top: 35px;">`
+
+nachher:
+
+`<header style="padding-top: 0px;">`
+
+Das ist aber unpraktisch. Einfacher ist
+es, die CSS-Details im Stylesheet zu belassen, und
+nur eine Klasse zu setzen:
+
+vorher:
+
+`<header>`
+
+nachher:
+
+`<header class="shrunk">`
+
+## Klasse vorbereiten
+
+Der zweite Zustand des Headers
+wird mit einer Klasse `.shrunk` dargestellt:
 
 <css>
 header.shrunk {
   height: 70px;
   background-color: black;
-  padding: 0 100px 0;  
+  padding-top: 35px;  
 }
 </css>
+
+Diese Klasse wird aber nicht im HTML gesetzt,
+sondern erst später.
+
+## Klasse anwenden
+
+In der Konsole der Developer Tools können wir nun testen
+ob die Anwendung der Klasse das gewünschte Ergebnis erzielt:
+
+<javascript>
+    let h = ... /* richtige DOM Node auswählen */
+    h.classList.add("shrunk");
+    h.classList.remove("shrunk");
+</javascript>
 
 ## Transition vorbereiten
 
@@ -52,11 +93,11 @@ als Animation erfolgen: über zwei Sekunden wird der Header von Schwarz auf
 transparent umgestellt.
 
 Die effizienteste Art so eine Animation in einer Webseite umzusetzen ist
-mit CSS: der Browser weis alles über den Ablauf der Animation und kann
-die Grafikkarte benutzen um sie darzustellen.
+mit CSS: der Browser weiss alles über den Ablauf der Animation und kann
+(eventuell) die Grafikkarte benutzen um sie darzustellen.
 
-(Wenn man die Animation statt dessen mit Javascript und `setTimeout`. selbst ausprogrammiert
-kann die Grafikkarte nicht verwendet werden)
+Wenn man die Animation statt dessen mit Javascript mit `setTimeout`
+oder `requestAnimationFrame` selbst ausprogrammiert kann die Grafikkarte nicht verwendet werden.
 
 <css>
 header {
@@ -68,10 +109,13 @@ header {
 }
 </css>
 
+Der wichtigste Teil ist hier die Angabe `2s` für "zwei Sekunden".
+So lange wird er übergang von der einen zur anderen Version des headers dauern.
+
 ## Srollen
 
 Nun müssen wir noch erfassen ob gescrollt wurde, und je
-nachdem die `.shrunk` klasse anwenden.
+nachdem die `.shrunk` Klasse anwenden.
 
 Wie weit schon gescrollt wurde kann man aus dem window-Objekt,
 aus der Eigenschaft `pageYOffset` auslesen. Man erhält eine
@@ -83,29 +127,19 @@ window.pageYOffset
 
 ## Scroll Event behandeln
 
-TODO: jquery enfernen
-
 Wenn die Userin / der User scrollt - egal ob mit Scrollbar, Maus, Touchscreen oder
 Keyboard, wird das `scroll` event am window-Objekt ausgelöst. Auf dieses
 Event können wir reagieren:
 
 <javascript>
-  $(window).scroll(set_header);  
+window.addEventListener('scroll', function() {
+  console.log(`scrolling has reached ${window.pageYOffset}`);
+}); 
 </javascript>
 
-Die Funktion die nun beim scrollen aufgerufen wird
-liest den `pageYOffset` aus, und setzt je nach Ergebnis die Klasse:
-
-<javascript>
-  function set_header() {
-    if ( window.pageYOffset >= 120 ) {
-      $('header').addClass('shrunk');
-    }
-    else {
-      $('header').removeClass('shrunk');
-    }    
-  }
-</javascript>
+In diesen Eventlistener hinein kommt nun die Logik:
+den `pageYOffset` auslesen, und je nach Ergebnis die Klasse
+setzen oder entfernen.
 
 Die Animation der Hintergrundfarbe und des Paddings wird dann vom
 Browser (laut CSS-Anweisung) angewandt.

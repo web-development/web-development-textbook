@@ -1,41 +1,75 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Demo Seite für Responsive Images</title>
     <style>
-      img { 
-        width: 350px; height: 350px;
+      img {
+         width: 350px;
+        height: 350px;
         margin: 10px;
       }
       .gallery {
-        display:flex;
+        display: flex;
         justify-content: center;
         align-items: flex-start;
-        flex-wrap: wrap;      
+        flex-wrap: wrap;
       }
     </style>
   </head>
   <body>
     <h1>Bild in vier Versionen</h1>
     <ul>
-    <li>japanischer-garten_1.jpg 350x350 Auflösung</li>
-    <li>japanischer-garten_2x.jpg 701x701 Auflösung</li>
-    <li>japanischer-garten_3x.jpg 1401x1401 Auflösung</li>
-    <li>japanischer-garten_4x.jpg 2802x2802 Auflösung</li>
-  </ul>
+      <li>japanischer-garten_1.jpg 350x350 Auflösung</li>
+      <li>japanischer-garten_2x.jpg 701x701 Auflösung</li>
+      <li>japanischer-garten_3x.jpg 1401x1401 Auflösung</li>
+      <li>japanischer-garten_4x.jpg 2802x2802 Auflösung</li>
+    </ul>
 
-  <h2>der Code</h2>
+    <p>Zielgröße: 350x350 Pixel.</p>
 
-  <kbd>&lt;img src="japanischer-garten_1x.jpg" srcset="japanischer-garten_1x.jpg 1x, japanischer-garten_2x.jpg 2x, japanischer-garten_3x.jpg 3x, japanischer-garten_4x.jpg 4x"&gt;</kbd>
+    <p>
+      Je nach Pixeldichte des Ausgabegerätes sind die Bilder mit höhrer
+      Pixeldichte schöner - oder sie schauen genau gleich aus, weil der Monitor
+      halt nicht besser kann.
+    </p>
 
-  <div class="gallery">
-    <img class="x1" src="japanischer-garten_1x.jpg">
-    <img class="x2" src="japanischer-garten_1x.jpg" srcset="japanischer-garten_1x.jpg 1x, japanischer-garten_2x.jpg 2x">
+    <h2>der Code</h2>
 
-    <img class="x3" src="japanischer-garten_1x.jpg" srcset="japanischer-garten_1x.jpg 1x, japanischer-garten_2x.jpg 2x, japanischer-garten_3x.jpg 3x">
+    <kbd
+      >&lt;img src="japanischer-garten_1x.jpg" srcset="japanischer-garten_1x.jpg
+      1x, japanischer-garten_2x.jpg 2x, japanischer-garten_3x.jpg 3x,
+      japanischer-garten_4x.jpg 4x"&gt;</kbd
+    >
 
-    <img class="x4" src="japanischer-garten_1x.jpg" srcset="japanischer-garten_1x.jpg 1x, japanischer-garten_2x.jpg 2x, japanischer-garten_3x.jpg 3x, japanischer-garten_4x.jpg 4x">
-  </div>
+    <div class="gallery">
+      <img class="x1" src="japanischer-garten_1x.jpg" />
+      <img
+        class="x2"
+        src="japanischer-garten_1x.jpg"
+        srcset="japanischer-garten_1x.jpg 1x, japanischer-garten_2x.jpg 2x"
+      />
+
+      <img
+        class="x3"
+        src="japanischer-garten_1x.jpg"
+        srcset="
+          japanischer-garten_1x.jpg 1x,
+          japanischer-garten_2x.jpg 2x,
+          japanischer-garten_3x.jpg 3x
+        "
+      />
+
+      <img
+        class="x4"
+        src="japanischer-garten_1x.jpg"
+        srcset="
+          japanischer-garten_1x.jpg 1x,
+          japanischer-garten_2x.jpg 2x,
+          japanischer-garten_3x.jpg 3x,
+          japanischer-garten_4x.jpg 4x
+        "
+      />
+    </div>
   </body>
 </html>

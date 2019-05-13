@@ -68,13 +68,25 @@ let hash = this.hash; // z.B. '#order'
 ## Zum Element hin Scrollen
 
 Die DOM-Methode [https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView](scrollIntoView)
-erledigt das eigentliche Scrollen zum Element hin. (In 2017 ist die Option "smooth" in Safari
-und IE noch nicht implementiert. Hier würde ein [http://iamdustan.com/smoothscroll/](polyfill) helfen - eine Javascript Libary
-die die fehlende Funktionalität implementiert.)
+erledigt das eigentliche Scrollen zum Element hin.
 
 <javascript>
 document.querySelector(hash).scrollIntoView({ behavior: "smooth" });
 </javascript>
+
+## Kompatibilität
+
+Die Funktion scrollIntoView wird nicht von allen Browsern implementiert.
+Woher kann ich das wissen? Wie kann ich damit umgehen.
+
+Ein guter Startpunkt für diese Fragen ist die Webseite "can i use". Hier kann
+man für verschiedene HTML, CSS, JavaScript Features nachlesen welche
+Browser dieses Feature unterstützen. In diesem Fall unter [https://caniuse.com/#search=scrollintoview](https://caniuse.com/#search=scrollintoview).
+
+Bei caniuse lernen wi: in 2019 ist die Option "smooth" in Safari
+und IE noch nicht implementiert. Unter dem Tab "Resourcse" liefert die Seite
+auch gleich eine Lösung: Ein [http://iamdustan.com/smoothscroll/](polyfill) - eine Javascript Libary
+die die fehlende Funktionalität implementiert: [smooth scroll behavior polyfill](http://iamdustan.com/smoothscroll/).
 
 ## Der Browser funktioniert nicht mehr
 
@@ -88,7 +100,7 @@ sondern weiterhin die URL `http://users.multimediatechnology.at/~fhs0000/pizza/`
 Ohne Korrekte URL funktioniert die Navigation nicht wie erwartet:
 
 z.B. Lisa liest einen Eintrag im Gästebuch, findet ihn witzig, und schickt den
-Link weiter an Bart. Wenn Bart die URL verwendet landet er aber ganz oben auf
+Link weiter an Bart. Wenn Bart die URL verwendet, landet er aber ganz oben auf
 der Seite, und versteht nicht was Lisa so witzig findet.
 
 z.B. Homer betrachtet gerade seinen Kontostand im Online-Banking und ist deprimiert.
@@ -96,8 +108,8 @@ Um seine Laune zu heben will er eine Pizza bestellen, und tippt die URL der Pizz
 Im Navigationsmenü klickt auf "Speisekarte", sucht sich eine Pizza aus, und klickt danach auf "Online Bestellen".
 Er hat aber schon wieder vergessen welche Pizza er wollte, und verwendet den "Zurück"-Button des Browsers
 um zur Speisekarte zurück zu gehen. Statt dessen landet er aber wieder im Online-Banking.
-(Für den "Zurück"-Button zählt eine Seite nur, wenn sie eine eigene URL hat. Da die Klicks
-im Navigationsmenü der Pizzaria-Seite die URL nicht verändert haben zählen sie nicht ).
+Denn für den "Zurück"-Button zählt eine Seite nur, wenn sie eine eigene URL hat. Da die Klicks
+im Navigationsmenü der Pizzaria-Seite die URL nicht verändert haben zählen sie nicht.
 
 Wenn wir die erwartete Funktionsweise des Browsers wiederherstellen wollen,
 müssen wir die korrekte URL setzen.

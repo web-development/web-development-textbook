@@ -121,4 +121,4 @@ Gegen diese Art von Attacke kann man an mehreren Linien verteidigen:
 Die OWASP bietet noch vertiefende Informationen zu diesem Thema an:
 
 - [OWASP Development Guide: Chapter on Authorization](http://www.owasp.org/index.php/Guide_to_Authorization)
-- [OWASP Testing Guide: Testing for Path Traversal](http://www.owasp.org/index.php/Testing_for_Path_Traversal)
+- [OWASP Testing Guide: Testing for Path Traversal](<https://www.owasp.org/index.php/Testing_Directory_traversal/file_include_(OTG-AUTHZ-001)>)

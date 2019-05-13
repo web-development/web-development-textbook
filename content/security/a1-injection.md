@@ -32,19 +32,16 @@ $stm->bindParam(':name', $_POST['name'] );
 $stm->execute();
 </php>
 
-
 ## Prepared Statement falsch verwenden
 
 Man kann auch mit prepared statments noch Code schreiben, der für Injections anfällig ist.
-Wenn man nämlich im String der an prepare übergeben wird Variablen einbettet: 
-
+Wenn man nämlich im String der an prepare übergeben wird Variablen einbettet:
 
 <php caption="Prepared Statements falsch gmacht">
 $stm = $dbh->prepare ( "UPDATE users SET newsletter = ? WHERE USERNAME = '$name'" );
 $query->execute(array( $_GET['newsletter'] ) );
 $stm->execute();
 </php>
-
 
 ## OWASP Empfehlungen
 
@@ -56,12 +53,10 @@ Die OWASP empfiehlt:
 
 Im dritten und schlechtesten Fall ist weiter zu beachten:
 
-* Bei der Validierung des Inputs immer ein ‘white list’ verwenden, also nur Zeichen erlauben die harmlos sind (auf der "weissen Liste" stehen), alle anderen verwerfen
+- Bei der Validierung des Inputs immer ein ‘white list’ verwenden, also nur Zeichen erlauben die harmlos sind (auf der "weissen Liste" stehen), alle anderen verwerfen
 
 Unabhängig von den oben genannten Punkt gilt noch die Empfehlung:
 
-* Der Web-Applikation nur minimale Zugriffsrechte zur Datenbank gewähren. Damit kann ein eventueller Schaden durch gelungen Injection minimiert werden.
+- Der Web-Applikation nur minimale Zugriffsrechte zur Datenbank gewähren. Damit kann ein eventueller Schaden durch gelungen Injection minimiert werden.
 
-
-Siehe auch [SQL Injection Prevention Cheat Sheet](https://www.owasp.org/index.php/SQL_Injection_Prevention_Cheat_Sheet)
-
+Siehe auch [SQL Injection Prevention Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.md)

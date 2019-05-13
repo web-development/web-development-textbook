@@ -91,8 +91,8 @@ In PHP geht das mit folgenden Befehlen:
 Komplexere Maßnahmen wären:
 
 - Zwei Faktor Authentisierung
-- Automatische Prüfung der neu eingegebenen Passwörter mit
+- Automatische Prüfung der neu eingegebenen Passwörter mit [https://haveibeenpwned.com/API/v2#SearchingPwnedPasswordsByRange der haveibeenpwned API]
 
 Die OWAAS bietet noch mehr Informationen zu diesem Thema an
-im [Authentication Cheat Sheet](https://www.owasp.org/index.php/Session_Management_Cheat_Sheet)
-und im [Session Management Cheat Sheet](https://www.owasp.org/index.php/Session_Management_Cheat_Sheet).
+im [Authentication Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md)
+und im [Session Management Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md).

@@ -20,9 +20,8 @@ Suchmaschine Google und ein Bestellformular.
 
 ## Tags für Formulare
 
-Mit den  HTML-Tags `form`, `input`, `textarea`, `option`, `select` werden
+Mit den HTML-Tags `form`, `input`, `textarea`, `option`, `select` werden
 Formulare aufgebaut. Hier ein einfaches Formular und der HTML Code dafür:
-
 
 <htmlcode caption="Einfaches Formular">
 <form method="get" action="bestellung.php">
@@ -44,29 +43,23 @@ So sieht das Formular im Browser aus:
   <input type="submit" value="Ja, ich will!">
 </form>
 
-
-
 ## Eingabefelder
 
-Innerhalb des  `form`-Tag bauen Sie das Formular aus verschiedenen Eingabeelementen und den „normalen“ HTML-Tags auf. 
-
+Innerhalb des `form`-Tag bauen Sie das Formular aus verschiedenen Eingabeelementen und den „normalen“ HTML-Tags auf.
 
 ## Text-Eingabefelder
 
 Verschiedenen Arten von Text-Eingabefeldern.
 
-
-|Textfeld                 |`<input type="text" name="vorname">`|<input type="text" name="vorname">|
-|E-Mail         |`<input type="email" name="mail">`|<input type="email" name="mail">|
-|Passwortfeld           |`<input type="password" name="meinpasswort">` |<input type="password" name="meinpasswort"> |
-|mehrzeiliges Textfeld    |`<textarea name="zitat">In a hole in the ground there lived a Hobbit.  </textarea>`|<textarea name="zitat">In a hole in the ground there lived a Hobbit.  </textarea>|
+|Textfeld |`<input type="text" name="vorname">`|<input type="text" name="vorname">|
+|E-Mail |`<input type="email" name="mail">`|<input type="email" name="mail">|
+|Passwortfeld |`<input type="password" name="meinpasswort">` |<input type="password" name="meinpasswort"> |
+|mehrzeiliges Textfeld |`<textarea name="zitat">In a hole in the ground there lived a Hobbit. </textarea>`|<textarea name="zitat">In a hole in the ground there lived a Hobbit. </textarea>|
 {: class="table table-condensed table-bordered" style="width:auto"}
-
 
 Achtung: das Passwort-Feld schützt nur vor neugierigen Blicken auf den Monitor.
 Die eingegebenen Daten werden dann genau so übertragen wie aus alle anderen
 Eingabefeldern - normalerweise unverschlüsselt.
-
 
 ## Attribute für Text-Eingabefelder
 
@@ -77,7 +70,6 @@ Eingabefeldern - normalerweise unverschlüsselt.
 |mit Eingabeprüfung (siehe [html5pattern](http://html5pattern.com/)) |`<input pattern=".*@fh-salzburg\.ac\.at" type="email">`|<input pattern=".*@fh-salzburg\.ac\.at">
 {: class="table table-condensed table-bordered" style="width:auto"}
 
-
 Der **Default Wert** ist ein echter Wert, der beim Einsenden des Formulars gesendet wird.
 Der **Placeholder** hingegen wird nur angezeigt, gilt aber nicht als eingegeben Daten.
 
@@ -87,7 +79,6 @@ wie am Smartphone praktisch. Es gibt viele [mögliche Werte](https://developer.m
 Die Bedingungen **required** und **pattern** müssen erfüllt sein, sonst kann das
 Formular gar nicht abgesendet werden.
 
-
 ## Ja/Nein Frage
 
 Für einzelne Fragen die mit Ja oder Nein zu beantworten sind wird das Eingabe-Element „checkbox“ verwendet
@@ -95,7 +86,6 @@ Für einzelne Fragen die mit Ja oder Nein zu beantworten sind wird das Eingabe-E
 <htmlcode caption="Checkbox für Ja/Nein Frage">
 <label><input type="checkbox" name="schlag"> mit Schlagobers</label>
 </htmlcode>
-
 
 <form  action="/images/formulare/submitted.html"><label><input type="checkbox" name="schlag"> mit Schlagobers</label></form>
 
@@ -159,7 +149,6 @@ Achtung: beim Erstellen des Menüs muss man jede möglich Antwort bedenken. Auch
 </select>
 </htmlcode>
 
-
 <form  action="/images/formulare/submitted.html">
 <select name="size3">
   <option>---Bitte Auswählen---</option>
@@ -193,16 +182,31 @@ erfolgt mit dem Drücken der Steuerungs-Taste.
 </select>
 </form>
 
+## Textfelder mit Vorschlägen
+
+Das Textfeld mit `datalist` kombiniert die Bequemlichkeit
+eines Menüs mit der Flexiblität eines Textfeldes: Man bekommt
+Vorschläge angeboten, kann aber auch etwas eintippen
+was nicht in der `datalist` angeführt ist.
+
+<htmlcode caption="Textfeld mit Datalist">
+<input id="city" placeholder="Name" list="list-of-cities" />
+<datalist id="list-of-cities">
+    <option value="Salzburg">
+    <option value="Wien">
+    <option value="München">
+    <option value="Innsbruck">
+    <option value="Linz">
+</datalist>
+</htmlcode>
 
 ## Spezialisierte Eingabefelder
-
 
 |Datum|`<input type="date" min="2010-08-01" max="2011-08-31" value="2010-08-14">`|<input type="date" min="2010-08-01" max="2011-08-31" value="2010-08-14">|
 |Uhrzeit|`<input type="time" min="9:00" max="18:00" value="12:30">`|<input type="time" min="9:00" max="18:00" value="12:30">|
 |Range|`<input type="range" min="0" max="50" value="10">`|<input type="range" min="0" max="50" value="10">|
 |Number|`<input type="number" step="1" min="-5" max="10" value="0">`|<input type="number" step="1" min="-5" max="10" value="0">|
 {: class="table table-condensed table-bordered" style="width:auto"}
-
 
 ## Absenden
 
@@ -222,8 +226,8 @@ Jedes Formular braucht einen Absende-Button
 
 Neben dem Absende-Button gibt es noch andere Methoden wie ein Formular „abgesendet“ werden kann:
 
-* Falls das Formular nur ein einziges Text-Eingabefeld hat, kann man in diesem Feld auf **ENTER** drücken um das Formular zu senden. 
-* Wenn das Formular ein Bild-Feld enthält (siehe unten) veranlasst ein Klick auf das Bild das Einsenden.
+- Falls das Formular nur ein einziges Text-Eingabefeld hat, kann man in diesem Feld auf **ENTER** drücken um das Formular zu senden.
+- Wenn das Formular ein Bild-Feld enthält (siehe unten) veranlasst ein Klick auf das Bild das Einsenden.
 
 ## Zurücksetzen? Nein Danke!
 
@@ -239,7 +243,7 @@ Den Zurücksetzen Button sollten Sie nur sehr selten einsetzen.
 <input type="reset"  value="Zurücksetzen">
 </form>
 
- Warum? Denken Sie an Ihre eigene Erfahrung mit Web-Formularen zurück: Wie oft haben Sie auf einen Zurücksetzen Button gedrückt und dann gedacht „super, alles gelöscht, genau das wollte ich“, und wie oft haben Sie auf einen Zurücksetzen Button gedrückt und dann gedacht „Mist, das war ja gar nicht der Absende-Button, jetzt muss ich alles noch mal tippen.“
+Warum? Denken Sie an Ihre eigene Erfahrung mit Web-Formularen zurück: Wie oft haben Sie auf einen Zurücksetzen Button gedrückt und dann gedacht „super, alles gelöscht, genau das wollte ich“, und wie oft haben Sie auf einen Zurücksetzen Button gedrückt und dann gedacht „Mist, das war ja gar nicht der Absende-Button, jetzt muss ich alles noch mal tippen.“
 
 ## Label
 
@@ -252,7 +256,6 @@ E-Mail <input type="text" name="mail" placeholder="ihre e-mail">
 </htmlcode>
 
 Damit ist aber nicht erkennbar, welche Beschriftung (vorher, nachher, weiter oben, weiter unten) zu welchem Eingabefeld gehört.
-
 
 §
 
@@ -274,11 +277,10 @@ Falls der Beschriftungs-Tag weiter entfernt ist kann der label auf die **id** de
 
 Noch mehr Eingabefelder, die eher selten gebraucht werden.
 
-
 |Unsichtbares = Verstecktes Feld |`<input type="hidden" name="source" value="wikipedia">`|
 |Button ohne Auftrag, für Javascript-Programme|`<input type="button" value="Extrafenster" onclick="...">`|
 |Bildfeld, liefert angeklickte x+y Koordinaten.|`<input type="image" name="position" src="austria.gif">`|
-|Datei-Upload*|Wählen Sie ein Bild aus: `<input type="file" name="bilddatei">`|
+|Datei-Upload\*|Wählen Sie ein Bild aus: `<input type="file" name="bilddatei">`|
 {: class="table table-condensed table-bordered" style="width:auto"}
 
 Der Datei-Upload funktioniert nur wenn die Formular-Daten mit Methode POST und
@@ -304,7 +306,6 @@ speziellem enctype an den Webserver geschickt werden. Das werden wir später im 
 </fieldset>
 </form>
 
-
 ## Links
 
-* [html5pattern](http://html5pattern.com/) - bewährte Pattern für die Eingabeprüfung
+- [html5pattern](http://html5pattern.com/) - bewährte Pattern für die Eingabeprüfung

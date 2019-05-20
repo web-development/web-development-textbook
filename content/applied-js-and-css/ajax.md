@@ -384,7 +384,7 @@ auf https.
 Um die openweahtermap api auch über https verwenden zu können
 ist die nächste Lösung notwendig:
 
-### Zugriff auf eine API über lokales backend
+### Zugriff auf eine API über lokales Backend
 
 Manchmal kann man nicht vom Frontend direkt auf die API zugreifen.
 

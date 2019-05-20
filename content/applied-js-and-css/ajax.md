@@ -347,7 +347,7 @@ new autoComplete({
 });
 </javascript>
 
-## jQuery Beispiel mit Callback-Funktion
+## AJAX Beispiel mit API
 
 In diesem Beispiel werden Wetter-Daten von zwei Quellen angezeigt. Dabei
 sieht man einen wichtigen Unterschied:
@@ -384,7 +384,7 @@ auf https.
 Um die openweahtermap api auch über https verwenden zu können
 ist die nächste Lösung notwendig:
 
-## Zugriff auf eine API über lokales backend
+### Zugriff auf eine API über lokales backend
 
 Manchmal kann man nicht vom Frontend direkt auf die API zugreifen.
 
@@ -393,7 +393,7 @@ http zugänglich, das frontend wird auf https gehosted. So ist es verboten
 auf die API zuzugreifen.
 
 Der zweite mögliche Grund ist CORS. Das tritt zum Beispiel bei der API
-at-wetter.tk auf.
+`at-wetter.tk` auf.
 Die Abfrage scheitert ohne sichtbare Fehlermeldung. In der console wird
 in manchen Browsern eine Meldung angezeigt:
 

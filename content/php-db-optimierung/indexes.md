@@ -24,7 +24,7 @@ Time: 674.327 ms
 
 §
 
-Warum dauert diese Abfrage so lange?  Das können wir mit dem Befehl `EXPLAIN` erforschen:
+Warum dauert diese Abfrage so lange? Das können wir mit dem Befehl `EXPLAIN` erforschen:
 
 <sql>
 # explain SELECT name, time, yes_rsvp_count FROM events ORDER BY yes_rsvp_count DESC LIMIT 10;
@@ -37,7 +37,6 @@ Warum dauert diese Abfrage so lange?  Das können wir mit dem Befehl `EXPLAIN` e
 (4 rows)
 </sql>
 
-
 ## Index erzeugen
 
 <sql>
@@ -45,7 +44,6 @@ Warum dauert diese Abfrage so lange?  Das können wir mit dem Befehl `EXPLAIN` e
 CREATE INDEX
 Time: 1212.178 ms
 </sql>
-
 
 §
 
@@ -78,9 +76,61 @@ SELECT substring(name from 1 for 20) AS name, time, yes_rsvp_count FROM events O
 Time: 0.775 ms
 </sql>
 
+## Index für Volltexsuche
 
+Für Abfragen mit `LIKE` hilft ein normaler Index nicht.
+Dafür braucht man eigenen eigenen Index für die Volltextsuche.
+
+Hier ein Beispiel: eine Tabelle mit Namen und Länderkürzel von ca. 170.000 Städten:
+
+<sql>
+# explain analyze SELECT concat(name,',',country) as label FROM city WHERE name ILIKE 'Salz%'  ORDER BY name LIMIT 150;
+                                                      QUERY PLAN
+----------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=3065.44..3065.48 rows=17 width=43) (actual time=1698.352..1698.370 rows=24 loops=1)
+   ->  Sort  (cost=3065.44..3065.48 rows=17 width=43) (actual time=1698.350..1698.357 rows=24 loops=1)
+         Sort Key: name
+         Sort Method: quicksort  Memory: 26kB
+         ->  Seq Scan on city  (cost=0.00..3065.09 rows=17 width=43) (actual time=1303.415..1679.370 rows=24 loops=1)
+               Filter: ((name)::text ~~* 'Salz%'::text)
+               Rows Removed by Filter: 168780
+ Planning time: 1.086 ms
+ Execution time: 1698.456 ms
+(9 rows)
+</sql>
+
+§
+
+Nun legen wir einen Index an:
+
+<sql>
+CREATE INDEX trgm_idx_city_name ON city USING gin(name gin_trgm_ops);
+</sql>
+
+§
+
+Danach ist die Abfage wesentlich schneller:
+
+<sql>
+# explain analyze SELECT concat(name,',',country) as label FROM city WHERE name ILIKE 'Salz%'  ORDER BY name LIMIT 150;
+                                                                QUERY PLAN
+------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=113.93..113.97 rows=17 width=43) (actual time=0.936..0.948 rows=24 loops=1)
+   ->  Sort  (cost=113.93..113.97 rows=17 width=43) (actual time=0.935..0.940 rows=24 loops=1)
+         Sort Key: name
+         Sort Method: quicksort  Memory: 26kB
+         ->  Bitmap Heap Scan on city  (cost=52.13..113.58 rows=17 width=43) (actual time=0.751..0.845 rows=24 loops=1)
+               Recheck Cond: ((name)::text ~~* 'Salz%'::text)
+               Rows Removed by Index Recheck: 13
+               Heap Blocks: exact=11
+               ->  Bitmap Index Scan on trgm_idx_city_name  (cost=0.00..52.13 rows=17 width=0) (actual time=0.676..0.676 rows=37 loops=1)
+                     Index Cond: ((name)::text ~~* 'Salz%'::text)
+ Planning time: 0.962 ms
+ Execution time: 1.006 ms
+(12 rows)
+</sql>
 ## Siehe auch
 
-* [Latency Numbers Every Programmer Should Know ](https://gist.github.com/jboner/2841832)
-* [Latency Numbers, Humanized](https://gist.github.com/hellerbarde/2843375#file-latency_humanized-markdown)
-* [prezi](https://prezi.com/pdkvgys-r0y6/latency-numbers-for-programmers-web-development/)
+- [Latency Numbers Every Programmer Should Know ](https://gist.github.com/jboner/2841832)
+- [Latency Numbers, Humanized](https://gist.github.com/hellerbarde/2843375#file-latency_humanized-markdown)
+- [prezi](https://prezi.com/pdkvgys-r0y6/latency-numbers-for-programmers-web-development/)

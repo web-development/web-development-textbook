@@ -280,47 +280,72 @@ Beginnen wir mit dem Backend:
 
 ### Backend
 
-Am Server
+Am Server befindet sich eine Datenbank mit ca. 170.000 Städten.
+Mit der Anfrage
 
-`search.php?query=a`
+`search.php?term=w`
 
-Die Antwort muss ein JSON-Dokument sein: Ein Array von Objekten:
+Werden nur die Städte die mit w beginnen geladen,
+und als JSON-Array zurück gegeben:
 
 <javascript>
-  [
-    {"id":6552916,"label":"Salzbergen, DE"},
-    {"id":2842173,"label":"Salzböden, DE"},
-    {"id":2842172,"label":"Salzbrunn, DE"},
-    {"id":6554266,"label":"Salzburg, DE"},
-    {"id":2766824,"label":"Salzburg, AT"},
-  ]
+[
+    "Wa,GH",
+    "WaKeeney,US",
+    "Waabs,DE",
+    "Waaia,AU",
+    "Waajid,SO",
+    "Waake,DE",
+    "Waakirchen,DE",
+    "Waal,DE",
+    ...
+    "Wüstenzell,DE",
+    "Wüstheuterode,DE",
+    "Wāhan Murad,PK",
+    "Wān Yampēng,MM",
+    "Wŏnsŏngil-tong,KR",
+    "Włocławek,PL",
+    "Włodawa,PL",
+    "Włoszczowa,PL",
+    "Wāsiţ,EG",
+    "Wąwolnica,PL"
+]
 </javascript>
 
-Die Attribute `id` und `label` des Objekts werden verwendet, alle anderen
-werden ignoriert.
+Das sind ca. 5000 Namen.
 
-Wenn die Daten erfolgreich vom Server geladen wurden, wird eine funktion aufgerufen (`select`).
-
-Zum Testen kann man das Backend zuerst faken: einfach eine statische JSON-Datei
-unter dem Namen `search.json` abspeichern, und schon funktioniert es.
-
-Oder eine ganz kleine PHP-Datei, die nur den richtigen Content-Type setzt,
-und dann statische Daten zurück gibt:
+Beim Lesen aus der Datenbank wird ein Volltext-Index verwendet (siehe
+[Datenbank optimieren: Indexes](/php-db-optimierung/indexes/)). Das
+sieht man aber weder der SQL-Query noch dem PHP an:
 
 <php>
-  <?php
-  header('Content-Type: application/json');
-  ?>
-  [
-    {"id":6552916,"label":"Salzbergen, DE"},
-    {"id":2842173,"label":"Salzböden, DE"},
-    {"id":2842172,"label":"Salzbrunn, DE"},
-    {"id":6554266,"label":"Salzburg, DE"},
-    {"id":2766824,"label":"Salzburg, AT"},
-  ]
+$term = filter_var($_GET['term'], FILTER_SANITIZE_STRING) . '%';
+$sth->execute(array($term));
+$cities = $sth->fetchAll(PDO::FETCH_COLUMN);
 </php>
-Wenn das klappt, kann  z.b. eine echte Datenbank-Abfrage programmieren,
-und die resultierenden Daten mit [json_encode](https://secure.php.net/manual/de/function.json-encode.php) umwandeln.
+
+Der Output des PHP-Programmes ist JSON. Das muss mit dem HTTP Header `Content-Type`
+angekündgt werden:
+
+<php>
+header('Content-Type: application/json');
+echo json_encode($cities);
+</php>
+
+### Frontend
+
+Für das Frontend kann man eine fertige Library verwenden,
+z.B. [JavaScript-autoComplete](https://github.com/Pixabay/JavaScript-autoComplete/):
+
+<javascript>
+new autoComplete({
+    selector: '#cityinput',
+    source: function(term, handle_response){
+      // schicke suchwort 'term' ans backend
+      // wenn die datenvorliegen, rufe die funktion handle_response auf           
+    }
+});
+</javascript>
 
 ## jQuery Beispiel mit Callback-Funktion
 
@@ -328,7 +353,7 @@ In diesem Beispiel werden Wetter-Daten von zwei Quellen angezeigt. Dabei
 sieht man einen wichtigen Unterschied:
 
 - auf http://openweathermap.org/ ist der Zugriff nur mit API key möglich, auch vom frontend aus
-- auf http://at-wetter.tk/ ist der Zugriff auch ohne API key möglich, aber nicht von einem fremden frontend aus, weil [CORS](/cors/) nicht erlaubt ist.
+- auf http://at-wetter.tk/ ist der Zugriff auch ohne API key möglich, aber nicht von einem fremden Frontend aus, weil [CORS](/cors/) nicht erlaubt ist.
 
 ### Direkter Zugriff auf eine fremde API
 
@@ -345,12 +370,8 @@ Beim Zugriff auf die API muss jeweils der API-Key als parameter
 mit gesendet werden:
 
 <javascript caption="Zugriff auf die openweathermap API">
-$.get("http://api.openweathermap.org/data/2.5/weather?&units=metric&q=London,uk&apikey=....", 
-  (data) => {
-  console.log("Daten von der API sind angekommen:");
-  console.log(data);
-  $('#output').append(`<p>Das Wetter in London ist ${data.weather[0].main}.<p>`);
-});
+fetch("http://api.openweathermap.org/data/2.5/weather?&units=metric&q=London,uk&apikey=....")
+.then(function...
 </javascript>
 
 Die genaue Struktur der Daten und wie man sie zerlegt kann man entweder

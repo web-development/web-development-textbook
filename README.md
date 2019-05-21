@@ -49,5 +49,5 @@ in a second shell start the nanoc watcher:
 now edit the files in content/* and see the results at http://localhost:3000/
 
 When you are content with your changes, push up to your own github repository,
-and send me a pull request
+and send me a pull request.
 

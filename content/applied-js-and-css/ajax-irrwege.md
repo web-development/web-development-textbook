@@ -50,3 +50,4 @@ man "Single Page Apps" (SPA).
 
 - [HTML5 History API](https://html.spec.whatwg.org/multipage/browsers.html#the-history-interface)
 - [HTML5 pushState and Single-Page apps](https://www.frontendjournal.com/html5-pushstate-and-single-page-apps/)
+- [page.js](https://visionmedia.github.io/page.js/) eine Library die die Verwendung von der History API einfach macht

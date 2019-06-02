@@ -10,15 +10,15 @@ order: 20
           stroke="black" stroke-width="2" fill="#204a87" opacity="0.75" />
 </svg>
 
-Scalable Vector Graphics (SVG, engl. „skalierbare Vektorgrafik“) ist die vom 
-World Wide Web Consortium (W3C) empfohlene Spezifikation zur Beschreibung 
-zweidimensionaler Vektorgrafiken. SVG ist ein Beispiel für XML. 
+Scalable Vector Graphics (SVG, engl. „skalierbare Vektorgrafik“) ist die vom
+World Wide Web Consortium (W3C) empfohlene Spezifikation zur Beschreibung
+zweidimensionaler Vektorgrafiken. SVG ist ein Beispiel für XML.
 
 SVG wurde erstmals im September 2001 veröffentlicht, die aktuelle Version
 ist [Version 1.2](http://www.w3.org/TR/SVG11/), die seit Dezember 2008 vom W3C empfohlen wird, aktuell.
 
 SVG hat eine lange und wechselvolle Geschichte hinter sich: es wurde bereits im Jahr 2001 veröffentlicht.
-Für die Darstellung im Browser war aber damals die Installation eines Plugins notwendig. 
+Für die Darstellung im Browser war aber damals die Installation eines Plugins notwendig.
 Aber erst seit 2005 (Firefox, Opera), 2006 (Webkit) bzw. 2011 (Internet Explorer) wird SVG
 im Browser nativ dargestellt.
 
@@ -34,18 +34,18 @@ im Browser nativ dargestellt.
 </xml>
 
 Mit SVG kann man zweidimensional zeichnen. Die grafischen Objekte werden
+
 - wie bei HTML - in einem DOM gespeichert und können manipuliert werden. Zur
-Darstellung im Browser werden sie mit dem [Painters Algorithm](http://de.wikipedia.org/wiki/Painter%27s_Algorithmus) gezeichnet:
-"spätere" Objekte übermalen "frühere" Objekte. Deswegen überdeckt das blaue Rechteck
-im Beispiel den grünen Kreis.
+  Darstellung im Browser werden sie mit dem [Painters Algorithm](http://de.wikipedia.org/wiki/Painter%27s_Algorithmus) gezeichnet:
+  "spätere" Objekte übermalen "frühere" Objekte. Deswegen überdeckt das blaue Rechteck
+  im Beispiel den grünen Kreis.
 
 Inline SVG wird heute von den aktuellen Browsersn unterstütz, siehe
 [can i use](http://caniuse.com/#feat=svg-html5)
 
-
 ## Grundformen in SVG
 
-Mit den Tags `circle`, `rect`, `ellipse`, `path` und `polygon` werden 
+Mit den Tags `circle`, `rect`, `ellipse`, `path` und `polygon` werden
 simple geometrische Elemente definiert.
 
 <svg width="700" height="200">
@@ -67,8 +67,7 @@ simple geometrische Elemente definiert.
 <g transform="translate(340,0)">
         <path class="leaf" d="M41.9,56.3l0.1-2.5c0,0,4.6-1.2,5.6-2.2c1-1,3.6-13,12-15.6c9.7-3.1,19.9-2,26.1-2.1c2.7,0-10,23.9-20.5,25 c-7.5,0.8-17.2-5.1-17.2-5.1L41.9,56.3z" fill='#76993E' strole= '#4A5E23' stroke-width="2" />
 </g>
-</svg> 
-
+</svg>
 
 ### Kreis, Ellipse, Rechteck
 
@@ -95,7 +94,6 @@ Viele Attribute kann man alternativ auch über CSS definieren.
     style="stroke: #73d216; stroke-width: 2px; fill: #73d216; fill-opacity:0.6;" />
 </xml>
 
-
 <svg width="700" height="200">
 <circle r="80px" cx="150px" cy="100px" 
     style="stroke: #4e9a06; stroke-width: 2px; fill: #4e9a06; fill-opacity:0.6;" />
@@ -120,12 +118,13 @@ Wird der Befehl als Großbuchstaben geschrieben, dann werden die Koordinaten
 absolut interpretier, bei einem Kleinbuchstaben werden sie relativ interpretiert.
 Folgende Befehle erwarten eine fixe Anzahl von Koordinaten:
 
-|Buchstabe | Befehl          | Parameter | Beschreibung                                             |
-|:--------:|:----------------|:----------|:---------------------------------------------------------|
-| M,m      | MoveTo          | x y       | Gehe zu dem angegebenen Punkt ohne eine Linie zu ziehen  |
-| H,h      | HLineTo         | x         | Ziehe eine horizontale Linie zur angegebenen Koordinate  |
-| V,v      | VLineTo         | y         | Ziehe eine vertikale Linie zur angegebenen Koordinate    |
-| Z,z      | Close Path      |           | Schliesse den Pfad (gehe zurück zum Anfangspunkt)        |
+| Buchstabe | Befehl     | Parameter | Beschreibung                                            |
+| :-------: | :--------- | :-------- | :------------------------------------------------------ |
+|    M,m    | MoveTo     | x y       | Gehe zu dem angegebenen Punkt ohne eine Linie zu ziehen |
+|    H,h    | HLineTo    | x         | Ziehe eine horizontale Linie zur angegebenen Koordinate |
+|    V,v    | VLineTo    | y         | Ziehe eine vertikale Linie zur angegebenen Koordinate   |
+|    Z,z    | Close Path |           | Schliesse den Pfad (gehe zurück zum Anfangspunkt)       |
+
 {: class="table table-condensed table-bordered" style="width:auto"}
 
 §
@@ -143,21 +142,19 @@ wird hier die Wiederholung durch Klammern und ein + dargestellt:
 <path d="M 270 35 q 25,-50 50,0 25,50 50,0 q 25,-25 50,0 q 25,25 50,0" />
 </xml>
 
+| Buchstabe | Befehl                   | Parameter                       | Beschreibung                                                   |
+| :-------: | :----------------------- | :------------------------------ | :------------------------------------------------------------- |
+|    L,l    | LineTo                   | (x y)+                          | Ziehe gerade Linie zu den angegebenen Punken                   |
+|    Q,q    | quadratic Bézier curveto | (x1 y1 x y)+                    | Kurve zu x,y mit x1,y1 als Stützpunkt der beiden Tangenten     |
+|    C,c    | cubic Bézier curveto     | <nobr>(x1 y1 x2 y2 x y)+</nobr> | Kurve zu x,y mit x1,y1 und x2,y2 als Stützpunkte der Tangenten |
 
-| Buchstabe | Befehl          | Parameter | Beschreibung                                             |
-|:---------:|:----------------|:----------|:---------------------------------------------------------|
-| L,l       | LineTo          | (x y)+    | Ziehe gerade Linie zu den angegebenen Punken              |
-| Q,q       | quadratic Bézier curveto | (x1 y1 x y)+    | Kurve zu x,y mit x1,y1 als Stützpunkt der beiden Tangenten |
-| C,c       | cubic Bézier curveto | <nobr>(x1 y1 x2 y2 x y)+</nobr> | Kurve zu x,y mit x1,y1 und x2,y2 als Stützpunkte der Tangenten |
 {: class="table table-condensed table-bordered" style="width:auto"}
-
 
 ### Farbe
 
-Farben werden wie in HTML mit hex-code definiert. Zusätzlich kann für jedes Objekt eine alpha-Transparenz mit `opacity` gesetzt werden.  Bei der ersten Abbildung mit dem kleinen blauen Quadrat war das: 
+Farben werden wie in HTML mit hex-code definiert. Zusätzlich kann für jedes Objekt eine alpha-Transparenz mit `opacity` gesetzt werden. Bei der ersten Abbildung mit dem kleinen blauen Quadrat war das:
 
     fill="#204a87" opacity="0.75"
-
 
 Farbverläufe werden separat definiert, und können dann mehrfach angewendet werden.
 In diesem Beispiel wird ein radialer gradient definiert und auf ein Objekte angewandt:
@@ -169,7 +166,7 @@ In diesem Beispiel wird ein radialer gradient definiert und auf ein Objekte ange
   </radialGradient>
 </xml>
 
-Der Effekt wirkt ganz verschieden, wenn man ihn auf ein Quadrat oder einen 
+Der Effekt wirkt ganz verschieden, wenn man ihn auf ein Quadrat oder einen
 Pfad mit Sonnenstrahlen anwendet:
 
 <svg width="700" height="300">
@@ -222,9 +219,9 @@ beliebigen Pfades gesetzt werden.
         Es geht hinauf, und hinunter, und wieder...
       </textPath>
     </text>
+
   </g>
 </svg>
-
 
 <xml>
 <defs>
@@ -241,13 +238,12 @@ beliebigen Pfades gesetzt werden.
 ## Koordinaten und Transformationen
 
 Koordinaten in SVG werden als reelle Zahlen angegeben,
-nicht als Ganzzahlen!  Es ist ein wirkliches Vektorformat.
+nicht als Ganzzahlen! Es ist ein wirkliches Vektorformat.
 
 Das ursprüngliche Koordinatensystem beginnt in der linken oberen Ecke,
-die X-Achse zeigt nach rechts, die Y-Achse nach unten.  Mit dem `g` Tag
+die X-Achse zeigt nach rechts, die Y-Achse nach unten. Mit dem `g` Tag
 können Elemente gruppiert werden. Dabei kann man auch ein neues
 lokales Koordinatensystem definieren.
-
 
 <svg width="700" height="200">
   <defs>
@@ -270,14 +266,13 @@ lokales Koordinatensystem definieren.
     <text x="115" y="5" font-family="Verdana" font-size="15" fill="black" >x</text>
     <text x="-5" y="125" font-family="Verdana" font-size="15" fill="black" >y</text>
   </g>
-</svg> 
+</svg>
 
 <xml caption="Gruppe mit lokalem Koordinatensystem">
 <g transform="rotate(-5) translate(50,30)">
   ...
 </g>
 </xml>
-
 
 ## Animation
 
@@ -315,9 +310,6 @@ So sieht das Ergebnis aus:
     </text>
   </g>
 </svg>
-
-
-
 
 ## SVG mit Javascript erzeugen
 
@@ -357,7 +349,6 @@ $svg.append($circle);
 </javascript>
 
 Code [von Matthieu Charbonnier](http://stackoverflow.com/questions/3642035/jquerys-append-not-working-with-svg-element#answer-36305466).
-  
 
 ### Snap.svg
 
@@ -448,15 +439,19 @@ einbauen und manipulieren.
   </g>
 </svg>
 
+Für fortgeschrittene Animationen kann man zusätzlich die Library [gsap](http://github.com/greensock/GreenSock-JS/) verwenden.
 
-Für fortgeschrittene Animationen kann  man zusätzlich die Library [gsap](http://github.com/greensock/GreenSock-JS/) verwenden. 
+## SVG Optimieren
+
+Unter der Adresse [https://jakearchibald.github.io/svgomg/](https://jakearchibald.github.io/svgomg/) kann man SVGs hochladen, optimieren und wieder herunterladen:
+
+![](images/grafik/svgomg.png)
 
 ## Mehr
 
-* [RFC zu SVG](http://www.w3.org/TR/SVG11/)
-* [Understanding SVG Coordinate Systems and Transformations](http://www.sarasoueidan.com/blog/svg-coordinate-systems/)
-* [Snap Javascript Library für die Erzeugung von SVG](http://snapsvg.io/)
-* [gsap Library for Animation in SVG](http://github.com/greensock/GreenSock-JS/)
-* [Tutorial: SVG in Webseiten verwenden: Hintergrundbild, Bild, Data-URL](http://css-tricks.com/using-svg/)
-* [SVG in the movies](https://moviecode.tumblr.com/post/72085619482/in-an-episode-of-doctor-who-the-doctor-is-seen)
-
+- [RFC zu SVG](http://www.w3.org/TR/SVG11/)
+- [Understanding SVG Coordinate Systems and Transformations](http://www.sarasoueidan.com/blog/svg-coordinate-systems/)
+- [Snap Javascript Library für die Erzeugung von SVG](http://snapsvg.io/)
+- [gsap Library for Animation in SVG](http://github.com/greensock/GreenSock-JS/)
+- [Tutorial: SVG in Webseiten verwenden: Hintergrundbild, Bild, Data-URL](http://css-tricks.com/using-svg/)
+- [SVG in the movies](https://moviecode.tumblr.com/post/72085619482/in-an-episode-of-doctor-who-the-doctor-is-seen)

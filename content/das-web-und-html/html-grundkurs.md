@@ -169,6 +169,8 @@ jedes HTML-Dokument darstellen. Mit jedem Editor (egal ob Notepade, vim, Dreamwe
 
 So soll das Web funktionieren.  
 
+Siehe auch [dowebsitesneedtolookexactlythesameineverybrowser.com](http://dowebsitesneedtolookexactlythesameineverybrowser.com/)
+
 
 ### Unbekannte Attribute
 

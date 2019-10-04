@@ -139,3 +139,9 @@ Damit funktioniert nun die Darstellung des Datensatzes richtig:
 
 
 
+
+Siehe auch
+----------
+
+* Kapitel über [Cross Site Scripting (XSS)](/security/a3-xss/) 
+

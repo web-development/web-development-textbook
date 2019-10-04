@@ -338,12 +338,8 @@ Eine <i>schräge</i> Sache                    (VERALTET!)
 <font color="red">rot</font>                 (VERALTET!)
 </htmlcode>
 
-Heute verwendet man CSS im `style`-Attribut statt dessen:
+Heute verwendet man CSS im `style`-Attribut statt dessen.  Das lernen wir später.
 
-<htmlcode caption="veraltete Tags zum formatieren von Text">
-<span style="font-family:Arial;">Text</span> (aktuelle Schreibweise)
-<span style="color:red;">rot</span>          (aktuelle Schreibweise)
-</htmlcode>
 
 Bilder
 ------

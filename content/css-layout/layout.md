@@ -267,3 +267,5 @@ Der Artikel [Use Cases For Flexbox](https://www.smashingmagazine.com/2018/10/fle
 ## Weitere Quellen
 
 - [Flexbugs](https://github.com/philipwalton/flexbugs) - bekannte Probleme mit Flexbox
+- [Flexboxfroggy.com](http://flexboxfroggy.com/) - Lernspiel mit Fröschen
+- [FlexboxDefense.com](http://www.flexboxdefense.com/) - Lernspiel mit Tower Defense

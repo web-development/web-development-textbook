@@ -110,6 +110,6 @@ CSS Selektoren Üben
 -------
 
 
-* [cdd dinner - css üben mit japanischem essen](http://flukeout.github.io/)
+* [css diner - css üben mit japanischem essen](http://flukeout.github.io/)
 * [try selectors - von w3schools](https://www.w3schools.com/cssref/trysel.asp)
 

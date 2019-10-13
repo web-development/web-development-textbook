@@ -52,8 +52,23 @@ Drei Beispiele, und die dafür passenden PHP-Befehle:
 2. in HTML - `htmlspecialchars`
 3. in Javascript, als Wert einer Variable - `json_encode`
 
-Es gibt aber noch viele andere Kontexte!
+Es gibt aber noch viele andere Kontexte: XML, PDF, ... jedes Format hat seine eigenen Regeln.
+
+
+## Wann Escapen?
+
+Wann soll ich die Daten escapen: möglichst früh, direkt nach der Eingabe,
+oder möglichst spät, erst bei der Ausgabe?
+
+Die Antwort ergibt sich aus den eben beschreibenen verschiedenen Kontexten:
+
+Bei der Eingabe weiss ich noch nicht, in welchem Kontext die Daten später 
+verwendet werden.  Ich speichere die Daten in einem möglichst neutralen Format
+in der Datenbank.  Bei der Ausgabe kenne ich den Kontext, und kann die
+richtige Escape-Funktion wählen.
+
 
 ## Mehr
 
-Siehe [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md)
+* Siehe [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md)
+* Wir haben das Problem zuerst besprochen im Kaptiel [PHP Datenbank: Daten Bearbeiten](https://web-development.github.io/php-db-schreiben/daten-editieren/)

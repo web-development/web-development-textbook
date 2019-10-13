@@ -1,6 +1,6 @@
 ---
-title: Rahmenbedingungen 
-order: 30
+title: Rahmenbedingungen
+order: 10
 ---
 
 Wie im Kapitel [Das Web und HTML](/das-web-und-html/) beschrieben gibt es viele verschiedene Ausgabegeräte für Webseiten. Für die Gestaltung des visuellen Layouts von Webseiten spielt dabei die die Auflösung und die Pixeldichte eine wichtige Rolle.
@@ -18,8 +18,10 @@ Vergleichen Sie die höchsten hier dargestellte Auflösungen mit der geringsten 
 §
 
 Die typische Auflösung hat sich über Jahre stark verändert. Diese Statistik
-von w3schools.org reicht von 2000 bis 2016. In diesem Zeitraum hat sich die Mehrheit langsam von 800x600 (bis 2003) auf 1024x768 (bis 2008) und schließlich auf höhere Auflösungen verschoben. Achtung: Das
-war bevor mobile Endgeräte wichtig wurden.
+von w3schools.org reicht von 2000 bis 2018. In diesem Zeitraum hat sich die Mehrheit langsam von 800x600 (bis 2003) auf 1024x768 (bis 2008) und schließlich auf höhere Auflösungen verschoben.
+
+In der Statistik ist nicht ausgewiesen, ob Mobile Endgeräte mitgezählt werden oder nicht.
+An anderer Stelle kann man nachlesen das ca. 10% der Zugriff von Mobile erfolgen.
 
 ![Abbildung 26: Statistik über die Bildschirmauflösung,](/images/css-layout/display-stats.png)
 
@@ -33,16 +35,16 @@ Die Angabe der Auflösung erfolgt in Pixel – die reale Größe des Ausgabeger�
 |+----|+---------------|+----|+-------------|+-------------|
 |Altes 19” LCD Display|2008|1280 × 1024|19 in|86 ppi|
 |15” Macbook Pro|2007|1440 × 900|15.4 in|110 ppi|
-|Sony PSP 7th gen|09/2005|480 × 272|4.3 in |128 ppi|
-|Apple iPhone3|06/2009|480 × 320|3.5 in |163 ppi|
-|15” Macbook Pro 'Retina'|06/2012|2880 × 1800|15.4 in |220 ppi|
+|15” Macbook Pro 'Retina'|06/2012|2880 × 1800|15.4 in |220 ppi|
+|13” Macbook Pro/Air|2019|2560 x 1600|13 in |227 ppi|
+|Apple iPhone3|06/2009|480 × 320|3.5 in |163 ppi|
 |Apple iPhone4|06/2010|960 × 640|3.5 in|326 ppi |
+|Apple iPhone 11|9/2019|828 x 1792|6.1 in |326 ppi|
+|Google Nexus One |1/2010|800 × 480|3.7 in |254 ppi |
+|Samsung Galaxy S7|2/2016|2560 × 1440 pixel|5.1 in |577 ppi |
+|Samsung Galaxy S10|2/2010|3040 × 1440 pixel|6.1 in |550 ppi |
+|Sony PSP 7th gen|09/2005|480 × 272|4.3 in |128 ppi|
 |Apple iPad 3rd gen|03/2011|2048 × 1536|12 in|264 ppi |
-|Apple iPhone XS|10/2018|2436 × 1125|5.8 in |458 ppi|
-|Google Nexus One |1/2010|800 × 480|3.7 in |254 ppi |
-|Samsung Galaxy S7|2/2016|2560 × 1440 pixel|5.1 in |577 ppi |
-|Samsung Galaxy S9|2/2018|2960 × 1440 pixel|5.8 in |570 ppi |
-|12” Macbook 'Retina'|03/2015| 2304 × 1440|12 in |226 ppi|
 {: class="table table-condensed table-bordered" style="width:auto"}
 
 Hier findet man einen Faktor 6 zwischen höchster und geringster Pixeldichte.

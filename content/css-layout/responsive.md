@@ -1,9 +1,9 @@
 ---
 title: Responsive Design
-order: 40
+order: 20
 ---
 
-Wie gehen wir mit der Herausforderung der verschiedenen 
+Wie gehen wir mit der Herausforderung der verschiedenen
 Auflösungen und Pixeldichten um?
 
 ## Responsive Design
@@ -37,7 +37,6 @@ Luke Wroblewski schlug 2009 unter dem Slogan "Mobile First" vor, zuerst die mobi
 
 [Bild: (CC BY-NC) Sauce Babilonia](https://www.flickr.com/photos/saucef/7184615025)
 
-
 ### Mediaqueries and Featurequeries
 
 <css caption="CSS Medaqueries Beispiel">
@@ -46,19 +45,29 @@ Luke Wroblewski schlug 2009 unter dem Slogan "Mobile First" vor, zuerst die mobi
 }
 
 @media screen {
-  body { font-size: 13px; }
-}  
+body { font-size: 13px; }
+}
 
 @supports not (display: grid) {
-  div {
-    float: right;
-  }
+div {
+float: right;
+}
 }
 </css>
 
 siehe auch [MDN: media features](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Media_features) und [MDN: features queries](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports)
 
+### CSS Pixel vs. Physikalische Pixel
 
+Die Pixel in CSS sind keine "echten" Pixel, sondern
+entsprechen dem, was das menschliche Auge ungefähr als Punkt erkennen kann:
+1/96 eines Inch.
+
+Siehe [Spezifikation: reference pixel](https://drafts.csswg.org/css-values-4/#reference-pixel)
+
+Wenn ein Ausgabegerät eine höhere Pixeldichte hat, kann
+ein CSS Pixel z.B. 2x2 physikalischen Pixeln entsprechen,
+bei einer "Device Pixel Ratio" von 2.
 
 ## Bilder und Responsive Design
 
@@ -66,13 +75,15 @@ Bilder waren lange Zeit ein Grund, warum das Layout von Webseiten nicht flexibel
 
 ### Pixel
 
-Als Bildformate für `<img>` Tags in Webseiten wurden lange nur Pixel-Formate unterstützt. Diese Formate (jpg, png, gif) sind  für die Darstellung bei einer bestimmten Größe gedacht. Die Vergrößerte Darstellung von Pixel-Bildern liefert keine guten Ergebnisse:
+Als Bildformate für `<img>` Tags in Webseiten wurden lange nur Pixel-Formate unterstützt. Diese Formate (jpg, png, gif) sind für die Darstellung bei einer bestimmten Größe gedacht. Die Vergrößerte Darstellung von Pixel-Bildern liefert keine guten Ergebnisse:
 
 ![Abbildung 29: Ausschnitte aus einem Pixel Bild, vom Browser (Firefox) in 3 Stufen vergrößert dargestellt](/images/css-layout/pixel-image-zoom.png)
 
 Die Verkleinerte Darstellung ist eine Verschwendung: Wenn ich ein Bild herunterladen muss, dass doppelt So breit und
 doppelt so hoch ist, wie mein Browser darstellen kann, dann sind das viermal so viele Daten, und damit eine viermal
 so lange wartezeit!
+
+Es gibt eine moderne Lösung für diese Problematik [Responsive Images](/grafik/images/) - diese werden wir später genauer kennen lernen.
 
 ### Vektor
 
@@ -97,8 +108,6 @@ meist mit einer Tastenkombination mit `+` bzw. `-`.
 Dabei werden die CSS Pixel vergrößert bzw. verkleinert. Die Größe des
 Viewport und die CSS pixel-ratio verändern sich also, dadurch werden
 andere Mediaqueries schlagend.
-
-
 
 ## Beispiel
 
@@ -143,6 +152,7 @@ Für Tablets gilt ein Grid mit zwei Spalten:
                             "w2        css";
     }
     ....
+
 }
 </css>
 
@@ -164,9 +174,9 @@ für Desktops ein Grid mit drei Spalten:
                             "w2        facts        navigation";
     }
     ...
+
 }
 </css>
-
 
 §
 
@@ -189,7 +199,7 @@ und als Easter Egg ist noch eine ganz verrücktes Grid dabei:
       background-color: black;
       grid-gap: 25px 25px;
 
-      grid-template-areas:  
+      grid-template-areas:
         "w1    w1           w2           w2           headline  headline"
         "w4    description  description  description  facts     facts"
         "w5    description  description  description  portrait  w11"
@@ -199,5 +209,6 @@ und als Easter Egg ist noch eine ganz verrücktes Grid dabei:
         "gelb  w9           w9           w10          w10       w10";
     }
     ...
+
 }
 </css>

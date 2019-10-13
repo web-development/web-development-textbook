@@ -1,11 +1,10 @@
 ---
 title: Details zu Layout
-order: 20
+order: 40
 ---
 
 In diesem Kapitel werden weitere Properties vorgestellt,
 die das Layout mit CSS ermöglichen.
-
 
 ### Text
 
@@ -38,11 +37,9 @@ I am a block level element - p for paragraph.
 </p>
 </div>
 
-
-
 ### Bild im Text
 
-Ein Bild wird dabei wie ein Wort im Text behandelt, und nicht etwa frei auf der Webseite positioniert.  Wenn Sie das Bild wie hier mitten in einen Absatz hinein setzen, ergibt das meist ein sehr hässliches Layout:
+Ein Bild wird dabei wie ein Wort im Text behandelt, und nicht etwa frei auf der Webseite positioniert. Wenn Sie das Bild wie hier mitten in einen Absatz hinein setzen, ergibt das meist ein sehr hässliches Layout:
 
 <div class="resizable">
   <p style="background-color:#ddd">Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
@@ -54,13 +51,11 @@ Ein Bild wird dabei wie ein Wort im Text behandelt, und nicht etwa frei auf der 
   </p>
 </div>
 
-
 ### Umbruch von Wörtern
 
 Browser können lange Wörter in mehreren Sprachen umbrechen.
 Die richtige Sprache stellt man mit dem Attribut `lang` ein,
-z.B. einfach am html-Tag:  `<html lang="de">`.
-
+z.B. einfach am html-Tag: `<html lang="de">`.
 
 <div class="resizable">
   <p style="background-color:#ddd">Das Rindfleisch­etikettierungs­überwachungs­aufgaben­übertragungs­gesetz (RflEttÜAÜG) war
@@ -80,9 +75,8 @@ z.B. einfach am html-Tag:  `<html lang="de">`.
   </p>
 </div>
 
+## Width und Auto
 
-Width und Auto
----------------
 Normalerweise nimmt ein Block die maximal zur Verfügung stehende Breite ein. Mit
 `width` kann eine andere Breite eines Blocks definiert werden:
 Um einen Element zu zentrieren kann margin mit Wert auto verwendet werden, der den zur Verfügung stehenden Platz automatisch gleichmäßig verteilt.
@@ -99,27 +93,25 @@ div {<br>
 </div>
 </div>
 
-
-Statt einer fixen Breite  `width: 900px`  kann man eine maximale Breite
-mit `max-width: 900px` angeben.  Stehen weniger als 900px zur Verfügung
+Statt einer fixen Breite `width: 900px` kann man eine maximale Breite
+mit `max-width: 900px` angeben. Stehen weniger als 900px zur Verfügung
 dann wird diese CSS Anweisung ignoriert, und der Block nimmt wieder 100% der
 Breite ein.
 
+## Float
 
-Float
-------
 Eine Möglichkeit aus der normalen Reihenfolge der Darstellung auszubrechen
-bietet die Deklaration `float` mit den Werten `left` und `right`. Damit wird 
-ein Element nach links bzw. rechts gesetzt, der Rest des Inhalts 
-„rutscht nach oben“ und wird neben das Element gesetzt („umfließt das Element“). 
+bietet die Deklaration `float` mit den Werten `left` und `right`. Damit wird
+ein Element nach links bzw. rechts gesetzt, der Rest des Inhalts
+„rutscht nach oben“ und wird neben das Element gesetzt („umfließt das Element“).
 
 §
 
-Hier sind drei Absätze zu sehen, die jeweils als Erstes ein Bild enthalten. 
-Im ersten Absatz ist die Darstellung ganz normal – das Bild wird wie ein Wort 
-im Text behandelt. Im zweiten Absatz „floated“ das Bild nach rechts, 
-der Text rutscht links davon nach oben. Im dritten Absatz „floated“ 
-das Bild nach links, der Text rutscht rechts davon nach oben. 
+Hier sind drei Absätze zu sehen, die jeweils als Erstes ein Bild enthalten.
+Im ersten Absatz ist die Darstellung ganz normal – das Bild wird wie ein Wort
+im Text behandelt. Im zweiten Absatz „floated“ das Bild nach rechts,
+der Text rutscht links davon nach oben. Im dritten Absatz „floated“
+das Bild nach links, der Text rutscht rechts davon nach oben.
 
 [Beispiel als Demo-Seite](/images/css-layout/float.html)
 
@@ -139,15 +131,12 @@ z.B. [Bootstrap](https://getbootstrap.com/docs/4.0/layout/grid/#equal-width).
 Mit der Einführung von CSS Grid ist die Verwendung von `float` für
 diesen Zweck nicht mehr sinnvoll.
 
+## Fallen bei der absoluten Positionierung
 
-
-Fallen bei der absoluten Positionierung
-------------------------
-
-Mit der Deklaration `position: absolute` wird ein Tag aus der normalen Darstellung 
+Mit der Deklaration `position: absolute` wird ein Tag aus der normalen Darstellung
 herausgenommen und über dem restlichen Inhalt der Seite platziert.
 
-Wenn man nicht explizit ein Koordinatensystem  mit `position: relative` angibt,
+Wenn man nicht explizit ein Koordinatensystem mit `position: relative` angibt,
 dann gilt die linke obere Ecke des Browserfensters als Ursprung.
 
 Das führt oft zu Verwirrung, zum Beipiel wenn der meiste Inhalt der Seite
@@ -155,7 +144,6 @@ zentriert ist, sich also je nach Fensterbreite verschriebt, und dann ein Element
 absolut darauf platziert wird.
 
 [Beispiel-Seite](/images/css-layout/unkoordiniert.html)
-
 
 §
 
@@ -174,14 +162,8 @@ __|__
   margin-left: 100px;
 }
 
-
-
 </css>
 
 §
- 
+
 ![Abbildung 40: Kombination von absoluter Positionierung und margin-left](/images/css-layout/image142.png)
-
-
-
-

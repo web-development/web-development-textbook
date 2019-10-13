@@ -1,47 +1,57 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>CSS for layout: center content</title>
+  <head>
+    <meta charset="utf-8" />
+    <title>
+      CSS for layout: Using normal flow and margin auto to center a box
+    </title>
 
-	<style type="text/css">
-	    body { margin:0px; padding: 0px; background-color: #999; }
-		span { font-family: Consolas,"Courier New", Courier, monospace; }
-        #main {
-			background-color:#FFF;
-			border-left: 1px black solid;
-			border-top: 1px black solid;
-            margin: 0px auto;
-			padding: 0 30px 20px 30px;
-            width: 60%;
-            background-image: url(koord-sys.png);
-            background-repeat: no-repeat;
-        }
+    <style type="text/css">
+      body {
+        margin: 0px;
+        padding: 0px;
+        background-color: #999;
+      }
+      span {
+        font-family: Consolas, "Courier New", Courier, monospace;
+      }
+      main {
+        background-color: #fff;
+        border-left: 1px black solid;
+        border-top: 1px black solid;
+        margin: 0px auto;
+        padding: 0 30px 20px 30px;
+        max-width: 1024px;
+      }
     </style>
+  </head>
+  <body>
+    <main>
+      <h1>Einen Block mit margin auto zentrieren</h1>
 
-</head>
-<body>
-    <div id="main">
-        <h1>Zentrieren einer Box</h1>
-    
-        <p>Achtung: <span>text-align: center</span> funktioniert
-            nur für Text (no-na!), nicht für einen ganzen Block wie div.</p>
-        <p>In diesem Beispiel wird ein div-Tag mit Hilfe von margin auto zentriert.
-            Der div-Tag hat eine Breite kleiner 100%. Der verbleibende
-            Platz wird automatisch gleichmäßig verteilt.</p>
-            <pre>
+      <p>
+        Achtung: <span>text-align: center</span> funktioniert nur für Text
+        (no-na!), nicht für einen ganzen Block wie main.
+      </p>
+      <p>
+        In diesem Beispiel wird der main-Tag mit Hilfe von margin auto
+        zentriert. Der main-Tag hat eine maximale Breite von 2014 Pixel. Fall
+        noch Platz übrig bleibt wird dieser automatisch gleichmäßig verteilt.
+      </p>
+      <pre>
 margin: 0px auto;
-width: 60%;
-</pre>
+max-width: 1024px;
+</pre
+      >
 
-
-        <p>you can only use <span>text-align: center</span> on
-        text (duh!) not on a block-level element like <span>div</span>.
-        The trick is to use the <span>margin</span> of the block-level 
-        element. With the value <span>auto</span> the available space
-        left and right of the element ist automatically distributed
-        equally.</p>
-
-  </div>
-</body>
+      <p>
+        you can only use <span>text-align: center</span> on text (duh!) not on a
+        block-level element like <span>main</span>. The trick is to use the
+        <span>margin</span> of the block-level element. With the value
+        <span>auto</span> the available space left and right of the element ist
+        automatically distributed equally. Here we set a maximum width of 1025
+        px;
+      </p>
+    </main>
+  </body>
 </html>

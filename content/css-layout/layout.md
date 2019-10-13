@@ -1,161 +1,27 @@
 ---
 title: CSS für Layout
-order: 10
+order: 30
 ---
 
 Welche Gestaltungsmöglichkeiten bietet CSS für das Layout einer Webseite?
 
+## Normal Flow
 
-CSS Grid
-------------------------
-Seit [Frühjahr 2017](https://caniuse.com/#search=grid) wird CSS Grid in Browsern unterstützt.
-Damit legt man ein Gitternetz über die ganze Seite:
+Schon bisher wurden die Elemente unserer Webseite
+auf eine bestimmte Weise angeordnet: nach dem "normal flow" (siehe [MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Normal_Flow)):
 
-![Layout mit CSS Grid](/images/css-layout/grid.png)
+Alle Block-Bildendenden Tags erzeugen eine achsenparallelle Box,
+deren Größe wir mit `width`, `padding`, `border` und `margin``
+beeinflussen können.
 
-Das Grid wird normalerweise nicht angzeigt.  Die hier gezeigte Ansicht
-mit den strichlierten Linien kann man in den Firefox Developertools mit
-einem Klick auf das grid-symbol aktivieren:
+Nicht-Blockbildente Elemente werden von links nach rechts auf Zeilen
+gesetzt, blockbildende Element von oben nach unten arragniert.
+Achtung: die Richtung hängt von der Sprache, bzw. dem [writing mode](https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode) ab.
 
+Mit einer zentrierten Box mit `margin: auto` kann man
+eine gut lesbare seite mit responsive layout erzeugen: [Demo](/images/css-layout/width-auto.html)
 
-![Grid Ansicht einschalten in Firefox](/images/css-layout/switch-on-grid.png)
-
-
-[Demo-Seite](/images/cssgrid/)
-
-
-### Das Grid definieren
-
-Das Grid wird über die Breiter der Spalten (columns) und die Höhe der
-Zeilen (rows) definiert:
-
-<css>
-.page_container {
-  display: grid;
-  grid-template-columns: 270px 5fr 3fr;
-  grid-template-rows: 60px 2fr 210px;
-}
-</css>
-
-Dabei kann die  neue Maßeinheit `fr` (für fraction, Bruchteil) verwendet werden:
-Nachdem von der Gesamtbreite die absoluten Breitenangaben abgezogen wurden,
-wird der restliche Platz im Verhältnis der fractions verteilt.
-
-Also zum Beispiel:
-
-* 1280px stehen für das oben definierte Grid in der Breite zur Verfügung
-* -270px für die erste Spalte
-* 1010px verbleiben 
-
-diese werden nun im Verhältnis 5 zu 3 auf Spalte zwei und drei verteilt:
-
-* 5 * ( 1010px / 8 ) = 631.25px für die zweite Spalte
-* 3 * ( 1010px / 8 ) = 378.75px für die zweite Spalte
-
-Wenn Sie die Breite des Fensters für die [Demo-Seite](/images/cssgrid/) ändern
-werden die neu berechneten Werte angezeigt.
-
-Hinweis: `fr` ersetzt damit die Prozentzahlen die früher verwendet wurden!
-
-
-### Areas definieren
-
-Mit der Property `grid-template-areas` können nun Namen
-für die einzelnen Felder des Grids vergeben werden:
-
-<css>
-  grid-template-areas:
-    ".              headlineArea     subheadArea"
-    "portraitArea   descriptionArea  codeArea"
-    ".              factsArea        sourceArea";
-</css>
-
-Die drei Strings stehen für  die drei Zeilen des Grids.
-Innerhalb der Strings gilt jedes Wort als ein Feld.
-Die Felder sind also durch Whitespace getrennt.
-
-Ein Punkt steht für ein Feld das frei bleibt.
-
-§
-
-Eine Area kann auch mehrere Felder des Grids überspannen,
-muss aber immer in Rechteck bilden (keine beliebige Tetris-Form):
-
-<css>
-  grid-template-areas:
-    "headlineArea  headlineArea     subheadArea"
-    "portraitArea  descriptionArea  codeArea"
-    "factsArea     descriptionArea  sourceArea";
-</css>
-
-
-### Areas mit Inhalt belegen
-
-
-Nun kann der Inhalt in das Grid - genauer: in die Area - eingefüllt werden.
-Das erfolgt rein in CSS, es ist keine Veränderung im HTML notwendig.
-
-
-<css>
-header {
-  grid-area: headlineArea;
-  background-color: #EBBB5B;
-  padding-top: 19px;
-}
-
-section#description {
-  grid-area: descriptionArea;
-  background-color: white;
-}
-</css>
-
-
-
-
-Siehe auch [CSS Tricks: Complete Guide to CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
-
-Siehe auch [CSS Grid by Example](https://gridbyexample.com/examples/)
-
-
-Absolute Positionierung
-------------------------
-
-Mit der Deklaration `position: absolute` wird ein Tag aus der normalen Darstellung
-herausgenommen und über dem restlichen Inhalt platziert.
-Dazu muss aber erst eine Koordinatensystem angelegt werden, auf das sich
-die Position bezieht. Das geschieht mit `position: relative` in einem übergeordneten
-Tag. 
-
-
-
-<htmlcode>
-<div class="project_partial">
-
-  <img src="cover.jpg">
-
-  <div class="badge"></div>
-
-</div>
-__|__
-.project_partial {
-  position: relative;
-  background-color: #292927;
-}
-.project_partial .badge {
-  position: absolute;
-  background-image: url(badge_topleft.png);
-  /* top: 0px; left: 0px; */
-}
-</htmlcode>
-
-
-[Beispiel-Seite](/images/css-absolute/test.html)
-
-
-
-
-Flexbox
-------------------------
+## Flexbox
 
 Seit [2014](https://caniuse.com/#search=flex) wird Flexbox in allen Browsern unterstützt.
 
@@ -204,7 +70,6 @@ Siehe [justify-content](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#
 
 Oder die Elemente können sich ausdehnen, um den Platz einzunehmen:
 
-
 <css>
 .project_partial {
     flex-grow: 1;
@@ -214,10 +79,9 @@ Oder die Elemente können sich ausdehnen, um den Platz einzunehmen:
 
 Siehe [flex-grow](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#article-header-id-10)
 
-
 ### Wrap
 
-Wenn zu viele Elemente für eine Zeile vorhanden sind, 
+Wenn zu viele Elemente für eine Zeile vorhanden sind,
 können sie auf eine nächste Zeile umgebrochen werden:
 
 <css>
@@ -230,9 +94,8 @@ können sie auf eine nächste Zeile umgebrochen werden:
 
 Wenn man vertikale und horizontale Flexboxen ineinander schachtelt
 kann man auch ein zweidimensionales Layout erzielen - so wie mit
-CSS Grid.  Das HTML Dokument muss aber dabei diese Struktur genau
-nachbauen. 
-
+CSS Grid. Das HTML Dokument muss aber dabei diese Struktur genau
+nachbauen.
 
 <div class="resizable">
   <div style="display:flex; flex-direction: row;">
@@ -259,9 +122,137 @@ nachbauen.
 
 Siehe auch [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
+## CSS Grid
 
-Viele Methoden
--------------
+Seit [Frühjahr 2017](https://caniuse.com/#search=grid) wird CSS Grid in Browsern unterstützt.
+Damit legt man ein Gitternetz über die ganze Seite:
+
+![Layout mit CSS Grid](/images/css-layout/grid.png)
+
+Das Grid wird normalerweise nicht angzeigt. Die hier gezeigte Ansicht
+mit den strichlierten Linien kann man in den Firefox Developertools mit
+einem Klick auf das grid-symbol aktivieren:
+
+![Grid Ansicht einschalten in Firefox](/images/css-layout/switch-on-grid.png)
+
+[Demo-Seite](/images/cssgrid/)
+
+### Das Grid definieren
+
+Das Grid wird über die Breiter der Spalten (columns) und die Höhe der
+Zeilen (rows) definiert:
+
+<css>
+.page_container {
+  display: grid;
+  grid-template-columns: 270px 5fr 3fr;
+  grid-template-rows: 60px 2fr 210px;
+}
+</css>
+
+Dabei kann die neue Maßeinheit `fr` (für fraction, Bruchteil) verwendet werden:
+Nachdem von der Gesamtbreite die absoluten Breitenangaben abgezogen wurden,
+wird der restliche Platz im Verhältnis der fractions verteilt.
+
+Also zum Beispiel:
+
+- 1280px stehen für das oben definierte Grid in der Breite zur Verfügung
+- -270px für die erste Spalte
+- 1010px verbleiben
+
+diese werden nun im Verhältnis 5 zu 3 auf Spalte zwei und drei verteilt:
+
+- 5 \* ( 1010px / 8 ) = 631.25px für die zweite Spalte
+- 3 \* ( 1010px / 8 ) = 378.75px für die zweite Spalte
+
+Wenn Sie die Breite des Fensters für die [Demo-Seite](/images/cssgrid/) ändern
+werden die neu berechneten Werte angezeigt.
+
+Hinweis: `fr` ersetzt damit die Prozentzahlen die früher verwendet wurden!
+
+### Areas definieren
+
+Mit der Property `grid-template-areas` können nun Namen
+für die einzelnen Felder des Grids vergeben werden:
+
+<css>
+  grid-template-areas:
+    ".              headlineArea     subheadArea"
+    "portraitArea   descriptionArea  codeArea"
+    ".              factsArea        sourceArea";
+</css>
+
+Die drei Strings stehen für die drei Zeilen des Grids.
+Innerhalb der Strings gilt jedes Wort als ein Feld.
+Die Felder sind also durch Whitespace getrennt.
+
+Ein Punkt steht für ein Feld das frei bleibt.
+
+§
+
+Eine Area kann auch mehrere Felder des Grids überspannen,
+muss aber immer in Rechteck bilden (keine beliebige Tetris-Form):
+
+<css>
+  grid-template-areas:
+    "headlineArea  headlineArea     subheadArea"
+    "portraitArea  descriptionArea  codeArea"
+    "factsArea     descriptionArea  sourceArea";
+</css>
+
+### Areas mit Inhalt belegen
+
+Nun kann der Inhalt in das Grid - genauer: in die Area - eingefüllt werden.
+Das erfolgt rein in CSS, es ist keine Veränderung im HTML notwendig.
+
+<css>
+header {
+  grid-area: headlineArea;
+  background-color: #EBBB5B;
+  padding-top: 19px;
+}
+
+section#description {
+grid-area: descriptionArea;
+background-color: white;
+}
+</css>
+
+Siehe auch [CSS Tricks: Complete Guide to CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
+
+Siehe auch [CSS Grid by Example](https://gridbyexample.com/examples/)
+
+## Absolute Positionierung
+
+Mit der Deklaration `position: absolute` wird ein Tag aus der normalen Darstellung
+herausgenommen und über dem restlichen Inhalt platziert.
+Dazu muss aber erst eine Koordinatensystem angelegt werden, auf das sich
+die Position bezieht. Das geschieht mit `position: relative` in einem übergeordneten
+Tag.
+
+<htmlcode>
+<div class="project_partial">
+
+  <img src="cover.jpg">
+
+  <div class="badge"></div>
+
+</div>
+__|__
+.project_partial {
+  position: relative;
+  background-color: #292927;
+}
+.project_partial .badge {
+  position: absolute;
+  background-image: url(badge_topleft.png);
+  /* top: 0px; left: 0px; */
+}
+</htmlcode>
+
+[Beispiel-Seite](/images/css-absolute/test.html)
+
+## Viele Methoden
 
 Neben den drei hier gezeigten gibt es noch viele weitere
 Methoden um das Layout der Seite zu beeinflussen.
@@ -273,7 +264,6 @@ Eine gute englischsprachige Quelle dazu ist [learnlayout.com](http://learnlayout
 
 Der Artikel [Use Cases For Flexbox](https://www.smashingmagazine.com/2018/10/flexbox-use-cases/) von Rachel Andrews erklärt gut in welchen Fällen man Grid und in welchen Fällen man Flexbox verwenden kann.
 
-Weitere Quellen
----------
+## Weitere Quellen
 
-* [Flexbugs](https://github.com/philipwalton/flexbugs) - bekannte Probleme mit Flexbox
+- [Flexbugs](https://github.com/philipwalton/flexbugs) - bekannte Probleme mit Flexbox

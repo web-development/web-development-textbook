@@ -45,13 +45,37 @@ Luke Wroblewski schlug 2009 unter dem Slogan "Mobile First" vor, zuerst die mobi
 }
 
 @media screen {
-body { font-size: 13px; }
+  body { font-size: 13px; }
 }
 
 @supports not (display: grid) {
-div {
-float: right;
+  div {
+    float: right;
+  }
 }
+</css>
+
+Es gibt sogar queries für präferenzen wie "dark mode":
+
+<css caption="CSS Medaqueries für color-scheme">
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #ddd;
+    background-color: black; 
+  }  
+  h1,h2,h3 {
+    color: #d39060;
+  }  
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    color: #333333;
+    background-color: #ffffff;
+  }
+  h1,h2,h3 {
+    color: #333333;
+  }  
 }
 </css>
 

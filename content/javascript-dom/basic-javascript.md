@@ -411,7 +411,7 @@ definierten Funktionsnamen verwendet:
       return a+b; 
   }
 
-  console.log(40, 2);  // gibt 42
+  console.log(  add(40, 2)  );  // gibt 42
 </javascript>
 
 

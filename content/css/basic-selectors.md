@@ -84,14 +84,23 @@ Der Browser unterscheidet bei der Darstellugn von Links zwischen denen  die scho
 Die Default Einstellung der Browser entspricht ungefähr folgendem CSS:
 
 <css>
-  a:any-link, a:-webkit-any-link { text-decoration: underline; }
+  a:any-link { text-decoration: underline; }
   a:link    { color:blue; }
   a:visited { color:#FF00FF; }
 </css>
 
-Achtung: `:any-link` ist noch experimentell, und wird (im Herbst 2017) nur in Firefox
-schon in dieser Schreibweise akzeptiert.  In den anderen Browsern muss man noch
-die Schreibweise mit vorgestelltem `-webkit` verwenden.
+Achtung: `:any-link` ist noch experimentell, und wird (im Herbst 2019) von
+Internet Explorer und Edge noch nicht akzeptiert. Siehe [caniuse](https://caniuse.com/#search=%3Aany-link).
+
+Für Internet Explorer und Edge müsste man also schreiben:
+
+
+<css>
+  a:link, a:visited { text-decoration: underline; }
+  a:link    { color:blue; }
+  a:visited { color:#FF00FF; }
+</css>
+
 
 §
 

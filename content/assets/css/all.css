@@ -41,6 +41,8 @@ body {
   font-feature-settings:"liga", "dlig";
 }
 
+
+
 @font-face {
   font-family: Biolinum;
   src: url('../fonts/LinBiolinum_R.woff');
@@ -206,6 +208,8 @@ textarea {
   overflow: auto;
   vertical-align: top;
 }
+
+
 body {
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -214,6 +218,53 @@ body {
   color: #333333;
   background-color: #ffffff;
 }
+
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #ddd;
+    background-color: black; 
+    background: black url(/images/ghost.svg) no-repeat center right;
+  }  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #d39060;
+  }  
+
+  img {
+    filter:invert(100%);
+  }  
+  img:hover {
+    filter:none;
+  }    
+  pre {
+    background-color: #111;
+    color:  #ddd;
+  } 
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    color: #333333;
+    background-color: #ffffff;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #333333;
+  }  
+  pre {
+    background-color: #f5f5f5;
+  }  
+}
+
 a {
   color: #0088cc;
   text-decoration: none;
@@ -408,7 +459,6 @@ h5,
 h6 {
   margin: 0;
   font-weight: bold;
-  color: #333333;
   text-rendering: optimizelegibility;
 }
 h1 small,
@@ -573,7 +623,6 @@ code, pre {
   padding: 0 3px 2px;
   font-family: Menlo, Monaco, "Courier New", monospace;
   font-size: 12px;
-  color: #333333;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
@@ -585,13 +634,13 @@ code {
   border: 1px solid #e1e1e8;
   white-space: pre;  
 }
+
 pre {
   display: block;
   padding: 8.5px;
   margin: 0 0 9px;
   font-size: 12px;
   line-height: 18px;
-  background-color: #f5f5f5;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.15);
   -webkit-border-radius: 4px;
@@ -4178,7 +4227,7 @@ a.thumbnail:hover {
 }
 header {  
   /* position: fixed; */
-  background-color: white;
+  background-color: inherit;
   z-index: 1;
 }
 

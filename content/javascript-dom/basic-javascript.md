@@ -329,7 +329,7 @@ Will man mehrere Objekte mit denselben Eigenschaften erzeugen, dann ist eine Kla
 Eine Besonderheit von Javascript (die sie nicht in anderen Programmiersprachen finden werden) ist, dass Eigenschaften eines Objekts nicht nur über die Punkt-Schreibweise, sondern auch über eckige Klammern – also wie ein Array – angesprochen werden können:
 
 <javascript>
-  console.log("die Farbe des shrits ist")
+  console.log("die Farbe des shirts ist")
   console.log( c.farbe    );
   console.log( c["farbe"] );
 </javascript>
@@ -411,7 +411,7 @@ definierten Funktionsnamen verwendet:
       return a+b; 
   }
 
-  console.log(40, 2);  // gibt 42
+  console.log(  add(40, 2)  );  // gibt 42
 </javascript>
 
 

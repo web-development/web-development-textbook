@@ -30,7 +30,7 @@ class Nanoc3::Filter
 
         break if !match
         file, rest = match.captures
-
+        #puts "found a proper image #{file}"
         #@output << match[0]
 
         @output << match.pre_match

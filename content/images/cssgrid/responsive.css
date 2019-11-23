@@ -1,5 +1,5 @@
 /* Phone */
-@media screen and (max-width: 660px)  {
+@media screen and (max-width: 660px) {
   .page_container {
     padding: 10px;
     max-width: 80em;
@@ -11,333 +11,143 @@
     margin: 10px 0 10px 0;
   }
 
-
   .stylename::before {
     content: "Zur Implementierung";
     font-size: 18px;
     font-weight: bold;
-    display:block;
+    display: block;
     margin: 10px 0 0 0;
   }
 
-  .stylename, .css {
-      font-family: monospace;
+  .stylename,
+  .css {
+    font-family: monospace;
   }
-
 }
-
 
 /* Tablet */
-@media screen and (min-width: 660px) and (max-width: 1150px)  {
+@media screen and (min-width: 660px) and (max-width: 1150px) {
+  .page_container {
+    display: grid;
 
-    .page_container {
-      display: grid;
+    grid-template-columns: 2fr 3fr;
+    grid-template-rows: 60px 400px 60px 60px;
 
-      grid-template-columns: 2fr 3fr;
-      grid-template-rows: 60px 403px 1fr 1fr 60px 3fr;
+    grid-template-areas:
+      "w1        headline "
+      "portrait  description"
+      "w2        facts"
+      "w2        navigation";
+  }
 
-      grid-template-areas:  "w1        headline "
-                            "portrait  description"
-                            "w2        facts"
-                            "w2        navigation"
-                            "w2        stylename"
-                            "w2        css";
-    }
+  section {
+    background-color: white;
+    padding: 10px;
+    font-size: 22px;
+    line-height: 20px;
+  }
 
-    section {
-      background-color: white;
-      padding: 10px;
-      font-size: 22px;
-      line-height: 20px;
-    }
+  .page_container h1 {
+    margin: 0;
+    padding: 0;
+  }
 
-    .page_container h1 { margin:0; padding:0; }
+  .headline {
+    background-color: #ebbb5b;
+    padding-top: 19px;
+  }
 
-    .headline {
-      background-color: #EBBB5B;
-      padding-top: 19px;
-    }
+  .description {
+    padding-top: 12px;
+    line-height: 36px;
+  }
 
-    .description {
-      padding-top: 12px;
-      line-height: 36px;
-    }
+  .facts {
+    padding-top: 61px;
+  }
 
-    .facts {
-      padding-top: 61px;
-    }
+  ul {
+    list-style-type: square;
+    padding-left: 30px;
+    padding-top: 12px;
+    line-height: 40px;
+  }
 
-    ul {
-      list-style-type: square;
-      padding-left: 30px;
-      padding-top: 12px;
-      line-height: 40px;
-    }
+  .stylename {
+    background-color: #ebbb5b;
+    padding-top: 23px;
+  }
 
-    .stylename {
-      background-color: #EBBB5B;
-      padding-top: 23px;
-    }
+  .css {
+    font-size: 18px;
+    line-height: 40px;
+    padding-top: 13px;
+  }
+  .css b {
+    display: block;
+  }
+  .css {
+    font-family: monospace;
+  }
+  .portrait {
+    width: auto;
+    height: auto;
+    background-color: #ebbb5b;
+    background-size: cover;
+  }
 
-    .css {
-      font-size: 18px;
-      line-height: 40px;
-      padding-top: 13px;
-    }
-    .css b { display: block;}
-    .css {
-        font-family: monospace;
-    }
-    .portrait {
-      width: auto;
-      height: auto;
-      background-color: #EBBB5B;
-      background-size: cover;
-    }
+  .navigation {
+    line-height: 40px;
+    padding-top: 17px;
+  }
+  .navigation h2 {
+    font-size: 18px;
+    line-height: 40px;
+    margin-left: 10px;
+    margin-bottom: 0;
+  }
+  .navigation ul {
+    padding-top: 0px;
+  }
 
-    .navigation {
-      line-height: 40px;
-      padding-top: 17px;
-    }
-    .navigation h2 {
-      font-size: 18px;
-      line-height: 40px;
-      margin-left: 10px;
-      margin-bottom: 0;
-    }
-    .navigation ul {
-      padding-top: 0px;
-    }
+  .gelb {
+    display: none;
+  }
+  .rot {
+    display: none;
+  }
+  .w1 {
+    display: none;
+  }
+  .w2 {
+    display: none;
+  }
 
-    .gelb { display: none; }
-    .rot { display: none; }
-    .w1 {display: none; }
-    .w2 {display: none; }
-
-    .w3 {display: none; }
-    .w4 {display: none; }
-    .w5 {display: none; }
-    .w6 {display: none; }
-    .w7 {display: none; }
-    .w8 {display: none; }
-    .w9 {display: none; }
-    .w10 {display: none; }
-    .w11{display: none; }
-
-
-
-
+  .w3 {
+    display: none;
+  }
+  .w4 {
+    display: none;
+  }
+  .w5 {
+    display: none;
+  }
+  .w6 {
+    display: none;
+  }
+  .w7 {
+    display: none;
+  }
+  .w8 {
+    display: none;
+  }
+  .w9 {
+    display: none;
+  }
+  .w10 {
+    display: none;
+  }
+  .w11 {
+    display: none;
+  }
 }
-
-/* mondriaan !!!! */
-
-@media screen and (min-width: 1150px) and (max-width: 1200px) {
-
-    .page_container {
-      height:1200px;
-      width:1200px;
-
-      display: grid;
-
-      grid-template-columns: 140fr 131fr 152fr 283fr 190fr 166fr 30fr;
-      grid-template-rows: 114fr 306fr 305fr 131fr 129fr 70fr 46fr;
-
-      background-color: black;
-      grid-gap: 25px 25px;
-
-      grid-template-areas:  "w1    w1           w2           w2           headline  headline  w3"
-                            "w4    description  description  description  facts     facts     w3"
-                            "w5    description  description  description  portrait  w11       w3"
-                            "w5    navigation   navigation   w6           w7        w7        w3"
-                            "gelb  navigation   navigation   w8           css       css       rot"
-                            "gelb  w9           w9           stylename    css       css       rot"
-                            "gelb  w9           w9           w10          w10       w10       rot";
-    }
-
-    section {
-      background-color: white;
-      padding: 3px;
-      font-size: 18px;
-      line-height: 20px;
-      vertical-align: bottom;
-    }
-
-/*
-    .description, .facts {
-      background-image: linear-gradient(transparent 50%, rgba(255,255,255,.5) 50%);
-      background-size: 40px 40px;
-    }
-*/
-
-    .headline {
-      background-color: #EBBB5B;
-    }
-
-    .headline h1 {
-      font-size: 40px;
-      line-height: 40px;
-      padding-top: 43px;
-      margin: 0;
-      padding-left: 28px;
-    }
-
-    .description {
-      background-color: #DD4232;
-      font-size: 40px;
-      line-height: 40px;
-      padding-top: 7px;
-    }
-
-    .facts {
-      background-color: #EBBB5B;
-      line-height: 40px;
-      padding-top: 14px;
-    }
-
-    ul {
-      list-style-type: square;
-      padding-left: 30px;
-    }
-
-    .stylename {
-      font-size: 40px;
-      line-height: 40px;
-      color: white;
-      background-color: #191910;
-    }
-
-    .css {
-      background-color: #024276;
-      color: white;
-      font-size: 12px;
-      line-height: 20px;
-      padding-top: 6px;
-      overflow: auto;
-    }
-
-    .portrait {
-      width: auto;
-      height: auto;
-      background-color: #EBBB5B;
-      background-size: cover;
-    }
-
-    .navigation {
-      background-color: #191910;
-      color: white;
-      line-height: 40px;
-      padding-top: 14px;
-    }
-    .navigation h2 {
-      font-size: 18px;
-      line-height: 40px;
-      margin-left: 10px;
-    }
-
-    .gelb {
-      background-color: #EBBB5B;
-    }
-    .rot {
-      background-color: #DD4232;
-    }
-
-}
-
-/* Desktop */
-@media screen and (min-width: 1200px)  {
-
-    .page_container {
-      display: grid;
-
-      grid-template-columns: 270px 5fr 3fr;
-      grid-template-rows: 60px 2fr 210px;
-
-      grid-template-areas:  "w1        headline     stylename"
-                            "portrait  description  css"
-                            "w2        facts        navigation";
-    }
-
-    section {
-      background-color: white;
-      padding: 10px;
-      font-size: 22px;
-      line-height: 20px;
-    }
-
-    .page_container h1 { margin:0; padding:0; }
-
-    .headline {
-      background-color: #EBBB5B;
-      padding-top: 19px;
-    }
-
-    .description {
-      padding-top: 12px;
-      line-height: 40px;
-    }
-
-    .facts {
-      padding-top: 61px;
-    }
-
-    ul {
-      list-style-type: square;
-      padding-left: 30px;
-      padding-top: 12px;
-      line-height: 40px;
-    }
-
-    .stylename {
-      background-color: #EBBB5B;
-      padding-top: 23px;
-    }
-
-    .css {
-      font-size: 18px;
-      line-height: 40px;
-      padding-top: 13px;
-    }
-    .css b { display: block;}
-
-    .portrait {
-      width: auto;
-      height: auto;
-      background-color: #EBBB5B;
-      background-size: cover;
-    }
-
-    .navigation {
-      line-height: 40px;
-      padding-top: 17px;
-    }
-    .navigation h2 {
-      font-size: 18px;
-      line-height: 40px;
-      margin-left: 10px;
-      margin-bottom: 0;
-    }
-    .navigation ul {
-      padding-top: 0px;
-    }
-
-    .gelb { display: none; }
-    .rot { display: none; }
-    .w1 {display: none; }
-    .w2 {display: none; }
-
-    .w3 {display: none; }
-    .w4 {display: none; }
-    .w5 {display: none; }
-    .w6 {display: none; }
-    .w7 {display: none; }
-    .w8 {display: none; }
-    .w9 {display: none; }
-    .w10 {display: none; }
-    .w11{display: none; }
-
-
-
-
-}
-
-

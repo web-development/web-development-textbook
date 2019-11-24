@@ -134,13 +134,13 @@ In den Developer Tools im Browser ist ein Debugger eingebaut:
 
 Der linke Teil des Debuggers zeigt die JavaScript Dateien an:
 
-![Debugger im Browser: Dateien](/images/javascript/jsdebug-pane-1.png)
+![Debugger im Browser: Dateien](/images/javascript/jsdebug-panes-1.png)
 
 ### Quelltext
 
 Der mittlere Teil des Debuggers zeigt den Sourcecode an:
 
-![Debugger im Browser: Quelltext](/images/javascript/jsdebug-pane-2.png)
+![Debugger im Browser: Quelltext](/images/javascript/jsdebug-panes-2.png)
 
 Hier kann man Haltepunkte = Breakpoints setzen, indem man eine Zeile anklickt.
 In diesem Bild ist ein Breakpoint auf Zeile 29 gesetzt.
@@ -149,7 +149,7 @@ In diesem Bild ist ein Breakpoint auf Zeile 29 gesetzt.
 
 Der rechte Teil des Debuggers enhält die Steuerung:
 
-![Debugger im Browser: Steuerung](/images/javascript/jsdebug-pane-3.png)
+![Debugger im Browser: Steuerung](/images/javascript/jsdebug-panes-3.png)
 
 ### Haltepunkte
 

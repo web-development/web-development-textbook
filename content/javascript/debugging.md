@@ -43,7 +43,7 @@ das hilft den git commit zu finden in dem ein Problem zum ersten mal auftritt.
 
 ### log
 
-Der einfache `console.log` befehl kann mit style-anweisungen formatiert werden:
+Der einfache `console.log` Befehl kann mit Style-Anweisungen formatiert werden:
 
 <javascript>
 console.log("This is %cMy stylish message", "color: yellow; font-style: italic; background-color: blue;padding: 2px");
@@ -161,7 +161,7 @@ Das wird sowohl im Browserfenster als auch im Debugger angezeigt:
 §
 
 In diesem Zustand kann man den Inhalt von Variablen ansehen,
-und mit der Steuerung das Programm Fortsetzen:
+und mit der Steuerung das Programm fortsetzen:
 
 ![Debugger im Browser](/images/javascript/jsdebugdetailstopped.png)
 
@@ -178,7 +178,7 @@ die man sonst schreiben müsste.
 
 ## Weitere Themen
 
-Im talk [Essential JavaScript debugging tools for the modern detective](https://www.youtube.com/watch?v=TtsvMRxmfGA) stellt Rebecca Hill noch weitere Themen vor:
+Im Talk [Essential JavaScript debugging tools for the modern detective](https://www.youtube.com/watch?v=TtsvMRxmfGA) stellt Rebecca Hill noch weitere Themen vor:
 
 - Extensions für VSCode zur Verbindung mit dem Debugger
 - Resource Overrides

@@ -128,7 +128,7 @@ Siehe weitere Web Console Helpers in [Firefox](https://developer.mozilla.org/en-
 
 In den Developer Tools im Browser ist ein Debugger eingebaut:
 
-![Debugger im Browser](/images/javascript/jsdebug.png)
+![Debugger im Browser](/images/javascript/jsdebug-1.png)
 
 ### Dateien
 

@@ -7,22 +7,22 @@ Ein paar Tipps für die Fehlersuche im Code.
 
 ## Ohne Werkzeuge
 
-### Check: ist das die selbe Datei?
+### Check: Ist das dieselbe Datei?
 
-Du hat den fehler behoben, aber das Programm funktioniert immer noch nicht?
+Du hast den Fehler behoben, aber das Programm funktioniert immer noch nicht?
 
 Dann prüfe mal nach, ob nicht folgendes passiert ist:
 
-- du editierst Datei `x`
-- du testest das Programm in datei `y`
+- Du editierst Datei `x`
+- Du testest das Programm in Datei `y`
 
 ### Problem eingrenzen
 
 Du hast keine Ahnung wo in Deinem Code ein Problem auftritt?
 Vor 5 Minuten hat es noch funktioniert?
 
-Für folgendes vorgehen brauchst Du nur den ganz normalen Editor,
-und ein extra-Fenster zur Aufbewahrung von gelöschtem Code.
+Für folgendes Vorgehen brauchst Du nur den ganz normalen Editor,
+und ein weiteres Fenster zur Aufbewahrung von gelöschtem Code.
 
 Lösche den Code den Du neu dazu geschreiben hast.
 Jetzt geht es wieder? Dann füg ca. die Hälfte des

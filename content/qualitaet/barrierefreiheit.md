@@ -61,7 +61,7 @@ WCAG definiert drei "Konformitätsstufen": A, AA, AAA.
 
 Von der Webseite [Digitales Österreich](https://www.digitales.oesterreich.gv.at/barrierefreiheit), die vom "Bundesministerium für Digitalisierung und Wirtschaftsstandort" betrieben wird:
 
-Öffentliche Stellen in Österreich müssen seit 22. Dezember 2016 WCAG 2.0 '''AA'''-Konform sein.
+Öffentliche Stellen in Österreich müssen seit 22. Dezember 2016 WCAG 2.0 AA-Konform sein.
 
 ## Erste Schritte
 
@@ -97,18 +97,18 @@ nicht sehen kann. Screen Reader verwenden die Überschriften und sogenannte Land
 um diesen Überblick zu schaffen.
 
 Damit das funktioniert, muss man die HTML-Tags korrekt verwenden, oder - falls das nicht geht - die
-rolle explizit definieren:
+Rolle explizit definieren:
 
-| Rolle         | HTML                     | Bedeutung                                                                                                                                                                     |
+| Role          | HTML                     | Bedeutung                                                                                                                                                                     |
 | ------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Main          | MAIN-Tag                 | primary content of the page.                                                                                                                                                  |
-| Region        | SECTION-Tag              | a perceivable section that is sufficiently important that users will likely want to be able to navigate to the section easily and to have it listed in a summary of the page. |
-| Navigation    | NAV-Tag                  | links that are intended to be used for website or page content navigation.                                                                                                    |
-| Search        | keine HTML-Entsprechung; | search functionality for content on the website.                                                                                                                              |
-| Banner        | HEADER-Tag               | the logo or identity of the site sponsor, and site-specific search tool. A banner usually appears at the top of the page                                                      |
-| Contentinfo   | FOOTER-Tag               | information such as copyrights and links to privacy and accessibility statements.                                                                                             |
-| Complementary | ASIDE-Tag                | complementary to the main content at a similar level in the DOM hierarchy, but remains meaningful when separated from the main content.                                       |   |
-| Form          | FORM-Tag                 | a form when no other named landmark is appropriate (e.g. main or search)                                                                                                      |
+| main          | MAIN-Tag                 | primary content of the page.                                                                                                                                                  |
+| region        | SECTION-Tag              | a perceivable section that is sufficiently important that users will likely want to be able to navigate to the section easily and to have it listed in a summary of the page. |
+| navigation    | NAV-Tag                  | links that are intended to be used for website or page content navigation.                                                                                                    |
+| search        | keine HTML-Entsprechung; | search functionality for content on the website.                                                                                                                              |
+| banner        | HEADER-Tag               | the logo or identity of the site sponsor, and site-specific search tool. A banner usually appears at the top of the page                                                      |
+| contentinfo   | FOOTER-Tag               | information such as copyrights and links to privacy and accessibility statements.                                                                                             |
+| complementary | ASIDE-Tag                | complementary to the main content at a similar level in the DOM hierarchy, but remains meaningful when separated from the main content.                                       |   |
+| form          | FORM-Tag                 | a form when no other named landmark is appropriate (e.g. main or search)                                                                                                      |
 
 {: class="table table-condensed table-bordered" style="width:auto"}
 
@@ -128,7 +128,7 @@ Die Empfehlung für die Schriftgröße ist mit der immer höheren Auflösung der
 
 Ein Zeilenabstand 1.5x (mit `line-height` festgelegt) erhöht die Lesbarkeit.
 
-Im Web gibt es weiterhin Probleme mit Blocksatz, Flattersatz ("linksbündig") führt zu
+Im Web gibt es weiterhin Probleme mit Blocksatz. Flattersatz ("linksbündig") führt zu
 zuverlässigeren Ergebnissen.
 
 Die Zeilenlänge sollte man von der Schriftgröße abhängig machen, oder gleich die relativ neue
@@ -152,6 +152,7 @@ p {
 ## Vertiefung
 
 - [Design für Alle](https://de.wikipedia.org/wiki/Design_f%C3%BCr_Alle)
+- [edx Kurs: Introduction to Web Accessibility by W3C](https://www.edx.org/course/web-accessibility-introduction)
 - [Udacity Kurs: Web Accessability by Google](https://de.udacity.com/course/web-accessibility--ud891)
 - [YouTube: a11ycats](https://www.youtube.com/watch?v=fGLp_gfMMGU&list=PLNYkxOF6rcICWx0C9LVWWVqvHlYJyqw7g)
 - Kalbag, Laura. Accessibility for everyone. A Book Apart, 2017. ISBN-13: 978-1937557614.

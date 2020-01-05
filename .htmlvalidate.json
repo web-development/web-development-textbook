@@ -1,0 +1,8 @@
+{
+  "elements": ["html5"],
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "no-trailing-whitespace": "off",
+    "no-inline-style": "off"
+  }
+}

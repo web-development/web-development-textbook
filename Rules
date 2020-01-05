@@ -35,7 +35,7 @@ class Nanoc3::Filter
 
         @output << match.pre_match
 
-        @output << "<img src='#{file}' "
+        @output << %Q{<img src="#{file}" }
         @output << srcset(file)
         @output << rest
         @output << ">"
@@ -60,7 +60,7 @@ class Nanoc3::Filter
 
       return "" if set.length < 2
       # puts "        srcset for #{file}: #{set.length} versions"
-      "srcset='#{set.join ', '}' "
+      %Q{srcset="#{set.join ', '}" }
     end
 
     def scan_until(regex)
@@ -93,7 +93,7 @@ class Nanoc3::Filter
       @string = content.dup
 
       @pending = ""
-      @output = "<a id='slide-1'></a>"
+      @output = %Q{<div id="slide-1" title="Folie Nr. 1"></div>}
       i = 2
 
       until @string.empty?
@@ -103,7 +103,7 @@ class Nanoc3::Filter
 
         @output << match.pre_match
 
-        @output << "\n<a class='slide_break' id='slide-#{i}' href='slide.html#slide-#{i}'>▻</a>\n\n"
+        @output << %Q{\n<a class="slide_break" id="slide-#{i}" href="slide.html#slide-#{i}"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. #{i}">▻</a>\n\n}
         i += 1
         if match[0] =~ /§/ then
           # discard match
@@ -132,7 +132,7 @@ class Nanoc3::Filter
     def run(content, params={})
       @string = content.dup
 
-      @output = "<div class='slide'>"
+      @output = %Q{<div class="slide">}
       @pending = ""
 
       until @string.empty?
@@ -142,7 +142,7 @@ class Nanoc3::Filter
 
         @output << match.pre_match
 
-        @output << "</div>\n<div class='slide'>\n\n"
+        @output << %Q{</div>\n<div class="slide">\n\n}
         if match[0] =~ /§/ then
           #puts "ignore #{match[0]}"
           # discard match

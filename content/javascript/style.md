@@ -58,7 +58,7 @@ die üblen Stellen **Code Smells**.
 
 ## Variablen
 
-Der Name einer Variable soll Auskunft über ihre Bedeutung, ihre Rolle im Programm geben. 
+Der Name einer Variable soll Auskunft über ihre Bedeutung, ihre Rolle im Programm geben.
 Variablen sollen so kurz wie möglich, aber nicht kürzer sein.
 
 ### Konventionelle Variablennamen
@@ -77,7 +77,6 @@ while( x < 10 ) {
   drawStarAt( i,k );
   x++;
 }
-§
 // mit der Konvention
 const i=0;
 const x,y;
@@ -89,9 +88,7 @@ while( i < 10 ) {
 }
 </javascript>
 
-
 ### Fixe Werte durch Konstanten ersetzen
-
 
 Wenn in einem Programm dieselbe Zahl mehrmals vorkommt kann das ein Hinweis
 sein, dass man eine Konstante oder variable verwenden sollte. Folgendes Programm
@@ -102,17 +99,17 @@ zeichnet ein Rechteck in ein neu geschaffens SVG:
   svg.setAttribute("width",  1024);
   svg.setAttribute("height", 768);
 
-  const frame = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  frame.setAttribute( 'x', 0 );
-  frame.setAttribute( 'y', 0 );
-  frame.setAttribute( 'width', 1024 );
-  frame.setAttribute( 'height', 768 );
-  frame.setAttribute( 'stroke', 'black' );
-  frame.setAttribute( 'stroke-width', 1 );
-  frame.setAttribute( 'fill', 'red' );
-  svg.appendChild( frame );
+const frame = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+frame.setAttribute( 'x', 0 );
+frame.setAttribute( 'y', 0 );
+frame.setAttribute( 'width', 1024 );
+frame.setAttribute( 'height', 768 );
+frame.setAttribute( 'stroke', 'black' );
+frame.setAttribute( 'stroke-width', 1 );
+frame.setAttribute( 'fill', 'red' );
+svg.appendChild( frame );
 
-  document.querySelector("body").appendChild( svg );
+document.querySelector("body").appendChild( svg );
 </javascript>
 
 §
@@ -127,23 +124,22 @@ es macht also Sinn eine Konstante zu verwenden:
   svg.setAttribute("width",  svg_width);
   svg.setAttribute("height", svg_height);
 
-  const frame = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  frame.setAttribute( 'x', 0 );
-  frame.setAttribute( 'y', 0 );
-  frame.setAttribute( 'width', svg_width );
-  frame.setAttribute( 'height', svg_height );
-  frame.setAttribute( 'stroke', 'black' );
-  frame.setAttribute( 'stroke-width', 1 );
-  frame.setAttribute( 'fill', 'red' );
-  svg.appendChild( frame );
+const frame = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+frame.setAttribute( 'x', 0 );
+frame.setAttribute( 'y', 0 );
+frame.setAttribute( 'width', svg_width );
+frame.setAttribute( 'height', svg_height );
+frame.setAttribute( 'stroke', 'black' );
+frame.setAttribute( 'stroke-width', 1 );
+frame.setAttribute( 'fill', 'red' );
+svg.appendChild( frame );
 
-  document.querySelector("body").appendChild( svg );
+document.querySelector("body").appendChild( svg );
 </javascript>
 
 §
 
 Nun kann man auch die Breite des Rahmens in einer Konstanten speichern:
-
 
 <javascript caption="Rechteck zeichnen - mit variable für Rahmenbreite">
   const svg_width  = 1024;
@@ -152,30 +148,29 @@ Nun kann man auch die Breite des Rahmens in einer Konstanten speichern:
   svg.setAttribute("width",  svg_width);
   svg.setAttribute("height", svg_height);
 
-  const frame_border_width = 10;
-  const frame = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  frame.setAttribute( 'x', frame_border_width/2 );
-  frame.setAttribute( 'y', frame_border_width/2 );
-  frame.setAttribute( 'width', svg_width - frame_border_width );
-  frame.setAttribute( 'height', svg_height  - frame_border_width  );
-  frame.setAttribute( 'stroke', 'black' );
-  frame.setAttribute( 'stroke-width',  frame_border_width  );
-  frame.setAttribute( 'fill', 'red' );
-  svg.appendChild( frame );
+const frame_border_width = 10;
+const frame = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+frame.setAttribute( 'x', frame_border_width/2 );
+frame.setAttribute( 'y', frame_border_width/2 );
+frame.setAttribute( 'width', svg_width - frame_border_width );
+frame.setAttribute( 'height', svg_height - frame_border_width );
+frame.setAttribute( 'stroke', 'black' );
+frame.setAttribute( 'stroke-width', frame_border_width );
+frame.setAttribute( 'fill', 'red' );
+svg.appendChild( frame );
 
-  document.querySelector("body").appendChild( svg );
+document.querySelector("body").appendChild( svg );
 </javascript>
-
-
 
 ## Code wiederverwenden
 
-Ein ganz wichtiger **Code Smell** ist kopierter Code:  die gleichen Zeilen finde 
+Ein ganz wichtiger **Code Smell** ist kopierter Code: die gleichen Zeilen finde
 ich an mehreren Stellen im Programm. Je größer der wiederholte Teil, desto schlimmer.
 
 Im schlimmsten Fall ist kopierter Code ein Hinweis darauf, dass der Code
 gar nicht verstanden, sondern nur wiederverwendet wurde. Diese Art ein Programm
-zu erzeugen nennt man [Cargo Cult Programming](http://en.wikipedia.org/wiki/Cargo_cult_programming) 
+zu erzeugen nennt man [Cargo Cult Programming](http://en.wikipedia.org/wiki/Cargo_cult_programming)
+
 - das Verwenden oder Nachahmen von Technik die man nicht versteht [Bilder](https://www.google.com/search?q=Cargo+cult+airplane&tbm=isch).
 
 ### Schleife statt kopierterm Code
@@ -197,7 +192,7 @@ frame.setAttribute( 'y', 1 );
 frame.setAttribute( 'width', 20 );
 frame.setAttribute( 'height', 20 );
 frame.setAttribute( 'stroke', 'black' );
-frame.setAttribute( 'stroke-width',  1);
+frame.setAttribute( 'stroke-width', 1);
 frame.setAttribute( 'fill', 'red' );
 svg.appendChild( frame );
 
@@ -208,7 +203,7 @@ frame.setAttribute( 'y', 1 );
 frame.setAttribute( 'width', 20 );
 frame.setAttribute( 'height', 20 );
 frame.setAttribute( 'stroke', 'black' );
-frame.setAttribute( 'stroke-width',  1);
+frame.setAttribute( 'stroke-width', 1);
 frame.setAttribute( 'fill', 'red' );
 svg.appendChild( frame );
 
@@ -219,21 +214,21 @@ frame.setAttribute( 'y', 1 );
 frame.setAttribute( 'width', 20 );
 frame.setAttribute( 'height', 20 );
 frame.setAttribute( 'stroke', 'black' );
-frame.setAttribute( 'stroke-width',  1);
+frame.setAttribute( 'stroke-width', 1);
 frame.setAttribute( 'fill', 'red' );
 svg.appendChild( frame );
 
 document.querySelector("body").appendChild( svg );
 </javascript>
 
-§ 
+§
 
 Da der einzige Unterschied zwischen den kopierten Code-Zeilen die
-X-Koordinate ist, und diese stetig ansteigt, kann man hier eine 
+X-Koordinate ist, und diese stetig ansteigt, kann man hier eine
 Schleife verwenden, um den Code wiederzuverwenden.
 
 Aus der Schleifenvariable i = 0, 1, 2 kann ganz einfach
-die X-Koordinate x = 1, 21, 41 berechnet werden: 
+die X-Koordinate x = 1, 21, 41 berechnet werden:
 
 `x = i * 20 + 1;`
 
@@ -246,17 +241,17 @@ svg.setAttribute("height", svg_height);
 
 var i=0;
 while( i < 3 ) {
-  const frame = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-  frame.setAttribute( 'x', i * 20 + 1 );
-  frame.setAttribute( 'y', 1 );
-  frame.setAttribute( 'width', 20 );
-  frame.setAttribute( 'height', 20 );
-  frame.setAttribute( 'stroke', 'black' );
-  frame.setAttribute( 'stroke-width',  1);
-  frame.setAttribute( 'fill', 'red' );
-  svg.appendChild( frame );
+const frame = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+frame.setAttribute( 'x', i \* 20 + 1 );
+frame.setAttribute( 'y', 1 );
+frame.setAttribute( 'width', 20 );
+frame.setAttribute( 'height', 20 );
+frame.setAttribute( 'stroke', 'black' );
+frame.setAttribute( 'stroke-width', 1);
+frame.setAttribute( 'fill', 'red' );
+svg.appendChild( frame );
 
-  i++;
+i++;
 }
 
 document.querySelector("body").appendChild( svg );
@@ -267,7 +262,7 @@ document.querySelector("body").appendChild( svg );
 Eine noch bessere Art der Wiederverwertung von Code ist die
 Funktion. Dabei muss man sich entscheiden, welche Argumente
 die Funktion akzeptieren soll. Nur die X-Koordinate?  
-X-, Y-Koordinate, Länge und Breite?  Je nachdem in welcher
+X-, Y-Koordinate, Länge und Breite? Je nachdem in welcher
 Weise der Code wieder verwendet werden soll ergeben sich andere
 Argumente.
 
@@ -278,37 +273,36 @@ Argumente.
   svg.setAttribute("width",  svg_width);
   svg.setAttribute("height", svg_height);
 
-  function addRect( svg, x,y,w,h ) {
-    const frame = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-    frame.setAttribute( 'x', x);
-    frame.setAttribute( 'y', y );
-    frame.setAttribute( 'width',w);
-    frame.setAttribute( 'height', h);
-    frame.setAttribute( 'stroke', 'black' );
-    frame.setAttribute( 'stroke-width',  1);
-    frame.setAttribute( 'fill', 'red' );
-    svg.appendChild( frame );
-  }
+function addRect( svg, x,y,w,h ) {
+const frame = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+frame.setAttribute( 'x', x);
+frame.setAttribute( 'y', y );
+frame.setAttribute( 'width',w);
+frame.setAttribute( 'height', h);
+frame.setAttribute( 'stroke', 'black' );
+frame.setAttribute( 'stroke-width', 1);
+frame.setAttribute( 'fill', 'red' );
+svg.appendChild( frame );
+}
 
-  addRect( svg,  1, 1, 20, 20 );
-  addRect( svg, 21, 1, 20, 20 );
-  addRect( svg, 41, 1, 20, 20 );
+addRect( svg, 1, 1, 20, 20 );
+addRect( svg, 21, 1, 20, 20 );
+addRect( svg, 41, 1, 20, 20 );
 
-  document.querySelector("body").appendChild( svg );
+document.querySelector("body").appendChild( svg );
 </javascript>
-
 
 ## Quellen
 
 Dieses Kapitel beschreibt u.a. einen Teil der Coding Conventions von Douglas Crockford.
 
-* [Code Conventions for the JavaScript Programming Language](https://developer.mozilla.org/en/JavaScript/Reference/Operators/instanceof)
-* [Crockford, Douglas(2008): Javascript, the good parts. O'Reilly.](http://www.amazon.de/JavaScript-Parts-Working-Shallow-Grain/dp/0596517742/)
-* [Crockford, Douglas(2008): Das Beste an JavaScript. O'Reilly.](http://www.amazon.de/Das-Beste-JavaScript-Douglas-Crockford/dp/3897218763/)
+- [Code Conventions for the JavaScript Programming Language](https://developer.mozilla.org/en/JavaScript/Reference/Operators/instanceof)
+- [Crockford, Douglas(2008): Javascript, the good parts. O'Reilly.](http://www.amazon.de/JavaScript-Parts-Working-Shallow-Grain/dp/0596517742/)
+- [Crockford, Douglas(2008): Das Beste an JavaScript. O'Reilly.](http://www.amazon.de/Das-Beste-JavaScript-Douglas-Crockford/dp/3897218763/)
 
 Das Beispiel für nicht-lesbaren Code wurde mit dem Google Closure Compiler erzeugt.
 (Achtung: "Closure" ist hier ein Eigenname - ein sehr verwirrender Eigenname. Stellen
-Sie sich vor man würde ein Modell eines Autos nach einem Bauteil benennen, 
+Sie sich vor man würde ein Modell eines Autos nach einem Bauteil benennen,
 z.B. 'Opel Kurbelwelle', 'VW Fensterheber', 'Fiat Zündkerze')
 
-* [Google Closure Compiler](http://closure-compiler.appspot.com/home)
+- [Google Closure Compiler](http://closure-compiler.appspot.com/home)

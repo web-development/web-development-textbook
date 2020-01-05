@@ -2,8 +2,9 @@
 title: Syntax von PHP
 order: 20
 ---
-HTML und PHP 
---------------
+
+## HTML und PHP
+
 Ein erstes längeres Beispiel zeigt wie eng HTML und PHP vermischt werden:
 
 <htmlcode caption="HTML und PHP - der Sourcecode">
@@ -29,11 +30,11 @@ Ein erstes längeres Beispiel zeigt wie eng HTML und PHP vermischt werden:
 </html>
 </htmlcode>
 
-Der Quellcode besteht hier aus einem HTML-Dokument, in dem in 
-Zeile 09 bis 19 PHP eingebettet ist. In den Zeilen 10 bis 14 
-werden nur Berechnungen durchgeführt, diese Zeilen haben keine 
-Auswirkung auf das resultierende HTML-Dokument. In den Zeile 
-15 und 17 wird mit der echo() – Funktion ein Output erstellt. 
+Der Quellcode besteht hier aus einem HTML-Dokument, in dem in
+Zeile 09 bis 19 PHP eingebettet ist. In den Zeilen 10 bis 14
+werden nur Berechnungen durchgeführt, diese Zeilen haben keine
+Auswirkung auf das resultierende HTML-Dokument. In den Zeile
+15 und 17 wird mit der echo() – Funktion ein Output erstellt.
 
 §
 
@@ -57,7 +58,7 @@ Welcher Teil des Dokuments statisch war und welcher von PHP berechnet wurde ist 
 
 §
 
-Ein PHP-Dokument kann mehrere Einbettungen enthalten, dabei können 
+Ein PHP-Dokument kann mehrere Einbettungen enthalten, dabei können
 sogar Kontrollstrukturen in einem anderen Teil fortgesetzt werden:
 
 <htmlcode caption="HTML und PHP - mehrere PHP-Abschnitte in einem HTML-Dokument">
@@ -80,14 +81,14 @@ sogar Kontrollstrukturen in einem anderen Teil fortgesetzt werden:
       $i++;
     }
   ?>
-      
+
   <p>Und ein gutes nächstes Jahr!</p>
 </body>
 </html>
 </htmlcode>
 
-Diese Schreibweise widerspricht den Lese-Gewohnheiten von ProgrammiererInnen: 
-diese Art von Verschachtelung (geschwungenen Klammern in PHP vs. HTML-Tags) 
+Diese Schreibweise widerspricht den Lese-Gewohnheiten von ProgrammiererInnen:
+diese Art von Verschachtelung (geschwungenen Klammern in PHP vs. HTML-Tags)
 ist in den meisten Sprachen verboten.
 
 z.B. in HTML ist diese Verschachtelung falsch: `<b>fett <i>und</b> kursiv</i>`
@@ -96,10 +97,10 @@ In PHP wird diese Schreibweise aber oft verwendet.
 
 §
 
-Es gibt auch eine alternative 
-Schreibweise für die Kontrollstrukturen, die besser zu unseren 
-Lesegewohnheiten passt: Statt der öffnenden geschwungenen Klammer 
-wird ein Doppelpunkt geschrieben, das Ende der Schleife wird 
+Es gibt auch eine alternative
+Schreibweise für die Kontrollstrukturen, die besser zu unseren
+Lesegewohnheiten passt: Statt der öffnenden geschwungenen Klammer
+wird ein Doppelpunkt geschrieben, das Ende der Schleife wird
 mit einem eigenen Schlüsselwort (endwhile, endif, endfor) markiert:
 
 <htmlcode caption="HTML und PHP - While-Schleife ohne geschungene Klammern">
@@ -115,18 +116,18 @@ mit einem eigenen Schlüsselwort (endwhile, endif, endfor) markiert:
     $i++;
   endwhile;
 ?>
-  
+
 <p>Und ein gutes nächstes Jahr!</p>
 </htmlcode>
 
 §
 
-Bei größeren Projekten empfiehlt sich aber auf jeden Fall die 
+Bei größeren Projekten empfiehlt sich aber auf jeden Fall die
 möglichst starke Trennung von Programm-Logik und Darstellung.
 
-Der erste Schritt in diese Richtung wäre, die Berechnung an den Anfang der Datei zu stellen. 
+Der erste Schritt in diese Richtung wäre, die Berechnung an den Anfang der Datei zu stellen.
 
-Welcher Teil schon als Ausgabe zählt und in das HTML-Dokument eingebettet 
+Welcher Teil schon als Ausgabe zählt und in das HTML-Dokument eingebettet
 wird ist dabei wieder eine Abwägungsfrage, auf die es keine fixe Antwort gibt.
 
 <htmlcode caption="HTML und PHP - Erst Berechnung, dann Ausgabe">
@@ -155,12 +156,12 @@ wird ist dabei wieder eine Abwägungsfrage, auf die es keine fixe Antwort gibt.
 </html>
 </htmlcode>
 
-Includes
----------
-Bei PHP-Applikationen mit mehr als einer Datei empfiehlt sich die 
-Verwendung von `include` um Duplizierung von Code zu vermeiden. 
-PHP-Code, der mehrmals verwendet wird, 
-kann z.B. als Funktionen in eine Datei phpfunctions.php ausgelagert werden: 
+## Includes
+
+Bei PHP-Applikationen mit mehr als einer Datei empfiehlt sich die
+Verwendung von `include` um Duplizierung von Code zu vermeiden.
+PHP-Code, der mehrmals verwendet wird,
+kann z.B. als Funktionen in eine Datei phpfunctions.php ausgelagert werden:
 
 <htmlcode caption="Datei phpfunction.php enthält eine Funktion in PHP">
 <?php
@@ -172,15 +173,15 @@ kann z.B. als Funktionen in eine Datei phpfunctions.php ausgelagert werden:
 ?>
 </htmlcode>
 
-Wenn diese Datei direkt aufgerufen wird  (http://www.meinhost.at/phpfunctions.php) 
-erscheint kein Output, aber auch keine Fehlermeldung 404 
+Wenn diese Datei direkt aufgerufen wird (http://www.meinhost.at/phpfunctions.php)
+erscheint kein Output, aber auch keine Fehlermeldung 404
 wie bei einer nicht existierenden Seite.
 
 §
 
-Der Anfang und das Ende einer Webseite (head inklusive Titel, Navigation, footer) 
-können z.B. in Dateien `header.php` und `footer.php` ausgelagert werden. 
-Im Header wird hier ein klein wenig PHP  verwendet, um 
+Der Anfang und das Ende einer Webseite (head inklusive Titel, Navigation, footer)
+können z.B. in Dateien `header.php` und `footer.php` ausgelagert werden.
+Im Header wird hier ein klein wenig PHP verwendet, um
 den Titel der Seite dynamisch generieren zu können:
 
 <php caption="Datei header.php">
@@ -199,13 +200,13 @@ den Titel der Seite dynamisch generieren zu können:
   <h1><?php echo $pagetitle ?></h1>
 </php>
 
-Wenn diese Seite direkt aufgerufen wird (http://www.meinhost.at/header.php) 
-erscheint der HTML-Code. Da die Variable $pagetitle nicht gesetzt ist 
+Wenn diese Seite direkt aufgerufen wird (http://www.meinhost.at/header.php)
+erscheint der HTML-Code. Da die Variable \$pagetitle nicht gesetzt ist
 (undefined) wir sie behandelt als ob sie den leeren String enthält: die Überschrift ist leer.
 
 §
 
-Dieser Footer könnte auch eine statische HTML-Datei sein, 
+Dieser Footer könnte auch eine statische HTML-Datei sein,
 da hier gar keine Variablen oder PHP-Code verwendet werden:
 
 <php caption="Datei footer.php">
@@ -235,27 +236,27 @@ In der “Haupt-Datei” index.php werden alle diese Einzelteile zusammengefügt
 ?>
 </php>
 
-Und wieder gilt: die „Zusammensetzung“ erfolgt am Server. 
-Im Client landet nur der fertige HTML-Code. Die UserIn 
-kann nicht erkennen, dass die Seite ursprünglich 
-aus mehreren Dateien bestand. 
+Und wieder gilt: die „Zusammensetzung“ erfolgt am Server.
+Im Client landet nur der fertige HTML-Code. Die UserIn
+kann nicht erkennen, dass die Seite ursprünglich
+aus mehreren Dateien bestand.
 
-Variablen und Typen
---------------------
-Variablennamen in PHP beginnen mit einem Dollar-Zeichen. Warum? 
-Sie haben im Beispielprogramm schon gesehen, 
+## Variablen und Typen
+
+Variablennamen in PHP beginnen mit einem Dollar-Zeichen. Warum?
+Sie haben im Beispielprogramm schon gesehen,
 wie Variablen einfach in Strings eingebettet werden können:
 
 <php>
 echo "$entfernung km in $h:$min sind $kmh km/h";
 </php>
 
-Das ist nur möglich weil die Variablennamen mit einem besonderen 
-Zeichen gekennzeichnet sind. 
+Das ist nur möglich weil die Variablennamen mit einem besonderen
+Zeichen gekennzeichnet sind.
 
 §
 
-Es gibt in PHP eine 
+Es gibt in PHP eine
 zweite Schreibweise für Strings: einfache Anführungszeichen.
 Diese Variante erlaubt keine Variablen:
 
@@ -284,11 +285,11 @@ Variableninterpolation funktioniert.
 
 §
 
-PHP unterscheidet zwischen den Datentypen boolean, integer, 
-float, string, array, object, resource und NULL. 
+PHP unterscheidet zwischen den Datentypen boolean, integer,
+float, string, array, object, resource und NULL.
 
-In einer Variablen können nacheinander verschiedene Datentypen 
-gespeichert werden, die Variable selbst hat also keinen Typ! 
+In einer Variablen können nacheinander verschiedene Datentypen
+gespeichert werden, die Variable selbst hat also keinen Typ!
 
 <php>
 <?php
@@ -298,10 +299,9 @@ gespeichert werden, die Variable selbst hat also keinen Typ!
 ?>
 </php>
 
+§
 
-§ 
-
-Variablen in PHP müssen nicht deklariert oder initialisiert werden. 
+Variablen in PHP müssen nicht deklariert oder initialisiert werden.
 
 Seit PHP 7 **kann** man für Funktions-Parameter und Rückgabewerte
 einen Datentyp deklarieren, siehe [PHP Dokumentation: Funktionsparameter](http://php.net/manual/de/functions.arguments.php#functions.arguments.type-declaration).
@@ -329,28 +329,27 @@ Betrachten wir die letzten zwei Zeilen des Codes genauer:
 ?>
 </php>
 
-Die Addition mit `+` interpretiert beide Summanden als Zahl. 
-Falls ein Summand ein String ist, wird am Beginn 
-des Strings nach einer Zahl gesucht und diese verwendet. 
+Die Addition mit `+` interpretiert beide Summanden als Zahl.
+Falls ein Summand ein String ist, wird am Beginn
+des Strings nach einer Zahl gesucht und diese verwendet.
 
-Der Punkt-Operator fügt Strings zusammen und 
+Der Punkt-Operator fügt Strings zusammen und
 interpretiert seine beiden Operanden als Strings.
 
-Der Operator bestimmt also den Typ! 
+Der Operator bestimmt also den Typ!
 
 §
 
-In Javascript ist es 
+In Javascript ist es
 genau umgekehrt: da entscheidet der Datentyp  
 über die Bedeutung des Operators:
 
 ![Abbildung: Bespiel für den Operator + in Javascript (Firebug)](/images/php-javascript-plus.png)
 
-Arrays
-------
+## Arrays
 
-Arrays in PHP können auf ähnliche Art verwendet werden 
-wie in C++ (und C, und Java, und Ruby,…) und verhalten 
+Arrays in PHP können auf ähnliche Art verwendet werden
+wie in C++ (und C, und Java, und Ruby,…) und verhalten
 sich auf den ersten Blick auch wie erwartet:
 
 <php caption="Array in PHP">
@@ -360,21 +359,21 @@ $foo[0] = "Halli";
 $foo[1] = "Hallo";
 
 for($i=0;$i<count($foo);$i++) {
-  echo("Der $i. Wert im Array ist $foo[$i]<br />");
+echo("Der $i. Wert im Array ist $foo[$i]<br>");
 }
 </php>
 
 §
 
-Auf den zweiten Blick sind Arrays in PHP aber wesentlich 
-komplexer: nicht nur Integers sind als Index zulässig, 
-sondern auch Strings, es handelt sich also um 
-assoziative Arrays in denen ein Schlüssel 
+Auf den zweiten Blick sind Arrays in PHP aber wesentlich
+komplexer: nicht nur Integers sind als Index zulässig,
+sondern auch Strings, es handelt sich also um
+assoziative Arrays in denen ein Schlüssel
 mit einem Wert assoziiert wird.
 
-Mit der `foreach` Schleife kann man Schlüssel und Wert auslesen. 
-Dabei wird offenbar, dass die Reihenfolge des Einfügens 
-ins Array erhalten geblieben ist: Die 
+Mit der `foreach` Schleife kann man Schlüssel und Wert auslesen.
+Dabei wird offenbar, dass die Reihenfolge des Einfügens
+ins Array erhalten geblieben ist: Die
 Schlüssel-Wert-Paare sind im Array weiterhin geordnet!
 
 <php caption="Array in PHP ist auch ein assoziatives Array (Hashmap)">
@@ -384,13 +383,13 @@ $foo[0] = "Halli";
 $foo[1] = "Hallo";
 
 foreach( $foo as $key => $value ) {
-    echo("Zum Schlüssel $key ist der Wert $value gespeichert<br />");
+    echo("Zum Schlüssel $key ist der Wert \$value gespeichert<br />");
 }
 </php>
 
 §
 
-Mit der Schreibweise `$foo[]` kann ein Wert unter der 
+Mit der Schreibweise `$foo[]` kann ein Wert unter der
 kleinsten (noch nicht verwendet) Integer-Zahl als Schlüssel gespeichert werden:
 
 <php caption="Einfügen in ein Array in PHP">
@@ -405,16 +404,15 @@ $foo[] = "das Nächste";
 
 §
 
-Das Array in PHP ist also ein wesentlich komplexerer Datentyp 
-als ein Array in anderen Programmiersprachen – 
-es verbindet Eigenschaften von Arrays mit denen von Hashmaps. 
+Das Array in PHP ist also ein wesentlich komplexerer Datentyp
+als ein Array in anderen Programmiersprachen –
+es verbindet Eigenschaften von Arrays mit denen von Hashmaps.
 
-Ein Array zu sortieren ist entsprechend kompliziert; es 
-gibt eine ganze Reihe von Sortier-Funktionen. Sie finden 
+Ein Array zu sortieren ist entsprechend kompliziert; es
+gibt eine ganze Reihe von Sortier-Funktionen. Sie finden
 diese im Abschnitt [&rarr;Array-Funktionen](http://at.php.net/manual/de/ref.array.php) der PHP-Doku.
 
-Funktionen und Scope
----------------------
+## Funktionen und Scope
 
 <php caption="Funktion in PHP">
 function foo($arg_1, $arg_2 = "Euro") {
@@ -425,12 +423,12 @@ $x = foo(10);
 $y = foo(20, "Pfund");
 </php>
 
-Die Schreibweise von Funktionen inklusive Argumentliste und 
-Rückgabewert ist leicht verständlich. 
+Die Schreibweise von Funktionen inklusive Argumentliste und
+Rückgabewert ist leicht verständlich.
 
 §
 
-Eine Falle 
+Eine Falle
 für erfahrene ProgrammiererInnen ist das Scoping von globalen Variablen:
 
 <php caption="Globale Variablen und Funktionen in PHP">
@@ -444,14 +442,14 @@ echo("ein Kreis mit Radius $r hat eine Fläche von $a");
 // ergibt 0 !
 </php>
 
-Dieses Programm funktioniert nicht wie erwartet, da innerhalb 
-einer Funktion kein Zugriff auf die außerhalb definierten Variablen 
-möglich ist! Die Variable `$pi` ist in der Funktion nicht sichtbar, 
-stattdessen wird mit einer neuen Variable `$pi` mit Default-Wert `0` gerechnet. 
+Dieses Programm funktioniert nicht wie erwartet, da innerhalb
+einer Funktion kein Zugriff auf die außerhalb definierten Variablen
+möglich ist! Die Variable `$pi` ist in der Funktion nicht sichtbar,
+stattdessen wird mit einer neuen Variable `$pi` mit Default-Wert `0` gerechnet.
 
 §
 
-Mit dem Keyword global wird die Variable „in die Funktion eingeladen“ 
+Mit dem Keyword global wird die Variable „in die Funktion eingeladen“
 und ist dann auch innerhalb der Funktion sichtbar, lesbar und veränderbar.
 
 <php caption="Globale Variablen und Funktionen in PHP">
@@ -470,20 +468,18 @@ Siehe auch [PHP Dokumentation: Geltungsbereich von Variablen](http://php.net/man
 
 §
 
-Ausgenommen von dieser Regelung sind die sogenannten „superglobals“. 
-Das sind Variablen, die auf jeden Fall sichtbar sind. Vier davon 
+Ausgenommen von dieser Regelung sind die sogenannten „superglobals“.
+Das sind Variablen, die auf jeden Fall sichtbar sind. Vier davon
 werden hier vorgestellt, die anderen werden erst später behandelt.
 
 |Variable|Beschreibung|
 |+-------|+-----------|
 |$GLOBALS|Dieses Array enthält alle globalen Variablen.|
-|$_SERVER|Dieses Array enthält Konfigurations-Informationen des (Web-)Servers und allgemeine Informationen zur aktuellen Anfrage (z.B. IP-Adresse des Browsers)|
+|$\_SERVER|Dieses Array enthält Konfigurations-Informationen des (Web-)Servers und allgemeine Informationen zur aktuellen Anfrage (z.B. IP-Adresse des Browsers)|
 |$_ENV|Dieses Array enthält die Umgebungsvariablen (je nach Betriebssystem verschieden).|
-|$_GET|Die Parameter die über die URL an das PHP-Programm übergeben wurden.|
+|$\_GET|Die Parameter die über die URL an das PHP-Programm übergeben wurden.|
 {: class="table table-condensed table-bordered" style="width:auto"}
 
-Empfohlene Lektüre
---------------
+## Empfohlene Lektüre
 
-* Kapitel [The Basics](http://www.phptherightway.com/pages/The-Basics.html) aus "PHP the Right Way"
-
+- Kapitel [The Basics](http://www.phptherightway.com/pages/The-Basics.html) aus "PHP the Right Way"

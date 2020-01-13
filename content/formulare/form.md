@@ -53,13 +53,24 @@ Verschiedenen Arten von Text-Eingabefeldern.
 
 |Textfeld |`<input type="text" name="vorname">`|<input type="text" name="vorname">|
 |E-Mail |`<input type="email" name="mail">`|<input type="email" name="mail">|
+|Telefonnummer |`<input type="tel" name="tel">`|<input type="tel" name="tel">|
+|URL |`<input type="url" name="url">`|<input type="url" name="url">|
 |Passwortfeld |`<input type="password" name="meinpasswort">` |<input type="password" name="meinpasswort"> |
-|mehrzeiliges Textfeld |`<textarea name="zitat">In a hole in the ground there lived a Hobbit. </textarea>`|<textarea name="zitat">In a hole in the ground there lived a Hobbit. </textarea>|
 {: class="table table-condensed table-bordered" style="width:auto"}
 
 Achtung: das Passwort-Feld schützt nur vor neugierigen Blicken auf den Monitor.
 Die eingegebenen Daten werden dann genau so übertragen wie aus alle anderen
 Eingabefeldern - normalerweise unverschlüsselt.
+
+Für größere Mengen Text gibt es `textarea`:
+
+<htmlcode>
+<textarea name="zitat">In a hole in the ground 
+there lived a Hobbit. </textarea>
+</htmlcode>
+
+<textarea name="zitat">In a hole in the ground
+there lived a Hobbit. </textarea>
 
 ## Attribute für Text-Eingabefelder
 
@@ -73,8 +84,7 @@ Eingabefeldern - normalerweise unverschlüsselt.
 Der **Default Wert** ist ein echter Wert, der beim Einsenden des Formulars gesendet wird.
 Der **Placeholder** hingegen wird nur angezeigt, gilt aber nicht als eingegeben Daten.
 
-Die **Auto-Vervollständigung** ist besonders bei beschränkten Eingabemöglichkeiten
-wie am Smartphone praktisch. Es gibt viele [mögliche Werte](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-autocomplete).
+Die **Auto-Vervollständigung** teilt dem Browser mit welche (alten) Eingabewerte in Frage kommen. Es gibt viele [mögliche Werte](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#Values).
 
 Die Bedingungen **required** und **pattern** müssen erfüllt sein, sonst kann das
 Formular gar nicht abgesendet werden.
@@ -100,22 +110,23 @@ Hier ist es wichtig die Beschriftung die zum jeweiligen Button gehört
 mit dem `label` Tag zu markieren - das erleichtert auch die Eingabe.
 
 <htmlcode caption="Radiobuttons">
-<label><input type="radio" name="size" value="XL">XL</label>
-<label><input type="radio" name="size" value="L">L</label>
-<label><input type="radio" name="size" value="M">M</label>
-<label><input type="radio" name="size" value="S" checked>S</label>
+<label><input type="radio" name="size" value="XL"> XL</label>
+<label><input type="radio" name="size" value="L"> L</label>
+<label><input type="radio" name="size" value="M"> M</label>
+<label><input type="radio" name="size" value="S" checked> S</label>
 </htmlcode>
 
 <form  action="/images/formulare/submitted.html">
-<label><input type="radio" name="size" value="XL">XL</label>
-<label><input type="radio" name="size" value="L">L</label>
-<label><input type="radio" name="size" value="M">M</label>
-<label><input type="radio" name="size" value="S" checked>S</label>
+<label><input type="radio" name="size" value="XL"> XL</label>
+<label><input type="radio" name="size" value="L"> L</label>
+<label><input type="radio" name="size" value="M"> M</label>
+<label><input type="radio" name="size" value="S" checked> S</label>
 </form>
 
 §
 
-Ein Menü mit `select` und `option` ist im Vergleich zu Radiobuttons platzsparend:
+Ein Menü mit `select` und `option` ist im Vergleich zu Radiobuttons platzsparend,
+hat aber den Nachteil dass man nicht alle Optionen sofort sieht:
 
 <htmlcode caption="Menü mit select und option">
 <select name="size2">
@@ -187,10 +198,10 @@ erfolgt mit dem Drücken der Steuerungs-Taste.
 Das Textfeld mit `datalist` kombiniert die Bequemlichkeit
 eines Menüs mit der Flexiblität eines Textfeldes: Man bekommt
 Vorschläge angeboten, kann aber auch etwas eintippen
-was nicht in der `datalist` angeführt ist.
+was nicht in der `datalist` angeführt ist. Siehe [Demo](/images/formulare/datalist.html).
 
 <htmlcode caption="Textfeld mit Datalist">
-<input id="city" placeholder="Name" list="list-of-cities" />
+<input id="city" placeholder="Name" list="list-of-cities">
 <datalist id="list-of-cities">
     <option value="Salzburg">
     <option value="Wien">
@@ -202,6 +213,7 @@ was nicht in der `datalist` angeführt ist.
 
 ## Spezialisierte Eingabefelder
 
+|Farbe|`<input type="color" name="farbe">`|<input type="color" name="farbe">|
 |Datum|`<input type="date" min="2010-08-01" max="2011-08-31" value="2010-08-14">`|<input type="date" min="2010-08-01" max="2011-08-31" value="2010-08-14">|
 |Uhrzeit|`<input type="time" min="9:00" max="18:00" value="12:30">`|<input type="time" min="9:00" max="18:00" value="12:30">|
 |Range|`<input type="range" min="0" max="50" value="10">`|<input type="range" min="0" max="50" value="10">|
@@ -288,6 +300,8 @@ speziellem enctype an den Webserver geschickt werden. Das werden wir später im 
 
 ## Ordnung
 
+Siehe [Demo](/images/formulare/fieldset.html).
+
 <htmlcode caption="Visuelle Zusammenfassung mehrer Felder: fieldset + legend">
 <fieldset>
 <legend>Kreditkarte</legend>
@@ -296,15 +310,6 @@ speziellem enctype an den Webserver geschickt werden. Das werden wir später im 
 <label><input type="radio" name="kk" value="Visa"> Visa</label>
 </fieldset>
 </htmlcode>
-
-<form  action="/images/formulare/submitted.html">
-<fieldset>
-<legend>Kreditkarte</legend>
-<input name="nr" placeholder="0000 0000 0000 0000">
-<label><input type="radio" name="kk" value="Master"> Master</label>
-<label><input type="radio" name="kk" value="Visa"> Visa</label>
-</fieldset>
-</form>
 
 ## Links
 

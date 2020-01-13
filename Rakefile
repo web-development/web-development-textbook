@@ -12,6 +12,12 @@ task :compile => [:clean] do
   sh './deploy.sh'
 end
 
+desc "start server"
+task :start do
+  puts "Starting web server"
+  out = `LANG=en_US.UTF-8 bundle exec nanoc view & > logs/view.log 2>&1 `
+end
+
 task :clean do
   FileUtils.rm_r('output') if File.exist?('output')
 end

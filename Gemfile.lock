@@ -17,7 +17,7 @@ GEM
     concurrent-ruby (1.0.5)
     cri (2.7.1)
       colored (~> 1.2)
-    curb (0.9.3)
+    curb (0.9.10)
     curl (0.0.9)
       awesome_print (>= 0.2.1)
       unidecoder (>= 1.1.1)

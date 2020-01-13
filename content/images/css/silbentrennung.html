@@ -1,0 +1,54 @@
+<h1>Silbentrennung</h1>
+
+<p lang="de">
+  Silbentrennung aktiviert man in CSS mit
+  <kbd>hyphens: auto</kbd>. Die genauen Regeln der Silbentrennung sind von der
+  Sprache abhängig. Dieser Absatz ist mit
+  <kbd>lang="de"</kbd>
+  ausgezeichnet.
+</p>
+
+<p lang="en">
+  The longest word in English is
+  <span>pneumonoultramicroscopicsilicovolcanoconiosis</span>, a word that refers
+  to a lung disease contracted from the inhalation of very fine silica
+  particles, specifically from a volcano
+</p>
+
+<p lang="de">
+  The longest word in English is
+  <span>pneumonoultramicroscopicsilicovolcanoconiosis</span>, a word that refers
+  to a lung disease contracted from the inhalation of very fine silica
+  particles, specifically from a volcano.
+</p>
+
+<p lang="de">
+  Zusammengesetzt Wörter wie die berühmte
+  <span lang="de">Donaudampfschiffahrtsgesellschaft</span>
+  sind im Deutschen häufig.
+</p>
+
+<style>
+  body {
+    width: 500px;
+    margin: 0 auto;
+    hyphens: auto;
+  }
+
+  p[lang="en"] {
+    background: rgba(84, 167, 255, 0.3);
+  }
+  p[lang="de"] {
+    background: rgba(255, 84, 104, 0.3);
+  }
+
+  p {
+    background: rgba(255, 84, 104, 0.3);
+    padding: 10px;
+    margin: 10px;
+  }
+  span {
+    border: 1px solid black;
+    background-color: white;
+  }
+</style>

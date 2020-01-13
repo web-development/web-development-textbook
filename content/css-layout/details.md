@@ -53,25 +53,26 @@ Ein Bild wird dabei wie ein Wort im Text behandelt, und nicht etwa frei auf der 
 
 ### Umbruch von Wörtern
 
-Browser können lange Wörter in mehreren Sprachen umbrechen.
+Browser können lange Wörter in mehreren Sprachen umbrechen wenn
+man in CSS `hyphens: auto` aktiviert.
 Die richtige Sprache stellt man mit dem Attribut `lang` ein,
 z.B. einfach am html-Tag: `<html lang="de">`.
 
 <div class="resizable">
-  <p style="background-color:#ddd">Das Rindfleisch­etikettierungs­überwachungs­aufgaben­übertragungs­gesetz (RflEttÜAÜG) war
+  <p style="background-color:#ddd; hyphens: none;">Das Rindfleisch­etikettierungs­überwachungs­aufgaben­übertragungs­gesetz (RflEttÜAÜG) war
     im Jahre 1999 im deutschen Bundesland Mecklenburg-Vorpommern Teil eines Gesetzesvorhabens.
     <br>
     Quelle: https://de.wikipedia.org/wiki/Rindfleischetikettierungs%C3%BCberwachungsaufgaben%C3%BCbertragungsgesetz
     <br>
-    <kbd>overflow-wrap: normal;</kbd> ist der Standardwert.
+    <kbd>hyphens: none;</kbd> ist der Standardwert.
   </p>
 
-  <p style="background-color:#ddd" class="hyphenate">Das Rindfleisch­etikettierungs­überwachungs­aufgaben­übertragungs­gesetz (RflEttÜAÜG) war
+  <p style="background-color:#ddd; hypens: auto;">Das Rindfleisch­etikettierungs­überwachungs­aufgaben­übertragungs­gesetz (RflEttÜAÜG) war
     im Jahre 1999 im deutschen Bundesland Mecklenburg-Vorpommern Teil eines Gesetzesvorhabens.
     <br>
         Quelle: https://de.wikipedia.org/wiki/Rindfleischetikettierungs%C3%BCberwachungsaufgaben%C3%BCbertragungsgesetz
     <br>
-    <kbd>overflow-wrap: break-word;</kbd>
+    <kbd>hyphens: auto;</kbd>
   </p>
 </div>
 

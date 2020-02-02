@@ -43,7 +43,7 @@ mit einem groben Cursor (`pointer: coarse`).
 
 siehe auch [MDN: media features](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Media_features) und [MDN: features queries](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports)
 
-[Demo: Mediaqueries](/images/content/mobile/responsive/mediaqueries.html)
+[Demo: Mediaqueries](/images/mobile/responsive/mediaqueries.html)
 
 ### Wiederholung: Vektor-Grafik
 

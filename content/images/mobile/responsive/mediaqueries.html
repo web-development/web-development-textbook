@@ -9,6 +9,11 @@
       #field {
         width: 50vw;
         height: 50vh;
+        position: relative;
+        cursor:crosshair;
+      }
+      #small_target, #big_target {
+        position: absolute;
       }
       @media (hover: none) {
         #hover_none {
@@ -66,7 +71,7 @@
     <h1>Mediaqueries sagen mir..</h1>
 
     <div id="field">
-      <div id="big_target">
+      <div id="big_target" style="left: 0px; top: 0px;">
         <svg width="100" height="100" style="float:left;">
           <circle
             cx="50"
@@ -78,7 +83,7 @@
           />
         </svg>
       </div>
-      <div id="small_target">
+      <div id="small_target" style="left: 0px; top: 0px;">
         <svg width="20" height="200" style="float:left;">
           <circle
             cx="10"
@@ -95,5 +100,87 @@
     <span id="hover_none">Du kannst kein "hover"</span>
     <span id="pointer_fine">Du kannst kleine Ziele treffen</span>
     <span id="pointer_coarse">Du kannst nur große Ziele treffen</span>
+    <script>
+      const speed = 2;
+
+      let last_now_fast = 0; // now und last_now in ms
+      let last_now_slow = 0; // now und last_now in ms
+
+      let x = 0;
+      let y = 0;
+      let move_x = 0.5;
+      let move_y = 0.2;
+
+      function clickable(ev) {
+        let t = ev.target;
+        let max_x = t.parentElement.parentElement.getBoundingClientRect().width;
+        let max_y = t.parentElement.parentElement.getBoundingClientRect()
+          .height;
+        console.log("clicked target, new random pos in ", max_x, max_y);
+        x = Math.random() * max_x;
+        y = Math.random() * max_y;
+        move_x = speed * (Math.random() - 0.5);
+        move_y = speed * (Math.random() - 0.5);
+        console.log("NEW ", x, y, "trajectory", move_x, move_y);
+      }
+      function addBrownianMotion(t) {}
+      let targets = [
+        document.getElementById("small_target")
+        // ,document.getElementById("big_target")
+      ];
+
+      for (t of targets) {
+        t.addEventListener("click", clickable);
+      }
+
+      let lives = true;
+
+      document.onkeydown = function(evt) {
+        evt = evt || window.event;
+        var isEscape = false;
+        if ("key" in evt) {
+          isEscape = evt.key === "Escape" || evt.key === "Esc";
+        } else {
+          isEscape = evt.keyCode === 27;
+        }
+        if (isEscape) {
+          lives = false;
+        }
+      };
+
+      function tick(now) {
+        if (now - last_now_fast > 25) {
+          last_now_fast = now;
+          if (now - last_now_slow > 1000) {
+            console.log("->");
+            move_x = 2 * (Math.random() - 0.5);
+            move_y = 2 * (Math.random() - 0.5);
+            last_now_slow = now;
+          }
+          for (t of targets) {
+            let max_x = t.parentElement.getBoundingClientRect().width;
+            let max_y = t.parentElement.getBoundingClientRect().height;
+            let new_x = x + move_x;
+            let new_y = y + move_y;
+            if (new_x > 0 && new_x < max_x) {
+              x = new_x;
+              t.style.left = "" + new_x + "px";
+            }
+            if (new_y > 0 && new_y < max_y) {
+              y = new_y;
+              t.style.top = "" + new_y + "px";
+            }
+            // console.log(". ", x, y, "trajectory", move_x, move_y);
+          }
+        }
+        if (!lives) {
+          console.log("GAME OVER");
+          return;
+        }
+        requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+    </script>
   </body>
 </html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <title>Demo Page: Responsive Design für Mobile mit Mediaqueries</title>
+
+    <meta name="viewport" content="width=device-width" />
+    <style>
+      #field {
+        width: 50vw;
+        height: 50vh;
+      }
+      @media (hover: none) {
+        #hover_none {
+          display: block;
+        }
+        #hover_hover {
+          display: none;
+        }
+      }
+      @media (hover: hover) {
+        #hover_none {
+          display: none;
+        }
+        #hover_hover {
+          display: block;
+        }
+        #field:hover {
+          background-color: yellow;
+        }
+      }
+      /* smartphones, touchscreens */
+      @media (pointer: coarse) {
+        #small_target {
+          display: none;
+        }
+        #big_target {
+          display: block;
+        }
+        #pointer_coarse {
+          display: block;
+        }
+        #pointer_fine {
+          display: none;
+        }
+      }
+      /* stylus-based screens */
+      @media  (pointer: fine) {
+        #small_target {
+          display: block;
+        }
+        #big_target {
+          display: none;
+        }
+        #pointer_coarse {
+          display: none;
+
+        }
+        #pointer_fine {
+          display: block;
+
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Mediaqueries sagen mir..</h1>
+
+    <div id="field">
+      <div id="big_target">
+        <svg width="100" height="100" style="float:left;">
+          <circle
+            cx="50"
+            cy="50"
+            r="40"
+            stroke="black"
+            stroke-width="2"
+            fill="#4e9a06"
+          />
+        </svg>
+      </div>
+      <div id="small_target">
+        <svg width="20" height="200" style="float:left;">
+          <circle
+            cx="10"
+            cy="10"
+            r="4"
+            stroke="black"
+            stroke-width="2"
+            fill="#4e9a06"
+          />
+        </svg>
+      </div>
+    </div>
+    <span id="hover_hover">Du kannst hover, das Feld wird gelb</span>
+    <span id="hover_none">Du kannst kein "hover"</span>
+    <span id="pointer_fine">Du kannst kleine Ziele treffen</span>
+    <span id="pointer_coarse">Du kannst nur große Ziele treffen</span>
+  </body>
+</html>

@@ -330,7 +330,8 @@ preprocess do
     "wordpress",    
     "apache", 
     "advanced-javascript",
-    "qualitaet",
+    "mobile",    
+    "qualitaet"
   ]
 
   @chapters = {}

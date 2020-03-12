@@ -218,11 +218,10 @@ usa
 
 ## Plus-Operator: mindestens einmal, oder mehrmals
 
-Der Plus-Operator ähnelt dem Stern-Operator, allerdings
-muss das Zeichen mindestens einmal vorkommen.
+Der Plus-Operator erlaubt eine Wiederholung des vorigen Zeichens. Um also `"i"` und `"iiii"` und `"wir sind die Ritter die ni sagen"` zu matchen:
 
 <javascript>
-/\d+/  
+/i+/  
 </javascript>
 
 Der Operator kann auch auf Zeichenklassen oder Gruppen angewandt werden.
@@ -237,7 +236,7 @@ Der Operator kann auch auf Zeichenklassen oder Gruppen angewandt werden.
 123
 
 1a
-a1
+a123
 </patterntester>
 
 Wenn man sich den Operator als Schleife vorstellt kann
@@ -422,8 +421,8 @@ finden will, braucht es das global-Flag:
 m = "Nana nana nana nana batman".match(/na/);
 // findet das erste na
 m = "Nana nana nana nana batman".match(/na/g);
-// findet alle 7 na
-<javascript>
+// findet alle 7 nax
+</javascript>
 
 ## Warnhinweis: Was RegEx nicht kann
 

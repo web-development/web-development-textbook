@@ -408,6 +408,9 @@ mit Hilfe von RegEx zu parsen.
 Das funktioniert aber nicht. Das müssten Sie an dieser Stelle
 einfach mal glauben - den Beweis überlassen wir der "Theoretischen Informatik".
 
+Die Frage ob das geht kommt immer wieder auf StackOverflow,
+hier ist die [Standard Antwort](https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags#answer-1732454).
+
 Wenn Sie also in Javascript oder PHP HTML oder XML parsen wollen, dann
 verwenden Sie dafür einen der vielen fertigen Parser.
 
@@ -463,6 +466,10 @@ if (preg_match ( "/en|sk|zh|us|uk/", \$locale_code )){ ...
 <php caption="Suchen mit RegEx in PHP">
 preg_match( "/regex/i", "string in dem ich suche") 
 </php>
+
+## Tools
+
+- [https://regexr.com/ regexr.com] ein CodePen für Regular Expressions
 
 ## Vertiefung
 

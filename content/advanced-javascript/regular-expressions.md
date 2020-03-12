@@ -34,9 +34,7 @@ Vielleicht kennst Du Regular Expressions also schon? Wie schätzt Du Dich selbst
 ein Konzept aus der Theoretischen Informatik. Diese ursprünglichen regulären Ausdrücke
 bieten nur 3 Operatoren an. Bei der praktischen Umsetzung wurden mehr und mehr Operatoren hinzugefügt.
 
-Zur Unterscheidung nenne ich diese
-erweiterten Ausdrücke mit dem englischen Begriff Regular Expressions oder kurz RegEx,
-und den Degriff aus der theoretischen Informatik "Reguläre Ausdruck".
+Diese Kapitel beschreibt die praktische Umsetzung, und nicht den Begriff aus der theoretischen Informatik.
 
 §
 
@@ -413,6 +411,19 @@ _bla_ und zeugs
 zeugs und _bla_
 _bla_ und _bla_ und noch mehr _bla_
 </patterntester>
+
+## Mehrmals suchen
+
+Alle bisher geschriebenen Patterns werden mit der Funktion `match`
+einmal gesucht. Wenn ich in einem string aber mehrere Vorkommen
+finden will, braucht es das global-Flag:
+
+<javascript>
+m = "Nana nana nana nana batman".match(/na/);
+// findet das erste na
+m = "Nana nana nana nana batman".match(/na/g);
+// findet alle 7 na
+<javascript>
 
 ## Warnhinweis: Was RegEx nicht kann
 

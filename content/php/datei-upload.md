@@ -100,7 +100,8 @@ print '</pre>';
 
 Achtung: Sie müssen den Ordner `pix` erstellen und ihm 
 geeignete Zugriffsrechte zuweisen, damit der Webserver (Account `apache`) 
-hineinschreiben darf!
+hineinschreiben darf! Die Zugriffsrechte von UNIX werde in einem [eigenem Kapitel](/kommandozeile/zugriffsrechte/)
+behandelt.
 
 
 

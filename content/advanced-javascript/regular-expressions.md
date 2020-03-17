@@ -32,8 +32,9 @@ Vielleicht kennst Du Regular Expressions also schon? Wie schätzt Du Dich selbst
 
 [Reguläre Ausdrücke](http://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck) sind
 ein Konzept aus der Theoretischen Informatik. Diese ursprünglichen regulären Ausdrücke
-bieten nur 3 Operatoren an. Bei der praktischen Umsetzung wurden mehr und mehr Operatoren hinzugefügt. Zur Unterscheidung nenne ich diese
-erweiterten Ausdrücke mit dem englischen Begriff Regular Expressions oder kurz RegEx.
+bieten nur 3 Operatoren an. Bei der praktischen Umsetzung wurden mehr und mehr Operatoren hinzugefügt.
+
+Diese Kapitel beschreibt die praktische Umsetzung, und nicht den Begriff aus der theoretischen Informatik.
 
 §
 
@@ -106,38 +107,6 @@ ukulele
 esuu
 </patterntester>
 
-## Gruppieren und Merken
-
-Mit runden Klammern kann man Teile der Regular Expression zusammen fassen:
-
-<javascript>
-/(de|fr)_(DE|CH)/
-</javascript>
-
-<patterntester name="locale" pattern="(de|fr)_(DE|CH)">
-de_DE
-fr_DE
-de_CH
-fr_CH
-de_AT
-it_CH
-</patterntester>
-
-Ausserdem stehen die von den Klammern gefundenen Teile des
-Strings nach der Auswertung zur Verfügung: die Methode `match`
-liefert ein Array als Rückgabewert, an der Stelle 0 ist der
-gesamte gefundene String gespeichert, auf 1, 2, 3 der Reihe
-nach die gefundnen Gruppen:
-
-<javascript>
-locale = "de_CH";
-if( match = locale.match(/(de|fr)_(DE|CH)/ ) {
-  console.log("gesamt:  " + match[0]);
-  console.log("sprache: " + match[1]);
-  console.log("land:    " + match[2]);
-}
-</javascript>
-
 ## Verankern
 
 Mit den Zeichen Zirkumflex `^` und Dollar `$` kann die Suche am
@@ -157,6 +126,8 @@ ukulele
 Maske
 schlafen
 </patterntester>
+
+Achtung: der Zirkumflex `^` hat auch noch andere Bedeutungen (wenn er nicht am Anfang des Patterns steht).
 
 ## Zeichen-Klassen
 
@@ -184,7 +155,10 @@ Mit einem Bindestrich `-` innerhalb der Klasse kann
 man einen Bereich von Zeichen angeben, die im Zeichensatz hintereinander
 stehen.
 
+Die folgenden beiden pattern sind also gleichbedeutend:
+
 <javascript>
+/[abcdef]/
 /[a-f]/
 </javascript>
 
@@ -220,6 +194,8 @@ u6
 usa
 </patterntester>
 
+Achtung: das war die zweite Bedeutung des Zirkumflex `^`, wenn er am Anfang der Klasse steht.
+
 ## Abkürzungen für häufig benutze Zeichenklassen
 
 <javascript>
@@ -239,6 +215,41 @@ u6
 u9
 usa
 </patterntester>
+
+## Plus-Operator: mindestens einmal, oder mehrmals
+
+Der Plus-Operator erlaubt eine Wiederholung des vorigen Zeichens. Um also `"i"` und `"iiii"` und `"wir sind die Ritter die ni sagen"` zu matchen:
+
+<javascript>
+/i+/  
+</javascript>
+
+Der Operator kann auch auf Zeichenklassen oder Gruppen angewandt werden.
+
+<javascript>
+/\d+/
+</javascript>
+
+<patterntester name="Ziffern" pattern="\d+">
+1
+12
+123
+
+1a
+a123
+</patterntester>
+
+Wenn man sich den Operator als Schleife vorstellt kann
+bei jeder "Wiederholung" ein anderes Zeichen aus der Klasse oder eine
+andere Alternative gewählt werden:
+
+<javascript>
+/(do|re|mi)+/
+</javascript>
+
+## Übung
+
+Eine kurze Übung in [TDDbin](https://tddbin.com/): [Längenangaben finden](https://gitlab.mediacube.at/snippets/43)
 
 ## Irgend ein Zeichen
 
@@ -282,49 +293,14 @@ Die Antwort: man escaped die Sonderzeichen von RegEx mit einem Backslash `\`.
 
 ## Stern-Operator: beliebig viele
 
-Der Stern-Operator dient der Vervielfältigung: das davor stehende Zeichen
-kann beliebig oft Wiederholt werden, also null-mal, ein-mal oder mehr-mals vorkommen:
+Wir kennen schon den Plus-Operator. Der Stern-Operator erlaubt auch null Wiederholungen.
+
+Der Stern-Operator dient auch der Vervielfältigung: das davor stehende Zeichen
+kann nullmal, einmal oder mehrmals vorkommen:
 
 <javascript>
 /i*/  
 </javascript>
-
-Der Operator kann auch auf Zeichenklassen oder Gruppen angewandt werden.
-Wenn man sich den Operator als Schleif vorstellt kann
-bei jeder "Wiederholung" ein anderes Zeichen aus der Klasse oder eine
-andere Alternative gewählt werden:
-
-<javascript>
-/(do|re|mi)*/
-/\d*/
-</javascript>
-
-<patterntester name="Ziffern" pattern="^\d*$">
-1
-12
-123
-
-1a
-a1
-</patterntester>
-
-## Plus-Operator: mindestens einmal, oder mehrmals
-
-Der Plus-Operator ähnelt dem Stern-Operator, allerdings
-muss das Zeichen mindestens einmal vorkommen.
-
-<javascript>
-/\d+/  
-</javascript>
-
-<patterntester name="Ziffern" pattern="^\d+$">
-1
-12
-123
-
-1a
-a1
-</patterntester>
 
 ## Fragezeichen-Operator: einmal oder keinmal
 
@@ -342,6 +318,42 @@ Der Frage-Operator erlaubt 0 oder 1 vorkommen des Zeichens.
 1a
 a1
 </patterntester>
+
+## Gruppieren und Merken
+
+Mit runden Klammern kann man Teile der Regular Expression zusammen fassen:
+
+<javascript>
+/(de|fr)_(DE|CH)/
+</javascript>
+
+<patterntester name="locale" pattern="(de|fr)_(DE|CH)">
+de_DE
+fr_DE
+de_CH
+fr_CH
+de_AT
+it_CH
+</patterntester>
+
+Ausserdem stehen die von den Klammern gefundenen Teile des
+Strings nach der Auswertung zur Verfügung: die Methode `match`
+liefert ein Array als Rückgabewert, an der Stelle 0 ist der
+gesamte gefundene String gespeichert, auf 1, 2, 3 der Reihe
+nach die gefundnen Gruppen:
+
+<javascript>
+locale = "de_CH";
+if( match = locale.match(/(de|fr)_(DE|CH)/ ) {
+  console.log("gesamt:  " + match[0]);
+  console.log("sprache: " + match[1]);
+  console.log("land:    " + match[2]);
+}
+</javascript>
+
+## Übung
+
+Eine längere Übung in [TDDbin](https://tddbin.com/): [Längenangaben finden](https://gitlab.mediacube.at/snippets/43)
 
 ## Operatoren sind gierig
 
@@ -398,6 +410,19 @@ _bla_ und zeugs
 zeugs und _bla_
 _bla_ und _bla_ und noch mehr _bla_
 </patterntester>
+
+## Mehrmals suchen
+
+Alle bisher geschriebenen Patterns werden mit der Funktion `match`
+einmal gesucht. Wenn ich in einem string aber mehrere Vorkommen
+finden will, braucht es das global-Flag:
+
+<javascript>
+m = "Nana nana nana nana batman".match(/na/);
+// findet das erste na
+m = "Nana nana nana nana batman".match(/na/g);
+// findet alle 7 nax
+</javascript>
 
 ## Warnhinweis: Was RegEx nicht kann
 

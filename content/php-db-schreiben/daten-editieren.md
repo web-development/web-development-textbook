@@ -38,7 +38,7 @@ Beispiel in MySQL:
 portfolio_playground=# select firstname,description from users where id=438;
      firstname      |          description
 --------------------+--------------------------------
- Tobias "der Coder" | Mein Lieblings-Tag ist <style>
+ Tobias "the Coder" | Mein Lieblings-Tag ist <style>
 (1 row)
 </sql>
 
@@ -121,7 +121,7 @@ Wenn hier in der Description „Mein Lieblings-Tag ist &lt;style&gt;“ steht, u
 $username    = htmlspecialchars( $person->username     );
 $firstname   = htmlspecialchars( $person->firstname    );
 $surname     = htmlspecialchars( $person->surname      );
-$description = htmlspecialchars( $person->description' );
+$description = htmlspecialchars( $person->description  );
 
 echo <<<EOM
   <p>$anrede $vorname $nachname hat insgesamt 

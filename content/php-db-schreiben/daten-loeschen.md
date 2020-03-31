@@ -144,7 +144,7 @@ immer prepared Statements!
 
 <php caption="sicherer code">
 $query = "SELECT id, name FROM cities WHERE name=?";
-$sth = $dbh->execute($query);
+$sth = $dbh->prepare($query);
 $sth->execute( array($name) );
 </php>
 

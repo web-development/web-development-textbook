@@ -41,7 +41,8 @@ Art von Attacke auf eine Web-Applikation nennt man „SQL Injection“, weil in
 das SQL etwas "injiziert" wird.
 
 ### SQL Injection verhindern
-Dieses Problem kann vermeiden indem man die Eingabe genau überprüft. In diesem
+
+Dieses Problem kann man vermeiden, indem man die Eingabe genau überprüft. In diesem
 Beispiel also: nur wenn es sich bei `id` um eine ganze Zahl handelt, darf sie
 verwendet werde. Das kann man auf verschiedene Arten prüfen, 
 z.B. mit der Funktion `filter_var`: 
@@ -75,9 +76,11 @@ Als erster Schritt wird mit `prepare`[*](http://www.php.net/manual/en/pdo.prepar
 ein SQL-Statement mit Fragenzeichen als Platzhalter vorbereitet. Dieses
 SQL-Statement wird vom Datenbank-Server sofort geparset und compiliert. 
 
-Mit `execute`[*](http://www.php.net/manual/en/pdostatement.execute.php) 
-wird das Statement ausgeführt, dabei werden die Platzhalter durch echte Daten
-ersetzt.  Das Schöne daran: es wird dabei nicht mehr ein SQL-Statement als
+Im zweiten Schritt wird mit `execute`[*](http://www.php.net/manual/en/pdostatement.execute.php) 
+das Statement wirklich ausgeführt, dabei werden die Platzhalter durch echte Daten
+ersetzt.  
+
+Das Schöne daran: es wird dabei nicht mehr ein SQL-Statement als
 String gebaut, sondern die einzufügenden Daten werden binär an den
 Datenbankserver übertragen. Darin enthaltene SQL-Fragement können keinen Schaden
 anrichten.
@@ -86,14 +89,50 @@ anrichten.
 
 <php caption="DELETE mit prepared statement">
 $sth = $dbh->prepare("DELETE FROM users WHERE id = ?");
+// Schritt 1: SQL-Statement wird vom Datenbank-Server geparset und compiliert. 
+
 $sth->execute(array($id));
+// Schritt 2: nur die Daten werden an den Datenbank-Server übertragen
+// und das fertige Statement wird ausgeführt
 </php>
 
-`execute` kann auch mehrfach ausgeführt werden, das ist effektiver als eine
+### Prepared Statements und Performance
+
+Nach einem `prepare` kann 
+`execute`  auch mehrfach ausgeführt werden. Das ist effektiver als eine
 normale query zu wiederholen.
+
+
+### SQL-Injection auch bei SELECT
+
+In [Lesen aus der Datenbank ](/php-db-lesen/datenbank-lesen/#slide-12) haben
+wir User-Input in einem Select-Statement verwendet:
+
+<php caption="Beispiel aus index.php">
+$id = $_GET['id'];  // SICHERHEITSPROBEM - behandeln wir später noch!
+$stm = $dbh->query("SELECT * FROM users WHERE profile_visible AND id=$id");
+$person = $stm->fetch();
+if( $person === FALSE ) {
+  die("<p>Konnte keine passenden Daten aus der Datenbank lesen.</p>");
+}
+</php>
+
+Auch dieser Code ist für SQL-Injection anfällig. Was passiert bei
+folgendem Aufruf?
+
+`index.php?id=1;DROP+TABLE+users``
+
+Das Ergebnis ist ein SQL Statement:
+
+`SELECT * FROM users WHERE profile_visible AND id=1;DROP TABLE users``
+
+Deswegen sollte man auch bei reinen Abfragen immer prepared statements
+verwenden!
+
 
 ### Authorisierung nicht vergessen!
 
 Wir haben eine Sicherheitslücke geschlossen, aber es bleibt trotzdem noch viel
 zu tun: Löschen, Einfügen, Bearbeiten soll nur nach dem Login möglich sein!
+
 

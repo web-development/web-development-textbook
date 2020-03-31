@@ -83,6 +83,15 @@ hochzeit_800.jpg JPEG 800x533 800x533+0+0 8-bit sRGB 555496B 0.000u 0:00.000
 </shell>
 
 
+### Aus Standbildern ein Animiertes GIF machen
+
+Aus mehreren Standbildern - in diesem Beispiel mehreren png-dateien
+kann imagemagic ein animiertes gif machen:
+
+<shell>
+convert -delay 7 -loop 0 -alpha set -dispose previous *.png sprite.gif
+</shell>
+
 ### Mehr über image magick
 
 Das waren sehr einfache Beispiele.

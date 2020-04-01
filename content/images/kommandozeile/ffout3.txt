@@ -1,0 +1,55 @@
+$ ffmpeg -ss 00:40:00.0 -i  Besprechung.mp4 -c copy -t 00:01:00.0 Besprechung.mp4
+
+ffmpeg version 4.2.2 Copyright (c) 2000-2019 the FFmpeg developers
+  built with Apple clang version 11.0.0 (clang-1100.0.33.17)
+  configuration: --prefix=/usr/local/Cellar/ffmpeg/4.2.2_2 --enable-shared --enable-pthreads --enable-version3 --enable-avresample --cc=clang --host-cflags= --host-ldflags= --enable-ffplay --enable-gnutls --enable-gpl --enable-libaom --enable-libbluray --enable-libmp3lame --enable-libopus --enable-librubberband --enable-libsnappy --enable-libtesseract --enable-libtheora --enable-libvidstab --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxvid --enable-lzma --enable-libfontconfig --enable-libfreetype --enable-frei0r --enable-libass --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-librtmp --enable-libspeex --enable-libsoxr --enable-videotoolbox --disable-libjack --disable-indev=jack
+  libavutil      56. 31.100 / 56. 31.100
+  libavcodec     58. 54.100 / 58. 54.100
+  libavformat    58. 29.100 / 58. 29.100
+  libavdevice    58.  8.100 / 58.  8.100
+  libavfilter     7. 57.100 /  7. 57.100
+  libavresample   4.  0.  0 /  4.  0.  0
+  libswscale      5.  5.100 /  5.  5.100
+  libswresample   3.  5.100 /  3.  5.100
+  libpostproc    55.  5.100 / 55.  5.100
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'Besprechung.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp41isom
+    creation_time   : 2020-03-23T13:04:13.000000Z
+    artist          : Microsoft Game DVR
+    title           : Besprechung | Microsoft Teams
+  Duration: 01:27:28.44, start: 0.000000, bitrate: 5175 kb/s
+    Stream #0:0(und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p, 1376x732 [SAR 1:1 DAR 344:183], 5039 kb/s, 30 fps, 60 tbr, 30k tbn, 59.94 tbc (default)
+    Metadata:
+      creation_time   : 2020-03-23T13:04:13.000000Z
+      handler_name    : VideoHandler
+      encoder         : AVC Coding
+    Stream #0:1(und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      creation_time   : 2020-03-23T13:04:13.000000Z
+      handler_name    : SoundHandler
+Output #0, mp4, to 'Besprechung.mp4':
+  Metadata:
+    major_brand     : mp42
+    minor_version   : 0
+    compatible_brands: mp41isom
+    title           : Besprechung | Microsoft Teams
+    artist          : Microsoft Game DVR
+    encoder         : Lavf58.29.100
+    Stream #0:0(und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p, 1376x732 [SAR 1:1 DAR 344:183], q=2-31, 5039 kb/s, 30 fps, 60 tbr, 30k tbn, 30k tbc (default)
+    Metadata:
+      creation_time   : 2020-03-23T13:04:13.000000Z
+      handler_name    : VideoHandler
+      encoder         : AVC Coding
+    Stream #0:1(und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      creation_time   : 2020-03-23T13:04:13.000000Z
+      handler_name    : SoundHandler
+Stream mapping:
+  Stream #0:0 -> #0:0 (copy)
+  Stream #0:1 -> #0:1 (copy)
+Press [q] to stop, [?] for help
+frame= 1859 fps=0.0 q=-1.0 Lsize=   39140kB time=00:00:59.99 bitrate=5344.7kbits/s speed= 773x
+video:38102kB audio:962kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 0.194155%

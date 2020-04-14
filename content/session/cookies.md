@@ -43,6 +43,23 @@ Set-Cookie: style=gelb; path=/admin/
 Set-Cookie: style=gelb; expires=Tue, 29-Mar-2015 19:30:42 GMT; path=/admin/
 </javascript>
 
+
+§
+
+Mit dem Zusatz `Secure` wird ein Cookie niemals über eine unverschlüsselte (`http`) Verbindung
+gesendet, sondern nur über `https`.
+
+Der Zusatz `HttpOnly` zeigt an, dass das Cookie nicht von JavaScript aus gelesen oder
+verändert werden kann.
+
+<javascript>
+Set-Cookie: style=gelb; expires=Tue, 29-Mar-2015 19:30:42 GMT; path=/admin/;  Secure; HttpOnly
+</javascript>
+
+
+§
+
+
 Die einzige Art ein Cookie zu löschen ist ein Cookie mit gleichem Namen und
 Ablaufdatum in der Vergangenheit zu setzen:
 
@@ -63,8 +80,8 @@ Neue Cookies können Sie mit `setcookie()`[*](http://www.php.net/manual/en/funct
 
 ### Cookies in Javascript
 
-Im Client können Cookies mit Javascript gelesen und geschrieben werden. Dies
-funktioniert über eine Zuweisung an die Eigenschaft document.cookie.
+Im Client können Cookies (ausser `HttpOnly`) mit Javascript gelesen und geschrieben werden. Dies
+funktioniert über eine Zuweisung an die Eigenschaft `document.cookie`.
 
 Achtung: beim lesenden Zugriff auf diese Eigenschaft enthält man einen String
 mit allen Cookies die gerade gültig sind. 
@@ -76,14 +93,13 @@ auf den Wert den man aus document.cookie auslesen kann:
 <javascript>
 alert(document.cookie);  // Zeigt die gültigen Cookies
 
-document.cookie = "farbe:grün"; document.cookie = "anzahl: 3"; 
-document.cookie = "passwort: total super geheimes aber recht langes passwort";
-alert(document.cookie);  // Zeigt immer noch die ALTEN Cookies !!!
+document.cookie = "farbe=grün"; document.cookie = "anzahl=3"; 
+document.cookie = "passwort=total super geheimes aber recht langes passwort";
 </javascript>
 
 Erst wenn ein neuer Request an den Server erfolgt, werden die neu gesetzten
-Cookies mit gesendet: erst wenn die Antwort wieder dargestellt wird, sind die
-neuen Cookies in Javascript über document.cookie lesbar!
+Cookies mit gesendet und haben eventuell einen Auswirkung auf das
+Verhalten des Servers.
 
 ### Libraries für Cookies in Javascript
 

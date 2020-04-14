@@ -92,6 +92,33 @@ kann imagemagic ein animiertes gif machen:
 convert -delay 7 -loop 0 -alpha set -dispose previous *.png sprite.gif
 </shell>
 
+### Collagen
+
+Mehrere Bilder nebeneinander zusammenfügen:
+
+<shell>
+convert left.jpg right.jpg +append side_by_side.jpg
+</shell>
+
+Mehrere Bilder untereinander zusammenfügen:
+
+<shell>
+convert top.jpg bottom.jpg -append above_and_below.jpg
+</shell>
+
+### Meta-Information über Rotation entfernen
+
+Handy-Photos können Information über die Orientierung
+des Bildes enhalten.  Falls die Kamera am Kopf steht wenn
+man das Bild macht, dann wird im Bild gespeichert dass es um 180° 
+gedreht angezeigt werden soll.  Das fukntioniert aber nicht immer.
+
+Folgender Befehl rückt das Bild gerade und entfernt die Meta-Information:
+
+<shell>
+convert IMG_20180830_110737.jpg -auto-orient -strip aufrecht.jpg
+</shell>
+
 ### Mehr über image magick
 
 Das waren sehr einfache Beispiele.

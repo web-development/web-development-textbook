@@ -15,7 +15,7 @@ Typische Verwendung
 
 Neben der Verwendung für kleine Effekte im Browser hat Javascript noch weitere wichtige Anwendungsgebiete:
 
-* Als „AJAX“ zum Nachladen von Daten – das macht das Web viel interaktiver und angenehmer in der Benutzung.
+* Zum Nachladen von Daten („AJAX“, fetch) – das macht das Web viel interaktiver und angenehmer in der Benutzung.
 
 * Mit Javascript können Webseiten auch „offline“ – also ohne Verbindung zum Internet und dem Webserver – weiterarbieten. Am Smartphone wird diese Art von Webseiten als  „progressive Web App“  bezeichnet.
 

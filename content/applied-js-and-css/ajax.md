@@ -70,7 +70,81 @@ läuft vollständig ab.
 Wenn die Daten vom Server schließlich einlangen wird die Funktion `handle_data`
 aufgerufen und die Daten zu verarbeiten.
 
-### HTTP
+### Synchroner Ablauf wird nie unterbrochen
+
+Achtung: ein laufendes Javascript programm wird nie unterbrochen.
+Im letzten Code-Beispiel wird es nie passieren, dass zwischen Befehl3
+und Befehl4 niemals etwas anderes (z.B. handle_data) passieren!
+
+<javascript caption="asynchron">
+function handle_data(Antwort) {  
+   ... 
+} 
+ 
+Befehl1();
+Befehl2();
+asynchron_laden(url, handle_data);  // dauert kurz 
+Befehl3();                         // kurz darauf
+Befehl4();
+</javascript>
+
+
+
+### Asynchrones Beispiel: setTimeout
+
+Mit `setTimeout` kann man eine Funktion später (Angabe in Millisekunden) 
+ausführen lassen:
+
+<javascript caption="asynchron">
+function later() {
+  console.log("3 Sekunden später", Date.now());
+}
+
+console.log("tick", Date.now());
+setTimeout(later, 3000);
+console.log("tock", Date.now());
+console.log("tick", Date.now());
+console.log("tock", Date.now());
+</javascript>
+
+§
+
+Was passiert nun, wenn man den Timeout auf 0 setzt?
+
+<javascript caption="asynchron">
+function later() {
+  console.log("0 Sekunden später?", Date.now());
+}
+console.log("tick", Date.now());
+setTimeout(later, 0);
+console.log("tock", Date.now());
+console.log("tick", Date.now());
+console.log("tock", Date.now());
+</javascript>
+
+§
+
+Antwort: das Javascript-Programm wird nicht unterbrochen!
+
+<javascript caption="asynchron">
+function later() {
+  console.log("NICHT 0 Sekunden später!", Date.now());
+}
+console.log("tick", Date.now());
+setTimeout(later, 0);
+console.log("tock", Date.now());
+console.log("tick", Date.now());
+console.log("tock", Date.now());
+
+// Output in der Konsole:
+// tick 1588059630667
+// tock 1588059630668
+// tick 1588059630668
+// tock 1588059630668
+// nicht 0 Sekunden später 1588059630669
+</javascript>
+
+### Asynchrone HTTP Requests
 
 Betrachten wir nun den Ablauf für ein Textfeld mit Autocomplete-Funktion,
 wie in der obigen Abbildung gezeigt. Folgende Abbildung ist ein

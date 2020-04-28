@@ -133,7 +133,7 @@ eingebunden.
     ajaxRequest.addEventListener("load", handleCounterData);
     ajaxRequest.open("GET", "counter_ajax.php");
     ajaxRequest.send(); 
-    console.log("abgesendet, sofort weiter";   
+    console.log("abgesendet, sofort weiter");   
   </script>
 </body>
 </html>
@@ -176,6 +176,7 @@ eine neue Schreibweise für AJAX-Request mit dem Befehl `fetch`[mdn](https://dev
         console.log("counter wurde aus dem Response herausgelesen");
         // ...
       }); 
+    console.log("abgesendet, sofort weiter");   
   </script>
 </body>
 </html>
@@ -201,7 +202,8 @@ fetch("counter_ajax.php")
   .then(function(response) {
     console.log("Response wird empfangen");
     // tu ws mit response response
-  })
+  });
+console.log("abgesendet, sofort weiter");   
 </javascript>
 
 ### Chaining
@@ -210,7 +212,7 @@ Angenommen mit dem Ergebnis einer asynchronen Operation
 soll
 eine weitere asynchrone Operation aufgerufen werden.
 
-Mit Promises funktionert das mittels "aneinanderhängen" mit `then`:
+Mit Promises funktionert das mittels "aneinanderhängen" = "chaining" mit `then`:
 
 <javascript>
 fetch("counter_ajax.php")
@@ -223,6 +225,7 @@ fetch("counter_ajax.php")
     console.log("counter wurde aus dem Response herausgelesen");
     // ...
   }); 
+console.log("abgesendet, sofort weiter");   
 </javascript>
 
 Dieser Code kann mit Arrow-Functions noch kürzer werden:
@@ -234,6 +237,7 @@ fetch("counter_ajax.php")
     console.log("Text wurde aus dem Response herausgelesen");
     // tu was mit counter
   });
+console.log("abgesendet, sofort weiter");   
 </javascript>
 
 ### Fehlerbehandlung
@@ -247,9 +251,10 @@ fetch("counter_ajax.php")
   .then(function(counter) {
     console.log("Text wurde aus dem Response herausgelesen");
     // tu was mit counter
-  }).catch(error) {
+  }).catch(function(error) {
     console.log(error);
-  };
+  });
+console.log("abgesendet, sofort weiter");
 </javascript>
 
 Aber Achtung: wenn der HTTP-Response z.B. 404 oder 500 ist, löst das noch
@@ -259,6 +264,7 @@ man selbst behandeln:
 <javascript>
 fetch("counter_ajax.php")
   .then(function(response){ 
+    console.log("response status is", response.status);
     if (response.status !== 200) {
         throw new Error("Not 200 response");
     } 
@@ -266,9 +272,10 @@ fetch("counter_ajax.php")
   }).then(function(counter) {
     console.log("Text wurde aus dem Response herausgelesen");
     // tu was mit counter
-  }).catch(error) {
+  }).catch(function(error) {
     console.log(error);
-  };
+  });
+  console.log("abgesendet, sofort weiter");   
 </javascript>
 
 Siehe auch

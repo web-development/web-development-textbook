@@ -104,6 +104,7 @@ Mit Javascript erscheint ein Dialog, je nach Antwort wird der Link entweder aufg
 ###  Die onevent - Attribute ###
 
 Meist werden Javascript-Programme so geschrieben, dass sie nicht gleich beim Laden der Seite starten, sondern erst wenn gewisse Ereignisse (Events) eintreten.
+Siehe [Crash Course Computer Science #26: Graphical User Interfaces](https://youtu.be/XIGSJshYb90?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo&t=316) für eine Erklärung von Event-Gesteuerter-Programmierung.
 
 Ein paar typische Events mit ihren typischen HTML-Tags:
 

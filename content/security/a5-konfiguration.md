@@ -17,12 +17,12 @@ Entwicklung (Development) und Systemadmistration (Operations).
 Für eine Web-Applikation muss man dabei mindestens folgende Schichte beachten:
 
 - Physikalische Sicherheit (Wer kann den Server ein- und ausschalten, zerlegen,...)
-- Virtualisierungs-Schicht
-- Betriebssystem, z.B. CentOS, Debian
-- Datenbank, z.B. MySQL, MongoDB
+- Virtualisierungs-Schicht, z.B. VMWare
+- Betriebssystem, z.B. Ubuntu, CentOS, Debian
+- Datenbank, z.B. PosgreSQL, MySQL, MongoDB
 - Interpreter, z.B. PHP, Ruby
-- Webserver, z.B. Apache
-- Framework, z.B. ZEND Framework, Rails
+- Webserver, z.B. Apache, nginx
+- Framework, z.B. Laravel, Rails
 - Fremd-Applikation, z.B. Wordpress, Redmine
 - Selbstgeschreibene Applikation
 
@@ -39,22 +39,14 @@ Zwei Szenarien:
 - Entwicklungs-Rechner: möglichst viele Debug-Möglichkeiten, Bequemlichkeit wichtiger als Sicherheit
 - Produktions-Server: Sicherheit wichtiger als Bequemlichkeit, Logging / Monitoring ja, aber nicht öffentlich zugänglich
 
-Dafür gibt es oft schon fertige Konfigurationen, oder Tutorials
-
-- [PostgreSQL Hardening](https://www.owasp.org/index.php/OWASP_Backend_Security_Project_PostgreSQL_Hardening)
-- [The 2018 Guide to Building Secure PHP Software](https://paragonie.com/blog/2017/12/2018-guide-building-secure-php-software)
+Dafür gibt es oft schon fertige Konfigurationen, oder Tutorials. Ein guter Suchbegriff ist "hardening". 
 
 ## Sicherheitsupdates
 
 Keine Software ist sicher, in jeder Software werden Sicherheitsprobleme
 entdeckt. Die relevante Fragen sind: werden Sicherheitsprobleme die
-bekannt werden möglichst schnell behoben? Und in folge: Wenn ein Update
+bekannt werden möglichst schnell behoben? Und in Folge: Wenn ein Update
 zur Verfügung steht, wird es möglichst schnell installiert?
 
 - [Heise Security](http://www.heise.de/security/)
 
-## Meine Verantwortung
-
-An dieser Stelle sollten Sie sich fragen: bei den Webprojekten, an
-denen Sie beteiligt waren ... wer ist für welchen Teil der Konfiguration / Updates
-zuständig? Wo liegt Ihre persönliche Verantwortung?

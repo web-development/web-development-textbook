@@ -32,7 +32,7 @@ und bei Textareas als Inhalt des Tags:
 
 Achtung: Falls in den Daten Anführungszeichen, kaufmännische Unds oder
 Kleiner-Zeichen vorkommen müssen diese für HTML escaped werden.  Hier ein
-Beispiel in MySQL:
+Beispiel:
 
 <sql>
 portfolio_playground=# select firstname,description from users where id=438;

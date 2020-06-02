@@ -19,11 +19,11 @@ sich nicht darauf verlassen dass so eine Prüfung bereits am Client passiert ist
 Gängige Fehleinschätzungen dieser Art sind:
 
 - Wenn ich keinen Link zu dieser Seite hin setzte, dann findet die Seite eh niemand.
-- Das ist falsch!
+    - Das ist falsch!
 - Wenn ich die Daten in ein hidden-field im Formular schreibe, können sie nicht verändert werden
-- Das ist falsch!
+    - Das ist falsch!
 - Wenn die Daten des Formulars per POST übertragen werden, können sie nicht manipuliert werden
-- Das ist falsch!
+    - Das ist falsch!
 
 ## Beispiele
 
@@ -120,5 +120,4 @@ Gegen diese Art von Attacke kann man an mehreren Linien verteidigen:
 
 Die OWASP bietet noch vertiefende Informationen zu diesem Thema an:
 
-- [OWASP Development Guide: Chapter on Authorization](http://www.owasp.org/index.php/Guide_to_Authorization)
-- [OWASP Testing Guide: Testing for Path Traversal](<https://www.owasp.org/index.php/Testing_Directory_traversal/file_include_(OTG-AUTHZ-001)>)
+- [Web Security Testing Guide: Testing Directory Traversal File Include](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/01-Testing_Directory_Traversal_File_Include.html)

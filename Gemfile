@@ -15,3 +15,4 @@ gem "json"
 gem "listen"
 gem 'rb-fsevent', '~> 0.9'
 gem 'guard-nanoc'
+# gem 'nanoc-redirector' # ab nanoc 4

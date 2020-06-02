@@ -72,15 +72,15 @@ richtige Escape-Funktion wählen.
 Eine Content Security Policy wird als Header im HTTP Response oder als
 META-Tag in HTML and den Client übermittelt.  Aktuelle Browser halten die Policy ein.
 
-Ein Beispiel:
+Ein Beispiel für den HTTP Header: `Content-Security-Policy: default-src https:`
 
-```
-// header
-Content-Security-Policy: default-src https:
 
-// meta tag, möglichst früh im HTML-Dokument
-<meta http-equiv="Content-Security-Policy" content="default-src https:">
-```
+Im HTML Code kann man den Meta-Tag mit Attribut `http-equiv` verwenden,
+um dieselbe Policy zu setzen:
+
+<htmlcode>
+    <meta http-equiv="Content-Security-Policy" content="default-src https:">
+</htmlcode>
 
 
 Diese Policy bewirkt zwei Dinge:

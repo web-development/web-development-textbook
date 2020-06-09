@@ -45,6 +45,9 @@ bietet [http://www.google.com/webfonts](http://www.google.com/webfonts)
 Bei Google findet man nur gratis-fonts.  Es gibt aber auch Fonts für die
 man Lizenzgebühren zahlen muss.
 
+Tipp beim Laden von Webfont: um zu vermeiden dass Text während der Ladezeit
+gar nicht(FOIT), oder mit einem anderne Font dargestellt wird(FOUT), im `@font-face` block
+`font-display: fallback;` setzen.  Siehe [css-tricks](https://css-tricks.com/almanac/properties/f/font-display/)
 
 Absätze
 ---------

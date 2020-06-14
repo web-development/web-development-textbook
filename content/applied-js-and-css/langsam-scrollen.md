@@ -41,7 +41,7 @@ Die Lösung: langsam scrollen.
 ## Normalen Link verhindern
 
 Als ersten Schritt setzen wir einen EventListener
-umd das `click` event
+um das `click` event
 abzufangen, und mit `preventDefault` das "normale" Verhalten des Links zu
 unterbinden.
 
@@ -67,7 +67,7 @@ let hash = this.hash; // z.B. '#order'
 
 ## Zum Element hin Scrollen
 
-Die DOM-Methode [https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView](scrollIntoView)
+Die DOM-Methode [scrollIntoView](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView)
 erledigt das eigentliche Scrollen zum Element hin.
 
 <javascript>
@@ -77,15 +77,15 @@ document.querySelector(hash).scrollIntoView({ behavior: "smooth" });
 ## Kompatibilität
 
 Die Funktion scrollIntoView wird nicht von allen Browsern implementiert.
-Woher kann ich das wissen? Wie kann ich damit umgehen.
+Woher kann ich das wissen? Wie kann man damit umgehen?
 
 Ein guter Startpunkt für diese Fragen ist die Webseite "can i use". Hier kann
 man für verschiedene HTML, CSS, JavaScript Features nachlesen welche
 Browser dieses Feature unterstützen. In diesem Fall unter [https://caniuse.com/#search=scrollintoview](https://caniuse.com/#search=scrollintoview).
 
-Bei caniuse lernen wi: in 2019 ist die Option "smooth" in Safari
-und IE noch nicht implementiert. Unter dem Tab "Resourcse" liefert die Seite
-auch gleich eine Lösung: Ein [http://iamdustan.com/smoothscroll/](polyfill) - eine Javascript Libary
+Bei caniuse lernen wir: die Option "smooth" ist in Safari
+und IE nicht implementiert. Unter dem Tab "Resourcse" liefert die Seite
+auch gleich eine Lösung: Ein [polyfill](http://iamdustan.com/smoothscroll/) - eine Javascript Libary
 die die fehlende Funktionalität implementiert: [smooth scroll behavior polyfill](http://iamdustan.com/smoothscroll/).
 
 ## Der Browser funktioniert nicht mehr
@@ -121,7 +121,7 @@ und in Javascript durch das `window.history` Objekt dargestellt. Auf dieses
 Objekt hat man aber nicht vollen Zugriff: sonst könnte ja jede Webseite
 die BesucherInnen ausspionieren und herausfinden wo sie vorher waren.
 
-Einige wenige [https://developer.mozilla.org/en-US/docs/Web/API/History_API](Manipulationen)
+Einige wenige [Manipulationen](https://developer.mozilla.org/en-US/docs/Web/API/History_API)
 des History Objekts sind erlaubt: mit den Methoden `back()`, `forward()` und `go()` kann
 man von Javascript aus die "Vorwärts" und "Zurück" Buttons bedienen.
 
@@ -135,7 +135,8 @@ die angezeigt werden soll. Es reicht eine relative URL, in unserem Fall nur das 
 und die id.
 
 Das erste Argument von pushState muss ein Objekt sein (es reicht ein leeres Objekt),
-das zweite Argument muss ein String sein (es reicht ein leerer String):
+das zweite Argument muss ein String sein (es reicht ein leerer String), das dritte
+Argument ist die relative URL:
 
 <javascript>
 window.history.pushState({}, "", hash);

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Demo Seite für AJAX Irrweg</title>
+  <link rel="shortcut icon" href="favicon.svg" type="image/svg">  
+  <style>
+    body {
+      display: grid;
+      grid-template-columns: 1fr 130px 900px 1fr;
+      grid-template-rows: 80px 1fr 210px;
+      grid-template-areas:
+        ".              headlineArea     headlineArea   ."
+        ".              navArea          mainArea       ."
+        ".              footerArea       footerArea     .";
+    }
+    header {
+      grid-area: headlineArea;
+    }
+    nav {
+      grid-area: navArea;
+    }
+    main {
+      grid-area: mainArea;
+    }    
+    footer {
+      grid-area: footerArea;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AJAX: Schlechtes Beispiel, no REST</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="1.html">Seite 1</a></li>
+      <li><a href="2.html">Seite 2</a></li>
+      <li><a href="3.html">Seite 3</a></li>
+      <li><a href="4.html">Seite 4</a></li>
+      <li><a href="5.html">Seite 5</a></li>
+    </ul>
+  </nav>
+  <main>
+    <p><b>Ajax</b> 
+      [<span title="Aussprache im Internationalen Phonetischen Alphabet (IPA)">ˈeidʒæks</span>] 
+      (auch <b>AJAX</b>; Akronym von englisch 
+      <i><span lang="en"><u>A</u>synchronous <u>J</u>avaScript <u>a</u>nd <u>X</u>ML</span></i>) 
+      bezeichnet ein Konzept der asynchronen Datenübertragung zwischen einem 
+      Browser und dem Server. 
+      Dieses ermöglicht es, HTTP-Anfragen durchzuführen, 
+      während eine HTML-Seite angezeigt wird, und die Seite zu verändern, 
+      ohne sie komplett neu zu laden.
+    </p>
+  </main>
+  <footer>
+
+  </footer>
+  <script>
+    function ajaxLoad(ev){
+      let target = ev.target;
+      console.log(`link ${target} geclickt, zeigt auf ${target.href}. Wird ignoriert!`);
+      ev.preventDefault();      
+      fetch(target.href).then(function(response) {
+        console.log("Response wird empfangen");
+        return response.text();
+      })
+      .then(function(html) {
+        console.log("Seite wurde aus dem Response herausgelesen");
+        document.querySelector('main').innerHTML = html;
+      });
+
+    }
+    document.addEventListener('DOMContentLoaded', function(){
+      console.log("converting all the navigation links to ajax loading");
+      let links = document.querySelectorAll('nav a');
+      for(link of links) {
+        link.addEventListener('click', ajaxLoad);
+      }
+    });
+  </script>
+</body>
+</html>
+

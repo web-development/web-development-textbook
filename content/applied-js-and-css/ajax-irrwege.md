@@ -14,11 +14,10 @@ durch einfache Links verbunden sind. Wenn man AJAX kennen lernt, kommt man viell
 auf die Idee: statt normaler Links lädt man die neue Seite nur noch mit AJAX und ersetzt dann den Inhalt der aktuellen Seite. Was spricht
 dafür?
 
-- Man zeigt seine fortgeschrittenen Programmierkenntnisse (und kommt sich entsprechend cool vor)
 - Das Anzeigen der einzelnen Seite geht schneller, da nur der Inhalt, nicht aber z.B. der HTML `<head>` ausgetauscht werden muß. Damit entfällt meist auch das Laden von CSS und Javascript ressourcen.
 
-Nun surfen wir durch diese Site und beobachten in Firebug welche http-Requests
-gemacht werden
+Nun surfen wir durch diese Site und beobachten in den Developer Tools welche http-Requests
+gemacht werden: [Demo Seite](/images/ajax-bad/)
 
 ![AJAX statt normaler Links - eine schlechte Idee](/images/ajax-bad.png)
 

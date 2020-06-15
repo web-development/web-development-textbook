@@ -38,7 +38,26 @@ unten auf derselben Seite.
 
 Die Lösung: langsam scrollen.
 
-## Normalen Link verhindern
+## Mit CSS: scroll-behaviour
+
+Seit Jänner 2020 
+[unterstütz auch Edge](https://caniuse.com/#feat=css-scroll-behavior)
+die css property
+[scroll-behaviour](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior)
+
+<css>
+html {
+  scroll-behavior: smooth;
+}
+</css>
+
+
+
+## Mit Javascript
+
+Diese Erklärung ist nicht mehr nötig, die Lösung mit CSS ist besser.
+
+### Normalen Link verhindern
 
 Als ersten Schritt setzen wir einen EventListener
 um das `click` event
@@ -65,7 +84,7 @@ Teil der URL interessiert. Den kann man mit der Methode `hash` auslesen:
 let hash = this.hash; // z.B. '#order'
 </javascript>
 
-## Zum Element hin Scrollen
+### Zum Element hin Scrollen
 
 Die DOM-Methode [scrollIntoView](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView)
 erledigt das eigentliche Scrollen zum Element hin.
@@ -74,7 +93,7 @@ erledigt das eigentliche Scrollen zum Element hin.
 document.querySelector(hash).scrollIntoView({ behavior: "smooth" });
 </javascript>
 
-## Kompatibilität
+### Kompatibilität
 
 Die Funktion scrollIntoView wird nicht von allen Browsern implementiert.
 Woher kann ich das wissen? Wie kann man damit umgehen?
@@ -88,7 +107,7 @@ und IE nicht implementiert. Unter dem Tab "Resourcse" liefert die Seite
 auch gleich eine Lösung: Ein [polyfill](http://iamdustan.com/smoothscroll/) - eine Javascript Libary
 die die fehlende Funktionalität implementiert: [smooth scroll behavior polyfill](http://iamdustan.com/smoothscroll/).
 
-## Der Browser funktioniert nicht mehr
+### Der Browser funktioniert nicht mehr
 
 Da wir mit `event.preventDefault` die "normale" Behandlung des Links verhindert
 haben, wird auch die URL nicht mehr korrekt gesetzt und im Browser angezeigt.
@@ -114,7 +133,7 @@ im Navigationsmenü der Pizzaria-Seite die URL nicht verändert haben zählen si
 Wenn wir die erwartete Funktionsweise des Browsers wiederherstellen wollen,
 müssen wir die korrekte URL setzen.
 
-## Korrekte URL setzen
+### Korrekte URL setzen
 
 Welche Seiten in welcher Reihenfolge angesurft wurden ist im Browser gespeichert,
 und in Javascript durch das `window.history` Objekt dargestellt. Auf dieses
@@ -142,7 +161,7 @@ Argument ist die relative URL:
 window.history.pushState({}, "", hash);
 </javascript>
 
-## Fertig
+### Fertig
 
 Wenn wir alles richtig programmiert haben funktioniert nun das Navigations-Menü
 wieder: bei klick wird langsam zum entsprechenden Teil der seite gescrollt, und die URLs

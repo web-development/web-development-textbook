@@ -41,9 +41,9 @@ Die Lösung: langsam scrollen.
 ## Mit CSS: scroll-behaviour
 
 Seit Jänner 2020 
-[unterstütz auch Edge](https://caniuse.com/#feat=css-scroll-behavior)
+[unterstützt auch Edge](https://caniuse.com/#feat=css-scroll-behavior)
 die css property
-[scroll-behaviour](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior)
+[scroll-behaviour](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior):
 
 <css>
 html {
@@ -51,6 +51,7 @@ html {
 }
 </css>
 
+Damit ist die Aufgabe erledigt.
 
 
 ## Mit Javascript

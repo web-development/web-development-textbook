@@ -122,7 +122,7 @@ var socket = io();
 let form = document.getElementsByTagName('form')[0];
 let input = document.getElementById('m');
 form.addEventListener('submit', function() {  
-  socket.emit('chat message', $('#m').val());
+  socket.emit('chat message', m.value );
   m.value="";
   return false;
 });

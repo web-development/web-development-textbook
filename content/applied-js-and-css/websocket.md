@@ -22,7 +22,7 @@ Aber nach dem ersten Request wird die TCP Verbindung auf Dauer aufrechterhalten,
 und Client und Server wechseln in das eigentlih Websocket Protokoll:
 
 
-```
+<plain>
 GET /chat HTTP/1.1
 Host: server.example.com
 Upgrade: websocket
@@ -37,7 +37,7 @@ Upgrade: websocket
 Connection: Upgrade
 Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo=
 Sec-WebSocket-Protocol: chat 
-```
+</plain>
 
 Nach diesem ersten Austausch müssen sowohl Server als auch Client
 jederzeit mit eingehenden Nachrichten umgehen.
@@ -68,84 +68,80 @@ Für die Programmierung am Server kann man PHP, Ruby,.... alle typischen
 Backend-Programmiersprachen verwenden.  Wir nutzen die Gelegenheit
 um `node.js` kennen zu lernen. Damit kann man das Backend in JavaScript programmieren.
 
+Ryan Dahl hat node.js im Jahr 2009 herausgebracht. Es war nicht die erste
+Möglichkeit JavaScript am Server zu Verwenden, aber die erste die echten Erfolge hatte.
+
+Node und der dazugehöriger package manager `npm` werden heute nicht
+nur im Backend Development verwendet, sondern auch sehr viel als Werkzeug
+für das Frontend Development.
+
+Für Node zu programmieren ist nicht einfach: wie im Browser, so wird auch in
+Node viel mit Asynchronen Aufrufen gearbeitet. 
+
+glitch
+----
+
+
 Node.js kann man [am eigenen Rechner installieren](https://nodejs.org/en/download/), das
 ist aber für diese Beispiel nicht nötig. Wir verwenden [https://glitch.com/](https://glitch.com/):
 
 ![](/images/websockets/glitch.png)
 
-Damit enfällt das nochladen des Codes auf einen Server.
+Damit enfällt das hochladen des Codes auf einen Server.
+
 
 Socket.io
 ----
 
-socket.io
-Library for both server and client side JS code
-Needs express as a basis
-
-WARNING: 
-socket.io will automatically host some files needed on the client side under the URL /socket.io/  Do not attempt to change this!
-
-
-Load in client:
-
-```
-<script src="socket.io/socket.io.js"></script>
+`socket.io` ist eine JavaScript Library für die Client und die Server-Seite
+von Websocket verbindungen. 
 ```
 
-
-## Overview
-
-
-```
-const app = require('express')();
-const http = require('http').Server(app);
-const io = require('socket.io')(http);
-const port = process.env.PORT || 5000;
-
-app.use(express.static('public'));
-
-http.listen(port, function(){
-  console.log("webserver started");
-});
-
-io.on(…)
-
-// export app so we can test it
-exports = module.exports = app;
-
-```
 
 ## Client
 
-```
+Am Client ist bereits eine Eingabefeld für Chat-Messages vorhanden.
+Alle Chat-Messages sollen in der Liste mit der id `messages` angezeigt werden:
+
+<htmlcode>
 <ul id="messages"></ul>
 <form action="">
-  <input id="m" autocomplete="off" /><button>Send</button>
+  <input id="m" autocomplete="off" />
+  <input type="submit" value="Senden" />
 </form>
-<script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
 <script src="socket.io/socket.io.js"></script>
-```
+</htmlcode>
 
-Sending messages to the server:
+An den Server senden:
+----
 
-```
-<script>
-  var socket = io();
-  $('form').submit(function(){
-    socket.emit('chat message', $('#m').val());
-    $('#m').val('');
-    return false;
-  });
-</script>
-```
+Zuerst senden:
 
-Recieving messages from the server:
+<javascript>
+var socket = io();
+let form = document.getElementsByTagName('form')[0];
+let input = document.getElementById('m');
+form.addEventListener('submit', function() {  
+  socket.emit('chat message', $('#m').val());
+  m.value="";
+  return false;
+});
+</javascript>
 
-```
+
+Dann empfangen: 
+
+
+<javascript>
+  let list = document.getElementById('messages');
+
   socket.on('chat message', function(msg){
-    $('#messages').append($('<li>').text(msg));
+    let li = document.createElement('li');
+    li.text = msg;
+    list.appendChild(li);   
+    list.scrollTop = list.scrollHeight;
   });
-```
+</javascript>
 
 
 

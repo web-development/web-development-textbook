@@ -7,24 +7,34 @@ Wie im vorigen Kapitel gelernt ist AJAX die englische Abkürzung für „Asynchr
 Javascript und XML“. Mit AJAX kann man Webseiten verbessern – man kann sie aber
 auch verschlechtern.
 
-## Schlechte Verwendung von AJAX
+## AJAX statt Links - die Idee
 
-Stellen Sie sich vor Sie haben eine Website mit 8 statischen HTML-Seiten, die
-durch einfache Links verbunden sind. Wenn man AJAX kennen lernt, kommt man vielleicht
-auf die Idee: statt normaler Links lädt man die neue Seite nur noch mit AJAX und ersetzt dann den Inhalt der aktuellen Seite. Was spricht
-dafür?
+Stellen Sie sich vor Sie haben eine Website mit 5 statischen HTML-Seiten, die
+durch einfache Links verbunden sind. 
 
-- Man zeigt seine fortgeschrittenen Programmierkenntnisse (und kommt sich entsprechend cool vor)
-- Das Anzeigen der einzelnen Seite geht schneller, da nur der Inhalt, nicht aber z.B. der HTML `<head>` ausgetauscht werden muß. Damit entfällt meist auch das Laden von CSS und Javascript ressourcen.
+[Demo Seite](/images/ajax-good/)
 
-Nun surfen wir durch diese Site und beobachten in Firebug welche http-Requests
-gemacht werden
+Wenn man AJAX kennen lernt, kommt man vielleicht
+auf die Idee: statt normaler Links lädt man die neue Seite nur noch mit AJAX und ersetzt dann den Inhalt der aktuellen Seite. Was spricht dafür?
 
-![AJAX statt normaler Links - eine schlechte Idee](/images/ajax-bad.png)
+- Keine Code-Wiederholung: head, footer muss nur einmal, in der erste Seite, gespeichert werden
+- die einzelnen Seite wir kleiner, das Laden der Seite entsprechend schneller
+- es entfällt das erneute checken/laden von CSS und Javascript Ressourcen.
+
+## Beispiel
+
+Nun surfen wir durch diese Site und beobachten in den Developer Tools welche http-Requests
+gemacht werden: [Demo Seite](/images/ajax-bad/)
+
+![AJAX statt normaler Links - in den developer tools](/images/ajax-bad.png)
 
 Beim Anklicken des „Links“ wird jeweils ein GET
 Request abgesetzt. Aber: die URL in der Adresszeile des Browsers bleibt immer
 gleich. Keine der „Seiten“ hat eine eigene URL.
+
+
+## Keine URL, viele Probleme
+
 Das hat viele Auswirkungen, unter anderem:
 
 - Man kann keinen Link zu einer bestimmten Seite setzen – nur zur „Startseite“
@@ -34,7 +44,8 @@ Das hat viele Auswirkungen, unter anderem:
 Vergleicht man Vor- und Nachteile sieht man schnell, dass in diesem Fall die
 Version ohne AJAX (ganz normale Links) besser wäre.
 
-§
+
+## Single Page Apps
 
 Um das Problem der "fehlendes URLs" zu lösen gibt es in der
 "History API" die Methoden `pushState` und `replaceState`.
@@ -43,7 +54,7 @@ Damit kann man für die verschiedenen Zustände innerhalb ein und deselben
 HTML Dokuments jeweis eine URL definieren. Damit funktionieren das
 verlinken, Lesezeichen setzen, u.s.w. wieder.
 
-Webseite die Javascript und pushState in dieser weise nutzen nennt
+Webseite die Javascript und pushState in dieser Weise nutzen nennt
 man "Single Page Apps" (SPA).
 
 ## Siehe auch

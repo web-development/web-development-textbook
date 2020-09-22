@@ -32,13 +32,13 @@ und bei Textareas als Inhalt des Tags:
 
 Achtung: Falls in den Daten Anführungszeichen, kaufmännische Unds oder
 Kleiner-Zeichen vorkommen müssen diese für HTML escaped werden.  Hier ein
-Beispiel in MySQL:
+Beispiel:
 
 <sql>
 portfolio_playground=# select firstname,description from users where id=438;
      firstname      |          description
 --------------------+--------------------------------
- Tobias "der Coder" | Mein Lieblings-Tag ist <style>
+ Tobias "the Coder" | Mein Lieblings-Tag ist <style>
 (1 row)
 </sql>
 
@@ -121,7 +121,7 @@ Wenn hier in der Description „Mein Lieblings-Tag ist &lt;style&gt;“ steht, u
 $username    = htmlspecialchars( $person->username     );
 $firstname   = htmlspecialchars( $person->firstname    );
 $surname     = htmlspecialchars( $person->surname      );
-$description = htmlspecialchars( $person->description' );
+$description = htmlspecialchars( $person->description  );
 
 echo <<<EOM
   <p>$anrede $vorname $nachname hat insgesamt 

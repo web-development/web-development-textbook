@@ -16,7 +16,7 @@ dass mehr Informationen angezeigt werden,
 insbesondere auch die Zugriffsrechte:
 
 <shell caption="Dateien und Ordner auflisten inklusive geheimer Dateien">
-bash-3.2$ ls -la
+$ ls -la
 total 12
 drwxr-xr-x   14 bjelline staff  476 Mär  2 09:29 .
 drwxr-xr-x+ 232 bjelline staff 7888 Mär  2 09:29 ..
@@ -77,15 +77,29 @@ auflisten, aber keine neuen Dateien anlegen.
 ## Zugriffsrechte setzen mit chmod
 
 <shell>
-bash-3.2$ ls -la public_html/index.html 
+$ ls -la public_html/index.html 
 -rw------- 1 bjelline bjelline 20 Nov  6  2012 public_html/index.html
 
-bash-3.2$ chmod go+r public_html/index.html
+$ chmod go+r public_html/index.html
 
-bash-3.2$ ls -la public_html/index.html 
+$ ls -la public_html/index.html 
 -rw-r--r-- 1 bjelline bjelline 20 Nov  6  2012 public_html/index.html
 </shell>
 
 <shell>
-bash-3.2$ chmod 644 public_html/index.html 
+$ chmod 644 public_html/index.html 
 </shell>
+
+
+
+## Sticky 
+
+Wenn man das sticky bit am Directory setzt, dann wird
+jede Datei die in das Directory kopiert wird automatisch
+dem Owner gehören.
+
+<shell>
+$ chmod g+s img
+</shell>
+
+![Wie man das Stick bit am Directory setzt und Warum](images/kommandozeile/better-permissions-explained.png)

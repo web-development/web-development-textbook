@@ -53,3 +53,7 @@ Von David DeSandro gibt es ein ausführliches [Tutorial](http://desandro.github.
 
 Im Zweifelsfall sollten Sie immer die einfachste technische Lösung
 für ihr Problem wählen. Bei Grafik kann das ganz oft einfaches HTML + CSS sein.
+
+## Siehe auch
+
+* [https://tobiasahlin.com/moving-letters/ Animation mit CSS] von Tobias Ahlin

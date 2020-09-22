@@ -5,7 +5,7 @@ order: 70
 
 Regular Expressions sind eine kleine "Programmiersprache in der Programmiersprache",
 eine besondere Schreibweise die es erlaubt in Strings nach Mustern zu suchen
-und Ersetzungen vorzunehmen.  
+und Ersetzungen vorzunehmen.
 
 §
 
@@ -17,16 +17,26 @@ Basierend auf [http://xkcd.com/208/](http://xkcd.com/208/) von Randall Munroe - 
 
 §
 
-Regular Expressions sind keine Besonderheit von Javascript. Viele UNIX Kommandozeilen-Befehle
-und die meisten Programmiersprachen bieten Regular Expressions an.  Egal ob Sie also mit vi, grep, mod_rewrite,
+Regular Expressions sind keine Besonderheit von Javascript.
+und die meisten Programmiersprachen bieten Regular Expressions an. Egal ob Sie also mit vi, grep, mod_rewrite,
 Javascript, C++ oder Ruby arbeiten, alles was Sie über Regular Expressions lernen
 zahlt sich aus!
 
-[Reguläre Ausdrücke](http://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck) sind 
+Auch in Kommandozeilne Befehlen (vi, sed) und Editoren gibt es Regular Expressions, z.B. in Visual Studio Code:
+
+![](/images/advanced-javascript/vscode.png)
+
+Vielleicht kennst Du Regular Expressions also schon? Wie schätzt Du Dich selbst ein? ⭐? 🌧?
+
+§
+
+[Reguläre Ausdrücke](http://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck) sind
 ein Konzept aus der Theoretischen Informatik. Diese ursprünglichen regulären Ausdrücke
-bieten nur 3 Operatoren an.  Bei der Umsetzung in diversen UNIX-Tools und Programmiersprachen
-wurden mehr und mehr Operatoren eingeführt. Zur unterscheidung nenne ich diese
-erweiterten Ausdrücke mit dem englischen Begriff Regular Expressions oder kurz RegEx.
+bieten nur 3 Operatoren an. Bei der praktischen Umsetzung wurden mehr und mehr Operatoren hinzugefügt.
+
+Diese Kapitel beschreibt die praktische Umsetzung, und nicht den Begriff aus der theoretischen Informatik.
+
+§
 
 Regular Expressions nennt man oft auch Muster (en: patterns), man spricht von
 Mustersuche (en: pattern matching). Wenn ein Muster auf ein Zeichenkette zutrifft
@@ -46,9 +56,11 @@ if( s.match(/greif/) ) {
 
 Hier wird im String "begreifen" nach dem String "greif" gesucht.
 Falls er gefunden wird (ja, wird er), gibt die Match-Methoden einen
-Wert zurück, der als wahr gilt.  
+Wert zurück, der als wahr gilt.
 
-Für diesen einfachen Fall wird man aber nicht eine RegEx verwenden,
+§
+
+Für diesen einfachsten Fall wird man aber nicht eine RegEx verwenden,
 sondern `indexOf`: diese Methode gibt -1 zurück falls der String
 nicht gefunden wurde, und die Position der Fundstelle anderfalls.
 
@@ -58,7 +70,6 @@ if( s.indexOf('greif') > -1) {
   console.log("greif gefunden!");
 }
 </javascript>
-
 
 ## Zeichenkette
 
@@ -71,7 +82,6 @@ ist die Suche erfolgreich:
 /hallo/
 </javascript>
 
-
 <patterntester name="hallo" pattern="hallo">
 hallo
 aber hallo!
@@ -82,7 +92,7 @@ Hallo
 
 ## Alternative
 
-Mit dem senkrechten Strich `|`  kann man Alternative definieren, er
+Mit dem senkrechten Strich `|` kann man Alternative definieren, er
 entspricht also einem logischen "oder";
 
 <javascript>
@@ -95,6 +105,218 @@ sk
 uk
 ukulele
 esuu
+</patterntester>
+
+## Verankern
+
+Mit den Zeichen Zirkumflex `^` und Dollar `$` kann die Suche am
+Anfang bzw. Ende der Strings verankert werden.
+
+<javascript>
+/^Am Anfang war/
+/dann leben sie noch heute.$/
+/^Ganzer String$/
+</javascript>
+
+<patterntester name="countries" pattern="^(en|sk|us|uk)$">
+en
+sk
+uk
+ukulele
+Maske
+schlafen
+</patterntester>
+
+Achtung: der Zirkumflex `^` hat auch noch andere Bedeutungen (wenn er nicht am Anfang des Patterns steht).
+
+## Zeichen-Klassen
+
+Wenn für ein Zeichen im String mehrere Zeichen zur
+Auswahl stehen fasst man sie in einer "Zeichen-Klasse" (en: "character class") zusammen:
+
+<javascript>
+/[aeiou]/
+</javascript>
+
+Achtung! Eine Erwähnung der Zeichenklasse matched genau ein Zeichen im String, nicht mehrere Zeichen!
+
+<patterntester name="hallos" pattern="hall[oia]">
+halli
+hallo
+halla
+halloi
+hall
+hallö
+</patterntester>
+
+## Zeichen-Klasse mit Zeichenbereich
+
+Mit einem Bindestrich `-` innerhalb der Klasse kann
+man einen Bereich von Zeichen angeben, die im Zeichensatz hintereinander
+stehen.
+
+Die folgenden beiden pattern sind also gleichbedeutend:
+
+<javascript>
+/[abcdef]/
+/[a-f]/
+</javascript>
+
+<patterntester name="buchstaben" pattern="[a-z]">
+a
+b
+c
+x
+y
+z
+A
+.
+%
+</patterntester>
+
+## Komplement der Zeichen-Klasse
+
+Mit dem Zirkumflex `^` kann man das Komplement der Zeichen-Klasse bilden,
+es werden dann alle Zeichen gematched die **nicht** in der eckigen
+Klammer erwähnt werden:
+
+<javascript>
+/[^aeiou]/
+</javascript>
+
+<patterntester name="U-Bahnen" pattern="u[^1234]">
+u1
+u2
+u3
+u4
+u5
+u6
+usa
+</patterntester>
+
+Achtung: das war die zweite Bedeutung des Zirkumflex `^`, wenn er am Anfang der Klasse steht.
+
+## Abkürzungen für häufig benutze Zeichenklassen
+
+<javascript>
+/\d/       eine Ziffer, entspricht /[0-9]/
+/\D/       keine Ziffer, entspricht /[^0-9]/
+/\w/       Wort-Zeichen, entspricht /[a-zA-Z0-9_]/
+/\W/       kein Wort-Zeichen, entspricht /[^a-zA-Z0-9_]/
+</javascript>
+
+<patterntester name="U-Bahnen" pattern="u\d">
+u1
+u2
+u3
+u4
+u5
+u6
+u9
+usa
+</patterntester>
+
+## Plus-Operator: mindestens einmal, oder mehrmals
+
+Der Plus-Operator erlaubt eine Wiederholung des vorigen Zeichens. Um also `"i"` und `"iiii"` und `"wir sind die Ritter die ni sagen"` zu matchen:
+
+<javascript>
+/i+/  
+</javascript>
+
+Der Operator kann auch auf Zeichenklassen oder Gruppen angewandt werden.
+
+<javascript>
+/\d+/
+</javascript>
+
+<patterntester name="Ziffern" pattern="\d+">
+1
+12
+123
+
+1a
+a123
+</patterntester>
+
+Wenn man sich den Operator als Schleife vorstellt kann
+bei jeder "Wiederholung" ein anderes Zeichen aus der Klasse oder eine
+andere Alternative gewählt werden:
+
+<javascript>
+/(do|re|mi)+/
+</javascript>
+
+## Übung
+
+Eine kurze Übung in [TDDbin](https://tddbin.com/): [Längenangaben finden](https://gitlab.mediacube.at/snippets/43)
+
+## Irgend ein Zeichen
+
+Der Punkt `.` steht für **ein** beliebiges Zeichen. Achtung, Verwechslungsgefahr:
+bei Pfadangaben hat das Fragezeichen `?` diese Funktion!
+
+<javascript>
+/^...$/       genau drei Zeichen
+</javascript>
+
+<patterntester name="Studiengang" pattern="^...$">
+NA
+MMT
+mmt
+   
+___
+MMT-B
+</patterntester>
+
+## Ein echter Punkt
+
+Da der Punkt `.` eine besondere Bedeutung in einer Regular Expression
+hat stellt sich die Frage: wie erkennt man dann einen echten Punkt?
+Die Antwort: man escaped die Sonderzeichen von RegEx mit einem Backslash `\`.
+
+<javascript>
+/\./     ein echter punkt
+</javascript>
+
+<patterntester name="Kapitel-Nummern" pattern="^\d\.\d$">
+1
+1.1
+1.2
+1.3
+2
+2.1
+2.2
+35
+35.1
+</patterntester>
+
+## Stern-Operator: beliebig viele
+
+Wir kennen schon den Plus-Operator. Der Stern-Operator erlaubt auch null Wiederholungen.
+
+Der Stern-Operator dient auch der Vervielfältigung: das davor stehende Zeichen
+kann nullmal, einmal oder mehrmals vorkommen:
+
+<javascript>
+/i*/  
+</javascript>
+
+## Fragezeichen-Operator: einmal oder keinmal
+
+Der Frage-Operator erlaubt 0 oder 1 vorkommen des Zeichens.
+
+<javascript>
+/\d?/  
+</javascript>
+
+<patterntester name="Ziffern" pattern="^\d?$">
+1
+12
+123
+
+1a
+a1
 </patterntester>
 
 ## Gruppieren und Merken
@@ -129,220 +351,9 @@ if( match = locale.match(/(de|fr)_(DE|CH)/ ) {
 }
 </javascript>
 
-## Verankern
+## Übung
 
-Mit den Zeichen Zirkumflex `^` und Dollar `$` kann die Suche am
-Anfang bzw. Ende der Strings verankert werden.
-
-<javascript>
-/^Am Anfang war/
-/dann leben sie noch heute.$/
-/^Ganzer String$/
-</javascript>
-
-<patterntester name="countries" pattern="^(en|sk|us|uk)$">
-en
-sk
-uk
-ukulele
-Maske
-schlafen
-</patterntester>
-
-## Zeichen-Klassen
-
-Wenn für ein Zeichen im String mehrere Zeichen zur
-Auswahl stehen fasst man sie in einer "Zeichen-Klasse" (en: "character class") zusammen:
-
-<javascript>
-/[aeiou]/
-</javascript>
-
-Achtung!  Eine Erwähnung der Zeichenklasse matched genau ein Zeichen im String, nicht mehrere Zeichen!
-
-<patterntester name="hallos" pattern="hall[oia]">
-halli
-hallo
-halla
-halloi
-hall
-hallö
-</patterntester>
-
-## Zeichen-Klasse mit Zeichenbereich
-
-Mit einem Bindestrich `-` innerhalb der Klasse kann
-man einen Bereich von Zeichen angeben, die im Zeichensatz hintereinander
-stehen.
-
-<javascript>
-/[a-f]/
-</javascript>
-
-
-<patterntester name="buchstaben" pattern="[a-z]">
-a
-b
-c
-x
-y
-z
-A
-.
-%
-</patterntester>
-
-## Komplement der Zeichen-Klasse
-
-Mit dem Zirkumflex `^` kann man das Komplement der Zeichen-Klasse bilden,
-es werden dann alle Zeichen gematched die **nicht** in der eckigen
-Klammer erwähnt werden:
-
-<javascript>
-/[^aeiou]/
-</javascript>
-
-
-<patterntester name="U-Bahnen" pattern="u[^1234]">
-u1
-u2
-u3
-u4
-u5
-u6
-usa
-</patterntester>
-
-
-## Abkürzungen für häufig benutze Zeichenklassen
-
-<javascript>
-/\d/       eine Ziffer, entspricht /[0-9]/
-/\D/       keine Ziffer, entspricht /[^0-9]/
-/\w/       Wort-Zeichen, entspricht /[a-zA-Z0-9_]/
-/\W/       kein Wort-Zeichen, entspricht /[^a-zA-Z0-9_]/
-</javascript>
-
-
-<patterntester name="U-Bahnen" pattern="u\d">
-u1
-u2
-u3
-u4
-u5
-u6
-u9
-usa
-</patterntester>
-
-## Irgend ein Zeichen
-
-Der Punkt `.` steht für **ein** beliebiges Zeichen.  Achtung, Verwechslungsgefahr:
-bei Pfadangaben hat das Fragezeichen `?` diese Funktion!
-
-<javascript>
-/^...$/       genau drei Zeichen
-</javascript>
-
-
-<patterntester name="Studiengang" pattern="^...$">
-NA
-MMT
-mmt
-   
-___
-MMT-B
-</patterntester>
-
-## Ein echter Punkt
-
-Da der Punkt `.` eine besondere Bedeutung in einer Regular Expression
-hat stellt sich die Frage: wie erkennt man dann einen echten Punkt?
-Die Antwort: man escaped die Sonderzeichen von RegEx mit einem Backslash `\`. 
-
-<javascript>
-/\./     ein echter punkt
-</javascript>
-
-
-<patterntester name="Kapitel-Nummern" pattern="^\d\.\d$">
-1
-1.1
-1.2
-1.3
-2
-2.1
-2.2
-35
-35.1
-</patterntester>
-
-## Stern-Operator: beliebig viele
-
-Der Stern-Operator dient der Vervielfältigung: das davor stehende Zeichen
-kann beliebig oft Wiederholt werden, also null-mal, ein-mal oder mehr-mals vorkommen:
-
-<javascript>
-/i*/  
-</javascript>
-
-Der Operator kann auch auf Zeichenklassen oder Gruppen angewandt werden.
-Wenn man sich den Operator als Schleif vorstellt kann 
-bei jeder "Wiederholung" ein anderes Zeichen aus der Klasse oder eine
-andere Alternative gewählt werden:
-
-<javascript>
-/(do|re|mi)*/
-/\d*/
-</javascript>
-
-
-<patterntester name="Ziffern" pattern="^\d*$">
-1
-12
-123
-
-1a
-a1
-</patterntester>
-
-
-
-## Plus-Operator: mindestens einmal, oder mehrmals
-
-Der Plus-Operator ähnelt dem Stern-Operator, allerdings
-muss das Zeichen mindestens einmal vorkommen.
-
-<javascript>
-/\d+/  
-</javascript>
-
-<patterntester name="Ziffern" pattern="^\d+$">
-1
-12
-123
-
-1a
-a1
-</patterntester>
-
-
-## Fragezeichen-Operator: einmal oder keinmal
-
-Der Frage-Operator erlaubt 0 oder 1 vorkommen des Zeichens.
-
-<javascript>
-/\d?/  
-</javascript>
-
-<patterntester name="Ziffern" pattern="^\d?$">
-1
-12
-123
-
-1a
-a1
-</patterntester>
+Eine längere Übung in [TDDbin](https://tddbin.com/): [Längenangaben finden](https://gitlab.mediacube.at/snippets/43)
 
 ## Operatoren sind gierig
 
@@ -373,7 +384,7 @@ Die "altmodisch" Methode ist eine Komplement-Klasse:
 </javascript>
 
 Hier wird ein erstes o gematched, dann kommen (null bis viele) zeichen
-die kein o sind, und dann ein zweites o.  Damit ist der Pattern beendet,
+die kein o sind, und dann ein zweites o. Damit ist der Pattern beendet,
 auch wenn es später im String noch weitere o's geben würde.
 
 <patterntester name="BlaBla" pattern="_\[^_\]*_">
@@ -393,7 +404,6 @@ Operatoren: ein Fragezeichen wird nachgestellt
 /o(.+?)o/    
 </javascript>
 
-
 <patterntester name="BlaBla" pattern="_.*?_">
 zeugs und _bla_ und zeugs
 _bla_ und zeugs
@@ -401,6 +411,18 @@ zeugs und _bla_
 _bla_ und _bla_ und noch mehr _bla_
 </patterntester>
 
+## Mehrmals suchen
+
+Alle bisher geschriebenen Patterns werden mit der Funktion `match`
+einmal gesucht. Wenn ich in einem string aber mehrere Vorkommen
+finden will, braucht es das global-Flag:
+
+<javascript>
+m = "Nana nana nana nana batman".match(/na/);
+// findet das erste na
+m = "Nana nana nana nana batman".match(/na/g);
+// findet alle 7 nax
+</javascript>
 
 ## Warnhinweis: Was RegEx nicht kann
 
@@ -408,8 +430,11 @@ Mit dem letzten Beispiel könnte man nun in Versuchung kommen
 verschachtelte Ausdrücke wie HTML, XML, mathematische Ausdrücke, Programmiersprachen
 mit Hilfe von RegEx zu parsen.
 
-Das funktioniert aber nicht.  Das müssten Sie an dieser Stelle
+Das funktioniert aber nicht. Das müssten Sie an dieser Stelle
 einfach mal glauben - den Beweis überlassen wir der "Theoretischen Informatik".
+
+Die Frage ob das geht kommt immer wieder auf StackOverflow,
+hier ist die [Standard Antwort](https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags#answer-1732454).
 
 Wenn Sie also in Javascript oder PHP HTML oder XML parsen wollen, dann
 verwenden Sie dafür einen der vielen fertigen Parser.
@@ -438,7 +463,7 @@ s.replace(/Voldemort/g,
 </javascript>
 
 Achtung, auch hier kommt man bald an die Grenzen
-von Regular Expressions: 
+von Regular Expressions:
 
 <javascript>
 s = "Harry greift Voldemort an. Voldemorts Zauberstab bricht.";
@@ -447,8 +472,8 @@ s.replace(/Voldemort/g,
 </javascript>
 
 Dass im zweiten Satz ein anderer Fall notwendig wäre,
-und wie man das dann richtige formuliert, 
-kann eine Regular Expression nicht erkennen.  Dafür gibt es
+und wie man das dann richtige formuliert,
+kann eine Regular Expression nicht erkennen. Dafür gibt es
 eine eigene Wissenschaft: die [Computer-Linguistik](https://de.wikipedia.org/wiki/Computerlinguistik) beschäftigt
 sich mit der Analyse, Synthese und Übersetzung von natürlichen Sprachen.
 
@@ -459,22 +484,25 @@ sich mit der Analyse, Synthese und Übersetzung von natürlichen Sprachen.
 if (preg_match('/^(http)(s?)(:)\/\//',$linky)){ ...
 
 # Beispiel Sprache-Code
-if (preg_match ( "/en|sk|zh|us|uk/", $locale_code )){ ...
-</php>
 
+if (preg_match ( "/en|sk|zh|us|uk/", \$locale_code )){ ...
+</php>
 
 <php caption="Suchen mit RegEx in PHP">
 preg_match( "/regex/i", "string in dem ich suche") 
 </php>
 
+## Tools
+
+- [https://regexr.com/ regexr.com] ein CodePen für Regular Expressions
 
 ## Vertiefung
 
-* [Video: Lea Verou Demystifying Regular Expressions](http://www.youtube.com/watch?v=EkluES9Rvak)
-* [Regular Expressions Guide auf MDN](https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Regular_Expressions)
-* [Wikipedia: Regular Expression](http://de.wikipedia.org/wiki/Regular_Expression)
+- [Video: Lea Verou Demystifying Regular Expressions](http://www.youtube.com/watch?v=EkluES9Rvak)
+- [Regular Expressions Guide auf MDN](https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Regular_Expressions)
+- [Wikipedia: Regular Expression](http://de.wikipedia.org/wiki/Regular_Expression)
 
 ## Merchandize
 
-* [XKCD T-Shirt](http://store-xkcd-com.myshopify.com/products/i-know-regular-expressions)
-* [to be or not to be T-Shirt](http://www.spreadshirt.de/to-be-or-not-to-be-that-is-the-question-t-shirts-C4408A14434558/)
+- [XKCD T-Shirt](http://store-xkcd-com.myshopify.com/products/i-know-regular-expressions)
+- [to be or not to be T-Shirt](http://www.spreadshirt.de/to-be-or-not-to-be-that-is-the-question-t-shirts-C4408A14434558/)

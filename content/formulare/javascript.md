@@ -84,6 +84,8 @@ sich ein besonderer Programmierstil entwickelt: die ereignisgesteuerte
 Programmierung. Dieser Stil kommt immer Einsatz, wenn es um Schnittstellen zu Menschen geht,
 und auf die Eingaben von Menschen reagiert werden soll.
 
+Siehe auch [Crash Course Computer Science #26: Graphical User Interfaces](https://youtu.be/XIGSJshYb90?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo&t=316)
+
 ## Events im Browser
 
 Im Webbrowser sind solche Ereignisse z.B.: 

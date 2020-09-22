@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+  <radialGradient id="b" cx="29.288071" cy="15.720984" r="8.90208" fx="29.158466" fy="15.755712" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#fffcde"/>
+    <stop offset=".64485979" stop-color="#f6e76a"/>
+    <stop offset="1" stop-color="#ffb738"/>
+  </radialGradient>
+  <radialGradient id="c" cx="25.0527" cy="39.5928" r="15.7572" gradientTransform="matrix(1.25 0 0 -1.25 -6.479446 73.66448)" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#777"/>
+    <stop offset="1"/>
+  </radialGradient>
+  <radialGradient id="a" cx="24.714285" cy="38.57143" r="19.714285" gradientTransform="matrix(1 0 0 .333333 0 25.71429)" gradientUnits="userSpaceOnUse">
+    <stop offset="0"/>
+    <stop offset="1" stop-opacity="0"/>
+  </radialGradient>
+  <path fill="url(#a)" fill-rule="evenodd" d="m44.42857 38.57143a19.714285 6.5714288 0 1 1 -39.42857 0 19.714285 6.5714288 0 1 1 39.42857 0z" opacity=".531646"/>
+  <path d="m39.774755 19.008621a8.6620579 8.6620579 0 1 1 -17.324115 0 8.6620579 8.6620579 0 1 1 17.324115 0z" style="fill-rule:evenodd;stroke:#9c8c0a;stroke-width:.480044;stroke-linecap:round;stroke-linejoin:round;fill:url(#b)" transform="matrix(2.083142 0 0 2.083142 -40.54715 -16.49224)"/>
+  <path d="m39.774755 19.008621a8.6620579 8.6620579 0 1 1 -17.324115 0 8.6620579 8.6620579 0 1 1 17.324115 0z" style="opacity:.677215;fill:none;stroke:#fff;stroke-width:.505106;stroke-linecap:round;stroke-linejoin:round" transform="matrix(1.979782 0 0 1.979782 -37.33128 -14.52746)"/>
+  <path fill="#fff" d="m34.014268 32.036842c-3.723574-4.164012-5.562409-5.631281-9.551776-5.631281-3.901179 0-6.499672 1.688046-9.375 5.984835 3.433297-2.348813 5.309632-3.649496 9.109835-3.649496 3.711839 0 5.751077 1.050699 9.816941 3.295942z" opacity=".36"/>
+  <path fill="url(#c)" d="m34.014268 31.329738c-3.723574-4.164012-5.562409-5.631281-9.551776-5.631281-3.901179 0-6.499672 1.688046-9.375 5.984835 3.433297-2.348813 5.309632-3.649496 9.109835-3.649496 3.711839 0 5.751077 1.050699 9.816941 3.295942z"/>
+  <path fill="#fff" d="M21.398158 15.321428c0 2.5-1.125 4.5-2.5 4.5s-2.625-2-2.625-4.5 1.125-4.5 2.5-4.5 2.5 2 2.5 4.5zM30.688512 15.321428c0 2.5-1.125 4.5-2.5 4.5s-2.5-2-2.5-4.5 1.125-4.5 2.5-4.5 2.5 2 2.5 4.5z" opacity=".36" transform="translate(.353553 2.392706)"/>
+  <path d="M21.398158 14.696428c0 2.5-1.125 4.5-2.5 4.5s-2.5-2-2.5-4.5 1.125-4.5 2.5-4.5 2.5 2 2.5 4.5zM30.688512 14.696428c0 2.5-1.125 4.5-2.5 4.5s-2.5-2-2.5-4.5 1.125-4.5 2.5-4.5 2.5 2 2.5 4.5z" transform="translate(.353553 2.392706)"/>
+</svg>

@@ -13,9 +13,9 @@ Die Idee ist dabei immer die Gleich: man baut die Webseite zuerst ohne Javascrip
 
 Von dieser Herangehensweise profitieren nicht nur Blinde, Menschen mit veralteten Browsern oder exotischen Ausgabegeräte. Auch für Suchmaschinen wie Google oder andere Programme die die Information aus den Webseiten weiter verarbeiten ist dieses Prinzip hilfreich.
 
-Um zu testen, ob das wirkliche funktioniert kann man ganz einfach mit dem Firefox-AddOn QuickJava testen. Wie hier gezeigt kann Javascript mit einem Klick deaktiviert werden.
+Um zu testen, ob das wirkliche funktioniert kann man ganz einfach mit dem AddOn [Disable JavaScript](https://addons.mozilla.org/de/firefox/addon/disable-javascript/) (in Firefox und Chrome) testen. Wie hier gezeigt kann Javascript mit einem Klick deaktiviert werden.
 
-![Abbildung 61: Javascript deaktivieren mit Javascript Toggle in Firefox](/images/javascript-toggle.png)
+![Disable JavaScript - die Icons](/images/javascript-dom/js-toggle.png)
 
 ## Grenzen von Graceful Degradation
 

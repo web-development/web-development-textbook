@@ -33,7 +33,7 @@ von Usernamen genau so geheim halten wie die Passwörter.
 ## Session ID wie Passwort schützen
 
 Das Protokoll HTTP ist stateless. Wenn man trotzdem UserInnen authentifizieren
-will, dann muss bei jedem Request eine authentifizierende Information, zum Beispiel eine Session-ID,
+will,  muss bei jedem Request eine authentifizierende Information, zum Beispiel eine Session-ID,
 mitgeschickt werden. Dies geschieht zum Beispiel in einem Cookie.
 
 Wenn es gelingt diese Information abzuhören und wieder zu verwenden,
@@ -43,18 +43,23 @@ gleich wieder verwendet.
 
 Um Passwörter ebenso wie Session Ids und Cookies vor dem Abhören zu
 schützen muss man den gesamten HTTP-Request verschlüssen - das ist über SSL/TLS möglich.
+
 Ein weiterer Punkt wo diese Informationen eventuell aufscheinen sind Logfiles.
-Auch beim Logging sollte man diese Informationen vorher ausfiltern oder verschlüsseln.
+Auch beim Logging sollte man diese Informationen vorher ausfiltern oder verschlüsseln:
+
 
 ## Nicht selbst implementieren
 
 Es ist sehr schwierig, ein sicheres Authentifizierungs- und Session-Management zu implementieren. Man sollte nicht auf eigene Lösungen setzen - Diese haben dann oft Fehler bei Abmeldung und Passwortmanagement, bei der Wiedererkennung der BenutzerInnen, bei Timeouts, Sicherheitsabfragen usw. Das Auffinden dieser Fehler kann sehr schwierig sein, besonders wenn es sich um individuelle Implementierungen handelt.
 
-PHP liefert bereits ein fertiges Session-System.
+PHP liefert nur ein Session-System. Frameworks wie [Symphony](https://symfony.com/doc/current/security.html#c-encoding-passwords) oder [Laravel](https://laravel.com/docs/7.x/authentication) liefern
+fertige Lösungen für den gesamten Login Prozess.
 
-## Passwörter nicht lesbar speichern
 
-Passwörter sollten niemals in der Datenbank gespeichert werden.
+## Selbst implementieren: Passwörter speichern
+
+
+Passwörter sollten niemals im Klartext in der Datenbank gespeichert werden.
 Statt dessen wir nur ein **Hash** des Passworts gespeichert.
 
 Beim Login wir das eingegebene Passwort dann wieder mit derselben Hash-Funktion
@@ -66,15 +71,15 @@ Mehr zum Speichern von Passwörtern im [OWASP Password Storage Cheat Sheet](http
 
 ## Neue Session bei Login / Logout / neuen Rechten
 
-Die "Session Fixation" Attacke funktioniert mit der Session Id. Ein Beispiel:
+Die "Session Fixation" Attacke funktioniert mit der Session ID. Ein Beispiel:
 
 Alyssa P. Hacker sendet einen Link an Peter Publikum. Dieser Link führt
-zur Bank von Peter Publikum, und gibt schon eine Session Id vor. Wenn sich
-Peter Publikum nun bei seinem Online-Banking einloggt, die Session Id aber
+zur Bank von Peter Publikum, und gibt schon eine Session ID vor. Wenn sich
+Peter Publikum nun bei seinem Online-Banking einloggt, die Session ID aber
 gleich bleibt, dann kann Alyssa P. Hacker mit der gleichen Session die Online Banking
 Seite aufrufen, und ist schon eingeloggt - als Peter Publikum.
 
-Um diese Art der Attacke zu vermeiden muss man beim Login und Logout jeweils eine neue Session starten.
+Um diese Art der Attacke zu vermeiden kann man beim Login und Logout jeweils eine neue Session starten.
 
 In PHP geht das mit folgenden Befehlen:
 

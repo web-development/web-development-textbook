@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.6.1'
+ruby '2.6.6'
 
 gem 'html-proofer'
 gem "rake"
@@ -15,3 +15,4 @@ gem "json"
 gem "listen"
 gem 'rb-fsevent', '~> 0.9'
 gem 'guard-nanoc'
+# gem 'nanoc-redirector' # ab nanoc 4

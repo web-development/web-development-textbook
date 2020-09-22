@@ -380,7 +380,7 @@ unterstützt:
 Vektor-Format, das Bild kann beliebig groß oder klein dargestellt werden.  
 
 
-### gif
+### gif and apng
 
 ![Beispiel für ein gif Bild: Animation](/images/das-web-und-html/example-gif.gif)
 
@@ -391,9 +391,10 @@ Gif“ enthält mehrere Bilder, die der Reihe nach angezeigt werden .
 
 Wurde früher für Bilder mit klaren Kanten, einfärbigen Flächen, wenigen 
 Farben verwendet, z. B. Comics, Logos.  Das macht man heute mit SVG.
-So bleiben nur die animierten gifs als Anwendungfall, und selbst die werden
-oft durch Video ersetzt.
+So bleiben nur die animierten gifs als Anwendungfall, und selbst durch 
+animierte png oder durch Video ersetzt.
 
+![Beispiel für ein animiertes png Bild: Animation](/images/das-web-und-html/example-apng.apng)
 
 ### jpg
 

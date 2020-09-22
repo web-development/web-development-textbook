@@ -11,6 +11,6 @@ kennen ist JSON.
 
 Die Deserialisierung ist dann der umgekehrte Vorgang: die Umwandlung des Strings in eine Datenstruktur.
 
-Der wichtige Tipp für PHP: JSON verwenden, [json_decode](https://www.php.net/manual/de/function.json-decode.php) und [json_encode](https://www.php.net/manual/de/function.json-encode.php) verwenden.
+Der wichtige Tipp für PHP:  [json_decode](https://www.php.net/manual/de/function.json-decode.php) und [json_encode](https://www.php.net/manual/de/function.json-encode.php) verwenden.
 
 - [OWASP Deserialization Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Deserialization_Cheat_Sheet.md)

@@ -10,16 +10,19 @@ Die OWASP beschreibt dieses Problem allgemein so:
 > Injection-Schwachstellen tauchen auf, wenn eine Anwendung nicht vertrauenswürdige Daten an einen Interpreter weiterleitet. Injection Schwachstellen sind weit verbreitet, besonders in altem Code; sie finden sich in SQL-, LDAP- und XPath-Anfragen, Systembefehlen, Programm-parametern usw.
 
 Wir haben im Kapitel [PHP DB Schreiben &rarr; Löschen](/php-db-schreiben/daten-loeschen/) schon SQL Injection behandelt.
-Zur Verhinderung von SQL-Injection steht uns in PHP die Prepared Statements zur Verfügung:
+Zur Verhinderung von SQL-Injection stellen Datenbanken Prepared Statements zur Verfügung. In PHP
+können wir sie so verwenden:
 
 <php caption="Prepared Statements verhindern SQL Injection">
 $query = $dbh->prepare('SELECT * FROM users WHERE id=?');
 $query->execute(array( $_GET['pid'] ) );
 </php>
 
-Mit dem `prepare` wird das SQL-Statement bereits vor-kompiliert. Die Daten,
+Mit dem `prepare` wird das SQL-Statement an die Datenbank geschickt,
+und dort bereits vor-kompiliert. Die Daten, 
 die als Input vom User/der Userin kommen werden mit `execute` an die Datenbank
-übergeben, können aber nicht mehr als SQL interpretiert werden.
+übergeben.  In diesem zweiten Schritt können sie aber nur mehr als
+Daten, nicht mehr als SQL interpretiert werden.
 
 ## Prepared Statement mit benannten Platzhaltern
 
@@ -43,6 +46,8 @@ $query->execute(array( $_GET['newsletter'] ) );
 $stm->execute();
 </php>
 
+![](/images/security/fire-extinguisher-fire.jpg)
+
 ## OWASP Empfehlungen
 
 Die OWASP empfiehlt:
@@ -59,4 +64,8 @@ Unabhängig von den oben genannten Punkt gilt noch die Empfehlung:
 
 - Der Web-Applikation nur minimale Zugriffsrechte zur Datenbank gewähren. Damit kann ein eventueller Schaden durch gelungen Injection minimiert werden.
 
-Siehe auch [SQL Injection Prevention Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.md)
+
+
+
+* Wir haben das Problem zuerst besprochen im Kaptiel [PHP DB Schreiben: Löschen](https://web-development.github.io/php-db-schreiben/daten-loeschen/)
+* Siehe auch [SQL Injection Prevention Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.md)

@@ -9,18 +9,18 @@ Die OWASP beschreibt dieses Problem allgemein so:
 
 > XSS-Schwachstellen treten dann auf, wenn die Anwendung von BenutzerIn X eingegebene Daten übernimmt und an den Browser anderer BenutzerInnen zurücksendet, ohne sie hinreichend zu validieren und zu escapen.
 
-Wenn meine Seite eine XSS-Schwachstelle enthält könnte folgendes geschehen:
+Als mögliche Auswirkung einer XSS-Schwachstelle beschreibt die OWASP:
 
 > Cookies (und damit auch Sessions) von BenutzerInnen meiner Seite können gestohlen werden, die Darstellung der Webseite kann verfälscht werden, eine automatische Weiterleitung auf andere Seiten, z.B. Malware-Seiten kann eingebaut werden.
 
-Der schlimmste Fall wäre die Installation eines sogenannten XSS Proxies, der es der AngreiferIn ermöglicht die Browser von BesucherInnen ferzusteuern.
+Der schlimmste Fall wäre die Installation eines sogenannten XSS Proxies, der es der AngreiferIn ermöglicht die Browser von BesucherInnen fernzusteuern.
 
 ## Cross Site?
 
 Diese Attacke wird "über die Bande gespielt", es ist ein Drama mit drei Rollen:
 
 - Hilda Harmlos stellt eine Webseite mit XSS-Schwachstelle aufs Netz, zum Beispiel mit einem Forum.
-- Alyssa P. Hacker erstellt einen Forum-Eintrag der die XSS-Schwachstelle ausnutzt.
+- Alyssa P. Hacker erstellt einen Forum-Eintrag, der die XSS-Schwachstelle ausnutzt.
 - Peter Publikum will das Forum lesen, und wird dabei attackiert.
 
 Es ist also nicht die Site der Hackerin, die hier gefählich ist, sondern eine andere, scheinbar
@@ -67,8 +67,40 @@ verwendet werden.  Ich speichere die Daten in einem möglichst neutralen Format
 in der Datenbank.  Bei der Ausgabe kenne ich den Kontext, und kann die
 richtige Escape-Funktion wählen.
 
+## Content Security Policy
+
+Eine Content Security Policy wird als Header im HTTP Response oder als
+META-Tag in HTML and den Client übermittelt.  Aktuelle Browser halten die Policy ein.
+
+Ein Beispiel für den HTTP Header: `Content-Security-Policy: default-src https:`
+
+
+Im HTML Code kann man den Meta-Tag mit Attribut `http-equiv` verwenden,
+um dieselbe Policy zu setzen:
+
+<htmlcode>
+    <meta http-equiv="Content-Security-Policy" content="default-src https:">
+</htmlcode>
+
+
+Diese Policy bewirkt zwei Dinge:
+
+- explizit: das Laden von weiteren Resourcen für diese Webseite (Bilder, Fonts, Javascript) wird nur über https erfolgen
+- implizit: script-Tags im HTML und der JavaScript-Befehl `eval` sind deaktiviert
+
+Falls man script-Tags im HTML zulassen will, kann man die option `unsave-inline` verwenden:
+
+```
+Content-Security-Policy: default-src https: 'unsafe-inline'
+```
+
 
 ## Mehr
 
-* Siehe [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md)
-* Wir haben das Problem zuerst besprochen im Kaptiel [PHP Datenbank: Daten Bearbeiten](https://web-development.github.io/php-db-schreiben/daten-editieren/)
+- Siehe [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md)
+- [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+- Wir haben das Problem zuerst besprochen im Kaptiel [PHP DB Schreiben: Daten Bearbeiten](https://web-development.github.io/php-db-schreiben/daten-editieren/)
+
+
+
+

@@ -17,7 +17,7 @@ h1,h2 {
   font-style: italic;
 
   letter-spacing: 0.2ex;  //  Abstand zw. Buchstaben
-  text-decoration: underline;  // unterstrichen
+  text-decoration: underline;  // unterstrichen - gefährlich!
   text-shadow: orange 0 -2px;  // Schatten Effekt
 }
 h1 {

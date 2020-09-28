@@ -29,7 +29,7 @@ Bei den relativen URLs muss man die URL des enthaltenden Dokuments
 und die relative URLs "zusammen—addieren", um zu einer absoluten URL zu kommen.
 
 Wenn die relative URL mit einem Schrägstrich (Slash) beginnt
-ersetzt sie den gesamten "Pfad" in der UL des enthaltenden Dokuments:
+ersetzt sie den gesamten "Pfad" in der URL des enthaltenden Dokuments:
 
     http://web-development.github.com/images/urls.html   
                                +     /images/you_are_here.jpg  = 

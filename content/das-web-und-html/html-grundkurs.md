@@ -377,7 +377,7 @@ unterstützt:
 
 ![Beispiel für ein SVG Bild: rechteck und kreis](/images/das-web-und-html/example-svg.svg)
 
-Vektor-Format, das Bild kann beliebig groß oder klein dargestellt werden.  
+Vektor-Format, das Bild kann beliebig groß oder klein dargestellt werden. Sehr beliebt für Icons, siehe auch [iconssear.ch](https://iconsear.ch/)
 
 
 ### gif and apng

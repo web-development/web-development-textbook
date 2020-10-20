@@ -16,13 +16,13 @@ Der linke Entwurf läßt keine kleine Bestellung zu. Die „Mindestbestellmenge�
 
 ## Hotel-Reservierung
 
-![Zwei Entwürfe für ein Formular zur Zimmer-Reservierung](/images/formulare/zimmer.png)
+![Zwei Entwürfe für ein Formular zur Zimmer-Reservierung](/images/formulare/v1-zimmer.png)
 
 Version 1: Ein Menü ermöglicht die Auswahl aus vorgegebenen Elementen.  Mit diesem Formular kann man nur ein, nicht aber zwei oder mehr Zimmer reservieren.  Version 2: Ein Text-Eingabefeld ermöglicht hier die Eingabe der Anzahl der Zimmer.  Es ist aber nicht möglich ein Einzel- plus ein Doppel-Zimmer zu reservieren.
 
 §
 
-![Zwei weitere Entwürfe für ein Formular zur Zimmer-Reservierung](/images/formulare/zimmer-2.png)
+![Zwei weitere Entwürfe für ein Formular zur Zimmer-Reservierung](/images/formulare/v2-zimmer.png)
 
 Version 3 ermöglicht durch die Eingabe der Anzahl die Reservierung jeder Kombination von Einzel- und Doppelzimmer. Version 4: Durch ein zusätzliches Textfeld können alle weiteren Probleme abgefangen werden
 

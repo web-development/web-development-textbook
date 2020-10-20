@@ -28,7 +28,7 @@ Version 3 ermöglicht durch die Eingabe der Anzahl die Reservierung jeder Kombin
 
 ## Redundanz
 
-Achtung: wenn Sie zu viele Eingabemöglichkeiten bieten entsteht Redundanz, dann können Sie die Bedeutung der Eingabe nicht mehr eindeutig erkennen.
+Achtung: wenn Sie zu viele Eingabemöglichkeiten bieten, entsteht Redundanz. Dann können Sie die Bedeutung der Eingabe nicht mehr eindeutig erkennen.
 
 
 ![Abbildung 47: Redundanz im Formular](/images/formulare/redundanz.png)

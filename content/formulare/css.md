@@ -58,6 +58,42 @@ form {
 }
 </css>
 
+### Welche Elemente in welche Spalten?
+
+Wenn die HTML-Tags innerhalb des Forms abwechseln `label` und `input` tags
+sind, dann landen sie automatisch in den richtigenspalten:
+
+
+<htmlcode caption="Formular HTML Code mit Grid">
+ <form>
+      <label for="customer_name">Name </label>
+      <input type="text" name="customer_name" id="customer_name" required>
+
+      <label for="phone_number">Phone </label>
+      <input type="tel" name="phone_number" id="phone_number">
+
+      <label for="email_address">Email </label>
+      <input type="email" name="email_address" id="email_address">
+      ...
+</htmlcode>
+
+### Absende-Button positionieren
+
+Der absende Button  `<input type="submit" value="Submit Booking">` würde
+so automatisch in der linken Spalte landen. Mit folgendem CSS-Code
+kann er in der rechten Spalte positiniert werden:
+
+<css>
+form > input[type=submit] {
+  grid-column: controls;
+}
+</css>
+
+Der name `controls` bezieht sich dabei auf die  mit `grid-template-columns`
+definierte Namen für die Linien.
+
+
+
 ### Grössere Zellen
 
 Die `fieldsets` sollen beide Spalten überspannen.
@@ -73,19 +109,7 @@ form > fieldset {
 Ein fieldset Tag der ein direktes Kind eines form Tags ist,
 soll zwei Spalten überspannen.
 
-### Absende-Button positionieren
 
-Der absende Button  `<input type="submit" value="Submit Booking">` soll
-nicht in der linken sonder in der rechten Spalte positiniert werden.
-
-<css>
-form > input[type=submit] {
-  grid-column: controls;
-}
-</css>
-
-Der name `controls` bezieht sich dabei auf die  mit `grid-template-columns`
-definierte Namen für die Linien.
 
 
 

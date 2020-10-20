@@ -3,7 +3,11 @@ title: Syntax von CSS
 order: 20
 ---
 
-Ein Beispiel
+
+Die CSS Spezifikation wird von der W3C herausgegeben: [https://www.w3.org/Style/CSS](https://www.w3.org/Style/CSS/#specs).
+
+
+### Ein Beispiel
 
 <css caption="Die Datei fh.css">
 h1,h2 {

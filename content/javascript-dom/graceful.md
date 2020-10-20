@@ -267,5 +267,6 @@ Damit sind beide Prinzipien voll erfüllt:
 
 ## Siehe auch
 
+- Andy Bell(2019)[The “P” in Progressive Enhancement stands for “Pragmatism”](https://hankchizljaw.com/wrote/the-p-in-progressive-enhancement-stands-for-pragmatism/) - mit einem sehr schönen Beispiel
 - Stuart Langridge(2019)[Everyone has JavaScript, right?](https://kryogenix.org/code/browser/everyonehasjs.html)
 - Archibald(2013)[Progressive Enhancement is Still Important](http://jakearchibald.com/2013/progressive-enhancement-still-important/)

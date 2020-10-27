@@ -63,7 +63,7 @@ Wichtige Argumente für den Einsatz von Stylesheets sind:
 Aber Achtung: CSS ist nicht die Lösung jedes Problems:
 
 * Um ein Stylesheet zu erstellen, muss die DesignerIn die HTML-Tags kennen, z. B. wissen, dass h1, h2, h3 für die Überschriften stehen.
-* Damit das Stylesheet wirkt, muss die RedakteurIn, die das HTML-Dokument erstellt, die richtigen HTML-Tags verwenden, z. B. Überschriften wirklich mit h1, h2, h3 formatieren, und nicht mit b, i, font.
+* Damit das Stylesheet wirkt, muss die RedakteurIn, die das HTML-Dokument erstellt, die richtigen HTML-Tags verwenden, z. B. Überschriften wirklich mit h1, h2, h3, p formatieren, und nicht mit b, i, br, font.
 
 
 Beispiel

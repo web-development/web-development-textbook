@@ -447,6 +447,17 @@ Unter der Adresse [https://jakearchibald.github.io/svgomg/](https://jakearchibal
 
 ![](images/grafik/svgomg.png)
 
+
+## Quellen von SVG
+
+Fertige Icons und Illustrationen:
+
+- [Icon Search](https://iconsear.ch/)
+- [undraw](https://undraw.co/illustrations)
+- [drawkit](https://www.drawkit.io/)
+- [Random Polygon Generator](https://codepen.io/netsi1964/pen/PZJEQe)
+
+
 ## Mehr
 
 - [RFC zu SVG](http://www.w3.org/TR/SVG11/)

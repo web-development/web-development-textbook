@@ -31,30 +31,26 @@ Mit dem Befehle  `session_start()`[*](http://www.php.net/manual/de/function.sess
   * die Session an Hand des Cookies wieder identifiziert.
   * und die Daten wieder ins `$_SESSION`-Array geladen.
 
-Für unsere Applikation werden wir das `$_SESSION`-Array verwenden, um den Usernamen des angemeldeten Users zu speichern. 
+Für unsere Applikation werden wir das `$_SESSION`-Array verwenden, um den `username` der angemeldeten Person zu speichern. 
 
 ### Struktur der Applikation mit Login
 
 
-Die folgende Tabelle zeigt alle nochmal alle Seiten der Applikation im Überblick. 
-Diesmal ist auch die Methode angegeben, da login.php verschiedene Aufgaben hat,
+Die folgende Tabelle zeigt die Seiten der Applikation, die für
+das Login nötig sind. 
+Diesmal ist auch die Methode angegeben, da `login.php` verschiedene Aufgaben hat,
 je nachdem ob es mit GET oder POST aufgerufen wird.
 
 |Titel|Methode|Dateiname  |Parameter|Beschreibung|
 |+----|+------|+----------|+--------|+-----------|
-|Home |GET    |`index.php`|         |Zeigt Gesamtzahl der Personen und Werke an.| 
 |Login Formular|GET    |`login.php`|         |Zeigt das Formular für den Login an        | 
 |Login|POST   |`login.php`|username, passwort|Prüft die Daten, setzt Username in der Session, dann Redirect zu index.php| 
 |Logout|POST   |`logout.php`| | Löschte Session und Session-Cookie, dann Redirect zu index.php | 
-|Personen|GET |`personen.php`|   |Zeigt 10 zufällig ausgewählt Personen an, mit Links zu  person.php|
-|Details zu einer Person|GET|`person.php`|id (Schlüssel der Person)| Zeigt Details zu einer bestimmten Person an: Anzahl der Werke und Username|
-|Werke|GET    | `werke.php`|        |Zeigt 10 zufällig ausgewählt Werke an, mit Links zu werk.php| 
-|Details zu einem Werk|GET| `werk.php`|id (Schlüssel des Werks)| Zeigt Details zu einer bestimmten Werk an: Titel, Datum der Publikation, eventuell eine Liste der Beteiligten Personen und ihrer Rollen|
 {: class="table table-condensed table-bordered" style="width:auto"}
 
 ### session_start
 
-`session_start()` wird in `functions.php` ausgeführt, also bei jedem Aufruf einer der Seiten der Applikation. Die Applikation zeigt direkt in der Navigationsleiste die Login/Logout-Möglichkeit und den Namen des eingeloggten Users an:
+`session_start()` wird in `functions.php` ausgeführt, also bei jedem Aufruf einer der Seiten der Applikation. Die Applikation zeigt direkt in der Navigationsleiste die Login/Logout-Möglichkeit  an:
 
 
 ![Abbildung 146: Anzeige des Usernamens und Login/Logout-Möglichkeit](/images/image364.png)

@@ -18,7 +18,7 @@ an Hand von vier Beispielen:
 * Der Photo-Blog [Roads and Kingdoms](http://roadsandkingdoms.com/).
 
 
-Wordpress ist freie Software, d.h. nicht nur ist die Software gratis, sondern auch der source code ist zugänglich und unter der GNU General Public Licence 2 erhältlich.  Wordpress braucht PHP und eine MySQL Datenbank. 
+Wordpress ist freie Software, d.h. nicht nur ist die Software gratis, sondern auch der source code ist zugänglich und unter der GNU General Public Licence 2 erhältlich.  Wordpress braucht PHP und eine MySQL Datenbank. 
 
 
 ![Blog von photomatt](/images/photomatt.png)

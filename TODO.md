@@ -1,3 +1,5 @@
+* achtung: link zum nächsten kapitel funktioniert nicht in der folienansicht, wenn das nächste ein dex.md ist. weils davon keine folie gibt.
+
 * neue Security Kapitel ausformulieren
 * CORS gegen csrf, siehe https://news.ycombinator.com/item?id=17224772
 * auf variable font umstellen

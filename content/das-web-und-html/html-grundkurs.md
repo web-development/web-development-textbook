@@ -2,11 +2,11 @@
 title: HTML Grundkurs
 order: 30
 ---
-Wir werden HTML in der Version 5 verwendet. Die wichtigsten HTML-Tags (Links, Bilder, 
+Wir werden HTML die aktuelle Version verwendet. Die wichtigsten HTML-Tags (Links, Bilder, 
 Tabellen, Formulare) werden Sie bald auswendig können. Alle Details können Sie Intenet
 nachschlagen.
 
-HTML hat sich in den ca. 20 Jahren seines Bestehens weit entwickelt. Die Version 5 wurde im Jahr 2014 veröffentlicht und wird heute von allen Browsern unterstützt. 
+HTML hat sich in den ca. 20 Jahren seines Bestehens weit entwickelt. Die Version 5 wurde im Jahr 2014 veröffentlicht, danach gab es keine neuen Nummern mehr. 
 
 §
 
@@ -42,13 +42,15 @@ im selben Dokument nicht auch grieschische, hebräische, arabische, japanische
 Zeichen darstellen.  Mit utf-8 hat man den gesamten Zeichensatz der Menschheit
 zur Verfügung. Mein Empfehlung lautet: immer utf-8 verwenden.
 
- 
-![Auswahl des Charactersets „Unicode“  ](/images/das-web-und-html/charset-auswahl.png)
 
-Diese Abbildung zeigt wie die Charactersets in Windows- und Mac-Programmen
-dargestellt werden. Links im Bild, in Notepad, wird ISO 8859-1 als ANIS
-bezeichnet. Rechts im Bild, im Mac-Programm Textwrangler, ist die Bezeichnung
-klarer. 
+
+![](/images/das-web-und-html/vscodeutf8.png)
+
+So sieht das in Visual Studio Code aus wenn alles gut läuft:
+VS Code glaubt dass die Datei als utf-8 speichern soll,
+und der meta-tag sagt das auch.
+
+
 
 Sonderzeichen
 -------------
@@ -375,10 +377,10 @@ unterstützt:
 
 ![Beispiel für ein SVG Bild: rechteck und kreis](/images/das-web-und-html/example-svg.svg)
 
-Vektor-Format, das Bild kann beliebig groß oder klein dargestellt werden.  
+Vektor-Format, das Bild kann beliebig groß oder klein dargestellt werden. Sehr beliebt für Icons, siehe auch [iconssear.ch](https://iconsear.ch/)
 
 
-### gif
+### gif and apng
 
 ![Beispiel für ein gif Bild: Animation](/images/das-web-und-html/example-gif.gif)
 
@@ -389,9 +391,10 @@ Gif“ enthält mehrere Bilder, die der Reihe nach angezeigt werden .
 
 Wurde früher für Bilder mit klaren Kanten, einfärbigen Flächen, wenigen 
 Farben verwendet, z. B. Comics, Logos.  Das macht man heute mit SVG.
-So bleiben nur die animierten gifs als Anwendungfall, und selbst die werden
-oft durch Video ersetzt.
+So bleiben nur die animierten gifs als Anwendungfall, und selbst durch 
+animierte png oder durch Video ersetzt.
 
+![Beispiel für ein animiertes png Bild: Animation](/images/das-web-und-html/example-apng.apng)
 
 ### jpg
 
@@ -405,7 +408,7 @@ Besonders geeignet für Bilder mit Farbverläufen, z. B. Photos.
 In Wirklichkeit würde man die Kompressionsrate nicht so extrem hoch
 setzen wie im linken Drittel des Bildes.
 
-Die Variante "progressive jpg" macht die Wartezeit beim Laden des Bildes interessanter:
+Die Variante "progressive jpg" macht die Wartezeit beim Laden des Bildes interessanter.
 
 
 
@@ -420,7 +423,7 @@ Weniger Kompression als JPG, aber Alpha-Transparenz.
 ### Weitere Formate
 
 Es gibt noch viele weitere Bildformate die im Web benutzt werden können - mit etwas Aufwand.
-Aber für den Anfang reichen svg, gif, jpg und png aus. Diese Formate werden sicher von allen
+Aber für den Anfang reichen svg, jpg und png aus. Diese Formate werden sicher von allen
 Browsern unterstützt. 
 
 

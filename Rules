@@ -421,6 +421,7 @@ compile '*' do
   if item[:homepage]
     layout 'home'
   elsif item.identifier.match /\/dex\/$/
+    filter :slide_breaks
     layout 'dex'
   else
     filter :slide_breaks
@@ -434,6 +435,8 @@ route '*' do
   if item.binary? || item[:extension] == 'css' || item[:extension] == 'js' || item[:extension] == 'png' || item[:extension] == 'html' || item[:extension] == 'xml'
     # /foo/ -> /foo.ext
     #p item.identifier.chop + '.' + item[:extension]
+    item.identifier.chop + '.' + item[:extension]
+  elsif item[:extension] == 'txt'
     item.identifier.chop + '.' + item[:extension]
   elsif item[:extension] == 'html'
     item.identifier.chop + '.' + item[:extension]
@@ -459,7 +462,8 @@ compile '*', :rep => :slide do
   #filter filters[item[:extension].to_sym] || item[:extension].to_sym
   filter :slides
   if item[:homepage]
-  elsif item.identifier.match /\/dex\/$/
+    # noop
+#  elsif item.identifier.match /\/dex\/$/
   else
     layout 'slide'
   end
@@ -471,7 +475,7 @@ route '*', :rep => :slide do
   elsif item[:homepage]
     nil
   elsif item.identifier.match /\/dex\/$/
-    nil
+    item.identifier.gsub(/dex\//,'slide.html')
   else
     # /foo/ -> /foo/index.html
     item.identifier + 'slide.html'

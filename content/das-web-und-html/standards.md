@@ -70,7 +70,9 @@ im Web surfen.
 In den letzten Jahren haben mobile Geräte mit Internetzugang stark an Bedeutung 
 zugenommen: Smartphones und Tablets. 
 
-![Aufstieg und Fall des PCs, zitiert aus asymco.com/2012](/images/das-web-und-html/rise-and-fall-pc.png)
+![Anteil Desktop-Mobile-Tablet laut StatsCounter](/images/das-web-und-html/statcounter2009-2020.png)
+
+Statistik von [StatsCounter](https://gs.statcounter.com/platform-market-share/desktop-mobile-tablet/worldwide/#monthly-200901-202008)
 
 Auf diesen neuen Geräten gibt es auch Webbrowser - teilweise spezialisierte Software (Android Browser), teilweise
 adaptionen der klassischen Desktop Browser (Firefox).

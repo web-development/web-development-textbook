@@ -23,7 +23,7 @@ Hier werden die „PHP Database Objects“ (PDO) vorgestellt, siehe auch
 
 ### Verbindungsaufbau
 
-So funktioniert der Verbindung-Aufbau (und -Abbau) zur mysql-Datenbank:
+So funktioniert der Verbindung-Aufbau (und -Abbau) zur postgres-Datenbank:
 
 <php caption="new PDO für den Verbindungs-Aufbau">
 $dbh = new PDO($DSN, $DB_USER, $DB_PASS);

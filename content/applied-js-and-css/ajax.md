@@ -70,7 +70,81 @@ läuft vollständig ab.
 Wenn die Daten vom Server schließlich einlangen wird die Funktion `handle_data`
 aufgerufen und die Daten zu verarbeiten.
 
-### HTTP
+### Synchroner Ablauf wird nie unterbrochen
+
+Achtung: ein laufendes Javascript programm wird nie unterbrochen.
+Im letzten Code-Beispiel wird es nie passieren, dass zwischen Befehl3
+und Befehl4 niemals etwas anderes (z.B. handle_data) passieren!
+
+<javascript caption="asynchron">
+function handle_data(Antwort) {  
+   ... 
+} 
+ 
+Befehl1();
+Befehl2();
+asynchron_laden(url, handle_data);  // dauert kurz 
+Befehl3();                         // kurz darauf
+Befehl4();
+</javascript>
+
+
+
+### Asynchrones Beispiel: setTimeout
+
+Mit `setTimeout` kann man eine Funktion später (Angabe in Millisekunden) 
+ausführen lassen:
+
+<javascript caption="asynchron">
+function later() {
+  console.log("3 Sekunden später", Date.now());
+}
+
+console.log("tick", Date.now());
+setTimeout(later, 3000);
+console.log("tock", Date.now());
+console.log("tick", Date.now());
+console.log("tock", Date.now());
+</javascript>
+
+§
+
+Was passiert nun, wenn man den Timeout auf 0 setzt?
+
+<javascript caption="asynchron">
+function later() {
+  console.log("0 Sekunden später?", Date.now());
+}
+console.log("tick", Date.now());
+setTimeout(later, 0);
+console.log("tock", Date.now());
+console.log("tick", Date.now());
+console.log("tock", Date.now());
+</javascript>
+
+§
+
+Antwort: das Javascript-Programm wird nicht unterbrochen!
+
+<javascript caption="asynchron">
+function later() {
+  console.log("NICHT 0 Sekunden später!", Date.now());
+}
+console.log("tick", Date.now());
+setTimeout(later, 0);
+console.log("tock", Date.now());
+console.log("tick", Date.now());
+console.log("tock", Date.now());
+
+// Output in der Konsole:
+// tick 1588059630667
+// tock 1588059630668
+// tick 1588059630668
+// tock 1588059630668
+// nicht 0 Sekunden später 1588059630669
+</javascript>
+
+### Asynchrone HTTP Requests
 
 Betrachten wir nun den Ablauf für ein Textfeld mit Autocomplete-Funktion,
 wie in der obigen Abbildung gezeigt. Folgende Abbildung ist ein
@@ -133,7 +207,7 @@ eingebunden.
     ajaxRequest.addEventListener("load", handleCounterData);
     ajaxRequest.open("GET", "counter_ajax.php");
     ajaxRequest.send(); 
-    console.log("abgesendet, sofort weiter";   
+    console.log("abgesendet, sofort weiter");   
   </script>
 </body>
 </html>
@@ -176,6 +250,7 @@ eine neue Schreibweise für AJAX-Request mit dem Befehl `fetch`[mdn](https://dev
         console.log("counter wurde aus dem Response herausgelesen");
         // ...
       }); 
+    console.log("abgesendet, sofort weiter");   
   </script>
 </body>
 </html>
@@ -201,7 +276,8 @@ fetch("counter_ajax.php")
   .then(function(response) {
     console.log("Response wird empfangen");
     // tu ws mit response response
-  })
+  });
+console.log("abgesendet, sofort weiter");   
 </javascript>
 
 ### Chaining
@@ -210,7 +286,7 @@ Angenommen mit dem Ergebnis einer asynchronen Operation
 soll
 eine weitere asynchrone Operation aufgerufen werden.
 
-Mit Promises funktionert das mittels "aneinanderhängen" mit `then`:
+Mit Promises funktionert das mittels "aneinanderhängen" = "chaining" mit `then`:
 
 <javascript>
 fetch("counter_ajax.php")
@@ -223,6 +299,7 @@ fetch("counter_ajax.php")
     console.log("counter wurde aus dem Response herausgelesen");
     // ...
   }); 
+console.log("abgesendet, sofort weiter");   
 </javascript>
 
 Dieser Code kann mit Arrow-Functions noch kürzer werden:
@@ -234,6 +311,7 @@ fetch("counter_ajax.php")
     console.log("Text wurde aus dem Response herausgelesen");
     // tu was mit counter
   });
+console.log("abgesendet, sofort weiter");   
 </javascript>
 
 ### Fehlerbehandlung
@@ -247,9 +325,10 @@ fetch("counter_ajax.php")
   .then(function(counter) {
     console.log("Text wurde aus dem Response herausgelesen");
     // tu was mit counter
-  }).catch(error) {
+  }).catch(function(error) {
     console.log(error);
-  };
+  });
+console.log("abgesendet, sofort weiter");
 </javascript>
 
 Aber Achtung: wenn der HTTP-Response z.B. 404 oder 500 ist, löst das noch
@@ -259,6 +338,7 @@ man selbst behandeln:
 <javascript>
 fetch("counter_ajax.php")
   .then(function(response){ 
+    console.log("response status is", response.status);
     if (response.status !== 200) {
         throw new Error("Not 200 response");
     } 
@@ -266,9 +346,10 @@ fetch("counter_ajax.php")
   }).then(function(counter) {
     console.log("Text wurde aus dem Response herausgelesen");
     // tu was mit counter
-  }).catch(error) {
+  }).catch(function(error) {
     console.log(error);
-  };
+  });
+  console.log("abgesendet, sofort weiter");   
 </javascript>
 
 Siehe auch

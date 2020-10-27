@@ -6,22 +6,21 @@
     <style>
       img { 
         width: 1353px; height: 461px;
-        /* clip-path: polygon(0% 0%, 10% 0%, 10% 100%, 0% 100%, 0% 0%); */
       }
     </style>
   </head>
   <body>
     <h1>Bild in drei Versionen</h1>
     <ul>
-    <li>salzburg.jpg 1353x461 Auflösung, 248K Dateigröße</li>
-    <li>salzburg_2x.jpg 2706x922 Auflösung, 832K Dateigröße</li>
-    <li>salzburg_3x.jpg 4059x1383 Auflösung, 1.5MB Dateigröße</li>
-    <li>salzburg_4x.jpg 5412x1844 Auflösung,  2.4MB Dateigröße</li>
+    <li>salzburg_1353px.jpg 1353x461 Auflösung, 248K Dateigröße</li>
+    <li>salzburg_2706px.jpg 2706x922 Auflösung, 832K Dateigröße</li>
+    <li>salzburg_4059px.jpg 4059x1383 Auflösung, 1.5MB Dateigröße</li>
+    <li>salzburg_5412px.jpg 5412x1844 Auflösung,  2.4MB Dateigröße</li>
   </ul>
 
   <h2>der Code</h2>
 
-  <kbd>&lt;img src="salzburg.jpg" srcset="salzburg.jpg 1x, salzburg_2x.jpg 2x, salzburg_3x.jpg 3x, salzburg_4x.jpg 4x"&gt;</kbd>
+  <kbd>&lt;img src="salzburg.jpg" srcset="salzburg_1353px.jpg 1353w, salzburg_2706px.jpg 2706w, salzburg_4059px.jpg 4059w, salzburg_5412px.jpg 5412w"&gt;</kbd>
 
 
     <p>Bild in Größe 1353px mal 461px</p>

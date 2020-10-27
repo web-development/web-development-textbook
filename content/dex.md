@@ -45,7 +45,7 @@ Die Lernergebnisse von Teil 2 sind:
 - Ich kenne die **Schnittstelle** von Programmiersprache **zur Datenbank**, kann SQL Injections vermeiden, effiziente Abfragen durchführen, und Transaktionen verwenden.
 - Ich kenne die **REST-Prinzip** und beachte sie wenn ich meine Webapplikation plane.
 - Ich kenne das Sicherheitsproblem **Cross Site Scripting** und verwende Escaping um es in meiner Applikation zu vermeiden
-- Ich verwende **AJAX** um Daten in mein Frontend zu laden.
+- Ich verwende **fetch** um Daten in mein Frontend zu laden.
 - Ich kann die **Qualität** einer Webseite beurteilen. Ich kann mehrere Qualitäts-Kriterien benennen und kann sie bei einem spezifischen Projekt gegeneinander abwägen.
 
 ## Literatur, andere Quellen

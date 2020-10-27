@@ -3,7 +3,11 @@ title: Syntax von CSS
 order: 20
 ---
 
-Ein Beispiel
+
+Die CSS Spezifikation wird von der W3C herausgegeben: [https://www.w3.org/Style/CSS](https://www.w3.org/Style/CSS/#specs).
+
+
+### Ein Beispiel
 
 <css caption="Die Datei fh.css">
 h1,h2 {
@@ -23,11 +27,13 @@ p {
 
 ![](/images/css/rules-declarations.png)
 
+Sie können beliebig Zeilenumbrüche und Whitespace einfügen, beides wird ignoriert.
+
 Eine Stylesheet-Regel („Rule“) besteht aus einem Selektor gefolgt von einer geschwungenen Klammer die eine oder mehrere Deklarationen enthalten kann.
 
-Der einfachste Selektor besteht aus dem Namen eines einzelnen HTML-Tags. Sie können auch mehrere Elemente durch ein Komma trennen. In diesem Falle werden für alle Elemente die selben Style -Angaben definiert, (siehe h1,h2 in obigem Beispiel).
+Der einfachste Selektor besteht aus dem Namen eines einzelnen HTML-Tags. Es gibt aber auch komplexere Selektoren, wie im Beipiel "h1,h2".
 
-Sie können beliebig Zeilenumbrüche und Whitespace einfügen, beides wird ignoriert.
+Eine Deklaration besteht immer aus einem property, gefolgt von einem doppelpunkt, einem Wert und einem Strickpunkt. Der Wert kann wie im Beispiel bei der ersten Deklaration gezeigt komplex aufgebaut sein.
 
 ### Style für mehrere Seiten
 
@@ -72,6 +78,11 @@ Was passiert nun, wenn die verschiedenen Style-Deklarationen sich widersprechen?
 
 Wenn Sie mit den Style-Angaben den p-Tag umformatieren, betrifft das alle p-Tags in der Webseite.
 
+<css>
+p { background-color: #ddd; }
+</css>
+
+
 ### Klassen
 
 Oft möchten Sie aber ein oder zwei Absätze anders formatieren als die anderen Absätze. Zu diesem Zweck können Sie sich im Stylesheet noch weitere Formatvorlagen - sogenannte "Klassen" - definieren:
@@ -80,7 +91,11 @@ Oft möchten Sie aber ein oder zwei Absätze anders formatieren als die anderen 
 .wichtig { color: red; }
 </css>
 
-Diesen Klassen können Sie eigene Namen geben (hier „wichtig“), vor dem Klassennamen steht immer ein Punkt. Jedem normalen HTML-Tag können Sie nun diese Klasse zuweisen. Dies geschieht mit dem Attribut class.
+Diesen Klassen können Sie eigene Namen geben (hier „wichtig“), vor dem Klassennamen steht immer ein Punkt. 
+
+§
+
+Jedem beliebigen HTML-Tag können Sie nun diese Klasse zuweisen. Dies geschieht mit dem Attribut class.
 
 <htmlcode>
 <p>Eine <b class="wichtig">ganz wichtige</b> Meldung</p>
@@ -117,13 +132,12 @@ Sowohl Klassen als auch IDs können mit Tags kombiniert werden um einen komplexe
 <css>
 .wichtig { font-size: 20px; }     /* alle Tags mit der Klasse wichtig     */
 p.wichtig { color: red;    }     /* nur der Tag p mit der Klasse wichtig */
+b.wichtig { color: yellow; }    /* nur der Tag b mit der Klasse wichtig */
 
-b.wichtig { color: yellow; } /_ nur der Tag b mit der Klasse wichtig _/
+#impressum { background-color:#ddd; }  /* nur der Tag mit der id #impressum */
+p#impressum { background-color:#ddd; } /* nur der p-Tag mit der id #impressum */
 
-#impressum { background-color:#ddd; } /_ nur der Tag mit der id #impressum _/
-p#impressum { background-color:#ddd; } /_ == nur der p-Tag mit der id #impressum _/
-
-b#impressum { background-color:#ddd; } /_ nix! _/
+b#impressum { background-color:#ddd; } /* nix! */
 </css>
 
 ### div und span
@@ -135,6 +149,16 @@ Es wird öfter vorkommen, dass Sie einem Bereich eine bestimmte Klasse zuweisen 
 </htmlcode>
 
 Die Worte „besonders interessante“ erscheinen rot.
+
+Aber meist hat man  das Bedürfnis nach "styling" ja, weil man eine bestimmte
+Bedeutung übermitteln will .... für die es schon einen HTML-Tag gibt. Besser wäre hier also
+die Verwendung des Tags `em` der für "Betonung" steht.
+
+<htmlcode>
+<p>Es gibt hier ganz <em class="wichtig">besonders interessante</em> Meldungen.</p>
+</htmlcode>
+
+
 
 ## Maßeinheiten in Stylesheets
 
@@ -162,7 +186,7 @@ Farbangaben können auf mehrer Arten erfolgen: mit einigen Farbwörtern (red, gr
 - hexadezimal `#10F` oder
 - zweistellig hexadezimal `#1000FF`.
 
-Mit CSS3 ist auch die Angabe eines Alpha-Wertes möglich: Hier ein Braun-Ton der nur zu 20% deckend ist, und zu 80% den darunter liegenden Content bzw. das Hintergrundbild durchscheinen lässt:
+Zusätzlich ist auch die Angabe eines Alpha-Wertes möglich: Hier ein Braun-Ton der nur zu 20% deckend ist, und zu 80% den darunter liegenden Content bzw. das Hintergrundbild durchscheinen lässt:
 
 - `rgba(153, 134, 117, 0.2);`
 
@@ -187,12 +211,12 @@ Für Werte die mehrmals verwendet werden kann man Variablen setzen:
 
 <css>
 :root {
-  --important-color: darkcyan;
+  --important-color: darkcyan;              /* Variable setzen */
   --text-on-important-color: darkcyan;
 }
 
 h1 {
-color: var(--important-color);
+color: var(--important-color);              /* Variable verwenden */
 }
 nav {
 background-color: var(--important-color);

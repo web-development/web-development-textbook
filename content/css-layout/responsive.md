@@ -45,17 +45,19 @@ Luke Wroblewski schlug 2009 unter dem Slogan "Mobile First" vor, zuerst die mobi
 }
 
 @media screen {
-  body { font-size: 13px; }
+body { font-size: 13px; }
 }
 
 @supports not (display: grid) {
-  div {
-    float: right;
-  }
+div {
+float: right;
+}
 }
 </css>
 
-Es gibt sogar queries für präferenzen wie "dark mode":
+### Dark Mode
+
+Es gibt sogar mediaqueries für die Präferenz des "dark mode":
 
 <css caption="CSS Medaqueries für color-scheme">
 @media (prefers-color-scheme: dark) {
@@ -69,29 +71,17 @@ Es gibt sogar queries für präferenzen wie "dark mode":
 }
 
 @media (prefers-color-scheme: light) {
-  body {
-    color: #333333;
-    background-color: #ffffff;
-  }
-  h1,h2,h3 {
-    color: #333333;
-  }  
+body {
+color: #333333;
+background-color: #ffffff;
+}
+h1,h2,h3 {
+color: #333333;
+}  
 }
 </css>
 
 siehe auch [MDN: media features](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Media_features) und [MDN: features queries](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports)
-
-### CSS Pixel vs. Physikalische Pixel
-
-Die Pixel in CSS sind keine "echten" Pixel, sondern
-entsprechen dem, was das menschliche Auge ungefähr als Punkt erkennen kann:
-1/96 eines Inch.
-
-Siehe [Spezifikation: reference pixel](https://drafts.csswg.org/css-values-4/#reference-pixel)
-
-Wenn ein Ausgabegerät eine höhere Pixeldichte hat, kann
-ein CSS Pixel z.B. 2x2 physikalischen Pixeln entsprechen,
-bei einer "Device Pixel Ratio" von 2.
 
 ## Bilder und Responsive Design
 
@@ -105,7 +95,7 @@ Als Bildformate für `<img>` Tags in Webseiten wurden lange nur Pixel-Formate un
 
 Die Verkleinerte Darstellung ist eine Verschwendung: Wenn ich ein Bild herunterladen muss, dass doppelt So breit und
 doppelt so hoch ist, wie mein Browser darstellen kann, dann sind das viermal so viele Daten, und damit eine viermal
-so lange wartezeit!
+so lange Wartezeit!
 
 Es gibt eine moderne Lösung für diese Problematik [Responsive Images](/grafik/images/) - diese werden wir später genauer kennen lernen.
 

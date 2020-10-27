@@ -17,7 +17,7 @@ beschreibt Wilson Miner die Entwicklung solch einer Grafik:
 
 ![Screenshot der Balkengrafik](/images/balken.png)
 
-[Link zur fertige Balkengrafik mit HTML](http://alistapart.com/d/accessibledata/example-barchart.html)
+
 
 ## CSS und Formen
 
@@ -56,4 +56,4 @@ für ihr Problem wählen. Bei Grafik kann das ganz oft einfaches HTML + CSS sein
 
 ## Siehe auch
 
-* [https://tobiasahlin.com/moving-letters/ Animation mit CSS] von Tobias Ahlin
+* [Animation mit CSS](https://tobiasahlin.com/moving-letters/ ) von Tobias Ahlin

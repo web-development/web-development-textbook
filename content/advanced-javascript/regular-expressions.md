@@ -239,7 +239,7 @@ Der Operator kann auch auf Zeichenklassen oder Gruppen angewandt werden.
 a123
 </patterntester>
 
-Wenn man sich den Operator als Schleife vorstellt kann
+Wenn man sich den Operator als Schleife vorstellt, kann
 bei jeder "Wiederholung" ein anderes Zeichen aus der Klasse oder eine
 andere Alternative gewählt werden:
 
@@ -494,7 +494,7 @@ preg_match( "/regex/i", "string in dem ich suche")
 
 ## Tools
 
-- [https://regexr.com/ regexr.com] ein CodePen für Regular Expressions
+- [regexr.com](https://regexr.com/) ein CodePen für Regular Expressions
 
 ## Vertiefung
 

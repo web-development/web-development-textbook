@@ -35,7 +35,7 @@ stellt das gut dar (verwendet unter CC)
 Es gibt vielleicht wenig Menschen, die nur einen Arm haben. Aber es gibt
 schon sehr viel mehr Menschen die vorübergehend nur einen Arm benutzen können,
 z.B. weil ein Arm im Gips ist. Und es gibt sehr viele Menschen, die gerade
-nur einen Arm frei haben.
+nur einen Arm frei haben.  Wie zum Beispiel Scott Hanselman in [diesem Video](https://www.youtube.com/watch? v=fjE4I1XNzRs) aus dem Oktober 2020.  (Seine anderen Videos über [Computer Stuff they didn't teach you](https://www.youtube.com/playlist?list=PL0M0zPgJ3HSesuPIObeUVQNbKqlw5U2Vr) sind auch sehr empfehlenswert)
 
 ## Richtlinien zur Barrierefreiheit im Web
 
@@ -97,7 +97,7 @@ nicht sehen kann. Screen Reader verwenden die Überschriften und sogenannte Land
 um diesen Überblick zu schaffen.
 
 Damit das funktioniert, muss man die HTML-Tags korrekt verwenden, oder - falls das nicht geht - die
-Rolle explizit definieren:
+Rolle explizit mit dem `role` Attribut definieren:
 
 | Role          | HTML                     | Bedeutung                                                                                                                                                                     |
 | ------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -124,7 +124,7 @@ Siehe auch [w3c: ARIA Landmarks Example](https://www.w3.org/TR/wai-aria-practice
 ### Textformatierung
 
 Die Empfehlung für die Schriftgröße ist mit der immer höheren Auflösung der Ausgabegeräte gewachsen. Im Jahr 2019 verwenden z.B. Die [Zeit Online](https://www.zeit.de/2016/51/bundesteilhabegesetz-inklusion-barrierefreiheit-gleichstellung) 20px, [Medium](https://medium.com/@damianjo/line-spacing-leading-the-way-for-accessibility-d94344b9e26c) 21px,
-[Jeffrey Zeldman](http://www.zeldman.com/2016/12/14/font-size-widgets/) 24px.
+[Jeffrey Zeldman](http://www.zeldman.com/2016/12/14/font-size-widgets/) 21px.
 
 Ein Zeilenabstand 1.5x (mit `line-height` festgelegt) erhöht die Lesbarkeit.
 
@@ -140,6 +140,12 @@ p {
     max-width: 65ch;
 }
 </css>
+
+## Ist das Alles?
+
+Nein, das ist noch nicht Alles was man über Accessability wissen sollte.  Aber
+es ist ein guter Start.  Das Web macht - ohne dass wir etwas tun müssen - schon vieles richtig.
+
 
 ## Testing und Werkzeuge
 
@@ -157,5 +163,5 @@ p {
 - [YouTube: a11ycats](https://www.youtube.com/watch?v=fGLp_gfMMGU&list=PLNYkxOF6rcICWx0C9LVWWVqvHlYJyqw7g)
 - Kalbag, Laura. Accessibility for everyone. A Book Apart, 2017. ISBN-13: 978-1937557614.
 - [Accessability Weekly, Newsletter](https://a11yweekly.com/)
-- [What's new in WCAG 2.1](http://adrianroselli.com/2017/08/whats-new-in-wcag-2-1.html)
+- [Adrian Rosellis Blog](https://adrianroselli.com/)
 - [Marcy Sutton: Radically Accessible Internet Applications](https://marcysutton.com/talk/radically-accessible-internet-applications-beyond-tellerrand/)

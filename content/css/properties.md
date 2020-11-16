@@ -173,7 +173,7 @@ Farben, Hintergrundfarben, Hintergrundbilder
 
 Die Farbe des Textes wird mit `color`, die Hintergrundfarbe mit `background-color` gesetzt.  
 
-Jeder Tag kann mittels CSS ein oder mehrere Hintergrundbilder erhalten (`background-image`). Als „Hintergrundbild“ in einer Webseite kann jedes Bild in einem Web-geeigneten Dateiformat (gif, jpg, png) dienen. Das Bild wird einfach dargestellt oder „gekachelt“ –horizontal und vertikal so oft wiederholt, bis es die ganze Fläche des Tags ausfüllt (`background-repeat`). Abbildung 24 wurde ein Bild mit drei Zahnrädern als Hintergrundbild verwendet, durch die Wiederholung werden sieben Zahnräder angezeigt. 
+Jeder Tag kann mittels CSS ein oder mehrere Hintergrundbilder erhalten (`background-image`). Als „Hintergrundbild“ in einer Webseite kann jedes Bild in einem Web-geeigneten Dateiformat (gif, jpg, png) dienen. Das Bild wird einfach dargestellt oder „gekachelt“ –horizontal und vertikal so oft wiederholt, bis es die ganze Fläche des Tags ausfüllt (`background-repeat`). 
 
 
 <div class="resizable" style="background-image: url(/images/css/trefoilknots.svg);">

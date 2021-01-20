@@ -167,3 +167,8 @@ window.history.pushState({}, "", hash);
 Wenn wir alles richtig programmiert haben funktioniert nun das Navigations-Menü
 wieder: bei klick wird langsam zum entsprechenden Teil der seite gescrollt, und die URLs
 ändern sich.
+
+
+## Mehr
+
+* A.Ricaud [HTML and CSS techniques to reduce your JavaScript](https://calendar.perfplanet.com/2020/html-and-css-techniques-to-reduce-your-javascript/) im [Web Performance (Advent) Calendar 2020](https://calendar.perfplanet.com/2020/)

@@ -7,9 +7,9 @@ intro: Im ersten Teil des Buches wurde Javascript bereits vorgestellt.  Nun woll
 
 
 ### Was Sie wissen sollten
-* In welcher Version von Javascript sie arbeiten
+* In welcher Version von Javascript Sie arbeiten
 * Was eine Closure ist
-* Das Javascript eine objektorientierte Sprache ist
+* Dass Javascript eine objektorientierte Sprache ist
 * Wie Prototypen für die Vererbung in Javascript verwendet werden
 
 

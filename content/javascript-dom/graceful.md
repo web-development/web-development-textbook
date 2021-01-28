@@ -9,6 +9,11 @@ Die Idee ist dabei immer die Gleich: man baut die Webseite zuerst ohne Javascrip
 
 ![Abbildung 60: Die Rolle von Content, Darstellung und Programmierung (Unobstrusive Javascript)](/images/image267.png)
 
+§ 
+
+Die Motivation dahinter ist, die Zugänglichkeit für Alle Leser*innen, alle Browser zu 
+gewährleisten.  Im Artikel [The unreasonable effectiveness of simple HTML](https://shkspr.mobi/blog/2021/01/the-unreasonable-effectiveness-of-simple-html/) schreibt Terence Eden dazu eine Geschichte.
+
 §
 
 Von dieser Herangehensweise profitieren nicht nur Blinde, Menschen mit veralteten Browsern oder exotischen Ausgabegeräte. Auch für Suchmaschinen wie Google oder andere Programme die die Information aus den Webseiten weiter verarbeiten ist dieses Prinzip hilfreich.

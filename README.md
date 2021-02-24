@@ -34,7 +34,8 @@ Send me a pull request when you're done.
 Same as before: fork the repository 
 https://github.com/web-development/web-development-textbook
 
-install the staic site builder nanoc on your computer.
+install the staic site builder nanoc on your computer
+using gem install nanoc.
 
 run nanoc in the root folder like so:
 

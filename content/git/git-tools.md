@@ -22,3 +22,15 @@ Die Interaktion mit einem Versionskontrollsystem ist eingebaut.
 ![](/images/git-phpstrom-722.png)
 
 
+
+VS Code
+------
+
+VS Code kann mit Versionskontrollsystemen umgehen - oder man verwendet
+das Terminal. 
+
+[Dokumentation](https://code.visualstudio.com/docs/editor/versioncontrol)
+![](/images/git-vscode.png)
+
+
+

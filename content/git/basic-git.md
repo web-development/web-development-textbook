@@ -13,6 +13,11 @@ Als **working copy** werden die Dateien und Ordner bezeichnet, die auf meinem lo
 
 Im **lokalen Repository** (local repository) verwaltet und speichert git alle „alten Versionen“ der Dateien. Mein lokales Repository unterscheidet sich technisch nicht von anderen Repositories, die ich als remote Repositories ansprechen kann.
 Das local repository befindet sich im Ordner **.git**
+§
+
+Fachbegriffe und wichtigste Aktionen mit git
+
+![Abbildung 141: Fachbegriffe und wichtigste Aktionen mit git](/images/image356.png)
 
 §
 
@@ -32,9 +37,6 @@ Mit dem Befehl **push** kann ich die commits aus meinem lokalen Repository
 in ein anderes, remote Repository übertragen. Meist hat man nur ein remote
 Repository - als **ein** zentrales Repository.
 
-§
-
-![Abbildung 141: Fachbegriffe und wichtigste Aktionen mit git](/images/image356.png)
 
 ## Arbeitsablauf
 

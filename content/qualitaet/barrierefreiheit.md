@@ -168,3 +168,4 @@ es ist ein guter Start.  Das Web macht - ohne dass wir etwas tun müssen - schon
 - [Marcy Sutton: Radically Accessible Internet Applications](https://marcysutton.com/talk/radically-accessible-internet-applications-beyond-tellerrand/)
 - [19 WAI-ARIA attributes that every web developer should know](https://www.davidmacd.com/blog/wai-aria-accessbility-for-average-web-developers.html)
 - [The Accessibility Tree](https://whatsock.com/training/)
+- [Demystifying WAI-ARIA](https://www.davidmacd.com/blog/wai-aria-accessbility-for-average-web-developers.html)

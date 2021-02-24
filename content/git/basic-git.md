@@ -23,7 +23,7 @@ für Schritt die Dateien zusammen, die ich gemeinsam **committen** will.
 §
 
 Mit dem Befehl **commit** werden die gestageden Dateien im lokalen Repository
-abgespeichert, und erhalten dort einen eindeutigen Hash und eine Meldund (die
+abgespeichert, und erhalten dort einen eindeutigen Hash und eine Meldung (die
 ich dazu eingebe).
 
 §

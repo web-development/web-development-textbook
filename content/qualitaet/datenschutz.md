@@ -99,6 +99,8 @@ Laut einer Umfrage von [welt.de](https://www.welt.de/finanzen/article193326155/D
 
 Im Jänner 2019 verhängt die französische Datenschutzbehörde eine Rekordstrafe von € 50 Mio gegen Google. Grund war eine [Beschwerde](https://www.heise.de/newsticker/meldung/DSGVO-Beschwerden-gegen-Android-Instagram-Whatsapp-und-Facebook-Max-Schrems-legt-los-4058386.html) von [noyb](https://noyb.eu/breaking-cnil-verhangt-eine-strafe-uber-e-50-mio-an-google-basierend-auf-einer-beschwerde-von-noyb/?lang=de) und der französischen NGO „La Quadrature du Net”.
 
+Im Jänner 2021 wurde Grindr in Norwegen zu € 10 Mio Strafe verurteilt, ebenfalls
+auf Grund einer Klage von [noyb](https://noyb.eu/de/eu10-mio-strafe-fuer-grindr-nach-dsgvo-beschwerde).
 ## Privacy by Design, Privacy by Default
 
 Im Erwägungsgrund (78) werden die Begriffe „data protection by design“ und „data protection by default“ eingeführt, üblicherweise als „Privacy by Design“ und „Privacy by Default“ bezeichnet. Diese Grundsätze bedeuten, dass die Technik der Datenverarbeitung von vorneherein darauf entworfen („design“) und ausgerichtet ist und die Voreinstellungen („defaults“) so ausgewählt sind, dass den Grundsätzen des Datenschutzes Genüge getan wird.

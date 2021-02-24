@@ -6,7 +6,7 @@ http://web-development.github.io
 ## Similar Projects
 
 https://github.com/getify/You-Dont-Know-JS - only Javascript, in English
-
+Very good!
 
 ## How to Read the book
 

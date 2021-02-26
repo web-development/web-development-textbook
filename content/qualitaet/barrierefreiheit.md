@@ -161,7 +161,7 @@ es ist ein guter Start.  Das Web macht - ohne dass wir etwas tun müssen - schon
 - [Design für Alle](https://de.wikipedia.org/wiki/Design_f%C3%BCr_Alle)
 - [edx Kurs: Introduction to Web Accessibility by W3C](https://www.edx.org/course/web-accessibility-introduction)
 - [Udacity Kurs: Web Accessability by Google](https://de.udacity.com/course/web-accessibility--ud891)
-- [YouTube: a11ycats](https://www.youtube.com/watch?v=fGLp_gfMMGU&list=PLNYkxOF6rcICWx0C9LVWWVqvHlYJyqw7g)
+- [YouTube: a11ycasts](https://www.youtube.com/watch?v=srLRSQg6Jggg)
 - Kalbag, Laura. Accessibility for everyone. A Book Apart, 2017. ISBN-13: 978-1937557614.
 - [Accessability Weekly, Newsletter](https://a11yweekly.com/)
 - [Adrian Rosellis Blog](https://adrianroselli.com/)

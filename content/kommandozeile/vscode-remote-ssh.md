@@ -19,5 +19,9 @@ verwenden um
 
 [Anleitung von Microsoft](https://code.visualstudio.com/docs/remote/ssh)
 
-Der Befehl lautet 
+Der Befehl lautet **Remote-SSH: Connect to Host**
+
+![](/images/kommandozeile/vcsode-remote-terminal.png)
+
+
 

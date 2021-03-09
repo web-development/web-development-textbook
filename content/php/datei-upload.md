@@ -65,7 +65,7 @@ Die Details zu den Hochgeladenen Dateien sind im Array `$_FILES` gespeichert, in
 : Der Pfad und Dateiname der temporären Datei. 
 
 `$_FILES['bild']['error']`
-: Fehlercode bei Upload, 0 bedeutet dass kein Fehler aufgetreten ist. Siehe PHP-Doku.
+: Fehlercode bei Upload, 0 bedeutet dass kein Fehler aufgetreten ist. Siehe [PHP-Doku](https://www.php.net/manual/de/features.file-upload.errors.php).
 
 ### Beispielcode
 

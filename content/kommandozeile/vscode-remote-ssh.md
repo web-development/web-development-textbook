@@ -20,6 +20,9 @@ verwenden um
 [Anleitung von Microsoft](https://code.visualstudio.com/docs/remote/ssh)
 
 Der Befehl lautet **Remote-SSH: Connect to Host**
+Man gibt alle Daten für die SSH Verbindung in Kurzschreibweise an:  user@host:port
+
+
 
 ![](/images/kommandozeile/vcsode-remote-terminal.png)
 

@@ -157,5 +157,5 @@ zu tun: Löschen, Einfügen, Bearbeiten soll nur nach dem Login möglich sein!
 
 ## Weiterführende Literatur
 
-* [OWASP on SQL Injection](https://www.owasp.org/index.php/SQL_injection)
+* [OWASP on SQL Injection](https://owasp.org/search/?searchString=SQL_injection)
 * [SQL Injection Knowledge Base](http://www.websec.ca/kb/sql_injection)

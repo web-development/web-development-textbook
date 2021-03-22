@@ -14,5 +14,5 @@ gem "mime-types"
 gem "json"
 gem "listen"
 gem 'rb-fsevent', '~> 0.9'
-gem 'guard-nanoc'
+# gem 'guard-nanoc'      # ab nanoc 4
 # gem 'nanoc-redirector' # ab nanoc 4

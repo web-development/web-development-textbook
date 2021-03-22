@@ -39,11 +39,12 @@ using gem install nanoc.
 
 run nanoc in the root folder like so:
 
-  nanoc view
+  bundle exec nanoc compile
+  bundle exec nanoc view
 
 in a second shell start the nanoc watcher:
 
-  nanoc watch
+  bundle exec nanoc watch
 
 now edit the files in content/* and see the results at http://localhost:3000/
 

@@ -100,12 +100,3 @@ document.cookie = "passwort=total super geheimes aber recht langes passwort";
 Erst wenn ein neuer Request an den Server erfolgt, werden die neu gesetzten
 Cookies mit gesendet und haben eventuell einen Auswirkung auf das
 Verhalten des Servers.
-
-### Libraries für Cookies in Javascript
-
-Um das Lesen, Setzen und Löschen von Cookies in Javascript zu vereinfachen git
-es zwei gute Libraries:
-
-* die Funktionen von [Quirksmode](http://www.quirksmode.org/js/cookies.html) ein
-* jQuery Plugin [jquery-cookies](https://github.com/carhartl/jquery-cookie)
-

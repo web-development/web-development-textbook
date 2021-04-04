@@ -53,13 +53,13 @@ je nachdem ob es mit GET oder POST aufgerufen wird.
 `session_start()` wird in `functions.php` ausgeführt, also bei jedem Aufruf einer der Seiten der Applikation. Die Applikation zeigt direkt in der Navigationsleiste die Login/Logout-Möglichkeit  an:
 
 
-![Abbildung 146: Anzeige des Usernamens und Login/Logout-Möglichkeit](/images/image364.png)
+![Abbildung 146: Anzeige des Usernamens und Login/Logout-Möglichkeit](/images/session/login-logout.png)
 
 ### Login
 
 Das Login-Formular (Dateiname `login.php`) sieht ganz einfach aus und sendet die Daten mit POST wieder an `login.php`:
 
-![Abbildung 147: Login-Formular der Applikation](/images/image365.png)
+![Abbildung 147: Login-Formular der Applikation](/images/session/login-form.png)
 
 Username und Passwort werden überprüft, falls Sie passen wird der Username in der Session gespeichert. Mit dem Befehl `header("Location: index.php")` wird der Browser dann automatisch an die Hauptseite weitergeleitet. 
 
@@ -129,8 +129,13 @@ Die Weiterleitung funktioniert nur, wenn noch keine Ausgabe erfolgt ist, also vo
 
 Eine Weiterleitung nach der Behandlung eines POST-Requests ist allgemein sinnvoll.
 
+In diesem Beispiel wird eine funktion `check_login` aufgerufen die man
+selbst implementieren muss.  So kann man z.B. username und passwort mit Daten
+vergleichen die an verschiedenen Stellen gespeichert sein können:
+in der Datenbank, in der `config.php` Datei, in Umgebungsvariabeln.
 
-![Abbildung 148: Login mit einer Weiterleitung](/images/image366.png)
+
+![Abbildung 148: Login mit einer Weiterleitung](/images/session/login-flow.svg)
 
 
 ### Neue PHP Befehle

@@ -227,10 +227,9 @@ bei der Verwendung von Frameworks umsetzten.
 ## Zustandslosigkeit = Statlessness.
 
 Zustandslosigkeit ist ein sehr wichtiges Prinzip im Web. Was das bedeutet zeigt
-man am einfachsten an einem Gegenbeispiel: Wenn ich im 
-[Katalog der FH-Bibliotek](http://opac.obvsg.at/fsa) 
-nach Büchern suche (hier mit dem Suchwort „Web“) 
-erhalte ich zum Beispiel folgende URL:
+man am einfachsten an einem Gegenbeispiel: Beim Suchen  im alten 
+Katalog der FH-Bibliotek hatte das Ergebnis eine sehr lange URL (hier mit dem Suchwort „Web“) 
+
 
 `http://aleph20-prod-sh1.obvsg.at/F/VY5F42S4132QETN8I7DXHJNF4RSEE7Y7S7K3EKI2QU6R6XQK4B-50822?func=find-b&find_code=WRD&request=Web&adjacent=N&x=0&y=0&filter_code_1=WSP&filter_request_1=&filter_code_2=WEF&filter_request_2=&filter_code_5=WYR&filter_request_5=&filter_code_6=WYR&filter_request_6=&filter_code_7=WDA&filter_request_7=&filter_code_8=WZW&filter_request_8=`
 
@@ -245,13 +244,21 @@ mehr, sondern die Fehlermeldung:
 
 Warum ist das so?  Auch zwei Tage später sollte die Ressource „Liste der Bücher
 mit dem Wort ‚Web’ im Titel“ noch vorhanden sein!
-Die Antwort ist: Alephino legt zu viel Wert auf den State – den Zustand der
+Die Antwort ist: Das alte Katalog-Programm Alephino legt zu viel Wert auf den State – den Zustand der
 Session.
+
+Die gute Nachricht: das neue Katalog-Programm funktioniert anders,
+die URL für die Suche enthält keinen Verweis auf die Session mehr, und funktionert
+damit jederzeit:
+
+https://search-fsa.obvsg.at/primo-explore/search?query=any,contains,web&tab=default_tab&search_scope=default_scope&vid=FSA&offset=0
+
+
 
 §
 
 Nach dem REST-Prinzip sollte man also den Zustand der Session nur dann
-verwenden, wenn er unbedingt notwendig ist. 
+verwenden, wenn er unbedingt notwendig ist.
 
 §
 

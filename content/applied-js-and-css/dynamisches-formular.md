@@ -19,7 +19,9 @@ bestimmt ist.
 
 ## Dynamisches Formular planen
 
-TODO: jquery enfernen
+ACHTUNG: in den Beispielen hier wird noch jQuery verwendet - finde heraus
+wie Du dasselbe ohnee jQuery, mit reinem JavaScript machen kannst!
+[Siehe auch: You Might Not Need jQuery](http://youmightnotneedjquery.com/)
 
 Das Hinzufügen von zusätzlichen Zeilen bzw. Eingabeelementen
 kann man mit jQuery gut umsetzen.

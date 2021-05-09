@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="utf-8" />
     <title>Demo Seite für Responsive Images</title>
     <style>
-      img {
+      .gallery img {
         width: 350px;
-        height: 350px;
+        height: 233px;
         margin: 10px;
       }
+
       .gallery {
         display: flex;
         justify-content: center;
         align-items: flex-start;
         flex-wrap: wrap;
       }
+
+      .full img {
+        width: calc(100vw - 40px);
+        margin: 10px;
+      }
     </style>
   </head>
+
   <body>
-    <h1>Bild in vier Versionen</h1>
+    <h1>Bild in sechs Versionen</h1>
     <ul>
-      <li>japanischer-garten_350px.jpg 350x350 Auflösung</li>
-      <li>japanischer-garten_701px.jpg 701x701 Auflösung</li>
-      <li>japanischer-garten_1401px.jpg 1401x1401 Auflösung</li>
-      <li>japanischer-garten_2802px.jpg 2802x2802 Auflösung</li>
+      <li>japanischer-garten_350px.webp 350x233 Auflösung</li>
+      <li>japanischer-garten_701px.webp 701x467 Auflösung</li>
+      <li>japanischer-garten_1401px.webp 1401x934 Auflösung</li>
+      <li>japanischer-garten_2802px.webp 2802x1868 Auflösung</li>
+      <li>japanischer-garten_4500px.webp 4500x3000 Auflösung</li>
+      <li>japanischer-garten_2802px.webp 6000x4000 Auflösung</li>
     </ul>
 
-    <p>Zielgröße: 350x350 Pixel.</p>
 
     <p>
       Je nach Pixeldichte des Ausgabegerätes sind die Bilder mit höhrer
@@ -34,42 +43,100 @@
       halt nicht besser kann.
     </p>
 
-    <h2>der Code</h2>
+    <h2>der Code: Vollständiges srcset</h2>
 
-    <kbd
-      >&lt;img src="japanischer-garten_1x.jpg" srcset="japanischer-garten_1x.jpg
-      1x, japanischer-garten_2x.jpg 2x, japanischer-garten_3x.jpg 3x,
-      japanischer-garten_4x.jpg 4x"&gt;</kbd
-    >
+    <kbd>&lt;img src="japanischer-garten_1401px.webp" srcset="japanischer-garten_350px.webp
+      1x, japanischer-garten_701px.webp 701w, japanischer-garten_1401px.webp 1401w,
+      japanischer-garten_2802px.webp 2802w,
+      japanischer-garten_4500px.webp 4500w,
+      japanischer-garten_6000px.webp 6000w" sizes="350px"&gt;</kbd>
+
+
+    <p>Bei den beiden Varianten unten ist im ersten Bild nur der erste Wert des <kbd>srcset</kbd> gesetzt,
+      beim zweiten schon zwei Werte, ... und so weiter bis zum letzten Bild, das den vollständigen <kbd>srcset</kbd>
+      enthält.</p>
+
+    <h2>Bild mit fixer Breite: 350 CSS Pixel</h2>
+
+    <p>Hier wird bei jedem Bild noch das Attribut <kbd>sizes="350px"</kbd> gesetzt.</p>
 
     <div class="gallery">
-      <img class="x1" src="japanischer-garten_1x.jpg" />
-      <img
-        class="x2"
-        src="japanischer-garten_1x.jpg"
-        srcset="japanischer-garten_1x.jpg 1x, japanischer-garten_2x.jpg 2x"
-      />
+      <img class="x1" src="japanischer-garten_1401px.webp" sizes="350px" />
+      <img class="x2" src="japanischer-garten_1401px.webp" sizes="350px"
+        srcset="japanischer-garten_350px.webp 350w, japanischer-garten_701px.webp 701w" />
 
-      <img
-        class="x3"
-        src="japanischer-garten_1x.jpg"
-        srcset="
-          japanischer-garten_1x.jpg 1x,
-          japanischer-garten_2x.jpg 2x,
-          japanischer-garten_3x.jpg 3x
-        "
-      />
+      <img class="x3" src="japanischer-garten_1401px.webp" sizes="350px" srcset="
+          japanischer-garten_350px.webp 350w,
+          japanischer-garten_701px.webp 701w,
+          japanischer-garten_1401px.webp 1401w
+        " />
 
-      <img
-        class="x4"
-        src="japanischer-garten_350px.jpg"
-        srcset="
-            japanischer-garten_350px.jpg 350w,
-          japanischer-garten_2x.jpg 2x,
-          japanischer-garten_3x.jpg 3x,
-          japanischer-garten_4x.jpg 4x
-        "
-      />
+      <img class="x4" src="japanischer-garten_1401px.webp" sizes="350px" srcset="
+            japanischer-garten_350px.webp 350w,
+          japanischer-garten_701px.webp 701w,
+          japanischer-garten_1401px.webp 1401w,
+          japanischer-garten_2802px.webp 2802w
+        " />
+      <img class="x5" src="japanischer-garten_1401px.webp" sizes="350px" srcset="
+        japanischer-garten_350px.webp 350w,
+      japanischer-garten_701px.webp 701w,
+      japanischer-garten_1401px.webp 1401w,
+      japanischer-garten_2802px.webp 2802w,
+      japanischer-garten_4500px.webp 4500w
+    " />
+      <img class="x6" src="japanischer-garten_1401px.webp" sizes="350px" srcset="
+        japanischer-garten_350px.webp 350w,
+      japanischer-garten_701px.webp 701w,
+      japanischer-garten_1401px.webp 1401w,
+      japanischer-garten_2802px.webp 2802w,
+      japanischer-garten_4500px.webp 4500w,
+      japanischer-garten_6000px.webp 6000w
+    " />
     </div>
+
+
+    <h2>Bild in voller Breite des Browserfensters</h2>
+
+    <p>Hier ist das Attribut <kbd>sizes="calc(100vw - 40px)"</kbd> gesetzt.</p>
+
+
+    <div class="full">
+      <img class="x1" sizes="calc(100vw - 40px)" src="japanischer-garten_1401px.webp" />
+      <img class="x2" sizes="calc(100vw - 40px)" src="japanischer-garten_1401px.webp"
+        srcset="japanischer-garten_350px.webp 350w, japanischer-garten_701px.webp 701w" />
+
+      <img class="x3" sizes="calc(100vw - 40px)" src="japanischer-garten_1401px.webp" srcset="
+          japanischer-garten_350px.webp 350w,
+          japanischer-garten_701px.webp 701w,
+          japanischer-garten_1401px.webp 1401w
+        " />
+
+      <img class="x4" sizes="calc(100vw - 40px)" src="japanischer-garten_1401px.webp" srcset="
+            japanischer-garten_350px.webp 350w,
+          japanischer-garten_701px.webp 701w,
+          japanischer-garten_1401px.webp 1401w,
+          japanischer-garten_2802px.webp 2802w
+        " />
+      <img class="x5" sizes="calc(100vw - 40px)" src="japanischer-garten_1401px.webp" srcset="
+        japanischer-garten_350px.webp 350w,
+      japanischer-garten_701px.webp 701w,
+      japanischer-garten_1401px.webp 1401w,
+      japanischer-garten_2802px.webp 2802w,
+      japanischer-garten_4500px.webp 4500w
+    " />
+      <img class="x6" sizes="calc(100vw - 40px)" src="japanischer-garten_1401px.webp" srcset="
+        japanischer-garten_350px.webp 350w,
+      japanischer-garten_701px.webp 701w,
+      japanischer-garten_1401px.webp 1401w,
+      japanischer-garten_2802px.webp 2802w,
+      japanischer-garten_4500px.webp 4500w,
+      japanischer-garten_6000px.webp 6000w
+    " />
+    </div>
+
+    <p>Image Credit Photo by <a href="https://unsplash.com/@terminath0r">Thor Alvis</a> on <a
+        href="https://unsplash.com/s/photos/japanese-garden">Unsplash</a>
+    </p>
   </body>
+
 </html>

@@ -49,18 +49,19 @@ Manche profitieren durch die jpg-Komprimierung:
 
 <shell>
 $ convert Bildschirmfoto.png Bildschirmfoto.jpg
-
+$ convert Bildschirmfoto.png Bildschirmfoto.webp
 $ identify Bildschirmfoto.*
-Bildschirmfoto.jpg JPEG 640x480 640x480+0+0 8-bit sRGB 79723B 0.000u 0:00.000
-Bildschirmfoto.png PNG 640x480 640x480+0+0 8-bit sRGB 364595B 0.000u 0:00.000
-
-$ ls -la Bildschirmfoto.*
--rw-r--r-- 1 bjelline staff 79723 25 Mär 07:09 Bildschirmfoto.jpg
--rw-r--r-- 1 bjelline staff 364595 24 Mär 12:29 Bildschirmfoto.png
+Bildschirmfoto.jpg JPEG 2880x1800 2880x1800+0+0 8-bit sRGB 656908B 0.000u 0:00.000
+Bildschirmfoto.png PNG 2880x1800 2880x1800+0+0 8-bit sRGB 1.73215MiB 0.000u 0:00.000
+Bildschirmfoto.webp WEBP 2880x1800 2880x1800+0+0 8-bit sRGB 182964B 0.070u 0:00.064
+$ du -h Bildschirmfoto.*
+644K	Bildschirmfoto.jpg
+1,7M	Bildschirmfoto.png
+180K	Bildschirmfoto.webp
 </shell>
 
-In der jpg-Version ist die Dateigröße auf ein 5tel geschrumpft!
-
+Aus 1,6 Megabyte png wurden also 644 Kilobyte jpeg und 180 Kilobyte webp.
+Ein Faktor 10 Kompression zahlt sich auf jeden Fall aus!
 ### Bildgröße Verändern
 
 Oft erhält man Photos mit sehr hoher Auflösung:

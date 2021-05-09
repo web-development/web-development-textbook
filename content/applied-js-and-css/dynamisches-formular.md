@@ -6,13 +6,13 @@ order: 40
 Ohne Einsatz von Javascript sind HTML-Formulare sehr unflexibel.
 So könnte ein Pizza-Bestell-Formular aussehen:
 
-![dynamic pizza form](static-pizza-form.png)
+![static pizza form](/images/static-pizza-form.png)
 
 Viel schöner wäre es, wenn jede bestellte Pizza im Formlar
 einzeln aufgeführt würde, und jeweils eigene Extra-Zutaten haben
 könnte:
 
-![](/images/dynamic-pizza-form-2.png)
+![dynamic pizza form](/images/dynamic-pizza-form-2.png)
 
 Dann kann man auch zu jeder Pizza angeben, für wen sie
 bestimmt ist.
@@ -52,8 +52,8 @@ Wir verwenden `pizza[1]`, `pizza[2]`, ... für den Typ der Pizza,
 
 Die Namen mit eckigen Klammern, die an ein Array erinnern, werden
 von PHP auch als Array interpretiert:
-Wenn PHP die Daten entgegen nimmt und in \$\\_POST speichert,
 macht es aus den Parametern `pizza[1]`, `pizza[2]`,... ein Array,
+Wenn PHP die Daten entgegen nimmt und in \$_POST speichert,
 das unter `$_POST['pizza']` gespeichert ist.
 
 ## Wert aus dem select-Tag auslesen

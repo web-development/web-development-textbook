@@ -3,7 +3,7 @@ title: A2 - Authentifizierung
 order: 20
 ---
 
-Auf Platz 2 der OWASP Top 10 2017.
+Auf [Platz 2 der OWASP Top 10 2017](https://owasp.org/www-project-top-ten/2017/de/A2_2017-Fehler_in_der_Authentifizierung).
 
 Rund um Authentifizierung und Session-Management treten viele Probleme auf.
 Ein Angriff mittels "Credential Stuffing" ist einfach umzusetzen: ein kleines
@@ -30,6 +30,23 @@ Warum? Die Information, ob ein bestimmter Username im System exisitiert ist wert
 ist ja bereits die Hälfte der nötigen Information für ein Login. Deswegen soll man die Existenz
 von Usernamen genau so geheim halten wie die Passwörter.
 
+
+## Weg mit alten Passwort Regeln
+
+Oft werden strenge Passwort Regeln verwendet:
+
+"Das Passwort muss mindestens einen Großbuchstaben, einen Kleinbuchstaben, ein Sonderzeichen und zwei verscheidene Ziffern enthalten und darf nicht länger als 8 Zeichen sein"
+
+Diese Regeln sind veraltet.  So empfiehlt das amerikanische National  Institute of Standards and Technology seit 2017 in [NIST 800-63 ](https://pages.nist.gov/800-63-3/sp800-63b.html#memsecret):
+
+* Passwörter sollen mindestens 8 oder mehr Zeichen lang sein
+* Passwörter sollen bis zu 64 Zeichen lang sein können
+* "Bekannte" Passwörter sollen verboten sein. Das kann man z.B. mit [der haveibeenpwned API](https://haveibeenpwned.com/API/v2#SearchingPwnedPasswordsByRange) implementieren
+* Es soll keine weiteren  Regeln für die Zusammensetzung des Passworts geben (z.b. nicht verlangen dass verschiedene Zeichentypen enhält, oder Verbot von Zeichen-Wiederholungen)
+* Es soll keinen Zwang geben das Passwort ohne Anlass zu Ändern. Ein guter Anlass ist wenn das Passwort öffentlich wurde
+
+
+
 ## Session ID wie Passwort schützen
 
 Das Protokoll HTTP ist stateless. Wenn man trotzdem UserInnen authentifizieren
@@ -38,7 +55,7 @@ mitgeschickt werden. Dies geschieht zum Beispiel in einem Cookie.
 
 Wenn es gelingt diese Information abzuhören und wieder zu verwenden,
 dann erhält man den gleichen Zugang wie die eigentliche UserIn. Diese
-Art der Angriffs nennt man "Replay Attacke" - ein Request wird abehört und
+Art der Angriffs nennt man "Replay Attacke" - ein Request wird abgehört und
 gleich wieder verwendet.
 
 Um Passwörter ebenso wie Session Ids und Cookies vor dem Abhören zu
@@ -96,7 +113,7 @@ In PHP geht das mit folgenden Befehlen:
 Komplexere Maßnahmen wären:
 
 - Zwei Faktor Authentisierung
-- Automatische Prüfung der neu eingegebenen Passwörter mit [der haveibeenpwned API](https://haveibeenpwned.com/API/v2#SearchingPwnedPasswordsByRange)
+- Automatische Prüfung der neu eingegebenen Passwörter mit 
 
 Die OWAAS bietet noch mehr Informationen zu diesem Thema an
 im [Authentication Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md)

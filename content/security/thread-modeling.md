@@ -13,7 +13,9 @@ Zuerst betrachten wir zwei Schritte aus der Definition von [Thread Modeling](htt
 > capabilities provided by the application and valuing them is more difficult. Less concrete things, such
 > as reputation and goodwill are the most difficult to measure, but are often the most critical.
 
+Ein Beispiel als Diagram:
 
+![Beispiel Thread Model Diagramm aus dem Thread Modeling Cookbook](/images/security/cryptowallet.vsdx.svg)
 
 ## Identify Threat Agents and Possible Attacks
 
@@ -22,3 +24,13 @@ Zuerst betrachten wir zwei Schritte aus der Definition von [Thread Modeling](htt
 > include insiders and outsiders, performing both inadvertent mistakes and malicious attacks.
 
 
+Hier kann man ein Attack Tree einsetzen:
+
+![Beispiel plantuml Diagramm aus dem Thread Modeling Cookbook](/images/security/cryptowallet.plantuml.svg)
+
+
+## Weitere Quellen
+
+* Beispiele aus dem [OWASP Threat Model Cookbook](https://github.com/OWASP/threat-model-cookbook/blob/master/INDEX.md)
+* Bruce Schneier: [Attack Tree](https://www.schneier.com/academic/archives/1999/12/attack_trees.html#rf1)
+* Wikipedia [Threat Model](https://en.wikipedia.org/wiki/Threat_model#Visual_representations_based_on_data_flow_diagrams)

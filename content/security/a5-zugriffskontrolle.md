@@ -3,7 +3,7 @@ title: A5 - Zugriffskontrolle
 order: 50
 ---
 
-Auf Platz 5 der OWASP Top 10 2017: **Fehler in der Zugriffskontrolle**
+Auf [Platz 5 der OWASP Top 10 2017: Fehler in der Zugriffskontrolle](https://owasp.org/www-project-top-ten/2017/de/A5_2017-Fehler_in_der_Zugriffskontrolle)
 
 Die OWASP beschreibt dieses Problem allgemein so:
 
@@ -120,4 +120,4 @@ Gegen diese Art von Attacke kann man an mehreren Linien verteidigen:
 
 Die OWASP bietet noch vertiefende Informationen zu diesem Thema an:
 
-- [Web Security Testing Guide: Testing Directory Traversal File Include](https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/01-Testing_Directory_Traversal_File_Include.html)
+- [OWASP Top Ten Proactive Controls: C7: Enforce Access Controls](https://owasp.org/www-project-proactive-controls/v3/en/c7-enforce-access-controls)

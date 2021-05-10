@@ -3,7 +3,7 @@ title: A1 - Injection
 order: 10
 ---
 
-Auf Platz 1 der OWASP Top 10 2017.
+Auf [Platz 1 der OWASP Top 10 2017](https://owasp.org/www-project-top-ten/2017/de/A1_2017-Injection)
 
 Die OWASP beschreibt dieses Problem allgemein so:
 
@@ -65,7 +65,8 @@ Unabhängig von den oben genannten Punkt gilt noch die Empfehlung:
 - Der Web-Applikation nur minimale Zugriffsrechte zur Datenbank gewähren. Damit kann ein eventueller Schaden durch gelungen Injection minimiert werden.
 
 
-
+## Weitere Quellen
 
 * Wir haben das Problem zuerst besprochen im Kaptiel [PHP DB Schreiben: Löschen](https://web-development.github.io/php-db-schreiben/daten-loeschen/)
 * Siehe auch [SQL Injection Prevention Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.md)
+* [SQL Injection Knowledge Base](https://www.websec.ca/kb/sql_injection)

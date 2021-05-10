@@ -3,7 +3,7 @@ title: A7 - XSS
 order: 70
 ---
 
-Auf Platz 7 der OWASP Top 10 2017 (Platz 3 in OWASP 2013).
+Auf [Platz 7 der OWASP Top 10 2017: Cross Site Scripting (XSS)](https://owasp.org/www-project-top-ten/2017/de/A7_2017-Cross-Site_Scripting_(XSS)).
 
 Die OWASP beschreibt dieses Problem allgemein so:
 
@@ -17,13 +17,13 @@ Der schlimmste Fall wäre die Installation eines sogenannten XSS Proxies, der es
 
 ## Cross Site?
 
-Diese Attacke wird "über die Bande gespielt", es ist ein Drama mit drei Rollen:
+Diese Attacke erfolgt nicht direkt  (AngreiferIn : Opfer), sondern es braucht drei Personen:
 
 - Hilda Harmlos stellt eine Webseite mit XSS-Schwachstelle aufs Netz, zum Beispiel mit einem Forum.
 - Alyssa P. Hacker erstellt einen Forum-Eintrag, der die XSS-Schwachstelle ausnutzt.
 - Peter Publikum will das Forum lesen, und wird dabei attackiert.
 
-Es ist also nicht die Site der Hackerin, die hier gefählich ist, sondern eine andere, scheinbar
+Es ist also nicht die Webseite der Hackerin, die hier gefählich ist, sondern eine andere, scheinbar
 harmlose Seite.
 
 ## Vermeidung von XSS
@@ -34,7 +34,7 @@ Das ist ein seltener, aber sehr sicherer Fall.
 XSS vermeinden kann man mit zwei Verteidigungs-Linien:
 
 - Schon bei der Eingabe (mit einer white-list) alles Entfernen was nicht harmlos ist.
-- Bei der Ausgabe immer ein geeignetes Escaping verwenden
+- Bei der Ausgabe immer ein geeignetes Escaping verwenden.
 
 ## Eingabe validieren in PHP
 

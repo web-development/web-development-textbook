@@ -3,7 +3,7 @@ title: A6 - Fehlkonfiguration
 order: 60
 ---
 
-Auf Platz 6 der OWASP Top 10 2017.
+Auf [Platz 6 der OWASP Top 10 2017](https://owasp.org/www-project-top-ten/2017/de/A6_2017-Sicherheitsrelevante_Fehlkonfiguration).
 
 Die OWASP beschreibt dieses Problem allgemein so:
 

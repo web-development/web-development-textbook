@@ -3,7 +3,7 @@ title: A9 - Komponenten
 order: 90
 ---
 
-Auf Platz 9 der OWASP Top 10 2017: **Nutzung von Komponenten mit bekannten Schwachstellen**
+Auf [Platz 9 der OWASP Top 10 2017: Nutzung von Komponenten mit bekannten Schwachstellen](https://owasp.org/www-project-top-ten/2017/de/A9_2017-Nutzung_von_Komponenten_mit_bekannten_Schwachstellen)
 
 Die OWASP beschreibt dieses Problem ungefähr so:
 

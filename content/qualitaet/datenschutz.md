@@ -101,6 +101,7 @@ Im Jänner 2019 verhängt die französische Datenschutzbehörde eine Rekordstraf
 
 Im Jänner 2021 wurde Grindr in Norwegen zu € 10 Mio Strafe verurteilt, ebenfalls
 auf Grund einer Klage von [noyb](https://noyb.eu/de/eu10-mio-strafe-fuer-grindr-nach-dsgvo-beschwerde).
+
 ## Privacy by Design, Privacy by Default
 
 Im Erwägungsgrund (78) werden die Begriffe „data protection by design“ und „data protection by default“ eingeführt, üblicherweise als „Privacy by Design“ und „Privacy by Default“ bezeichnet. Diese Grundsätze bedeuten, dass die Technik der Datenverarbeitung von vorneherein darauf entworfen („design“) und ausgerichtet ist und die Voreinstellungen („defaults“) so ausgewählt sind, dass den Grundsätzen des Datenschutzes Genüge getan wird.
@@ -111,6 +112,27 @@ Mit dem Datenschutz-Anpassungsgesetz 2018 hat Österreich das „Datenschutzgese
 
 - [ORF Bericht: Österreich spült sich EU-Regeln weich](http://orf.at/stories/2435570/2435568/)
 - [Heise Artikel: Keine Strafen: Österreich zieht neuem Datenschutz die Zähne ](https://www.heise.de/newsticker/meldung/Keine-Strafen-Oesterreich-zieht-neuem-Datenschutz-die-Zaehne-4031217.html)
+
+
+## Mein erstes Web-Projekt und der Datenschutz
+
+Ein paar Tipps für die erste Webseite:
+
+1.Prinzip ist Datenminimierung: Daten die Du nicht speicherst sind kein Problem.  
+
+Falls Du personenbezogene Daten speicherst (z.B. einen Login mit Username oder E-Mail Adresse anbietest), dann 
+bist Du dabei.
+
+- überlege genau welche Daten Du warum speichern willst - das ist Dein erster Schritt zu einem "Verarbeitungsverzeichnis"
+- wie lange behältst Du die Daten?  Wann werden sie gelöscht  - das ist dein erster Schritt zu einem "Löschplan"
+- wie können die Betroffenen Dich kontaktieren, z.B. um gelöscht zu werden? - lege z.B. eine eigene E-Mail Adresse (oder einen Alias) dafür an
+
+Diese Informationen kannst Du auf einer Seite zusammenfassen, das ist deine "Datenschutzerklärung".
+
+
+Für Deine ersten Projekte wird das ausreichen. Aber Achtung: falls Du Daten an Dritte übermittelst, 
+insbesondere im EU Ausland (z.B. Google Analytics einsetzt) oder besonderes sensible Daten speicherst (von Kindern, 
+medizinische Daten), dann solltest Du Dich mit dem Thema genauer befassen!
 
 ## Links
 

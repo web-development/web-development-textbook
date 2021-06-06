@@ -8,7 +8,8 @@ Dieses Protokoll ist nicht geeignet für Chat, für Spiele, .... wo die Kommunik
 auch vom Server ausgehen muss.
 
 Das Websocket Protokoll ermöglicht die Kommunikation in beide Richtungen auf
-einer dauerhaften Verbindung zwischen Client und Server.
+einer dauerhaften Verbindung zwischen Client und Server.  Es wird
+in [RFC 6455](https://www.rfc-editor.org/rfc/rfc6455.html) definiert.
 
 ## Das Websocket Protokoll
 
@@ -18,8 +19,20 @@ Das Websockets Protokol baut auf HTTP and HTTPS auf:
 * es startet immer mit einem normalen HTTP Request
 * es verwende Cookies
 
-Aber nach dem ersten Request wird die TCP Verbindung auf Dauer aufrechterhalten,
-und Client und Server wechseln in das eigentlih Websocket Protokoll:
+Soweit die Ähnlichkeiten mit HTTP.
+
+§
+
+URLs für Websockt beginnen mit `ws` oder `wss` für die verschlüsselte Version:
+
+
+* ws://server.example.com/chat
+* wss://server.example.com/chat
+
+§
+
+Nach dem "Upgrade: websocket" Request wird die TCP Verbindung auf Dauer aufrechterhalten,
+und Client und Server wechseln in das eigentliche Websocket Protokoll:
 
 
 <plain>
@@ -36,12 +49,33 @@ HTTP/1.1 101 Switching Protocols
 Upgrade: websocket
 Connection: Upgrade
 Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo=
-Sec-WebSocket-Protocol: chat 
+Sec-WebSocket-Protocol: chat
+
 </plain>
 
-Nach diesem ersten Austausch müssen sowohl Server als auch Client
-jederzeit mit eingehenden Nachrichten umgehen.
+Nach diesem ersten Austausch müssen schalten Server und  Client
+auf das senden von "Frames" um.  Nun können beide jederzeit
+senden und müssen bereits sein eingehenden Nachrichten zu empfangen.
 
+Websocket Frames sind viel sparsamer als HTTP Requests und Responses:
+10 bis 18 Byte für Meta-Information plus der eigentliche Payload bilden einen Frame.
+
+![websocket frame](/images/websockets/websocket-frame.png)
+
+§
+
+Der (4 bit) Opcode gibt an welchen Typ der Payload hat:
+
+* `0000` - continuation frame, voriger Frame wird fortgesetzt
+* `0001` - text frame
+* `0010` - binary frame
+* `1000` - connection close
+* `1001` - ping
+* `1010` - pong
+
+Wenn einer der beiden Endpunkte ein ping sendet muss der andere mit einem
+pong antworten.  Dieser Mechanismus wird verwendet um die TCP-Verbindung
+aufrecht zu erhalten auch wenn gerade keine Daten geschickt werden müssen ("keepalive").
 
 ## Werkzeuge
 
@@ -50,18 +84,17 @@ jederzeit mit eingehenden Nachrichten umgehen.
 
 Beim Programmieren und Debuggen von Websockets braucht man die
 Developer Tools: In der "Netzwerkanalyse" sieht man den ersten
-Request, noch mit HTTP, der dann mit "101 Switching Protocol" in eine Websocket 
+Request, noch mit HTTP, der dann mit "101 Switching Protocol" in eine Websocket
 umgewandelt wird:
 
-![](/images/websockets/dev-tools-network.png)
 ![](/images/websockets/dev-tools-network-1.png)
 
-Im Tab "Nachrichten" sieht man die Nachrichten die hin oder her geschickt werden:
+Im Tab "Antwort" sieht man die Frames die hin oder her geschickt werden:
 
 ![](/images/websockets/dev-tools-network-2.png)
 
 Hier sieht man auch dass Client und Server sich gegenseitig
-"Ping"-Pakete senden wenn sonst nichts zu senden ist.
+Ping- und Pong-Frames senden wenn sonst nichts zu senden ist.
 
 
 ### node.js
@@ -79,25 +112,31 @@ nur im Backend Development verwendet, sondern auch sehr viel als Werkzeug
 für das Frontend Development.
 
 Für Node zu programmieren ist nicht einfach: wie im Browser, so wird auch in
-Node viel mit Asynchronen Aufrufen gearbeitet. 
+Node viel mit Asynchronen Aufrufen gearbeitet.
 
 ### glitch
 
 
 
 Node.js kann man [am eigenen Rechner installieren](https://nodejs.org/en/download/), das
-ist aber für diese Beispiel nicht nötig. Wir verwenden [https://glitch.com/](https://glitch.com/):
+ist aber für diese Beispiel nicht nötig. Wir verwenden [https://glitch.com/](https://glitch.com/).
+
+Mit Glitch kann man node.js Programme direkt im Browser schreiben. Der Code wird
+am Server von glitch gespeichert, und kann dort auch ausgeführt werden.
+
 
 ![](/images/websockets/glitch.png)
 
-Damit enfällt das hochladen des Codes auf einen Server.
+Damit braucht man also am eigenen Computer nur den Webbrowser.
+
+Das "Frontend" findet sich in der Datei `public/index.html`,  das Backend in `index.js`.
 
 
 ### Socket.io
 
 
 `socket.io` ist eine JavaScript Library für die Client und die Server-Seite
-von Websocket Verbindungen. 
+von Websocket Verbindungen.
 
 
 ## Programmierung des Client
@@ -124,17 +163,14 @@ durch drücken von enter), wird eine Nachricht an den Server geschickt:
 var socket = io();
 let form = document.getElementsByTagName('form')[0];
 let input = document.getElementById('m');
-form.addEventListener('submit', function() {  
-  socket.emit('chat message', m.value );
-  m.value="";
-  return false;
+form.addEventListener('submit', function(event) {
+  event.preventDefault();  // Form wird nicht "normal" gesendet
+  socket.emit('chat message', m.value );  // nur über socket
+  m.value=""; // Eingabefeld leeren
 });
 </javascript>
 
-
-
 ### Vom Server empfangen:
-
 
 Wenn vom Server eine Nachricht kommt,
 wird sie als neues `li` an die Liste angefügt:
@@ -145,26 +181,24 @@ wird sie als neues `li` an die Liste angefügt:
   socket.on('chat message', function(msg){
     let li = document.createElement('li');
     li.textContent = msg;
-    list.appendChild(li);   
+    list.appendChild(li);
     list.scrollTop = list.scrollHeight;
   });
 </javascript>
 
-
-
-
-
 ## Programmierung des Servers:
 
-Achtung: mit Node programmiert man gleich den ganzen
-Webserver mit - es gibt keinen apache oder nginx!
+Achtung: mit Node.js programmiert man nicht nur irgend
+ein Programm, das am Webserver läuft.  Man schreibt ein JavaScript-Programm,
+das den gesamten Job des Webserver mit erledigt.
 
 Das JavaScript-Programm läuft also die ganze Zeit und
-behandelt alle Anfragen.
+behandelt alle Anfragen.  Ein apache oder nginx ist nicht nötig.
 
-In folgendem Code repräsentiert `io` den ganzen Websocket,
-`io.emit`  ist also ein broadcast an alle verbundenene Clients.
-`socket` repräsentiert einen verbundenen client:
+In folgendem Code repräsentiert `io` den ganzen Websocket:
+Die Variable `socket` repräsentiert einen verbundenen Client.
+`io.emit()`  ist ein broadcast an alle verbundenene Clients,
+`socket.emit()` sendet nur an einen Client.
 
 <javascript>
 io.on('connection', function(socket){
@@ -181,16 +215,36 @@ io.on('connection', function(socket){
 });
 </javascript>
 
+## Messages
+
+Wir haben vom Client zum Server gesendet mit dem Befehl:
+
+<javascript>
+socket.emit('chat message', m.value ); 
+</javascript>
+
+Am Server haben wir auf diese Message reagiert mit:
+
+<javascript>
+socket.on('chat message', function(msg){
+  console.log(`got message '${msg}'...`);
+});
+</javascript>
+
+Der String 'chat message' ist frei gewählt.  Wir haben hier
+ein Protokoll auf dem Websocket erfunden, das bisher nur diese
+eine Message kennt.
+
+
 
 ## Weiterentwicklung
 
 Es gibt viele Möglichkeiten das Beispielprogramm weiter zu entwickeln:
 
-
 ### neue Message
 
 In diesem Beispiel haben wir nur `chat message` messages
-gesendet und empfangen.  Wir können beliebig neue Arten von 
+gesendet und empfangen.  Wir können beliebig neue Arten von
 messages, mit oder ohne payload, dazu erfinden.
 
 Zum Beispiel für Applaus:  Der Client kann eine Applause-Meldung
@@ -198,15 +252,16 @@ ohne weitere Daten schicken.  Der Server kann applause mit
 einer Zahl schicken
 
 <javascript>
+// am Client:
   document.getElementById('applause').addEventListener('click',function(){
     socket.emit('applause');
   })
   socket.on('applause', function(text){
-    let li = document.createElement('li');   
-    let strength = parseInt(text);       
+    let li = document.createElement('li');
+    let strength = parseInt(text);
     li.textContent = "👏".repeat(strength);
-    list.appendChild(li);   
-    list.scrollTop = list.scrollHeight;         
+    list.appendChild(li);
+    list.scrollTop = list.scrollHeight;
   });
 </javascript>
 
@@ -221,24 +276,28 @@ man zum Beispiel einen Audio-Clip abspielen.
 
 ### Andere Logik am Server
 
-Am Server könnte man mit-zählen wie viel User anwesend sind:
+Am Server könnte man mit-zählen wie viel User anwesend sind.
+Dazu legt man eine globale Variable `users` an.  Solange das JavaScript-Programm 
+am Server läuft bleibt diese Variable erhalten.  Wenn der Server neu gestartet
+werden muss - z.B. weil man die Datei `index.js` editiert hat - dann geht der
+Inhalt der Variable verloren.
 
 <javascript>
-var users = [];
+let users = [];
 function remove_from(users, socket){
-  users = users.filter(s => s.id != socket.id);  
+  users = users.filter(s => s.id != socket.id);
 }
 io.on('connection', function(socket){
   // called every time a client connects
   console.log(`ein neuer client mit id ${socket.id}`);
   users.push(socket);
   io.emit('chat message', `there are now ${users.length} users`);
-   
+
   ....
   socket.on('disconnect', function(){
     remove_from(users, socket);
     console.log('user disconnected');
-    io.emit('chat message', `there are now ${users.length} users`);  
+    io.emit('chat message', `there are now ${users.length} users`);
   });
 });
 </javascript>
@@ -246,5 +305,6 @@ io.on('connection', function(socket){
 
 ## See Also
 
-* [RFC 6455](https://tools.ietf.org/html/rfc6455)
+* [RFC 6455](https://www.rfc-editor.org/rfc/rfc6455.html)
+* [Websockets im MDN](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
 * [socket.io](https://socket.io/)

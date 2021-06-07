@@ -149,9 +149,10 @@ Browser (laut CSS-Anweisung) angewandt.
 Wenn alles funktioniert hat kann man jetzt beim Scrollen (egal ob mit Scrollbar, Maus, Touchscreen oder
 Keyboard) sehen wie sich der Header verwandelt.
 
-## Ausblick: Parallax Scrolling
+## Ausblick: Mehr spass beim Scrollen
 
 Im Webdesign wird das Scrollen gerne als Auslöser für
 Animationen verwendet.  
 
-* [Tutorial](https://cssanimation.rocks/parallax/)
+* [Scrolllama.js](https://github.com/russellgoldenberg/scrollama#scrollamajs)
+* [Tutorial Parallax Scrolling](https://cssanimation.rocks/parallax/)

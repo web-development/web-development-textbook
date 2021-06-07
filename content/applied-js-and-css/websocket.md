@@ -165,8 +165,8 @@ let form = document.getElementsByTagName('form')[0];
 let input = document.getElementById('m');
 form.addEventListener('submit', function(event) {
   event.preventDefault();  // Form wird nicht "normal" gesendet
-  socket.emit('chat message', m.value );  // nur über socket
-  m.value=""; // Eingabefeld leeren
+  socket.emit('chat message', input.value );  // nur über socket
+  input.value=""; // Eingabefeld leeren
 });
 </javascript>
 

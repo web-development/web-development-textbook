@@ -17,3 +17,7 @@ intro: In diesem Kapitel werde verschiedene Möglichkeiten für Grafik im Browse
 * Mit SVG Vektorgrafik und Animationen darstellen
 * Mit 2d Canvas zeichnen und Bilder darstellen
 * Mit 3d Canvas ein 3d-Modell darstellen
+
+### Mehr
+
+* [lottie](https://airbnb.io/lottie/#/) kann Animationen aus AfterEffects übernehmen

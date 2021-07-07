@@ -79,7 +79,7 @@ Dieser Schreibweise erlaubt auch sehr umständliche Formulierungen
 
     http://multimediatechnology.at/2011/06/19/ruby.html
                    +     ../../../2008/05/../04/17/rattenscharfes-computergame.html = 
-    http://multimediatechnology.at/2008/04/17/rattenscharfes-computergame
+    http://multimediatechnology.at/2008/04/17/rattenscharfes-computergame.html
 
 ## Alles nur im Client 
 

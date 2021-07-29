@@ -104,3 +104,92 @@ $ chmod g+s img
 
 ![Wie man das Stick bit am Directory setzt und Warum](/images/kommandozeile/better-permissions-explained.png)
 
+## Mac OS Zugriffsrechte
+
+
+Ein Beispiel:
+
+<shell>
+$ cp Anna_* ~/Desktop/
+cp: Anna_2.docx: Permission denied
+</shell>
+
+Aber die UNIX Zugriffsrechte sind richtig gesetzt und sollten das Kopieren erlauben:
+
+<shell>
+$ ls -la Anna*
+-rw-r--r--@ 1 bjelline  staff  17543 27 Jul 17:05 Anna.docx
+-rw-r--r--@ 1 bjelline  staff  17250 27 Jul 17:02 Anna_2.docx
+</shell>
+
+Im Dateisystem von Mac OS gibt es noch eine zusätzliche Art von Zugriffsrechten
+in den "extended Attributes". Dass solche Attribute gesetzt sind erkennt man
+am Klammeraffen:
+
+
+Mit der Option `-@l` kann man die Attribute anzeigen:
+
+
+<shell>
+$ ls -@ -la Anna*
+-rw-r--r--@ 1 bjelline  staff  17543 27 Jul 17:05 Anna.docx
+	com.apple.fileutil.PlaceholderData	  336
+	com.apple.lastuseddate#PS	   16
+	com.apple.metadata:_kMDItemUserTags	   42
+	com.apple.metadata:kMDLabel_6mmcialpolbpyehsoppii7wuii	   89
+	com.apple.quarantine	   29
+-rwxr--r--@ 1 bjelline  staff  17250 27 Jul 17:02 Anna_2.docx
+	com.apple.LaunchServices.OpenWith	  118
+	com.apple.fileutil.PlaceholderData	  336
+	com.apple.lastuseddate#PS	   16
+	com.apple.metadata:com_apple_backup_excludeItem	   61
+	com.microsoft.OneDrive.RecallOnOpen	    0
+</shell>
+
+Mit dem Befehl `xattr -l` kann man den Inhalt der Attribute anzeigen lassen - das
+wird aber sehr umfangreich.  Hier nur ein Ausschnitt:
+
+<shell>
+$ xattr -l Anna*
+...
+Anna_2.docx: com.apple.LaunchServices.OpenWith:
+00000000  62 70 6C 69 73 74 30 30 D2 01 02 03 04 5F 10 10  |bplist00....._..|
+00000010  62 75 6E 64 6C 65 69 64 65 6E 74 69 66 69 65 72  |bundleidentifier|
+00000020  57 76 65 72 73 69 6F 6E 5F 10 24 63 6F 6D 2E 6D  |Wversion_.$com.m|
+00000030  69 63 72 6F 73 6F 66 74 2E 4F 6E 65 44 72 69 76  |icrosoft.OneDriv|
+00000040  65 2E 44 6F 77 6E 6C 6F 61 64 41 6E 64 47 6F 10  |e.DownloadAndGo.|
+00000050  00 08 0D 20 28 4F 00 00 00 00 00 00 01 01 00 00  |... (O..........|
+00000060  00 00 00 00 00 05 00 00 00 00 00 00 00 00 00 00  |................|
+00000070  00 00 00 00 00 51                                |.....Q|
+00000076
+...
+</shell>
+
+Und hier ist auch die Lösung des Problems: Um die Datei Anna_2.docx zu öffnen soll
+man das Programm `com.microsoft.OneDrive.DownloadAndGo` verwenden.
+Im Finder sieht das so aus:
+
+
+![Darstellung von Dateien im OneDrive im Finder](/images/kommandozeile/onedrive.png)
+
+Aha, diese Datei ist gar nicht da, sondern muss erst aus der Cloud geladen werden.
+Das kann man im Finder mit Rechtsklick aktivieren:
+
+![OneDrive Datei soll aus der Cloud geladen werden](/images/kommandozeile/notcloud.png)
+
+Dann ist die Datei lokal:
+
+![Darstellung von Dateien im OneDrive im Finder](/images/kommandozeile/cloudonedrive.png)
+
+Und es klappt auf der Kommandozeile mit dem Kopieren:
+
+<shell>
+$ cp Anna_* ~/Desktop/
+</shell>
+
+Wenn man ein Attribut ganz entfernen will geht das mit `xattr -d`:
+
+
+<shell>
+$ sudo xattr -d com.apple.quarantine Anna_*
+</shell>

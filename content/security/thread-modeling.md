@@ -1,9 +1,18 @@
 ---
-title: Thread Modeling
+title: Threat Modeling
 order: 5
 ---
 
-Zuerst betrachten wir zwei Schritte aus der Definition von [Thread Modeling](https://owasp.org/www-community/Threat_Modeling) der OWASP:
+Für verschiedene Situationen gibt es verschiedene Threat Models,
+wie in diesem [tweet](https://twitter.com/hvcco/status/1364104368228859906) von
+Nik gezeigt:
+
+![Tweet "Your threat model is not my threat model, hospital edition"](/images/security/threat-model-endoscopy.jpg)
+
+Die Gefahr, dass der Snack-Automat mit Endoskopie-Geräten attackiert wird, ist
+wohl nur in einem Krankenhaus gegeben, nicht aber in einer Schule oder einem Büro.
+
+Zuerst betrachten wir zwei Schritte aus der Definition von [Threat Modeling](https://owasp.org/www-community/Threat_Modeling) der OWASP:
 
 
 ## Assessment Scope
@@ -15,7 +24,7 @@ Zuerst betrachten wir zwei Schritte aus der Definition von [Thread Modeling](htt
 
 Ein Beispiel als Diagram:
 
-![Beispiel Thread Model Diagramm aus dem Thread Modeling Cookbook](/images/security/cryptowallet.vsdx.svg)
+![Beispiel Threat Model Diagramm aus dem Threat Modeling Cookbook](/images/security/cryptowallet.vsdx.svg)
 
 ## Identify Threat Agents and Possible Attacks
 
@@ -26,7 +35,7 @@ Ein Beispiel als Diagram:
 
 Hier kann man ein Attack Tree einsetzen:
 
-![Beispiel plantuml Diagramm aus dem Thread Modeling Cookbook](/images/security/cryptowallet.plantuml.svg)
+![Beispiel plantuml Diagramm aus dem Threat Modeling Cookbook](/images/security/cryptowallet.plantuml.svg)
 
 
 ## Weitere Quellen

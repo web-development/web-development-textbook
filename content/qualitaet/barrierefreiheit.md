@@ -65,6 +65,20 @@ Von der Webseite [Digitales Österreich](https://www.digitales.oesterreich.gv.at
 
 ## Erste Schritte
 
+### Einfach und Semantisch
+
+Wir haben HTML, CSS, JavaScript in dieser Reihenfolge gelernt,
+wir haben die korrekte Verwendung der HTML Tags gelernt.  Das ist
+eine gute Basis für barrierefreie Webseiten.
+
+Wenn ein Effekt mit HTML, CSS oder JavaScript erzieht werden kann, dann
+verwende immer die einfachste Technologie.
+
+Folgende Folie aus eine Votragt von [Martin Splitt](https://twitter.com/g33konaut)
+zeigt verschiedene Arten einen Link zu bauen.  Die einfachste Art ist die Beste!
+
+![Beispiel für barrierefreies Web - lieber ein link mit href als mit JavaScript](/images/qualitaet/accessible-link.jpg)
+
 ### Sprache mit `lang`
 
 Das `lang`-Attribut hilft bei der Interpretation der natürlichen Sprache. Das wird

@@ -76,6 +76,43 @@ SELECT substring(name from 1 for 20) AS name, time, yes_rsvp_count FROM events O
 Time: 0.775 ms
 </sql>
 
+## Die Datenstruktur hinter dem Index: B-Baum
+
+Das Anlegen eines Index mit  `CREATE INDEX` erzeugt eine zusätzliche
+Datenstruktur: einen [B-Baum](https://de.wikipedia.org/wiki/B-Baum).
+
+![B-Baum](/images/php-db-optimierung/b-baum.svg)
+
+Der B-Baum ist sortiert, ausbalanziert, und seine Knoten haben jeweils viele
+Kinder.
+
+Mit dem Wissen über die Datenstruktur gewinnen wir ein besserer Verständnis für
+die Fähigkeiten und Grenzen eines Index:
+
+* Ein Index bedeutet immer zusätzliche Arbeit beim Einfügen, beim Löschen, ...
+* das Auslesen kann in logarithmischer Zeit erfolgen
+* ...
+
+Besonders effizient ist der Index wenn alle Daten der Abfrage schon
+direkt im Baum gespeichert sind, und nicht nochmal separat gelesen werden müssen:
+
+<sql>
+# SELECT name, time, yes_rsvp_count FROM events ORDER BY yes_rsvp_count DESC LIMIT 10; 
+# SELECT yes_rsvp_count FROM events ORDER BY yes_rsvp_count DESC LIMIT 10; 
+</sql>
+
+Die erste Abfrage braucht einen Zugriff auf die vollständigen Daten der Tabelle um 
+name und time auszulesen. Die zweite Abfrage findet alle nötigen Daten direkt im Index.
+
+Manche Datenbank bieten die Möglichkeit zusätzliche Attribute in den Index aufzunehmen,
+um einen "covering index" zu erzeugen:
+
+<sql>
+# CREATE INDEX yes_rsvp_count_with_name_and_time ON events(yes_rsvp_count) INCLUDE (name, time);
+</sql>
+
+Siehe [Katz (2018): Why Covering Indexes in Postgres Are Incredibly Helpful](https://blog.crunchydata.com/blog/why-covering-indexes-are-incredibly-helpful) und [Postgres Dokumentation](https://www.postgresql.org/docs/13/sql-createindex.html).
+
 ## Index für Volltexsuche
 
 Für Abfragen mit `LIKE` hilft ein normaler Index nicht.
@@ -129,6 +166,9 @@ Danach ist die Abfage wesentlich schneller:
  Execution time: 1.006 ms
 (12 rows)
 </sql>
+
+
+
 ## Siehe auch
 
 - [Latency Numbers Every Programmer Should Know ](https://gist.github.com/jboner/2841832)

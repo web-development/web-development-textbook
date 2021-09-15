@@ -77,7 +77,7 @@ Statistik von [StatsCounter](https://gs.statcounter.com/platform-market-share/de
 Auf diesen neuen Geräten gibt es auch Webbrowser - teilweise spezialisierte Software (Android Browser), teilweise
 adaptionen der klassischen Desktop Browser (Firefox).
  
-![Browser auf Smartphones, 2010](/images/das-web-und-html/browser-am-smartphone.png)
+![Browser auf Smartphones, 2010](/images/das-web-und-html/browser-am-smartphone.jpg)
 
 Webseite
 --------

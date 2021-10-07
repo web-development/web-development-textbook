@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Das erste PHP-Programm - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Das erste PHP-Programm</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-vorbereitung/apache//slide.html">Apache</a> | 
+        <a href="/php-vorbereitung/erstes-php-programm/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php//slide.html">PHP Basics</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Während das Schreiben und Testen von HTML-Seiten sehr einfach war,
+erforder das Schreiben und Testen von PHP einige Schritte mehr.
+Hier eine Schritt- für Schritt Auflistung, was alles schief gehen kann:</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Das Programm muss die richtige Dateiendung (.php) haben. Es kann nicht direkt im
+Browser angezeigt werden, sondern muss über den Webserver aufgerufen weden. In
+folgendem Beispiel ist beides falsch:</p>
+
+<p><img src="/images/image327.png"  alt="Abbildung 125: So funktioniert PHP nicht: ohne Webserver, falsche Dateiendung" ></p>
+
+<p>Wenn die URL mit <kbd>file:///</kbd> beginnt, öffnet der Browser die Datei
+direkt vom Filesystem, es ist keine Webserver involviert.  Dann kann PHP nicht
+funktionieren!</p>
+
+<p><img src="/images/php-no-webserver.svg"  alt="Vergleich von file: und http:" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wenn Sie eine PHP-Programm in einer Datei mit der Endung .html oder .htm
+speichern, und über den Webserver aufrufen, wird es trotzdem nicht vom Webserver 
+interpretiert, sondern direkt an den Browser gesandt.</p>
+
+<p>Der Browser zeigt den PHP-Teil des Code aber nicht an, 
+erst mit Ansicht-&gt;Quelltext kann man den Code sehen wie in Abbildung 122 gezeigt.</p>
+
+<p><img src="/images/image328.png"  alt="Abbildung 126: So funktioniert PHP nicht: falsche Dateiendung" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wenn Sie die richtige Dateiendung verwenden (.php) und die Seite über einen Webserver 
+betrachten (z.B. http://localhost) kann immer noch ein Fehler im PHP-Programm auftreten. 
+Die Fehlermeldung des Interpreters wird dann im Browser angezeigt wie in Abbildung 123 gezeigt.</p>
+
+<p><img src="/images/image329.png"  alt="Abbildung 127: So funktioniert PHP nicht: Fehler im Programm" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Zum Abschluss nun das funktionierende Programm bei einem funktionierenden
+Testlauf: richtige Datei-Endung, richtiger Beginn der URL mit
+<strong>http://localhost/</strong>, und keine Fehler im Programm:</p>
+
+<p><img src="/images/image330.png"  alt="Abbildung 128: So funktioniert PHP: Webserver, richtige Endung, richtiger Programmcode" ></p>
+
+<p>Mit Ansicht-&gt;Quelltext kann man nun im Browser nur noch den HTML-Code sehen, niemals aber den PHP-Quellcode!</p>
+
+</div>
+<div class="slide">
+
+<h2 id="php-versionen">PHP Versionen</h2>
+<p>Der Befehl phpinfo() liefert Informationen zur PHP-Installation. In der letzten Abbildung sehen 
+Sie z.B. dass PHP in der Version 5.0.5 verwendet wird - eine veraltete Version. Im Jahr
+2019 sollten Sie nur mindestens PHP 7 verwenden.</p>
+
+<p>Zwischen den verschiedenen PHP-Versionen gibt es eklatante Unterschiede, 
+verschiedene PHP-Versionen sind <strong>nicht</strong> <strong>kompatibel</strong>. 
+Wenn ihr Webspace-Vermieter auf eine 
+neue PHP-Version umstellt, müssen Sie eventuell den Code Ihres Programmes
+anpassen!</p>
+
+<p>In der PHP-Dokumentation sind diese Unterschiede bei den einzelnen Befehlen 
+aufgeführt, z.B. bei der Funktion <a href="http://php.net/manual/de/function.ldap-sort.php">ldap_sort</a> ist in der Dokumentation angegeben:</p>
+
+<pre><code>PHP 4 &gt;= 4.2.0, PHP 5, PHP 7
+
+Warnung: Dieses Feature ist seit PHP 7.0.0 DEPRECATED (veraltet). Sich auf diese Funktion zu verlassen ist in keiner Weise empfehlenswert.
+</code></pre>
+
+<p>Die Funktion existiert also seit PHP 4 Version 4.2.0 und wird nach PHP 7 abgeschafft.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wenn Sie Webspace mieten liegt die Entscheidung über die PHP Version aber nicht bei Ihnen: 
+wenn Ihr Webspace-Provider nur einen veraltete PHP-Interpreter anbietet
+können Sie das nicht ändern!
+Das sollten Sie auf jeden Fall klären bevor Sie den Mietvertrag abschließen.</p>
+
+<p>Auf dem Entwicklungsrechner verwendet man immer exakt die Version von PHP,
+die am Webspace installiert ist.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="dokumentation">Dokumentation</h2>
+<p>Die Dokumentation zu PHP finden Sie auf http://php.net.</p>
+
+<p><img src="/images/image331.png"  alt="Abbildung 129: Eine Funktion in der Doku auf php. net nachschlagen" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Hilfreich sind auch die Kommentare der UserInnen am Ende jeder Doku-Seite. Hier finden Sie oft Erklärungen zu einzelnen Features, die in der Dokumentation “vergessen” wurden, oder Anwendungsbeispiele:</p>
+
+<p><img src="/images/image332.png"  alt="Abbildung 130: Kommentare von UserInnen in der Doku auf php. Net" ></p>
+
+<p>Die Dokumentation kann man auch herunterladen und lokal installieren, dann enthält sie aber nicht die Kommentare.</p>
+
+</div>
+    <div class="slide">
+      <h1>Das erste PHP-Programm</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-vorbereitung/apache//slide.html">Apache</a> | 
+        <a href="/php-vorbereitung/erstes-php-programm/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php//slide.html">PHP Basics</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

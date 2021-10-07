@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Lesen aus der Datenbank - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Lesen aus der Datenbank</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-lesen/struktur-webapplikation//slide.html">Struktur einer Web-Applikation</a> | 
+        <a href="/php-db-lesen/datenbank-lesen/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-lesen/effizent//slide.html">Effizient Arbeiten mit der DB</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Für die Applikation müssen wir nun auf verschiedene
+Arten Daten aus der Datenbank lesen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="einzelne-daten-aus-der-datenbank-lesen">Einzelne Daten aus der Datenbank lesen</h2>
+<p>Für die Datei <code>index.php</code> müssen wir die Anzahl der Profile und Projekte anzeigen.
+Mit der SQL-Funktion <code>COUNT()</code> können 
+wir die Anzahl der gefundenen Datensätze bestimmen<a href="http://www.postgresql.org/docs/current/static/functions-aggregate.html">*</a>:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Beispiel aus index.php</small></h4>
+<pre class="lang-php prettyprint linenums">
+$sth = $dbh-&gt;query(&quot;SELECT COUNT(*) AS anzahl FROM users WHERE profile_visible&quot;);
+$result = $sth-&gt;fetch();
+$anz_personen = $result-&gt;anzahl;
+</pre></div>
+
+<p>Hier verwenden wir die Methode <code>fetch()</code> des Statement-Handles
+um nur einen Datensatz zu lesen.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Man könnte all diese Befehle direkt aneinander-ketten (englisch: “to chain”):</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Beispiel aus index.php</small></h4>
+<pre class="lang-php prettyprint linenums">
+$anz_personen = $dbh-&gt;query(&quot;SELECT COUNT(*) AS anzahl FROM users WHERE profile_visible&quot;)-&gt;fetch()-&gt;anzahl;
+</pre></div>
+
+<p>Damit spart man sich zwei der drei Variablen, macht aber
+die Fehlersuche etwas schwieriger.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="viele-datenstze-lesen">Viele Datensätze lesen</h2>
+
+<p>Für die Datei <code>personen.php</code> benötigen wir ein Möglichkeit viele
+Daten aus der Datenbank zu lesen. Das geschieht mit einem einfachen <code>SELECT</code>:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Abfrage der Datenbank mit SELECT</small></h4>
+<pre class="lang-php prettyprint linenums">
+$sth =$dbh-&gt;query(
+  &quot;SELECT * FROM person WHERE profile_visible=1 ORDER BY surname LIMIT 500&quot;
+);
+$personen = $sth-&gt;fetchAll();
+</pre></div>
+
+<p>Die SQL-Anfrage wird hier als String an die <code>query()</code>-Methode des Datenbankhandler
+übergeben.  Der Rückgabewert von query ist ein Statement-Handle <code>$sth</code> (ähnlich
+dem Datenbank-Handle).  Zu diesem Zeitpunkt wurden noch keine Daten von der
+Datenbank zu PHP übertragen.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Im Beispiel wird LIMIT verwendet:
+<code>LIMIT anzahl</code> bzw.
+<code>LIMIT anzahl OFFSET anfangsposition</code>
+wählt aus der Antwort eine Anzahl von Datensätzen aus, beginnt dabei bei
+Anfangsposition<a href="http://www.postgresql.org/docs/8.1/static/queries-limit.html">*</a>.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>In der Datenbank sind Personen, deren Profil nicht angezeigt werden soll, mit
+<code>profile_visible = false</code> gekennzeichnet. Im SQL-Statement wird sicher gestellt, dass
+nur sichtbare Profil angezeigt werden.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Das eigentliche Lesen der Daten aus der Datenbank geschieht erst nach dem
+<code>query()</code> mit der Methode <code>fetchAll()</code><a href="http://www.php.net/manual/en/pdostatement.fetchall.php">*</a>. 
+Der Rückgabewert von <code>fetchAll()</code> ist ein Array mit Objekten. 
+Hier der Output von <code>print_r($personen)</code>:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Output von print_r($personen)</small></h4>
+<pre class="lang-php prettyprint linenums">
+Array
+(
+  [0] =&gt; stdClass Object
+      (
+          [id] =&gt; 422
+          [firstname] =&gt; Hubert jun.
+          [surname] =&gt; H.
+          [email] =&gt; mail422@nowhere.not
+          [isfemale] =&gt; false
+          [profile_visible] =&gt; true
+      )
+  [1] =&gt; stdClass Object
+      (
+          [id] =&gt; 313
+          [firstname] =&gt; Marcel
+          [surname] =&gt; U
+          [email] =&gt; mail313@nowhere.not
+          [isfemale] =&gt; false
+          [profile_visible] =&gt; true
+      )
+  ...
+)
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Später werden die Personen dann angezeigt:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Anzeige der Personen</small></h4>
+<pre class="lang-php prettyprint linenums">
+foreach($personen as $person) {
+  echo &quot;&lt;li&gt;$person-&gt;firstname $person-&gt;surname&lt;/li&gt;\n&quot;;
+}
+</pre></div>
+
+<p>Das Array <code>$personen</code> wird hier mit einer <code>foreach</code>-Schleife<a href="http://php.net/manual/de/control-structures.foreach.php">*</a> abgearbeitet.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Falls man den Index auch anzeigen will, kann man die ausführlichere Version
+der <code>foreach</code> Schleife verwenden:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Foreach-Schleife mit index</small></h4>
+<pre class="lang-php prettyprint linenums">
+foreach($personen as $i =&gt; $person) {
+  echo &quot;&lt;li&gt;Person Nr. $i) $person-&gt;firstname $person-&gt;surname&lt;/li&gt;\n&quot;;
+}
+</pre></div>
+
+<p>Achtung: <code>$i</code>  ist hier der Index im Array das <code>fetchAll()</code> erzeugt
+hat, es ist nicht der Primary Key aus der Datenbank!  Den würde man
+mit <code>$person-&gt;id</code> erhalten!</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Bei der Ausgabe soll für jede Person ein passender Link zu <code>person.php</code> angezeigt werden:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Link mit ID als Parameter erzeugen</small></h4>
+<pre class="lang-php prettyprint linenums">
+&lt;li&gt;
+  &lt;b&gt;&lt;?php echo $person-&gt;firstname ?&gt; &lt;?php echo $person-&gt;surname?&gt;&lt;/b&gt;
+  &lt;a href=&quot;person.php?id=&lt;?php echo $person-&gt;id ?&gt;&quot;&gt;mehr&lt;/a&gt;
+&lt;/li&gt;
+</pre></div>
+
+<p>Der Output sieht dann zum Beispiel so aus:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Output des letzten PHP-Programmes</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;li&gt;
+  &lt;b&gt;Michael A&lt;/b&gt;
+  &lt;a href=&quot;person.php?id=577&quot;&gt;mehr&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+  &lt;b&gt;Benjamin A&lt;/b&gt;
+  &lt;a href=&quot;person.php?id=579&quot;&gt;mehr&lt;/a&gt;
+&lt;/li&gt;
+</pre></div>
+
+<p>Auf diese Weise haben wir den Parameter <code>id</code> an den nächsten Teil
+der Applikation weiter gegeben.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wir haben in personen.php nur sichtbare Profile angezeigt,
+und auch nur auf sichtbare Profile verlinkt. Das schützt nicht davor, 
+dass jemand einfach eine URL mit ganz anderer id „von Hand“ eingibt!</p>
+
+<p><code>http://meinedomain.at/person.php?id=666</code></p>
+
+<p>Der Zugriffsschutz ist also ein eigenes Thema, das auch in <code>person.php</code> wieder
+behandelt werden muss.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="einen-bestimmten-datensatz-lesen">Einen bestimmten Datensatz lesen</h2>
+<p>Wenn Sie die Datei <code>person.php</code> mit einem Parameter aufrufen <code>person.php?id=586</code>
+soll eine bestimmte Person aus der Datenbank angezeigt werden. Dafür wird der
+Parameter aus dem <code>$_GET</code> – Array ausgelesen und sicher gestellt, dass es sich
+wirklich um eine Zahl handelt.</p>
+
+<p>Das Ergebnis der Abfrage kann also
+sein, dass keine Person gefunden wurde – entweder weil unter diesem Schlüssel
+gar keine gespeichert ist, oder weil <code>profile_visible=false</code> ist. In diesem Fall
+gibt fetch kein Objekt sondern der Wert <code>FALSE</code> zurück.</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Beispiel aus index.php</small></h4>
+<pre class="lang-php prettyprint linenums">
+$id = $_GET[&#39;id&#39;];  // SICHERHEITSPROBEM - behandeln wir später noch!
+$stm = $dbh-&gt;query(&quot;SELECT * FROM users WHERE profile_visible AND id=$id&quot;);
+$person = $stm-&gt;fetch();
+if( $person === FALSE ) {
+  die(&quot;&lt;p&gt;Konnte keine passenden Daten aus der Datenbank lesen.&lt;/p&gt;&quot;);
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Die Darstellung der einzelnen Person ist damit noch nicht fertig programmiert:
+Die Anzahl der Werke der Person oder eine Liste der Werke fehlen noch.</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+if( $person-&gt;isfemale ) {
+    $anrede = &quot;Frau&quot;;
+    $ersie  = &quot;Sie&quot;;
+} else {
+    $anrede = &quot;Herr&quot;;
+    $ersie  = &quot;Er&quot;;
+}
+
+// ====================== Ausgabe ===================
+include &quot;header.php&quot;;
+?&gt;
+&lt;p&gt; 
+  &lt;?php echo $anrede ?&gt;
+  &lt;?php echo $person-&gt;firstname ?&gt;
+  &lt;?php echo $person-&gt;surname ?&gt;
+  hat insgesamt x Werke in dieser Datenbank.
+  &lt;?php echo $ersie ?&gt; hat die E-Mail Adresse &lt;?php echo $person-&gt;email ?&gt;.
+&lt;/p&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="datenstze-suchen">Datensätze suchen</h2>
+
+<p>In der Datei <code>psuche.php</code> wird ein Formular zur Suche nach Namen angezeigt:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Such-Formular in psuche.php</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;form action=&quot;psuche.php&quot; method=&quot;get&quot;&gt;
+  Suche nach einer Person mit dem Namen &lt;input name=&quot;suchwort&quot;&gt; 
+  &lt;input type=&quot;submit&quot;&gt;
+&lt;/form&gt;
+</pre></div>
+
+<p>Die eigentliche Suche geschieht über das WHERE-Statement  in SQL:</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+... 
+WHERE profile_visible=1 
+  AND (surname LIKE &#39;%$suchwort%&#39; OR firstname LIKE &#39;%$suchwort%&#39;)
+</pre></div>
+
+<p>Wir werden uns später noch genauer mit der Sicherheitsproblematik von
+SQL-Statements befassen, die teilweise aus User-Input entstehen. Noch ignorieren
+wir die Problematik einfach, und implementieren diese Seite
+ganz ähnlich wie <code>personen.php</code>.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="zufllige-datenstze-auswhlen">Zufällige Datensätze auswählen</h2>
+
+<p>Auf der Homepage index.php sollen wir 10 zufällig ausgewählte Werke
+anzeigen.  Wie geht das?</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Abfrage von zufälligen Datensätzen in Postgres 9.4</small></h4>
+<pre class="lang-php prettyprint linenums">
+$query =$dbh-&gt;query(
+  &quot;SELECT * FROM projects WHERE NOT(draft) AND NOT(blocked) ORDER BY RANDOM() LIMIT 10&quot;
+);
+$personen = $query-&gt;fetchAll(PDO::FETCH_OBJ);
+</pre></div>
+
+<p>Ab Version 9.5 gibt es eine effizientere Methode mit
+<code>TABLESAMPLE</code> <a href="http://www.postgresql.org/docs/devel/static/sql-select.html#SQL-FROM">*</a>,</p>
+
+<p>In anderen relationalen Datenbanken gibt es dafür andere Lösungen.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="neue-befehle-in-diesem-kapitel">Neue Befehle in diesem Kapitel:</h3>
+
+<p>PHP</p>
+
+<ul>
+  <li><a href="http://www.php.net/manual/en/pdostatement.fetchall.php">fetchAll()</a></li>
+  <li><a href="http://php.net/manual/de/control-structures.foreach.php">foreach</a></li>
+</ul>
+
+<p>Postgres</p>
+
+<ul>
+  <li><a href="http://www.postgresql.org/docs/current/static/functions-aggregate.html">LIMIT anzahl OFFSET anfangsposition</a></li>
+  <li><a href="http://www.postgresql.org/docs/8.1/static/queries-limit.html">COUNT(*)</a></li>
+  <li><a href="http://www.postgresql.org/docs/devel/static/sql-select.html#SQL-FROM">TABLESAMPLE</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Lesen aus der Datenbank</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-lesen/struktur-webapplikation//slide.html">Struktur einer Web-Applikation</a> | 
+        <a href="/php-db-lesen/datenbank-lesen/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-lesen/effizent//slide.html">Effizient Arbeiten mit der DB</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

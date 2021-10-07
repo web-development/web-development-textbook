@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Formular als Interaktion - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Formular als Interaktion</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/formulare/form//slide.html">Formulare</a> | 
+        <a href="/formulare/interaktion/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/formulare/css//slide.html">CSS und Formular</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Bei der Verwendung von Checkboxen, Radiobuttons, Menüs und Listen geben Sie
+genau vor, welche Möglichkeiten die LeserIn hat.  Wenn Sie beim Entwurf des
+Formulars eine Möglichkeit vergessen, kann die LeserIn nichts mehr daran ändern.
+Deswegen ist hier besondere Sorgfalt geboten. Dazu ein paar Beispiele.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="keine-null-antwort">Keine Null-Antwort</h2>
+
+<p><img src="/images/formulare/bier.png"  alt="Zwei Entwürfe für ein Bier-Bestell-Formular" ></p>
+
+<p>Der linke Entwurf läßt keine kleine Bestellung zu. Die „Mindestbestellmenge“ für jede Sorte ist jeweils eine Kiste.  Durch das Einfügen einer „Leer“-Option in die Menüs wird diese Einschränkung aufgehoben.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="hotel-reservierung">Hotel-Reservierung</h2>
+
+<p><img src="/images/formulare/v1-zimmer.png"  alt="Zwei Entwürfe für ein Formular zur Zimmer-Reservierung" ></p>
+
+<p>Version 1: Ein Menü ermöglicht die Auswahl aus vorgegebenen Elementen.  Mit diesem Formular kann man nur ein, nicht aber zwei oder mehr Zimmer reservieren.  Version 2: Ein Text-Eingabefeld ermöglicht hier die Eingabe der Anzahl der Zimmer.  Es ist aber nicht möglich ein Einzel- plus ein Doppel-Zimmer zu reservieren.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p><img src="/images/formulare/v2-zimmer.png"  alt="Zwei weitere Entwürfe für ein Formular zur Zimmer-Reservierung" ></p>
+
+<p>Version 3 ermöglicht durch die Eingabe der Anzahl die Reservierung jeder Kombination von Einzel- und Doppelzimmer. Version 4: Durch ein zusätzliches Textfeld können alle weiteren Probleme abgefangen werden</p>
+
+</div>
+<div class="slide">
+
+<h2 id="redundanz">Redundanz</h2>
+
+<p>Achtung: wenn Sie zu viele Eingabemöglichkeiten bieten, entsteht Redundanz. Dann können Sie die Bedeutung der Eingabe nicht mehr eindeutig erkennen.</p>
+
+<p><img src="/images/formulare/redundanz.png"  alt="Abbildung 47: Redundanz im Formular" ></p>
+
+<p>Im linken Formular wird die Anzahl der bestellten Pizzas auf zwei Arten festgelegt: durch eine Checkbox und eine Text-Eingabe. In der obersten Zeile stimmen diese beiden Eingabefelder in Ihrer Aussage überein: Ja, 1 Stück Carbonara. Aber es ist auch möglich in sich widersprüchliche Bestellungen zu formulieren:  Ja, Null Stück Margaritha bzw. Nein, 1 Stück 4-Käse.</p>
+
+<p>Im rechten Formular wird diese Redundanz vermieden.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="vertiefung">Vertiefung</h2>
+
+<p>Wir haben bisher Formulare betrachtet, die nur HTML, nicht aber Javascript
+verwenden. Erst mit Javascript kann man Formulare wirklich flexibel bauen.
+Und erst mit Serverseitiger Programmierung (z.B. in PHP oder Ruby) kann man
+die eingegebenen Daten wirklich verarbeiten.</p>
+
+</div>
+    <div class="slide">
+      <h1>Formular als Interaktion</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/formulare/form//slide.html">Formulare</a> | 
+        <a href="/formulare/interaktion/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/formulare/css//slide.html">CSS und Formular</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

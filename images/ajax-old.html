@@ -1,0 +1,34 @@
+<html>
+<head>
+  <title>AJAX counter</title>
+  <style>
+      p#counter_zeile { display: none; }
+  </style>
+</head>
+<body>
+  <h1>Webseite</h1>
+
+  <p>mit total viel Inhalt</p>
+
+  <p id="counter_zeile">Counter: <span id="counter_zahl">?</span></p>
+
+  <script>
+    window.addEventListener('load', loadCounterWithAjax);
+
+    function loadCounterWithAjax() {
+      document.getElementById('counter_zeile').style.display = "block";
+      var ajax_request = new XMLHttpRequest();
+      ajax_request.addEventListener('load', handleCounterData);
+      ajax_request.open("GET", "counter_ajax.php");
+      ajax_request.send();
+      console.log("Request wurde gesendet");
+    }
+
+    function handleCounterData() {
+      console.log("Response wurde empfangen");
+      document.getElementById('counter_zahl').innerHTML = 
+        this.responseText;
+    }
+  </script>
+</body>
+</html>

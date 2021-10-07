@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Regular Expression Tester</title>
+    <script src="https://cdn.jsdelivr.net/jquery/2.0.0/jquery-2.0.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.url.parser/2.2.1/purl.js"></script>
+    <style>
+      body {
+        background-color: #ddd;
+        margin: 0px;
+      }
+      .article {
+        background-color: white;
+        width: 680px;
+        margin: 0px auto;
+        padding: 20px;
+      }
+      .js {
+        display: none;
+      }
+      .yes {
+        background-color: #afa;
+      }
+      .yes .highlight {
+        background-color: #faa;
+      }
+
+      #re,
+      #modi {
+        margin: 10px 0;
+        font-size: 18px;
+        border-width: 1px 0px 1px 0px;
+        border-style: solid;
+        text-align: left;
+      }
+      #re {
+        width: 50%;
+      }
+      #modi {
+        width: 10px;
+      }
+      #test {
+        display: block;
+        border-top: 1px #ddd solid;
+        border-bottom: 1px #ddd solid;
+      }
+
+      #test div {
+        font: 12px "Courier New";
+        min-height: 18px;
+        padding: 2px 3px;
+        margin: 0px;
+      }
+      #test div + div {
+        border-top: 1px #ddd dashed;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="article">
+      <h1>Regular Expression Match</h1>
+
+      <p class="nojs">
+        Diese Seite demonstriert die Funktion von Regular Expressions in
+        Javscript. Sie funktioniert deswegen nur, wenn Ihr Browser Javascript
+        interpretiert - das scheint nicht der Fall zu sein.
+      </p>
+
+      <form class="js">
+        <input id="re" placeholder="hier deine expression" />
+
+        <label
+          >Test-Liste
+          <select id="list"> </select>
+        </label>
+
+        <pre id="output"></pre>
+
+        <div id="test"></div>
+      </form>
+    </div>
+    <script>
+      var lists = {
+        "komma-zahlen": [
+          "12",
+          "1.",
+          ".131",
+          "1.131",
+          "3,",
+          ",232",
+          ",",
+          "42,232"
+        ],
+        "hex-zahlen": ["123123", "affe12", "blabla"],
+        Programmiersprachen: [
+          "actionscript",
+          "as 3",
+          "c",
+          "c#",
+          "cobol",
+          "fortran",
+          "java",
+          "javascript",
+          "perl",
+          "php",
+          "ruby",
+          "scala"
+        ],
+        "Country Codes": ["en", "sk", "uk", "us", "ukulele", "esuuk"],
+        Locales: [
+          "en_UK",
+          "en_US",
+          "de_DE",
+          "de_AT",
+          "de_CH",
+          "fr_FR",
+          "fr_CH"
+        ],
+        Mail: [
+          "a@b.c",
+          "l33t_usr+42@strange.domain.name",
+          "ha%@sag.i.net",
+          "a.b.c@d",
+          "@d"
+        ],
+        FHMail: [
+          "mmuster.mmt-b2013@fh-salzburg.ac.at",
+          "xsample.mmt-m2013@fh-salzburg.ac.at",
+          "xsample.mmt-m1792@fh-salzburg.ac.at",
+          "brigitte.jellinek@fh-salzburg.ac.at",
+          "akünstler.mma-b2011@fh-salzburg.ac.at"
+        ],
+        Postleitzahlen: ["5020", "A-5020", "90210", "irgendwas mit 8"],
+        Link: [
+          "<a href='dies'>Dies</a>",
+          "<a href='dies'>Dies</a> und <a href='das'>Das</a>"
+        ],
+        Image: [
+          "<img src='bla.gif'>",
+          '<img src="bla.gif">',
+          "<img src=\"bla.gif'>",
+          '<img           src="bla.gif"     >',
+          '<img title="error" src="bla.gif">'
+        ]
+      };
+
+      $(document).ready(function() {
+        var url, pattern, listname, list;
+
+        $(".nojs").hide();
+        $(".js").show();
+
+        // regex and data can be supplied as parameters, e.g.
+        // match.html?pattern=Needle&listname=texts&list[]=find+the+needle&list[]=in+the+haystack
+
+        url = $.url();
+        if ((pattern = url.param("pattern"))) {
+          $("#re").val(pattern);
+        }
+
+        listname = url.param("listname");
+        list = url.param("list");
+        if (listname && list) {
+          lists[listname] = list;
+          lists[listname].push("");
+        }
+
+        for (k in lists) {
+          $("#list").append("<option value='" + k + "'>" + k + "</option>");
+        }
+        if (listname) {
+          $("option[value=" + listname + "]").attr("selected", true);
+        }
+        load_tests();
+
+        $("#list").change(function() {
+          load_tests();
+          rematch();
+        });
+
+        var k;
+
+        function load_tests() {
+          k = $("#list option:selected").text();
+          $("#test div").remove();
+          if (lists[k]) {
+            for (var i = 0; i < lists[k].length; i++) {
+              var s = lists[k][i];
+              $o = $("<div></div>");
+              $o.text(s);
+              $("#test").append($o);
+            }
+          }
+        }
+
+        var regex;
+        if ($("#re")[0].value.length > 0) {
+          regex = new RegExp($("#re")[0].value);
+          rematch();
+        }
+
+        $("form").submit(function() {
+          return false;
+        });
+        $("#re").keyup(function() {
+          var r = this.value;
+
+          var output = "if ( '" + lists[k][0] + "'.match(/" + r + "/) ) { ...";
+          console.log(output);
+          $("#output").html(output);
+          if (this.value.length > 0) {
+            regex = new RegExp(r);
+          } else {
+            regex = new RegExp("§");
+          }
+          rematch();
+        });
+
+        function rematch() {
+          $("#test div").removeClass("yes");
+
+          $("#test div").each(function(i, o) {
+            var s = lists[k][i];
+            $o = $(o);
+            if ((result = regex.exec(s))) {
+              //console.log("nr " + i + ") " + $o.text() + " = yes mit " + result[0] + " an der position " + result.index );
+              $o.addClass("yes");
+              if (result[0].length > 0) {
+                var s1 = s.substr(0, result.index);
+                var s2 = s.substr(result.index, result[0].length);
+                var s3 = s.substr(result.index + result[0].length);
+                var $s1 = $("<span>");
+                var $s2 = $("<span class='highlight'>");
+                var $s3 = $("<span>");
+                $s1.text(s1);
+                $s2.text(s2);
+                $s3.text(s3);
+
+                $o.text("");
+                $o.append($s1);
+                $o.append($s2);
+                $o.append($s3);
+              }
+            } else {
+              //console.log("nr " + i + ") " + $o.text() + " = no");
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

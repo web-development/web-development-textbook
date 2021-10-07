@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Constraints - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Constraints</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-optimierung/indexes//slide.html">Indexes</a> | 
+        <a href="/php-db-optimierung/constraints/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-optimierung/alter//slide.html">Änderungen an der Datenbank</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>“Constraints” sind absichtliche <strong>Einschränkungn</strong> die man den Daten
+auferlegen kann.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Ein Constraint kennen Sie schon: Wenn man einen
+Primäreschlüssel definiert, dann soll dieser ja jeden Datensatz
+eindeutig identifizieren. Das heisst: der Primärschlüssel muss
+eindeutig sein.  Das ist ein <strong>unique constraint</strong>.</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+sql&gt; CREATE TABLE departments ( dep_name VARCHAR(20) PRIMARY KEY, … );
+completed in 23ms
+sql&gt; INSERT INTO departments VALUES(&#39;Marketing&#39;)
+1 row(s) affected in 16ms
+sql&gt; INSERT INTO departments VALUES(&#39;Engineering&#39;)
+1 row(s) affected in 7ms
+sql&gt; INSERT INTO departments VALUES(&#39;Marketing&#39;)
+[23505] ERROR: 
+  duplicate key value violates unique constraint &quot;departments_pkey&quot;
+  Detail: Key (name)=(Marketing) already exists.
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Ein  <strong>unique constraint</strong> kann man auch einer anderen Spalte,
+oder einer kombination von Spalten auferlegen.</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(20) UNIQUE,
+  email VARCHAR(220) UNIQUE
+);
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="referenzielle-integritt">Referenzielle Integrität</h2>
+
+<p>Bei einer Beziehung macht es Sinn, die existenz des Fremdschlüssels
+in der anderen Tabelle mit einem <strong>foreign key constraint</strong> sicher zu
+stellen.</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+CREATE TABLE departments (
+  dep_id SERIAL PRIMARY KEY,
+  dep_name VARCHAR(20)
+);
+CREATE TABLE employees (
+  name VARCHAR(20),
+  dep_id integer NULL REFERENCES departments(dep_id)
+);
+INSERT INTO employees VALUES(&#39;Brigitte Jellinek&#39;, 99)
+[23503] ERROR: insert or update on table &quot;employees&quot; 
+  violates foreign key constraint &quot;employees_dep_id_fkey&quot;
+  Detail: Key (dep_id)=(99) is not present in table &quot;departments&quot;.
+</pre></div>
+
+</div>
+    <div class="slide">
+      <h1>Constraints</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-optimierung/indexes//slide.html">Indexes</a> | 
+        <a href="/php-db-optimierung/constraints/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-optimierung/alter//slide.html">Änderungen an der Datenbank</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>PHP und Datenbank - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>PHP und Datenbank</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-lesen/db//slide.html">Datenbanken</a> | 
+        <a href="/php-db-lesen/start/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-lesen/struktur-webapplikation//slide.html">Struktur einer Web-Applikation</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Mit der Verwendung einer Datenbank wird der Aufruf einer
+Webseite noch einmal komplexer:  der Webserver ruft
+das PHP Programm auf, das PHP-Programm schickt eine
+Anfrage an die Datenbank.</p>
+
+<p><img src="/images/php-db.svg"  alt="Webseite wird von PHP erzeugt, mit DB-Abfrage" ></p>
+
+<p>Ob der Datenbank-Server und der Webserver auf dem selben Computer laufen
+oder auf verschiedenen macht für die Programmierung kaum einen Unterschied.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="datenbank-schnittstellen">Datenbank-Schnittstellen</h2>
+
+<p>Um von PHP auf die Datenbank zuzugreifen gibt es verschiedene Schnittstellen. 
+Hier werden die „PHP Database Objects“ (PDO) vorgestellt, siehe auch
+<a href="http://php.net/manual/de/book.pdo.php">PDO Dokumentation</a>.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="verbindungsaufbau">Verbindungsaufbau</h3>
+
+<p>So funktioniert der Verbindung-Aufbau (und -Abbau) zur postgres-Datenbank:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>new PDO für den Verbindungs-Aufbau</small></h4>
+<pre class="lang-php prettyprint linenums">
+$dbh = new PDO($DSN, $DB_USER, $DB_PASS);
+</pre></div>
+
+<p>Der Rückgabewert ist ein sogenanntes “Datenbank-Handle”.
+Das zweite und dritte Argument sind einfach Strings mit
+dem Usernamen und Passwort für die Datenbank.</p>
+
+<p>Das erste Argument wird in der <a href="http://www.php.net/manual/en/pdo.construct.php">Dokumentation</a> 
+als “Data Source Name” bezeichnet und enthält mehrere Informationen, die in
+einen String gepackt werden.</p>
+
+<p>Ein Beispiel für einen Postgres DSN ist <code>"pgsql:dbname=portfolio_playground;host=localhost"</code>.
+Ein DSN beginnt immer mit einem Kürzel für die Datebank, hier also <code>pgsql</code>.  Welche
+weiteren Teile der DSN anthält kann man in der <a href="http://www.php.net/manual/en/ref.pdo-pgsql.connection.php">Dokumentation des jeweiligen PDO Datenbank Treibers</a> nachlesen.</p>
+
+<p>Für den Postgres Treiber sind das der Name der Datenbank <code>dbname</code> und der <code>host</code>,
+eventuell der <code>port</code>.  Alternativ kann man die Verbindung statt über Host und
+Port über den UNIX-Socket aufbauen, den Pfad zum socket gibt man unter
+<code>unix_socket</code> an.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Hier eine konkrete Implementierung des Verbindungs-Aufbaus:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Verbindungs-Aufbau</small></h4>
+<pre class="lang-php prettyprint linenums">
+include &quot;config.php&quot;;
+$dbh = new PDO($DSN, $DB_USER, $DB_PASS);
+</pre></div>
+
+<p>Hier werden die Argumente für <code>new PDO</code> in der Datei <code>config.php</code> gesetzt,
+die zuvor inkludiert wird.  Warum?</p>
+
+</div>
+<div class="slide">
+
+<h3 id="datenbank-zugangsdaten">Datenbank-Zugangsdaten</h3>
+
+<p>So sieht die Datei <code>config.php</code> aus:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Zugangsdaten für die Datenbank</small></h4>
+<pre class="lang-php prettyprint linenums">
+$DB_NAME = &quot;portfolio_playground&quot;; 
+$DB_USER = &quot;mmtuser&quot;; 
+$DB_PASS = &quot;****&quot;;
+$DSN     = &quot;pgsql:dbname=$DB_NAME;host=localhost&quot;;
+</pre></div>
+
+<p>Warum zwei Dateien?  Weil wir die Zugangsdaten (Username, Passwort)
+niemals, niemals, niemals in git speichern wollen!<br />
+wir wollen den Code im Repository vielleicht
+veröffentlichen und die Zugangsdaten weiter geheimhalten.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="gitignore">.gitignore</h3>
+
+<p>Um zu verhindern, dass die Datei <code>config.php</code> in git committed werden kann,
+wird der Dateiname in die Datei <code>.gitignore</code> eingetragen. 
+<code>.gitignore</code> ist einfach eine Text-Datei im Hauptverzeichnis der Working Copy.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Was der Eintrag in  <code>.gitignore</code> bewirkt
+zeigt der Vorher / Nachher-Vergleich am besten:</p>
+
+<pre><code>D:\Webprojekte\wp2&gt;git status
+
+# On branch master
+# Your branch is ahead of 'origin/master' by 2 commits.
+#
+# Untracked files:
+#   (use "git add &lt;file&gt;..." to include in what will be committed)
+#
+#       config.php
+nothing added to commit but untracked files present (use "git add" to track)
+</code></pre>
+
+<p>Hier erkennt git die datei <code>config.php</code> als neue Datei, die wir in Zukunft vielleicht mit <code>git add</code> hinzufügen wollen.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Nun tragen wir den Dateinamen <code>config.php</code> in die Datei <code>.gitignore</code> im Haupt-Ordner der Working Copy ein.
+Ein Check ob es funktioniert hat:</p>
+
+<pre><code>D:\Webprojekte\wp2&gt;cat .gitignore
+*.bak
+config.php
+</code></pre>
+
+<p>Damit ist git angewiesen, alle Dateien mit der Endung <code>.bak</code> und alle Dateien mit dem Namen 
+<code>config.php</code> (egal in welchem Ordner) zu ignorieren.</p>
+
+</div>
+<div class="slide">
+
+
+
+<pre><code>D:\Webprojekte\wp2&gt;git status
+
+# On branch master
+# Your branch is ahead of 'origin/master' by 2 commits.
+#
+# Changed but not updated:
+#   (use "git add &lt;file&gt;..." to update what will be committed)
+#   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+#
+#       modified:   .gitignore
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+</code></pre>
+
+<p>Wie man sieht zeigt <code>git status</code> nun die Datei <code>config.php</code> nicht mehr an. 
+Dafür hat git bemerkt dass die Datei <code>.gitignore</code> geändert wurde. 
+Die sollte man ganz normal committen.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="empfohlene-optionen-fr-den-verbindungsaufbau">Empfohlene Optionen für den Verbindungsaufbau</h3>
+
+<p>In folgenden Code werden mit der Methode <code>setAttribute</code> noch zwei Optionen nach dem Verbindungsaufbau gesetzt:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Optionen für den Verbindungs-Aufbau</small></h4>
+<pre class="lang-php prettyprint linenums">
+include &quot;config.php&quot;;
+$dbh = new PDO($DSN, $DB_USER, $DB_PASS);
+$dbh-&gt;setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+$dbh-&gt;setAttribute(PDO::ATTR_ERRMODE,            PDO::ERRMODE_EXCEPTION);
+</pre></div>
+
+<p>Als “default fetch mode” wird hier festgelegt,
+dass die gelesenen Datensätze aus der Datenbank in PHP als
+Objekt dargestellt werden. (Die Alternative wäre ein assoziatives Array.)</p>
+
+<p>Und der “errormode” legt fest, dass Fehler die bei der Kommunikation
+mit der Datenbank auftreten eine Exception in PHP auslösen.</p>
+
+<p>Für die Applikation die in den nächsten 2 Kapitel beschreiben wird
+werden diese Optionen vorausgesetzt.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="anweisung-an-die-datenbank">Anweisung an die Datenbank</h3>
+
+<p>Manche SQL-Queries liefern keine Daten retour.
+Solche Queries kann man mit der Methode <code>exec</code><a href="http://www.php.net/manual/en/pdo.exec.php">*</a> absetzen:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Anweisungen an die Datenbank mit exec</small></h4>
+<pre class="lang-php prettyprint linenums">
+$anzahl = $dbh-&gt;exec(&quot;DELETE FROM users&quot;);
+</pre></div>
+
+<p>Hier werden alle Datensätze aus der Tabelle <code>users</code> gelöscht.
+Der Rückgabewert enthält die Anzahl der betroffenen Datensätze.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="abfrage-der-datenbank">Abfrage der Datenbank</h3>
+
+<p>Eine Abfrage aus der Datenbank liefert normalerweise eine ganze Tabelle von Daten (mehrere Datensätze).</p>
+
+<p>Mit der Methode <code>query</code><a href="http://www.php.net/manual/en/pdo.query.php">*</a>  schickt man die Anfrage an die Datenbank,
+erhält aber noch nicht die Daten retour, sondern nur ein neues “Handle”:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Query an die Datenbank senden</small></h4>
+<pre class="lang-php prettyprint linenums">
+$sth =$dbh-&gt;query( $sql );
+</pre></div>
+
+<p>Das Argument ist ein String mit dem SQL, der Rückgabewert
+ist ein “Statement-Handle”. Dieses Objekt bietet verschiedene
+Methoden an, mit denen man dann wirklich die Daten aus der DB holen kann.</p>
+
+<p>Doch bevor wir hier ins Detail gehen werden wir uns
+im nächsten Kapitel die Struktur eine Beispiel-Applikation ansehen.</p>
+</div>
+    <div class="slide">
+      <h1>PHP und Datenbank</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-lesen/db//slide.html">Datenbanken</a> | 
+        <a href="/php-db-lesen/start/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-lesen/struktur-webapplikation//slide.html">Struktur einer Web-Applikation</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

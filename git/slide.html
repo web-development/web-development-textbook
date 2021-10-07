@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>GIT - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>GIT</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/kommandozeile/bild-und-video//slide.html">Bild und Video</a> | 
+        <a href="/git/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/git/versionskontrolle//slide.html">Versionskontrolle</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+</div>
+<div class="slide">
+
+<h3 id="was-sie-alle-wissen-sollten">Was Sie alle wissen sollten</h3>
+
+<ul>
+  <li>Dass git ein Beispiel für ein Versionskontrollsystems (Version control system) ist.</li>
+  <li>Dass mercurial und SVN andere VCSs sind die heute eingesetzt werden.</li>
+  <li>Dass das git-Repository auf meinem lokalen Entwicklungsrechner im Unter-Ordner .git gespeichert ist</li>
+</ul>
+
+<p>nur falls sie mit git über ssh arbeiten:</p>
+
+<ul>
+  <li>Wie “public key cryptography” grob funktioniert</li>
+  <li>Dass Sie Ihren private key geheim halten müssen</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h3 id="was-sie-alle-knnen-sollten">Was Sie alle können sollten</h3>
+
+<p>Die Funktionsweise von git beschreiben können, d.h:</p>
+
+<ul>
+  <li>die Begriffe working copy, repository, remote repository erklären können</li>
+  <li>die Begriffe add, commit, push, pull, checkout und clone erklären können</li>
+</ul>
+
+<p>Als Einzelperson mit einem git repository arbeiten, d.h.:</p>
+
+<ul>
+  <li>Ein git repository clonen</li>
+  <li>Neue Dateien stagen, committen und pushen.</li>
+  <li>Den Status des git repositories auf verschiedene Arten abfragen</li>
+</ul>
+
+<p>nur falls sie mit git über ssh arbeiten:</p>
+
+<ul>
+  <li>ein private/public key pair erzeugen</li>
+  <li>ihren ssh client so configurieren, dass er ihren private key verwendet</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h3 id="weitere-informationsquellen">Weitere Informationsquellen</h3>
+
+<ul>
+  <li><a href="http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/de/">Git Magic</a></li>
+  <li><a href="http://book.git-scm.com/">Das git community book</a></li>
+  <li><a href="http://weinimo.de/Git-Hilfen/">Deutsche Referenz zu git</a></li>
+  <li><a href="http://marklodato.github.com/visual-git-guide/index-en.html">A Visual Git Reference</a></li>
+  <li><a href="https://www.youtube.com/watch?v=4XpnKHJAok8">Linus Torvalds on git</a></li>
+  <li><a href="http://onlywei.github.io/explain-git-with-d3/">Visualizing Git Concepts with D3</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>GIT</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/kommandozeile/bild-und-video//slide.html">Bild und Video</a> | 
+        <a href="/git/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/git/versionskontrolle//slide.html">Versionskontrolle</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

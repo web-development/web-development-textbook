@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Einfacher Arbeitsablauf in Git - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Einfacher Arbeitsablauf in Git</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/git/versionskontrolle//slide.html">Versionskontrolle</a> | 
+        <a href="/git/basic-git/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/git/git-status//slide.html">Status von Git abfragen</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Diese Abbildung zeigt die wichtigsten Fachbegriffe von git:</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Als <strong>working copy</strong> werden die Dateien und Ordner bezeichnet, die auf meinem lokalen Rechner aktuell im Filsystem sichtbar sind. Mit diesen kann ich also „ganz normal“ arbeiten: editieren, im Browser betrachten, etc.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Im <strong>lokalen Repository</strong> (local repository) verwaltet und speichert git alle „alten Versionen“ der Dateien. Mein lokales Repository unterscheidet sich technisch nicht von anderen Repositories, die ich als remote Repositories ansprechen kann.
+Das local repository befindet sich im Ordner <strong>.git</strong>
+</div>
+<div class="slide">
+
+
+
+<p>Fachbegriffe und wichtigste Aktionen mit git</p>
+
+<p><img src="/images/image356.png"  alt="Abbildung 141: Fachbegriffe und wichtigste Aktionen mit git" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wenn ich eine Veränderung an einer Datei vorgenommen habe, kann ich sie
+mit dem Befehl <strong>add</strong> in den Zustand <strong>staged</strong> versetzten. Ich sammle Schritt
+für Schritt die Dateien zusammen, die ich gemeinsam <strong>committen</strong> will.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Mit dem Befehl <strong>commit</strong> werden die gestageden Dateien im lokalen Repository
+abgespeichert, und erhalten dort einen eindeutigen Hash und eine Meldung (die
+ich dazu eingebe).</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Mit dem Befehl <strong>push</strong> kann ich die commits aus meinem lokalen Repository
+in ein anderes, remote Repository übertragen. Meist hat man nur ein remote
+Repository - als <strong>ein</strong> zentrales Repository.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="arbeitsablauf">Arbeitsablauf</h2>
+
+<p>Wenn ein Webprojekt schon für die Arbeit mit git aufgesetzt ist, sieht der Arbeitsalltag z.B. so aus:</p>
+
+<p>Meine working copy ist direkt im Webspace meines lokalen Webserver gespeichert. Ich nehme Änderungen an einer Datei „form.html“ und einer dazu gehörigen Datei „bestellung.php“ vor, teste über den lokalen Webserver ob alles funktioniert.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wenn ich einen Zustand erreicht habe, der funktioniert dann ist es Zeit für einen Commit:</p>
+
+<p>Zuerst muss ich entscheiden welche Dateien / Änderungen zum Commit gehören.</p>
+
+<pre><code>  git add form.html
+  git add bestellung.php
+</code></pre>
+
+<p>Nun befinden sich die Änderungn von form.html und bestellung.html in der staging area, und sind bereit für einen commit. Dazu gebe ich noch einen kurzen Kommentar ein:</p>
+
+<pre><code>  git commit –m 'bestellformular von get auf post umgestellt – wir sind restful!'
+</code></pre>
+
+<p>Damit habe ich meine Änderungen im lokalen Repository gespeichert.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Nun kann ich das nächste Arbeitspaket angehen. Wenn ich einige Arbeitspakete erledigt habe und meine Ergebnisse veröffentlichen will (egal ob in einem kleinen Team, oder auf github für die ganze Welt) führe ich einen push auf ein remote repository durch:</p>
+
+<pre><code>git push origin master
+</code></pre>
+
+<p>Das erste Argument „origin“ ist der Name des remote Repositories, das zweite Argument ist der Branch der gepushed werden soll. Sie werden in diesem Semester immer nur mit einem remote repository und mit dem Branch master arbeiten.</p>
+</div>
+    <div class="slide">
+      <h1>Einfacher Arbeitsablauf in Git</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/git/versionskontrolle//slide.html">Versionskontrolle</a> | 
+        <a href="/git/basic-git/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/git/git-status//slide.html">Status von Git abfragen</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

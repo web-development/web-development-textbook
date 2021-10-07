@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Beispiel: XML loaden von Javascript aus</title>
+</head>
+<body>
+  <h1>XML laden</h1>
+
+  <textarea id="output"></textarea>
+
+  <script>
+    if (window.XMLHttpRequest) {
+      xhttp = new XMLHttpRequest();
+    } else {    // IE 5/6
+      xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xhttp.overrideMimeType('text/xml');
+
+    xhttp.open("GET", "stark.xml", false);
+    xhttp.send(null);
+    xmlDoc = xhttp.responseXML;
+
+    var first = xmlDoc.getElementsByTagName("person")[0];
+    document.getElementById('output').value = first.firstChild.nodeValue;
+  </script>
+</body>
+</html>

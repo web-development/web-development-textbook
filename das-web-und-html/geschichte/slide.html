@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Eine Kurze Geschichte des World Wide Web - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Eine Kurze Geschichte des World Wide Web</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/das-web-und-html//slide.html">Das Web - eine Einführung</a> | 
+        <a href="/das-web-und-html/geschichte/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/das-web-und-html/standards//slide.html">Drei Standards definieren das Web</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Viele moderne Erfindungen sind das Ergebnis von Teamarbeit und langen 
+Planungsprozessen. Nicht so das World Wide Web: es geht auf eine einzelne Person zurück. 
+<strong>Tim Berners-Lee</strong>,  <!-- XE "Berners-Lee:Tim" -->  gebürtiger Engländer und studierter Physiker, hat 
+es in den Jahren 1989, 1990, 1991 als EDV-Mitarbeiter am CERN  <!-- XE "CERN" -->   in der 
+Schweiz entwickelt.</p>
+
+<p>Zu dieser Zeit – Anfang der 90er Jahre – war das Internet ein rein akademisches Projekt mit 
+sehr geringen Bandbreite,  <!-- XE "Bandbreite" -->  wie folgendes „fact sheet“ aus der Zeit 
+dokumentiert:</p>
+
+</div>
+<div class="slide">
+
+
+
+<div class="example">
+<pre class="lang-plain prettyprint linenums">
+Date: Fri, 20 Mar 1992 13:50:09 
+From: dekker@rare.nl (Marieke G. Dekker) 
+Subject: ebone fact sheet, for your information 
+.... 
+Ebone will operate a core backbone between London, Stockholm, 
+Amsterdam, Geneva, and France (Montpellier). 
+ 
+ 
+                        Stockholm  E 
+                                 /   \ 
+                      256 Kbps /       \ 512 Kbps 
+                             /           \ 
+                           /               \ 
+                   London E                 E Amsterdam 
+                          |                 | 
+                          |        512 Kbps | 
+                          |                 | 
+                          |                 | 
+                          | 256 Kbps        | 
+                          |                 | 
+     France (Montpellier) E-----------------E CERN 
+                               256 Kbps 
+ 
+Intercontinental links to the United States are provided from London, 
+Stockholm and Geneva. The European links operate initially at speeds 
+between 256 and 512 kilobits per second. 
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Neben E-Mail und FTP wurden USEnet Newsgroups – ähnlich den heutigen 
+Diskussionsforen –  als wichtigste Form des Datenaustausches verwendet, meist im 
+Textmodus ohne grafische Oberfläche.</p>
+
+<p><img src="/images/das-web-und-html/berners-lee-browser.png"  alt="Abbildung 1: Der erste grafische Webbrowser, Tim Berners-Lee, die erste Webseite des CERN im Line mode browser" ></p>
+
+<p>Berners-Lee definierte als Eckpunkte die technischen Standards des Web  und programmierte – gemeinsam mit KollegInnen – die erste Software. In der Abbildung oben
+ ist links Tim Berners-Lee mit dem ersten grafischen Webbrowser abgebildet. Dieser 
+Browser ist gemeinsam mit dem Betriebssystem NeXT verschwunden. Rechts ist ein 
+Screenshot des Line Mode Browsers  <!-- XE "Line Mode Browsers" -->    <!-- XE "Browser:Line Mode" --> 
+zu sehen, der die damalige Homepage des CERN anzeigt. Der Line Mode Browser 
+funktionierte ohne Grafik. Links konnten mit Nummern aufgerufen werden.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Dieses Lehrbuch handelt hauptsächlich von der <strong>Technik</strong> des Web.
+Verlieren Sie dabei nicht aus den Augen, wie wichtig das Web ist, und wie sehr 
+es unsere Gesellschaft schon verändert hat. Das Web ist heute überall:</p>
+
+<p><img src="/images/das-web-und-html/web-on-many-devices.png"  alt="Abbildung 2: das Web ist überall: vom ältesten zum neusten Gerät, in Bildung und Arbeit, 3. und 1. Welt" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Und das Web ist noch nicht “fertig erfunden”.</p>
+
+<p>Die Erfindung der maschinellen Massen-Produktion von Büchern durch Johannes Gutenberg 
+im 15.Jahrhundert war nur der Auslöser, schaffte nur die Voraussetzung für weitere 
+Erfindungen und große gesellschaftliche Veränderungen: Massenhafte Verbreitung der Bibel, 
+Reformation, politisches Pamphlet, Revolution, wissenschaftliche Publikation, … .</p>
+
+<p>Die Erfindung des Web um 1990 herum ist wahrscheinlich eine ähnlich fruchtbare Erfindung, 
+die die Voraussetzung für viele Folge-Erfindungen schafft. Die gesellschaftlichen 
+Auswirkungen können wir noch nicht absehen, wir sind mittendrin:</p>
+
+</div>
+<div class="slide">
+
+
+
+<p><img src="/images/das-web-und-html/landkarten.png"  alt="Abbildung: Interaktive Landkarten" ></p>
+
+<p>Die interaktive Landkarte war eine sehr frühe Anwendung des Web: der “Xeroc Parc Map Viewer” ging 1993 online<a href="https://en.wikipedia.org/wiki/Xerox_PARC_Map_Viewer">→</a>.  Heute ist eine Reise ohne Online-Karten kaum noch vorstellbar. Was kommt nach Streetview?</p>
+
+</div>
+<div class="slide">
+
+
+
+<p><img src="/images/das-web-und-html/buchhandel.png"  alt="Abbildung: Buchhandeln im Internet: Amazon 1995 und Amazon 2012" ></p>
+
+<p>Bücher über das Web zu verkaufen erscheint im Nachhinein als ganz einfache Idee. Es hat den Buchmarkt 
+weltweit verändert, und wird es weiter tun.  Wann werden E-Books die
+Papier-Bücher ablösen?  Wer braucht noch eine Buchhandlung in der Kleinstadt,
+wenn Amazon doch überallhin liefert?</p>
+
+</div>
+<div class="slide">
+
+
+
+<p><img src="/images/das-web-und-html/wikipedia.png"  alt="Abbildung: Wikipedia 2001 und 2012" ></p>
+
+<p>Im Jahr 2000 war eine Enzyklopädie noch das teuer bezahlte Werk von wenigen
+ExpertInnen. 2001 wurde Wikipedia gestartet. Die Erfindung der Wikipedia hat
+nicht nur den Markt für Enzyklopädien zerstört, sondern auch unsere Vorstellung
+verändert wie Wissen gesammelt werden kann.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p><img src="/images/das-web-und-html/facebook.png"  alt="Abbildung: Facebook 2004 und 2010" ></p>
+
+<p>Dass ich am Web speichern kann wer meine FreundInnen sind, um dann mit diesen FreundInnen kurze “Status-meldungen” auszutausche - das wurde erst im 21.Jahrhundert erfunden. Wie geht es weiter?</p>
+
+</div>
+<div class="slide">
+
+<h2 id="weitere-quellen">Weitere Quellen</h2>
+
+<ul>
+  <li><a href="http://growthchart.weebly.com/">Internet Growth</a> by Mark Schueler</li>
+  <li><a href="http://home.cern/topics/birth-web">The Birth of the Web</a> am Cern
+    <ul>
+      <li><a href="http://line-mode.cern.ch/www/hypertext/WWW/TheProject.html">Line Mode Browser Emulator</a> zeigt die Webseite</li>
+    </ul>
+  </li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Eine Kurze Geschichte des World Wide Web</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/das-web-und-html//slide.html">Das Web - eine Einführung</a> | 
+        <a href="/das-web-und-html/geschichte/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/das-web-und-html/standards//slide.html">Drei Standards definieren das Web</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>TCP/IP und DNS - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>TCP/IP und DNS</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/http//slide.html">HTTP</a> | 
+        <a href="/http/tcpip-und-dns/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/http/http//slide.html">HTTP</a>
+        
+      </p>
+    </div>
+    <div class="slide"><p>Um das Protokoll des Web zu verstehen erst ein paar Grundsätzliche Informationen zur Funktionsweise des Internet. Genaueres erfahren Sie in einer seperaten Lehrveranstaltung zum Thema Computer-Netwerke.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="das-internet">Das Internet</h2>
+
+<p>Das Internet ist ein weltweites Computernetzwerk, oder besser: ein Netzwerk von Netzwerken.  Es sind 
+<strong>verschiedene Computer</strong> daran angeschlossen: PCs mit Betriebssystem Windows oder Linux, 
+Macs, UNIX-Workstations, Smartphones und Tablets, Drucker und Fernseher, und noch viele mehr. 
+Die einzelnen <strong>Netze</strong> sind sehr unterschiedlich: Kupferleitungen, Glasfaserleitungen, 
+Satelliten-Verbindungen, Ethernet, Funkstrecken, verschiedene Handy-Netze. 
+Die <strong>Besitzverhältnisse</strong> sind kompliziert: die Leitungen und Computer gehören verschiedenen 
+Firmen, Universitäten, Schulen, Vereinen, Privatpersonen.</p>
+
+<p>Was hält das Internet dann zusammen? Das <strong>Internet Protokoll</strong>. Aufbauend auf die Grund-Netze 
+(z.B. Ethernet) muss jeder Computer am Internet (genannt „Host“) diese Protokoll-Familie 
+implementieren. Zwischen den Netzen vermitteln <strong>Router</strong> die Pakete von einem Netz zum nächsten.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="ip-adressen">IP-Adressen</h3>
+
+<p>Die eindeutigen Adressen für Hosts am Internet werden zentral verwaltet. 
+Die Internet Assigned Numbers Authority (IANA) hat diese Aufgabe an 
+Organisationen auf den verschiedenen Kontinenten verteilt, in Europa an das 
+Réseaux IP Européens Network Coordination Centre (RIPE NCC). 
+RIPE vergibt die Adressen an die Internet-Provider in Europa. 
+In der Whois-Datenbank von RIPE kann man die „Besitzer“ von IP-Adressen herausfinden.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="ip--das-internetprotokoll">IP – das Internetprotokoll</h3>
+
+<p>Der Host teilt die zu sendenden Daten in einzelne Pakete und versieht jedes Pakt 
+mit der Absender- und Zieladresse (IP-Adressen, 4 Byte). Der Host 
+selbst kennt nur sein Standard-Gateway (= der nächste Router) und das eigene Netzwerk. 
+Über das eigene Netzwerk schickt er das Paket an das Standard-Gateway.</p>
+
+<p>Der Router nimmt das Paket auf dem einen Netzwerk entgegen und entscheidet 
+auf Grund der Adressen auf welchem Netzwerk und an welchen Router er das 
+Paket weiterleitet.  Beim Ziel-Host langen die Pakete ein – es gibt aber 
+keine Garantie, dass alle ankommen oder dass sie in der richtigen Reihenfolge ankommen.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="tcp---transmission-control-protocol">TCP - Transmission Control Protocol</h3>
+
+<p>TCP bietet zusätzlich zur Datenübertragung die Sicherheit, 
+dass Pakete nicht unterkannt verloren gehen und dass sie 
+– falls sie ankommen – in der richtigen Reihenfolge ankommen.</p>
+
+<p>Dazu wird der Datenstrom wieder in IP-Pakete zerlegt, diese werden aber 
+nummeriert bevor sie abgesendet werden. Die Adressierung erfolgt über 
+IP-Adresse plus <strong>Port-Nummer</strong>. Der Ziel-Host prüft die Reihenfolge 
+der Pakete und meldet zurück falls Pakete fehlen.</p>
+
+<p>Aus Programmier-Sicht erhält man also entweder die Daten 
+in richtiger Reihenfolge oder eine Fehlermeldung.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="dns--domain-name-system">DNS – Domain Name System</h3>
+
+<p>Das Domain Name System ist eine verteilte Datenbank die „hübsche Namen“ 
+für Hosts speichert. Z.B. ist dort zu <code>multimediatechnology.at</code> die IP-Adresse 
+<code>193.170.119.79s</code> gespeichert. 
+Viele Namen verweisen übrigens auf die gleiche IP-Adresse.</p>
+
+<p>Auf jedem Host ist die IP-Adresse des nächsten Domain Name Servers gespeichert. 
+So kann der Host einen „domain name lookup“ machen: er fragt seinen DNS-Server 
+„was ist die IP-Adresse von x.y.z“ und erhält als Antwort die IP-Adresse.</p>
+
+<p>Der DNS-Server übernimmt dabei die Arbeit eventuell bei mehreren anderen 
+DNS-Servern nachzufragen. Auch die Top-Level-Domains (.com, .at, .de, …) 
+werden von IANA verwaltet und können über Whois abgefragt werden. 
+Für die Domain .at ist die Firma nic.at zuständig.</p>
+
+</div>
+    <div class="slide">
+      <h1>TCP/IP und DNS</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/http//slide.html">HTTP</a> | 
+        <a href="/http/tcpip-und-dns/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/http/http//slide.html">HTTP</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

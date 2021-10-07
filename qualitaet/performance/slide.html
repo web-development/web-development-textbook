@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Performance - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Performance</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/qualitaet/datenschutz//slide.html">Datenschutz</a> | 
+        <a href="/qualitaet/performance/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/qualitaet/rest//slide.html">REST</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Was verstehen wir unter “Web Performance”? Aus der Sicht einer BenutzerIn
+ist entscheidend wie viel Zeit benötigt wird, um eine Seite zu laden.
+Eine andere Frage wäre, wie viele UserInnen wir (mit akzeptabler Antwortzeit)
+auf einem bestimmten Server bedienen können.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Folgende Kennzahlen werden oft betrachtet:</p>
+
+<ul>
+  <li>page weight = Gesamtgröße der Webseite in Byte (HTML, CSS, Bilder, …)</li>
+  <li>time to first byte = Zeit (in ms) vom Absenden des HTTP Requests bis zur Ankunft des ersten Bytes des Responses</li>
+  <li>load time = Zeit bis das Event <code>load</code> in Javascript ausgelöst wird</li>
+</ul>
+
+<p>Google definiert als <a href="https://developers.google.com/web/fundamentals/performance/user-centric-performance-metrics">User-centric Performance Metrics</a> noch weitere Kennzahlen für die Darstellung der Seite:</p>
+
+<p><img src="/images/perf-metrics-load-timeline.png" srcset="/images/perf-metrics-load-timeline.png 1x, /images/perf-metrics-load-timeline@2x.png 2x"  alt="Performance Metrics" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="mythen-ber-performance">Mythen über Performance</h3>
+
+<p>Selbst wenn man sich mit dem Thema Performance noch nicht intensiv
+beschäftigt hat, so hat man doch schon Ideen wo Leistungsprobleme herkommen.
+Viele AnfängerInnen sind fasziniert von Details ihrer Programmiersprache wie:
+“Wird mein Programm langsamer wenn ich mehr Variablen verwende?”
+oder “ist String-Verkettung schneller als String-Interpolation?”.</p>
+
+<p>Diese “Mikrooptimierungen” sind in modernen Programmiersprachen fast nie
+notwendig. Mit PHP 7, postgres, Linux am Server können sie 150 <strong>gleichzeitig</strong>
+zugreifende UserInnen bedienen - also in Summe Tausende am Tag.</p>
+
+<p>Der Versuch, Code zu “optimieren”, wenn es kein Problem gibt, oder
+wenn man nicht weiss, wo das Problem liegt, ist zum Scheitern verurteilt.
+Der Code wird nicht besser, sondern schlechter.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Donald Knuth hat das ziemlich eindringlich gesagt:</p>
+
+<p>“The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; <strong>premature optimization is the root of all evil</strong>” – <a href="https://en.wikiquote.org/wiki/Donald_Knuth#Computer_Programming_as_an_Art_.281974.29">Donald Knuth</a></p>
+
+<p>(Das eigentliche Problem ist, dass ProgrammiererInnen viel zu viel Zeit damit verbracht haben, sich über die Effizienz an den falschen Stellen und zur falschen Zeit Gedanken zu machen; <strong>vorzeitige Optimierung ist die Wurzel allen Übels</strong>.)</p>
+
+<p>Erst wenn sie die Performance des Systems gemessen haben,
+und herausgefunden haben wo das Problem liegt, können sie wirklich
+mit dem “optimieren” beginnen.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="messung-der-web-performance">Messung der Web Performance</h3>
+
+<p>Im Jahr 2007 veröffentlichte die Arbeitsgruppe “exceptional performance” bei Yahoo
+das Browser AddOn <code>yslow</code>. Es zeigte erstmals die Ladezeit der einzelnen Teile
+einer Webseite im sogenannten “Wasserfall Diagramm”:</p>
+
+<p><img src="/images/network-souders-2008.png"  alt="displaying http downloads with yslow" ></p>
+
+<p>(Image from Steve Souders <a href="http://www.web2expo.com/webexsf2008/public/schedule/detail/3321">talk at Web 2.0 Expo</a> in April 2008)</p>
+
+<p>Jeder waagrechte Balken entspricht einer Ressource (html, css, js, bild, …)
+die über HTTP geladen wird. Die x-Achse ist eine gemeinsame Zeitleiste für alle
+Requests.</p>
+
+<p>Ein offensichtliches Ergebnis aus diesem Graphen: Das Backend,
+das das HTML erzeugt,
+ist nur für 5% der Ladezeit verantwortlich. 95% der Zeit
+werden mit dem Laden, Parsen und Darstellen von anderen Resourcen
+(css, javascript, bilder, …) verbracht.</p>
+
+<p>Diese Darstellung wurde später in die Developer Tools der verschiedenen
+Browser eingebaut, und wird auch im online tool
+<a href="https://webpagetest.org/">webpagetest</a> verwendet.</p>
+
+<h4 id="firefox-developer-tools">Firefox Developer Tools</h4>
+
+<p><img src="/images/network-view-firefox.png"  alt="network view in firefox" ></p>
+
+<h4 id="chrome-developer-tools">Chrome Developer Tools</h4>
+
+<p><img src="/images/network-view-chrome.png"  alt="network view in chrome" ></p>
+
+<h4 id="webpagetest">Webpagetest</h4>
+
+<p>Das Open Source Tool “Webpagetest” kann man unter der Adresse
+<a href="https://www.webpagetest.org/">https://www.webpagetest.org/</a>
+online benutzen. Die Ergebnisse bleiben auch online und können
+leicht mit anderen geteilt werden:</p>
+
+<p><img src="/images/webpagetest.org.png" srcset="/images/webpagetest@3x.org.png 3x, /images/webpagetest.org.png 1x, /images/webpagetest@2x.org.png 2x"  alt="Webpagetest" ></p>
+
+<p><a href="https://www.webpagetest.org/result/180505_EK_1420fed93949da8afd2e6cba277019bd/">Beispiel Ergebnisseite</a></p>
+
+<h4 id="chrome-developer-tools-lighthouse-audit">Chrome Developer Tools: Lighthouse Audit</h4>
+
+<p><img src="/images/chrome-lighthouse.png" srcset="/images/chrome-lighthouse-2.png 1x, /images/chrome-lighthouse@2x.png 2x, /images/chrome-lighthouse-2@2x.png 2x, /images/chrome-lighthouse.png 1x"  alt="lighthouse view in chrome" ></p>
+
+<p><img src="/images/chrome-lighthouse-2.png" srcset="/images/chrome-lighthouse-2.png 1x, /images/chrome-lighthouse-2@2x.png 2x"  alt="lighthouse view in chrome" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="einfache-manahmen">Einfache Maßnahmen</h2>
+
+</div>
+<div class="slide">
+
+<h3 id="bilderformat-svg-verwenden">Bilderformat SVG verwenden</h3>
+
+<p>Für Logos und Illustration eignet sich SVG besonders gut. Da
+es auf jeder Auflösung immer optimal aussieht braucht man
+auch nur eine Version des Bildes einzubinden.</p>
+
+<p><img src="/images/shapes.svg"  alt="SVG Bild" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="kleinste-version-eines-bildes-ausliefern">Kleinste Version eines Bildes ausliefern</h3>
+
+<p>Für alle Pixelformate gilt: je mehr Pixel, desto größer die Datei, desto länger
+die Ladezeit.</p>
+
+<div class="example">
+<pre class="lang-plain prettyprint linenums">
+    227.886 pizza-500x333.jpg
+    756.789 pizza-1000x666.jpg
+  2.483.297 pizza-2000x1331.jpg
+  8.655.545 pizza-4000x2662.jpg
+</pre></div>
+
+<p>Es macht also nie Sinn, eine größeres Bild auszuliefern, als
+dann wirklich angezeigt wird.</p>
+
+<p><img src="/images/resolutions.jpg" srcset="/images/resolutions.jpg 1x, /images/resolutions@2x.jpg 2x"  alt="Vergleich der Auflösungen" ></p>
+
+<p>Mit Responsive Design und Responsive Images ist das sehr genau möglich:
+verschiedene Varianten
+des Bildes für verschiedene Auflösungen und Pixeldichten, siehe
+<a href="/css-layout/responsive/index.html#slide-9">Kapitel Responsive Design</a>.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="jpeg-fr-photos-verwenden">jpeg für Photos verwenden</h3>
+
+<p>Das Bildformat <code>jpg</code> eignet sich besonders gut für Farbverläufe und viele Farben.
+<code>gif</code> kann nur 256 Farben darstellen, und ist daher für Photos nicht geeignet.
+Die Kompression von <code>png</code> funktioniert nur dann wirklich gut, wenn es einfärbige
+Flächen gibt - was in Photos fast nie vorkommt. Meist ersetzt man heute <code>png</code> durch
+<code>svg</code>.</p>
+
+<div class="example">
+<pre class="lang-plain prettyprint linenums">
+  8.655.545  pizza-4000x2662.jpg
+ 12.544.974  pizza-4000x2662.png
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="links">Links</h2>
+
+<ul>
+  <li><a href="https://www.youtube.com/watch?v=7gtf47D_bu0&amp;list=PLS3jzvALRSe6uP9gVfXLCG6nWo7M0hAJY">Ilya Grigorik: Crash Course Web Performance at Fluent 2013</a></li>
+  <li><a href="https://calendar.perfplanet.com/">Web Performance Adventkalender</a></li>
+  <li><a href="https://developers.google.com/web/fundamentals/performance/user-centric-performance-metrics">Google: User Centric Performance Metrics</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Performance</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/qualitaet/datenschutz//slide.html">Datenschutz</a> | 
+        <a href="/qualitaet/performance/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/qualitaet/rest//slide.html">REST</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

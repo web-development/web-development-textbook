@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Security - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Security</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/wordpress/installation//slide.html">Kurz-Installation von Wordpress</a> | 
+        <a href="/wordpress/security/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/wordpress/backend//slide.html">Überblick Backend</a>
+        
+      </p>
+    </div>
+    <div class="slide"><p>Im Zusammenhang mit Wordpress haben Sie drei verschiedene Usernamen + Passwörter:</p>
+
+<ol>
+  <li>Server Username und Passwort, für den Upload von Dateien mit SFTP auf den Server</li>
+  <li>Datenbank-Name, Datenbank-Username und Passwort, für die MySQL Datenbank. Diese Datenbank können Sie auch noch für andere Dinge als Wordpress verwenden, in einer Datenbank können viele Tabellen gespeichert weren.</li>
+  <li>Wordpress-Username und Passwort, dient nur für die Arbeit in Ihrem eigenen Wordpress-Blog.</li>
+</ol>
+
+</div>
+<div class="slide">
+
+
+
+<p>Achten Sie bei der Verwendung von Passwörter darauf, dass sie nicht unverschlüsselt über das Internet übertragen werden:</p>
+
+<p>z.B:</p>
+
+<ul>
+  <li>Upload mit SFTP = verschlüsselt</li>
+  <li>Upload mit FTP = unverschlüsselt</li>
+  <li>Eingabe in einen Webbrowser auf einer URL die mit https:// beginnt = verschlüsselt</li>
+  <li>Eingabe in einen Webbrowser auf einer URL die mit http:// beginnt = unverschlüsselt</li>
+</ul>
+
+</div>
+<div class="slide">
+
+
+
+<p>Besonders wichtig ist diese Vorsichtsmaßnahme wenn Sie in einem W-LAN arbeiten: im W-LAN können alle anderen Computer, die das W-LAN auch benutzen, Ihren Datenverkehr „mithören“. In einer Hochschule mit Informatik-Studiengang sind das Viele!  „Am Kabel“ ist die Abhörgefahr etwas geringer.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p><img src="/images/wordpress-insecure.png"  alt="Abbildung 104: Wordpress Backend ohne https" ></p>
+
+<p>Hier fragt Wordpress nach dem ersten Usernamen + Passwort (für den Upload auf den Server) weil es nur damit die Automatische Installation des Themes machen kann.  Die Frage nach FTP oder SFTP in der Seite ist irreführend: Der lange Weg von meinem Laptop bis zum Server (der im ersten Schritt übers W-LAN geht) ist unverschlüsselt. Das Verschlüsselte SFTP wird nur am Server selbst verwendet – dort wo niemand etwas abhören könnte:</p>
+
+</div>
+<div class="slide">
+
+
+
+<p><img src="/images/wordpress-security-illu.png" srcset="/images/wordpress-security-illu.png 1x, /images/wordpress-security-illu-2.png 1x"  alt="Abbildung 105: Verschlüsselte und Unverschlüsselte Verbindungen beim Automatischen Installieren von Themes" ></p>
+
+<p>Die Alternative zur automatische Installation ist der Upload der Dateien per SFTP. Dabei wird das Passwort verschlüsselt übertragen.</p>
+
+<p><img src="/images/wordpress-security-illu-2.png"  alt="Abbildung 106: Verschlüsselte Verbindungen beim Upload von Themes mit SFTP" ></p>
+
+</div>
+    <div class="slide">
+      <h1>Security</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/wordpress/installation//slide.html">Kurz-Installation von Wordpress</a> | 
+        <a href="/wordpress/security/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/wordpress/backend//slide.html">Überblick Backend</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

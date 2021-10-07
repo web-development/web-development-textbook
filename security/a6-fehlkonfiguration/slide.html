@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>A6 - Fehlkonfiguration - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>A6 - Fehlkonfiguration</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/security/a5-zugriffskontrolle//slide.html">A5 - Zugriffskontrolle</a> | 
+        <a href="/security/a6-fehlkonfiguration/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/security/a7-cross-site-scripting-css//slide.html">A7 - XSS</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Auf <a href="https://owasp.org/www-project-top-ten/2017/de/A6_2017-Sicherheitsrelevante_Fehlkonfiguration">Platz 6 der OWASP Top 10 2017</a>.</p>
+
+<p>Die OWASP beschreibt dieses Problem allgemein so:</p>
+
+<blockquote>
+  <p>Sicherheitsrelevante Fehlkonfiguration kann auf jeder Ebene der Anwendung, inkl. Plattform, Web- und Anwendungs-server, Frameworks oder Programmcode vorkommen. Die Zusammenarbeit zwischen Entwicklern und Administratoren ist wichtig, um eine sichere Konfiguration aller Ebenen zu gewährleisten.</p>
+</blockquote>
+
+<p>In größeren Projekten / Firmen ist eine Arbeitsteilung üblich zwischen
+Entwicklung (Development) und Systemadmistration (Operations).</p>
+
+</div>
+<div class="slide">
+
+<h2 id="ebenen">Ebenen</h2>
+
+<p>Für eine Web-Applikation muss man dabei mindestens folgende Schichte beachten:</p>
+
+<ul>
+  <li>Physikalische Sicherheit (Wer kann den Server ein- und ausschalten, zerlegen,…)</li>
+  <li>Virtualisierungs-Schicht, z.B. VMWare</li>
+  <li>Betriebssystem, z.B. Ubuntu, CentOS, Debian</li>
+  <li>Datenbank, z.B. PosgreSQL, MySQL, MongoDB</li>
+  <li>Interpreter, z.B. PHP, Ruby</li>
+  <li>Webserver, z.B. Apache, nginx</li>
+  <li>Framework, z.B. Laravel, Rails</li>
+  <li>Fremd-Applikation, z.B. Wordpress, Redmine</li>
+  <li>Selbstgeschreibene Applikation</li>
+</ul>
+
+<p>Jeder dieser Schichten gilt es richtig zu konfigurieren
+und Sicherheits-Updates einzuspielen.</p>
+
+<p>Wenn es eine Arbeitsteilung zwischen Development und Operations gibt
+ist zu klären wer für welche Schicht zuständig ist.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="konfiguration--hardening">Konfiguration + Hardening</h2>
+
+<p>Zwei Szenarien:</p>
+
+<ul>
+  <li>Entwicklungs-Rechner: möglichst viele Debug-Möglichkeiten, Bequemlichkeit wichtiger als Sicherheit</li>
+  <li>Produktions-Server: Sicherheit wichtiger als Bequemlichkeit, Logging / Monitoring ja, aber nicht öffentlich zugänglich</li>
+</ul>
+
+<p>Dafür gibt es oft schon fertige Konfigurationen, oder Tutorials. Ein guter Suchbegriff ist “hardening”.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="sicherheitsupdates">Sicherheitsupdates</h2>
+
+<p>Keine Software ist sicher, in jeder Software werden Sicherheitsprobleme
+entdeckt. Die relevante Fragen sind: werden Sicherheitsprobleme die
+bekannt werden möglichst schnell behoben? Und in Folge: Wenn ein Update
+zur Verfügung steht, wird es möglichst schnell installiert?</p>
+
+<ul>
+  <li><a href="http://www.heise.de/security/">Heise Security</a></li>
+</ul>
+
+</div>
+    <div class="slide">
+      <h1>A6 - Fehlkonfiguration</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/security/a5-zugriffskontrolle//slide.html">A5 - Zugriffskontrolle</a> | 
+        <a href="/security/a6-fehlkonfiguration/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/security/a7-cross-site-scripting-css//slide.html">A7 - XSS</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

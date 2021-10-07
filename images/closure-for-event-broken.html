@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>So funktionieren Eventhandler nicht</title>
+
+  </head>
+  <body>
+    <h1>So funktionieren Eventhandler nicht</h1>
+
+<p>Dieser JavaScript Code funktioniert nicht. <a href="/javascript/closures/#slide-5">Erklärung</a></p>
+
+<pre class="lang-javascript prettyprint linenums">
+$(document).ready(function() {
+  function insert_button(text) {
+    return $(`&lt;button&gt;${text}&lt;/button&gt;`).insertAfter(&#39;h1&#39;);
+  }
+  
+  function setSize(size) {
+    console.log(`setSize(${size}) was called`);
+    document.body.style.fontSize = size + &#39;px&#39;;
+  }
+
+  var b,f;
+
+  b = insert_button(&#39;Schrift 16&#39;);
+  b.on(&#39;click&#39;, setSize(16));
+
+  b = insert_button(&#39;Schrift 14&#39;);
+  b.on(&#39;click&#39;, setSize(14));
+
+  b = insert_button(&#39;Schrift 12&#39;);
+  b.on(&#39;click&#39;, setSize(12));
+
+});  
+</pre>    
+
+<p>
+Eine Closure (oder Funktionsabschluss) ist ein Konzept aus der funktionalen Programmierung. Es beschreibt eine Funktion, die Zugriffe auf ihren Erstellungskontext enthält. Beim Aufruf greift die Funktion dann auf diesen Erstellungskontext zu. Dieser Kontext (Speicherbereich, Zustand) ist außerhalb der Funktion nicht referenzierbar, d. h. nicht sichtbar.
+<p>
+Eine Closure enthält eine Referenz auf die Funktion und den von ihr verwendeten Teil des Erstellungskontexts – die Funktion und die zugehörige Speicherstruktur sind in einer Referenz untrennbar abgeschlossen (closed term). Es ist vergleichbar mit einem Objekt mit Attributen und Methoden: es enthält eine implizite Identität, einen Zustand und ein Verhalten.
+<p>
+In der Programmiersprachensyntax wird dies oft durch zwei verschachtelte Funktionen erreicht – die innere Hauptfunktion wird von einer weiteren Funktion eingeschlossen (abgeschlossen). Diese Abschlussfunktion enthält die benötigte Speicherstruktur (siehe Beispiele unten). Sie ist so konstruiert, dass sie beim Aufruf eine Referenz auf die innere Funktion zusammen mit den benötigten Variablen (der Speicherstruktur) liefert. Genaugenommen ist die Closure hier nicht die innere Funktion alleine, sondern die erzeugte Bündelung von (innerer) Funktion und Variablenzustand, auf die die Referenz zeigt.
+<p>
+Eine Closure kann man auch als Objekt ansehen, das in der Regel nur eine Methode hat. Wird die Closure zusammen mit weiteren Closures über demselben Kontext erzeugt, so handelt es sich um ein Objekt mit mehreren Methoden. Die in der Closure eingeschlossenen Variablen aus dem erzeugenden Bereich können von der Closure als Attribute verwendet werden.
+
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script>
+$(document).ready(function() {
+  function insert_button(text) {
+    return $(`<button>${text}</button>`).insertAfter('h1');
+  }
+  
+  function setSize(size) {
+    console.log(`setSize(${size}) was called`);
+    document.body.style.fontSize = size + 'px';
+  }
+
+  var b,f;
+
+  b = insert_button('Schrift 16');
+  b.on('click', setSize(16));
+
+  b = insert_button('Schrift 14');
+  b.on('click', setSize(14));
+
+  b = insert_button('Schrift 12');
+  b.on('click', setSize(12));
+
+});
+</script>
+</body>
+</html>

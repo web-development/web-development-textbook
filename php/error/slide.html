@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Errors + Debugging - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Errors + Debugging</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php/datei-upload-frontend//slide.html">Datei Upload - Frontend</a> | 
+        <a href="/php/error/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-lesen//slide.html">Webapplikationen mit Postgres</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+</div>
+<div class="slide">
+
+<h2 id="das-log-file">Das Log File</h2>
+
+<p>Die Webserver-Software (egal ob apache oder nginx oder …) schreibt mindestens
+zwei Logfiles, oft in einem Ordner <code>logs</code> oder <code>/var/www/logs/apache/</code></p>
+
+<p>Wenn das Access Log File im “Common Format” ist enthält es eine Zeile pro HTTP Request, und enthält
+die IP-Adresse des Clients, Datum und Uhrzeit, die Request-Zeile, den
+Status-Code des Response, die Anzahl der gelieferten Bytes, eventuell
+eine Referer URL und den User Agent (= Browser Namen aus dem Request).</p>
+
+<div class="example">
+<h4 class="caption">Plain Code <small>access_log</small></h4>
+<pre class="lang-plain prettyprint linenums">
+127.0.0.1 - - [14/Mar/2016:22:11:58 +0100] &quot;GET /_vorlage_wp2/u4/ HTTP/1.1&quot; 500 - &quot;-&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:44.0) Gecko/20100101 Firefox/44.0&quot;
+127.0.0.1 - - [14/Mar/2016:22:12:00 +0100] &quot;GET /_vorlage_wp2/u4/ HTTP/1.1&quot; 500 - &quot;-&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:44.0) Gecko/20100101 Firefox/44.0&quot;
+127.0.0.1 - - [14/Mar/2016:22:12:07 +0100] &quot;GET /_vorlage_wp2/u4/ HTTP/1.1&quot; 200 - &quot;-&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:44.0) Gecko/20100101 Firefox/44.0&quot;
+127.0.0.1 - - [14/Mar/2016:22:18:36 +0100] &quot;GET /_vorlage_wp2/u5/ HTTP/1.1&quot; 200 1232 &quot;-&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:44.0) Gecko/20100101 Firefox/44.0&quot;
+127.0.0.1 - - [14/Mar/2016:22:18:36 +0100] &quot;GET /_vorlage_wp2/u5/bootstrap.css HTTP/1.1&quot; 200 95134 &quot;http://wp2.localhost/_vorlage_wp2/u5/&quot; &quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:44.0) Gecko/20100101 Firefox/44.0&quot;
+</pre></div>
+
+<p>Die ersten drei Requests endeten in einer Fehlermeldung (Status 500), es wurden keine Daten ausgeliefert. Die
+beiden letzten Requests lieferten 1232 bzw. 95134 Bytes.</p>
+
+<p>Das Error Log enthält nur Einträge für Requests die mit einem
+Error enden:</p>
+
+<div class="example">
+<h4 class="caption">Plain Code <small>error_log</small></h4>
+<pre class="lang-plain prettyprint linenums">
+[Mon Mar 14 22:11:58.623697 2016] [:error] [pid 25895] [client 127.0.0.1:52244] PHP Parse error:  parse error in /Users/bjelline/code/Lehre/wp2/abgaben/_vorlage_wp2/u4/index.php on line 13
+[Mon Mar 14 22:12:00.559404 2016] [:error] [pid 26261] [client 127.0.0.1:52245] PHP Parse error:  parse error in /Users/bjelline/code/Lehre/wp2/abgaben/_vorlage_wp2/u4/index.php on line 13
+[Mon Mar 14 22:12:07.857134 2016] [:error] [pid 25805] [client 127.0.0.1:52247] PHP Warning:  Division by zero in /Users/bjelline/code/Lehre/wp2/abgaben/_vorlage_wp2/u4/index.php on line 13
+</pre></div>
+
+<p>Um diese Dateien im Auge zu behalten eigent sich der Kommandozeilen Befehl <code>tail</code>:</p>
+
+<div class="example">
+<pre class="lang-shell prettyprint linenums">
+tail -f error_log
+</pre></div>
+
+<p>Am Produktions-Server haben Sie vielleicht keinen Zugriff auf diese
+Log Dateien.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="php-fehlermeldungen-im-browser-anzeigen">PHP Fehlermeldungen im Browser anzeigen</h2>
+
+<p>Es gibt die Möglichkeit manche Fehlermeldungen auch im Browser anzuzeigen:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+ini_set(&#39;display_errors&#39;, true);
+</pre></div>
+
+<p>Das funktioniert nicht für Fehler die den gesamten PHP Interpreter zum
+Absturz bringen. Aber für die Fehlersuche kann es trotzdem sehr hilfreich sein.</p>
+
+<p>Normalerweise ist diese Option nicht auf einem Produktions-Server aktiviert,
+sondern nur auf Development oder Staging-Maschinen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="debugger">Debugger</h2>
+
+<p>xdebug ist ein debugger für PHP:</p>
+
+<ul>
+  <li><a href="https://xdebug.org/index.php">xdbug homepage</a></li>
+  <li><a href="http://devzone.zend.com/1120/introducing-xdebug/">introduction to xdebug</a></li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="referenzen">Referenzen</h2>
+
+<ul>
+  <li>http://www.php.net/manual/en/function.error-reporting.php</li>
+  <li>http://www.php.net/manual/en/errorfunc.configuration.php#ini.display-errors</li>
+  <li>http://www.php.net/manual/en/function.error-get-last.php</li>
+  <li>http://php.net/manual/en/errorfunc.constants.php</li>
+  <li>http://margotskapacs.com/2013/01/configure-debugging-with-phpstorm/</li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Errors + Debugging</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php/datei-upload-frontend//slide.html">Datei Upload - Frontend</a> | 
+        <a href="/php/error/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-lesen//slide.html">Webapplikationen mit Postgres</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

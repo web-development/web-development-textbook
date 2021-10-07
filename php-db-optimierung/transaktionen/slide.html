@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Transaktionen - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Transaktionen</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-optimierung/alter//slide.html">Änderungen an der Datenbank</a> | 
+        <a href="/php-db-optimierung/transaktionen/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-optimierung/transaktionen-und-php//slide.html">Transaktionen und PHP</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Transaktionen auf Ebene von SQL, hier am Beispiel von Postgres gezeigt.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="acid">ACID</h2>
+
+<p>Bei der Ausführung von Transaktionen muss das Transaktionssystem die ACID-Eigenschaften garantieren:</p>
+
+<ul>
+  <li>Atomarität (<em>A</em>tomicity)</li>
+  <li>Konsistenz (<em>C</em>onsistency)</li>
+  <li>Isolation (<em>I</em>solation)</li>
+  <li>Dauerhaftigkeit (<em>D</em>urability)</li>
+</ul>
+
+<p><strong>Atomarität</strong> bedeutet: Eine Transaktion wird entweder ganz oder gar nicht ausgeführt. 
+Transaktionen sind also „unteilbar“. Wenn eine atomare Transaktion abgebrochen wird, ist das System unverändert.</p>
+
+<p><strong>Konsistenz</strong> bedeutet:
+Nach Ausführung der Transaktion muss der Datenbestand in einer konsistenten Form sein, 
+wenn er es bereits zu Beginn der Transaktion war.</p>
+
+<p><strong>Isolation</strong> bedeutet: Bei gleichzeitiger Ausführung mehrerer 
+Transaktionen dürfen sich diese nicht gegenseitig beeinflussen.</p>
+
+<p><strong>Dauerhaftigkeit</strong> bedeutete
+Die Auswirkungen einer Transaktion müssen im Datenbestand dauerhaft bestehen bleiben.  Die Effekte von Transaktionen dürfen also nicht „mit der Zeit verblassen“ oder „aus Versehen verloren gehen“.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="commit">commit</h2>
+
+<div class="example">
+<h4 class="caption">Sql Code <small>Beispiel für eine Transaktion in POSTGRES, die zwei Einfüge-Operationen zusammenfasst</small></h4>
+<pre class="lang-sql prettyprint linenums">
+BEGIN;
+INSERT INTO staff (id, first, last) 
+  VALUES (42, &#39;Alyssa&#39;, &#39;Hacker&#39;);
+INSERT INTO salarychange (id, amount, changedate) 
+  VALUES (42, 50000, NOW());
+COMMIT;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="rollback">rollback</h2>
+
+<div class="example">
+<h4 class="caption">Sql Code <small>Beispiel für eine Transaktion in Postgres, die zurück-gerollt wird</small></h4>
+<pre class="lang-sql prettyprint linenums">
+BEGIN;
+INSERT INTO staff (id, first, last) 
+  VALUES (42, &#39;Alyssa&#39;, &#39;Hacker&#39;);
+INSERT INTO salarychange (id, amount, changedate) 
+  VALUES (42, 50000, NOW());
+ROLLBACK;
+-- nichts ist passiert!
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="tipp-nicht-auf-input-warten">Tipp: Nicht auf Input warten</h2>
+
+<p>Schlecht:</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+BEGIN;
+-- warte auf input ... beliebig lagen
+COMMIT;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="probleme-ohne-transaktionen">Probleme ohne Transaktionen</h2>
+
+<p>Bei Datenbanken können durch mangelnde Transaktionsisolation 
+die folgenden Anomalie auftreten:</p>
+
+<ul>
+  <li>Lost Updates: Zwei Transaktionen modifizieren parallel denselben Datensatz und nach Ablauf dieser beiden Transaktionen wird nur die Änderung von einer von ihnen übernommen.</li>
+  <li>Dirty Read: Daten einer noch nicht abgeschlossenen Transaktion werden von einer anderen Transaktion gelesen.</li>
+  <li>Non-Repeatable Read: Wiederholte Lesevorgänge liefern unterschiedliche Ergebnisse.</li>
+  <li>Phantom Read: Suchkriterien treffen während einer Transaktion auf unterschiedliche Datensätze zu, weil eine (während des Ablaufs dieser Transaktion laufende) andere Transaktion Datensätze hinzugefügt, entfernt oder verändert hat.</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="weniger-gute-transaktionen">Weniger gute Transaktionen</h2>
+
+<p>Mit <code>SET TRANSACTION ISOLATION LEVEL ...</code> kann eine weniger gut
+Version von Transaktionen  aktiviert werden.  Die möglichen
+Werte sind (laut Postgres):</p>
+
+<p><strong>Read Committed</strong> Dieses Isolationslevel setzt für die gesamte Transaktion Schreibsperren auf Objekten, die verändert werden sollen, setzt Lesesperren aber nur kurzzeitig beim tatsächlichen Lesen der Daten ein. Daher können Non-Repeatable Read und Phantom Read auftreten, wenn während wiederholten Leseoperationen auf dieselben Daten, zwischen der ersten und der zweiten Leseoperation, eine Schreiboperation einer anderen Transaktion die Daten verändert und committed.</p>
+
+<p><strong>Repeatable Read</strong> Bei dieser Isolationsebene ist sichergestellt, dass wiederholte Leseoperationen mit den gleichen Parametern auch dieselben Ergebnisse haben. Sowohl bei Lese- als auch bei Schreiboperationen werden für die gesamte Dauer der Transaktion Sperren gesetzt. Dies führt dazu, dass bis auf Phantom Reads keine Anomalien auftreten können.</p>
+
+<p><strong>Serializable</strong> Die höchste Isolationsebene garantiert, dass die Wirkung parallel ablaufender Transaktionen exakt dieselbe ist wie sie die entsprechenden Transaktionen zeigen würden, liefen sie nacheinander in Folge ab</p>
+
+</div>
+<div class="slide">
+
+<h3 id="vertiefende-informationen">Vertiefende Informationen</h3>
+
+<ul>
+  <li><a href="http://www.postgresql.org/docs/current/static/transaction-iso.html">Transactions in Postgres</a></li>
+</ul>
+
+</div>
+    <div class="slide">
+      <h1>Transaktionen</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-optimierung/alter//slide.html">Änderungen an der Datenbank</a> | 
+        <a href="/php-db-optimierung/transaktionen/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-optimierung/transaktionen-und-php//slide.html">Transaktionen und PHP</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

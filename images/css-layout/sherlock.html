@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <title>Simple Responsive Example</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style type="text/css" media="screen, projection">
+    html,body,h1,h2,h3,h4,h5,h6,p,blockquote,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td { margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent; }
+    body { line-height:1; }
+    ol,ul { list-style:none; }
+  .section:after,
+  ul.nav:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  body {
+    margin: 0 10px;
+    background: #E4E4E4 url("rag.png") repeat-x top left;
+    color: rgba(0, 0, 0, 0.82);
+    font: normal 100% Cambria, Georgia, serif;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    margin-top: 30px;
+  }
+  a {
+    color: #890101;
+    text-decoration: none;
+    transition: 0.2s color linear;
+  }
+  a:hover {
+    color: #DF3030;
+  }
+  .inner {
+    margin: 0 auto;
+    width: 93.75%;		/* 960px / 1024px */
+  }
+  nav ul {
+    border-top: 1px solid #888583;
+    margin: 2em auto 0;
+    width: 64.379%;
+  }
+  nav ul a {
+    background: url("ornament.png") no-repeat 0 100%;
+    font: bold 14px/1.2 "Book Antiqua", "Palatino Linotype", Georgia, serif;
+    display: block;
+    text-align: center;
+    letter-spacing: 0.1em;
+    padding: 1em 0.5em 3em;
+    margin-bottom: -1em;
+    text-transform: uppercase;
+  }
+  nav ul a:hover {
+    background-position: 50% 100%;
+  }
+  nav li:first-child a {
+    border-top: 1px solid #FFF9EF;
+    padding-top: 1.25em;
+  }
+  nav ul i {
+    font: normal 10px Baskerville, Garamond, Palatino, "Palatino Linotype", "Hoefler Text", "Times New Roman", serif;
+    display: block;
+    letter-spacing: 0.05em;
+  }
+  h2 {
+    font: normal 2em "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif;
+    text-align: center;
+    margin: 30px 0;
+  }
+  footer {
+    background: url("ornament.png") 50% 0 repeat-x;
+    font-size: 12px;
+    text-align: center;
+    padding: 40px 0 20px;
+  }
+  footer p {
+    margin-bottom: 0.5em;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  @media screen and (min-width: 700px) {
+    body {
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      grid-template-rows: 300px 1fr;
+      grid-template-areas:
+           "logoArea  mainArea"
+           "navArea   mainArea";
+    }
+    #logo{grid-area:logoArea;}
+    nav{grid-area:navArea;}
+    body>div{grid-area:mainArea;}
+
+    h1 {
+      background: url("logo-bg.png") no-repeat 50% 0;
+    }
+
+    h1 a {
+      padding-top: 117px;
+      height: 162px;
+      display: block;
+    }
+  } 
+
+  </style>
+
+  </head>
+  <body>
+    <h1 id="logo"><a href="#"><img src="logo.png" alt="The Baker Street Inquirer"></a></h1>
+
+    <nav>
+    <ul class="nav">
+      <li><a href="#"><i>The</i> Weblogue</a></li>
+      <li><a href="#"><i>Back</i> Issues</a></li>
+      <li><a href="#"><i>About</i> Our Paper</a></li>
+    </ul>
+    </nav>
+
+    <div>
+      <article>
+      <h2>“Give me problems, give me <em>work</em>.”</h2>
+
+      <p>In the year 1878 I took my degree of Doctor of Medicine of the 
+      University of London, and proceeded to Netley to go through the course 
+      prescribed for surgeons in the army. Having completed my studies there, I
+      was duly attached to the Fifth Northumberland Fusiliers as Assistant 
+      Surgeon. The regiment was stationed in India at the time, and before I 
+      could join it, the second Afghan war had broken out. On landing at 
+      Bombay, I learned that my corps had advanced through the passes, and was
+      already deep in the enemy’s&nbsp;country.</p>
+      </article>
+      <footer>
+        <p>Illustrations by <a href="http://en.wikipedia.org/wiki/Sidney_Paget">Sidney Paget</a>, words by <a href="http://en.wikipedia.org/wiki/Arthur_Conan_Doyle">Sir Arthur Conan Doyle</a>, responsive design by
+        <a href="http://unstoppablerobotninja.com/">Ethan Marcotte</a> first published in
+        <a href="">a list apart</a>. Simplified for this demo as part of 
+        <a href="https://web-development.github.io">web-development.github.io</a> by Brigitte Jellinek.</p>
+      </footer>
+    </div>
+
+  </body>
+</html>

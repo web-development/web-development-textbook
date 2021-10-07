@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Authentisierung - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Authentisierung</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/apache/konfigurieren//slide.html">Konfigurieren</a> | 
+        <a href="/apache/auth/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/apache/rewrite//slide.html">Rewrite</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>In diesem Kapitel lernen Sie die Konfigurationsanweisungen
+für Authentisierung und für  Fehlermeldungen kennen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="fehlermeldung">Fehlermeldung</h2>
+
+<p>Die Fehlermeldungen des Webservers können an das Design der Webseite angepasst werden. Die häufigste Fehlermeldung ist der Fehler 404 - Dokument nicht gefunden.</p>
+
+<p>Die Standard-Fehlermeldung des Apache Webservers ist neutral gestaltet.</p>
+
+<p><img src="/images/apache-404.png" srcset="/images/apache-404-doppelt.png 1x, /images/apache-404.png 1x"  alt="apache standard 404" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Um sie durch eine selbst gestaltete Fehlermeldung zu ersetzen erstellen Sie zuerst eine ganz normale HTML-Seite, mit CSS, Bildern, … etc.</p>
+
+<p>Diese Webseite wird im Webspace gespeichert, z.B. unter der URL <code>/myerror/404.html</code>. Mit der Konfigurations-Anweisung</p>
+
+<div class="example">
+<pre class="lang-ruby prettyprint linenums">
+ErrorDocument 404 /myerror/404.html
+</pre></div>
+
+<p>wird die Fehlermeldung aktiviert. (nicht vergessen: Apache neu starten.)
+Nun wird bei jedem Zugriff auf eine nicht existierende URL die Fehlermeldung angezeigt.</p>
+
+<p>Achtung: Wenn man bei der ErrorDocument-Anweisung einen falschen Pfad angibt erscheint eine doppelte Fehlermeldung:</p>
+
+<p><img src="/images/apache-404-doppelt.png"  alt="apache standard 404" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="zugriffsbeschrnkung">Zugriffsbeschränkung</h2>
+
+<p>Der Zugriff auf den Webserver, oder auf bestimmte Ordner und Dateien am Webserver kann beschränkt werden. Dabei sind verschiedene Kriterien denkbar: Zugriff nur für bestimmte Browser, Zugriff nur mit Passwort, Zugriff nur von Computern die innerhalb der FH sind.</p>
+
+<p>Das letzte Kriterium ist das einfachste:  Alle Computer innerhalb der FH haben eine IP-Adresse die mit 10. beginnt. Die Zugriffsbeschränkung erfolgt mit den Konfigurations-Anweisungen Deny, Allow und Order:</p>
+
+<div class="example">
+<pre class="lang-ruby prettyprint linenums">
+Order deny,allow
+Deny from all
+Allow from 10.
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Aber meist will man nicht den Zugriff auf den ganzen Server sperren, sondern auf einen Bestimmten Ordner oder auf bestimmte Dateien. Dafür wird in der Apache Konfigurations-Datei eine Schreibweise verwendet, die an HTML oder XML erinnert:</p>
+
+<div class="example">
+<pre class="lang-ruby prettyprint linenums">
+  &lt;Location /fhintranet&gt;
+    Order deny,allow
+    Deny from all
+    Allow from 141.201
+  &lt;/Location&gt;
+</pre></div>
+
+<p>Der Teil der Konfiguration, der im <code>&lt;Location&gt;</code>-Tag eingeschlossen ist gilt nur für den Ordner <code>/fhintranet</code> im Webspace.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Der Teil, der im <code>&lt;FilesMatch&gt;</code>-Tag eingeschlossen ist gilt für alle Dateien im Webspace, deren Name auf <code>.bak</code> endet.</p>
+
+<div class="example">
+<pre class="lang-ruby prettyprint linenums">
+  &lt;FilesMatch \.bak$&gt;
+    Order allow,deny
+    Deny from all
+  &lt;/FilesMatch&gt;
+</pre></div>
+
+<p>Der Teil der Konfiguration, der im <code>&lt;Location&gt;</code>-Tag eingeschlossen ist gilt nur für den Ordner <code>/fhintranet</code> im Webspace. Der Teil, der im <code>&lt;FilesMatch&gt;</code>-Tag eingeschlossen ist gilt für alle Dateien im Webspace, deren Name auf <code>.bak</code> endet.</p>
+
+<p>Die Schreibwiese bei FilesMatch ist einen „Pattern” - ein Suchmusters. Patterns und Pattern-Matching werden Sie in Javascript, in PHP und in vielen Konfigurationsdateien wieder verwenden.</p>
+
+<p>Das Dollar-Zeichen am Ende des Patterns bedeutet, dass <code>bak</code> am Ende des Dateinamens stehen muß. Eine Datei mit Namen test.bak.txt wäre also nicht betroffen. Vor dem Punkt muß man einen Backslash <code>\</code> schreiben, weil der Punkt alleine als Joker gelten würde. Der Pattern <code>.bak$</code> (ohne Backslash) würde also auch den Dateinamen schlabberdibak oder bik_bak erkennen, weil der Punkt für das i oder den Unterstich stehen könnte.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="http-auth-mit-apache">HTTP Auth mit Apache</h2>
+
+<p>In dem Ordner, der gesperrt werden soll, wird eine Datei .htaccess angelegt:</p>
+
+<div class="example">
+<pre class="lang-ruby prettyprint linenums">
+  AuthType Basic
+  AuthName &quot;Intranet&quot;
+  AuthUserFile /home/stud007/pass
+  require valid-user
+</pre></div>
+
+<p>Achtung: der Pfad zur Passwort-Datei (AuthUserFile) muß vollständig angegeben werde! Die Passwort-Datei sieht so aus:</p>
+
+<div class="example">
+<pre class="lang-ruby prettyprint linenums">
+  brigitte:$apr1$Yj1. . . . . $N72ZRLbh91/q33fhGqlJW1
+  clemens:$apr1$al1. . . . . $VZguOHeYTiQ7emGSIj4lh. 
+</pre></div>
+
+<p>Diese Datei können Sie mit einem Generator am Web erzeugen oder mit dem Programm <code>htpasswd</code> das mit Apache mit geliefert wird. Das funktioniert z.B. auf der Kommandozeile von Windows so:</p>
+
+<div class="example">
+<pre class="lang-ruby prettyprint linenums">
+  C:\xampp\apache\bin&gt;htpasswd -c pass brigitte
+  New password: ********
+  Re-type new password: ********
+  Adding password for user brigitte
+  C:\xampp\apache\bin&gt;htpasswd pass clemens
+  New password: ***
+  Re-type new password: ***
+  Adding password for user Clemens
+</pre></div>
+
+<p>Diese Methode funktioniert auch auf dem Webserver users.multimediatechnology.at. Wenn Sie einen eigenen Apache Server betreiben, können Sie diese Authentisierungmethode mit verschiedenen Backends verwenden (LDAP, Datenbank, …) - dafür gibt es verschiedene Apache Module.</p>
+
+<p>Mit der HTTP-Authentisierung ist das HTTP-Protokoll (genau wie bei der Verwendung von Cookies) nicht mehr stateless. http-Auth hat gegenüber Cookies den Vorteil, dass die Eingabe von Username und Passwort über ein Browser-Fenster erfolgt und nicht implementiert werden muß.</p>
+
+<p><img src="/images/firefox-auth.png"  alt="Authentisierungs-Popup in Firefox" >
+<img src="/images/chrome-auth.png"  alt="Authentisierungs-Popup in Chrome" ></p>
+
+<p>Was mit http Auth nicht funktioniert, ist der Zugriff ohne Login auf die gleiche URL. (Bei Authentisierung über Cookies geht das).</p>
+
+</div>
+    <div class="slide">
+      <h1>Authentisierung</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/apache/konfigurieren//slide.html">Konfigurieren</a> | 
+        <a href="/apache/auth/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/apache/rewrite//slide.html">Rewrite</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

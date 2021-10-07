@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Versionskontrolle - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Versionskontrolle</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/git//slide.html">GIT</a> | 
+        <a href="/git/versionskontrolle/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/git/basic-git//slide.html">Einfacher Arbeitsablauf in Git</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Das Problem: mehrere Leute arbeiten gemeinsam an Code oder einem Dokument. Die naive Lösung: wer das Dokument ändert speichert es unter einen neuen Versionsnummer:</p>
+
+<p><img src="/images/git/versionen.png"  alt=" Dateien offline, ohne Versionskontrollsystem - viele Kopien" ></p>
+
+<p>Aber was, wenn zwei Personen gleichzeitig Änderungen durchführen wollen? Und nicht voneinander wissen?</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Ein Möglichkeit wäre, das gemeinsame Dokumen online zu editieren,
+z.B. in Wikipedia, Google Docs, Office.</p>
+
+<p><img src="/images/git/google-docs.jpg" srcset="/images/git/google-docs.jpg 1x, /images/git/google-docs@2x.jpg 2x"  alt="Dokument online editieren" ></p>
+
+<p><small><a href="https://www.flickr.com/photos/planeta/23178866399">Bild von Ron Mader, benutzt unter CC-SA</a></small></p>
+
+<p>Das funktioniert für einzelne Dokument schon ganz gut.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Es gibt auch online Entwicklungsumgebungen um gemeinsam an Code zu arbeiten,
+zum Beispiel cloud 9 (Teil von Amazon Web Services AWS):</p>
+
+<p><img src="/images/git/c9.png" srcset="/images/git/c9.png 1x, /images/git/c9@2x.png 2x"  alt="Code online entwickeln" ></p>
+
+<p>Aber der Quellcode unserer Programme und Webseiten ist komplizierter:
+es sind mehrere Dateien, die voneinander Abhängig sind. Wenn
+das Stylesheet geändert wird, muss vielleicht auch die HTML-Datei geändert
+werden.</p>
+
+<p>Wenn zwei Personen gleichzeitig editieren kommt das Programm schnell
+in einen Zustand wo es gar nicht mehr funktioniert.</p>
+
+<p>In der online Entwicklungsumgebungen muss man sehr intensiv zusammen arbeiten!</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Es gibt auch eine Lösung, die auch für sehr viele ProgrammiererInnen,
+und für eine nicht so intensive zusammenarbeit funktioniert: Ein Versionskontrollsystem.</p>
+
+<p>Diese System hilft bei der Verwaltung von Datei-Versionen. Alle Änderungen werden gespeichert, nichts kann verloren gehen. Am eigenen Computer hat man
+jeweils eine Kopie aller Dateien, und es gibt eine Möglichkeit diese
+Dateien mit den anderen Versionen abzustimmen.</p>
+
+<p>Mit einem Versionskontrollsystem ist ein freieres Arbeiten
+möglich: Es wird einfacher Veränderungen auszuprobieren -
+in der Sicherheit, dass man sie rückgängig zu machen kann,
+bzw. an der anderen Version unabhängig weiter arbeiten kann.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Die englische Wikipedia enthält einen Überblick über verschiedene Systeme:</p>
+
+<p><img src="/images/image355.png"  alt="Überblick über Versionskontrollsysteme aus der Wikipedia13" ></p>
+
+<p>Dabei sind drei historische Entwicklungsschritte erkennbar:</p>
+
+<ul>
+  <li>Nur Lokal: das System ist auf die Verwaltung vom Daten im lokalen Filesystem ausgelegt.</li>
+  <li>Client-Server: Daten werden in einem zentralen Repository gespeichert.</li>
+  <li>Verteilt: Jeder Arbeitsplatz hat ein eigenes Repository, kann auch “offline” arbeiten.</li>
+</ul>
+
+<p>Open Source Systeme sind:</p>
+
+<ul>
+  <li>Nur Lokal: rcs</li>
+  <li>Client-Server: cvs, svn.</li>
+  <li>Verteilt: git, mercurial</li>
+</ul>
+
+</div>
+<div class="slide">
+
+
+
+<p>Laut einer Umfrage von <code>github</code> hat sich im Jahr spätestens im Jahr 2012 git gegenüber subversion
+durchgesetzt:</p>
+
+<p><img src="/images/git-and-subversion.png"  alt="Überblick über Versionskontrollsysteme aus der Wikipedia13" ></p>
+</div>
+    <div class="slide">
+      <h1>Versionskontrolle</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/git//slide.html">GIT</a> | 
+        <a href="/git/versionskontrolle/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/git/basic-git//slide.html">Einfacher Arbeitsablauf in Git</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

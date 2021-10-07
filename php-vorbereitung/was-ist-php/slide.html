@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Was ist PHP? Was passiert am Webserver? - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Was ist PHP? Was passiert am Webserver?</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-vorbereitung//slide.html">Vorbereitungen für PHP</a> | 
+        <a href="/php-vorbereitung/was-ist-php/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-vorbereitung/apache//slide.html">Apache</a>
+        
+      </p>
+    </div>
+    <div class="slide"><p>PHP ist eine Programmiersprache die oft am Webserver “im Backend” verwendet wird.</p>
+
+<p>Viele bekannte Open Source Applikationen sind in PHP geschrieben: Viele Content Management System wie <a href="https://wordpress.org/">Wordpress</a> oder <a href="https://www.drupal.org/">Drupal</a>, Shop-Systeme wie <a href="https://magento.com/">Magento</a>, <a href="https://www.mediawiki.org/wiki/MediaWiki">MediaWiki</a> (die Software der Wikipedia), <a href="https://owncloud.org/">ownCloud</a>, die Lern-Plattoform
+<a href="https://moodle.org/">Moodle</a>, <a href="https://www.limesurvey.org/">LimeSurvey</a> für Umfragen,
+und viele, viele mehr.</p>
+
+<p>Aber auch hinter komerziellen Produkten steckt oft PHP: zum Beispiel <a href="https://code.fb.com/tag/php/">Facebook</a>
+oder <a href="https://engineering.tumblr.com/tagged/php">tumblr</a></p>
+
+<p>Neben PHP werden viele andere Sprachen im Backend verwendet: ruby (on rails),
+java, python, c#, … aber wir beginnen mit PHP.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p><img src="/images/php-vorbereitung/php-sequence-diagram.svg"  alt="Abbildung: So funktioniert PHP" ></p>
+
+<p>Das PHP-Programm wird gestartet um die Anfrage des Browsers zu beantworten. Nachdem diese Aufgabe erfüllt ist, wird das PHP-Programm wieder beendet. Die Laufzeit ist also sehr, sehr kurz!</p>
+
+<p>Der Output ist immer HTML. Der Client erhält nur das fertige HTML und kann nicht erkennen, welche Sprache am
+Server verwendet wurde. Der PHP-Quelltext des Programms wird also nie im Browser sichtbar.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Ein sehr einfaches Beispielprogramm in PHP gibt „Hallo Welt“ aus und zeigt (mit dem Befehl phpinfo) viele Informationen über den Webserver und die PHP Installation an:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+&lt;html&gt;
+&lt;body&gt;
+  &lt;?php
+    echo &quot;Hallo Welt&quot;;
+    phpinfo();
+  ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+
+<p>Um dieses Programm zu testen, brauchen Sie einen Browser und einen Webserver.</p>
+
+</div>
+    <div class="slide">
+      <h1>Was ist PHP? Was passiert am Webserver?</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-vorbereitung//slide.html">Vorbereitungen für PHP</a> | 
+        <a href="/php-vorbereitung/was-ist-php/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-vorbereitung/apache//slide.html">Apache</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

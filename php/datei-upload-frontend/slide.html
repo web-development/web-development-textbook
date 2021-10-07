@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Datei Upload - Frontend - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Datei Upload - Frontend</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php/datei-upload//slide.html">Datei Upload</a> | 
+        <a href="/php/datei-upload-frontend/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php/error//slide.html">Errors + Debugging</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+</div>
+<div class="slide">
+
+<h2 id="frontend">Frontend</h2>
+
+<p>Im “Frontend” gab es in den letzten Jahren einige Verbesserungen beim
+Datei-Upload: in modernen Browsern kann man Dateien mit
+“Drag-and-Drop” in den Browser befördern, und erst in einem
+zweiten Schritt hochladen:</p>
+
+<p><img src="/images/drag-and-drop-upload.gif"  alt="Neu im Frontend: Drag and Drop in den Browser" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="drag-and-drop-entgegen-nehmen">Drag-and-Drop entgegen nehmen</h3>
+
+<p>Wählen Sie einen Tag in der Webseite aus, der die Dateien entgegen nehmen
+soll. (Es könnte auch der ganze Body sein).   Für diesen Tag müssen
+die Events “dragenter”, “dragover” und “drop” behandelt werden:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+dropbox.addEventListener(&quot;dragenter&quot;, ignore_all, false);
+dropbox.addEventListener(&quot;dragover&quot;, ignore_all, false);
+dropbox.addEventListener(&quot;drop&quot;, handle_drop, false);
+
+function ignore_all(e) {
+    e.stopPropagation();
+    e.preventDefault();
+}
+
+function handle_drop(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    handleFiles(e.dataTransfer.files);
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="thumbnails-darstellen">Thumbnails darstellen</h3>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+img.src = window.URL.createObjectURL(file);
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="http-request-senden">HTTP Request senden</h3>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+var xhr = new XMLHttpRequest();
+xhr.open(&quot;POST&quot;, &quot;upload.php&quot;, true);
+xhr.addEventListener(&quot;load&quot;, handle_load);
+xhr.send();
+</pre></div>
+
+<p>wie mit dem Formular:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+var xhr = new XMLHttpRequest();
+var fd = new FormData();
+
+xhr.open(&quot;POST&quot;, &quot;upload.php&quot;, true);
+xhr.responseType = &quot;document&quot;;
+xhr.addEventListener(&quot;load&quot;, handle_load);
+fd.append(&#39;pic&#39;, file);
+xhr.send(fd);
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="antwort-des-servers-behandeln">Antwort des Servers behandeln</h3>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+function handle_load(evt) {
+    var response_doc = this.responseXML;
+    ....
+    if( this.status == 200 ) {
+        ...
+    } else {
+        ....
+        dropbox.removeChild(img);
+    }
+}
+</pre></div>
+
+</div>
+    <div class="slide">
+      <h1>Datei Upload - Frontend</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php/datei-upload//slide.html">Datei Upload</a> | 
+        <a href="/php/datei-upload-frontend/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php/error//slide.html">Errors + Debugging</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Fixe Kopfzeile mit Animation - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Fixe Kopfzeile mit Animation</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/applied-js-and-css/formularpruerung//slide.html">Formulardaten Prüfen</a> | 
+        <a href="/applied-js-and-css/header/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/applied-js-and-css/langsam-scrollen//slide.html">Langsam Scrollen</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Beim Scrollen einer Webseite soll der Header fix am oberen
+Rand des Fenster bleiben. In der Ausgangsposition darf er etwas
+mehr Platz vebrauchen, sobald er fixiert ist soll er aber kleiner werden.</p>
+
+<p>In folgendem Bild sind drei Zustände beim Scrollen
+untereinander abgebildet:</p>
+
+<p><img src="/images/pizza-phases.jpg" srcset="/images/pizza-phases.jpg 1x, /images/pizza-phases@2x.jpg 2x"  alt="screenshot" ></p>
+
+<p>Um diesen Effekt zu erreichen brauchen wir eine Briese CSS Animation
+und ein Event, das mit Javascript behandelt wird.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="header-fixieren">Header fixieren</h2>
+
+<p>Um den Header am oberen Fensterrand fix zu positionieren
+verwenden wir die CSS-Anweisung <code>position: fixed</code>.</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  color: #fff;
+  height: 70px;
+  background-color: transparent;
+  padding-top: 0px;  
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="style-verndern-nein-danke">Style verändern? Nein Danke!</h2>
+
+<p>Nun könnten wir mit Javascript
+direkt den stype des headers verändern</p>
+
+<p>vorher:</p>
+
+<p><code>&lt;header style="padding-top: 35px;"&gt;</code></p>
+
+<p>nachher:</p>
+
+<p><code>&lt;header style="padding-top: 0px;"&gt;</code></p>
+
+<p>Das ist aber unpraktisch. Einfacher ist
+es, die CSS-Details im Stylesheet zu belassen, und
+nur eine Klasse zu setzen:</p>
+
+<p>vorher:</p>
+
+<p><code>&lt;header&gt;</code></p>
+
+<p>nachher:</p>
+
+<p><code>&lt;header class="shrunk"&gt;</code></p>
+
+</div>
+<div class="slide">
+
+<h2 id="klasse-vorbereiten">Klasse vorbereiten</h2>
+
+<p>Der zweite Zustand des Headers
+wird mit einer Klasse <code>.shrunk</code> dargestellt:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+header.shrunk {
+  height: 70px;
+  background-color: black;
+  padding-top: 35px;  
+}
+</pre></div>
+
+<p>Diese Klasse wird aber nicht im HTML gesetzt,
+sondern erst später.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="klasse-anwenden">Klasse anwenden</h2>
+
+<p>In der Konsole der Developer Tools können wir nun testen
+ob die Anwendung der Klasse das gewünschte Ergebnis erzielt:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+    let h = ... /* richtige DOM Node auswählen */
+    h.classList.add(&quot;shrunk&quot;);
+    h.classList.remove(&quot;shrunk&quot;);
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="transition-vorbereiten">Transition vorbereiten</h2>
+
+<p>Der Übergang zwischen den beiden Zuständen soll nicht plötzlich, sondern
+als Animation erfolgen: über zwei Sekunden wird der Header von Schwarz auf
+transparent umgestellt.</p>
+
+<p>Die effizienteste Art so eine Animation in einer Webseite umzusetzen ist
+mit CSS: der Browser weiss alles über den Ablauf der Animation und kann
+(eventuell) die Grafikkarte benutzen um sie darzustellen.</p>
+
+<p>Wenn man die Animation statt dessen mit Javascript mit <code>setTimeout</code>
+oder <code>requestAnimationFrame</code> selbst ausprogrammiert kann die Grafikkarte nicht verwendet werden.</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+header {
+  will-change: background-color;
+  will-change: padding;
+  
+  transition: padding 2s;  
+  transition: background-color 2s;  
+}
+</pre></div>
+
+<p>Der wichtigste Teil ist hier die Angabe <code>2s</code> für “zwei Sekunden”.
+So lange wird er übergang von der einen zur anderen Version des headers dauern.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="srollen">Srollen</h2>
+
+<p>Nun müssen wir noch erfassen ob gescrollt wurde, und je
+nachdem die <code>.shrunk</code> Klasse anwenden.</p>
+
+<p>Wie weit schon gescrollt wurde kann man aus dem window-Objekt,
+aus der Eigenschaft <code>pageYOffset</code> auslesen. Man erhält eine
+Zahl, die Maßeinheit sind Pixel:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+window.pageYOffset
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="scroll-event-behandeln">Scroll Event behandeln</h2>
+
+<p>Wenn die Userin / der User scrollt - egal ob mit Scrollbar, Maus, Touchscreen oder
+Keyboard, wird das <code>scroll</code> event am window-Objekt ausgelöst. Auf dieses
+Event können wir reagieren:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+window.addEventListener(&#39;scroll&#39;, function() {
+  console.log(`scrolling has reached ${window.pageYOffset}`);
+}); 
+</pre></div>
+
+<p>In diesen Eventlistener hinein kommt nun die Logik:
+den <code>pageYOffset</code> auslesen, und je nach Ergebnis die Klasse
+setzen oder entfernen.</p>
+
+<p>Die Animation der Hintergrundfarbe und des Paddings wird dann vom
+Browser (laut CSS-Anweisung) angewandt.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="fertig">Fertig</h2>
+
+<p>Wenn alles funktioniert hat kann man jetzt beim Scrollen (egal ob mit Scrollbar, Maus, Touchscreen oder
+Keyboard) sehen wie sich der Header verwandelt.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="ausblick-mehr-spass-beim-scrollen">Ausblick: Mehr spass beim Scrollen</h2>
+
+<p>Im Webdesign wird das Scrollen gerne als Auslöser für
+Animationen verwendet.</p>
+
+<ul>
+  <li><a href="https://github.com/russellgoldenberg/scrollama#scrollamajs">Scrolllama.js</a></li>
+  <li><a href="https://cssanimation.rocks/parallax/">Tutorial Parallax Scrolling</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Fixe Kopfzeile mit Animation</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/applied-js-and-css/formularpruerung//slide.html">Formulardaten Prüfen</a> | 
+        <a href="/applied-js-and-css/header/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/applied-js-and-css/langsam-scrollen//slide.html">Langsam Scrollen</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

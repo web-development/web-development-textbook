@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Inheritance</title>
+  <style>
+    #everything div {
+      background-color:red;
+      margin: 5px;
+      width: 33%;
+      height: 110px; 
+      float:left;
+    }
+    textarea {
+      width: 100%;
+      height: 120px;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+  </style>
+  <link rel="stylesheet" href="joint-style.css">
+</head>
+<body>
+<textarea>
+d = new Dog("beagle");
+display_prototypes(d, '#first');
+d.legs  = 3;
+display_prototypes(d, '#second');
+</textarea>
+<input type="button" id="go_button" value="auswerten">
+<h1>#first</h1>
+<div id="first"></div>
+<h1>#second</h1>
+<div id="second"></div>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="joint.js"></script>
+<script>
+
+
+
+var depth=15;
+
+function report_on_properties(o, graph, prev_rect) {
+  console.log("I am reporting on an object " + o);
+  var title="just a singular object";
+  var report="";
+  var properties = "";
+  var rect = false;
+  Object.getOwnPropertyNames(o).forEach(function(prop){
+    if( prop != 'constructor' ) {
+      if (typeof o[prop] == "function") {
+	      properties += prop + ": function(){ ... }\n";
+      } else {
+	      properties += prop + ": " + o[prop] + "\n";
+      }
+    }
+  });
+
+  // this is not the first in the chain, but already a prototype
+  if( prev_rect !== undefined ) {
+    console.log(title + "is a prototye and has properties:\n" + properties);
+    title = o.constructor.name;
+    rect = prev_rect.clone();
+    rect.translate(300);
+    rect.attr('text/text', "prototype of constructor " + title + "()\n\n" + ( title == 'Object' ? '...' : properties ));
+    var link = new joint.dia.Link({
+	source: { id: prev_rect.id },
+	target: { id: rect.id }
+    });
+
+    graph.addCells([rect, link]);
+  } else {
+    console.log(title + "is a singuarl object and has properties:\n" + properties);
+    rect = new joint.shapes.basic.Rect({
+      position: { x: 30, y: 0 },
+      size: { width: 250, height: 100 },
+      attrs: { rect: { fill: 'blue' }, text: { text: title + "\n\n" + properties, fill: 'white' } }
+    });
+    graph.addCells([rect]);
+  }
+
+  var proto = Object.getPrototypeOf(o);
+  depth--;
+  if( proto && depth > 0){
+    console.log("recursive: depth = " + depth + " on " + proto.constructor.name);
+    report_on_properties(proto, graph, rect);
+  } else if ( depth <= 1 ) {
+    console.log("out of depth");
+  } else {
+    console.log("no proto " + proto );
+  }
+
+}
+
+function display_prototypes(o,id){
+  var graph = new joint.dia.Graph;
+
+  var paper = new joint.dia.Paper({
+      el: $(id),
+      width: 1600,
+      height: 100,
+      gridSize: 1,
+      model: graph
+  });
+  console.log("will display diagrams on tag with id " + id + ": " + graph);
+  // display a javascript object as box
+  report_on_properties(o,graph);
+}
+// ----- Pet ---------
+function Pet() {
+  this.status = "sleeping";
+}
+Pet.prototype.log = function() {
+  console.log("i am " + this.status.get() +
+              ". " + this.word + "!");
+}
+
+// ----- Mammal ---------
+function Mammal() {
+  this.legs = 4;
+}
+Mammal.prototype = new Pet();
+Mammal.prototype.constructor = Mammal;
+
+// ----- Dog --------
+function Dog( b ) {
+  this.breed = b;
+  this.word = "wau! ";
+}
+
+Dog.prototype = new Mammal();
+Dog.prototype.constructor = Dog;
+
+Dog.prototype.sit = function() {
+  this.status.set("sitting");
+}
+
+
+$('#go_button').on('click',function(){
+  var code = $('textarea').val();
+  $('#first').html('');
+  $('#second').html(''); 
+  depth = 18;
+  eval( code );
+});
+</script>
+</body>
+</html>

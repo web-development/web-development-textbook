@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <body id="farbfeld">
+    <h1>Farbwahl mit DOM</h1>
+    <form>
+      <input type="button" value="Rot"  style="background-color:red"  id="r">
+      <input type="button" value="Grün" style="background-color:#0F0" id="g">
+      <input type="button" value="Blau" style="background-color:blue" id="b">
+    </form>
+    <script>
+      function setcolor( ev ) {
+        b = document.getElementById('farbfeld');
+        b.style.backgroundColor = this.style.backgroundColor;
+      }
+      document.getElementById('r').addEventListener('click', setcolor);
+      document.getElementById('g').addEventListener('click', setcolor);
+      document.getElementById('b').addEventListener('click', setcolor);
+    </script>
+  </body>
+</html>

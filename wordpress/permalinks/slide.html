@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Permalinks - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Permalinks</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/wordpress/plugins//slide.html">Plugins verwenden</a> | 
+        <a href="/wordpress/permalinks/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/apache//slide.html">Apache Konfiguration</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Ein Grundprinzip des Webs lautet: URLs verändern sich nicht - siehe <a href="http://www.w3.org/Provider/Style/URI.html">Berners-Lee</a>.</p>
+
+<p>In Wordpress erhalten Beiträge und Seiten bei Ihrer Erstellung eine
+fixe URL - genannt “Permalink” - die sich nie wieder ändert.
+Auf der Homepage werden immer die neuesten Beiträge angezeigt, jeder
+dort angezeigt Anreisser ist aber bereits mit dem vollen Beitrag
+unter seiner endgültigen URL verlinkt.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="permalinks-konfigurieren">Permalinks konfigurieren</h2>
+
+<p>Im Backend unter Einstellung → Permalinks kann man die Form der
+URLs konfigurieren.</p>
+
+<p><img src="/images/wordpress-permalinks.png"  alt="Permalinks konfigurieren" ></p>
+
+<p>Betrachten wir die Form “Tag und Name” näher:</p>
+
+<p><code>http://mozartchor.at/2013/02/28/Beispielbeitrag/</code></p>
+
+<p>Hier scheint es eine Ordnerstruktur aus Jahr, Monat, Tag und
+Titel des Beitrags zu geben.  Wenn der Beitrag einen längeren
+Titel hat werden Sonderzeichen entfernt und Leerzeichen durch 
+Minus-Zeichen ersetzt:</p>
+
+<ul>
+  <li>Beitragstitel = Bericht über das Probenwochenende in Brixen</li>
+  <li>Permalink = http://mozartchor.at/2013/02/28/bericht-uber-das-probenwochenende-in-brixen</li>
+</ul>
+
+<p>Diese Form des Permalinks ist nicht nur gut lesbar, sondern
+bringt eventuell positive Effekte bei Suchmaschinen: Wird bei
+einer Suchmaschine nach dem Wort “Brixen” gesucht, dann werden
+jede Suchergebnisse zuerst angezeigt, bei denen das Wort besonders
+prominent vorkommt: also im Titel der Seite, als Überschrift, oder
+in der URL.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="modrewrite">mod_rewrite</h2>
+
+<p>Normalerweise entspricht die URL einfach der
+Ordnerstruktur und dem Dateinamen im Filesystem des Webservers.
+Im Fall von Wordpress wäre das also einfach <code>index.php</code> als
+Dateiname des PHP-Programmes.</p>
+
+<p>Um die Verwendung von anderen URLs zu ermöglichen
+muss man den Webserver Apache entsprechend um-konfiguriere.
+Dazu ist das Apache Modul <code>mod_rewrite</code> notwendig, das
+aber meist schon installiert ist.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wordpress braucht folgende Konfiguration in der Datei <code>.htaccess</code>:</p>
+
+<pre><code>&lt;IfModule mod_rewrite.c&gt;
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+&lt;/IfModule&gt;
+</code></pre>
+
+<p>Diese Konfiguration bewirkt:</p>
+
+<ul>
+  <li>falls die Datei index.php direkt angefordert wird, wird sie aufgerufen</li>
+  <li>falls ein Dateiname oder ein Ordnername direkt angefordert wird, wird das normal von Apache behandelt</li>
+  <li>in allen anderen Fällen wird auch index.php aufgerufen - die Information über die genaue URL steht dem Programm aber zur Verfügung</li>
+</ul>
+
+<p>Wordpress liest die Information über die volle URL aus, und interpretiert
+sie wie unter Einstellung → Permalinks festgelegt.</p>
+
+</div>
+    <div class="slide">
+      <h1>Permalinks</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/wordpress/plugins//slide.html">Plugins verwenden</a> | 
+        <a href="/wordpress/permalinks/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/apache//slide.html">Apache Konfiguration</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

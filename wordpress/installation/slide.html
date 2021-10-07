@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Kurz-Installation von Wordpress - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Kurz-Installation von Wordpress</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/wordpress/was-ist-wordpress//slide.html">Was ist Wordpress</a> | 
+        <a href="/wordpress/installation/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/wordpress/security//slide.html">Security</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Voraussetzung ist, dass in Ihrem Webspace PHP und MySQL möglich sind.</p>
+
+<ol>
+  <li>Finden Sie heraus wie der Zugang zur Datenbank funktioniert: Datenbankname, Username, Passwort</li>
+  <li>Laden Sie die aktuelle Version von Wordpress von als zip-Datei auf Ihren Desktop-Computer herunter. Packen Sie die zip-Datei aus, dabei muss die Ordner-Struktur erhalten bleiben.</li>
+  <li>Laden Sie das Gesamtpaket (allen Dateien und Unterordner) auf Ihren Webspace hoch. Damit ist der Aufwändige teil erledigt, weiter geht es (fast) nur mit dem Browser weiter.</li>
+  <li>Öffnen Sie die Seite über den Webbrowser, folgen Sie den weiteren Anweisungen um einen ersten Account anzulegen.</li>
+</ol>
+
+</div>
+<div class="slide">
+
+
+
+<p>Sie werden in Schritt vier nach den Zugangsdaten für die Datenbank gefragt. Es geht hier um vier Angaben:</p>
+
+<ul>
+  <li>Datenbankname</li>
+  <li>Username (für den Datenbank-Zugriff)</li>
+  <li>Passwort (für den Datenbank-Zugriff)</li>
+  <li>Datenbank Host (das ist immer „localhost“)</li>
+</ul>
+
+</div>
+<div class="slide">
+
+
+
+<p>Diese Daten werden am Ende in der Datei wp-config.php gespeichert, und zwar in folgender Form:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Datei wp-config.php</small></h4>
+<pre class="lang-php prettyprint linenums">
+define(&#39;DB_NAME&#39;,     &#39;mein_db&#39;);    // The name of the database
+define(&#39;DB_USER&#39;,     &#39;ich&#39;);        // Your MySQL username
+define(&#39;DB_PASSWORD&#39;, &#39;sk9kejr7&#39;);   // ...and password
+define(&#39;DB_HOST&#39;,     &#39;localhost&#39;);    
+               // 99% chance you won&#39;t need to change this value
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wenn Sie mehrere Wordpresse mit nur einer Datenbank betreiben gibt es eine weitere Frage: den Tabellen Prefix – die verschiedenen Wordpresse legen jeweils ca. 12 Tabellen an, damit diese Tabellen nicht alle den gleichen Namen haben wird der Prefix verwendet: z.B. beim ersten Wordpress beginnt der Tabellenname immer mit wp_ beim zweiten mit devblog_.</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Datei wp-config.php</small></h4>
+<pre class="lang-php prettyprint linenums">
+// You can have multiple installations in one database
+// if you give each a unique prefix
+$table_prefix  = &#39;devblog_&#39;;      // Only numbers, letters, and underscores 
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Nach der Installation von Wordpress finden Sie das Backend im Ordner wp-admin (also z.B. http://meinblog.at/wp-admin/). Dieser Bereich ist nur mit Login zugänglich. Im Rahmen der Installation wurde ein Account angelegt den Sie verwenden können.</p>
+
+</div>
+    <div class="slide">
+      <h1>Kurz-Installation von Wordpress</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/wordpress/was-ist-wordpress//slide.html">Was ist Wordpress</a> | 
+        <a href="/wordpress/installation/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/wordpress/security//slide.html">Security</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

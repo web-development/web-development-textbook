@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Demo Seite die Daten aus einem Formular anzeigt</title>
+  </head>
+  <body>
+    <h1>Daten in der URL</h1>
+
+    <p>Die URL dieser Webseite ist <kbd></kbd></p>
+
+    <h2>Analyse</h2>
+
+  </body>
+  <script src="/assets/js/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('kbd').html(document.location.toString());
+      let searchParams = (new URL(document.location)).searchParams;
+      let all_keys = new Set();
+      for (let p of searchParams) {
+        all_keys.add(p[0]);
+        $('body').append($(`<p>${p[0]} = ${p[1]}</p>`));
+      }
+      $('h1 + p').append($(`, sie enthält ${all_keys.size} verschiedene parameter`));
+    });
+  </script>
+</html>

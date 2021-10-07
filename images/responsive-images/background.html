@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Demo Seite für Responsive Images</title>
+    <style>
+      body { margin:0 }
+      .content { padding:10px }
+      div#bild {
+        width:1353px;
+        height:250px;
+        background-size: cover;
+        background-position: top;
+        background-image: url(salzburg.jpg);
+      }
+
+      @media screen and (min-resolution: 1.5dppx) {
+        div#bild { background-image: url(salzburg_1.5x.jpg); }        
+      } 
+      @media screen and (min-resolution: 2dppx) {
+        div#bild { background-image: url(salzburg_2x.jpg); }        
+      } 
+      @media screen and (min-resolution: 3dppx) {
+        div#bild { background-image: url(salzburg_3x.jpg); }        
+      }
+      @media screen and (min-resolution: 4dppx) {
+        div#bild { background-image: url(salzburg_4x.jpg); }        
+      }
+    </style>
+  </head>
+  <body>
+    <div id='bild'></div>
+
+    <div class="content">
+    <h1>Bild in mehreren Versionen</h1>
+    <ul>
+    <li>salzburg.jpg 1353x461 Auflösung, 248K Dateigröße</li>
+    <li>salzburg_1.5x.jpg  2706x922 Auflösung, 500K	Dateigröße</li>
+    <li>salzburg_2x.jpg 2706x922 Auflösung, 832K Dateigröße</li>
+    <li>salzburg_3x.jpg 4059x1383 Auflösung, 1.5MB Dateigröße</li>
+    <li>salzburg_4x.jpg 5412x1844 Auflösung,  2.4MB Dateigröße</li>
+  </ul>
+
+
+  <h2>der HTML Code</h2>
+
+  <p><kbd>&lt;div id='bild'&gt;&lt;/div&gt;</kbd></p>
+
+  <h2>der CSS Code</h2>
+<pre>      div#bild { 
+        width: 1353px;
+        height: 461px;
+        background-size: cover;
+        background-position: top;
+        background-image: url(salzburg.jpg);
+      }
+
+      @media screen and (min-resolution: 1.5dppx) {
+        div#bild { background-image: url(salzburg_1.5x.jpg); }        
+      } 
+      @media screen and (min-resolution: 2dppx) {
+        div#bild { background-image: url(salzburg_2x.jpg); }        
+      } 
+      @media screen and (min-resolution: 3dppx) {
+        div#bild { background-image: url(salzburg_3x.jpg); }        
+      }
+      @media screen and (min-resolution: 4dppx) {
+        div#bild { background-image: url(salzburg_4x.jpg); }        
+      }</pre>
+
+
+    </div>
+
+  </body>
+  </body>
+</html>

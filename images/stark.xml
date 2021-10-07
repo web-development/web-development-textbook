@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<leute>
+  <person id="rickard" kinder="ned">Rickard Stark</person>
+  <person id="ned"     kinder="jon robb sansa arya brandon rickon">Rickard Stark</person>
+  <person id="catelyn" kinder="     robb sansa arya brandon rickon">Catelyn Tully</person>
+  <person id="jon">Jon Snow</person>
+  <person id="robb">Robb Stark</person>
+  <person id="sansa">Sansa Stark</person>
+  <person>Arya Stark</person>
+  <person id="brandon">Brandon Stark</person>
+  <person id="rickon">Rickon Stark</person>
+</leute>

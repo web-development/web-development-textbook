@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>XML und PHP - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>XML und PHP</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/xml/dtd//slide.html">DTD</a> | 
+        <a href="/xml/xml-und-php/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/xml/xml-und-javascript//slide.html">XML und Javascript</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>In PHP gibt es mehrere Libraries zur Verarbeitung von XML. In der offiziellen
+Doku sind unter <a href="http://at1.php.net/manual/en/refs.xml.php">XML Manipulation</a> 13 verschiedene
+angeführt. Wir werden 2 davon näher betrachten.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="dom">DOM</h2>
+
+<div class="example">
+<h4 class="caption">Php Code <small>XML verarbeiten in PHP mit dem DOM</small></h4>
+<pre class="lang-php prettyprint linenums">
+$doc = DOMDocument::loadXML(&#39;&lt;set&gt;&lt;node&gt;gleich&lt;/node&gt;&lt;node&gt;vorher&lt;/node&gt;&lt;/set&gt;&#39;);
+$node = $doc-&gt;getElementsByTagName(&#39;node&#39;)-&gt;item(1);
+$node-&gt;removeChild($node-&gt;firstChild);
+
+$newText = new DOMText(&#39;nachher&#39;);
+$node-&gt;appendChild($newText);
+
+
+header( &quot;Content-Type: application/xml; charset=utf-8&quot; );
+echo $doc-&gt;saveXML();
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="simplexml">SimpleXML</h2>
+
+<p>SimpleXML lädt das XML direkt als PHP Datenstruktur:
+Aus einer Node wird ein PHP Objekt, aus mehreren Kindern
+einer Node wird ein Array, aus Attributen werden Eigenschaften.</p>
+
+<p>Diese Datenstruktur erlaubt das Auslesen und das Manipulieren von XML:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>XML verarbeiten in PHP mit SimpleXML</small></h4>
+<pre class="lang-php prettyprint linenums">
+$doc = new SimpleXMLElement(&#39;&lt;set&gt;&lt;node&gt;gleich&lt;/node&gt;&lt;node&gt;vorher&lt;/node&gt;&lt;/set&gt;&#39;);
+$doc-&gt;node[1] = &quot;nachher&quot;;
+
+header( &quot;Content-Type: application/xml; charset=utf-8&quot; );
+echo $doc-&gt;asXML();
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="xml-laden">XML laden</h2>
+
+<p>Viele Webseiten bieten XML als “Webservice” an.  Zum Beispiel
+kann man bei der <a href="http://www.mediawiki.org/wiki/API:Main_page">Wikipedia API</a> 
+Teile von Wikipedia-Einträgen, Bilder, Meta-Informationen abfragen:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>XML laden von der Wikipedia</small></h4>
+<pre class="lang-php prettyprint linenums">
+$title = &quot;Wiesen-Labkraut&quot;;
+
+$parameters = array(
+  &quot;action&quot; =&gt; &quot;query&quot;, 
+  &quot;titles&quot; =&gt; urlencode( $title ), 
+  &quot;prop&quot; =&gt; &quot;extracts&quot;, 
+  &quot;exintro&quot; =&gt; 1
+);
+
+$url = &quot;http://de.wikipedia.org/w/api.php?&quot; . http_build_query( $parameters ) .  &quot;&amp;format=xml&quot;;
+
+$xml_string = file_get_contents($url);
+
+if( $xml_string === false ) {
+  echo(&quot;could not load $url&quot;);
+  die();
+}
+$xml_doc = new SimpleXMLElement($xml_string);
+</pre></div>
+
+</div>
+    <div class="slide">
+      <h1>XML und PHP</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/xml/dtd//slide.html">DTD</a> | 
+        <a href="/xml/xml-und-php/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/xml/xml-und-javascript//slide.html">XML und Javascript</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

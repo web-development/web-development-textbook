@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>no Javascript example: form for several pizzas</title>
+
+<style>
+  .warnung { background-color:#FF3333; color: white; display: none;}
+  body { font-family: Georgia, "Times New Roman", Times, serif; }
+  div.pizza {
+  background-color: #EEEEEE;
+  padding: 10px;
+  margin: 3px 0px;
+  }
+  div.pizza .main, div.pizza select { font-size: 20px; font-family: Georgia, "Times New Roman", Times, serif;  }
+  div.pizza .main {
+  display: block;
+  margin-bottom: 20px;
+  }
+  label  {
+  font-weight: bold;
+  }
+  form {
+  width: 600px;
+  background-color: #CCCCCC;
+  padding: 20px;
+  }
+  .removethis {
+  display:block;
+  float:right;
+  }
+</style>
+</head>
+
+<body>
+  <h1>Order up to 10 Pizzas</h1>
+
+  <form method="get" action="/images/formulare/submitted.html">
+    <p>
+    <label >Your Name
+      <input type="text" name="name" id="name" /></label>
+    </p>
+    <p>
+    <label>Your Address
+      <input type="text" name="address" id="address" /></label>
+    </p>
+    <div id="warnung">There is a more convenient
+      <a href="example_js_add_to_form.html">order form with javascript</a> for you</div>
+    <p id="insert_point">Your Pizzas</p>
+    <div class="pizza">
+      <p>
+      <select name="pizzatype[]">
+        <option>Magaritha</option>
+        <option>Vegetarian</option>
+        <option>Quattro Staggione</option>
+      </select>
+      <br>
+      <label>add Garlic  <select name="addgarlic[]"><option>no</option><option>yes</option></select></label>
+      <label>add Cheese <select name="addcheese[]"><option>no</option><option>yes</option></select> </label>
+      <br>
+      <label>anything else?<input type="text" name="comment[]"  /></label>
+      </p>
+    </div>
+
+    <div class="pizza">
+      <p>
+      <select name="pizzatype[]">
+        <option>Magaritha</option>
+        <option>Vegetarian</option>
+        <option>Quattro Staggione</option>
+      </select>
+      <br>
+      <label>add Garlic  <select name="addgarlic[]"><option>no</option><option>yes</option></select></label>
+      <label>add Cheese <select name="addcheese[]"><option>no</option><option>yes</option></select> </label>
+      <br>
+      <label>anything else?<input type="text" name="comment[]"  /></label>
+      </p>
+    </div>
+
+    <div class="pizza">
+      <p>
+      <select name="pizzatype[]">
+        <option>Magaritha</option>
+        <option>Vegetarian</option>
+        <option>Quattro Staggione</option>
+      </select>
+      <br>
+      <label>add Garlic  <select name="addgarlic[]"><option>no</option><option>yes</option></select></label>
+      <label>add Cheese <select name="addcheese[]"><option>no</option><option>yes</option></select> </label>
+      <br>
+      <label>anything else?<input type="text" name="comment[]"  /></label>
+      </p>
+    </div>
+
+    <div class="pizza">
+      <p>
+      <select name="pizzatype[]">
+        <option>Magaritha</option>
+        <option>Vegetarian</option>
+        <option>Quattro Staggione</option>
+      </select>
+      <br>
+      <label>add Garlic  <select name="addgarlic[]"><option>no</option><option>yes</option></select></label>
+      <label>add Cheese <select name="addcheese[]"><option>no</option><option>yes</option></select> </label>
+      <br>
+      <label>anything else?<input type="text" name="comment[]"  /></label>
+      </p>
+    </div>
+
+    <div class="pizza">
+      <p>
+      <select name="pizzatype[]">
+        <option>Magaritha</option>
+        <option>Vegetarian</option>
+        <option>Quattro Staggione</option>
+      </select>
+      <br>
+      <label>add Garlic  <select name="addgarlic[]"><option>no</option><option>yes</option></select></label>
+      <label>add Cheese <select name="addcheese[]"><option>no</option><option>yes</option></select> </label>
+      <br>
+      <label>anything else?<input type="text" name="comment[]"  /></label>
+      </p>
+    </div>
+
+    <div class="pizza">
+      <p>
+      <select name="pizzatype[]">
+        <option>Magaritha</option>
+        <option>Vegetarian</option>
+        <option>Quattro Staggione</option>
+      </select>
+      <br>
+      <label>add Garlic  <select name="addgarlic[]"><option>no</option><option>yes</option></select></label>
+      <label>add Cheese <select name="addcheese[]"><option>no</option><option>yes</option></select> </label>
+      <br>
+      <label>anything else?<input type="text" name="comment[]"  /></label>
+      </p>
+    </div>
+
+    <div class="pizza">
+      <p>
+      <select name="pizzatype[]">
+        <option>Magaritha</option>
+        <option>Vegetarian</option>
+        <option>Quattro Staggione</option>
+      </select>
+      <br>
+      <label>add Garlic  <select name="addgarlic[]"><option>no</option><option>yes</option></select></label>
+      <label>add Cheese <select name="addcheese[]"><option>no</option><option>yes</option></select> </label>
+      <br>
+      <label>anything else?<input type="text" name="comment[]"  /></label>
+      </p>
+    </div>
+
+    <div class="pizza">
+      <p>
+      <select name="pizzatype[]">
+        <option>Magaritha</option>
+        <option>Vegetarian</option>
+        <option>Quattro Staggione</option>
+      </select>
+      <br>
+      <label>add Garlic  <select name="addgarlic[]"><option>no</option><option>yes</option></select></label>
+      <label>add Cheese <select name="addcheese[]"><option>no</option><option>yes</option></select> </label>
+      <br>
+      <label>anything else?<input type="text" name="comment[]"  /></label>
+      </p>
+    </div>
+
+    <div class="pizza">
+      <p>
+      <select name="pizzatype[]">
+        <option>Magaritha</option>
+        <option>Vegetarian</option>
+        <option>Quattro Staggione</option>
+      </select>
+      <br>
+      <label>add Garlic  <select name="addgarlic[]"><option>no</option><option>yes</option></select></label>
+      <label>add Cheese <select name="addcheese[]"><option>no</option><option>yes</option></select> </label>
+      <br>
+      <label>anything else?<input type="text" name="comment[]"  /></label>
+      </p>
+    </div>
+
+    <div class="pizza">
+      <p>
+      <select name="pizzatype[]">
+        <option>Magaritha</option>
+        <option>Vegetarian</option>
+        <option>Quattro Staggione</option>
+      </select>
+      <br>
+      <label>add Garlic  <select name="addgarlic[]"><option>no</option><option>yes</option></select></label>
+      <label>add Cheese <select name="addcheese[]"><option>no</option><option>yes</option></select> </label>
+      <br>
+      <label>anything else?<input type="text" name="comment[]"  /></label>
+      </p>
+    </div>
+
+    <div class="pizza">
+      <p>
+      <select name="pizzatype[]">
+        <option>Magaritha</option>
+        <option>Vegetarian</option>
+        <option>Quattro Staggione</option>
+      </select>
+      <br>
+      <label>add Garlic  <select name="addgarlic[]"><option>no</option><option>yes</option></select></label>
+      <label>add Cheese <select name="addcheese[]"><option>no</option><option>yes</option></select> </label>
+      <br>
+      <label>anything else?<input type="text" name="comment[]"  /></label>
+      </p>
+    </div>
+
+    <div class="pizza">
+      <p>
+      <select name="pizzatype[]">
+        <option>Magaritha</option>
+        <option>Vegetarian</option>
+        <option>Quattro Staggione</option>
+      </select>
+      <br>
+      <label>add Garlic  <select name="addgarlic[]"><option>no</option><option>yes</option></select></label>
+      <label>add Cheese <select name="addcheese[]"><option>no</option><option>yes</option></select> </label>
+      <br>
+      <label>anything else?<input type="text" name="comment[]"  /></label>
+      </p>
+    </div>
+
+    <p>
+    <input  type="submit" />
+    </p>
+  </form>
+  <script>
+    document.getElementById('warning').style.display = 'block';
+  </script>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Wo bin ich - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Wo bin ich</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/kommandozeile/kommandozeile//slide.html">Kommandozeile</a> | 
+        <a href="/kommandozeile/wo-bin-ich/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/kommandozeile/vscode-remote-ssh//slide.html">VS Code</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Sie öffnen die Kommandozeile je nach Betriebssystem Unterschiedlich:</p>
+
+<ul>
+  <li>Windows: ….</li>
+  <li>Mac OS X: Terminal</li>
+  <li>Linux: xterm</li>
+</ul>
+
+<p>So sieht das Terminal auf Mac OS X aus:</p>
+
+<p><img src="/images/terminal.png" srcset="/images/terminal-pwd.png 1x, /images/terminal.png 1x"  alt="Abbildung: Terminal auf Mac OS X" ></p>
+
+<p>Im Terminal läuft eine <strong>Shell</strong>.  Das ist der eigentliche Kommando-Interpreter,
+der Ihre Eingaben verarbeitet wird.  In der Abbildung oben ist das die shell <strong>bash</strong>.</p>
+
+<p>Die eine Zeile Text die Sie sofort sehen ist die <strong>Eingabeaufforderung</strong> (english: <strong>prompt</strong>).
+Nun können Sie Ihren ersten Befehl eintippen:</p>
+
+<p><img src="/images/terminal-pwd.png"  alt="Abbildung: Terminal mit eingetipptem Kommando" ></p>
+
+<p>In dieser Abbildung ist die Eingabe gelb markiert.  Die Antwort der Shell ist blau markiert.</p>
+
+<p>Das Kommando <strong>pwd</strong> steht für “print working directory”, also “gib das Arbeitsverzeichnis aus”.
+Die Ausgabe ist also der <strong>Pfad</strong> des Arbeitsverzeichnisses.
+In menschliche Sprache übersetzt lautet dieser Dialog ungefähr:</p>
+
+<ul>
+  <li>Frage an die Shell: “wo bin ich gerade?”</li>
+  <li>Antwort: “du bis im Ordner <strong>Users</strong> im Unter-Ordner <strong>bjelline</strong>”</li>
+</ul>
+
+<p>Zu diesem Befehl gibt es keine Entsprechung in der grafischen Oberfläche
+des Betriebssystems.  Um z.B. im Finder auf Mac OS X heraus zu finden
+welcher Ordner aktuell angezeigt wird genügt ein Blick auf die Titelzeile, 
+wo der Pfad angezeigt wird.  In der Abbildung unten ist das <strong>/Users/bjelline</strong>.</p>
+
+<p><img src="/images/shell-pwd.png"  alt="Abbildung: Finder zeigt Arbeitsverzeichnis" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="pfade">Pfade</h3>
+
+<p>Im Kapitel über <a href="/urls/absolut-relativ/">Absolute und relative URLs</a> haben
+Sie schon gesehen wie absolute und relative URLs interpretiert werden.
+Pfadangaben im Dateisystem sind sogar etwas einfacher.</p>
+
+<p>Unter Mac OS X und UNIX werden die Teile eines Pfades mit einem “Slash” / getrennt.
+Das Dateisystem hat einen “Hauptordner” in dem alle weiteren Ordner
+und Dateien zu finden sind, er wird “root” (also “die Wurzel”) genannt.<br />
+Eine Absolute Pfadangabe beginnt mit einem Slash und bezieht sich auf diesen Hauptordner.</p>
+
+<p>Der Pfad</p>
+
+<pre><code>/Users/bjelline
+</code></pre>
+
+<p>ist also eine Datei oder ein Ordner namens <strong>bjelline</strong>, der sich in einem Ordner <strong>Users</strong> befindet,
+der sich im Root-Ordner befindet.  Ein relativer Pfad beginnt nicht mit einem Slash.</p>
+
+<p>Unter Windows ist das Trennzeichen ein Backslash <strong>\</strong>. 
+Es kann mehrere <strong>Laufwerke</strong> geben, die mit Buchstaben
+bezeichnet werden (z.B. <strong>c:</strong>) und die jeweils einen eigenen Root-Ordner
+enthalten.  Ein absoluter Pfad beginnt mit der Laufwerksangabe:</p>
+
+<pre><code>c:\Users\bjelline
+</code></pre>
+
+<p>ist eine ist also eine Datei oder ein Ordner namens <strong>bjelline</strong>, der sich in einem Ordner <strong>Users</strong> befindet,
+der sich im Root-Ordner des Laufwerks <strong>C</strong> befindet.  Ein relativer Pfad beginnt 
+nicht mit einem Laufwerk.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="die-oberflche-lgt">Die Oberfläche lügt!</h3>
+
+<p>Sowohl der Windows Explorer als auch der Mac OS X Finder stellen das Dateisystem
+nicht wahrheitsgemäß dar.  Sie “übersetzen” einige Namen:</p>
+
+<pre><code>Mac OS X:
+echter Pfad:            /Users/bjelline/Music/
+Darstellung im Finder:  /Users/bjelline/Musik/
+echter Pfad:            /Users/bjelline/Sites/
+Darstellung im Finder:  /Users/bjelline/Websites/
+</code></pre>
+
+<p>Für die Programmierung ist immer der wirklich Pfad relevant, der auf der Kommandozeile angezeigt wird.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="dateien-und-ordner-auflisten">Dateien und Ordner auflisten</h3>
+
+<p>Der Finder (bzw. Windows Explorer) beantwortet auch die Frage welche Dateien
+und Ordner sich im aktuellen Ordner befinden.  Auf der Kommandozeile fragen
+Sie diese Information mit dem Befehl <strong>ls</strong> ab:</p>
+
+<div class="example">
+<h4 class="caption">Shell Code <small>Dateien und Ordner auflisten</small></h4>
+<pre class="lang-shell prettyprint linenums">
+bash-3.2$ ls 
+Desktop  Documents  Downloads  Dropbox  Library  Movies  Music  Pictures  Public
+</pre></div>
+
+<p>In der einfachen Version erhält man wirklich nur die Namen der Dateien und Ordner,
+so wie in dieser Darstellung im Finder:</p>
+
+<p><img src="/images/shell-ls.png" srcset="/images/shell-ls.png 1x, /images/shell-ls-l.png 1x, /images/shell-ls-la.png 1x"  alt="Abbildung: Dateien und Ordner auflisten mit ls" ></p>
+
+<p>Viele Kommandozeilen-Befehle kann man mit “Optionen” abwandeln.  Eine Option
+wird nach dem Namen des Befehls eingegeben, und beginnt meist mit einem Minus.
+Die Option <strong>-l</strong> zum Befehl <strong>ls</strong> führt dazu, dass mehr Informationen angezeigt werden:</p>
+
+<div class="example">
+<h4 class="caption">Shell Code <small>Dateien und Ordner auflisten mit Details</small></h4>
+<pre class="lang-shell prettyprint linenums">
+bash-3.2$ ls -l
+total 0
+drwx------ 2 bjelline staff 68 Mär  1 20:21 Desktop
+drwx------ 2 bjelline staff 68 Mär  1 20:21 Documents
+drwx------ 2 bjelline staff 68 Mär  1 20:21 Downloads
+drwx------ 2 bjelline staff 68 Mär  1 20:21 Dropbox
+drwx------ 2 bjelline staff 68 Mär  1 20:21 Library
+drwx------ 2 bjelline staff 68 Mär  1 20:21 Movies
+drwx------ 2 bjelline staff 68 Mär  1 20:21 Music
+drwx------ 2 bjelline staff 68 Mär  1 20:21 Pictures
+drwxr-xr-x 2 bjelline staff 68 Mär  2 09:18 Public
+</pre></div>
+
+<p>Das erste Zeichen zeigt an ob es sich um eine Datei (“-“) oder einen Ordner (“d”) handelt.
+Hier sind es nur Ordner. Danach folgen Informationen über Zugriffsrechte, und das Datum der
+letzten Änderung. Die Zugriffsrechte von UNIX werde in einem <a href="/kommandozeile/zugriffsrechte/">eigenem Kapitel</a>
+behandelt.</p>
+
+<p><img src="/images/shell-ls-l.png" srcset="/images/shell-ls-l.png 1x, /images/shell-ls-la.png 1x"  alt="Abbildung: Dateien und Ordner auflisten mit ls" ></p>
+
+<p>Mit der Option <strong>-a</strong> zum Befehl <strong>ls</strong> werden auch “versteckte Dateien” angezeigt.
+Das sind unter UNIX Dateien und Ordner deren Namen mit einem Punkt beginnen.
+Zwei gibt es immer: <strong>.</strong> verweist auf den aktuellen Ordner selbst, <strong>..</strong> verweist
+auf den übergeordneten Ordner.  In folgendem Beispiel werden auch noch drei
+weitere Dateien angezeigt:</p>
+
+<div class="example">
+<h4 class="caption">Shell Code <small>Dateien und Ordner auflisten inklusive geheimer Dateien</small></h4>
+<pre class="lang-shell prettyprint linenums">
+bash-3.2$ ls -la
+total 12
+drwxr-xr-x   14 bjelline staff  476 Mär  2 09:29 .
+drwxr-xr-x+ 232 bjelline staff 7888 Mär  2 09:29 ..
+-rw-------    1 bjelline staff    3 Mär  2 09:19 .CFUserTextEncoding
+-rw-------    1 bjelline staff   11 Mär  2 09:28 .bash_history
+-rw-------    1 bjelline staff   80 Mär  2 09:29 .bash_profile
+drwx------    2 bjelline staff   68 Mär  1 20:21 Desktop
+drwx------    2 bjelline staff   68 Mär  1 20:21 Documents
+drwx------    2 bjelline staff   68 Mär  1 20:21 Downloads
+drwx------    2 bjelline staff   68 Mär  1 20:21 Dropbox
+drwx------    2 bjelline staff   68 Mär  1 20:21 Library
+drwx------    2 bjelline staff   68 Mär  1 20:21 Movies
+drwx------    2 bjelline staff   68 Mär  1 20:21 Music
+drwx------    2 bjelline staff   68 Mär  1 20:21 Pictures
+drwxr-xr-x    2 bjelline staff   68 Mär  2 09:18 Public
+</pre></div>
+
+<p><img src="/images/shell-ls-la.png"  alt="Abbildung: Dateien und Ordner auflisten mit ls" ></p>
+</div>
+    <div class="slide">
+      <h1>Wo bin ich</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/kommandozeile/kommandozeile//slide.html">Kommandozeile</a> | 
+        <a href="/kommandozeile/wo-bin-ich/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/kommandozeile/vscode-remote-ssh//slide.html">VS Code</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

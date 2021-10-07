@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>JSON Syntax - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>JSON Syntax</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/json//slide.html">JSON</a> | 
+        <a href="/json/syntax/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/json/php//slide.html">JSON und PHP</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Mit JSON kann man Datenstrukturen aus null, true, false, Zahlen, Strings,
+Arrays und Objekten in Javscript deklarativ anschreiben.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>JSON ist ein Teil der Javascript Syntax, eine deklarative
+Art Datenstrukturen zu definieren.</p>
+
+<p>(Folgende Beispiel für JSON wurde aus der Graph API von Facebook abgerufen
+und wird hier etwas verkürzt dargestellt,
+siehe <a href="https://graph.facebook.com/multimediatechnology">original</a>)</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>JSON Beispiel</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+var o = {
+  &quot;about&quot;: &quot;Ein Medieninformatik Studiengang an der FH Salzburg&quot;,
+  &quot;category_list&quot;: [
+    {
+      &quot;id&quot;: &quot;151676848220295&quot;,
+      &quot;name&quot;: &quot;Education&quot;
+    }
+  ],
+  &quot;is_published&quot;: true
+};
+</pre></div>
+
+<p>Mit dieser Schreibweise wird ein Objekt mit drei Eigenschaften definiert,
+die zweite Eigenschaft hat als Wert ein Array das ein weiteres Objekt enthält.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Man hätte die selbe Datenstruktur auch imperativ aufbauen können:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>ohne JSON</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+var o = new Object();
+o.about = &quot;Ein Medieninformatik Studiengang an der FH Salzburg&quot;;
+o.category_list = new Array();
+o.category_list[0] = new Object()
+o.category_list[0].id = &quot;151676848220295&quot;;
+o.category_list[0].name = &quot;Education&quot;;
+</pre></div>
+
+<p>Die deklarative Schreibweise in JSON ist aber einfacher lesbar</p>
+
+</div>
+<div class="slide">
+
+<h2 id="json-und-javascript">JSON und Javascript</h2>
+
+<p>Für den Datenaustausch mit JSON muss die JSON-Schreibweise als String
+ausgegeben werden, bzw. ein String der JSON-Schreibweise enthält in
+eine Javascript Datenstruktur zurück verwandelt werden.  Die Umwandlung
+in einen String nennt man auch “Serialisierung”<a href="http://de.wikipedia.org/wiki/Serialisierung">→</a>.</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>(De)Serialisierung von JSON</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+string = JSON.stringify( o );
+o      = JSON.parse(string);
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Es gäbe noch eine zweite Art den String in eine Javscript-Datenstruktur
+umzuwandeln: Der Javascript-Befehl <code>eval</code> interpretiert einen String
+als Javascript Code und führt das Programm aus.</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>eval</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+json_string = &quot;{ &#39;dies&#39;: &#39;und das&#39; }&quot;;
+eval( &quot;o = &quot; + json_string);
+console.log(o);
+</pre></div>
+
+<p>In diesem Beispiel ist ganz klar was passiert - weil <code>json_string</code> ja
+lokal definier wird.  Für die Behandlung von unbekannten Daten ist <code>eval</code>
+nicht geeignet. Wir wollen ja nur den Datenaustausch ermöglichen, und nicht,
+dass beliebiger Javascript Code ausgeführt wird.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="referenz">Referenz</h2>
+
+<ul>
+  <li><a href="http://json.org/json-de.html">JSON: Syntax</a></li>
+</ul>
+
+</div>
+    <div class="slide">
+      <h1>JSON Syntax</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/json//slide.html">JSON</a> | 
+        <a href="/json/syntax/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/json/php//slide.html">JSON und PHP</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

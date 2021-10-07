@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Einfügen - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Einfügen</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-schreiben/daten-loeschen//slide.html">Löschen</a> | 
+        <a href="/php-db-schreiben/daten-einfuegen/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-schreiben/daten-editieren//slide.html">Daten Bearbeiten</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Hier das einfachste Programm, das ein neues Werk speichert:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Einfügen von Daten in die Datenbank - mit Sicherheitsproblem!</small></h4>
+<pre class="lang-php prettyprint linenums">
+$t = $_POST[&#39;title&#39;];
+$dbh-&gt;query(&quot;INSERT INTO projects (title) VALUES (&#39;$t&#39;)&quot;);
+// Beispielcode mit Sicherheitslücke - NICHT verwenden!
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Aber was passiert wenn ein Werk den Titel
+„That’s it“ haben soll? Dann wird folgendes SQL-Statement ausgeführt:</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+INSERT INTO projects (title) VALUES (&#39;That&#39;s it&#39;)
+</pre></div>
+
+<p>Das kann nicht funktionieren: das einfache Anführungszeichen beendet den String
+und es bleibt <code>s it</code> übrig. Die Fehlermeldung von Postgres lautet:</p>
+
+<div class="example">
+<pre class="lang-plain prettyprint linenums">
+ERROR:  syntax error at or near &quot;s&quot;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="die-falsche-lsung">Die Falsche Lösung</h3>
+
+<p>Für dieses Problem gab es in PHP bis Version 5.3.0 eine <strong>einfache</strong> und <strong>falsche</strong> Lösung:</p>
+
+<p>Urspünglich veränderte PHP automatisch alle Daten die über GET, POST und
+Cookies hereinkommen: Vor alle Anführungszeichen wird ein Backslash eingefügt.
+Aus „That’s it“ wird also automatisch „That\’s it“, das SQL-Statement
+funktioniert jetzt für MySQL:</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+INSERT INTO werk (titel) VALUES (&#39;That\&#39;s it&#39;)
+</pre></div>
+
+<p>Diese Automatik funktioniert aber leider <strong>nur</strong> für MySQL, 
+nicht aber für Postgres. Da müsste es heissen:</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+INSERT INTO werk (titel) VALUES (&#39;That&#39;&#39;s it&#39;)
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wenn Sie eine PHP-Version größer als 5.4.0 verwenden, brauchen
+Sie sich nicht mehr darum zu kümmern. Bei älteren Versionen 
+sollten Sie die <code>magic_quotes</code> abschalten:</p>
+
+<p><code caption="In der Apache Konfiguration: magic quotes abschalten">
+php_flag magic_quotes_gpc off
+</code></p>
+
+</div>
+<div class="slide">
+
+<h3 id="die-richtige-lsung">Die Richtige Lösung</h3>
+
+<p>Wenn die magic quotes abgeschalten sind, kann man das Problem besser lösen: mit prepared statements.</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Einfügen von Daten in die Datenbank mit prepared statements</small></h4>
+<pre class="lang-php prettyprint linenums">
+
+// Variante 1: mySQL + postgreSQL (id-Wert weglassen)
+$sth = $dbh-&gt;prepare(
+  &quot;INSERT INTO users
+    (firstname, surname, email, profile_visible)
+      VALUES
+    (?, ?, ?, ?)&quot;);
+    
+// Variante 2: nur postgreSQL (mit DEFAULT für den autoincrement id-Wert)
+$sth = $dbh-&gt;prepare(
+  &quot;INSERT INTO users
+    (id,  firstname,surname,email,profile_visible)
+      VALUES
+    (DEFAULT, ?, ?, ?, ?)&quot;);
+
+// Variante 3: nur MySQL (mit NULL für den autoincrement id-Wert)
+$sth = $dbh-&gt;prepare(
+  &quot;INSERT INTO users
+    (id,  firstname,surname,email,profile_visible)
+      VALUES
+    (NULL, ?, ?, ?, ?)&quot;);
+
+$sth-&gt;execute(
+  array(
+    $_POST[&#39;firstname&#39;],
+    $_POST[&#39;surname&#39;],
+    $_POST[&#39;email&#39;],
+    $_POST[&#39;profile_visible&#39;]
+  )
+); 
+
+// noch ohne Fehlerbehandlung
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="fehlerbehandlung">Fehlerbehandlung</h2>
+
+<p>Beim Einfügen in die Users-Tabelle kann es leicht zu Problemen kommen: Die
+Tabelle verlangt für manche Spalten eine Eingabe.</p>
+
+<p>So weit wollen Sie es nicht kommen lassen: Sie sollten die Eingaben aus dem
+Webformular schon vor dem INSERT prüfen und dann ausführliche, vollständige,
+deutsche Fehlermeldungen ausgeben.</p>
+
+<p><img src="/images/2fehlermeldungen.png"  alt="Fehlermeldung der Datenbank vs. selbst gestaltete Fehlermeldung" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Falls das Einfügen der Daten funktioniert hat und in der Tabelle ein
+autoincrement-Feld als Primärschlüssel vorhanden ist, kann man den Wert des
+Schlüssels im neuen Datensatz mit 
+<code>lastInsertId</code><a href="http://php.net/manual/en/pdo.lastinsertid.php">*</a> 
+auslesen und weiter verwenden.</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Primärschlüssel des neuen Datensatzes auslesen</small></h4>
+<pre class="lang-php prettyprint linenums">
+$id = $dbh-&gt;lastInsertId();
+header(&quot;Location: person.php?id=$id&quot;);
+</pre></div>
+
+<p>Auch hier ist eine Weiterleitung direkt nach dem POST-Request sinnvoll: Nach dem
+Einfügen des Datensatzes wird direkt auf die Anzeige des neuen Datensatzes
+weitergeleitet. Falls man danach auf „Reload“ drückt, wird der Datensatz zwar neu
+angezeigt, aber so verhindert, dass er ein zweites Mal eingefügt wird.</p>
+
+</div>
+    <div class="slide">
+      <h1>Einfügen</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-schreiben/daten-loeschen//slide.html">Löschen</a> | 
+        <a href="/php-db-schreiben/daten-einfuegen/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-schreiben/daten-editieren//slide.html">Daten Bearbeiten</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

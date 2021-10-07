@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Debugging - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Debugging</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript/style//slide.html">Stil + Tipps</a> | 
+        <a href="/javascript/debugging/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/applied-js-and-css//slide.html">JavaScript - Anwendung im Browser</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Ein paar Tipps für die Fehlersuche im Code.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="ohne-werkzeuge">Ohne Werkzeuge</h2>
+
+</div>
+<div class="slide">
+
+<h3 id="check-ist-das-dieselbe-datei">Check: Ist das dieselbe Datei?</h3>
+
+<p>Du hast den Fehler behoben, aber das Programm funktioniert immer noch nicht?</p>
+
+<p>Dann prüfe mal nach, ob nicht folgendes passiert ist:</p>
+
+<ul>
+  <li>Du editierst Datei <code>x</code></li>
+  <li>Du testest das Programm in Datei <code>y</code></li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h3 id="problem-eingrenzen">Problem eingrenzen</h3>
+
+<p>Du hast keine Ahnung wo in Deinem Code ein Problem auftritt?
+Vor 5 Minuten hat es noch funktioniert?</p>
+
+<p>Für folgendes Vorgehen brauchst Du nur den ganz normalen Editor,
+und ein weiteres Fenster zur Aufbewahrung von gelöschtem Code.</p>
+
+<p>Lösche den Code den Du neu dazu geschreiben hast.
+Jetzt geht es wieder? Dann füg ca. die Hälfte des
+neuen Codes dazu. Geht es noch immer? ….</p>
+
+<p>Auf diese Art kannst Du schrittweise eingrenzen in welchem
+Teil des Codes das Problem auftritt.</p>
+
+<p>Obskure Fehler die damit schon gefunden wurden: z.B. “da ist ein
+geschützes Leerzeichen im Code, das den Interpreter / Compiler
+sofort zum Absturz bringt”. Was gegen diesen fehler auch hilft:
+<a href="https://marketplace.visualstudio.com/items?itemName=viktorzetterstrom.non-breaking-space-highlighter">VSCode extension Non-breaking space highlighter</a></p>
+
+<p>Eine fortgeschrittene Variante dieser Methode ist <a href="https://git-scm.com/docs/git-bisect">git bisect</a>
+das hilft den git commit zu finden in dem ein Problem zum ersten mal auftritt.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="console">Console</h2>
+
+</div>
+<div class="slide">
+
+<h3 id="log">log</h3>
+
+<p>Der einfache <code>console.log</code> Befehl kann mit Style-Anweisungen formatiert werden:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+console.log(&quot;This is %cMy stylish message&quot;, &quot;color: yellow; font-style: italic; background-color: blue;padding: 2px&quot;);
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="dir">dir</h3>
+
+<p><code>console.dir</code> gibt mehr Kontext über ein Javascript Objekt aus:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+console.dir(o);
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="table">table</h3>
+
+<p>Mit <code>console.table</code> kann man eine ganze Tabelle von Daten hübsch ausgeben:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+console.table([&quot;apples&quot;, &quot;oranges&quot;, &quot;bananas&quot;]);
+</pre></div>
+
+<p><img src="/images/javascript/console-table.png" srcset="/images/javascript/console-table-array-of-objects.png 1x, /images/javascript/console-table@2x.png 2x, /images/javascript/console-table.png 1x"  alt="" ></p>
+
+<p>oder komplexere Tabellen:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+var john = new Person(&quot;John&quot;, &quot;Smith&quot;);
+var jane = new Person(&quot;Jane&quot;, &quot;Doe&quot;);
+var emily = new Person(&quot;Emily&quot;, &quot;Jones&quot;);
+
+console.table([john, jane, emily]);
+</pre></div>
+
+<p><img src="/images/javascript/console-table-array-of-objects.png"  alt="" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="group">group</h3>
+
+<p>Zu viele Console-Meldungen? Dann kann man sie in Gruppen zusammenfassen:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+console.group(&quot;Bestellung&quot;);
+console.log(&quot;Dies&quot;);
+console.log(&quot;Das&quot;);
+console.dir({thema: &#39;nochwas&#39;});
+console.groupEnd();
+console.log(&quot;was neues&quot;);
+</pre></div>
+
+<p>Jetzt kann an entweder die ganze Information sehen:</p>
+
+<p><img src="/images/javascript/console-group.png" srcset="/images/javascript/console-group.png 1x, /images/javascript/console-group@2x.png 2x"  alt="" ></p>
+
+<p>Oder die Gruppe zusammen klappen:</p>
+
+<p><img src="/images/javascript/consolegroup2.png" srcset="/images/javascript/consolegroup2@2x.png 2x, /images/javascript/consolegroup2.png 1x"  alt="" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="trace">trace</h3>
+
+<p>Zur Orientierung in fremden Code sehr hilfreich ist <code>console.trace</code>:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+console.trace();
+</pre></div>
+
+<p>Dieser Befehl zeigt einen “stack trace” an: eine Liste welche Funktion
+von welcher Funktion aufgerufen wurde, um schließlich bei dieser
+Codezeile zu landen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="variablen-in-der-console">Variablen in der Console</h2>
+
+<p>Wenn man mit dem Inspector eine Node der DOM ausgewählt hat,
+dann steht diese Node in der Konsole in der Variable <code>$0</code> zur
+Verfügung.</p>
+
+<p><code>$$()</code> ist ein eine Abkürzung für <code>document.querySelectorAll</code>. Einziger
+Unterschied: gibt ein Array zurück, keine nodelist, und ist damit
+einfacher in der Weiterverarbeitung.</p>
+
+<p>Siehe weitere Web Console Helpers in <a href="https://developer.mozilla.org/en-US/docs/Tools/Web_Console/Helpers">Firefox</a> und <a href="https://developers.google.com/web/tools/chrome-devtools/console/utilities">Chrome</a>.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="debugger">Debugger</h2>
+
+<p>In den Developer Tools im Browser ist ein Debugger eingebaut:</p>
+
+<p><img src="/images/javascript/jsdebug-1.png" srcset="/images/javascript/jsdebug-1@2x.png 2x, /images/javascript/jsdebug-1.png 1x"  alt="Debugger im Browser" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="dateien">Dateien</h3>
+
+<p>Der linke Teil des Debuggers zeigt die JavaScript Dateien an:</p>
+
+<p><img src="/images/javascript/jsdebug-panes-1.png" srcset="/images/javascript/jsdebug-panes-1.png 1x, /images/javascript/jsdebug-panes-1@2x.png 2x"  alt="Debugger im Browser: Dateien" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="quelltext">Quelltext</h3>
+
+<p>Der mittlere Teil des Debuggers zeigt den Sourcecode an:</p>
+
+<p><img src="/images/javascript/jsdebug-panes-2.png" srcset="/images/javascript/jsdebug-panes-2.png 1x, /images/javascript/jsdebug-panes-2@2x.png 2x"  alt="Debugger im Browser: Quelltext" ></p>
+
+<p>Hier kann man Haltepunkte = Breakpoints setzen, indem man eine Zeile anklickt.
+In diesem Bild ist ein Breakpoint auf Zeile 29 gesetzt.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="steuerung">Steuerung</h3>
+
+<p>Der rechte Teil des Debuggers enhält die Steuerung:</p>
+
+<p><img src="/images/javascript/jsdebug-panes-3.png" srcset="/images/javascript/jsdebug-panes-3@2x.png 2x, /images/javascript/jsdebug-panes-3.png 1x"  alt="Debugger im Browser: Steuerung" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="haltepunkte">Haltepunkte</h3>
+
+<p>Bei den Haltepunkten wird das Programm jeweils angehalten.
+Das wird sowohl im Browserfenster als auch im Debugger angezeigt:</p>
+
+<p><img src="/images/javascript/jsdebugstopped.png" srcset="/images/javascript/jsdebugstopped@2x.png 2x, /images/javascript/jsdebugstopped.png 1x"  alt="Debugger im Browser" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>In diesem Zustand kann man den Inhalt von Variablen ansehen,
+und mit der Steuerung das Programm fortsetzen:</p>
+
+<p><img src="/images/javascript/jsdebugdetailstopped.png" srcset="/images/javascript/jsdebugdetailstopped@2x.png 2x, /images/javascript/jsdebugdetailstopped.png 1x"  alt="Debugger im Browser" ></p>
+
+<p>Im Sourcecode werden die Werte von Variablen direkt eingeblendet.</p>
+
+<p>Die steuerung ermöglicht sowohl ein schrittweise weitergehen im Programm
+als auch das normale Fortsetzen mit dem Play-Button.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Mit dem Debugger kann man sehr schnell Einblick in den
+Zustand des Programms erhalten, er ersetzt unzählige Console-Meldungen
+die man sonst schreiben müsste.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="weitere-themen">Weitere Themen</h2>
+
+<p>Im Talk <a href="https://www.youtube.com/watch?v=TtsvMRxmfGA">Essential JavaScript debugging tools for the modern detective</a> stellt Rebecca Hill noch weitere Themen vor:</p>
+
+<ul>
+  <li>Extensions für VSCode zur Verbindung mit dem Debugger</li>
+  <li>Resource Overrides</li>
+  <li>Sourcemaps</li>
+  <li>Performance Measurement Tools</li>
+  <li>Accessability Test Tools</li>
+  <li>Verwendung der Browser Developer Tools für node</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="quellen">Quellen</h2>
+
+<ul>
+  <li><a href="https://developer.mozilla.org/de/docs/Web/API/Console#Outputting_text_to_the_console">MDN: Text-Ersetzung in der console</a></li>
+  <li><a href="https://developer.mozilla.org/de/docs/Web/API/Console">MDN: console</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Debugging</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript/style//slide.html">Stil + Tipps</a> | 
+        <a href="/javascript/debugging/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/applied-js-and-css//slide.html">JavaScript - Anwendung im Browser</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

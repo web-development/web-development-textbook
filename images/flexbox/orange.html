@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+  <title>Demo-Seite für Flexbox</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <style>
+      article {
+          background-color: #995db5;
+          border: inset;
+          max-width: 1024px;
+          margin: 60px auto;
+          border-radius: 10px;
+          display: flex;
+          padding: 10px;
+      }
+      div {
+        min-height: 30px;
+        min-width: 50px;
+        border: inset;
+        border-radius: 10px;
+        background-color: #f7941f;
+        text-align: center;
+        font-size: 28px;
+        color: white;
+        padding: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: normal;
+      }
+  </style>
+</head>
+
+<body>
+  <article>
+    <div style="flex:1"></div>  
+    <div style="flex:1"></div>
+    <div style="flex:1"></div>
+    <div style="flex:1"></div>
+  </article>
+
+  <article>
+        <div style="flex:1"></div>  
+        <div style="flex:1"></div>
+        <div style="flex:1"></div>
+        <div style="flex:1"></div>
+        <div style="flex:1"></div>
+        <div style="flex:1"></div>
+      </article>
+    
+
+  <article>
+        <div style="flex:1"></div>  
+        <div style="flex:2"></div>
+        <div style="flex:2"></div>
+        <div style="flex:1"></div>
+      </article>  
+</body>
+
+<script src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script>
+      $(document).ready(function() {
+        $("div").each(function(index) {
+            console.log(this);
+            console.log( $(this));
+            $(this).html( "flex: " + this.style.flex.split(/ /)[0] );
+        });
+      });    
+</script>
+
+</html>

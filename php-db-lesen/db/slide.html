@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Datenbanken - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Datenbanken</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-lesen//slide.html">Webapplikationen mit Postgres</a> | 
+        <a href="/php-db-lesen/db/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-lesen/start//slide.html">PHP und Datenbank</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Drei relationale open source Datenbanken werden häufig im Web Development
+verwendet:</p>
+
+<p>MySQL<a href="http://www.mysql.com/">*</a> ist die relationale Datenbank, die bei
+gemietetem Webspace am öftesten angeboten wird. MySQL ist Open Source.</p>
+
+<p>MariaDB<a href="https://mariadb.org/">*</a> ist ein “Fork” von MySQL, die Entwicklung hat
+sich im Jahr 2009 verzweigt.</p>
+
+<p>Postgres<a href="http://www.postgresql.org/">*</a> ist ebenfalls eine Open Source relationale Datenbank. Sie zeichnet sich durch Standard-Kompatiblität und Erweiterbarkeit aus.</p>
+
+<p><img src="/images/php-db-lesen/mysql-und-mariadb-und-postgresql.png"  alt="MySQL und MariaDB Logos" ></p>
+
+<p>Falls Sie noch keine relationale Datenbank auf Ihrem Entwicklungsrechner
+installiert haben empfehle ich Postgres.</p>
+
+<p>Hier wird nicht die Funktionsweise einer relationalen Datenbank erklärt (siehe
+Lehrveranstaltung im 1.Semester), sondern nur die für Web-Applikationen wichtigen Aspekte.</p>
+
+</div>
+    <div class="slide">
+      <h1>Datenbanken</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-lesen//slide.html">Webapplikationen mit Postgres</a> | 
+        <a href="/php-db-lesen/db/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-lesen/start//slide.html">PHP und Datenbank</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>XML - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>XML</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/json/php//slide.html">JSON und PHP</a> | 
+        <a href="/xml/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/xml/was-ist-xml//slide.html">Was ist XML</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+</div>
+<div class="slide">
+
+<h3 id="was-sie-wissen-sollten">Was Sie wissen sollten</h3>
+
+<ul>
+  <li>Wie SGML, XML, HTML geschichtlich verbunden sind</li>
+  <li>Dass man mit DTD oder Schema XML-Sprachen definieren kann</li>
+  <li>Dass wohlgeformtes XML den allgemeinen Regeln von XML entspricht, ohne Einschränkung welche Tags + Attribute verendet werden</li>
+  <li>Dass valides XML den Regeln einer einer bestimmten DTD entspricht, also Tags + Attribute vorgeschrieben sind</li>
+  <li>Dass man mit XPath Daten aus einer XML-Datei abfragen/adressieren kann</li>
+  <li>dass RSS, MathML, SVG Beispiele für XML sind</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h3 id="was-sie-knnen-sollten">Was Sie können sollten</h3>
+<ul>
+  <li>XML lesen und modifizieren können</li>
+  <li>eine DTD lesen und verstehen, ein dazu passendes XML-Dokument erstellen</li>
+  <li>Testen ob XML Daten wohlgeformt und valide sind</li>
+  <li>Mit PHP XML laden, manipulieren und ausgeben</li>
+  <li>Mit Javascript XML laden, manipulieren und ausgeben</li>
+  <li>Dabei eventuell XPath verwenden</li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>XML</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/json/php//slide.html">JSON und PHP</a> | 
+        <a href="/xml/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/xml/was-ist-xml//slide.html">Was ist XML</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

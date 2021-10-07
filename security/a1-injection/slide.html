@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>A1 - Injection - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>A1 - Injection</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/security/thread-modeling//slide.html">Threat Modeling</a> | 
+        <a href="/security/a1-injection/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/security/a2-auth//slide.html">A2 - Authentifizierung</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Auf <a href="https://owasp.org/www-project-top-ten/2017/de/A1_2017-Injection">Platz 1 der OWASP Top 10 2017</a></p>
+
+<p>Die OWASP beschreibt dieses Problem allgemein so:</p>
+
+<blockquote>
+  <p>Injection-Schwachstellen tauchen auf, wenn eine Anwendung nicht vertrauenswürdige Daten an einen Interpreter weiterleitet. Injection Schwachstellen sind weit verbreitet, besonders in altem Code; sie finden sich in SQL-, LDAP- und XPath-Anfragen, Systembefehlen, Programm-parametern usw.</p>
+</blockquote>
+
+<p>Wir haben im Kapitel <a href="/php-db-schreiben/daten-loeschen/">PHP DB Schreiben → Löschen</a> schon SQL Injection behandelt.
+Zur Verhinderung von SQL-Injection stellen Datenbanken Prepared Statements zur Verfügung. In PHP
+können wir sie so verwenden:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Prepared Statements verhindern SQL Injection</small></h4>
+<pre class="lang-php prettyprint linenums">
+$query = $dbh-&gt;prepare(&#39;SELECT * FROM users WHERE id=?&#39;);
+$query-&gt;execute(array( $_GET[&#39;pid&#39;] ) );
+</pre></div>
+
+<p>Mit dem <code>prepare</code> wird das SQL-Statement an die Datenbank geschickt,
+und dort bereits vor-kompiliert. Die Daten, 
+die als Input vom User/der Userin kommen werden mit <code>execute</code> an die Datenbank
+übergeben.  In diesem zweiten Schritt können sie aber nur mehr als
+Daten, nicht mehr als SQL interpretiert werden.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="prepared-statement-mit-benannten-platzhaltern">Prepared Statement mit benannten Platzhaltern</h2>
+
+<p>Eine zweite Schreibweise für prepared Statement ist noch besser lesbar: dabei
+werden statt der Fragezeichen benannte Platzhalter verwendet:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Prepared Statements mit benanntem Parameter</small></h4>
+<pre class="lang-php prettyprint linenums">
+$stm = $dbh-&gt;prepare ( &#39;SELECT * FROM USERS WHERE USERNAME LIKE :name&#39; );
+$stm-&gt;bindParam(&#39;:name&#39;, $_POST[&#39;name&#39;] );
+$stm-&gt;execute();
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="prepared-statement-falsch-verwenden">Prepared Statement falsch verwenden</h2>
+
+<p>Man kann auch mit prepared statments noch Code schreiben, der für Injections anfällig ist.
+Wenn man nämlich im String der an prepare übergeben wird Variablen einbettet:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Prepared Statements falsch gmacht</small></h4>
+<pre class="lang-php prettyprint linenums">
+$stm = $dbh-&gt;prepare ( &quot;UPDATE users SET newsletter = ? WHERE USERNAME = &#39;$name&#39;&quot; );
+$query-&gt;execute(array( $_GET[&#39;newsletter&#39;] ) );
+$stm-&gt;execute();
+</pre></div>
+
+<p><img src="/images/security/fire-extinguisher-fire.jpg"  alt="" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="owasp-empfehlungen">OWASP Empfehlungen</h2>
+
+<p>Die OWASP empfiehlt:</p>
+
+<ol>
+  <li>Den Interpreter gänzlich vermeiden, oder</li>
+  <li>Eine Schnittstelle benutzen es dem Interpreter erlaubt zwischen Code und Daten zu unterscheiden (z.B., prepared statements, stored procedures in der Datenbank), oder</li>
+  <li>Den Input von der Userin/dem User geeignet escapen bevor er an den Interpreter weiter gegeben wird</li>
+</ol>
+
+<p>Im dritten und schlechtesten Fall ist weiter zu beachten:</p>
+
+<ul>
+  <li>Bei der Validierung des Inputs immer ein ‘white list’ verwenden, also nur Zeichen erlauben die harmlos sind (auf der “weissen Liste” stehen), alle anderen verwerfen</li>
+</ul>
+
+<p>Unabhängig von den oben genannten Punkt gilt noch die Empfehlung:</p>
+
+<ul>
+  <li>Der Web-Applikation nur minimale Zugriffsrechte zur Datenbank gewähren. Damit kann ein eventueller Schaden durch gelungen Injection minimiert werden.</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="weitere-quellen">Weitere Quellen</h2>
+
+<ul>
+  <li>Wir haben das Problem zuerst besprochen im Kaptiel <a href="https://web-development.github.io/php-db-schreiben/daten-loeschen/">PHP DB Schreiben: Löschen</a></li>
+  <li>Siehe auch <a href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.md">SQL Injection Prevention Cheat Sheet</a></li>
+  <li><a href="https://www.websec.ca/kb/sql_injection">SQL Injection Knowledge Base</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>A1 - Injection</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/security/thread-modeling//slide.html">Threat Modeling</a> | 
+        <a href="/security/a1-injection/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/security/a2-auth//slide.html">A2 - Authentifizierung</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

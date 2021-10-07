@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Apache - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Apache</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-vorbereitung/was-ist-php//slide.html">Was ist PHP? Was passiert am Webserver?</a> | 
+        <a href="/php-vorbereitung/apache/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-vorbereitung/erstes-php-programm//slide.html">Das erste PHP-Programm</a>
+        
+      </p>
+    </div>
+    <div class="slide"><p>Apache ist eine Webserver-Software. Es ist freie Software (free as in freedom,
+not free as in beer). Das Apache-Projekt startete 1995 um statt NCSA Webserver, der schon durch viele Patches verbessert wurde, einen neuen Webserver von Grund auf zu programmieren. Der Name leitet sich aber noch von „a patchy webserver“ ab.</p>
+
+<p>Im Gegensatz zu anderen freien Software Projekten waren in der Apache Group von Anfang an Programmierer aus großen Firmen vertreten, und zwar im offiziellen Auftrag dieser Firmen.</p>
+
+<p>Heute betreibt die “Apache Group” neben dem Webserver noch viele weitere
+wichtige Open Source Software Projekte.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="apache-und-php-und-datenbank">Apache und PHP und Datenbank</h2>
+
+<p>Für eine komplette Entwicklungsumgebung braucht man Apache, PHP und eine Datenbank.</p>
+
+<p>Auf MacOS ist schon ein Apache installiert, man kann mit brew PHP und postgresql dazu
+installieren:</p>
+
+<p>Bitnami bietet ein Paket an, das alle drei Teile gemeinsam installiert: den <a href="https://bitnami.com/stack/wapp">WAPP Stack</a> für Windows, den <a href="https://bitnami.com/stack/mapp/installer">MAPP Stack</a> für MacOS und den <a href="https://bitnami.com/stack/lapp/installer">LAPP Stack</a> für Linux.</p>
+
+<p>Diese Stack sind besonders für den Anfang geeignet. Wer schon mehr
+Erfahrung mit dem Installieren auf Mac hat kann alternativ auch
+<a href="https://gist.github.com/karlhillx/5cd68430aeb25e5e242a3e2c30f238d1">brew</a> zur Installation
+verwenden.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="apache-und-datenbank-starten">Apache und Datenbank starten</h2>
+<p>Wenn die Installation von Apache und Postgres funktioniert hat, findet
+man nicht – wie bei anderen Programmen – einen Eintrag im Programm-Menü. Weder
+Apache noch PHP noch Postgresql haben eine grafische Oberfläche. Apache und Postgresql
+sind „Server“ (oder, wie es unter Windows heisst: „Dienste“).</p>
+
+<p>Mit dem MAPP/WAPP/LAPP Paket wird ein Control Panel installiert,
+über das man Webserver und Datenbank starten kann:</p>
+
+<p><img src="/images/php-vorbereitung/mapp-stack-panel.png" srcset="/images/php-vorbereitung/mapp-stack-panel@2x.png 2x, /images/php-vorbereitung/mapp-stack-panel.png 1x"  alt="MAPP Control Panel" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="apache-als-windows-dienst">Apache als Windows-Dienst</h2>
+<p>Unter Systemsteuerung -&gt; Verwaltung -&gt; Dienste findet man eine Liste aller
+bereits installierten Dienste und kann diese starten und anhalten.</p>
+
+<p><img src="/images/image326.png"  alt="Abbildung 124: Dienste von Windows: MySQL und Apache2 sind schon gestartet" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="webserver-stoppen">Webserver stoppen</h2>
+<p>Egal wie man Apache gestartet hat: erst mit einem Browser kann man die Funktionstüchtigkeit des Webservers wirklich testen. Als URL verwendet man http://localhost/.</p>
+
+<p>Apache und die Datenbank brauchen Hauptspeicher.
+Wer gleichzeitig mit vielen anderen Programmen arbeitet und extrem wenig
+Hauptspeicher im Computer hat, sollte die Server also nach Gebrauch wieder
+beenden.</p>
+
+</div>
+    <div class="slide">
+      <h1>Apache</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-vorbereitung/was-ist-php//slide.html">Was ist PHP? Was passiert am Webserver?</a> | 
+        <a href="/php-vorbereitung/apache/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-vorbereitung/erstes-php-programm//slide.html">Das erste PHP-Programm</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

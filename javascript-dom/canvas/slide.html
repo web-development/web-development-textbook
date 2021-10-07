@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>2D Canvas - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>2D Canvas</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript-dom/dom//slide.html">DOM</a> | 
+        <a href="/javascript-dom/canvas/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript-dom/formular-zeile//slide.html">Formular++</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+</div>
+<div class="slide">
+
+<h2 id="zeichnen-im-canvas">Zeichnen im Canvas</h2>
+<p>Der Canvas-Tag stellt eine rechteckige Zeichenfläche zur Verfügung. Es handelt sich dabei um eine Matrix von Pixeln, siehe SVG für Vektor-Grafik.</p>
+
+<p>Der Canvas wird durch zwei Objekte in Javascript repräsentiert: ein Canvas-Objekt und ein Context-Objekt. Zuerste müssen wir diese beiden Objekte finden und in Variablen speichern:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+let my_canvas = document.getElementById(&quot;c&quot;);
+let my_context = my_canvas.getContext(&quot;2d&quot;);
+</pre></div>
+
+<p>Wir verwenden erst einmal die 2-dimensionale Zeichenfläche des Canvas. Wenn Sie mehr von Computergrafik verstehen können Sie auch die 3d-Version, genannt „webgl“ verwenden.</p>
+
+<p>Eine gute Möglichkeit Canvas auszuprobieren ist <a href="http://jsfiddle.net/bjelline/Gu83s/">dieses jsfiddle</a>.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Die Darstellung des Canvas funktioniert erst mal nur bei
+einem <code>devicePixelRatio</code> von 1 gut.  Für höhere Pixeldichte muss
+man die Größe des Canvas extra setzen:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  let canvas = document.getElementById(id);
+  let ctx = canvas.getContext(&quot;2d&quot;);
+
+  let scale = window.devicePixelRatio;
+  console.log(`creating a canvas with ${canvas_width} x ${canvas_height} css pixels at devicePixelRatio ${window.devicePixelRatio}`);
+
+  // set canvas.width to real pixels - will never be used again!
+  canvas.width = canvas_width * scale;
+  canvas.height = canvas_height * scale;
+  ctx.scale(scale,scale)
+
+  // set style.width to virtual pixels, we will work with virtual pixels from now on
+  canvas.style.width = canvas_width + &quot;px&quot;;
+  canvas.style.height = canvas_height + &quot;px&quot;;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Achsenparallelle Rechtecke zeichnet man mit fillRect:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+my_context.fillRect(50, 50, 20, 20);
+</pre></div>
+
+<p>Linien ziehen kann man mit moveTo und lineTo. Die Linie erscheint erst, wenn man die abschließende Stroke-Methode aufruft:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+my_context.moveTo(10, 20);
+my_context.lineTo(10, 50);
+my_context.strokeStyle = &quot;#4a4&quot;;
+my_context.stroke();
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Text auf den Canvas schreiben kann man mit dem font-Befehl:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+my_context.font = &quot;bold 12px sans-serif&quot;; 
+my_context.fillText(&quot;hier bin ich&quot;, 10, 50);
+</pre></div>
+
+<p>Bilder die sich bereits in der Webseite befinden kann man in den Canvas kopieren:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+let cat = document.getElementById(&quot;cat&quot;);   
+my_context.drawImage(cat, 0, 0);
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Man kann ganz neue Bilder laden. Achtung: da das Laden eines Bildes 
+einige Zeit dauert verwenden wir hier das onload Event: 
+erst wenn das Bild fertig geladen ist wird es in den Canvas kopiert:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+let cat = new Image();   
+cat.src = &quot;images/cat.png&quot;;   
+cat.onload = function() {     
+  my_context.drawImage(cat, 0, 0);   
+};
+</pre></div>
+
+<p>Diese Beispiel zu Canvas stammen alle aus dem <a href="http://diveintohtml5.info/canvas.html">Canvas-Kapitel</a> von Mark Pilgrims „Dive into HTML5“.</p>
+
+</div>
+    <div class="slide">
+      <h1>2D Canvas</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript-dom/dom//slide.html">DOM</a> | 
+        <a href="/javascript-dom/canvas/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript-dom/formular-zeile//slide.html">Formular++</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <title>Beispiel: Javascript in XPath</title>
+</head>
+<body>
+
+  <h1>XML mit XPath abfragen in Javascript</h1>
+
+  <img id="bild" src="">
+  <input type="text" style="width: 800px" id="output">
+
+  <script>  
+    var xml_string, parser, doc, iterator, thisNode;
+    
+    xml_string = '<?xml version="1.0"?><api><query><pages><page ns="6" title="Datei:2010-04-29-tulpen-by-RalfR-14.jpg" missing="" imagerepository="shared"><imageinfo><ii thumburl="http://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/2010-04-29-tulpen-by-RalfR-14.jpg/300px-2010-04-29-tulpen-by-RalfR-14.jpg" thumbwidth="300" thumbheight="451" url="http://upload.wikimedia.org/wikipedia/commons/8/8b/2010-04-29-tulpen-by-RalfR-14.jpg" descriptionurl="http://commons.wikimedia.org/wiki/File:2010-04-29-tulpen-by-RalfR-14.jpg" /></imageinfo></page></pages></query></api>';
+    parser   = new DOMParser();
+    doc      = parser.parseFromString(xml_string, "application/xml");
+    iterator = doc.evaluate('//ii/@thumburl', doc, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null );
+    thisNode = iterator.iterateNext();
+    if (thisNode) {
+      document.getElementById('output').value = thisNode.value;
+      document.getElementById('bild').src = thisNode.value;
+    } 
+  </script>
+
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+/*  2 = fixed width elements */
+
+.projects {
+  display: flex;
+  justify-content: space-between;
+}
+
+.project_partial {
+  flex-shrink: 0;
+
+  width: 160px;
+  height: 275px;
+  overflow: hidden;
+  color: white;
+  position: relative;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Beispiel: Formularprüfung mit jQuery</title>
+    <style>
+      label { 
+        display: block; 
+        font-size: smaller;
+      }
+      input[type=submit] { display: block; }
+      .error { background-color: #faa; }
+    </style>
+  </head>
+  <body>
+    <form action="bestellung.html">
+      <label>Tafeln Schokolade </label> <input type="number" name="schokolade" value="0"> 
+      <label>Schweinsbraten </label> <input type="number" name="schweinsbraten" value="0">
+      <label>Cafe Latte </label> <input type="number" name="kaffee" value="0"> 
+      <label>Lieferadresse </label> <input type="text" name="adresse"> 
+      <input name="" type="submit">
+    </form>
+
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <script>
+      $(document).ready(function(){
+        $("form").submit(function(){
+          var ok = true;
+          $("span.error").remove();
+
+          gesamt_zahl = parseInt( $("input[name=schokolade]").val() )
+                      + parseInt( $("input[name=schweinsbraten]").val() )
+                      + parseInt( $("input[name=kaffee]").val() );
+          if(gesamt_zahl == 0) {
+              $('form').before('<span class="error">Mindest-Bestellmenge 1!</span>');
+               ok = false;
+          } 
+
+          $i = $("input[name=adresse]");
+
+          if($i.val() == "") {
+              $i.after('<span class="error">Lieferadresse angeben</span>');
+              ok = false;
+          }
+          return ok;
+        });
+      });
+
+</script>
+</body>
+</html>
+

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Hintergründe - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Hintergründe</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript-dom//slide.html">Javascript und das Document Object Model (DOM)</a> | 
+        <a href="/javascript-dom/hintergrund/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript-dom/graceful//slide.html">Graceful Degradation</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+</div>
+<div class="slide">
+
+<h2 id="anwendungsgebiet">Anwendungsgebiet</h2>
+
+<p>Javascript ist eine Programmiersprache die in HTML eingebettet und vom Browser interpretiert wird. Im Browser ist der Wirkungsbereich von Javascript auf das Fenster und das aktuelle Dokument beschränkt – es kann nicht die Festplatte formatieren oder Excel starten.</p>
+
+<p>Laut <a href="https://www.tiobe.com/tiobe-index/">TIOBE Index</a> ist Javascript auf Platz 6 oder 7 der Programmiersprachen, aber bei <a href="https://insights.stackoverflow.com/survey/2018/#technology">Stackoverflow</a> ist es die beliebteste Programmiersprache.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="typische-verwendung">Typische Verwendung</h2>
+
+<p>Neben der Verwendung für kleine Effekte im Browser hat Javascript noch weitere wichtige Anwendungsgebiete:</p>
+
+<ul>
+  <li>
+    <p>Zum Nachladen von Daten („AJAX“, fetch) – das macht das Web viel interaktiver und angenehmer in der Benutzung.</p>
+  </li>
+  <li>
+    <p>Mit Javascript können Webseiten auch „offline“ – also ohne Verbindung zum Internet und dem Webserver – weiterarbieten. Am Smartphone wird diese Art von Webseiten als  „progressive Web App“  bezeichnet.</p>
+  </li>
+  <li>
+    <p>Der Server Node JS ist ein (Web)Server, den man mit Javascript programmieren kann. Er wird besonders für Realtime-Applikationen im Web eingesetzt, z.B. für Chats oder Spiele.</p>
+  </li>
+  <li>
+    <p>Javascript wird in einigen Programmen als Makro-Sprache verwendet, z.B. in Indesign, Illustrator und in Unity.</p>
+  </li>
+  <li>
+    <p>Die No-SQL Datenbanken CouchDB und MongoDB verwendet Javascript als Abfragesprache.</p>
+  </li>
+</ul>
+
+<p>Und nur noch historisch interessant:</p>
+
+<ul>
+  <li>Unter dem Namen Actionscript wurde früher eine Variante von Javascript in Flash verwendet.</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="javascript-und-java">Javascript und Java</h2>
+<p>Es gibt noch eine zweite Programmiersprache mit sehr ähnlichem Namen: Java. Die beiden zu verwechseln ist recht peinlich. Die Verwechslung ist übrigens beabsichtigt: Im Jahr 1995 gab es einen großen Hype rund um Java, Netscape wollte davon profitieren und nannte die neue Skriptsprache im Browser „Javascript“.</p>
+
+<table class="table table-condensed table-bordered" style="width:auto">
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Javascript</th>
+      <th>Java</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Wer hat’s erfunden?</td>
+      <td>Netscape / Brendan Eich</td>
+      <td>Sun / James Gosling</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>Interpretiert Sprache</td>
+      <td>Kompilierte Sprache</td>
+    </tr>
+    <tr>
+      <td>Typen</td>
+      <td>Wenige Datentypen, Probleme werden erst zur Laufzeit erkannt</td>
+      <td>Datentypen und Klassen werden streng unterschieden und zur Compilezeit geprüft</td>
+    </tr>
+    <tr>
+      <td>Objektorientierung</td>
+      <td>Objekte und Prototypen (Klassen als “syntactic sugar”)</td>
+      <td>Objekte und Klassen</td>
+    </tr>
+    <tr>
+      <td>Verwendung</td>
+      <td>Im Webbrowser, am Webserver (node.js), in Flash, in Illustrator und Indesign</td>
+      <td>Überall (Chipkarten, am Server, im Browser, im Handy)</td>
+    </tr>
+    <tr>
+      <td>Projekte</td>
+      <td>Früher nur winzige Projekte (z.B: Animations-Effekt),  in den letzten Jahren: JS Frontend als wichtiger Teil einer Webappliaktion wie Facebook, Gmail, etc.</td>
+      <td>Alle, auch Großprojekte mit vielen Jahren Entwicklungszeit</td>
+    </tr>
+    <tr>
+      <td>Wer</td>
+      <td>Manchmal auch Web-DesignerInnen</td>
+      <td>Nur hauptberufliche ProgrammiererInnen</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+<div class="slide">
+
+<h2 id="geschichte-von-javascript">Geschichte von Javascript</h2>
+
+<p>Javascript wurde ursprünglich bei Netscape von Brendan Eich erfunden, und dann von verschiedenen Herstellern weiterentwickelt. Es war eines der Schlachtfelder im Browser-War: Microsoft und Netscape versuchten durch verschiedene Implementierungen die Position des eigenen Browsers zu verbessern und Webseiten im “gegnerischen” Browser unbrauchbar zu machen.</p>
+
+<p>Erst nachträglich gab es (partielle) Einigung auf Standards. Mit dem ECMA-Standard 262 wurde die Syntax fixiert. Sie wird von der Arbeitsgruppe ECMA TC39, in der u.a. Personen von Browser-Herstellern vertreten sind weiter entwickelt.</p>
+
+<p>Mit dem „Document Object Model“ (DOM) wurde der Zugriff auf die Webseite vereinheitlicht.
+Libraries wie jQuery ebenen die letzten Unterschiede in den Browser-Implementierungen noch aus.</p>
+
+<p>Die Entwicklung dieser API ist nun Teil von HTML5 und liegt beim W3C. Unter den Stichwort „HTML5“ sind auch viele Neuerungen in Javascript, viele neue APIs gemeint: File API, Websockets,  Storage, WebGL, …</p>
+
+<p>Die aktuelle Version die Sie erlernen ist die Untermenge von ‘‘ECMA Script ES8’’, die derzeit schon im Browsern unterstützt wird.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="anwendung-von-javascript">Anwendung von Javascript</h2>
+
+<p>Lange Zeit waren kleine Javascript-Programme eine relative unabhängige Ergänzung für Web-Applikationen. Ein Beispiel dafür wäre ein <a href="https://datatables.net/">Data Table</a>
+der in eine HTML Tabelle die Möglichkeit zum Sortieren nach eine Spalte einbaut.</p>
+
+<p>Große Web Applikationen wie outlook oder gmail zeigten aber bald, dass auch komplexe
+Programme im Browser möglich sind. Um diese umzusetzen gibt es heute clientseitige
+Frameworks wie React, Vue oder Angular.</p>
+
+<p>Web Applikationen wurden seit ca. 2008 Schritt für Schritt mehr und mehr offline-fähige.
+Heute nennt man solche Applikationen “Progressive Web Apps” (PWA). <a href="https://pwa.rocks">pwa.rocks</a>
+zeigt eine Sammlung solcher Apps.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="document-object-model">Document Object Model</h2>
+
+<p>Das Document Object Model (DOM) ist ein allgemeines Modell wie ein Dokument (die Webseite oder auch ein XML- Dokument) von einer objektorientierten Skriptsprache aus manipuliert werden kann.</p>
+
+<p>Das DOM einer Webseite kann man sich als Baum vorstellen, ähnlich der Ordnerstruktur im Dateisystem.  Sie kennen diese Idee schon von CSS und den CSS-Selektoren.</p>
+
+<p>In folgendem Beispiel ist der markierte <code>a</code>-Tag innerhalb eines <code>li</code>-Tags, und
+der wiederum innerhalb eines  <code>ul</code>-Tag mit Klassen <code>nav</code> und <code>nav-list</code>.</p>
+
+<p><img src="/images/javascript-dom/dom.png" srcset="/images/javascript-dom/dom@2x.png 2x, /images/javascript-dom/dom.png 1x"  alt="Abbildung: Bild des DOM, erzeugt mit den Firefox DeveloperTools" ></p>
+
+<p>Wenn man mit Javascript irgendeinen Teil der Webseite verändern will verändert man diesen Baum. Mögliche Veränderungen wären:</p>
+
+<ul>
+  <li>Mache ein beliebiges Element des DOM unsichtbar (z. B. die ganze Liste)</li>
+  <li>Ändere den Style eines beliebigen Elements (z. B. die Schriftart der Überschrift)</li>
+  <li>Füge neue Elemente ein (z. B. drei zusätzliche Listenpunkte)</li>
+</ul>
+
+</div>
+    <div class="slide">
+      <h1>Hintergründe</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript-dom//slide.html">Javascript und das Document Object Model (DOM)</a> | 
+        <a href="/javascript-dom/hintergrund/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript-dom/graceful//slide.html">Graceful Degradation</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

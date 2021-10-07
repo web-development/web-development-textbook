@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Demo Seite für AJAX Irrweg</title>
+  <link rel="shortcut icon" href="favicon.svg" type="image/svg">  
+  <style>
+    body {
+      display: grid;
+      grid-template-columns: 1fr 130px 900px 1fr;
+      grid-template-rows: 80px 1fr 210px;
+      grid-template-areas:
+        ".              headlineArea     headlineArea   ."
+        ".              navArea          mainArea       ."
+        ".              footerArea       footerArea     .";
+    }
+    header {
+      grid-area: headlineArea;
+    }
+    nav {
+      grid-area: navArea;
+    }
+    main {
+      grid-area: mainArea;
+    }    
+    footer {
+      grid-area: footerArea;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>No AJAX, No Problem</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Seite 1</a></li>
+      <li><a href="2.html">Seite 2</a></li>
+      <li><a href="3.html">Seite 3</a></li>
+      <li><a href="4.html">Seite 4</a></li>
+      <li><a href="5.html">Seite 5</a></li>
+    </ul>
+  </nav>
+  <main>
+<p>The Fetch API provides a JavaScript interface for accessing and manipulating parts of the HTTP pipeline, such as requests and responses. It also provides a global <kbd>fetch()</kbd> method that provides an easy, logical way to fetch resources asynchronously across the network.</p>
+
+<p>A basic fetch request is really simple to set up. Have a look at the following code:</p>
+
+<pre class="brush: js line-numbers language-js"><code class=" language-js"><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'http://example.com/movies.json'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">response</span> <span class="token operator">=&gt;</span> response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">data</span> <span class="token operator">=&gt;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+  </main>
+  <footer>
+  </footer>
+</body>
+</html>
+

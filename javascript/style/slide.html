@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stil + Tipps - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Stil + Tipps</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript/module//slide.html">Module</a> | 
+        <a href="/javascript/style/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript/debugging//slide.html">Debugging</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Dieses Kapitel richtet sich speziell an Personen mit wenig Programmier-Erfahrung.
+Viele hier erwähnten Punkte sind nicht spezifisch für Javascascript.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="menschenfreundliche-programmierung">Menschenfreundliche Programmierung</h2>
+
+<p>Aus Sicht des Javascript Interpreters gibt es viele, viele Arten dasselbe
+Programm zu schreiben - der Javascript-Interpreter wird es immer gleich verstehen.
+Aus Sicht eines Menschen, der das Programm liest, sind manche Versionen leichter
+verständlich und manche weniger leicht.</p>
+
+<p>Besonders deutlich wird das beim Vergleich der folgenden beiden Programme:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Countdown mit Closures - menschenfreundliche Version</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+ function create_countdown( max ) {
+    const i = max+1;
+    return function() {
+      i--;
+      return i;
+    }
+  } 
+  const top10 = create_countdown(10);
+  const i;
+  while( i = top10() ) {
+    console.log(&quot;und auf Platz &quot; + i + &quot; .... &quot;);
+  }
+</pre></div>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Countdown mit Closures - andere Version</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  function create_countdown(b){const a=b+1;return function(){a--;return a}}
+  for(const top10=create_countdown(10),i;i=top10();)console.log(&quot;und auf Platz &quot;+i+&quot; .... &quot;);
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="refactoring">Refactoring</h2>
+
+<p>Manchmal schafft man es, auf Anhieb ein schönes, lesbares, funktionierendes Programm zu schreiben.
+Aber das ist eher der Ausnahmefall.</p>
+
+<p>Ein Programm wieder und wieder zu verändert, bis es endlich funktionert, nennt man <strong>Debugging</strong>.
+Oft ist hier Schluss - das Programm funktioniert ja schliesslich! Aber auch wenn die Funktionalität
+fertig gestellt ist kann man das Programm weiter verbessern: besser lesbar machen, besser veränderbar, besser wartbar.</p>
+
+<p>Eine Veränderung am Programm, die die Funktionalität unverändert lässt, und andere Aspekte
+des Programmes verbessert, nennt man <strong>Refactoring</strong>. Dabei geht man in kleinen Schritten vor:
+zum Beispiel in einem Schritt einen variablennamen verändern, im nächsten Schritt Code in
+eine Funktion zusammen fassen, im nächsten Schritt einen Funktionsnamen ändern, … nach jedem
+einzelnen Schritt ist das Programm wieder funktionstüchtig.</p>
+
+<p>Wenn man ein Versionskontrollsystem verwendet kann man nach jedem Schritt ein commit mit einer
+passenden log-message machen.</p>
+
+<p>Wenn man Code liest, und Stellen entdeckt, die man verbessern könnte, dann nennt man
+die üblen Stellen <strong>Code Smells</strong>.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="variablen">Variablen</h2>
+
+<p>Der Name einer Variable soll Auskunft über ihre Bedeutung, ihre Rolle im Programm geben.
+Variablen sollen so kurz wie möglich, aber nicht kürzer sein.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="konventionelle-variablennamen">Konventionelle Variablennamen</h3>
+
+<p>Aus der Mathematik wurde Konventionen übernommen, z.B. dass i,j,k als Zähler für Schleifen
+verwendet werden; x,y,z für Koordinaten. Diese Konvention muss man nicht einhalten,
+aber man sollte nicht gegen sie arbeiten:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Kurze Variablennamen und Konventionen aus der Mathematik</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+// gegen die Konvention
+const x=0;
+const i,k;
+while( x &lt; 10 ) {
+  i = rand(0,100);
+  k = rand(0,200);
+  drawStarAt( i,k );
+  x++;
+}
+// mit der Konvention
+const i=0;
+const x,y;
+while( i &lt; 10 ) {
+  x = rand(0,100);
+  y = rand(0,200);
+  drawStarAt( x,y );
+  i++;
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="fixe-werte-durch-konstanten-ersetzen">Fixe Werte durch Konstanten ersetzen</h3>
+
+<p>Wenn in einem Programm dieselbe Zahl mehrmals vorkommt kann das ein Hinweis
+sein, dass man eine Konstante oder variable verwenden sollte. Folgendes Programm
+zeichnet ein Rechteck in ein neu geschaffens SVG:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Rechteck zeichnen - mit fixen Zahlen</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  const svg = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;svg&quot;);
+  svg.setAttribute(&quot;width&quot;,  1024);
+  svg.setAttribute(&quot;height&quot;, 768);
+
+const frame = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;rect&quot;);
+frame.setAttribute( &#39;x&#39;, 0 );
+frame.setAttribute( &#39;y&#39;, 0 );
+frame.setAttribute( &#39;width&#39;, 1024 );
+frame.setAttribute( &#39;height&#39;, 768 );
+frame.setAttribute( &#39;stroke&#39;, &#39;black&#39; );
+frame.setAttribute( &#39;stroke-width&#39;, 1 );
+frame.setAttribute( &#39;fill&#39;, &#39;red&#39; );
+svg.appendChild( frame );
+
+document.querySelector(&quot;body&quot;).appendChild( svg );
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Die Größe des Rahmens ist hier eigentlich von der Größe des SVG abhängig,
+es macht also Sinn eine Konstante zu verwenden:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Rechteck zeichnen - mit fixen Zahlen</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  const svg_width  = 1024;
+  const svg_height = 768;
+  const svg = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;svg&quot;);
+  svg.setAttribute(&quot;width&quot;,  svg_width);
+  svg.setAttribute(&quot;height&quot;, svg_height);
+
+const frame = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;rect&quot;);
+frame.setAttribute( &#39;x&#39;, 0 );
+frame.setAttribute( &#39;y&#39;, 0 );
+frame.setAttribute( &#39;width&#39;, svg_width );
+frame.setAttribute( &#39;height&#39;, svg_height );
+frame.setAttribute( &#39;stroke&#39;, &#39;black&#39; );
+frame.setAttribute( &#39;stroke-width&#39;, 1 );
+frame.setAttribute( &#39;fill&#39;, &#39;red&#39; );
+svg.appendChild( frame );
+
+document.querySelector(&quot;body&quot;).appendChild( svg );
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Nun kann man auch die Breite des Rahmens in einer Konstanten speichern:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Rechteck zeichnen - mit variable für Rahmenbreite</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  const svg_width  = 1024;
+  const svg_height = 768;
+  const svg = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;svg&quot;);
+  svg.setAttribute(&quot;width&quot;,  svg_width);
+  svg.setAttribute(&quot;height&quot;, svg_height);
+
+const frame_border_width = 10;
+const frame = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;rect&quot;);
+frame.setAttribute( &#39;x&#39;, frame_border_width/2 );
+frame.setAttribute( &#39;y&#39;, frame_border_width/2 );
+frame.setAttribute( &#39;width&#39;, svg_width - frame_border_width );
+frame.setAttribute( &#39;height&#39;, svg_height - frame_border_width );
+frame.setAttribute( &#39;stroke&#39;, &#39;black&#39; );
+frame.setAttribute( &#39;stroke-width&#39;, frame_border_width );
+frame.setAttribute( &#39;fill&#39;, &#39;red&#39; );
+svg.appendChild( frame );
+
+document.querySelector(&quot;body&quot;).appendChild( svg );
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="code-wiederverwenden">Code wiederverwenden</h2>
+
+<p>Ein ganz wichtiger <strong>Code Smell</strong> ist kopierter Code: die gleichen Zeilen finde
+ich an mehreren Stellen im Programm. Je größer der wiederholte Teil, desto schlimmer.</p>
+
+<p>Im schlimmsten Fall ist kopierter Code ein Hinweis darauf, dass der Code
+gar nicht verstanden, sondern nur wiederverwendet wurde. Diese Art ein Programm
+zu erzeugen nennt man <a href="http://en.wikipedia.org/wiki/Cargo_cult_programming">Cargo Cult Programming</a></p>
+
+<ul>
+  <li>das Verwenden oder Nachahmen von Technik die man nicht versteht <a href="https://www.google.com/search?q=Cargo+cult+airplane&amp;tbm=isch">Bilder</a>.</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h3 id="schleife-statt-kopierterm-code">Schleife statt kopierterm Code</h3>
+
+<p>Es sollen drei Quadrate nebeneinander gezeichnet werden. In diesem Beispiel
+wurde der Code zum Zeichnen des Quadrats kopiert, nur die X-Koordinate
+unterscheidet sich.</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Zeichne drei Quadrate - mit kopiertem Code</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+const svg_width  = 1024;
+const svg_height = 768;
+const svg = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;svg&quot;);
+svg.setAttribute(&quot;width&quot;,  svg_width);
+svg.setAttribute(&quot;height&quot;, svg_height);
+
+let frame = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;rect&quot;);
+frame.setAttribute( &#39;x&#39;, 1 );
+frame.setAttribute( &#39;y&#39;, 1 );
+frame.setAttribute( &#39;width&#39;, 20 );
+frame.setAttribute( &#39;height&#39;, 20 );
+frame.setAttribute( &#39;stroke&#39;, &#39;black&#39; );
+frame.setAttribute( &#39;stroke-width&#39;, 1);
+frame.setAttribute( &#39;fill&#39;, &#39;red&#39; );
+svg.appendChild( frame );
+
+let frame_border_width = 10;
+frame = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;rect&quot;);
+frame.setAttribute( &#39;x&#39;, 21 );
+frame.setAttribute( &#39;y&#39;, 1 );
+frame.setAttribute( &#39;width&#39;, 20 );
+frame.setAttribute( &#39;height&#39;, 20 );
+frame.setAttribute( &#39;stroke&#39;, &#39;black&#39; );
+frame.setAttribute( &#39;stroke-width&#39;, 1);
+frame.setAttribute( &#39;fill&#39;, &#39;red&#39; );
+svg.appendChild( frame );
+
+frame_border_width = 10;
+frame = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;rect&quot;);
+frame.setAttribute( &#39;x&#39;, 41 );
+frame.setAttribute( &#39;y&#39;, 1 );
+frame.setAttribute( &#39;width&#39;, 20 );
+frame.setAttribute( &#39;height&#39;, 20 );
+frame.setAttribute( &#39;stroke&#39;, &#39;black&#39; );
+frame.setAttribute( &#39;stroke-width&#39;, 1);
+frame.setAttribute( &#39;fill&#39;, &#39;red&#39; );
+svg.appendChild( frame );
+
+document.querySelector(&quot;body&quot;).appendChild( svg );
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Da der einzige Unterschied zwischen den kopierten Code-Zeilen die
+X-Koordinate ist, und diese stetig ansteigt, kann man hier eine
+Schleife verwenden, um den Code wiederzuverwenden.</p>
+
+<p>Aus der Schleifenvariable i = 0, 1, 2 kann ganz einfach
+die X-Koordinate x = 1, 21, 41 berechnet werden:</p>
+
+<p><code>x = i * 20 + 1;</code></p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Zeichne drei Quadrate - mit Schleife</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+const svg_width  = 1024;
+const svg_height = 768;
+const svg = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;svg&quot;);
+svg.setAttribute(&quot;width&quot;,  svg_width);
+svg.setAttribute(&quot;height&quot;, svg_height);
+
+var i=0;
+while( i &lt; 3 ) {
+const frame = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;rect&quot;);
+frame.setAttribute( &#39;x&#39;, i \* 20 + 1 );
+frame.setAttribute( &#39;y&#39;, 1 );
+frame.setAttribute( &#39;width&#39;, 20 );
+frame.setAttribute( &#39;height&#39;, 20 );
+frame.setAttribute( &#39;stroke&#39;, &#39;black&#39; );
+frame.setAttribute( &#39;stroke-width&#39;, 1);
+frame.setAttribute( &#39;fill&#39;, &#39;red&#39; );
+svg.appendChild( frame );
+
+i++;
+}
+
+document.querySelector(&quot;body&quot;).appendChild( svg );
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="funktion-statt-kopiertem-code">Funktion statt kopiertem Code</h3>
+
+<p>Eine noch bessere Art der Wiederverwertung von Code ist die
+Funktion. Dabei muss man sich entscheiden, welche Argumente
+die Funktion akzeptieren soll. Nur die X-Koordinate?<br />
+X-, Y-Koordinate, Länge und Breite? Je nachdem in welcher
+Weise der Code wieder verwendet werden soll ergeben sich andere
+Argumente.</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Zeichne drei Quadrate - mit Funktion</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  const svg_width  = 1024;
+  const svg_height = 768;
+  const svg = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;svg&quot;);
+  svg.setAttribute(&quot;width&quot;,  svg_width);
+  svg.setAttribute(&quot;height&quot;, svg_height);
+
+function addRect( svg, x,y,w,h ) {
+const frame = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;rect&quot;);
+frame.setAttribute( &#39;x&#39;, x);
+frame.setAttribute( &#39;y&#39;, y );
+frame.setAttribute( &#39;width&#39;,w);
+frame.setAttribute( &#39;height&#39;, h);
+frame.setAttribute( &#39;stroke&#39;, &#39;black&#39; );
+frame.setAttribute( &#39;stroke-width&#39;, 1);
+frame.setAttribute( &#39;fill&#39;, &#39;red&#39; );
+svg.appendChild( frame );
+}
+
+addRect( svg, 1, 1, 20, 20 );
+addRect( svg, 21, 1, 20, 20 );
+addRect( svg, 41, 1, 20, 20 );
+
+document.querySelector(&quot;body&quot;).appendChild( svg );
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="quellen">Quellen</h2>
+
+<p>Dieses Kapitel beschreibt u.a. einen Teil der Coding Conventions von Douglas Crockford.</p>
+
+<ul>
+  <li><a href="https://developer.mozilla.org/en/JavaScript/Reference/Operators/instanceof">Code Conventions for the JavaScript Programming Language</a></li>
+  <li><a href="http://www.amazon.de/JavaScript-Parts-Working-Shallow-Grain/dp/0596517742/">Crockford, Douglas(2008): Javascript, the good parts. O’Reilly.</a></li>
+  <li><a href="http://www.amazon.de/Das-Beste-JavaScript-Douglas-Crockford/dp/3897218763/">Crockford, Douglas(2008): Das Beste an JavaScript. O’Reilly.</a></li>
+</ul>
+
+<p>Das Beispiel für nicht-lesbaren Code wurde mit dem Google Closure Compiler erzeugt.
+(Achtung: “Closure” ist hier ein Eigenname - ein sehr verwirrender Eigenname. Stellen
+Sie sich vor man würde ein Modell eines Autos nach einem Bauteil benennen,
+z.B. ‘Opel Kurbelwelle’, ‘VW Fensterheber’, ‘Fiat Zündkerze’)</p>
+
+<ul>
+  <li><a href="http://closure-compiler.appspot.com/home">Google Closure Compiler</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Stil + Tipps</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript/module//slide.html">Module</a> | 
+        <a href="/javascript/style/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript/debugging//slide.html">Debugging</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

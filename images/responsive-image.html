@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<head>
+  <meta charset="utf-8">
+  <title>Responsive Image Beispiel Seite</title>
+  <style>
+    html, body { padding:0px; margin:0px; }
+    h1,h2{margin-left: 1vw; }
+  </style>
+</head>
+<body>
+
+  <h1>Responsive Images</h1>
+
+  <h2>img</h2>
+
+  <img src="responsive-logo3.jpg" srcset="responsive-logo2.jpg 960w, responsive-logo1.jpg 1280w">
+
+  <img src="responsive-logo3.jpg" srcset="responsive-logo2.jpg 960w, responsive-logo1.jpg 1280w"
+                       sizes="(min-width: 800px) 50vw, 100vw">
+
+  <h2>picture</h2>
+  <picture>
+   <source srcset="responsive-logo1.jpg, responsive-logo.jpg 2x" media="(min-width: 1200px)">
+   <source srcset="responsive-logo2.jpg, responsive-logo1.jpg 2x" media="(min-width: 600px)">
+   <img src="responsive-logo3.jpg" srcset="responsive-logo2.jpg 2x" alt="meine super firma" width="100%">
+  </picture>
+
+</body>

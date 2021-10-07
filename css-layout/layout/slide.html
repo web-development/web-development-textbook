@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>CSS für Layout - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>CSS für Layout</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css-layout/responsive//slide.html">Responsive Design</a> | 
+        <a href="/css-layout/layout/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css-layout/details//slide.html">Details zu Layout</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Welche Gestaltungsmöglichkeiten bietet CSS für das Layout einer Webseite?</p>
+
+</div>
+<div class="slide">
+
+<h2 id="normal-flow">Normal Flow</h2>
+
+<p>Schon bisher wurden die Elemente unserer Webseite
+auf eine bestimmte Weise angeordnet: nach dem “normal flow” (siehe <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Normal_Flow">MDN</a>):</p>
+
+<p>Alle Block-Bildendenden Tags erzeugen eine achsenparallelle Box,
+deren Größe wir mit <code>width</code>, <code>padding</code>, <code>border</code> und <code>margin</code>`
+beeinflussen können.</p>
+
+<p>Nicht-Blockbildente Elemente werden von links nach rechts auf Zeilen
+gesetzt, blockbildende Element von oben nach unten arragniert.
+Achtung: die Richtung hängt von der Sprache, bzw. dem <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode">writing mode</a> ab.</p>
+
+<p>Mit einer zentrierten Box mit <code>margin: auto</code> kann man
+eine gut lesbare seite mit responsive layout erzeugen: <a href="/images/css-layout/width-auto.html">Demo</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="flexbox">Flexbox</h2>
+
+<p>Seit <a href="https://caniuse.com/#search=flex">2014</a> wird Flexbox in allen Browsern unterstützt.</p>
+
+<p>Flexbox arbeitet nur in einer Dimension. Es wird für kleinere Komponenten
+in der Seite eingesetzt, zum Beispiel für eine Bildergalerie.</p>
+
+<p><a href="/images/flexbox/">Demo-Seite</a></p>
+
+</div>
+<div class="slide">
+
+<h3 id="flexbox-definieren">Flexbox definieren</h3>
+
+<p>Der Container legt die Richtung fest: entweder horizontal (in einer Zeile = <code>row</code>) oder vertikal
+(in einer Spalte = <code>column</code>):</p>
+
+<div class="example twopane">
+<pre class="lang-html prettyprint linenums left">
+&lt;div class=&quot;project&quot;&gt;
+  &lt;div class=&quot;project_partial&quot;&gt;...&lt;/div&gt;
+  &lt;div class=&quot;project_partial&quot;&gt;...&lt;/div&gt;
+  &lt;div class=&quot;project_partial&quot;&gt;...&lt;/div&gt;
+  &lt;div class=&quot;project_partial&quot;&gt;...&lt;/div&gt;
+  &lt;div class=&quot;project_partial&quot;&gt;...&lt;/div&gt;
+  &lt;div class=&quot;project_partial&quot;&gt;...&lt;/div&gt;
+&lt;/div&gt;
+</pre><pre class="lang-html prettyprint linenums right">
+.project {
+  display: flex;
+  flex-direction: row;
+}
+.project_partial {
+  width: 160px;
+  height: 275px;
+}
+</pre><div class="clearfix"></div></div>
+
+</div>
+<div class="slide">
+
+<h3 id="platz-verteilen-oder-elemente-strecken">Platz verteilen oder Elemente strecken</h3>
+
+<p>Der Platz zwischen den Elementen kann auf verschiedene Art verteilt werden:
+linksbündig, rechtsbündig, zentriert, mit Platz dazwischen oder Platz rundum.</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+.projects {
+    justify-content: flex-start;   /* alle möglichst weit links */
+}
+</pre></div>
+
+<p>Siehe <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/#article-header-id-6">justify-content</a></p>
+
+<p>Oder die Elemente können sich ausdehnen, um den Platz einzunehmen:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+.project_partial {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+</pre></div>
+
+<p>Siehe <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/#article-header-id-10">flex-grow</a></p>
+
+</div>
+<div class="slide">
+
+<h3 id="wrap">Wrap</h3>
+
+<p>Wenn zu viele Elemente für eine Zeile vorhanden sind,
+können sie auf eine nächste Zeile umgebrochen werden:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+.projects {
+  flex-wrap: wrap;
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="flexbox-verschachteln">Flexbox verschachteln</h3>
+
+<p>Wenn man vertikale und horizontale Flexboxen ineinander schachtelt
+kann man auch ein zweidimensionales Layout erzielen - so wie mit
+CSS Grid. Das HTML Dokument muss aber dabei diese Struktur genau
+nachbauen.</p>
+
+<div class="resizable">
+  <div style="display:flex; flex-direction: row;">
+    <nav style="border: 5px green solid;margin-right: 1px;">
+      Navi Navi Navi Navi Navi Navi Navi Navi Navi
+    </nav>
+    <div style="display:flex; flex-direction: column; border: 5px green solid;padding: 1px;">
+      <section style="border: 5px #ddd solid;margin-bottom: 1px;">
+        <p><b>
+          Flexbox  in Flexbox
+        </b></p>
+      </section>
+      <section style="border: 5px #ddd solid;">
+        <p>
+          Wird eine Flexbox in eine Flexbox geschachtelt, dann
+          braucht das entsprechend verschachtelete HTML Tags.
+          Wäre hier nicht CSS Grid eine einfachere Lösung?
+          Das sollte man überlegen!
+        </p>
+      </section>
+    </div>
+  </div>
+</div>
+
+<p>Siehe auch <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">A Complete Guide to Flexbox</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="css-grid">CSS Grid</h2>
+
+<p>Seit <a href="https://caniuse.com/#search=grid">Frühjahr 2017</a> wird CSS Grid in Browsern unterstützt.
+Damit legt man ein Gitternetz über die ganze Seite:</p>
+
+<p><img src="/images/css-layout/grid.png" srcset="/images/css-layout/grid@2x.png 2x, /images/css-layout/grid.png 1x, /images/css-layout/grid@3x.png 3x"  alt="Layout mit CSS Grid" ></p>
+
+<p>Das Grid wird normalerweise nicht angzeigt. Die hier gezeigte Ansicht
+mit den strichlierten Linien kann man in den Firefox Developertools mit
+einem Klick auf das grid-symbol aktivieren:</p>
+
+<p><img src="/images/css-layout/switch-on-grid.png" srcset="/images/css-layout/switch-on-grid.png 1x, /images/css-layout/switch-on-grid@2x.png 2x"  alt="Grid Ansicht einschalten in Firefox" ></p>
+
+<p><a href="/images/cssgrid/">Demo-Seite</a></p>
+
+</div>
+<div class="slide">
+
+<h3 id="das-grid-definieren">Das Grid definieren</h3>
+
+<p>Das Grid wird über die Breiter der Spalten (columns) und die Höhe der
+Zeilen (rows) definiert:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+.page_container {
+  display: grid;
+  grid-template-columns: 270px 5fr 3fr;
+  grid-template-rows: 60px 2fr 210px;
+}
+</pre></div>
+
+<p>Dabei kann die neue Maßeinheit <code>fr</code> (für fraction, Bruchteil) verwendet werden:
+Nachdem von der Gesamtbreite die absoluten Breitenangaben abgezogen wurden,
+wird der restliche Platz im Verhältnis der fractions verteilt.</p>
+
+<p>Also zum Beispiel:</p>
+
+<ul>
+  <li>1280px stehen für das oben definierte Grid in der Breite zur Verfügung</li>
+  <li>-270px für die erste Spalte</li>
+  <li>1010px verbleiben</li>
+</ul>
+
+<p>diese werden nun im Verhältnis 5 zu 3 auf Spalte zwei und drei verteilt:</p>
+
+<ul>
+  <li>5 * ( 1010px / 8 ) = 631.25px für die zweite Spalte</li>
+  <li>3 * ( 1010px / 8 ) = 378.75px für die zweite Spalte</li>
+</ul>
+
+<p>Wenn Sie die Breite des Fensters für die <a href="/images/cssgrid/">Demo-Seite</a> ändern
+werden die neu berechneten Werte angezeigt.</p>
+
+<p>Hinweis: <code>fr</code> ersetzt damit die Prozentzahlen die früher verwendet wurden!</p>
+
+</div>
+<div class="slide">
+
+<h3 id="areas-definieren">Areas definieren</h3>
+
+<p>Mit der Property <code>grid-template-areas</code> können nun Namen
+für die einzelnen Felder des Grids vergeben werden:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+  grid-template-areas:
+    &quot;.              headlineArea     subheadArea&quot;
+    &quot;portraitArea   descriptionArea  codeArea&quot;
+    &quot;.              factsArea        sourceArea&quot;;
+</pre></div>
+
+<p>Die drei Strings stehen für die drei Zeilen des Grids.
+Innerhalb der Strings gilt jedes Wort als ein Feld.
+Die Felder sind also durch Whitespace getrennt.</p>
+
+<p>Ein Punkt steht für ein Feld das frei bleibt.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Eine Area kann auch mehrere Felder des Grids überspannen,
+muss aber immer in Rechteck bilden (keine beliebige Tetris-Form):</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+  grid-template-areas:
+    &quot;headlineArea  headlineArea     subheadArea&quot;
+    &quot;portraitArea  descriptionArea  codeArea&quot;
+    &quot;factsArea     descriptionArea  sourceArea&quot;;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="areas-mit-inhalt-belegen">Areas mit Inhalt belegen</h3>
+
+<p>Nun kann der Inhalt in das Grid - genauer: in die Area - eingefüllt werden.
+Das erfolgt rein in CSS, es ist keine Veränderung im HTML notwendig.</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+header {
+  grid-area: headlineArea;
+  background-color: #EBBB5B;
+  padding-top: 19px;
+}
+
+section#description {
+grid-area: descriptionArea;
+background-color: white;
+}
+</pre></div>
+
+<p>Siehe auch <a href="https://css-tricks.com/snippets/css/complete-guide-grid/">CSS Tricks: Complete Guide to CSS Grid</a></p>
+
+<p>Siehe auch <a href="https://gridbyexample.com/examples/">CSS Grid by Example</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="absolute-positionierung">Absolute Positionierung</h2>
+
+<p>Mit der Deklaration <code>position: absolute</code> wird ein Tag aus der normalen Darstellung
+herausgenommen und über dem restlichen Inhalt platziert.
+Dazu muss aber erst eine Koordinatensystem angelegt werden, auf das sich
+die Position bezieht. Das geschieht mit <code>position: relative</code> in einem übergeordneten
+Tag.</p>
+
+<div class="example twopane">
+<pre class="lang-html prettyprint linenums left">
+&lt;div class=&quot;project_partial&quot;&gt;
+
+  &lt;img src=&quot;cover.jpg&quot;&gt;
+
+  &lt;div class=&quot;badge&quot;&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+</pre><pre class="lang-html prettyprint linenums right">
+.project_partial {
+  position: relative;
+  background-color: #292927;
+}
+.project_partial .badge {
+  position: absolute;
+  background-image: url(badge_topleft.png);
+  /* top: 0px; left: 0px; */
+}
+</pre><div class="clearfix"></div></div>
+
+<p><a href="/images/css-absolute/test.html">Beispiel-Seite</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="viele-methoden">Viele Methoden</h2>
+
+<p>Neben den drei hier gezeigten gibt es noch viele weitere
+Methoden um das Layout der Seite zu beeinflussen.</p>
+
+<p>Für einen ersten Einstieg reichen die hier gezeigten,
+später sollten Sie noch <a href="/css-layout/details">weitere Details</a> kennen lernen.</p>
+
+<p>Eine gute englischsprachige Quelle dazu ist <a href="http://learnlayout.com/">learnlayout.com</a></p>
+
+<p>Der Artikel <a href="https://www.smashingmagazine.com/2018/10/flexbox-use-cases/">Use Cases For Flexbox</a> von Rachel Andrews erklärt gut in welchen Fällen man Grid und in welchen Fällen man Flexbox verwenden kann.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="weitere-quellen">Weitere Quellen</h2>
+
+<ul>
+  <li><a href="https://github.com/philipwalton/flexbugs">Flexbugs</a> - bekannte Probleme mit Flexbox</li>
+  <li><a href="http://flexboxfroggy.com/">Flexboxfroggy.com</a> - Lernspiel mit Fröschen</li>
+  <li><a href="http://www.flexboxdefense.com/">FlexboxDefense.com</a> - Lernspiel mit Tower Defense</li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>CSS für Layout</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css-layout/responsive//slide.html">Responsive Design</a> | 
+        <a href="/css-layout/layout/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css-layout/details//slide.html">Details zu Layout</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

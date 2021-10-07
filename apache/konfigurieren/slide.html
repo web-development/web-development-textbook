@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Konfigurieren - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Konfigurieren</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/apache//slide.html">Apache Konfiguration</a> | 
+        <a href="/apache/konfigurieren/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/apache/auth//slide.html">Authentisierung</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Der Webserver Apache wird über eine zentrale Datei konfiguriert:</p>
+
+<p><code>httpd.conf</code></p>
+
+<p>Bei Verwendung von XAMPP auf Windows findet man diese Datei z.B. im Ordner <code>C:\xampp\apache\conf</code>,
+auf UNIX-Systemen in <code>/etc/apache2/</code> oder <code>/etc/httpd/</code></p>
+
+<p>Weitere interessante Dateien und Ordner:</p>
+
+<ul>
+  <li>Ordner mit den Log-Dateien <code>C:\xampp\apache\logs</code>   bzw. <code>/var/log/apache2</code></li>
+  <li>Der eigentliche Webspace, Dateien hier sind auf <code>http://localhost</code> sichtbar:   <code>C:\xampp\htdocs</code> bzw. <code>/var/www/</code></li>
+</ul>
+
+</div>
+<div class="slide">
+
+
+
+<p>Die Datei httpd.conf ist sehr lang, und enthält viele Kommentare:</p>
+
+<div class="example">
+<pre class="lang-ruby prettyprint linenums">
+# ServerRoot: The top of the directory tree under which the server&#39;s
+# configuration, error, and log files are kept.
+# Do not add a slash at the end of the directory path.
+ServerRoot &quot;/xampp/apache&quot;
+
+# Listen: Allows you to bind Apache to specific IP addresses and/or
+# ports, instead of the default. See also the &lt;VirtualHost&gt;
+# directive.
+Listen 80
+
+# DocumentRoot: The directory out of which you will serve your
+# documents. By default, all requests are taken from this directory, but
+# symbolic links and aliases may be used to point to other locations.
+DocumentRoot &quot;/xampp/htdocs
+</pre></div>
+
+<p>Es gibt hunderte von verschiedenen Konfigurations-Anweisungen für Apache, glücklicherweise muß man nur wenige davon kennen und verstehen um mit Apache erfolgreich arbeiten zu können.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="konfigurations-nderung-wirksam-machen">Konfigurations-Änderung wirksam machen</h2>
+
+<p>Wenn man die Konfiguration von Apache verändert braucht es drei Schritte um die Auswirkungen wirklich zu sehen:</p>
+
+<ol>
+  <li>Konfigurationsdatei <code>httpd.conf</code> ändern und speichern</li>
+  <li>Apache neu starten</li>
+  <li>Im Webbrowser die entsprechende Seite neu laden</li>
+</ol>
+
+<p>Wenn man die Haupt-Konfigurationsdatei von Apache nicht ändern kann gibt es eine Alternative: Man kann eine Datei namens  <code>.htaccess</code> in den Webspace hoch laden, diese Datei kann einige der Konfigurations-Anweisungen für den Apache Webserver enthalten.</p>
+
+<p>Achtung: ob die <code>.htaccess</code> Datei wirksam ist oder nicht wird in httpd.conf festgelegt. Man kann die <code>.htaccess</code> Datei nicht selbst aktivieren falls sie nicht funktionieren.</p>
+
+</div>
+    <div class="slide">
+      <h1>Konfigurieren</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/apache//slide.html">Apache Konfiguration</a> | 
+        <a href="/apache/konfigurieren/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/apache/auth//slide.html">Authentisierung</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>BNF - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>BNF</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/das-web-und-html/standards//slide.html">Drei Standards definieren das Web</a> | 
+        <a href="/das-web-und-html/bnf/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/das-web-und-html/html-grundkurs//slide.html">HTML Grundkurs</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Ein kleiner Exkurs für Alle, die Internet-Standards lesen wollen,
+um Beispiel die Definition einer URL.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="backus-naur-form">Backus-Naur-Form</h2>
+
+<p>Ein kurzes Beispiel:</p>
+
+<div class="example">
+<h4 class="caption">Plain Code <small>Beispiel für BNF mit vier Ableitungsregeln</small></h4>
+<pre class="lang-plain prettyprint linenums">
+studiengang = &quot;MMA&quot; | &quot;MMT&quot;
+jahrgang  = studiengang &quot;-&quot; boderm jahr
+boderm    = &quot;B&quot; |  &quot;M&quot;
+jahr      = ziffer ziffer ziffer ziffer
+ziffer    = &quot;0&quot; |  &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot; | &quot;8&quot; | &quot;9&quot;
+</pre></div>
+
+<p>Eine letzte Ableitungsregel liest man so: eine <code>ziffer</code> ist entweder eine <code>0</code> oder
+eine <code>1</code> oder … oder eine <code>9</code>.  Ein <code>jahr</code> ist vier ziffern hintereinander.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Leichter zu lesen ist das sogenannte “Railroad Diagram”:</p>
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="700" height="440">
+<defs>
+  <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332900;}
+    filled                {fill: #332900; stroke: none;}
+    text                  {font-family: Verdana, Sans-serif; font-size: 12px; fill: #4D3D00; }
+    text.terminal         {font-family: Verdana, Sans-serif; font-size: 12px; fill: #4D3D00; font-weight: bold; }
+    rect, circle, polygon {fill: #332900; stroke: #332900;}
+    rect.terminal         {fill: #FFCC00; stroke: #332900;}
+    rect.nonterminal      {fill: #FFEB99; stroke: #332900;}
+    rect.text             {fill: none; stroke: none;}    
+    polygon.regexp        {fill: #FFF5CC; stroke: #332900;}
+  </style>
+</defs>
+<g transform="translate(10,0)">
+
+  <text class="nonterminal" x="20" y="21">jahrgang</text>
+
+  <g transform="translate(100,0)">
+      <polygon points="9 17 1 13 1 21" class="filled"></polygon>
+      <polygon points="17 17 9 13 9 21" class="filled"></polygon>
+      <line x1="17" y1="17" x2="19" y2="17" class="line"></line>
+      <a xlink:href="#studiengang" xlink:title="studiengang">
+        <rect x="31" y="3" width="100" height="32"></rect>
+        <rect x="29" y="1" width="100" height="32" class="nonterminal"></rect>
+        <text class="nonterminal" x="39" y="21">studiengang</text>
+      </a>
+      <line x1="19" y1="17" x2="29" y2="17" class="line"></line>
+      <line x1="129" y1="17" x2="139" y2="17" class="line"></line>
+      <rect x="151" y="3" width="26" height="32" rx="10"></rect>
+      <rect x="149" y="1" width="26" height="32" class="terminal" rx="10"></rect>
+      <text class="terminal" x="159" y="21">-</text>
+      <line x1="139" y1="17" x2="149" y2="17" class="line"></line>
+      <line x1="175" y1="17" x2="185" y2="17" class="line"></line>
+      <a xlink:href="#boderm" xlink:title="boderm"><rect x="197" y="3" width="68" height="32"></rect>
+      <rect x="195" y="1" width="68" height="32" class="nonterminal"></rect>
+      <text class="nonterminal" x="205" y="21">boderm</text>
+      </a><line x1="185" y1="17" x2="195" y2="17" class="line"></line>
+      <line x1="263" y1="17" x2="273" y2="17" class="line"></line>
+      <a xlink:href="#jahr" xlink:title="jahr"><rect x="285" y="3" width="46" height="32"></rect>
+      <rect x="283" y="1" width="46" height="32" class="nonterminal"></rect>
+      <text class="nonterminal" x="293" y="21">jahr</text>
+      </a><line x1="273" y1="17" x2="283" y2="17" class="line"></line>
+      <line x1="329" y1="17" x2="339" y2="17" class="line"></line>
+      <line x1="342" y1="17" x2="339" y2="17" class="line"></line>
+      <polygon points="349 17 357 13 357 21" class="filled"></polygon>
+        <polygon points="349 17 341 13 341 21" class="filled"></polygon>
+  </g>
+
+  <text class="nonterminal" x="0" y="121">studiengang</text>
+  <g transform="translate(100,100)">
+    <polygon points="9 17 1 13 1 21" class="filled"></polygon><polygon points="17 17 9 13 9 21" class="filled"></polygon><line x1="17" y1="17" x2="19" y2="17" class="line"></line><rect x="51" y="3" width="50" height="32" rx="10"></rect><rect x="49" y="1" width="50" height="32" class="terminal" rx="10"></rect><text class="terminal" x="59" y="21">MMA</text><line x1="39" y1="17" x2="49" y2="17" class="line"></line><line x1="99" y1="17" x2="109" y2="17" class="line"></line><line x1="19" y1="17" x2="39" y2="17" class="line"></line><line x1="109" y1="17" x2="129" y2="17" class="line"></line><path d="M19 17 Q29 17 29 27" class="line"></path><path d="M119 27 Q119 17 129 17" class="line"></path><line x1="29" y1="27" x2="29" y2="51" class="line"></line><line x1="119" y1="51" x2="119" y2="27" class="line"></line><path d="M29 51 Q29 61 39 61" class="line"></path><path d="M109 61 Q119 61 119 51" class="line"></path><rect x="51" y="47" width="50" height="32" rx="10"></rect><rect x="49" y="45" width="50" height="32" class="terminal" rx="10"></rect><text class="terminal" x="59" y="65">MMT</text><line x1="39" y1="61" x2="49" y2="61" class="line"></line><line x1="99" y1="61" x2="109" y2="61" class="line"></line><line x1="132" y1="17" x2="129" y2="17" class="line"></line><polygon points="139 17 147 13 147 21" class="filled"></polygon><polygon points="139 17 131 13 131 21" class="filled"></polygon>
+      </g>
+  
+    <text class="nonterminal" x="300" y="121">boderm</text>
+      <g transform="translate(360,100)">
+        <polygon points="9 17 1 13 1 21" class="filled"></polygon>
+        <polygon points="17 17 9 13 9 21" class="filled"></polygon>
+        <line x1="17" y1="17" x2="19" y2="17" class="line"></line>
+        <rect x="51" y="3" width="28" height="32" rx="10"></rect>
+        <rect x="49" y="1" width="28" height="32" class="terminal" rx="10"></rect>
+        <text class="terminal" x="59" y="21">B</text>
+        <line x1="39" y1="17" x2="49" y2="17" class="line"></line>
+        <line x1="77" y1="17" x2="87" y2="17" class="line"></line>
+        <line x1="87" y1="17" x2="89" y2="17" class="line"></line>
+        <line x1="19" y1="17" x2="39" y2="17" class="line"></line>
+        <line x1="89" y1="17" x2="109" y2="17" class="line"></line>
+        <path d="M19 17 Q29 17 29 27" class="line"></path>
+        <path d="M99 27 Q99 17 109 17" class="line"></path>
+        <line x1="29" y1="27" x2="29" y2="51" class="line"></line>
+        <line x1="99" y1="51" x2="99" y2="27" class="line"></line>
+        <path d="M29 51 Q29 61 39 61" class="line"></path>
+        <path d="M89 61 Q99 61 99 51" class="line"></path>
+        <rect x="51" y="47" width="30" height="32" rx="10"></rect>
+        <rect x="49" y="45" width="30" height="32" class="terminal" rx="10"></rect>
+        <text class="terminal" x="59" y="65">M</text>
+        <line x1="39" y1="61" x2="49" y2="61" class="line"></line>
+        <line x1="79" y1="61" x2="89" y2="61" class="line"></line>
+        <line x1="112" y1="17" x2="109" y2="17" class="line"></line>
+        <polygon points="119 17 127 13 127 21" class="filled"></polygon>
+        <polygon points="119 17 111 13 111 21" class="filled"></polygon>
+      </g>
+  
+    <text class="nonterminal" x="52" y="321">jahr</text>
+      <g transform="translate(100,300)">
+        <polygon points="9 17 1 13 1 21" class="filled"></polygon>
+        <polygon points="17 17 9 13 9 21" class="filled"></polygon>
+        <line x1="17" y1="17" x2="19" y2="17" class="line"></line>
+      <a xlink:href="#ziffer" xlink:title="ziffer"><rect x="31" y="3" width="50" height="32"></rect>
+      <rect x="29" y="1" width="50" height="32" class="nonterminal"></rect>
+      <text class="nonterminal" x="39" y="21">ziffer</text>
+      </a><line x1="19" y1="17" x2="29" y2="17" class="line"></line>
+      <line x1="79" y1="17" x2="89" y2="17" class="line"></line>
+      <a xlink:href="#ziffer" xlink:title="ziffer"><rect x="101" y="3" width="50" height="32"></rect>
+      <rect x="99" y="1" width="50" height="32" class="nonterminal"></rect>
+      <text class="nonterminal" x="109" y="21">ziffer</text>
+      </a><line x1="89" y1="17" x2="99" y2="17" class="line"></line>
+      <line x1="149" y1="17" x2="159" y2="17" class="line"></line>
+      <a xlink:href="#ziffer" xlink:title="ziffer"><rect x="171" y="3" width="50" height="32"></rect>
+      <rect x="169" y="1" width="50" height="32" class="nonterminal"></rect>
+      <text class="nonterminal" x="179" y="21">ziffer</text>
+      </a><line x1="159" y1="17" x2="169" y2="17" class="line"></line>
+      <line x1="219" y1="17" x2="229" y2="17" class="line"></line>
+      <a xlink:href="#ziffer" xlink:title="ziffer"><rect x="241" y="3" width="50" height="32"></rect>
+      <rect x="239" y="1" width="50" height="32" class="nonterminal"></rect>
+      <text class="nonterminal" x="249" y="21">ziffer</text>
+      </a><line x1="229" y1="17" x2="239" y2="17" class="line"></line>
+      <line x1="289" y1="17" x2="299" y2="17" class="line"></line>
+      <line x1="302" y1="17" x2="299" y2="17" class="line"></line>
+      <polygon points="309 17 317 13 317 21" class="filled"></polygon>
+        <polygon points="309 17 301 13 301 21" class="filled"></polygon>
+      </g>
+
+
+    <text class="nonterminal" x="500" y="21">ziffer</text>
+      <g transform="translate(560,0)">
+          <polygon points="9 17 1 13 1 21" class="filled"></polygon>
+        <polygon points="17 17 9 13 9 21" class="filled"></polygon>
+        <line x1="17" y1="17" x2="19" y2="17" class="line"></line>
+      <rect x="51" y="3" width="28" height="32" rx="10"></rect>
+      <rect x="49" y="1" width="28" height="32" class="terminal" rx="10"></rect>
+      <text class="terminal" x="59" y="21">0</text>
+      <line x1="39" y1="17" x2="49" y2="17" class="line"></line>
+      <line x1="77" y1="17" x2="87" y2="17" class="line"></line>
+      <line x1="19" y1="17" x2="39" y2="17" class="line"></line>
+      <line x1="87" y1="17" x2="107" y2="17" class="line"></line>
+      <path d="M19 17 Q29 17 29 27" class="line"></path>
+      <path d="M97 27 Q97 17 107 17" class="line"></path>
+      <line x1="29" y1="27" x2="29" y2="51" class="line"></line>
+      <line x1="97" y1="51" x2="97" y2="27" class="line"></line>
+      <path d="M29 51 Q29 61 39 61" class="line"></path>
+      <path d="M87 61 Q97 61 97 51" class="line"></path>
+      <rect x="51" y="47" width="28" height="32" rx="10"></rect>
+      <rect x="49" y="45" width="28" height="32" class="terminal" rx="10"></rect>
+      <text class="terminal" x="59" y="65">1</text>
+      <line x1="39" y1="61" x2="49" y2="61" class="line"></line>
+      <line x1="77" y1="61" x2="87" y2="61" class="line"></line>
+      <line x1="29" y1="51" x2="29" y2="71" class="line"></line>
+      <line x1="97" y1="71" x2="97" y2="51" class="line"></line>
+      <line x1="29" y1="71" x2="29" y2="95" class="line"></line>
+      <line x1="97" y1="95" x2="97" y2="71" class="line"></line>
+      <path d="M29 95 Q29 105 39 105" class="line"></path>
+      <path d="M87 105 Q97 105 97 95" class="line"></path>
+      <rect x="51" y="91" width="28" height="32" rx="10"></rect>
+      <rect x="49" y="89" width="28" height="32" class="terminal" rx="10"></rect>
+      <text class="terminal" x="59" y="109">2</text>
+      <line x1="39" y1="105" x2="49" y2="105" class="line"></line>
+      <line x1="77" y1="105" x2="87" y2="105" class="line"></line>
+      <line x1="29" y1="95" x2="29" y2="115" class="line"></line>
+      <line x1="97" y1="115" x2="97" y2="95" class="line"></line>
+      <line x1="29" y1="115" x2="29" y2="139" class="line"></line>
+      <line x1="97" y1="139" x2="97" y2="115" class="line"></line>
+      <path d="M29 139 Q29 149 39 149" class="line"></path>
+      <path d="M87 149 Q97 149 97 139" class="line"></path>
+      <rect x="51" y="135" width="28" height="32" rx="10"></rect>
+      <rect x="49" y="133" width="28" height="32" class="terminal" rx="10"></rect>
+      <text class="terminal" x="59" y="153">3</text>
+      <line x1="39" y1="149" x2="49" y2="149" class="line"></line>
+      <line x1="77" y1="149" x2="87" y2="149" class="line"></line>
+      <line x1="29" y1="139" x2="29" y2="159" class="line"></line>
+      <line x1="97" y1="159" x2="97" y2="139" class="line"></line>
+      <line x1="29" y1="159" x2="29" y2="183" class="line"></line>
+      <line x1="97" y1="183" x2="97" y2="159" class="line"></line>
+      <path d="M29 183 Q29 193 39 193" class="line"></path>
+      <path d="M87 193 Q97 193 97 183" class="line"></path>
+      <rect x="51" y="179" width="28" height="32" rx="10"></rect>
+      <rect x="49" y="177" width="28" height="32" class="terminal" rx="10"></rect>
+      <text class="terminal" x="59" y="197">4</text>
+      <line x1="39" y1="193" x2="49" y2="193" class="line"></line>
+      <line x1="77" y1="193" x2="87" y2="193" class="line"></line>
+      <line x1="29" y1="183" x2="29" y2="203" class="line"></line>
+      <line x1="97" y1="203" x2="97" y2="183" class="line"></line>
+      <line x1="29" y1="203" x2="29" y2="227" class="line"></line>
+      <line x1="97" y1="227" x2="97" y2="203" class="line"></line>
+      <path d="M29 227 Q29 237 39 237" class="line"></path>
+      <path d="M87 237 Q97 237 97 227" class="line"></path>
+      <rect x="51" y="223" width="28" height="32" rx="10"></rect>
+      <rect x="49" y="221" width="28" height="32" class="terminal" rx="10"></rect>
+      <text class="terminal" x="59" y="241">5</text>
+      <line x1="39" y1="237" x2="49" y2="237" class="line"></line>
+      <line x1="77" y1="237" x2="87" y2="237" class="line"></line>
+      <line x1="29" y1="227" x2="29" y2="247" class="line"></line>
+      <line x1="97" y1="247" x2="97" y2="227" class="line"></line>
+      <line x1="29" y1="247" x2="29" y2="271" class="line"></line>
+      <line x1="97" y1="271" x2="97" y2="247" class="line"></line>
+      <path d="M29 271 Q29 281 39 281" class="line"></path>
+      <path d="M87 281 Q97 281 97 271" class="line"></path>
+      <rect x="51" y="267" width="28" height="32" rx="10"></rect>
+      <rect x="49" y="265" width="28" height="32" class="terminal" rx="10"></rect>
+      <text class="terminal" x="59" y="285">6</text>
+      <line x1="39" y1="281" x2="49" y2="281" class="line"></line>
+      <line x1="77" y1="281" x2="87" y2="281" class="line"></line>
+      <line x1="29" y1="271" x2="29" y2="291" class="line"></line>
+      <line x1="97" y1="291" x2="97" y2="271" class="line"></line>
+      <line x1="29" y1="291" x2="29" y2="315" class="line"></line>
+      <line x1="97" y1="315" x2="97" y2="291" class="line"></line>
+      <path d="M29 315 Q29 325 39 325" class="line"></path>
+      <path d="M87 325 Q97 325 97 315" class="line"></path>
+      <rect x="51" y="311" width="28" height="32" rx="10"></rect>
+      <rect x="49" y="309" width="28" height="32" class="terminal" rx="10"></rect>
+      <text class="terminal" x="59" y="329">7</text>
+      <line x1="39" y1="325" x2="49" y2="325" class="line"></line>
+      <line x1="77" y1="325" x2="87" y2="325" class="line"></line>
+      <line x1="29" y1="315" x2="29" y2="335" class="line"></line>
+      <line x1="97" y1="335" x2="97" y2="315" class="line"></line>
+      <line x1="29" y1="335" x2="29" y2="359" class="line"></line>
+      <line x1="97" y1="359" x2="97" y2="335" class="line"></line>
+      <path d="M29 359 Q29 369 39 369" class="line"></path>
+      <path d="M87 369 Q97 369 97 359" class="line"></path>
+      <rect x="51" y="355" width="28" height="32" rx="10"></rect>
+      <rect x="49" y="353" width="28" height="32" class="terminal" rx="10"></rect>
+      <text class="terminal" x="59" y="373">8</text>
+      <line x1="39" y1="369" x2="49" y2="369" class="line"></line>
+      <line x1="77" y1="369" x2="87" y2="369" class="line"></line>
+      <line x1="29" y1="359" x2="29" y2="379" class="line"></line>
+      <line x1="97" y1="379" x2="97" y2="359" class="line"></line>
+      <line x1="29" y1="379" x2="29" y2="403" class="line"></line>
+      <line x1="97" y1="403" x2="97" y2="379" class="line"></line>
+      <path d="M29 403 Q29 413 39 413" class="line"></path>
+      <path d="M87 413 Q97 413 97 403" class="line"></path>
+      <rect x="51" y="399" width="28" height="32" rx="10"></rect>
+      <rect x="49" y="397" width="28" height="32" class="terminal" rx="10"></rect>
+      <text class="terminal" x="59" y="417">9</text>
+      <line x1="39" y1="413" x2="49" y2="413" class="line"></line>
+      <line x1="77" y1="413" x2="87" y2="413" class="line"></line>
+      <line x1="110" y1="17" x2="107" y2="17" class="line"></line>
+      <polygon points="117 17 125 13 125 21" class="filled"></polygon>
+        <polygon points="117 17 109 13 109 21" class="filled"></polygon>
+      </g>
+      </g>
+  </svg>
+
+</div>
+<div class="slide">
+
+
+
+<p>Hier eine gekürzte Darstellung der http url aus dem RFC:</p>
+
+<div class="example">
+<h4 class="caption">Plain Code <small>HTTP URL laut RFC 1738</small></h4>
+<pre class="lang-plain prettyprint linenums">
+httpurl        = &quot;http://&quot; login [ &quot;/&quot; hpath [ &quot;?&quot; search ]]
+
+login          = [ user [ &quot;:&quot; password ] &quot;@&quot; ] hostport
+hostport       = host [ &quot;:&quot; port ]
+host           = hostname | hostnumber
+hpath          = hsegment *[ &quot;/&quot; hsegment ]
+
+user           = *[ uchar | &quot;;&quot; | &quot;?&quot; | &quot;&amp;&quot; | &quot;=&quot; ]
+password       = *[ uchar | &quot;;&quot; | &quot;?&quot; | &quot;&amp;&quot; | &quot;=&quot; ]
+port           = digits
+hsegment       = *[ uchar | &quot;;&quot; | &quot;:&quot; | &quot;@&quot; | &quot;&amp;&quot; | &quot;=&quot; ]
+search         = *[ uchar | &quot;;&quot; | &quot;:&quot; | &quot;@&quot; | &quot;&amp;&quot; | &quot;=&quot; ]
+alphadigit     = alpha | digit
+
+unreserved     = alpha | digit | safe | extra
+uchar          = unreserved | escape
+xchar          = unreserved | reserved | escape
+alpha          = lowalpha | hialpha
+digits         = 1*digit
+
+
+safe           = &quot;$&quot; | &quot;-&quot; | &quot;_&quot; | &quot;.&quot; | &quot;+&quot;
+extra          = &quot;!&quot; | &quot;*&quot; | &quot;&#39;&quot; | &quot;(&quot; | &quot;)&quot; | &quot;,&quot;
+national       = &quot;{&quot; | &quot;}&quot; | &quot;|&quot; | &quot;\&quot; | &quot;^&quot; | &quot;~&quot; | &quot;[&quot; | &quot;]&quot; | &quot;`&quot;
+punctuation    = &quot;&lt;&quot; | &quot;&gt;&quot; | &quot;#&quot; | &quot;%&quot; | &lt;&quot;&gt;
+reserved       = &quot;;&quot; | &quot;/&quot; | &quot;?&quot; | &quot;:&quot; | &quot;@&quot; | &quot;&amp;&quot; | &quot;=&quot;
+hex            = digit | &quot;A&quot; | &quot;B&quot; | &quot;C&quot; | &quot;D&quot; | &quot;E&quot; | &quot;F&quot; 
+                       | &quot;a&quot; | &quot;b&quot; | &quot;c&quot; | &quot;d&quot; | &quot;e&quot; | &quot;f&quot;
+
+escape         = &quot;%&quot; hex hex
+
+lowalpha       = &quot;a&quot; | &quot;b&quot; | &quot;c&quot; | &quot;d&quot; | &quot;e&quot; | &quot;f&quot; | &quot;g&quot; | &quot;h&quot; |
+                 &quot;i&quot; | &quot;j&quot; | &quot;k&quot; | &quot;l&quot; | &quot;m&quot; | &quot;n&quot; | &quot;o&quot; | &quot;p&quot; |
+                 &quot;q&quot; | &quot;r&quot; | &quot;s&quot; | &quot;t&quot; | &quot;u&quot; | &quot;v&quot; | &quot;w&quot; | &quot;x&quot; |
+                 &quot;y&quot; | &quot;z&quot;
+hialpha        = &quot;A&quot; | &quot;B&quot; | &quot;C&quot; | &quot;D&quot; | &quot;E&quot; | &quot;F&quot; | &quot;G&quot; | &quot;H&quot; | &quot;I&quot; |
+                 &quot;J&quot; | &quot;K&quot; | &quot;L&quot; | &quot;M&quot; | &quot;N&quot; | &quot;O&quot; | &quot;P&quot; | &quot;Q&quot; | &quot;R&quot; |
+                 &quot;S&quot; | &quot;T&quot; | &quot;U&quot; | &quot;V&quot; | &quot;W&quot; | &quot;X&quot; | &quot;Y&quot; | &quot;Z&quot;
+
+digit          = &quot;0&quot; | &quot;1&quot; | &quot;2&quot; | &quot;3&quot; | &quot;4&quot; | &quot;5&quot; | &quot;6&quot; | &quot;7&quot; | &quot;8&quot; | &quot;9&quot;
+</pre></div>
+
+</div>
+    <div class="slide">
+      <h1>BNF</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/das-web-und-html/standards//slide.html">Drei Standards definieren das Web</a> | 
+        <a href="/das-web-und-html/bnf/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/das-web-und-html/html-grundkurs//slide.html">HTML Grundkurs</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

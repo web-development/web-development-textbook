@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>wohlgeformtes XML - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>wohlgeformtes XML</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/xml/was-ist-xml//slide.html">Was ist XML</a> | 
+        <a href="/xml/wohlgeformtes-xml/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/xml/dtd//slide.html">DTD</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Als “wohlgeformtes XML” bezeichnet man XML-Code der
+die folgenden allgemeinen Regel befolgt. Eine separate
+Frage ist dann, ob der Code einer bestimmten XML-Sprache
+angehört - damit beschäftigen wir uns im nächsten Kapitel.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>XML soll sowohl für Menschen als auch für Maschinen lesbar sein.
+Die Schreibweise ist von HTML inspiriert, ist aber etwas strenger.
+Hier werden oft Tags aus XHTML als Beispiele verwendet, weil Sie
+diese schon kennen.</p>
+
+<p>Hier werden nicht alle Details der XML-Syntax vorgestellt,
+sondern nur die wichtigsten Regeln.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="xml-deklaration-und-enconding">XML Deklaration und Enconding</h2>
+
+<p>XML ist als Unicode codiert, sowohl <code>UTF-8</code> als auch <code>UTF-16</code>
+sind möglich.</p>
+
+<p>Ein XML Dokument beginnt mit einer Deklaration:</p>
+
+<div class="example">
+<pre class="lang-xml prettyprint linenums">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="entities">Entities</h2>
+
+<p>Sonderzeichen in XML beginnen mit einem “kaufmännischen Und” und enden
+mit einem Strichpunkt. Die Namen sind Case Sensitive.</p>
+
+<p>Fünf Entities sind schon definiert, Sie kennen sie auch
+schon aus HTML:</p>
+
+<table class="table table-condensed table-bordered" style="width:auto">
+  <thead>
+    <tr>
+      <th style="text-align: center">Gewünschtes Zeichen</th>
+      <th style="text-align: center">Character Entity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">&lt;</td>
+      <td style="text-align: center">&amp;lt;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">&gt;</td>
+      <td style="text-align: center">&amp;gt;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">&amp;</td>
+      <td style="text-align: center">&amp;amp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">”</td>
+      <td style="text-align: center">&amp;quot;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">’</td>
+      <td style="text-align: center">&amp;apos;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Mit <code>#</code> kann der Dezimalwert eines Zeichens angegeben werden, z.B. <code>&amp;#34;</code>
+für ein Anführungszeichen. Mit <code>#x</code> kann der hexadezimale Wert eines Zeichens
+angegeben werden, z.B. <code>&amp;#x22;</code> für ein Anführungszeichen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="kommentare">Kommentare</h2>
+
+<p>Kommentare beginnen mit <code>&lt;!--</code> und enden mit <code>--&gt;</code>. Sie können nicht
+verschachtelt werden.</p>
+
+<div class="example">
+<h4 class="caption">Xml Code <small>Kommentar darf Code enthalten</small></h4>
+<pre class="lang-xml prettyprint linenums">
+&lt;!-- no need to escape &lt;code&gt; &amp; such in comments --&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="tags">Tags</h2>
+
+<p>Tags werden wie in HTML begonnen und beendet: <code>&lt;p&gt;....&lt;/p&gt;</code>.<br />
+Tags ohne “Ende” müssen mit einem Slash am Ende
+markiert werden: <code>&lt;br /&gt;</code>.</p>
+
+<p>Das weglassen schießender Tags ist in XML nicht gestattet!
+Tags in XML sind case sensitive.</p>
+
+<p>Einen Tag samt Inhalt nennt man “Element”.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="attribute">Attribute</h2>
+
+<p>Attribute bestehen immer aus einem Namen und einem Wert, der Wert muss
+in Anführungszeichen gesetzt werden: <code>&lt;input type="checkbox" checked="checked" /&gt;</code>.</p>
+
+<p>Die verkürzte Schreibweise für Attribute ohne Wert wie in HTML5 (<code>&lt;input type="checkbox" checked&gt;</code>) 
+gibt es in XML nicht.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="cdata-sektion">CDATA Sektion</h2>
+
+<p>Daten innerhalb von XML, die als reiner Text interpretiert
+werden sollen, bezeichnet man als Character Data (CDATA, deutsch: Zeichnekettendaten).
+Man kann einen ganzen Abschnitt als Character Data auszeichnen,
+und damit die interpretation von Entities und XML innerhalb verindern.
+So eine CDATA Sektion beginnt mit <code>&lt;![CDATA[</code> und endet mit <code>]]&gt;</code>.</p>
+
+<p>Das folgende Beispiel zeigt wie “Code-Snippets” im Editor
+Text-Mate gespeichert werden, hier Code-Snippets für CSS
+(vereinfacht, von <a href="https://github.com/mate-desktop/mate-text-editor/blob/master/plugins/snippets/data/php.xml">github/mate-desktop</a>).</p>
+
+<div class="example">
+<h4 class="caption">Xml Code <small>Code-Snippets für den Editor text-mate</small></h4>
+<pre class="lang-xml prettyprint linenums">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;snippets language=&quot;CSS&quot;&gt;
+  &lt;snippet id=&quot;color&quot;&gt;
+    &lt;text&gt;&lt;![CDATA[color: #DDD;]]&gt;&lt;/text&gt;
+    &lt;description&gt;color: color-hex&lt;/description&gt;
+    &lt;tag&gt;color&lt;/tag&gt;
+  &lt;/snippet&gt;
+  &lt;snippet id=&quot;float&quot;&gt;
+    &lt;text&gt;&lt;![CDATA[float: left;]]&gt;&lt;/text&gt;
+    &lt;description&gt;float: left/right/none&lt;/description&gt;
+    &lt;tag&gt;float&lt;/tag&gt;
+  &lt;/snippet&gt;
+&lt;/snippets&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="referenz">Referenz</h2>
+
+<ul>
+  <li><a href="http://www.w3.org/TR/REC-xml/#syntax">RFC XML: Syntax</a></li>
+</ul>
+
+</div>
+    <div class="slide">
+      <h1>wohlgeformtes XML</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/xml/was-ist-xml//slide.html">Was ist XML</a> | 
+        <a href="/xml/wohlgeformtes-xml/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/xml/dtd//slide.html">DTD</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

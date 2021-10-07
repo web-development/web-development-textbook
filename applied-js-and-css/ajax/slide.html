@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>AJAX - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>AJAX</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/applied-js-and-css/dynamisches-formular//slide.html">Dynamisches Formular</a> | 
+        <a href="/applied-js-and-css/ajax/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/applied-js-and-css/ajax-irrwege//slide.html">AJAX Irrwege</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Wir kennen schon die Funktionsweise von <a href="/http/">HTTP</a>. Bisher
+wurde ein HTTP Request durch eine Handlung der UserIn ausgelöst
+(URL eintippen, Link anklicken), oder um Ressourcen zu laden
+die zu einem HTML-Dokument gehören.</p>
+
+<p>Mit AJAX lernen wir nun eine neue Art kennen, wie HTTP-Request
+verwendet werden: Asynchrone Requests.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="was-ist-ajax">Was ist AJAX?</h2>
+
+<p>AJAX ist die englische Abkürzung für „Asynchrones Javascript und XML“. In
+diesem Kapitel lernen Sie was das genau bedeutet, und dass sich hinter dem X
+zum Schluss auch andere Format verbergen können</p>
+
+<p>Ein Beispiel für die Verwendung von AJAX ist das in der Abbildung unten
+gezeigte Eingabefeld:
+schon während des Eintippens eines Suchwortes wird eine Anfrage an den Webserver
+geschickt. Dieser antwortet mit einer Liste von vorgeschlagenen Namen. Diese Liste
+wird mit Javascript in einer <code>div</code> unterhalb des Eingabefelds angezeigt:</p>
+
+<p><img src="/images/image375.png"  alt="Abbildung 50: Vorschläge für die Eingabe werden über AJAX geladen" ></p>
+
+<p>Mit AJAX wird hier eine HTTP-Anfrage gesendet.</p>
+
+<p>Bei einer „normalen“ HTTP-Anfrage schaltet der Browser auf
+„Warten“, eine neue vollständige Webseite wird geladen und angezeigt.</p>
+
+<p>Asynchron heisst hier: der Request wird abgesetzt, das Javascript-Programm läuft sofort
+weiter, die UserIn kann weiterhin mit der Webseite interagieren. Erst wenn die Antwort
+des Servers vorliegt wird die normale Darstellung der Seite kurz unterbrochen und ein
+Javascript-Programm fügt die Daten in die Seite ein.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="im-javascript-programm">Im Javascript Programm</h3>
+
+<p>Auf der Ebene des Javascript Programm-Codes sieht der Unterschied zwischen
+synchron und asynchron so aus:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>synchron</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+Befehl1();
+Befehl2();
+Antwort = synchron_laden(url);   // dauert ewig 
+Befehl3();                      // viel später
+Befehl4();
+</pre></div>
+
+<p>Bevor <code>Befehl3</code> ausgeführt werden kann muss erst die Antwort des Servers vorliegen –
+hier kann also eine Wartezeit von mehreren Sekunden entstehen.</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>asynchron</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function handle_data(Antwort) {  
+   ... 
+} 
+ 
+Befehl1();
+Befehl2();
+asynchron_laden(url, handle_data);  // dauert kurz 
+Befehl3();                         // kurz darauf
+Befehl4();
+</pre></div>
+
+<p><code>Befehl3</code> und <code>Befehl4</code> können sofort ausgeführt werden,
+egal ob und wie schnell der Server antwortet. Das Javascript-Programm (befehle 1 bis 4)
+läuft vollständig ab.</p>
+
+<p>Wenn die Daten vom Server schließlich einlangen wird die Funktion <code>handle_data</code>
+aufgerufen und die Daten zu verarbeiten.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="synchroner-ablauf-wird-nie-unterbrochen">Synchroner Ablauf wird nie unterbrochen</h3>
+
+<p>Achtung: ein laufendes Javascript programm wird nie unterbrochen.
+Im letzten Code-Beispiel wird es nie passieren, dass zwischen Befehl3
+und Befehl4 niemals etwas anderes (z.B. handle_data) passieren!</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>asynchron</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function handle_data(Antwort) {  
+   ... 
+} 
+ 
+Befehl1();
+Befehl2();
+asynchron_laden(url, handle_data);  // dauert kurz 
+Befehl3();                         // kurz darauf
+Befehl4();
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="asynchrones-beispiel-settimeout">Asynchrones Beispiel: setTimeout</h3>
+
+<p>Mit <code>setTimeout</code> kann man eine Funktion später (Angabe in Millisekunden) 
+ausführen lassen:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>asynchron</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function later() {
+  console.log(&quot;3 Sekunden später&quot;, Date.now());
+}
+
+console.log(&quot;tick&quot;, Date.now());
+setTimeout(later, 3000);
+console.log(&quot;tock&quot;, Date.now());
+console.log(&quot;tick&quot;, Date.now());
+console.log(&quot;tock&quot;, Date.now());
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Was passiert nun, wenn man den Timeout auf 0 setzt?</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>asynchron</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function later() {
+  console.log(&quot;0 Sekunden später?&quot;, Date.now());
+}
+console.log(&quot;tick&quot;, Date.now());
+setTimeout(later, 0);
+console.log(&quot;tock&quot;, Date.now());
+console.log(&quot;tick&quot;, Date.now());
+console.log(&quot;tock&quot;, Date.now());
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Antwort: das Javascript-Programm wird nicht unterbrochen!</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>asynchron</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function later() {
+  console.log(&quot;NICHT 0 Sekunden später!&quot;, Date.now());
+}
+console.log(&quot;tick&quot;, Date.now());
+setTimeout(later, 0);
+console.log(&quot;tock&quot;, Date.now());
+console.log(&quot;tick&quot;, Date.now());
+console.log(&quot;tock&quot;, Date.now());
+
+// Output in der Konsole:
+// tick 1588059630667
+// tock 1588059630668
+// tick 1588059630668
+// tock 1588059630668
+// nicht 0 Sekunden später 1588059630669
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="asynchrone-http-requests">Asynchrone HTTP Requests</h3>
+
+<p>Betrachten wir nun den Ablauf für ein Textfeld mit Autocomplete-Funktion,
+wie in der obigen Abbildung gezeigt. Folgende Abbildung ist ein
+<a href="http://de.wikipedia.org/wiki/Sequenzdiagramm">Sequenz Diagramm</a>, die Zeit
+läuft von oben nach unten.</p>
+
+<p>Zuerst wird die Webseite mit dem Formular geladen: der Browser schickt die
+Anfrage an den Server und erhält eine Antwort. Was immer zuvor im Browser
+angezeigt wurde wird - nach Ankunft des HTTP Response - gelöscht, die neue
+Seite wird im Browser dargestellt. Diese Verhalten des Browsers ist uns
+schon bekannt.</p>
+
+<p>Nun kommt der neue Teil: das Eintippten des ersten Buchstabens ins
+Eingabefeld löst ein Javascript-Programm aus, das einen AJAX-Request absetzt.
+Am Netzwerk ist das ein ganz normaler HTTP Request, für den Server gibt
+es keinen Unterschied zu jedem anderen Request.</p>
+
+<p>Was anders ist, ist das Verhalten des Browsers: Das Absenden des Requests
+bleibt die Webseite bestehen und bleibt interaktiv - das Absenden passiert
+meist von der UserIn unbemerkt.</p>
+
+<p>Wenn die Daten des Response
+einlangen wird <strong>nicht</strong> die Seite gelöscht, sondern es wird eine
+Javascript-Funktion in der Seite aufgerufen, die die Daten entgegen nimmt.
+Für das Autocomple-Verhalten bestehen die Daten aus einer Liste von Vorschlägen,
+die Javascript-Funktion zeigt diese Vorschläge unterhalb des Eingabefeldes an.</p>
+
+<p><img src="/images/ajax-sequence-diagram.svg"  alt="AJAX Ablauf" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="datenformate---mehr-als-nur-xml">Datenformate - mehr als nur XML</h3>
+
+<p>Das X am Ende von AJAX steht für XML – das stimmt aber nicht: die Daten vom Server
+können im XML-Format gesendet werden, aber genauso auch als HTML oder reiner
+Text oder JSON. Man könnte das X in AJAX auch als „X-beliebiges Format“ deuten.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="simples-javascript-beispiel">Simples Javascript Beispiel</h2>
+
+<p>Im ersten AJAX Beispiel wird der Output eines PHP-Counters in eine HTML-Seite
+eingebunden.</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Counter einbinden mit Javascript</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;AJAX counter&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Webseite&lt;/h1&gt;
+
+  &lt;p&gt;mit total viel Inhalt&lt;/p&gt;
+
+  &lt;script&gt;
+    function handleCounterData() {
+      console.log(&quot;Response wurde empfangen&quot;);
+      let counter = this.responseText;
+      // counter enhält jetzt den output des php programms
+    }
+
+    let ajaxRequest = new XMLHttpRequest();
+    ajaxRequest.addEventListener(&quot;load&quot;, handleCounterData);
+    ajaxRequest.open(&quot;GET&quot;, &quot;counter_ajax.php&quot;);
+    ajaxRequest.send(); 
+    console.log(&quot;abgesendet, sofort weiter&quot;);   
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+
+<p>Das <code>XMLHttpRequest</code> Objekt liefert verschiedene Events, hier wird nur für das <code>load</code> Event
+eine Funktion als Listener angebracht. Mit der <code>open</code> Methode wird der HTTP-Request
+konfiguriert, aber erst mit <code>send</code> wirklich abgeschickt. Da er Request asynchron erfolgt
+geht der Javascript-Interpreter sofort von <code>send</code> weiter zu <code>console.log</code> in der nächsten
+Zeile.</p>
+
+<p>Erst sehr viel später, wenn der HTTP-Response vorliegt, wird die Funktion
+<code>handleCounterData</code> aufgerufen. Die Funktion erhält das <code>XMLHttpRequest</code> Objekt
+in der Variable <code>this</code> und kann aus <code>this.responseText</code> die Antwort auslesen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="fetch-und-promises">Fetch und Promises</h2>
+
+<p>In modernem Javascript, in allen Browsern <a href="https://caniuse.com/#search=fetch">ausser Internet Explorer</a>, gibt es
+eine neue Schreibweise für AJAX-Request mit dem Befehl <code>fetch</code><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">mdn</a>.</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Counter einbinden mit Javascript</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;AJAX counter&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Webseite&lt;/h1&gt;
+
+  &lt;p&gt;mit total viel Inhalt&lt;/p&gt;
+
+  &lt;script&gt;
+    fetch(&quot;counter_ajax.php&quot;)
+      .then(function(response) {
+        console.log(&quot;Response wird empfangen&quot;);
+        let counter = response.text();
+        return counter;
+      })
+      .then(function(counter) {
+        console.log(&quot;counter wurde aus dem Response herausgelesen&quot;);
+        // ...
+      }); 
+    console.log(&quot;abgesendet, sofort weiter&quot;);   
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+
+<p>Mit <code>fetch</code> wird die Reihenfolge des Ablaufs klarer, aber der Ablauf
+wird auch komplizierter: ein weiterer asynchroner Verarbeitungsschritt
+kommt dazu: das auslesen des Textes aus dem Response.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="promises">Promises</h2>
+
+<p>Der Rückgabewert der funktion <code>fetch</code> ist eine <strong>Promise</strong>: ein Objekt,
+das den Umgang mit einer asynchrone Operation einfacher machen soll.
+Es ist ein Platzhalter für das Ergebnis der Operation, das noch nicht
+bekannt ist. In anderen Programmiersprachen ist die Promise auch als
+Future oder Deferred bekannt, siehe <a href="https://en.wikipedia.org/wiki/Futures_and_promises">wikipedia</a>.</p>
+
+<p>Mit der Methode <code>then()</code> kann eine Funktion als Callback angegeben
+werden, die aufgerufen wird wenn das Ergebnise vorliegt:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+fetch(&quot;counter_ajax.php&quot;)
+  .then(function(response) {
+    console.log(&quot;Response wird empfangen&quot;);
+    // tu ws mit response response
+  });
+console.log(&quot;abgesendet, sofort weiter&quot;);   
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="chaining">Chaining</h3>
+
+<p>Angenommen mit dem Ergebnis einer asynchronen Operation
+soll
+eine weitere asynchrone Operation aufgerufen werden.</p>
+
+<p>Mit Promises funktionert das mittels “aneinanderhängen” = “chaining” mit <code>then</code>:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+fetch(&quot;counter_ajax.php&quot;)
+  .then(function(response) {
+    console.log(&quot;Response wird empfangen&quot;);
+    let counter = response.text();
+    return counter;
+  })
+  .then(function(counter) {
+    console.log(&quot;counter wurde aus dem Response herausgelesen&quot;);
+    // ...
+  }); 
+console.log(&quot;abgesendet, sofort weiter&quot;);   
+</pre></div>
+
+<p>Dieser Code kann mit Arrow-Functions noch kürzer werden:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+fetch(&quot;counter_ajax.php&quot;)
+  .then(response =&gt; response.text())
+  .then(function(counter) {
+    console.log(&quot;Text wurde aus dem Response herausgelesen&quot;);
+    // tu was mit counter
+  });
+console.log(&quot;abgesendet, sofort weiter&quot;);   
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="fehlerbehandlung">Fehlerbehandlung</h3>
+
+<p>Für die Fehlerbehandlung gibt es zwei Schreibweisen, die
+üblichere ist die Verwendet von <code>catch</code>:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+fetch(&quot;counter_ajax.php&quot;)
+  .then(response =&gt; response.text())
+  .then(function(counter) {
+    console.log(&quot;Text wurde aus dem Response herausgelesen&quot;);
+    // tu was mit counter
+  }).catch(function(error) {
+    console.log(error);
+  });
+console.log(&quot;abgesendet, sofort weiter&quot;);
+</pre></div>
+
+<p>Aber Achtung: wenn der HTTP-Response z.B. 404 oder 500 ist, löst das noch
+keinen Error aus, der mit <code>catch</code> gefangen werden kann. Das müsste
+man selbst behandeln:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+fetch(&quot;counter_ajax.php&quot;)
+  .then(function(response){ 
+    console.log(&quot;response status is&quot;, response.status);
+    if (response.status !== 200) {
+        throw new Error(&quot;Not 200 response&quot;);
+    } 
+    return response.text(); 
+  }).then(function(counter) {
+    console.log(&quot;Text wurde aus dem Response herausgelesen&quot;);
+    // tu was mit counter
+  }).catch(function(error) {
+    console.log(error);
+  });
+  console.log(&quot;abgesendet, sofort weiter&quot;);   
+</pre></div>
+
+<p>Siehe auch</p>
+
+</div>
+<div class="slide">
+
+<h2 id="autocomplete">Autocomplete</h2>
+
+<p>Wir werden in diesem Beispiel ein Autocomplete-Feld bauen.
+Beginnen wir mit dem Backend:</p>
+
+</div>
+<div class="slide">
+
+<h3 id="backend">Backend</h3>
+
+<p>Am Server befindet sich eine Datenbank mit ca. 170.000 Städten.
+Mit der Anfrage</p>
+
+<p><code>search.php?term=w</code></p>
+
+<p>Werden nur die Städte die mit w beginnen geladen,
+und als JSON-Array zurück gegeben:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+[
+    &quot;Wa,GH&quot;,
+    &quot;WaKeeney,US&quot;,
+    &quot;Waabs,DE&quot;,
+    &quot;Waaia,AU&quot;,
+    &quot;Waajid,SO&quot;,
+    &quot;Waake,DE&quot;,
+    &quot;Waakirchen,DE&quot;,
+    &quot;Waal,DE&quot;,
+    ...
+    &quot;Wüstenzell,DE&quot;,
+    &quot;Wüstheuterode,DE&quot;,
+    &quot;Wāhan Murad,PK&quot;,
+    &quot;Wān Yampēng,MM&quot;,
+    &quot;Wŏnsŏngil-tong,KR&quot;,
+    &quot;Włocławek,PL&quot;,
+    &quot;Włodawa,PL&quot;,
+    &quot;Włoszczowa,PL&quot;,
+    &quot;Wāsiţ,EG&quot;,
+    &quot;Wąwolnica,PL&quot;
+]
+</pre></div>
+
+<p>Das sind ca. 5000 Namen.</p>
+
+<p>Beim Lesen aus der Datenbank wird ein Volltext-Index verwendet (siehe
+<a href="/php-db-optimierung/indexes/">Datenbank optimieren: Indexes</a>). Das
+sieht man aber weder der SQL-Query noch dem PHP an:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+$term = filter_var($_GET[&#39;term&#39;], FILTER_SANITIZE_STRING) . &#39;%&#39;;
+$sth-&gt;execute(array($term));
+$cities = $sth-&gt;fetchAll(PDO::FETCH_COLUMN);
+</pre></div>
+
+<p>Der Output des PHP-Programmes ist JSON. Das muss mit dem HTTP Header <code>Content-Type</code>
+angekündgt werden:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+header(&#39;Content-Type: application/json&#39;);
+echo json_encode($cities);
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="frontend">Frontend</h3>
+
+<p>Für das Frontend kann man eine fertige Library verwenden,
+z.B. <a href="https://github.com/Pixabay/JavaScript-autoComplete/">JavaScript-autoComplete</a>:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+new autoComplete({
+    selector: &#39;#cityinput&#39;,
+    source: function(term, handle_response){
+      // schicke suchwort &#39;term&#39; ans backend
+      // wenn die datenvorliegen, rufe die funktion handle_response auf           
+    }
+});
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="ajax-beispiel-mit-api">AJAX Beispiel mit API</h2>
+
+<p>In diesem Beispiel werden Wetter-Daten von zwei Quellen angezeigt. Dabei
+sieht man einen wichtigen Unterschied:</p>
+
+<ul>
+  <li>auf http://openweathermap.org/ ist der Zugriff nur mit API key möglich, auch vom frontend aus</li>
+  <li>auf http://at-wetter.tk/ ist der Zugriff auch ohne API key möglich, aber nicht von einem fremden Frontend aus, weil <a href="/cors/">CORS</a> nicht erlaubt ist.</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h3 id="direkter-zugriff-auf-eine-fremde-api">Direkter Zugriff auf eine fremde API</h3>
+
+<p>Um die API von http://openweathermap.org/ zu benutzen
+ist eine Anmeldung und ein API key notwendig. Das ermöglicht
+eine Beschränkung der Zugriffe: am Server kann mitgezählt werden
+mit welchem API Key wie viele Zugriffe erfolgt sind, und je nach
+dem limitiert oder verrechnet werden. Die Preise für die API
+sind nach Anzahl der Zugriffen gestaffelt, im Mai 2017 waren die Preise:</p>
+
+<p><img src="/images/openweathermap-preise.png"  alt="Preise von openweathermap.org" ></p>
+
+<p>Beim Zugriff auf die API muss jeweils der API-Key als parameter
+mit gesendet werden:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Zugriff auf die openweathermap API</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+fetch(&quot;http://api.openweathermap.org/data/2.5/weather?&amp;units=metric&amp;q=London,uk&amp;apikey=....&quot;)
+.then(function...
+</pre></div>
+
+<p>Die genaue Struktur der Daten und wie man sie zerlegt kann man entweder
+<a href="https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2">der Dokumentation</a> entnehmen, oder einfach in der console erforschen.</p>
+
+<p>ABER ACHTUNG: diese API ist (gratis) nur über http zugänglich.
+Die resultierende Webseite kann wieder nur auf http veröffentlicht werden, nicht
+auf https.</p>
+
+<p>Um die openweahtermap api auch über https verwenden zu können
+ist die nächste Lösung notwendig:</p>
+
+</div>
+<div class="slide">
+
+<h3 id="zugriff-auf-eine-api-ber-lokales-backend">Zugriff auf eine API über lokales Backend</h3>
+
+<p>Manchmal kann man nicht vom Frontend direkt auf die API zugreifen.</p>
+
+<p>Einen Grund haben wir schon bei openweathermap gesehen: die API ist über
+http zugänglich, das frontend wird auf https gehosted. So ist es verboten
+auf die API zuzugreifen.</p>
+
+<p>Der zweite mögliche Grund ist CORS. Das tritt zum Beispiel bei der API
+<code>at-wetter.tk</code> auf.
+Die Abfrage scheitert ohne sichtbare Fehlermeldung. In der console wird
+in manchen Browsern eine Meldung angezeigt:</p>
+
+<p><img src="/images/cors-error.png"  alt="CORS Fehlermeldung" ></p>
+
+<p>In beiden Fällen ist die Lösung dieselbe: man muss die Daten
+über das eigene Backend laden.</p>
+
+<p>In PHP ist der Zugriff auf die API ohne Problem möglich:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>zugriff auf die wetter-at.tk API</small></h4>
+<pre class="lang-php prettyprint linenums">
+header(&#39;Content-Type: application/json&#39;);
+...
+$url = &quot;http://at-wetter.tk/api/v1/station/11150/t/$date/7&quot;;
+$text=file_get_contents( $url );
+...
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="ausblick">Ausblick</h2>
+
+<p>Das waren nur einige wenige Anwendungsbeispiele für AJAX,
+es gibt natürlich noch viel mehr.</p>
+
+<p>Aber bevor man sich in AJAX Abenteuer stürzt sollte man sich auch
+über die Probleme bewusst sein, dazu mehr im nächsten Kapitel.</p>
+</div>
+    <div class="slide">
+      <h1>AJAX</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/applied-js-and-css/dynamisches-formular//slide.html">Dynamisches Formular</a> | 
+        <a href="/applied-js-and-css/ajax/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/applied-js-and-css/ajax-irrwege//slide.html">AJAX Irrwege</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

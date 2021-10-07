@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>HTML Grundkurs - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>HTML Grundkurs</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/das-web-und-html/bnf//slide.html">BNF</a> | 
+        <a href="/das-web-und-html/html-grundkurs/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/das-web-und-html/upload//slide.html">Upload und Tools</a>
+        
+      </p>
+    </div>
+    <div class="slide"><p>Wir werden HTML die aktuelle Version verwendet. Die wichtigsten HTML-Tags (Links, Bilder, 
+Tabellen, Formulare) werden Sie bald auswendig können. Alle Details können Sie Intenet
+nachschlagen.</p>
+
+<p>HTML hat sich in den ca. 20 Jahren seines Bestehens weit entwickelt. Die Version 5 wurde im Jahr 2014 veröffentlicht, danach gab es keine neuen Nummern mehr.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>In den Jahren davor wurde auch XHTML neben HTML verwendet. Das X von XHTML 
+steht für die Kompatibilität mit XML  <!-- XE "XML" -->  . Die Dateien haben dabei weiterhin die 
+Endung .htm oder .html (nur sehr selten oder .xhtm, .xhtml). Im Unterschied zu HTML war 
+XHTML strenger in der Schreibweise. Am Web finden Sie sowohl Tutorials zu HTML als 
+auch zu XHTML – lassen Sie sich davon nicht verwirren, sondern lernen
+sie nur aktuelle HTML5.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="arbeitsablauf">Arbeitsablauf</h2>
+<p>Der Arbeitsablauf beim Erstellen von HTML ist eine endlose Schleife:</p>
+
+<ol>
+  <li>Code im Editor eintippen</li>
+  <li>Abspeichern</li>
+  <li>Zum Browser wechseln</li>
+  <li>Neu Laden, das Ergebnis betrachten</li>
+  <li>meistens: nicht zufrieden mit dem Ergebnis sein, zurück zu 1.</li>
+</ol>
+
+<p>Es gibt verschiedene Online-Tools um HTMl auszuprobieren:</p>
+
+<ul>
+  <li><a href="http://toolness.github.com/slowparse/demo/">Slowparse</a> erklärt die Struktur von HTML, hilft Fehler zu finden</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="zeichensatz">Zeichensatz</h2>
+
+<p>HTML-Dateien bestehen aus reinem Text, in unserem Falle entweder aus Text im Format 
+ISO 8859-1 (Latin-1)  oder im Format utf-8. Mit Latin-1 ist man auf das
+lateineische Alphabet mit westeuropäischen Sonderzeichen beschränkt - man kann
+im selben Dokument nicht auch grieschische, hebräische, arabische, japanische
+Zeichen darstellen.  Mit utf-8 hat man den gesamten Zeichensatz der Menschheit
+zur Verfügung. Mein Empfehlung lautet: immer utf-8 verwenden.</p>
+
+<p><img src="/images/das-web-und-html/vscodeutf8.png"  alt="" ></p>
+
+<p>So sieht das in Visual Studio Code aus wenn alles gut läuft:
+VS Code glaubt dass die Datei als utf-8 speichern soll,
+und der meta-tag sagt das auch.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="sonderzeichen">Sonderzeichen</h2>
+
+<p>Sonderzeichen in HTML nennt man „character entities  <!-- XE "character entities" -->  “. Sie haben 
+die From <code>&amp;entityname;</code></p>
+
+<p>Folgende Character Entities müssen Sie verwenden:</p>
+
+<table class="table table-condensed table-bordered" style="width:auto">
+  <thead>
+    <tr>
+      <th style="text-align: center">Gewünschtes Zeichen</th>
+      <th style="text-align: center">Character Entity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">&lt;</td>
+      <td style="text-align: center">&amp;lt;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">&gt;</td>
+      <td style="text-align: center">&amp;gt;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">&amp;</td>
+      <td style="text-align: center">&amp;amp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">”</td>
+      <td style="text-align: center">&amp;quot;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">’</td>
+      <td style="text-align: center">&amp;apos;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Folgende Character Entities können Sie vermeiden, indem Sie das Zeichen selbst im Code 
+verwenden:</p>
+
+<table class="table table-condensed table-bordered" style="width:auto">
+  <thead>
+    <tr>
+      <th style="text-align: center">Gewünschtes Zeichen</th>
+      <th style="text-align: center">Character Entity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Ä</td>
+      <td style="text-align: center">&amp;Auml;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">ä</td>
+      <td style="text-align: center">&amp;auml;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">ß</td>
+      <td style="text-align: center">&amp;szlig;</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+<div class="slide">
+
+<h2 id="html-tags">HTML-Tags</h2>
+
+<p>Die gewünschte Formatierung des Textes wird mit HTML-Tags  <!-- XE "Tag" -->  angegeben</p>
+
+<ol>
+  <li>Tags sind zwischen spitzen Klammern eingeschlossen (kleiner-gleich und größer-gleich Zeichen).</li>
+  <li>Zu (fast) jedem “Anfangs-Tag” gibt es einen “End-Tag”, der sich nur durch
+den Schrägstrich vom Anfangs-Tag unterscheidet.  Z. B. <code>&lt;p&gt;</code>hier der Absatz<code>&lt;/p&gt;</code>.</li>
+  <li>Nur in XHTML müssen “alleinstehende” Tags mit einem Schrägstrich am Ende
+geschrieben werden:  <code>&lt;br /&gt;</code> In HTML5 schreibt man diesen Tag (wieder) als <code>&lt;br&gt;</code></li>
+  <li>In XHTML werden Tags immer klein geschrieben, bei HTML ist  die Groß- oder Kleinschreibung egal.</li>
+</ol>
+
+</div>
+<div class="slide">
+
+<h2 id="whitespace">Whitespace</h2>
+
+<p>Sogenannter “whitespace  <!-- XE "whitespace" -->  “ - das sind mehrere Leerzeichen, 
+Tabulatoren und Zeilenumbrüche hintereinander – wird vom Browser völlig ignoriert. Ob Sie 
+also in Ihrer HTML-Datei ein Leerzeichen oder 7 Leerzeilen einfügen macht keinen 
+Unterschied. (gar kein Leerzeichen oder ein Leerzeichen macht schon einen Unterschied) 
+Die folgenden beiden Dokumente sind also äquivalent:</p>
+
+<div class="example twopane">
+<h4 class="caption">Html Code <small>Zeilenumbruch im Code ist egal, Darstellung gleich</small></h4>
+<pre class="lang-html prettyprint linenums left">
+    &lt;p&gt;Halli 
+    Hallo&lt;/p&gt;
+
+
+</pre><pre class="lang-html prettyprint linenums right">
+    &lt;p&gt;
+    Halli
+    Hallo
+    &lt;/p&gt;
+</pre><div class="clearfix"></div></div>
+
+</div>
+<div class="slide">
+
+<h2 id="zeilenumbruch">Zeilenumbruch</h2>
+
+<p>Nur die Tags beeinflussen die Darstellung der Webseite. Sie müssen den Tag 
+ <code>&lt;br&gt;</code> verwenden um einen Zeilenumbruch  auf der Webseite zu erzwingen
+– dies ist aber nur selten sinnvoll, da der Browser einen automatischen Zeilenumbruch 
+durchführt, um den Text im vorhandenen Platz optimal darzustellen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="attribute">Attribute</h2>
+
+<p>Manche Tags können Attribute enthalten. Ein Beispiel ist der Tag <code>&lt;img&gt;</code> der ein 
+Bild  in die Seite einfügt (Englisch: Image). Die wichtigsten Attribute von
+<code>&lt;img&gt;</code> sind <code>src</code>   (von Source = Quelle) und <code>alt</code>     (Alternative
+Darstellung, Ersatztext).</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;img src=&quot;neu.svg&quot; alt=&quot;Das ist neu!&quot;&gt;
+</pre></div>
+
+<p>Es ist egal, in welcher Reihenfolge Sie die Attribute schreiben.</p>
+
+<p>Der Wert eines Attributes muß in XHTML immer in Anführungszeichen geschrieben
+werden, in HTML kann man die Anführungszeichen weglasse, dann endet der Wert
+beim nächsten Leerzeichen.</p>
+
+<div class="example twopane">
+<pre class="lang-html prettyprint linenums left">
+&lt;img alt=&quot;Das ist neu!&quot; src=&quot;neu.svg&quot;&gt;
+
+
+
+</pre><pre class="lang-html prettyprint linenums right">
+&lt;img 
+  alt=&quot;Das ist Neu!&quot; 
+  src=&quot;neu.svg&quot; 
+  width=50 height=15&gt;
+</pre><div class="clearfix"></div></div>
+
+<p>ACHTUNG: ein häufiger Fehler ist es, das zweite Anführungszeichen zu vergessen:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+  &lt;img alt=&quot;Das ist neu!&quot; src=&quot;neu.svg&quot;&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="kompatibilitt">Kompatibilität</h2>
+
+<p>Jeder Browser (egal ob Chrome, Firefox, Safari, Microsoft Internet Explorer, Opera,…) kann 
+jedes HTML-Dokument darstellen. Mit jedem Editor (egal ob Notepade, vim, Dreamweaver, WebStrom, Eclipse,… ) kann jedes HTML-Dokument bearbeitet werden.</p>
+
+<p>So soll das Web funktionieren.</p>
+
+<p>Siehe auch <a href="http://dowebsitesneedtolookexactlythesameineverybrowser.com/">dowebsitesneedtolookexactlythesameineverybrowser.com</a></p>
+
+<p>Probleme mit nicht kompatiblen Seiten kann man auf <a href="https://webcompat.com/">webcompat</a> melden.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="unbekannte-attribute">Unbekannte Attribute</h3>
+
+<p>Neue Attribute Tags, die z. B. ein 
+Browser nicht erkennt, sind zu ignorieren – es gibt 
+<strong>keine Fehlermeldungen</strong>!</p>
+
+<p>Das Attribut bli, welches nicht zu HTML gehört, also kein Browser kennt, wird wie andere 
+unbekannte Attribute einfach ignoriert.</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;img  alt=&quot;Das ist Neu!&quot;
+    bli=&quot;bla, blo&quot; 
+    src=&quot;neu.svg&quot;
+    &gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="unbekannte-tags">Unbekannte Tags</h3>
+
+<p>Wenn das W3C in HTML Version 21 beispielsweise den neuen Tag <code>&lt;jump&gt;</code> (hüpfenden Text) 
+einführen würde, können Sie diesen Tag auf Ihrer Webseite verwenden. Der Text würde 
+jedoch nur in den neuesten Versionen der Browser (die schon die Version 21 kennen) 
+hüpfend dargestellt. In älteren Browsern wird der Tag &lt;jump&gt; ignoriert:</p>
+
+<div class="example twopane">
+<h4 class="caption">Html Code <small>Neuer Tag in neuem Browser, Interpretation in altem Browser</small></h4>
+<pre class="lang-html prettyprint linenums left">
+&lt;p&gt;Dies ist meine erste 
+&lt;jump&gt;supercoole&lt;/jump&gt; 
+Webseite!!!! &lt;/p&gt;
+</pre><pre class="lang-html prettyprint linenums right">
+&lt;p&gt;Dies ist meine erste 
+supercoole 
+Webseite!!!!&lt;/p&gt;
+</pre><div class="clearfix"></div></div>
+
+</div>
+<div class="slide">
+
+<h2 id="text-formatieren">Text formatieren</h2>
+
+<p>Die in diesem Kapitel gezeigten Tags finden Sie auch
+auf der <a href="/images/das-web-und-html/text.html">Demo Seite</a>.</p>
+
+<p>Wir unterscheiden zwischen HTML-Tags die Blöcke definieren, und solchen die das nicht tun,
+genannt “inline” Tags. 
+Blockbildende Tags beanspruchen immer einen rechteckigen Bereich bei der Ausgabe, inline 
+Tags tun das nicht.</p>
+
+<div class="resizable">
+<p style="background-color:#ddd">Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+I am a block level element - p for paragraph.  Ich bin ein blockbildender Tag, nämlich ein Pargraph P. I am a block level element - p for paragraph. <em style="background-color: red;">Und ein em
+in der Mitte. And some inline content  right here.</em> Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+I am a block level element - p for paragraph.
+</p>
+
+<p style="background-color:#ddd">Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+I am a block level element - p for paragraph.  Ich bin ein blockbildender Tag, nämlich ein Pargraph P.  <em style="background-color: red;">Und ein em
+in der Mitte. And some inline content  right here.</em> Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+
+</p>
+<p style="background-color:#ddd">Ich bin ein blockbildender Tag, nämlich ein Pargraph P. I am a block level element - p for paragraph. <em style="background-color: red;">Und ein em
+in der Mitte. And some inline content  right here.</em> Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+I am a block level element - p for paragraph.
+</p>
+</div>
+
+<p>In diesem Beispiel sieht man drei Absätze (blockbildene p-Tags, grau eingefärbt), die
+jeweils einen em-Tag (inline-tag, rot eingefärbt) enthalten.
+Die inline-Tags werden je nach Platzbedarf umgebrochen und auf mehrere Zeilen verteilt. 
+Die blockbildenden Tags bleiben immer Rechtecke.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="blockbildende-tags-fr-text">Blockbildende Tags für Text</h3>
+
+<p>Der Inhalt einens Absatzes (Paragraph) <code>p</code> wird
+je nach Schriftgröße und vorhandenem Platz neu umgebrochen.
+Der Zeilenumbruch ist also nicht aufgabe des Autors, der Autorin,
+sondern des Webbrowsers.</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Normaler Fließ-Text</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;p&gt;Text text text, text text. Text 
+text text, text text. Text text 
+text, text text. Text und text text, 
+text text. &lt;/p&gt;
+</pre></div>
+
+<p>In folgendem Beispiel wird mit dem Attribut <code>style</code> ein bisschen CSS verwendet. 
+CSS ist für die Darstellung von
+HTML zuständig. Hier wird der Text im Absatz zentriert.</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Zentrierter Text</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;p style=&quot;text-align:center;&quot;&gt;Text 
+Zentrierter text text, text text. Text text 
+text, text text. Zentrierter text text text, 
+text text. Text und text text, text 
+text. &lt;/p&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Überschriften werden für die Strukturierung des Textes verwendet,
+mehr als 3 Ebenen braucht man selten:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Überschriften</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;h1&gt;Überschriftstext&lt;/h1&gt;
+&lt;h2&gt;Überschriftstext&lt;/h2&gt;
+&lt;h3&gt;Überschriftstext&lt;/h3&gt;
+</pre></div>
+
+<p>Der <code>nav</code> Tag dient zur Auszeichnung von
+Navigations-Menüs. Achtung: dieser Tag hat erst mal
+keine sichtbare Wirkung.</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Bereich mit Navigations-Menü, Links</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;nav&gt;  
+   &lt;a href=&quot;index.html&quot;&gt;Home&lt;/a&gt; 
+   .... 
+&lt;/nav&gt;
+</pre></div>
+
+<p>Auch die folgenden drei Tags haben keine sichtbare Wirkung,
+sondern dienen erst mal nur zu Strukturierung des Dokuments.</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Weitere Tags zur Strukturierung der Seite</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;header&gt; .... &lt;/header&gt;
+&lt;footer&gt; .... &lt;/footer&gt;
+&lt;aside&gt; .... &lt;/aside&gt;
+</pre></div>
+
+<p>Für umfangreiche Zitate gibt es einen blockbildenden Tag:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Block-Zitat (eingerückt)</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;blockquote&gt;Alle meine Entchen&lt;br&gt; 
+schwimmen auf dem See&lt;/blockquote&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="nicht-blockbildende-tags-fr-text">Nicht-Blockbildende Tags für Text</h3>
+
+<p>Diese müssen Sie innerhalb eines Blocks verwenden. Diese Formate werden unterschieden 
+in logische und physische Elemente.</p>
+
+<p>Die logischen Tags geben die genaue Darstellung nicht vor.</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>inline Tags zum formatieren von Text</small></h4>
+<pre class="lang-html prettyprint linenums">
+Eine &lt;strong&gt;sehr wichtige&lt;/strong&gt; Sache     (stark betont, meist fett)
+und eine &lt;em&gt;interessante&lt;/em&gt; Sache.         (betont, meist kursiv)
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Physische Tags geben die genaue Darstellung vor. Das sind eigentlich „altmodische 
+Tags“,  besonders der font-Tag wurde schon um das Jahr 2000 herum durch Stylesheets 
+vollständig ersetzt, und sollte möglichst nicht mehr verwendet werden. Sie werden 
+diese Tag in „alten“ Dokumenten aber noch finden:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>veraltete Tags zum formatieren von Text</small></h4>
+<pre class="lang-html prettyprint linenums">
+Eine &lt;b&gt;fette&lt;/b&gt; Sache                      (VERALTET!)
+Eine &lt;i&gt;schräge&lt;/i&gt; Sache                    (VERALTET!)
+&lt;font face=&quot;Arial&quot;&gt;Text&lt;/font&gt;               (VERALTET!)
+&lt;font color=&quot;red&quot;&gt;rot&lt;/font&gt;                 (VERALTET!)
+</pre></div>
+
+<p>Heute verwendet man CSS im <code>style</code>-Attribut statt dessen.  Das lernen wir später.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="bilder">Bilder</h2>
+
+<p>Bilder werden in separaten Dateien gespeichert, in der HTML-Datei erfolgt nur ein Verweis 
+auf die Datei des Bildes.  <!-- XE "Bild" --> Als Attribut src  <!-- XE "src" -->   im img-Tag können Sie eine 
+absolute oder relative URL angeben:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Bilder</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;img src=&quot;http://www.google.at/intl/de_at/images/logo.svg&quot; alt=&quot;Google&quot;&gt;  
+&lt;img src=&quot;neu.svg&quot;&gt; 
+&lt;img src=&quot;10prozent.svg&quot; alt=&quot;jetzt 10% verbilligt!&quot;&gt; 
+    (mit Ersatztext, weil das Bild wichtige Information enthält)
+&lt;img src=&quot;zierleiste.svg&quot; alt=&quot;&quot;&gt; 
+    (ohne Ersatztext, weil das Bild zur zur Dekoration dient)
+&lt;img src=&quot;neu.svg&quot; style=&quot;float:left;&quot; alt=&quot;neu&quot;&gt; 
+    (Bild nach links, Text fließt rechts vorbei)
+</pre></div>
+
+<p>Für Blinde, Suchmaschinen, Browser die keine Bilder darstellen können, u.s.w. gibt man für 
+jedes Bild einen Alternativtext  <!-- XE "Alternativtext" -->   (Attribut alt  <!-- XE "alt" -->  ) an. Mit dem Firefox AddOn 
+„Web Developer“ kann man testen wie die Seite mit ALT statt Bildern aussieht. 
+Abbildung 10 zeigt die Verwendung dieses Features am Beispiel eines Wetterberichts.</p>
+
+<p><img src="/images/das-web-und-html/wetter-alt.png"  alt="Abbildung 10: Wetterbericht mit Bildern und ohne Bilder (nur ALT-Texte)" ></p>
+
+<p>Als Datenformate für <img />-Bilder werden ein Vektor-Format und drei Pixel-Formate von vielen Browsern 
+unterstützt:</p>
+
+</div>
+<div class="slide">
+
+<h3 id="svg">svg</h3>
+
+<p><img src="/images/das-web-und-html/example-svg.svg"  alt="Beispiel für ein SVG Bild: rechteck und kreis" ></p>
+
+<p>Vektor-Format, das Bild kann beliebig groß oder klein dargestellt werden. Sehr beliebt für Icons, siehe auch <a href="https://iconsear.ch/">iconssear.ch</a></p>
+
+</div>
+<div class="slide">
+
+<h3 id="gif-and-apng">gif and apng</h3>
+
+<p><img src="/images/das-web-und-html/example-gif.gif"  alt="Beispiel für ein gif Bild: Animation" ></p>
+
+<p>(Bild: Internet Meme, Quelle unbekannt)</p>
+
+<p>Palette von 255 Farben plus einer Transparenz-Farbe (kein Alpha). Ein „animiertes 
+Gif“ enthält mehrere Bilder, die der Reihe nach angezeigt werden .</p>
+
+<p>Wurde früher für Bilder mit klaren Kanten, einfärbigen Flächen, wenigen 
+Farben verwendet, z. B. Comics, Logos.  Das macht man heute mit SVG.
+So bleiben nur die animierten gifs als Anwendungfall, und selbst durch 
+animierte png oder durch Video ersetzt.</p>
+
+<p><img src="/images/das-web-und-html/example-apng.apng"  alt="Beispiel für ein animiertes png Bild: Animation" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="jpg">jpg</h3>
+
+<p><img src="/images/das-web-und-html/example-jpg.jpg" srcset="/images/das-web-und-html/example-jpg.jpg 1x, /images/das-web-und-html/example-jpg@2x.jpg 2x"  alt="Beispiel für ein jpg Bild: verschiedene Kompression" ></p>
+
+<p>(Bild von <a href="https://commons.wikimedia.org/wiki/File:Felis_silvestris_silvestris_small_gradual_decrease_of_quality.png">Michael Gäbler und AzaToth</a>, CC-SA)</p>
+
+<p>Millionen von Farben, variable Kompression, keine Transparenz. 
+Besonders geeignet für Bilder mit Farbverläufen, z. B. Photos.</p>
+
+<p>In Wirklichkeit würde man die Kompressionsrate nicht so extrem hoch
+setzen wie im linken Drittel des Bildes.</p>
+
+<p>Die Variante “progressive jpg” macht die Wartezeit beim Laden des Bildes interessanter.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="png">png</h3>
+
+<p><img src="/images/das-web-und-html/example-png.png"  alt="Beispiel für ein PNG Bild: Würfel mit Alpha-Transparnz" ></p>
+
+<p>(Bild von <a href="https://commons.wikimedia.org/wiki/File:PNG_transparency_demonstration_1.png">Ed g2s</a>, CC-SA)
+Weniger Kompression als JPG, aber Alpha-Transparenz.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="weitere-formate">Weitere Formate</h3>
+
+<p>Es gibt noch viele weitere Bildformate die im Web benutzt werden können - mit etwas Aufwand.
+Aber für den Anfang reichen svg, jpg und png aus. Diese Formate werden sicher von allen
+Browsern unterstützt.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Ideal wäre, das Format auszuwählen, in dem das Bild nichts an Qualität verliert, und die 
+Dateigröße möglichst gering ist.</p>
+
+<p>Weitere Arten Bilder zu erstellen werden wir später genauer betrachten: Mit
+responsive images kann man verschieden große Bilder für verschiedene
+Ausgabegeräte anbieten. Mit dem 
+canvas-Tag und Javascript kann man Bilder zeichnen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="links">Links</h2>
+
+<p>Als Attribut href  <!-- XE "href" -->   des Link  <!-- XE "Link" -->  können Sie eine absolute oder relative 
+URL angeben:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Links</small></h4>
+<pre class="lang-html prettyprint linenums">
+Link zu Webseite (absolute URL)
+    &lt;a href=&quot;http://cnn.com&quot;&gt;zu CNN&lt;/a&gt;
+Link zu Webseite im selben Ordner (relative URL)  
+    &lt;a href=&quot;seite2.htm&quot;&gt;mehr&lt;/a&gt;
+Link zu E-Mail Adresse
+    &lt;a href=&quot;mailto:aa@bb.cc&quot;&gt;Mail&lt;/a&gt;
+Bild als Link
+    &lt;a href=&quot;seite2.htm&quot;&gt;&lt;img src=&quot;mehr.svg&quot;alt=&quot;zur Seite 2&quot;&gt;&lt;/a&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="gesamt-struktur-einer-webseite">Gesamt-Struktur einer Webseite</h2>
+
+<p>Eine HTML Seite hat ein Grundgerüst.  <!-- XE "Doctype" -->    <!-- XE "head" -->    <!-- XE "body" -->   aus 
+<code>DOCTYPE</code>, <code>html</code>, <code>head</code> und <code>body</code>. Der erste Tag ist der <code>DOCTYPE</code>, er gibt die Version von 
+HTML an, die verwendet wird. Es folgt der <code>html</code>-Tag. Innerhalb des <code>html</code>-Tags gibt es erst 
+einen <code>head</code> und dann einen <code>body</code>-Tag – nicht mehr und nicht weniger.
+Hier am Beispiel von HTML5:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Grundgerüst eines HTML5 Dokuments</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;!DOCTYPE HTML&gt; 
+&lt;html&gt;  
+&lt;head&gt;  
+    &lt;meta charset=&quot;utf-8&quot;&gt;  
+    &lt;title&gt;Eine Webseite&lt;/title&gt;  
+&lt;/head&gt; 
+&lt;body&gt; 
+    Hier die Tags, die Sie schon kennen  
+&lt;/body&gt; 
+&lt;/html&gt;
+</pre></div>
+
+<p>Bei XHTML ist der DOCTYPE sehr viel komplizierter. Der meta-Tag für die Auswahl des 
+Charactersets ist ebenfalls komplizierter.</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Grundgerüst eines XHTML Dokuments</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;!DOCTYPE html 
+     PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; 
+     &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;&gt; 
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
+    &lt;title&gt;Eine Webseite&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+     Hier die Tags, die Sie schon kennen.
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+
+<p>Achtung: es kann nur einen head und einen body geben, keine Wiederholungen!</p>
+
+</div>
+<div class="slide">
+
+<h2 id="listen">Listen</h2>
+
+<p>Listen  <!-- XE "Liste" -->    <!-- XE "ul" -->    <!-- XE "ol" -->    <!-- XE "li" -->   werden mit zwei verschachtelten Tags 
+gebaut: der li-Tag für den einzelnen Listen-Punkt, und der ol- oder ul-Tag für die gesamte 
+Liste.</p>
+
+<pre><code>&lt;ul&gt; 
+    &lt;li&gt;punkti&lt;/li&gt; 
+    &lt;li&gt;punkti&lt;/li&gt; 
+&lt;/ul&gt;
+
+&lt;ol&gt; 
+  &lt;li&gt;eins&lt;/li&gt; 
+  &lt;li&gt;zwei&lt;/li&gt; 
+  &lt;li&gt;drei&lt;/li&gt; 
+&lt;/ol&gt;
+</code></pre>
+
+</div>
+<div class="slide">
+
+<h2 id="tabellen">Tabellen</h2>
+
+<p>Um eine Tabelle  <!-- XE "Tabelle" -->    <!-- XE "table" -->    <!-- XE "tr" -->    <!-- XE "td" -->    <!-- XE "th" -->   zu erzeugen 
+müssen Sie die Tags ´table´, ´tr´ (Table Row = Tabellenhzeile) und ´td´ (Table Data) 
+richtig ineinander verschachteln</p>
+
+<pre><code>&lt;table style="border-collapse:collapse;"&gt; 
+  &lt;tr&gt; 
+    &lt;td&gt;Freitag&lt;/td&gt; 
+    &lt;td&gt;Samstag&lt;/td&gt; 
+    &lt;td&gt;Sonntag&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+    &lt;td&gt;lernen&lt;/td&gt; 
+    &lt;td&gt;lernen&lt;/td&gt; 
+    &lt;td&gt;lange schlafen&lt;/td&gt; 
+  &lt;/tr&gt; 
+&lt;/table&gt;
+</code></pre>
+
+<p>Der Rahmen der Tabelle ist normalerweise unsichtbar, mit einer Zeile CSS wird er hier auf 
+sichtbar geschalten.</p>
+
+<pre><code>&lt;style&gt;td {  border:2px #ddd solid; padding: 5px; }&lt;/style&gt;
+</code></pre>
+
+<p>HTML-Tabellen wurden früher in Webseiten für das Layout  <!-- XE "Layout:mit Tabellen" -->   der 
+Seite verwendet, diese Tabellenlayouts sind noch auf älteren Webseiten zu
+finden.  Dazu noch ein Literaturhinweis:</p>
+
+<p><a href="http://shouldiusetablesforlayout.com/">http://shouldiusetablesforlayout.com/</a></p>
+
+<p>Moderne Webseiten werden mit CSS-Layouts gestaltet.
+Heute verwendet man Tabellen wirklich nur noch zur Darstellung von Tabellen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="weitere-quellen">Weitere Quellen</h2>
+
+<ul>
+  <li><a href="http://www.youtube.com/watch?v=MijmeoH9LT4">Characters, Symbols and the Unicode Miracle</a> YouTube Video von Computerphile</li>
+  <li><a href="https://de.wikipedia.org/wiki/UTF-8">utf-8</a> in der deutschen Wikipedia</li>
+</ul>
+
+</div>
+    <div class="slide">
+      <h1>HTML Grundkurs</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/das-web-und-html/bnf//slide.html">BNF</a> | 
+        <a href="/das-web-und-html/html-grundkurs/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/das-web-und-html/upload//slide.html">Upload und Tools</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Demo Seite für AJAX Irrweg</title>
+  <link rel="shortcut icon" href="favicon.svg" type="image/svg">
+  <style>
+    body {
+      display: grid;
+      grid-template-columns: 1fr 130px 900px 1fr;
+      grid-template-rows: 80px 1fr 210px;
+      grid-template-areas:
+        ".              headlineArea     headlineArea   ."
+        ".              navArea          mainArea       ."
+        ".              footerArea       footerArea     .";
+    }
+    header {
+      grid-area: headlineArea;
+    }
+    nav {
+      grid-area: navArea;
+    }
+    main {
+      grid-area: mainArea;
+    }    
+    footer {
+      grid-area: footerArea;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Single Page App with Routing</h1>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="#!">Seite 1</a></li>
+      <li><a href="#!2">Seite 2</a></li>
+      <li><a href="#!3">Seite 3</a></li>
+      <li><a href="#!4">Seite 4</a></li>
+      <li><a href="#!5">Seite 5</a></li>
+    </ul>
+  </nav>
+  <main>
+    <p><b>Ajax</b> 
+      [<span title="Aussprache im Internationalen Phonetischen Alphabet (IPA)">ˈeidʒæks</span>] 
+      (auch <b>AJAX</b>; Akronym von englisch 
+      <i><span lang="en"><u>A</u>synchronous <u>J</u>avaScript <u>a</u>nd <u>X</u>ML</span></i>) 
+      bezeichnet ein Konzept der asynchronen Datenübertragung zwischen einem 
+      Browser und dem Server. 
+      Dieses ermöglicht es, HTTP-Anfragen durchzuführen, 
+      während eine HTML-Seite angezeigt wird, und die Seite zu verändern, 
+      ohne sie komplett neu zu laden.
+    </p>
+  </main>
+  <footer>
+
+  </footer>
+  <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>  
+  <script>
+    function loadNumber(ctx, next){     
+      console.log(`starting to load ctx = ${ctx}, next = ${next}`); 
+      console.log('path: ', ctx.path);
+        console.log('querystring: ', ctx.querystring);
+        console.log('hash: ', ctx.hash);
+        console.log(' ');      
+      return;
+      fetch(filename).then(function(response) {
+        console.log("Response wird empfangen");
+        return response.text();
+      })
+      .then(function(html) {
+        console.log("Seite wurde aus dem Response herausgelesen");
+
+        document.querySelector('main').innerHTML = html;
+        document.location.hash = hash;
+      });
+
+    }
+    document.addEventListener('DOMContentLoaded', function(){
+      console.log("setting up router for SPA");
+      page({ hashbang: true });
+      page.base('/images/ajax-fixed');      
+      page('/:number', loadNumber);      
+      page();     
+      // page('/images/ajax-fixed/*', function(){
+      //   document.querySelector('main').innerHTML = 'no such page!';
+      // });
+    });
+  </script>
+</body>
+</html>
+

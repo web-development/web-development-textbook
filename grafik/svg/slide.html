@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>SVG - Vektor Grafik - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>SVG - Vektor Grafik</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/grafik/images//slide.html">Pixel-Bilder</a> | 
+        <a href="/grafik/svg/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/grafik/2dcanvas//slide.html">2d Canvas</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<svg width="200" height="200" style="float:left;">
+    <circle cx="100" cy="100" r="80" stroke="black" stroke-width="2" fill="#4e9a06" />
+    <rect x="80" y="100" width="90" height="90" stroke="black" stroke-width="2" fill="#204a87" opacity="0.75" />
+</svg>
+
+<p>Scalable Vector Graphics (SVG, engl. „skalierbare Vektorgrafik“) ist die vom
+World Wide Web Consortium (W3C) empfohlene Spezifikation zur Beschreibung
+zweidimensionaler Vektorgrafiken. SVG ist ein Beispiel für XML.</p>
+
+<p>SVG wurde erstmals im September 2001 veröffentlicht, die aktuelle Version
+ist <a href="http://www.w3.org/TR/SVG11/">Version 1.2</a>, die seit Dezember 2008 vom W3C empfohlen wird, aktuell.</p>
+
+<p>SVG hat eine lange und wechselvolle Geschichte hinter sich: es wurde bereits im Jahr 2001 veröffentlicht.
+Für die Darstellung im Browser war aber damals die Installation eines Plugins notwendig.
+Aber erst seit 2005 (Firefox, Opera), 2006 (Webkit) bzw. 2011 (Internet Explorer) wird SVG
+im Browser nativ dargestellt.</p>
+
+</div>
+<div class="slide">
+
+
+
+<div class="example">
+<h4 class="caption">Xml Code <small>Einbindung von SVG in HTML (Inline-SVG)</small></h4>
+<pre class="lang-xml prettyprint linenums">
+&lt;svg width=&quot;200&quot; height=&quot;200&quot; style=&quot;float:left;&quot;&gt;
+  &lt;circle cx=&quot;100&quot; cy=&quot;100&quot; r=&quot;80&quot;                 
+          stroke=&quot;black&quot; stroke-width=&quot;2&quot; fill=&quot;#4e9a06&quot; /&gt;
+  &lt;rect x=&quot;80&quot;   y=&quot;100&quot; width=&quot;90&quot; height=&quot;90&quot; 
+        stroke=&quot;black&quot; stroke-width=&quot;2&quot; fill=&quot;#204a87&quot; /&gt;
+&lt;/svg&gt;
+</pre></div>
+
+<p>Mit SVG kann man zweidimensional zeichnen. Die grafischen Objekte werden</p>
+
+<ul>
+  <li>wie bei HTML - in einem DOM gespeichert und können manipuliert werden. Zur
+Darstellung im Browser werden sie mit dem <a href="http://de.wikipedia.org/wiki/Painter%27s_Algorithmus">Painters Algorithm</a> gezeichnet:
+“spätere” Objekte übermalen “frühere” Objekte. Deswegen überdeckt das blaue Rechteck
+im Beispiel den grünen Kreis.</li>
+</ul>
+
+<p>Inline SVG wird heute von den aktuellen Browsersn unterstütz, siehe
+<a href="http://caniuse.com/#feat=svg-html5">can i use</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="grundformen-in-svg">Grundformen in SVG</h2>
+
+<p>Mit den Tags <code>circle</code>, <code>rect</code>, <code>ellipse</code>, <code>path</code> und <code>polygon</code> werden
+simple geometrische Elemente definiert.</p>
+
+<svg width="700" height="200">
+<g transform="translate(10,30) scale(1.5,1.5)">
+  <rect width="66" height="30" x="21" y="32" stroke="#204a87" fill="#204a87" fill-opacity="0.6" stroke-width="2" />
+  <text x="21" y="82">Rechteck</text>
+  <circle cx="144" cy="38" r="18" stroke="#4e9a06" fill="#4e9a06" fill-opacity="0.6" stroke-width="2" />
+  <ellipse cx="170" cy="43" rx="27" ry="15" stroke="#73d216" fill="#73d216" fill-opacity="0.6" stroke-width="2" />
+  <text x="122" y="81">Kreis + Ellipse</text>
+</g>
+<g transform="translate(340,-137) scale(1.5,1.5)">
+  <path d="M 12,170 C 39,182 43,154 49,142 C 62,114 101,145 101,145" fill="#ef2929" fill-opacity="0.62" stroke="#a40000" stroke-width="2" />
+  <path d="M 149,109 L 149,127 L 127,144 L 140,172 L 188,167 L 191,119 L 149,109 z" fill="#edd400" fill-opacity="0.59" stroke="#c4a000" stroke-width="2" />
+  <text x="35" y="192">Pfad</text>
+  <text x="141" y="192">Polygon</text>
+</g>
+<g transform="translate(340,0)">
+        <path class="leaf" d="M41.9,56.3l0.1-2.5c0,0,4.6-1.2,5.6-2.2c1-1,3.6-13,12-15.6c9.7-3.1,19.9-2,26.1-2.1c2.7,0-10,23.9-20.5,25 c-7.5,0.8-17.2-5.1-17.2-5.1L41.9,56.3z" fill="#76993E" strole="#4A5E23" stroke-width="2" />
+</g>
+</svg>
+
+</div>
+<div class="slide">
+
+<h3 id="kreis-ellipse-rechteck">Kreis, Ellipse, Rechteck</h3>
+
+<p>Das Rechteck wird die Position seiner oberen linken Ecke, seiner Breite und seiner Höhe definiert. Der
+Kreis über Mittelpunkt und Radius, die Ellipse über Mittelpunkt und zwei Halbradien.</p>
+
+<div class="example">
+<h4 class="caption">Xml Code <small>Kreis und Ellipse</small></h4>
+<pre class="lang-xml prettyprint linenums">
+&lt;circle  cx=&quot;144&quot; cy=&quot;38&quot; r=&quot;18&quot; 
+        stroke=&quot;#4e9a06&quot; stroke-width=&quot;2&quot; 
+        fill=&quot;#4e9a06&quot;   fill-opacity=&quot;0.6&quot;  /&gt;
+&lt;ellipse cx=&quot;170&quot; cy=&quot;43&quot; rx=&quot;27&quot; ry=&quot;15&quot; 
+        stroke=&quot;#73d216&quot; stroke-width=&quot;2&quot; 
+        fill=&quot;#73d216&quot; fill-opacity=&quot;0.6&quot; /&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Viele Attribute kann man alternativ auch über CSS definieren.</p>
+
+<div class="example">
+<h4 class="caption">Xml Code <small>Attribute per CSS</small></h4>
+<pre class="lang-xml prettyprint linenums">
+&lt;circle r=&quot;80px&quot; cx=&quot;150px&quot; cy=&quot;100px&quot; 
+    style=&quot;stroke: #4e9a06; stroke-width: 2px; fill: #4e9a06; fill-opacity:0.6;&quot; /&gt;
+&lt;ellipse cx=&quot;390&quot; cy=&quot;100&quot; rx=&quot;300&quot; ry=&quot;80&quot; 
+    style=&quot;stroke: #73d216; stroke-width: 2px; fill: #73d216; fill-opacity:0.6;&quot; /&gt;
+</pre></div>
+
+<svg width="700" height="200">
+<circle r="80px" cx="150px" cy="100px" style="stroke: #4e9a06; stroke-width: 2px; fill: #4e9a06; fill-opacity:0.6;" />
+<ellipse cx="390" cy="100" rx="300" ry="80" style="stroke: #73d216; stroke-width: 2px; fill: #73d216; fill-opacity:0.6;" />
+</svg>
+
+</div>
+<div class="slide">
+
+<h3 id="pfad-und-polygon">Pfad und Polygon</h3>
+
+<p>Für Pfade und Polygone wird eine Kurzschreibweise verwendet, bei der mehrere Punkte in
+ein einziges Attribut <code>d</code> des Tags geschreiben werden. Ein Pfad besteht aus Befehlen und Koordinaten.
+Zwischen den Koordinaten kann man Kommas und beliebigen Whitespace einfügen.</p>
+
+<div class="example">
+<h4 class="caption">Xml Code <small>SVG</small></h4>
+<pre class="lang-xml prettyprint linenums">
+&lt;path d=&quot;M 149,109 L 149,127 L 127 144    L 140,172    L 188,167 L 191,119 L 149,109 z&quot;
+      fill=&quot;#edd400&quot; fill-opacity=&quot;0.59&quot; stroke=&quot;#c4a000&quot; stroke-width=&quot;2&quot; /&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wird der Befehl als Großbuchstaben geschrieben, dann werden die Koordinaten
+absolut interpretier, bei einem Kleinbuchstaben werden sie relativ interpretiert.
+Folgende Befehle erwarten eine fixe Anzahl von Koordinaten:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Buchstabe</th>
+      <th style="text-align: left">Befehl</th>
+      <th style="text-align: left">Parameter</th>
+      <th style="text-align: left">Beschreibung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">M,m</td>
+      <td style="text-align: left">MoveTo</td>
+      <td style="text-align: left">x y</td>
+      <td style="text-align: left">Gehe zu dem angegebenen Punkt ohne eine Linie zu ziehen</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">H,h</td>
+      <td style="text-align: left">HLineTo</td>
+      <td style="text-align: left">x</td>
+      <td style="text-align: left">Ziehe eine horizontale Linie zur angegebenen Koordinate</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">V,v</td>
+      <td style="text-align: left">VLineTo</td>
+      <td style="text-align: left">y</td>
+      <td style="text-align: left">Ziehe eine vertikale Linie zur angegebenen Koordinate</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Z,z</td>
+      <td style="text-align: left">Close Path</td>
+      <td style="text-align: left"> </td>
+      <td style="text-align: left">Schliesse den Pfad (gehe zurück zum Anfangspunkt)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="table table-condensed table-bordered" style="width:auto">§</p>
+
+<p>Folgende Befehle können mehrere Koordinaten auf einmal erhalten. Wie in der EBNF-Schreibweise
+wird hier die Wiederholung durch Klammern und ein + dargestellt:</p>
+
+<svg width="700" height="100">
+  <path d="M   0,10 l 50,50 50,-50 50,50 50,-50 50,50" stroke="red" stroke-width="2" fill="none" />
+  <path d="M 270,35 q 25,-50 50,0  25,50 50,0   q 25,-25 50,0  q 25,25 50,0" stroke="orange" stroke-width="2" fill="none" />
+</svg>
+
+<div class="example">
+<h4 class="caption">Xml Code <small>Beispiel für LineTo und Quadratic B</small></h4>
+<pre class="lang-xml prettyprint linenums">
+&lt;path d=&quot;M   0 10 l 50,50  50,-50 50,50 50,-50 50,50&quot; /&gt;
+&lt;path d=&quot;M 270 35 q 25,-50 50,0 25,50 50,0 q 25,-25 50,0 q 25,25 50,0&quot; /&gt;
+</pre></div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Buchstabe</th>
+      <th style="text-align: left">Befehl</th>
+      <th style="text-align: left">Parameter</th>
+      <th style="text-align: left">Beschreibung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">L,l</td>
+      <td style="text-align: left">LineTo</td>
+      <td style="text-align: left">(x y)+</td>
+      <td style="text-align: left">Ziehe gerade Linie zu den angegebenen Punken</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Q,q</td>
+      <td style="text-align: left">quadratic Bézier curveto</td>
+      <td style="text-align: left">(x1 y1 x y)+</td>
+      <td style="text-align: left">Kurve zu x,y mit x1,y1 als Stützpunkt der beiden Tangenten</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">C,c</td>
+      <td style="text-align: left">cubic Bézier curveto</td>
+      <td style="text-align: left"><nobr>(x1 y1 x2 y2 x y)+</nobr></td>
+      <td style="text-align: left">Kurve zu x,y mit x1,y1 und x2,y2 als Stützpunkte der Tangenten</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+<div class="slide">
+
+<h3 class="table table-condensed table-bordered" style="width:auto" id="farbe">Farbe</h3>
+
+<p>Farben werden wie in HTML mit hex-code definiert. Zusätzlich kann für jedes Objekt eine alpha-Transparenz mit <code>opacity</code> gesetzt werden. Bei der ersten Abbildung mit dem kleinen blauen Quadrat war das:</p>
+
+<pre><code>fill="#204a87" opacity="0.75"
+</code></pre>
+
+<p>Farbverläufe werden separat definiert, und können dann mehrfach angewendet werden.
+In diesem Beispiel wird ein radialer gradient definiert und auf ein Objekte angewandt:</p>
+
+<div class="example">
+<h4 class="caption">Xml Code <small>SVG</small></h4>
+<pre class="lang-xml prettyprint linenums">
+  &lt;radialGradient id=&quot;SVGID_1_&quot; cx=&quot;0&quot; cy=&quot;0&quot; r=&quot;320.8304&quot; gradientUnits=&quot;userSpaceOnUse&quot;&gt;
+    &lt;stop  offset=&quot;0&quot; style=&quot;stop-color:#FFDE17;stop-opacity:0.7&quot;/&gt;
+    &lt;stop  offset=&quot;1&quot; style=&quot;stop-color:#FFF200;stop-opacity:0&quot;/&gt;
+  &lt;/radialGradient&gt;
+</pre></div>
+
+<p>Der Effekt wirkt ganz verschieden, wenn man ihn auf ein Quadrat oder einen
+Pfad mit Sonnenstrahlen anwendet:</p>
+
+<svg width="700" height="300">
+  <radialGradient id="SVGID_1_" cx="0" cy="0" r="320.8304" gradientUnits="userSpaceOnUse">
+    <stop offset="0" style="stop-color:#FFDE17;stop-opacity:0.7" />
+    <stop offset="1" style="stop-color:#FFF200;stop-opacity:0" />
+  </radialGradient>
+    <g transform="translate(165,165) scale(0.5, 0.5)">
+      <rect x="-300" y="-300" width="600" height="600" fill="url(#SVGID_1_)" />
+    </g>
+    <g transform="translate(465,165) scale(0.5, 0.5)">
+      <path class="sunburst" style="fill:url(#SVGID_1_);" d="M0,319.7c-18.6,0-37.3-1.6-55.5-4.8L-7.8,41.4c5.1,0.9,10.6,0.9,15.7,0L56,314.8C37.6,318,18.8,319.7,0,319.7z
+     M-160.8,276.6c-32.5-18.8-61.3-42.9-85.5-71.6L-34,26.2c3.4,4.1,7.4,7.4,12,10.1L-160.8,276.6z M161.3,276.4L22.1,36.2
+    c4.5-2.6,8.6-6,12-10.1l212.6,178.5C222.5,233.4,193.8,257.6,161.3,276.4z M-302.5,108.3C-315.4,73-321.9,36-322-1.8l277.6-0.5
+    c0,5.3,0.9,10.4,2.7,15.2L-302.5,108.3z M302.6,107.8L41.8,12.8c1.7-4.7,2.6-9.7,2.6-14.9c0-0.3,0-0.6,0-1H322l0-1.3l0,1.9
+    C322,35.4,315.5,72.5,302.6,107.8z M-41.8-17.5l-261-94.5c12.8-35.4,31.6-68,55.8-96.9L-34.1-30.8C-37.5-26.8-40.1-22.3-41.8-17.5z
+     M41.7-17.7c-1.8-4.8-4.4-9.3-7.8-13.3l212-179.2c24.3,28.8,43.3,61.3,56.3,96.6L41.7-17.7z M-22.2-40.8l-139.6-240
+    c32.7-19,68.1-32,105.2-38.6L-8-46.1C-13-45.2-17.8-43.4-22.2-40.8z M22-40.9c-4.4-2.6-9.2-4.3-14.2-5.1l47.1-273.6
+    c37.2,6.4,72.7,19.2,105.4,38L22-40.9z" />  
+  </g>
+</svg>
+
+</div>
+<div class="slide">
+
+<h3 id="text">Text</h3>
+
+<p>Mit dem Tag <code>text</code> kann Text in SVG gesetzt werden. Das ist
+an und für sich noch nicht sehr spannend:</p>
+
+<div class="example">
+<h4 class="caption">Xml Code <small>Text in SVG</small></h4>
+<pre class="lang-xml prettyprint linenums">
+    &lt;text x=&quot;122&quot; y=&quot;81&quot;&gt;Kreis + Ellipse&lt;/text&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Mit dem Tag <code>textpath</code> kann der Text entlang eines
+beliebigen Pfades gesetzt werden.</p>
+
+<svg width="600" height="200">
+  <g transform="scale(0.5,0.5)">
+    <defs>
+      <path id="my_path" d="M 100,200 
+               C 200,100 300,  0 400,100
+               C 500,200 600,300 700,200
+               C 800,100 900,100 900,100" />
+    </defs>
+
+    <use xlink:href="#my_path" fill="none" stroke="gray" />
+    <text font-family="Verdana" font-size="42.5" fill="red">
+      <textPath xlink:href="#my_path">
+        Es geht hinauf, und hinunter, und wieder...
+      </textPath>
+    </text>
+
+  </g>
+</svg>
+
+<div class="example">
+<pre class="lang-xml prettyprint linenums">
+&lt;defs&gt;
+&lt;path id=&quot;my_path&quot; d=&quot;M 100,200 C 200,100 300,  0 400,100
+      C 500,200 600,300 700,200 C 800,100 900,100 900,100&quot; /&gt;
+&lt;/defs&gt;
+&lt;text font-family=&quot;Verdana&quot; font-size=&quot;42.5&quot; fill=&quot;red&quot; &gt;
+  &lt;textPath xlink:href=&quot;#my_path&quot;&gt;
+    Es geht hinauf, und hinunter, und wieder...
+  &lt;/textPath&gt;
+&lt;/text&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="koordinaten-und-transformationen">Koordinaten und Transformationen</h2>
+
+<p>Koordinaten in SVG werden als reelle Zahlen angegeben,
+nicht als Ganzzahlen! Es ist ein wirkliches Vektorformat.</p>
+
+<p>Das ursprüngliche Koordinatensystem beginnt in der linken oberen Ecke,
+die X-Achse zeigt nach rechts, die Y-Achse nach unten. Mit dem <code>g</code> Tag
+können Elemente gruppiert werden. Dabei kann man auch ein neues
+lokales Koordinatensystem definieren.</p>
+
+<svg width="700" height="200">
+  <defs>
+      <marker id="pointy" viewBox="0 0 10 10" refX="0" refY="5" markerUnits="strokeWidth" markerWidth="4" markerHeight="3" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" />
+      </marker>
+  </defs>
+  <g transform="translate(10,10)">
+    <path d="M 0 0 L 200 0" stroke="black" stroke-width="2" stroke-linecap="square" marker-end="url(#pointy)" />
+    <path d="M 0 0 L 0 100" stroke="black" stroke-width="2" stroke-linecap="square" marker-end="url(#pointy)" />
+    <text x="215" y="5" font-family="Verdana" font-size="15" fill="black">x</text>
+    <text x="-5" y="125" font-family="Verdana" font-size="15" fill="black">y</text>
+  </g>
+  <g transform="rotate(-5) translate(50,30)" stroke="blue">
+    <path d="M 0 0 L 100 0" stroke-width="2" stroke-linecap="square" marker-end="url(#pointy)" />
+    <path d="M 0 0 L 0 100" stroke-width="2" stroke-linecap="square" marker-end="url(#pointy)" />
+    <text x="115" y="5" font-family="Verdana" font-size="15" fill="black">x</text>
+    <text x="-5" y="125" font-family="Verdana" font-size="15" fill="black">y</text>
+  </g>
+</svg>
+
+<div class="example">
+<h4 class="caption">Xml Code <small>Gruppe mit lokalem Koordinatensystem</small></h4>
+<pre class="lang-xml prettyprint linenums">
+&lt;g transform=&quot;rotate(-5) translate(50,30)&quot;&gt;
+  ...
+&lt;/g&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="animation">Animation</h2>
+
+<p>Fast jedes Attribut in SVG kann animiert werden. In folgendem
+Beispiel wird as Attribut <code>startOffset</code> des Elements <code>textPath</code>
+animiert:</p>
+
+<div class="example">
+<h4 class="caption">Xml Code <small>SVG Animation</small></h4>
+<pre class="lang-xml prettyprint linenums">
+  &lt;textPath xlink:href=&quot;#my_path&quot; startOffset=&quot;500&quot;&gt;
+    Choo, choo, I&#39;m a little train
+    &lt;animate attributeType=&quot;XML&quot; attributeName=&quot;startOffset&quot; 
+      from=&quot;1000&quot; to=&quot;-600&quot;
+      dur=&quot;10s&quot; repeatCount=&quot;indefinite&quot; /&gt;
+  &lt;/textPath&gt;  
+</pre></div>
+
+<p>So sieht das Ergebnis aus:</p>
+
+<svg width="600" height="200">
+  <g transform="scale(0.5,0.5)">
+    <defs>
+      <path id="my_path" d="M 100,200 
+               C 200,100 300,  0 400,100
+               C 500,200 600,300 700,200
+               C 800,100 900,100 900,100" />
+    </defs>
+    <use xlink:href="#my_path" fill="none" stroke="gray" />
+    <text font-family="Verdana" font-size="42.5" fill="red">
+      <textPath xlink:href="#my_path" startOffset="500">
+        Choo, choo, I'm a little train
+        <animate attributeType="XML" attributeName="startOffset" from="1000" to="-600" dur="10s" repeatCount="indefinite" />
+      </textPath>
+    </text>
+  </g>
+</svg>
+
+</div>
+<div class="slide">
+
+<h2 id="svg-mit-javascript-erzeugen">SVG mit Javascript erzeugen</h2>
+
+</div>
+<div class="slide">
+
+<h3 id="createelement">createElement</h3>
+
+<p>Der SVG-Tag kann direkt in einem HTML-Dokument verwendet werden, wie auf dieser Seite.</p>
+
+<p>Wenn man SVG-Nodes mit Javascript in das DOM einfügen will braucht man
+eine neue Variante des <code>createElement</code> Befehls: create Element with Namespace.
+Der Namespace für SVG ist <code>http://www.w3.org/2000/svg</code>.</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+const svg = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;svg&quot;);
+svg.setAttribute(&quot;width&quot;, 600);
+svg.setAttribute(&quot;height&quot;, 300);
+
+document.getElementById(&#39;grafik&#39;).appendChild( svg );
+
+rect = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;rect&quot;);
+svg.appendChild( rect );
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="jquery">jQuery</h3>
+
+<p>Achtung: jQuery kennt nur Methoden zum Erzeugen von HTML, nicht von
+SVG. Aber muss sich also eine separate SVG-Erzeugungs-Method bauen wenn
+man jQuery für SVG verwenden will.</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+function $s(elem) {
+  return $(document.createElementNS(&#39;http://www.w3.org/2000/svg&#39;, elem));
+}
+
+var $svg = $s(&quot;svg&quot;);
+var $circle = $s(&quot;circle&quot;).attr({...});
+$svg.append($circle);
+</pre></div>
+
+<p>Code <a href="http://stackoverflow.com/questions/3642035/jquerys-append-not-working-with-svg-element#answer-36305466">von Matthieu Charbonnier</a>.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="gsap">GSAP</h3>
+
+<p>Die Library <a href="https://greensock.com/get-started">GSAP</a> ermöglicht das
+definieren und kontrollieren von SVG und CSS Animation von JavaScript aus.</p>
+
+<p>Hier ein Beispiel einer Translation:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+gsap.to(&quot;#logo&quot;, {duration: 1, x: 100});
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="svg-optimieren">SVG Optimieren</h2>
+
+<p>Unter der Adresse <a href="https://jakearchibald.github.io/svgomg/">https://jakearchibald.github.io/svgomg/</a> kann man SVGs hochladen, optimieren und wieder herunterladen:</p>
+
+<p><img src="images/grafik/svgomg.png"  alt="" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="quellen-von-svg">Quellen von SVG</h2>
+
+<p>Fertige Icons und Illustrationen:</p>
+
+<ul>
+  <li><a href="https://iconsear.ch/">Icon Search</a></li>
+  <li><a href="https://undraw.co/illustrations">undraw</a></li>
+  <li><a href="https://www.drawkit.io/">drawkit</a></li>
+  <li><a href="https://codepen.io/netsi1964/pen/PZJEQe">Random Polygon Generator</a></li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="mehr">Mehr</h2>
+
+<ul>
+  <li><a href="http://www.w3.org/TR/SVG11/">RFC zu SVG</a></li>
+  <li><a href="http://www.sarasoueidan.com/blog/svg-coordinate-systems/">Understanding SVG Coordinate Systems and Transformations</a></li>
+  <li><a href="http://snapsvg.io/">Snap Javascript Library für die Erzeugung von SVG</a></li>
+  <li><a href="http://github.com/greensock/GreenSock-JS/">gsap Library for Animation in SVG</a></li>
+  <li><a href="http://css-tricks.com/using-svg/">Tutorial: SVG in Webseiten verwenden: Hintergrundbild, Bild, Data-URL</a></li>
+  <li><a href="https://moviecode.tumblr.com/post/72085619482/in-an-episode-of-doctor-who-the-doctor-is-seen">SVG in the movies</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>SVG - Vektor Grafik</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/grafik/images//slide.html">Pixel-Bilder</a> | 
+        <a href="/grafik/svg/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/grafik/2dcanvas//slide.html">2d Canvas</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

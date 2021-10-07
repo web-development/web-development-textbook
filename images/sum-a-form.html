@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Beispiel Buch-Bestell-Formular mit Javascript-Berechnung</title>
+    <style>
+      .in, .out {  font-weight: bold; width: 60px; text-align:right; } 
+      body {background-color:#09F; } 
+      ignoreme, thead th, tfoot td { background-color:#06F; }
+    </style>
+  </head>
+
+  <body>
+
+    <h1>Übungsbeispiel Buch-Bestell-Formular</h1>
+    <p> mit Javascript-Berechnung ... achtung: unfertig, die zweite Zeile rechnet noch nicht!</p>
+    <form method="get" action="../echo.php">
+      <table>
+        <thead>
+          <tr>
+            <th>Buch    </th>
+            <th>Anzahl     </th>
+            <th>Preis    </th>
+            <th>    </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr> 
+            <td>Das Leben, Band 1 </td>
+            <td><input value="0" name="in1" id="in1" class="in"
+              onChange="document.getElementById('out1').innerHTML = this.value * 100"></td>
+            <td>€ 100,- </td>
+            <td class="out" id="out1"></td>
+          </tr>
+          <tr> 
+            <td>Das Leben, Band 2 </td>
+            <td><input value="0" name="in2" id="in2" class="in"></td>
+            <td>€ 200,- </td>
+            <td class="out" id="out2"></td>
+
+          </tr>
+          <tr> 
+            <td>Mehr Freude durch HTML </td>
+            <td>
+              <input value="0" name="in3" id="in3" class="in"></td>
+            <td>gratis </td>
+            <td class="out" id="out3">0</td>
+          </tr>
+          <tr> 
+            <td>Telefonbuch Salzburg Süd </td>
+            <td>
+              <input value="0" name="in4" id="in4" class="in"
+              onChange="document.getElementById('out4').innerHTML = this.value * 1000"></td>
+            <td>€ 1000,- </td>
+            <td class="out" id="out4"></td>
+          </tr>
+          <tr> 
+            <td>Telefonbuch London </td>
+            <td>
+              <input value="0" name="in5" id="in5" class="in"
+              onChange="document.getElementById('out5').innerHTML = this.value * 10"></td>
+            <td>€ 10,- </td>
+            <td class="out" id="out5"></td>
+          </tr>
+          <tr> 
+            <td>Telefonbuch USA </td>
+            <td>
+              <input value="0" name="in6" id="in6" class="in"
+              onChange="document.getElementById('out6').innerHTML = this.value * 5"></td>
+            <td>€ 5,- </td>
+            <td class="out" id="out6"></td>
+          </tr>
+          <tfoot>
+            <tr> 
+              <td>Gesamtsumme</td>
+              <td></td>
+              <td></td>
+              <td id="outtotal" class="out">
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                  <input  value="Absenden" type="submit"></td>
+              </tr>
+            </tfoot>
+        </tbody></table>
+
+
+      </form>
+
+
+  </body></html>

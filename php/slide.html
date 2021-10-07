@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>PHP Basics - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>PHP Basics</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-vorbereitung/erstes-php-programm//slide.html">Das erste PHP-Programm</a> | 
+        <a href="/php/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php/warnhinweis//slide.html">Warnhinweis</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Was Sie wissen sollten</p>
+
+<ul>
+  <li>Dass PHP sehr weit verbreitet und leicht zugänglich ist, aber - unabhängig
+davon - Schwächen aufweist, wegen derer man es vermeiden will PHP zu
+programmieren.</li>
+  <li>Dass PHP-Kenntnisse im Web Development trotzdem unbedingt notwendig sind.</li>
+  <li>Dass PHP immer am Server, vom PHP-Interpreter ausgeführt wird</li>
+  <li>Dass der <strong>Output</strong> von PHP meist HTML ist, und dass (nur) dieses HTML an den Browser gesendet wird, iemals der PHP Quellcode</li>
+</ul>
+
+<p>Was Sie können sollten</p>
+
+<ul>
+  <li>PHP-Code lesen, egal auf welche Art er in HTML eingebettet ist.</li>
+  <li>Mit Zahlen, Strings, Arrays in PHP arbeiten.</li>
+  <li>HTTP Parameter über die URL oder den Body (GET oder POST) in PHP entegennehmen und verarbeiten.</li>
+  <li>Eigene Funktionen definieren.</li>
+  <li>Mit Dateien und Ordnern in PHP arbeiten.</li>
+</ul>
+
+<p>Weitere Informationsquellen</p>
+
+<ul>
+  <li>PHP Homepage mit Dokumentation in verschiedenen Sprachen: http://php.net</li>
+</ul>
+
+<p>Vertiefungsmöglichkeiten</p>
+
+<ul>
+  <li>Lesen Sie in der PHP Dokumentation über <a href="http://php.net/manual/de/ref.strings.php">String-Funktionen</a>, <a href="http://php.net/manual/de/ref.array.php">Array-Funktionen</a>, <a href="http://php.net/manual/de/ref.filesystem.php">Filesystem-Funktionen</a>.</li>
+</ul>
+
+</div>
+    <div class="slide">
+      <h1>PHP Basics</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-vorbereitung/erstes-php-programm//slide.html">Das erste PHP-Programm</a> | 
+        <a href="/php/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php/warnhinweis//slide.html">Warnhinweis</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

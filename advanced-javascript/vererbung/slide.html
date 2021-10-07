@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Prototypen + Vererbung - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Prototypen + Vererbung</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/advanced-javascript/event-und-closure//slide.html">Events und Closures</a> | 
+        <a href="/advanced-javascript/vererbung/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/advanced-javascript/regular-expressions//slide.html">Regular Expressions</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Hinter den “Klassen” von Javascript versteckt sich in Wirklichkeit
+an anderer Mechanismus: Prototypen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="objekt-und-konstruktor-und-prototyp">Objekt und Konstruktor und Prototyp</h2>
+
+<p>Wie im vorigen Kapitel kurz erläutert ist jede Funktion in Javascript auch ein Objekt.
+Man kann zur Funktion Attribute speichern.  Es gibt ein Attribut mit einer speziellen Bedeutung
+bei einer Konstruktor-Funktion: das Attribut <code>prototype</code>: prototype verweist auf ein Objekt,
+in dem weitere Methoden und Attribute für alle Objekte die mit diesem Konstruktor erzeugt wurden
+gespeichert werden.</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Methoden und Attribute definieren mit dem Prototyp</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+// Konstruktor
+function Studiengang(name, seit, hs) {
+  this.name = name;
+  this.seit = seit;
+  this.hs = hs;
+}
+// Zwei Attribute am prototyp des Konstruktors
+Studiengang.prototype.min = 2;
+Studiengang.prototype.max = 42;
+// Eine Methode am prototyp des Konstruktors
+Studiengang.prototype.toString = function () {
+  return &quot;Studiengang &quot; + this.name + 
+    &quot; (seit &quot; + this.seit + 
+    &quot; @ &quot; + this.hs.name + &quot;)&quot;;
+}
+
+typeof Studiengang;  // function! 
+
+mmtb = new Studiengang( &quot;BSc MultiMediaTechnology&quot;, 2008, hs );
+mmtm = new Studiengang( &quot;MSc MultiMediaTechnology&quot;, 2011, hs );
+
+mmtb.toString();  // findet toString Methode des 
+            // Prototypen und ruft sie auf
+
+mmtb.min    // findet min Attribut des Prototypen
+            // gibt Wert 2 
+mmtb.min=5  // speichert Wert 5 im Objekt selbst
+mmtb.min    // gibt jetzt Wert 5
+mmtm.min    // findet min Attribut des Prototypen, 
+            // gibt Wert 2 
+</pre></div>
+
+<p><a href="/images/js-prototype-vis.html">Demo mit Visualisierung</a></p>
+
+<p>Wird ein Attribut oder eine Methode an einem Objekt gesucht, und
+kann direkt am Objekt nicht gefunden werden, dann durchsucht
+der Javascript-Interpreter als nächstes den Prototypen des Konstruktors.</p>
+
+<p>Attribute direkt im Objekt überschreiben die Attribute des Prototypen: im Beispiel
+wird das Attribut <code>min</code> direkt im Objekt gefunden, hier ist kein Zugriff auf den Protypen nötig.</p>
+
+<p><img src="/images/objekt-mit-prototyp.png"  alt="Abbildung: Objekt mit Konstruktor" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="vertiefung">Vertiefung</h2>
+
+<p>Dies war nur ein erster Einstieg in die objektorientierte Programmierung mit Javascript.
+Details zu einigen wichtigen Befehlen in der Javascript-Referenz bei Mozilla:</p>
+
+<ul>
+  <li><a href="https://developer.mozilla.org/en/JavaScript/Reference/Operators/instanceof">instanceof</a></li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="vererbung">Vererbung</h2>
+
+<p>Eine Konstruktur-Funktion kann von einem Objekt erben, und zwar über den Prototypen:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Vererbung von Attributen</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  // ----- Pet ---------
+  function Pet() {
+    this.status = &quot;sleeping&quot;;
+  }
+  Pet.prototype.log = function() {
+    console.log(&quot;i am &quot; + this.status + 
+      &quot;. &quot; + this.word + &quot;!&quot;);
+  }
+
+  // ----- Mammal ---------
+  function Mammal() {
+    this.legs = 4;
+  }
+  Mammal.prototype = new Pet();
+  Mammal.prototype.constructor = Mammal;
+
+  // ----- Dog --------
+  function Dog( b ) {
+    this.breed = b;
+    this.word = &quot;wau&quot;;
+  }
+  Dog.prototype = new Mammal();
+  Dog.prototype.constructor = Dog;
+
+  Dog.prototype.sit = function() {
+    this.status.set(&quot;sitting&quot;);
+  }
+
+  d = new Dog(&quot;beagle&quot;);
+  d.word    // direkt im Objekt gespeichert
+  d.legs    // im Prototyp von Dog gespeichert 
+            // (einem Mammal-Objekt)
+  d.status  // im Prototyp von mammal gespeichert 
+            // (einem Pet-Objekt)
+</pre></div>
+
+<p><a href="/images/js-vererbung-vis.html">Demo mit Visualisierung</a></p>
+
+<p>Diese Vererbungs-Kette über die Prototypen nenn man auf english “prototype chain”.</p>
+
+<p>Achtung: die Konstruktoren der übergeordenten Objekte werden nur einmal aufgerufen,
+das kann zu unerwarteten Effekten führen:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Vererbung von Attributen</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  // ----- Pet ---------
+  function Pet() {
+    this.status = new Status();
+  }
+  // ....
+  Mammal.prototype = new Pet();
+  // ....
+  d1 = new Dog(&quot;Beagle&quot;);
+  d2 = new Dog(&quot;Schnauzer&quot;);
+  
+  d1.status === d2.status // es gibt nur ein Status-Objekt 
+                          // für alle Mammals!
+  d1.hasOwnProperty(&#39;status&#39;); // false
+
+  d1.status = new Status(&#39;playing&#39;);
+
+  d1.status === d2.status      // false
+  d1.hasOwnProperty(&#39;status&#39;); // true
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="das-wunder-des-dreibeinigen-hundes">Das Wunder des dreibeinigen Hundes</h2>
+
+<p>Der Schnauzer hat einen schrecklichen Unfall, und verliert ein Bein:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Vererbung von Attributen</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+d1 = new Dog(&quot;Beagle&quot;);
+d2 = new Dog(&quot;Schnauzer&quot;);
+d2.legs = 3;
+
+console.log(d1.legs); // 4 Beine von Mammal
+console.log(d2.legs); // 3 Beine 
+
+d1.hasOwnProperty(&#39;legs&#39;) // ... false
+d2.hasOwnProperty(&#39;legs&#39;) // ... true
+</pre></div>
+
+<p>Doch nun geschieht ein Wunder: wenn wir mit <code>delete</code> das
+Attribut <code>legs</code> aus <code>d2</code> entfernen hat er wieder 4 Beine - weil
+das im prototypen so gespeichert ist.</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Vererbung von Attributen</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+delete(d2.legs);
+
+console.log(d2.legs);     // 4 Beine 
+d2.hasOwnProperty(&#39;legs&#39;) // ... false
+</pre></div>
+
+</div>
+    <div class="slide">
+      <h1>Prototypen + Vererbung</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/advanced-javascript/event-und-closure//slide.html">Events und Closures</a> | 
+        <a href="/advanced-javascript/vererbung/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/advanced-javascript/regular-expressions//slide.html">Regular Expressions</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

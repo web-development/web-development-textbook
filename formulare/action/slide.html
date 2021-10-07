@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Daten absenden - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Daten absenden</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/formulare/css//slide.html">CSS und Formular</a> | 
+        <a href="/formulare/action/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/formulare/php//slide.html">Formular und PHP</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Was passiert, wenn Sie ein Formular ausfüllen und auf den Absende-Button
+drücken? Meist werden Sie an den Webserver zur weiteren Verarbeitung geschickt.
+Diese action wird direkt im <code>&lt;form&gt;</code>-Tag angegeben.</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;form action=&quot;http://multimediatechnology.at/~fhs666/pizza/bestellung.php&quot;&gt;
+</pre></div>
+
+<p>Für die Verarbeitung der Daten braucht man ein serverseitiges  Programm - hier
+zum Beispiel ein PHP-Programm.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="daten-an-e-mail-senden">Daten an E-Mail senden</h2>
+
+<p>Wenn Sie kein Möglichkeit haben, am Webserver zu programmieren, bleibt als
+Alternative, die Daten direkt per E-Mail zu senden. So sieht der entsprechende
+HTML-Code des Formulars aus:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;form action=&quot;mailto:ich@priv.at&quot; method=&quot;POST&quot; enctype=&quot;text/plain&quot;&gt;
+</pre></div>
+
+<p>Achtung: diese Art die Daten zu senden ist sehr fehleranfällig: hierfür muß am Client-Computer nicht nur der Browser funktionieren, sondern auch das E-Mail Programm. Das E-Mail Programm muß richtig konfiguriert sein. Das ist auf vielen Computern am Internet nicht der Fall, oft werden die Daten also nicht erfolgreich versandt sondern gehen verloren.</p>
+
+<p><img src="/images/formulare/mail-or-http.png"  alt="Formular per E-Mail oder über den Webserver senden" ></p>
+
+<p>Deswegen sollten Sie diese Methode nicht verwenden, sondern immer über einen Webserver senden!</p>
+
+</div>
+<div class="slide">
+
+<h2 id="daten-senden-mit-methode-get">Daten senden mit Methode GET</h2>
+
+<p>Wird im Form-Tag als Action eine URL mit http(s) angegeben dann werden die Daten #an den Webserver gesendet. Dabei gibt es zwei Methoden: GET und POST. GET ist die einfachere.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Hier sehen Sie ein (leicht vereinfachtes) Bestellformular für Flugzeuge das die Methode GET verwendet.</p>
+
+<p><img src="/images/formulare/action-get.png"  alt="Formular mit Methode GET" ></p>
+
+<p>Wenn die UserIn auf „Bestellung absenden“ drückt, baut der Browser aus der
+action und den Namen und Werten der einzelnen Eingabefelder eine URL zusammen,
+die dann aufgerufen wird.</p>
+
+<p><img src="/images/formulare/action-got.png"  alt="Abbildung 50: URL einer GET-Anfrage" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="url-der-get-anfrage">URL der GET-Anfrage</h2>
+
+<p>Die komplette URL lautet im Beispiel:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+http://localhost/php/test.php?anzahl=4&amp;adresse=Jakob+Haringer+Str.1%0D%0A5020+Salzburg
+</pre></div>
+
+<p>Die URL wird zusammengestellt aus:</p>
+
+<ul>
+  <li>der <code>action</code> aus dem <code>form</code>-Tag, hier <code>http://localhost/php/test.php</code></li>
+  <li><code>?</code> (einem Fragezeichen )</li>
+  <li>für alle Eingabefelder, getrennt durch <code>&amp;</code> (kaufmännisches Und):
+    <ul>
+      <li>Name des Eingabefeldes</li>
+      <li><code>=</code> (Gleich Zeichen)</li>
+      <li>Eingegebener / angeklickter Wert</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Falls dabei Sonderzeichen vorkommen  (z.B. Leerzeichen, Zeilenumbrüche, Umlaute,
+Fragezeichen, kaufmännisches Und) werden diese wie folgt encodiert:</p>
+
+<p>Statt
+Leerzeichen wird ein <code>+</code> oder <code>%20</code> gesetzt, bei allen anderen Zeichen wird ein <code>%</code>
+gefolgt von der Hexadezimaldarstellung des ASCII-Code gesetzt  (siehe rfc 2396).
+Diese Codierung nennt man URL-Encoding. (siehe
+<a href="http://www.w3.org/TR/html4/interact/forms.html#h-17.13.4.1">HTML 4.01 Specification</a>.)</p>
+
+</div>
+<div class="slide">
+
+<h2 id="url-als-programm-schnittstelle">URL als Programm-Schnittstelle</h2>
+
+<p>Das Webformular ist nicht notwendig, um eine GET-Anfrage zu erzeugen. Wenn Sie z.B. das Eingabe-Formular von Google analysieren,
+werden Sie herausfinden, dass die Anfrage mit dem Suchwort „Schokolade“ so aussieht:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+http://www.google.com/search?q=Schokolade
+</pre></div>
+
+<p>Sie können diese URL einfach direkt in den Browser eintippen, ohne das Eingabeformular von Google zu verwenden. Sie können diese URL in den Lesezeichen/Favoriten Ihres Browsers speichern oder in einem Link verwenden:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;a href=&quot;http://www.google.com/search?q=schokolade&quot;&gt;Suche nach Schokolade&lt;/a&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+Gerade bei Suchmaschinen wird diese Möglichkeit oft genutzt: z.B. durch die Suchfelder, die in den Browsern eingebaut sind:</p>
+
+<p><img src="/images/image237.png"  alt="Abbildung 51: Suchfeld von Firefox" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wenn Sie eine Web-Applikation erstellen müssen Sie auch darauf gefasst sein,
+dass die UserInnen nicht nur ihre Web-Formulare verwenden, sondern auch URLs
+konstruieren und aufrufen. Die <strong>URL</strong> (und nicht das Formular) ist also eine
+<strong>öffentliche Schnittstelle</strong> zu Ihrem Programm!</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Nun könnte man meinen: “Wenn ich die URL geheim halte ist es doch keine öffentliche Schnittstelle”.
+Das ist aber ein Trugschluss: auch eine “geheime” URL, die ich nie bewusst öffentlich mache
+wird öffentlich werden.  URLs sind im Browser-Cache gespeichert, werden im Browser vorgeschlagen
+wenn ich eine URL eintippe, sind in Logfile von Proxies gespeichert.  Selbst URLs die ich blos
+im Skype-Chat weitergegen habe, sind dritten bekannt, wie <a href="http://www.heise.de/security/meldung/Vorsicht-beim-Skypen-Microsoft-liest-mit-1857620.html">diese Untersuchung von Heise zeigt</a></p>
+
+<p>Das “geheimhalten” einer URL ist also keine geeignete Sicherheitsmaßnahme!
+Wenn ich eine Webseite vor Zugriffen schützen will brauche ich dazu Passwörter
+und https, siehe <a href="/http/http/#slide-18">Authentisieren nach RFC 2617</a>
+und <a href="/http/http/slide.html#slide-19">HTTPS</a>, beide im Kapitel HTTP, und 
+das <a href="/session/">Kapitel über Sessions</a>.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="pricing-attack">Pricing Attack</h2>
+
+<p>Ein lehrreiches Beispiel aus der Frühzeit des Web: es gab einst Webshops, die den Preis der Waren als verstecktes Eingabefeld im Formular speicherten:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Airbus Bestell-Formular</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;form action=&quot;order.php&quot; method=&quot;GET&quot;&gt;
+  Anzahl: &lt;input name=&quot;anzahl&quot;&gt; &lt;br&gt;
+  Adresse: &lt;textarea name=&quot;adresse&quot;&gt;&lt;/textarea&gt;&lt;br&gt;
+  Preis: 1.000.000 DM  
+  &lt;input type=&quot;hidden&quot; name=&quot;preis&quot; value=&quot;1000000&quot;&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Bestellung absenden&quot;&gt;
+&lt;/form&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+Das gibt der KundIn die Chance ein „Gegenangebot“ zu senden (als „pricing attack“ bekannt):</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+http://happyshop.com/order.php?anzahl=4&amp;adresse=Urstein+Süd+.1&amp;preis=10
+</pre></div>
+
+<p>Wenn nun das Programm <code>order.php</code> einfach den Preis aus der URL übernimmt und
+auf die Rechnung schreibt, wird der Airbus recht günstig (für die KundIn)
+verkauft.</p>
+
+<p>Merke: Alle Eingaben die eine Web-Applikation erhält sind mit extremer Skepsis zu betrachten!</p>
+
+</div>
+    <div class="slide">
+      <h1>Daten absenden</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/formulare/css//slide.html">CSS und Formular</a> | 
+        <a href="/formulare/action/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/formulare/php//slide.html">Formular und PHP</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

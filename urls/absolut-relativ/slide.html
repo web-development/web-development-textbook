@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Absolute und relative URLs - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Absolute und relative URLs</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/urls//slide.html">URLs</a> | 
+        <a href="/urls/absolut-relativ/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/urls/konfiguration//slide.html">Konfiguration Webserver</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+</div>
+<div class="slide">
+
+<h2 id="verwendung">Verwendung</h2>
+
+<p>URLs werden in CSS und HTML an vielen Stellen verwendet: bei Links und Bilder, beim Verweis auf externe Stylesheets, externe Javascript-Dateien, etc.  An all diesen Stellen können Sie URLs in den hier beschriebenen Schreibweisen verwenden.</p>
+
+<p>Die „absolute“ und „relative“ Schreibweise wurde von den Pfadangaben im UNIX-Dateisystem übernommen; auch die Pfadangaben von Windows funktionieren ähnlich.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="beispiel">Beispiel</h2>
+
+<p>In der Beispiel-Datei
+<a href="/urls/index.html">http://web-development.github.com/images/urls/index.html</a> sind folgende drei URLs enthalten:</p>
+
+<dl>
+  <dt><strong>absolut</strong></dt>
+  <dd>beginnt mit Protokoll <code>http://web-development.github.com/images/you-are-here.jpg</code></dd>
+  <dt><strong>relativ zum Webserver</strong></dt>
+  <dd>beginnt mit einem Schrägstrich (Slash) <code>/images/you-are-here.jpg</code></dd>
+  <dt><strong>relativ zum Dokument</strong></dt>
+  <dd>kein besonderes Kennzeichen <code>you-are-here.jpg</code></dd>
+</dl>
+
+</div>
+<div class="slide">
+
+<h2 id="relative-urls">Relative URLs</h2>
+
+<p>Bei den relativen URLs muss man die URL des enthaltenden Dokuments 
+und die relative URLs “zusammen—addieren”, um zu einer absoluten URL zu kommen.</p>
+
+<p>Wenn die relative URL mit einem Schrägstrich (Slash) beginnt
+ersetzt sie den gesamten “Pfad” in der URL des enthaltenden Dokuments:</p>
+
+<pre><code>http://web-development.github.com/images/urls.html   
+                           +     /images/you_are_here.jpg  = 
+http://web-development.github.com/images/you_are_here.jpg  
+</code></pre>
+
+<p>Wenn die relative URL nicht mit einem Schrägstrich beginnt
+wird sie zum Pfad des aktuellen Ordners dazugerechnet:</p>
+
+<pre><code>http://web-development.github.com/images/urls.html   
+                                   +     you_are_here.jpg  = 
+http://web-development.github.com/images/you_are_here.jpg  
+</code></pre>
+
+</div>
+<div class="slide">
+
+<h2 id="relative-urls-an-anderer-stelle">Relative URLs an anderer Stelle</h2>
+
+<p>Wird das Dokument an eine andere Stelle verschoben, und ändert sich
+damit die Ausgangs-URL, dann ist das Ergebnis anders (und würde nicht
+funktionieren):</p>
+
+<pre><code>http://multimediatechnology.at/2011/06/19/ruby
+                        +     /images/you_are_here.jpg  = 
+http://multimediatechnology.at/images/you_are_here.jpg  
+</code></pre>
+
+<p>und:</p>
+
+<pre><code>http://multimediatechnology.at/2011/06/19/ruby
+                                    +     you_are_here.jpg  = 
+http://multimediatechnology.at/2011/06/19/you_are_here.jpg  
+</code></pre>
+
+</div>
+<div class="slide">
+
+<h2 id="relative-urls-mit-ordnernamen">Relative URLs mit Ordnernamen</h2>
+
+<p>Relativen URLs können selbst wieder Ordnernamen enthalten:</p>
+
+<pre><code>http://multimediatechnology.at/2011/
+                                 +  12/15/screenshot/= 
+http://multimediatechnology.at/2011/12/15/screenshot/
+</code></pre>
+
+</div>
+<div class="slide">
+
+<h2 id="relative-urls-mit-punkt-punkt">Relative URLs mit Punkt-Punkt</h2>
+
+<p>Zwei Punkte als Ordnernamen bedeuten dabei: „raus aus dem aktuellen Ordner“:</p>
+
+<pre><code>http://multimediatechnology.at/web-communities/barcamp/
+                                                 +     ../ = 
+http://multimediatechnology.at/web-communities/
+</code></pre>
+
+<p>Dieser Schreibweise erlaubt auch sehr umständliche Formulierungen
+(mit Redundanz):</p>
+
+<pre><code>http://multimediatechnology.at/2011/06/19/ruby.html
+               +     ../../../2008/05/../04/17/rattenscharfes-computergame.html = 
+http://multimediatechnology.at/2008/04/17/rattenscharfes-computergame
+</code></pre>
+
+</div>
+<div class="slide">
+
+<h2 id="alles-nur-im-client">Alles nur im Client</h2>
+
+<p>All diese Berechnungen finden im Webbrowser statt, und sind völlig unabhängig davon, 
+wie der Webserver die URL interpretiert. So könnte z.B die letzten URL 
+„in Wirklichkeit“ gar nicht auf Ordner mit Namen 2008, 04, 17 verweisen, 
+sondern eine Datenbanksuche nach „2008-04-17“ nach sich ziehen – das ist Sache des Servers.</p>
+
+</div>
+    <div class="slide">
+      <h1>Absolute und relative URLs</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/urls//slide.html">URLs</a> | 
+        <a href="/urls/absolut-relativ/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/urls/konfiguration//slide.html">Konfiguration Webserver</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

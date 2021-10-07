@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Überblick Backend - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Überblick Backend</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/wordpress/security//slide.html">Security</a> | 
+        <a href="/wordpress/backend/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/wordpress/seiten//slide.html">Beiträge und Seiten</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Die Navigation im Backend zeigt 10 Haupt-Navigationspunkte zu denen weitere Unter-Navigations-Punkte eingeblendet werden können. Falls neben der AdministratorIn admin noch weitere Accounts angelegt werden können diesen weniger Recht zugestanden werden, diese sehen dann manche Navigationspunkte nicht.</p>
+
+<p><img src="/images/wordpress-navigation.png"  alt="Abbildung 107: Wordpress Backend: Überblick über die Navigation" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="beitrag-schreiben">Beitrag schreiben</h3>
+<p>In Abbildung 104 sehen Sie die Eingabemaske zum Schreiben eines neuen Beitrags.
+(In älteren Versionen von Wordpress wurde der englische Begriff “Post” mit
+“Artikel” übersetzt, in neuern mit “Beitrag”)</p>
+
+<p><img src="/images/wordpress-artikel-eingabe.png"  alt="Abbildung 108: Wordpress Backend - Beitrag Schreiben" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="kommentare">Kommentare</h3>
+
+<p>In der Standardkonfiguration von Wordpress könnne anonyme BesucherInnen des Blogs Kommentare zu den Beitragn und Seiten schreiben. Achtung: es gibt Spam-Roboter die gezielt in Wordpress-Blogs Werbung eintragen. Unter Einstellungen ⇒ Diskussion können Sie die Kommentar-Möglichkeiten beschränken, und sich so den Streß des „Ausmistens“ von Spam zu ersparen. Es gibt auch verschiedene Plugins die SPAM verhindern sollen.</p>
+
+</div>
+    <div class="slide">
+      <h1>Überblick Backend</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/wordpress/security//slide.html">Security</a> | 
+        <a href="/wordpress/backend/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/wordpress/seiten//slide.html">Beiträge und Seiten</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

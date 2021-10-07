@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>CSS example: float a paragraph</title>
+<style>
+  body { 
+    line-height:1.4;
+    font-family:Georgia,Cambria,serif;
+    }
+  .shout {  background-color: yellow; }
+  h1 { padding-left: 10px; }
+  div { 
+    background-color:#CCCCCC;
+    padding: 10px;
+    margin: 0px;
+    border: solid 1px  #990000;
+  }
+  #box2 { 
+    float:right; 
+    background-color:#33CCFF;
+  }  
+  .slim { 
+    width:33%; 
+  }
+  </style>
+</head>
+<body>
+  <h1>float a paragraph</h1>
+  <p>Text of this example page: <cite>Bos B, Celik T, Hickson I, Lie HW.
+    (2011) <a href="http://www.w3.org/TR/2011/REC-CSS2-20110607/">Cascading Style Sheets Level 2 
+      Revision 1 (CSS 2.1) Specification</a>. W3C Candidate Recommendation, World Wide Web Consortium (W3C). </cite></p>
+<div>
+<p>
+  A float is a box that is shifted to the left or right on the current line.
+The most interesting characteristic of a float (or "floated" or "floating" box)
+is that content may flow along its side (or be prohibited from doing so by the
+'clear' property). Content flows down the right side of a left-floated box and
+down the left side of a right-floated box. The following is an introduction to
+float positioning and content flow; the exact rules governing float behavior are
+given in the description of the 'float' property.
+</p>
+<p>
+A floated box is shifted to the left or right until its outer edge touches the
+containing block edge or the outer edge of another float. If there is a line
+box, the outer top of the floated box is aligned with the top of the current
+line box. 
+</p>
+</div>
+<div id="box2" class="slim">
+<p>Cascading Style Sheets Level 2 Revision 1 (CSS 2.1) Specification
+W3C Recommendation 07 June 2011</p>
+<dl>
+  <dt>This version:</dt>
+  <dd>http://www.w3.org/TR/2011/REC-CSS2-20110607 </dd>
+  <dt>Latest version:
+  <dd> http://www.w3.org/TR/CSS2 
+  <dt>Previous versions:
+  <dd>http://www.w3.org/TR/2011/PR-CSS2-20110412 
+  <dd>http://www.w3.org/TR/2008/REC-CSS2-20080411/ 
+  <dt>Editors:
+  <dd>Bert Bos &lt;bert@w3.org&gt;
+  <dd>Tantek Çelik &lt;tantek @cs.stanford.edu&gt;
+  <dd>Ian Hickson &lt;ian@hixie.ch&gt;
+  <dd>Håkon Wium Lie &lt;howcome@opera.com&gt; </dd>
+</dl>
+<p>This specification defines Cascading Style Sheets, level 2 revision 1 (CSS
+2.1). CSS 2.1 is a style sheet language that allows authors and users to attach
+style (e.g., fonts and spacing) to structured documents (e.g., HTML documents
+and XML applications). By separating the presentation style of documents from
+the content of documents, CSS 2.1 simplifies Web authoring and site maintenance.
+</p>
+</div>
+<div id="box3"><p>
+ If there is not enough horizontal room for the float, it is shifted downward
+ until either it fits or there are no more floats present.
+ </p><p>
+ Since a float is not in the flow, non-positioned block boxes created before and
+ after the float box flow vertically as if the float did not exist. However, the
+ current and subsequent line boxes created next to the float are shortened as
+ necessary to make room for the margin box of the float.
+ </p><p>
+
+ A line box is next to a float when there exists a vertical position that
+ satisfies all of these four conditions: (a) at or below the top of the line
+ box, (b) at or above the bottom of the line box, (c) below the top margin edge
+ of the float, and (d) above the bottom margin edge of the float.
+ </p><p>
+
+ Note: this means that floats with zero outer height or negative outer height do
+ not shorten line boxes.
+ </p><p>
+
+ If a shortened line box is too small to contain any content, then the line box
+ is shifted downward (and its width recomputed) until either some content fits
+ or there are no more floats present. Any content in the current line before a
+ floated box is reflowed in the same line on the other side of the float. In
+ other words, if inline-level boxes are placed on the line before a left float
+ is encountered that fits in the remaining line box space, the left float is
+ placed on that line, aligned with the top of the line box, and then the
+ inline-level boxes already on the line are moved accordingly to the right of
+ the float (the right being the other side of the left float) and vice versa for
+ rtl and right floats.
+ </p><p>
+
+ The border box of a table, a block-level replaced element, or an element in the
+ normal flow that establishes a new block formatting context (such as an element
+ with 'overflow' other than 'visible') must not overlap the margin box of any
+ floats in the same block formatting context as the element itself. If
+ necessary, implementations should clear the said element by placing it below
+ any preceding floats, but may place it adjacent to such floats if there is
+ sufficient space. They may even make the border box of said element narrower
+ than defined by section 10.3.3. CSS2 does not define when a UA may put said
+ element next to the float or by how much said element may become narrower. 
+ </p>
+</div>
+
+<script type="text/javascript"
+        src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+     $('#box2')
+       .click(function() {
+         $(this).toggleClass('slim');
+         $('#show_width').html($('#box2').css('width'));         
+       })
+       .prepend('<span class="shout"><b>Click me</b> to set/unset my width to 33%! right now it is '
+         + '<b><span id="show_width"></span></b></span>');
+       $('#show_width').html($('#box2').css('width'));
+    });
+</script>
+</body>
+</html>

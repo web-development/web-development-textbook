@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Fehlerbehandlung - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Fehlerbehandlung</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-schreiben/html-erlauben//slide.html">HTML erlauben</a> | 
+        <a href="/php-db-schreiben/fehlerbehandlung/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-optimierung//slide.html">Änderungen, Constraints und Transaktionen in der DB</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Wir haben bisher keinerlei Rücksicht darauf genommen, dass ein Fehler auftreten
+könnte.  Zum Beispiel könnte beim Einfügen in die Datenbank ein Constraint verletzt werden
+und das Einfügen fehlschlagen. Wie behandelt man diesen Fall in PHP?</p>
+
+</div>
+<div class="slide">
+
+<h2 id="exceptions-in-php">Exceptions in PHP</h2>
+
+<p>Folgende Beschreibung ist aus dem <a href="http://www.php.net/manual/de/language.exceptions.php">PHP Handbuch</a> übernommen:</p>
+
+<p>PHP 5 hat ein Exceptionmodell ähnlich dem anderer Programmiersprachen. Eine Exception kann in PHP 
+geworfen (<code>throw</code>) und abgefangen (<code>catch</code>) werden. Um das Fangen potentieller Exceptions zu 
+ermöglichen, wird der jeweilige Code mit einem <code>try</code>-Block umschlossen.</p>
+
+<p>Die normale Programmausführung (wenn keine Exception innerhalb des <code>try</code>-Blockes geworfen wird) 
+wird nach dem letzten <code>catch</code>-Block fortgesetzt. 
+Exceptions können innerhalb eines <code>catch</code>-Blockes geworfen (oder weitergeworfen) werden.</p>
+
+<p>Wenn eine Exception geworfen wird, wird der Programmcode der auslösenden Anweisung nicht ausgeführt, 
+und PHP versucht, den ersten passenden <code>catch</code>-Block zu finden. Falls eine Exception gar
+nicht abgefangen wird, wird ein fataler Fehler mit einer “Uncaught Exception …“-Nachricht ausgegeben</p>
+
+</div>
+<div class="slide">
+
+
+
+<div class="example">
+<h4 class="caption">Php Code <small>Beispiel für Exception-Handling in PHP</small></h4>
+<pre class="lang-php prettyprint linenums">
+&lt;?php
+function compute($x) {
+    if ($x == 0) {
+       throw new Exception(&#39;Illegal Input: 0.&#39;);
+    }
+    return 1 / $x;
+}
+
+try {
+    echo compute(5) . &quot;\n&quot;;
+    echo compute(0) . &quot;\n&quot;;
+} catch (Exception $e) {
+    echo &#39;Exception abgefangen: &#39;,  $e-&gt;getMessage(), &quot;\n&quot;;
+}
+
+// output:
+// 0.2
+// Exception abgefangen: Illegal Input: 0
+?&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="verwendung-von-exceptions-fr-die-datenbank">Verwendung von Exceptions für die Datenbank</h2>
+
+<p>PDO wirft normalerweise keine Exceptions. Ihre Verwendung muss erst mit dem
+Attribut <code>ERRMODE</code> aktiviert werden:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+  $dbh-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+</pre></div>
+
+<p>In folgendem Beispiel soll ein Datensatz (plus abhängige Daten) dargestellt werden.
+Dabei könnte schon beim Verbindungsaufbau mit der Datenbank ein Fehler auftreten,
+oder bei einzelnen Abfragen.</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Datenbank-Abfrage mit Exception Handling als Fehlerbehandlung</small></h4>
+<pre class="lang-php prettyprint linenums">
+$get_id = $_GET[&#39;id&#39;];
+try{
+  include &quot;config.php&quot;;
+
+  if( ! $DSN ) {
+    throw(new Exception( &quot;DB nicht konfiguriert. config.php anlegen!&quot; ));
+  }
+
+  $dbh = new PDO($DSN, $DB_USER, $DB_PASS);
+  /* das folgende Attribut aktiviert die Exceptions */
+  $dbh-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $dbh-&gt;setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+
+  $sth  = $dbh-&gt;prepare( &quot;SELECT * FROM users WHERE id=?&quot; );
+  $sth-&gt;execute(array($get_id));
+  $p = $sth-&gt;fetch();
+
+  // wirklich nicht in der Datenbank
+  if( $p === false ) {
+    throw (new Exception( &quot;Kein Person Nr. $get_id in der DB.&quot; ));
+  }
+
+  // Profil verborgen
+  if( !$p-&gt;profile_visible  ) {
+    throw (new Exception( &quot;Kein Person Nr. $get_id in der DB.&quot; ));
+  }
+
+  $sth  = $dbh-&gt;prepare( &quot; .... &quot; );
+  $sth-&gt;execute(array($get_id));
+  $projects = $sth-&gt;fetchAll();
+
+} catch( Exception $e ) {
+  include &quot;header.php&quot;;
+  echo &quot;&lt;h1&gt;Problem mit der Datenbank&lt;/h1&gt;&quot; ;
+  echo &quot;&lt;p&gt;Bitte versuchen Sie es später wieder.&lt;/p&gt;&quot; ;
+  echo &quot;&lt;!--&quot; . $e-&gt;getMessage() . &quot;--&gt;&quot;;
+  include &quot;footer.php&quot;;
+  exit;
+}
+
+/* hier folgt die normale Ausgabe der Seite */
+</pre></div>
+
+<p>In diesem Beispiel erfolgt die ganze Arbeit mit der Datenbank
+bevor die Ausgabe beginnt.  Im <code>catch</code>-Block wird eine Webseite
+erzeugt, die gar nichts mit der “normalen” Ausgabe der Seite zu
+tun hat.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="exkurs-exceptions-in-javascript">Exkurs: Exceptions in Javascript</h2>
+
+<p>Die Verwendung und Schreibweise ist in Javascript so ähnlich, dass es sich
+gar nicht lohnt näher darauf einzugehen. Siehe 
+<a href="http://www.magjs.de/2012-01/rauschmayer/rauschmayer.html">Rauschmayer(2012): Ausnahmebehandlung in JavaScript in mag.js Nr.1</a></p>
+
+</div>
+    <div class="slide">
+      <h1>Fehlerbehandlung</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-schreiben/html-erlauben//slide.html">HTML erlauben</a> | 
+        <a href="/php-db-schreiben/fehlerbehandlung/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-optimierung//slide.html">Änderungen, Constraints und Transaktionen in der DB</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

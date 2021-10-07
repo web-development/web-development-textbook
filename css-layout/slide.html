@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>CSS - Layout - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>CSS - Layout</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css/basic-selectors//slide.html">CSS Selektoren</a> | 
+        <a href="/css-layout/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css-layout/rahmenbedingungen//slide.html">Rahmenbedingungen</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+</div>
+<div class="slide">
+
+<h3 id="was-sie-wissen-sollten">Was Sie wissen sollten</h3>
+
+<ul>
+  <li>Ich weiss wie verschiedene Auflösung und verschiedene Pixeldichte der Ausgabegeräte die Gestaltung von Webseiten schwierig machen.</li>
+  <li>Ich kenne mit Responsive Design die aktuelle Art mit dieser Schwierigkeit umzugehen.</li>
+  <li>Ich verstehe wie media queries, float und css grid funktionieren.</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h3 id="was-sie-knnen-sollten">Was Sie können sollten</h3>
+<ul>
+  <li>Ich kann an einem bestehen CSS-Layout Veränderungen vornehmen.</li>
+  <li>Ich kann einen grafischen Entwurf mittels HTML und CSS umsetzen.</li>
+  <li>Ich kann ein statisches Layout mit mediaqueries so erweitern, dass die Webseite bei wesentlich kleineren oder größeren Ausgabegeräten noch sinnvoll dargestellt werden kann.</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="vertiefung">Vertiefung</h2>
+
+<ul>
+  <li><a href="http://learnlayout.com">learnlayout.com</a></li>
+  <li><a href="http://www.w3.org/Style/CSS/specs.en.html">CSS</a> box model, float, position, flexbox, multi-column</li>
+  <li>Paul Irish (2012): <a href="http://www.paulirish.com/2012/box-sizing-border-box-ftw/">Box-sizing Border-box FTW</a></li>
+  <li>Chris Coyier (2014): <a href="http://css-tricks.com/snippets/css/a-guide-to-flexbox/">A Complete Guide to Flexbox</a></li>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Using_multi-column_layouts">MDN: Using Multi Columns Layouts</a></li>
+  <li><a href="http://flexboxfroggy.com/">Flexboxfroggy.com</a></li>
+  <li><a href="http://www.flexboxdefense.com/">FlexboxDefense.com</a></li>
+  <li>Marcotte(2011): <a href="http://www.amazon.com/Responsive-Design-Brief-People-Websites/dp/098444257X/">Responsive Design</a></li>
+  <li>Responsive News(2013): <a href="http://responsivenews.co.uk/post/52382349921/tables">Tables</a> - Wie macht man Tabellen responsive?  eine harte Nuss</li>
+  <li>Takada(2015): <a href="http://book.mixu.net/css/index.html">Learn CSS Layout the pedantic way</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>CSS - Layout</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css/basic-selectors//slide.html">CSS Selektoren</a> | 
+        <a href="/css-layout/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css-layout/rahmenbedingungen//slide.html">Rahmenbedingungen</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

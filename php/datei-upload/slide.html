@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Datei Upload - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Datei Upload</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php/php-und-parameter//slide.html">In PHP Daten aus Web-Formularen verarbeiten</a> | 
+        <a href="/php/datei-upload/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php/datei-upload-frontend//slide.html">Datei Upload - Frontend</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+</div>
+<div class="slide">
+
+<h2 id="frontend">Frontend</h2>
+
+<p>Die einfachste Version des Upload-Formulares verwendet eine input-Tag
+vom Typ <code>file</code>:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Formular für den Datei-Upload</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;form action=&quot;upload.php&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+  Neues Bild zum hochladen in den Ordner &lt;a href=&#39;pix/&#39;&gt;upload&lt;/a&gt;: 
+  &lt;input type=&quot;file&quot; name=&quot;bild&quot;&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;hinaufladen&quot;&gt;
+&lt;/form&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Der Input-Tag mit dem Typ „file“ wird vom Browser als Textfeld plus Button dargestellt. Wird der Button gedrückt dann erscheint ein Datei-Auswahl-Dialog, wie in Abbildung 132 gezeigt.</p>
+
+<p><img src="/images/file-input.png"  alt="Webformular mit Datei-Upload" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="backend">Backend</h2>
+
+<p>Zuerst ein paar Überlegung zur Sicherheit von Datei-Uploads. Folgendes Bild
+zeigt den Super-GAU: Über das Formular upload.php kann man nicht nur “harmlose”
+Dateien wie Bilder hochladen, sondern auch eine Datei mit der Endung <code>.php</code>.</p>
+
+<p>Diese Datei wird im Ordner <code>uploads/</code> innerhalb des Webspace gespeichert,
+kann dort über den Webserver aufgerufen werden, und wird vom PHP-Interpreter
+ausgeführt.</p>
+
+<p><img src="/images/upload-security.png"  alt="Security Super-GAU: Upload einer Datei mit Endung php in den Webspace" ></p>
+
+<p>So ein Upload öffnet das Tor für beliebigen PHP Code, der dann mit den
+Rechten des Account <code>apache</code> ausgeführt wird.  Ein guter erster Schritt, wenn
+man den Server hacken will!</p>
+
+</div>
+<div class="slide">
+
+<h3 id="manahmen">Maßnahmen</h3>
+
+<p>Die Mindestanforderungen an ein Upload-Skript lauten also:</p>
+
+<ul>
+  <li><strong>niemals</strong> hochgeladene Daten als Code interpretieren!</li>
+  <li>Vorsicht bei Daten, die im Webspace gespeichert werden!</li>
+  <li>Alle Daten die hochgeladen werden sorgfältige überprüfen: Dateinamen und Inhalt!</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h3 id="implementierung">Implementierung</h3>
+
+<p>Die Verarbeitung von hochgeladenen Dateien ist wesentlich komplizierter als die Behandlung anderen Requests: Die Dateien werden vom PHP-Interpreter temporär gespeichert. Das PHP-Programm kann die Dateien dann an einen permanenten Speicherort kopieren (falls das die Zugriffsrechte erlauben)</p>
+
+<p>Die Details zu den Hochgeladenen Dateien sind im Array <code>$_FILES</code> gespeichert, in folgendem Beispiel hatte das Eingabefeld den Namen „bild“:</p>
+
+<dl>
+  <dt><code>$_FILES['bild']['name']</code></dt>
+  <dd>Der Originalname der Datei am Client.</dd>
+  <dt><code>$_FILES['bild']['type']</code></dt>
+  <dd>Der „Mime Type“ der Datei – falls der Browser diese Information liefert. Zum Beispiel „image/gif“. Achtung: nicht zuverlässig!</dd>
+  <dt><code>$_FILES['bild']['size']</code></dt>
+  <dd>Größe der hochgeladenen Datei in Byte.</dd>
+  <dt><code>$_FILES['bild']['tmp_name']</code></dt>
+  <dd>Der Pfad und Dateiname der temporären Datei.</dd>
+  <dt><code>$_FILES['bild']['error']</code></dt>
+  <dd>Fehlercode bei Upload, 0 bedeutet dass kein Fehler aufgetreten ist. Siehe <a href="https://www.php.net/manual/de/features.file-upload.errors.php">PHP-Doku</a>.</dd>
+</dl>
+
+</div>
+<div class="slide">
+
+<h3 id="beispielcode">Beispielcode</h3>
+
+<div class="example">
+<h4 class="caption">Php Code <small>PHP-Programm zur Behandlung von Datei-Upload</small></h4>
+<pre class="lang-php prettyprint linenums">
+&lt;?php
+$uploaddir = dirname( $_SERVER[&quot;SCRIPT_FILENAME&quot;] ) . &quot;/pix/&quot;;
+
+$filename = basename($_FILES[&#39;bild&#39;][&#39;name&#39;]);
+$ext = substr($filename, -4);
+
+if( $ext != &#39;.jpg&#39; ) {
+   die(&quot;ich darf nur jpg-Dateien hochladen, nicht &quot; . $ext );
+}
+
+$uploadfile = $uploaddir . $filename;
+
+if (move_uploaded_file($_FILES[&#39;bild&#39;][&#39;tmp_name&#39;], $uploadfile)) {
+  echo &quot;Datei erfolgreich hochgeladen.\n&quot;;
+} else {
+  echo &quot;Problem beim Speichern der Datei.\n&quot;;
+}
+
+echo &#39;&lt;pre&gt;debugging info:&#39;;
+print_r($_FILES);
+print &#39;&lt;/pre&gt;&#39;;
+
+?&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="zugriffsrechte-am-server">Zugriffsrechte am Server</h3>
+
+<p>Achtung: Sie müssen den Ordner <code>pix</code> erstellen und ihm 
+geeignete Zugriffsrechte zuweisen, damit der Webserver (Account <code>apache</code>) 
+hineinschreiben darf! Die Zugriffsrechte von UNIX werde in einem <a href="/kommandozeile/zugriffsrechte/">eigenem Kapitel</a>
+behandelt.</p>
+
+</div>
+    <div class="slide">
+      <h1>Datei Upload</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php/php-und-parameter//slide.html">In PHP Daten aus Web-Formularen verarbeiten</a> | 
+        <a href="/php/datei-upload/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php/datei-upload-frontend//slide.html">Datei Upload - Frontend</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

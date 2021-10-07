@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>XPath - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>XPath</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/xml/xml-und-javascript//slide.html">XML und Javascript</a> | 
+        <a href="/xml/xpath/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/xml/rss//slide.html">Beispiel RSS</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>XPath ist eine Abfrage-Sprache zu XML, ähnlich zu
+einer Pfadangabe im Dateisystem.  Aber während eine
+Pfadangabe nur ungefähr 3 Features kennt (“..” für den
+übergeordneten Ordner, die Wildcards “*” und “?”)
+hat XPath dutzende, wenn nicht hunderte Features.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="xpath-intro">XPath Intro</h2>
+
+<p>Aus dem Kurs “Introduction to Databases” von Prof.Jennifer Widom:</p>
+
+<ul>
+  <li><a href="http://www.youtube.com/watch?v=qY2Ezw786ko&amp;list=WLF4A5CFFB0BD48551">Intro</a></li>
+  <li><a href="http://www.youtube.com/watch?v=6Zvw3kmJ0KA&amp;list=WLF4A5CFFB0BD48551">Demo</a></li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="xpath-in-php--simplexml">XPath in PHP / SimpleXML</h2>
+
+<p>Als Beispiel wird hier ein Output der Wikipedia-API verwendet: Informationen
+zu einem Bestimmten Bild <a href="http://de.wikipedia.org/w/api.php?action=query&amp;titles=Datei%3A2010-04-29-tulpen-by-RalfR-14.jpg&amp;prop=imageinfo&amp;iiprop=url&amp;iiurlwidth=300&amp;format=xml">Demo</a></p>
+
+<div class="example">
+<h4 class="caption">Xml Code <small>output der Wikipedia-API: Abfrage von Bild-Information</small></h4>
+<pre class="lang-xml prettyprint linenums">
+&lt;api&gt;
+  &lt;query&gt;
+    &lt;pages&gt;
+      &lt;page ns=&quot;6&quot; title=&quot;Datei:2010-04-29-tulpen-by-RalfR-14.jpg&quot; missing=&quot;&quot; imagerepository=&quot;shared&quot;&gt;
+        &lt;imageinfo&gt;
+          &lt;ii thumburl=&quot;http://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/2010-04-29-tulpen-by-RalfR-14.jpg/300px-2010-04-29-tulpen-by-RalfR-14.jpg&quot; thumbwidth=&quot;300&quot; thumbheight=&quot;451&quot; url=&quot;http://upload.wikimedia.org/wikipedia/commons/8/8b/2010-04-29-tulpen-by-RalfR-14.jpg&quot; descriptionurl=&quot;http://commons.wikimedia.org/wiki/File:2010-04-29-tulpen-by-RalfR-14.jpg&quot;/&gt;
+        &lt;/imageinfo&gt;
+      &lt;/page&gt;
+    &lt;/pages&gt;
+  &lt;/query&gt;
+&lt;/api&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Um aus dieses XML nun in PHP Informationen zu extrahieren können 
+wir XPath verwenden:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>XML abfragen mit XPath in PHP</small></h4>
+<pre class="lang-php prettyprint linenums">
+$xml_doc = new SimpleXMLElement(&quot;....xml von oben ...&quot;);
+
+$query_result = $xml_doc-&gt;xpath( &quot;//ii/@thumburl&quot; );
+
+$bild_url = (string) $query_result[0];
+
+echo &quot;&lt;h1&gt;Das Bild&lt;/h1&gt;&quot;;
+echo &quot;&lt;img src=&#39;$bild_url&#39;&gt;&quot;;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="xpath-in-javascript">XPath in Javascript</h2>
+
+<p>XPath kann man verwenden um das HTML-Dokument selbst zu durchsuchen:
+Der folgende Code sucht alle <code>h2</code>-Element im aktuellen Dokument, und
+gibt sie in einem Ausgabefeld aus. <a href="/images/js-und-xpath.html">Demo</a></p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>XPath verwenden in HTML</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+iterator = document.evaluate(&#39;//h2&#39;, document, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null );
+thisNode = iterator.iterateNext();
+while (thisNode) {
+  document.getElementById(&#39;output&#39;).value += thisNode.innerHTML + &quot;\n&quot;;
+  thisNode = iterator.iterateNext();
+} 
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>In folgendem Beispiel wird ein String mit XML (den man z.B. schon
+serverseitig geladen und ins Javascript Eingefügt hat) in
+Javascript geparsed und mit XPath abgefragt.  <a href="/images/js-und-xml-xpath.html">Demo</a></p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+var xml_string, parser, doc, iterator, thisNode;
+
+xml_string = &#39;... &lt;ii thumburl=&quot;http://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/2010-04-29-tulpen-by-RalfR-14.jpg/300px-2010-04-29-tulpen-by-RalfR-14.jpg&quot; thumbwidth=&quot;300&quot; thumbheight=&quot;451&quot; /&gt; ....&#39;;
+parser   = new DOMParser();
+doc      = parser.parseFromString(xml_string, &quot;application/xml&quot;);
+iterator = doc.evaluate(&#39;//ii/@thumburl&#39;, doc, 
+               null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null );
+thisNode = iterator.iterateNext();
+if (thisNode) {
+  document.getElementById(&#39;bild&#39;).src = thisNode.value;
+} 
+</pre></div>
+
+<p>Siehe <a href="https://developer.mozilla.org/en-US/docs/Introduction_to_using_XPath_in_JavaScript">Introduction to using XPath in JavaScript</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="wo-wird-xpath-im-web-development-verwendet">Wo wird XPath im Web Development verwendet?</h2>
+
+<p>Mit <a href="http://docs.seleniumhq.org/">Selenium</a> kann man das Testen einer Webseite
+mit dem Browser automatisieren.  Dazu schreibt man Skripts,
+mit den einzelnen Schritt die der Browser durchführen soll: 
+“klicke hier, schreib das in ein Eingabefeld, drücke diesen Knopf”.
+Wie sagt man dem Browser welchen Link, welches Eingabefeld, welchen Knopf man meint?
+Mit XPath (siehe <a href="http://docs.seleniumhq.org/docs/02_selenium_ide.jsp#locating-by-xpath">Selenium Dokumentation</a>)
+oder mit CSS Selektoren oder mit einer ID.</p>
+
+</div>
+    <div class="slide">
+      <h1>XPath</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/xml/xml-und-javascript//slide.html">XML und Javascript</a> | 
+        <a href="/xml/xpath/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/xml/rss//slide.html">Beispiel RSS</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

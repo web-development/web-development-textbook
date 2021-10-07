@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Funktion Aufrufen - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Funktion Aufrufen</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/advanced-javascript//slide.html">Javascript Vertiefung</a> | 
+        <a href="/advanced-javascript/call/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/advanced-javascript/event-und-closure//slide.html">Events und Closures</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Zusätzlich zum einfachen Aufruf mit Funktionsname, Klammern, Argumenten <code>f(x)</code>
+gibt es noch mehrere zusätzliche Arten eine Funktion aufzurufen: 
+<code>call</code> und <code>apply</code>:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Funktion r aufrufen</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  r(&quot;hallo &quot;, 10);
+  r.call(null, &quot;hallo &quot;, 10);
+  r.apply(null, [  &quot;hallo &quot;, 10 ]  );
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Das erste Argument der Funktionen <code>call</code> und <code>apply</code>  gibt das Objekt an, auf dem die Methode aufgerufen werden soll:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Verschiedene Arten eine Methode aufzurufen</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  objekt.f(&quot;hallo &quot;, 10);
+  objekt.f.call(objekt, &quot;hallo &quot;, 10);
+  objekt.f.apply(objekt, [  &quot;hallo &quot;, 10 ]  );
+  
+  objekt.f.call(anderes_objekt, &quot;hallo &quot;, 10);
+  objekt.f.apply(anderes_objekt, [  &quot;hallo &quot;, 10 ]  );
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Es gibt noch eine dritte method <code>bind</code> die nur <code>this</code> neu festsetzt,
+und die funktion sonst unverändert lässt:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">  
+  f2 = objekt.f.bind(anderes_objekt);
+  f2.(&quot;hallo &quot;, 10);
+</pre></div>
+
+</div>
+    <div class="slide">
+      <h1>Funktion Aufrufen</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/advanced-javascript//slide.html">Javascript Vertiefung</a> | 
+        <a href="/advanced-javascript/call/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/advanced-javascript/event-und-closure//slide.html">Events und Closures</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

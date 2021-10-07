@@ -1,0 +1,14 @@
+/*  0 = no flexbox */
+
+.projects {
+
+}
+
+.project_partial {
+  width: 160px;
+  height: 275px;
+  background-color: #292927;
+  overflow: hidden;
+  color: white;
+  position: relative;
+}

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Variablen und Scope - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Variablen und Scope</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript//slide.html">Javascript die Sprache</a> | 
+        <a href="/javascript/variablen/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript/funktionen//slide.html">Funktionen und this</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Bis zum Jahre 2015 wurden Variablen in Javascript gar nicht oder mit <code>var</code> deklariert.
+Seit Javascript 2015 gibt es auch <code>let</code> und <code>const</code>.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="sichtbarkeit-von-variablen-mit-let-und-konstanten-mit-const">Sichtbarkeit von Variablen mit <code>let</code> und Konstanten mit <code>const</code></h2>
+
+<p>let und const haben einen Block-Scope, können also auf kleiner
+Bereich beschränkt werden als Variablen mit var:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+function g() { // function - scope
+  if ( true ) { // block - scope
+    let x = ’foo ’;
+    var y = ’bar ’;
+  }
+  console.log(x); // ReferenceError : x is not defined
+  console.log(y); // y === ’bar ’
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="konstanten-mit-const">Konstanten mit <code>const</code></h2>
+
+<p>Da Javascript eine dynamische Sprache ist haben Konstanten  eine
+geringe Bedeutung. Für einfache Werte verhalten Sie sich wie erwartet:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+const x = 1;
+x = 2;  // Uncaught TypeError: Assignment to constant variable.
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Bei Objekten oder Arrays zeigt sich die Beschränktheit:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+const y = [1,2,3];
+y[0] = 100;  // einen Wert zu ändern ist erlaubt
+y.push(4);   // einen Wert hinzu zu fügen ist erlaubt
+y = [5,6,7]; // Uncaught TypeError: Assignment to constant variable.
+
+const z = { farbe: &#39;grün&#39;, anzahl : 4 }
+z[&#39;farbe&#39;] = &#39;rot&#39;;  // einen Wert zu ändern ist erlaubt
+z.kg = 12;           // einen Wert hinzu zu fügen ist erlaubt
+z = [5,6,7]; // Uncaught TypeError: Assignment to constant variable.
+</pre></div>
+
+<p>Den Inhalt des Objekts oder Arrays zu ändern ist erlaubt.
+Nur das Objekt oder Array ganz zu ersetzen ist verboten.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="objekt-konstant-machen-mit-objectfreeze">Objekt konstant machen mit <code>Object.freeze</code></h2>
+
+<p>Mit der Methode <code>Object.freeze</code> kann man den Inhalt eines Objekts
+oder Arrays konstant machen, aber nur “eine Ebene tief”: verschachtelte
+Objekte bzw. Arrays werden nicht geschützt</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+const y = [1,2,[3]];
+Object.freeze(y);
+y[0] = 100;  // Wert wird nicht verändert, bleibt 1, kein Fehler
+y.push(4);   // Uncaught TypeError: object is not extensible
+y[2][0] = 100;  // Verschachteltes Array kann geändert werden!
+y[2].push( 200 );   //               und kann erweitert werden!
+JSON.stringify(yy); // &quot;[1,2,[100,200]]&quot;
+
+const z = { farbe: &#39;grün&#39;, anzahl : 4, other : { a:1, b:2, c:3 } }
+Object.freeze(z);
+z[&#39;farbe&#39;] = &#39;rot&#39;; // Wert wird nicht verändert, kein Fehler
+z.kg = 12;          // Wert wird nicht hinzu gefügt, kein Fehler
+z.other.a = 100;    // Wert im verschachtelten Objekt kann geändert werden!
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="kurz-schreibweise-fr-objekte--werte">Kurz-Schreibweise für Objekte + Werte</h2>
+
+<p>Wenn in der JSON Schreibweise eines Objekts eine Variable
+verwendet wird, die den gleichen Namen hat wie das Propertie das
+erzeugt werden soll, dann kann man die Schreibweise verkürzen:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+let x = 10;
+let y = 12;
+let circle1 = { color: &#39;yellow&#39;, r: 25, x: x, y: y  }; // lang
+let circle2 = { color: &#39;yellow&#39;, r: 25, x,    y     }; // kurz
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="zuweisung-mit-desctructuring">Zuweisung mit Desctructuring</h2>
+
+<p>Auf der linken Seite einer Zuweisung kann die Array oder Objekt-Schreibweise
+von JSON verwendet werden um mehrere Variablen auf einmal zuzuweisen.</p>
+
+<p>Das kann sehr komplex werden, hier ein paar einfache Beispiele:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+let [x,y] = [10,12];  // zwei Werte werden an zwei Variablen zugewiesen
+let p     = [10,12];
+let [x1,y1] = p;      // zwei Werte werden an zwei Variablen zugewiesen
+let circle = { m: p, r: 20 };
+let { m: [x2, y2], r } = circle  // Achtung: kurz-schreibweise für r: r 
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="sichtbarkeit-von-variablen-mit-var">Sichtbarkeit von Variablen mit var</h2>
+
+<p>In einer Funktion in Javascript sind lokale und globale
+Variablen sichtbar.  Da Funktionen auch innerhalb von
+Funktionen definiert werden können sind in folgendem Code
+die Variablen a, b und c in der innern Funktion f sichtbar</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Sichtbarkeit von a, b, c in Funktionen</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+var a = 1;
+function g( x ) {
+  var b = 2;
+  var s = &quot;Ein String aus g ... &quot;;
+  function f( y ) {
+    var c = 3;
+    return &quot;die Werte sind &quot; + [a,b,c,x,y].join(&quot;, &quot;);
+  }
+  return s + f( x );
+}
+
+g(10);
+// Rückgabewert: &quot;Ein String aus g ... die Werte sind 1, 2, 3, 10, 10&quot;
+console.log(a);  // 1
+console.log(b);  // ReferenceError: b is not defined
+console.log(c);  // ReferenceError: c is not defined
+console.log(x);  // ReferenceError: x is not defined
+console.log(y);  // ReferenceError: y is not defined
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="hoisting-von-variablen-mit-var">Hoisting von Variablen mit var</h2>
+
+<p>Eine Besonderheit von Javascript Variablen die mit <code>var</code> deklariert
+wurden ist das “Hochziehen” (auf englisch: hoisting): Alle
+Variablen-Deklarationen werden an den Anfang der jeweiligen Funktion 
+vorverlegt.  Falls auch eine Zuweisung eines Wertes erfolgt
+bleibt diese Zuweisung an der Ursprünglichen Stelle im Code.</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Sichtbarkeit von a, b, c in Funktionen</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  function g( x ) {
+    var s = &quot;Ein String aus g ... &quot;;
+    function f( y ) {
+      var c = 3;
+      return &quot;die Werte sind &quot; + [a,b,c,x,y].join(&quot;, &quot;);
+    }
+    var b = 2; // var b wird hochgezogen zum Beginn von g()
+               // die Initialisierung b = 2 bleibt hier!
+    return s + f( x );
+  }
+
+  g(10);
+  // rückgabewert: &quot;Ein String aus g ... die Werte sind 1, 2, 3, 10, 10&quot;
+</pre></div>
+
+</div>
+    <div class="slide">
+      <h1>Variablen und Scope</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript//slide.html">Javascript die Sprache</a> | 
+        <a href="/javascript/variablen/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript/funktionen//slide.html">Funktionen und this</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

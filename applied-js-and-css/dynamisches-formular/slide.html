@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dynamisches Formular - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Dynamisches Formular</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/applied-js-and-css/landkarte//slide.html">Landkarte</a> | 
+        <a href="/applied-js-and-css/dynamisches-formular/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/applied-js-and-css/ajax//slide.html">AJAX</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Ohne Einsatz von Javascript sind HTML-Formulare sehr unflexibel.
+So könnte ein Pizza-Bestell-Formular aussehen:</p>
+
+<p><img src="/images/static-pizza-form.png" srcset="/images/static-pizza-form@2x.png 2x, /images/static-pizza-form.png 1x"  alt="static pizza form" ></p>
+
+<p>Viel schöner wäre es, wenn jede bestellte Pizza im Formlar
+einzeln aufgeführt würde, und jeweils eigene Extra-Zutaten haben
+könnte:</p>
+
+<p><img src="/images/dynamic-pizza-form-2.png" srcset="/images/dynamic-pizza-form-2@2x.png 2x, /images/dynamic-pizza-form-2.png 1x"  alt="dynamic pizza form" ></p>
+
+<p>Dann kann man auch zu jeder Pizza angeben, für wen sie
+bestimmt ist.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="dynamisches-formular-planen">Dynamisches Formular planen</h2>
+
+<p>ACHTUNG: in den Beispielen hier wird noch jQuery verwendet - finde heraus
+wie Du dasselbe ohnee jQuery, mit reinem JavaScript machen kannst!
+<a href="http://youmightnotneedjquery.com/">Siehe auch: You Might Not Need jQuery</a></p>
+
+<p>Das Hinzufügen von zusätzlichen Zeilen bzw. Eingabeelementen
+kann man mit jQuery gut umsetzen.</p>
+
+<p>Achtung: die dynamisch erzeugten Eingabefelder brauchen eindeutige Namen!
+Wir verwenden <code>pizza[1]</code>, <code>pizza[2]</code>, … für den Typ der Pizza,
+<code>hot[1]</code>, <code>hot[2]</code>, … für die checkbox “scharf”, und so weiter.</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+  &lt;li class=&quot;a_pizza&quot;&gt;
+    &lt;p&gt;Pizza Sicilia&lt;/p&gt;
+      &lt;div class=&quot;flex-inner&quot;&gt;
+        &lt;label&gt;&lt;input name=&quot;hot[2]&quot; type=&quot;checkbox&quot;&gt; Scharf&lt;/label&gt;
+        &lt;label&gt;&lt;input name=&quot;cheese[2]&quot; type=&quot;checkbox&quot;&gt; mit extra Käse&lt;/label&gt;
+        &lt;label&gt;für &lt;input name=&quot;fuer[2]&quot; placeholder=&quot;Christian&quot; type=&quot;text&quot;&gt;&lt;/label&gt;
+        &lt;input name=&quot;pizza[2]&quot; value=&quot;Pizza Tonno&quot; type=&quot;hidden&quot;&gt;
+    &lt;/div&gt;&lt;/li&gt;
+  &lt;li class=&quot;a_pizza&quot;&gt;
+    &lt;p&gt;Pizza Margherita&lt;/p&gt;
+      &lt;div class=&quot;flex-inner&quot;&gt;
+        &lt;label&gt;&lt;input name=&quot;hot[1]&quot; type=&quot;checkbox&quot;&gt; Scharf&lt;/label&gt;
+        &lt;label&gt;&lt;input name=&quot;cheese[1]&quot; type=&quot;checkbox&quot;&gt; mit extra Käse&lt;/label&gt;
+        &lt;label&gt;für &lt;input name=&quot;fuer[1]&quot; placeholder=&quot;Christian&quot; type=&quot;text&quot;&gt;&lt;/label&gt;
+        &lt;input name=&quot;pizza[1]&quot; value=&quot;Pizza Salami&quot; type=&quot;hidden&quot;&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+</pre></div>
+
+<p>Die Namen mit eckigen Klammern, die an ein Array erinnern, werden
+von PHP auch als Array interpretiert:
+macht es aus den Parametern <code>pizza[1]</code>, <code>pizza[2]</code>,… ein Array,
+Wenn PHP die Daten entgegen nimmt und in $_POST speichert,
+das unter <code>$_POST['pizza']</code> gespeichert ist.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="wert-aus-dem-select-tag-auslesen">Wert aus dem select-Tag auslesen</h2>
+
+<p>Die Auswahl der Pizza erfolgt über einen einfachen Select-Tag:</p>
+
+<p><img src="/images/dynamic-pizza-form-3.png" srcset="/images/dynamic-pizza-form-3@2x.png 2x, /images/dynamic-pizza-form-3.png 1x"  alt="" ></p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+  &lt;li&gt;
+    &lt;p&gt;Pizzen&lt;/p&gt;
+    &lt;select id=&quot;next_pizza&quot; name=&quot;next_pizza&quot;&gt;
+      &lt;option value=&quot;&quot; selected&gt;--- bitte auswählen ---&lt;/option&gt;
+      &lt;option&gt;Pizza Margherita&lt;/option&gt;
+      &lt;option&gt;Pizza Sicilia&lt;/option&gt;
+      &lt;option&gt;Pizza Salami&lt;/option&gt;
+      &lt;option&gt;Pizza Tonno&lt;/option&gt;
+      &lt;option&gt;Pizza Diavolo&lt;/option&gt;
+      &lt;option&gt;Pizza ai Spinaci&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;button id=&quot;add_next_pizza&quot; &gt;Pizza auswählen&lt;/button&gt;
+  &lt;/li&gt;
+</pre></div>
+
+<p>Das auslesen des ausgewählten Wertes ist mit der
+jquery-Methode <code>val</code> ganz einfach:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  let pizza_type = $(&#39;#next_pizza&#39;).val(); 
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="neuen-teil-in-das-formular-einfgen">Neuen Teil in das Formular einfügen</h2>
+
+<p><img src="/images/dynamic-pizza-form-3.png" srcset="/images/dynamic-pizza-form-3@2x.png 2x, /images/dynamic-pizza-form-3.png 1x"  alt="" ></p>
+
+<p>Wenn der “Pizza Auswählen” Button geklickt wird
+soll dann ein neuer Teil zum Formular hinzugefügt werden.</p>
+
+<p>Wir brauchen für die Erzeugung dieses Teils einerseits
+den Typ der ausgewählten Pizza, und die nächstes Zahl:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+    $(&quot;#add_next_pizza&quot;).on(&quot;click&quot;, function(event) {
+    event.preventDefault();
+    let pizza_type = $(&quot;#next_pizza&quot;).val();
+    let pizza_number = 1 + $(&quot;.a_pizza&quot;).length;
+    let template = `&lt;li class=&#39;a_pizza&#39;&gt;
+      &lt;p&gt;${pizza_type}&lt;/p&gt;....
+      &lt;/li&gt;`;
+    let $li = $(this).parents(&quot;li&quot;);
+    $li.after(template);
+  });
+</pre></div>
+
+<p>Der Inhalt des Templates fehlt hier, er müsste nach der Vorlage oben
+ergänzt werden.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="html-einfgen">HTML einfügen</h2>
+
+<p>Das Einfügen des neuen Formular-Teils erfolgt hier über die gemeinsame
+Liste, in der sich alle Formular-Teile befinden:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+  &lt;ul&gt;
+    ...
+    &lt;li&gt;
+      &lt;p&gt;Pizzen&lt;/p&gt;
+      &lt;select id=&quot;next_pizza&quot; name=&quot;next_pizza&quot;&gt;
+        ...
+      &lt;/select&gt;
+      &lt;button id=&quot;add_next_pizza&quot; &gt;Pizza auswählen&lt;/button&gt;
+    &lt;/li&gt;
+    &lt;li class=&quot;a_pizza&quot;&gt;
+      &lt;p&gt;Pizza Sicilia&lt;/p&gt;
+        &lt;div class=&quot;flex-inner&quot;&gt;
+          &lt;label&gt;&lt;input name=&quot;hot[2]&quot; type=&quot;checkbox&quot;&gt; Scharf&lt;/label&gt;
+          &lt;label&gt;&lt;input name=&quot;cheese[2]&quot; type=&quot;checkbox&quot;&gt; mit extra Käse&lt;/label&gt;
+          &lt;label&gt;für &lt;input name=&quot;fuer[2]&quot; placeholder=&quot;Christian&quot; type=&quot;text&quot;&gt;&lt;/label&gt;
+          &lt;input name=&quot;pizza[2]&quot; value=&quot;Pizza Tonno&quot; type=&quot;hidden&quot;&gt;
+      &lt;/div&gt;&lt;/li&gt;
+    &lt;li class=&quot;a_pizza&quot;&gt;
+      &lt;p&gt;Pizza Margherita&lt;/p&gt;
+        &lt;div class=&quot;flex-inner&quot;&gt;
+          &lt;label&gt;&lt;input name=&quot;hot[1]&quot; type=&quot;checkbox&quot;&gt; Scharf&lt;/label&gt;
+          &lt;label&gt;&lt;input name=&quot;cheese[1]&quot; type=&quot;checkbox&quot;&gt; mit extra Käse&lt;/label&gt;
+          &lt;label&gt;für &lt;input name=&quot;fuer[1]&quot; placeholder=&quot;Christian&quot; type=&quot;text&quot;&gt;&lt;/label&gt;
+          &lt;input name=&quot;pizza[1]&quot; value=&quot;Pizza Salami&quot; type=&quot;hidden&quot;&gt;
+      &lt;/div&gt;
+    &lt;/li&gt;
+    ...
+  &lt;/ul&gt;
+</pre></div>
+
+<p>Der “Pizza auswählen”-Button wurde angeklickt. Die Variable <code>this</code> verweist
+also auf diesen Button. Mit der jQuery-Methode <code>parent</code> kann also vom Button
+aus nach oben, zu den Eltern und Großeltern navigiert werden.
+Mit <code>$(this).parent("li")</code> wird ein <code>li</code> Element als Vorfahre gesucht, und
+in der Variablen <code>$li</code> gespeichert. Mit <code>$li.after()</code> wird dann
+der neue Formularteil als “nächstes Geschwister” eingefügt.</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  let $li = $(this).parents(&quot;li&quot;);
+  $li.after(template);
+</pre></div>
+
+<p>Siehe auch <a href="jQuery: parent">https://api.jquery.com/parent/</a>, <a href="jquery: after">https://api.jquery.com/after/</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="eine-bessere-selectbox">Eine bessere Selectbox</h2>
+
+<p>Bei der Auswahl des Pizza-Typs wäre es schön nicht nur den Namen der Pizza
+zu sehen, sondern zusätlich noch ein Beschreibung und den Preis. Das kann man
+mit den HTML-Tags <code>option</code> und <code>select</code> aber nicht umsetzen.</p>
+
+<ul>
+  <li><a href="http://opensource.faroemedia.com/selectator/">Homepage von Selectator</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Dynamisches Formular</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/applied-js-and-css/landkarte//slide.html">Landkarte</a> | 
+        <a href="/applied-js-and-css/dynamisches-formular/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/applied-js-and-css/ajax//slide.html">AJAX</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

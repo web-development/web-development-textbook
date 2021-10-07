@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>HTTP - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>HTTP</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/http/tcpip-und-dns//slide.html">TCP/IP und DNS</a> | 
+        <a href="/http/http/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/http/tools//slide.html">Werkzeuge</a>
+        
+      </p>
+    </div>
+    <div class="slide"><p>HTTP in der aktuell gültigen Version 1.1 ist in <a href="https://www.ietf.org/rfc/rfc2616.txt">RFC 2616</a> definiert. 
+HTTP baut auf TCP auf, d.h. die hier dargestellten Daten werden über eine TCP-Verbindung zwischen Client und Server übertragen. 
+Im <a href="/das-web-und-html/standards/">Kapitel „Drei Standards definieren das Web“</a> 
+wurde HTTP schon einmal grob vorgestellt; nun werden wir HTTP genauer betrachten.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="ablauf-im-berblick">Ablauf im Überblick</h2>
+<p>Egal ob der Vorgang durch das Eintippen einer URL oder durch das Anklicken eines Links gestartet wird — das Laden einer Webseite über HTTP funktioniert immer gleich.</p>
+
+<ol>
+  <li>Der <strong>Browser</strong> analysiert die <strong>URL</strong>: falls Sie eine IP-Adresse enthält geht’s weiter zum nächsten Schritt. Falls sie einen Domain Namen enthält wird dieser mittels DNS-Lookup in die entsprechende IP-Adresse übersetzt.</li>
+  <li>Der Browser baut eine <strong>TCP-Verbindung</strong> zum Server auf, falls in der URL nicht anders angegeben wird  dabei Port 80 angesteuert.</li>
+  <li>Der Browser sendet über die TCP-Verbindung einen <strong>HTTP-Request</strong>; dieser besteht aus einer ersten Zeile (Request-Line), mehreren Header-Zeilen und manchmal einem Body.</li>
+  <li>Der <strong>Webserver</strong> nimmt den Request entgegen und analysiert ihn. Der Webserver entscheidet, ob er zur Beantwortung der Anfrage nur eine bestimmte Datei aus dem Dateisystem zu liest, oder ein Programm aufruft.</li>
+  <li>Der Webserver schickt über die TCP-Verbindung einen <strong>HTTP-Response</strong> an den Browser, dieser besteht aus einer ersten Zeile (Response-Line) mit Statuscode, z. B. „200 OK\n\n“, mehreren Header-Zeilen und der  angeforderten Ressource.</li>
+  <li>Der Browser nimmt das Dokument in Empfang, <strong>stellt es dar</strong>, und beendet die TCP-Verbindung.</li>
+</ol>
+
+</div>
+<div class="slide">
+
+
+
+<p><img src="/images/http-sequence-diagram.svg"  alt="zwei http requests" ></p>
+
+<p>Dieser einfache Ablauf kann durch die Verwendung von Proxies und Caches sowie durch das wiederholte Abrufen von Dokumenten vom selben Server komplizierter werden — das ignorieren wir aber erst einmal.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="aufbau-von-request-und-response">Aufbau von Request und Response</h2>
+<p>Jede Anfrage des Clients und jede Antwort des Servers besteht aus einer ersten Zeile 
+mit besonderer Bedeutung, einem Header und einem Body. 
+Header und Body funktionieren ähnlich wie bei einer E-Mail, es kann viele
+Header-Zeilen geben.  Der Body ist beim Request meist leer.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Hier ein Beispiel für einen Request:</p>
+
+<pre><code>GET /~bjelline/u2/bestellung.html HTTP/1.1
+Host: users.fh-salzburg.ac.at
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:44.0) Gecko/20100101 Firefox/44.0
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+DNT: 1
+Cookie: _ga=GA1.3.1837452953.1440699405
+</code></pre>
+
+<p>Die erste Zeile besteht aus: Methode, URL-Fragement und HTTP-Versionsnummer. 
+Die meist-verwendete Methode ist GET. Sie erinnern sich:
+bei Web-Formularen muss man die Methode angeben, mit der die Daten an den 
+Server übertragen werden sollen. Das ist diese Methode.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Hier ein Beispiel für eine Server-Antwort:</p>
+
+<pre><code>HTTP/1.1 200 OK
+Date: Sun, 06 Mar 2016 21:43:16 GMT
+Server: Apache/2.2.15 (Scientific Linux)
+Last-Modified: Sun, 06 Mar 2016 20:47:07 GMT
+Content-Length: 543
+Content-Type: text/html
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;        
+    &lt;title&gt;Bestellung eines Flugzeugs&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Wieviele Flugzeuge dürfens denn sein?&lt;/h1&gt;
+    &lt;form action="bestellung.php" method="POST"&gt;            
+    &lt;p&gt;Anzahl: &lt;br&gt;&lt;input name="anzahl"&gt;&lt;/p&gt;            
+    &lt;p&gt;Adresse:&lt;br&gt; &lt;textarea name="adresse"&gt;&lt;/textarea&gt;&lt;/p&gt;            
+    &lt;p&gt;Preis: 1.000.000 €&lt;/p&gt;            
+    &lt;p&gt;&lt;input type="submit" value="Bestellung absenden"&gt;&lt;/p&gt;
+    &lt;/form&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Die erste Zeile der Server-Antwort besteht aus der HTTP-Versionsnummer, dem Statuscode und einem erklärenden Text zum Statuscode, der aber nicht standardisiert ist.</p>
+
+<p>Die wichtigsten Statuscodes sind 200 (ok), 404 (not found), 403 (forbidden).
+Siehe http://httpstatus.es/</p>
+
+</div>
+<div class="slide">
+
+<h2 id="header">Header</h2>
+
+<p>Header-Zeilen gibt es sehr viele; relativ wenige davon werden von Clients und Servern wirklich beachtet.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="host">Host</h3>
+
+<p>Im Request:</p>
+
+<pre><code>Host: users.fh-salzburg.ac.at
+</code></pre>
+
+<p>Wichtig wenn der Server unter mehreren Domain Names (aber nur einer IP-Adresse) 
+erreichbar ist.  Das ist fast immer der Fall, dieser Header ist also fast immer
+notwendig.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="user-agent">User-Agent</h3>
+
+<p>Im Request:</p>
+
+<pre><code>  User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:44.0) Gecko/20100101 Firefox/44.0
+  User-Agent: Mozilla/4.0 (compatible; MSIE 5.5; Windows 98; Win 9x 4.90)
+</code></pre>
+
+<p>Das ist die Selbstoffenbarung des Clients: welcher Browser, welche Version. Die meisten 
+Clients lügen, und behaupten sie wären Mozilla, erst in der Klammer folgt die richtige Angabe.</p>
+
+<p>(Siehe <a href="http://webaim.org/blog/user-agent-string-history/">History of the browser user-agent string</a>.)</p>
+
+</div>
+<div class="slide">
+
+<h3 id="referer">Referer</h3>
+
+<p>Im Request: <code>Referer: http://my.app.at/form.html</code> Welche Seite hat der Client
+zuvor angezeigt? URL der vorigen Seite — falls von dort ein Link hierher verfolgt 
+wurde oder ein FORM gesendet wurde.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="date-server">Date, Server</h3>
+
+<p>Im Response:</p>
+
+<pre><code>Date: Sun, 06 Mar 2016 21:43:16 GMT
+Server: Apache/2.2.15 (Scientific Linux)
+</code></pre>
+
+<p>zeigt Datum und Uhrzeit am Server, bzw. die verwendete
+Webserver-Software.  Wenn Sie Statistiken über den Marktanteil der verschiedenen
+Server sehen, dann basieren diese auf dieser Angabe.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="content-type">Content-Type</h3>
+
+<p>Im Response:</p>
+
+<pre><code>Content-Type: text/html
+</code></pre>
+
+<p>MIME-Type des im Body gelieferten Dokuments. Andere Werte die 
+sie hier häufig antreffen sind:</p>
+
+<ul>
+  <li>text/css</li>
+  <li>application/javascript</li>
+  <li>image/png</li>
+  <li>image/jpg</li>
+  <li>image/gif</li>
+  <li>image/svg+xml</li>
+</ul>
+
+</div>
+    <div class="slide">
+      <h1>HTTP</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/http/tcpip-und-dns//slide.html">TCP/IP und DNS</a> | 
+        <a href="/http/http/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/http/tools//slide.html">Werkzeuge</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

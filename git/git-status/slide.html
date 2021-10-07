@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Status von Git abfragen - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Status von Git abfragen</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/git/basic-git//slide.html">Einfacher Arbeitsablauf in Git</a> | 
+        <a href="/git/git-status/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/git/git-tools//slide.html">Tools für Git</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Mit dem Befehl <code>git status</code> kann man den aktuellen Zustand des lokalen Repositories und der working copy abfragen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="clean">Clean</h2>
+
+<p>Bevor man mit der Arbeit beginnt ist die working copy clean:</p>
+
+<pre><code>  D:\Webprojekte\wp2&gt;git status
+  On branch master
+  Initial commit
+  nothing to commit (create/copy files and use "git add" to track)
+</code></pre>
+
+</div>
+<div class="slide">
+
+<h2 id="changed-but-not-updated">Changed but not updated</h2>
+
+<p>Wenn ich nun zwei Dateien verändere zeigt mir git status das genau an:</p>
+
+<pre><code>  D:\Webprojekte\wp2&gt;git status
+  # On branch master
+  #
+  # Changed but not updated:
+  #   (use "git add &lt;file&gt;..." to update what will be committed)
+  #   (use "git checkout -- &lt;file&gt;..." to discard changes in working directory)
+  #
+  #       modified:   bestellung.php
+  #       modified:   form.html
+  #
+  no changes added to commit (use "git add" and/or "git commit -a")
+</code></pre>
+
+</div>
+<div class="slide">
+
+<h2 id="changes-to-be-commited">Changes to be commited</h2>
+
+<p>Nach dem git add werden die beiden Dateien als gestaged angezeigt:</p>
+
+<pre><code>  D:\Webprojekte\wp2&gt;git status
+  # On branch master
+  #
+  # Changes to be committed:
+  #   (use "git reset HEAD &lt;file&gt;..." to unstage)
+  #
+  #       modified:   bestellung.php
+  #       modified:   form.html
+  #
+</code></pre>
+
+<p>Nach dem Commit ist die working copy wieder clean.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="git-log">git log</h2>
+
+<p>Mit git log kann man die alten Commits anzeigen:</p>
+
+<pre><code>  D:\Webprojekte\wp2&gt;git log
+  commit 611a84e34ee4eb7de3264befc07cede24e0f3bfa
+  Author: Brigitte Jellinek &lt;brigitte.jellinek@fh-salzburg.ac.at&gt;
+  Date:   Wed Feb 27 15:06:54 2013 +0100
+
+      von get auf post umgestellt - wir sind restful!
+
+  commit a86390b0d0ae00ae35b2110657d7c11b1fd41e9a
+  Author: Brigitte Jellinek &lt;brigitte.jellinek@fh-salzburg.ac.at&gt;
+  Date:   Wed Feb 27 15:06:26 2013 +0100
+
+      bestellung funktioniert jetzt
+
+  commit 21c7ff3047cb710cb2edb554545582ee7f7ce74d
+  Author: Brigitte Jellinek &lt;brigitte.jellinek@fh-salzburg.ac.at&gt;
+  Date:   Wed Feb 27 15:05:43 2013 +0100
+
+      bestellformular da, bestellung geht noch nicht
+</code></pre>
+
+</div>
+<div class="slide">
+
+<h2 id="git-log-optionen">git log optionen</h2>
+
+<p>für git log gibt es viele verschiedene optionen, die verschiedene Details anzeigen, z.B. –numstat zeigt die Anzahl der hinzugefügten und gelöschten Zeilen in jeder veränderten Datei</p>
+
+<pre><code>  D:\Webprojekte\wp2&gt;git log –numstat
+  commit d01a7db9b741b14dfb95dc810b4c002122565560
+  Author: Brigitte Jellinek &lt;brigitte.jellinek@fh-salzburg.ac.at&gt;
+  Date:   Wed Mar 23 17:07:44 2011 +0100
+
+      von get auf post umgestellt - wir sind restful!
+
+  17      5       bestellung.php
+  10      7       form.html
+</code></pre>
+
+</div>
+    <div class="slide">
+      <h1>Status von Git abfragen</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/git/basic-git//slide.html">Einfacher Arbeitsablauf in Git</a> | 
+        <a href="/git/git-status/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/git/git-tools//slide.html">Tools für Git</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

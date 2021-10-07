@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Cookies - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Cookies</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/session//slide.html">Login, Sessions und Datenbank verändern</a> | 
+        <a href="/session/cookies/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/session/session-und-login//slide.html">Session und Login</a>
+        
+      </p>
+    </div>
+    <div class="slide"><p>Bis jetzt war jeder Zugriff auf die Webapplikation unabhängig von jedem anderen
+Zugriff: die PHP-Applikation weiß nicht, ob 10 verschiedene Leute die Homepage
+abrufen oder ob eine Person die Seite 10 mal lädt.</p>
+
+<p><img src="/images/stateless-http.svg"  alt="HTTP als &quot;stateless protocol&quot;" ></p>
+
+<p>Das ist eine Grundeigenschaft von HTTP: es ist „stateless“ (zustandslos).  Das
+Gegenteil davon wäre „stateful“ (zustandsbehaftet).</p>
+
+<p>Also kann man mit HTTP alleine – wie wir es bisher kennen – kein „Login“
+schaffen. Um zu wissen, dass der User Bob eingeloggt ist müsste er ja
+„wiedererkannt“ werden. Genau das macht den „state“ aus.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="cookies">Cookies</h2>
+
+<p>Um das zu ermöglichen wurde das HTTP-Protokoll um die
+sogenannten „Cookies“ erweitert: Ein Cookie besteht aus bis zu 4096 Bytes Daten,
+die der Webbrowser lokal speichert, und bei jedem Zugriff auf den Webserver
+wieder mitsendet.</p>
+
+<p><img src="/images/image363.png"  alt="Cookie wird gesetzt und bei jedem weiteren Request gesendet" ></p>
+
+<p>Der Browser sendet nie ein Cookie an einen anderen Webserver
+als den von dem er es erhalten hat. Er kann aber viele verschiedene Cookies von
+verschiedenen Servern speichern (In einem Cookie-Jar).</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>An Hand dieses Cookies kann eine Webapplikation einen bestimmten User
+wiedererkennen. Cookies können als Teil des HTTP-Protocols (nur) vom Server
+gesetzt werden. Dabei wird der Name des Cookies angegeben, der Wert der
+gespeichert werden soll, und der Gültigkeitsbereich und Zeitraum:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+Set-Cookie: style=gelb 
+Set-Cookie: style=gelb; path=/admin/
+Set-Cookie: style=gelb; expires=Tue, 29-Mar-2015 19:30:42 GMT; path=/admin/
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Mit dem Zusatz <code>Secure</code> wird ein Cookie niemals über eine unverschlüsselte (<code>http</code>) Verbindung
+gesendet, sondern nur über <code>https</code>.</p>
+
+<p>Der Zusatz <code>HttpOnly</code> zeigt an, dass das Cookie nicht von JavaScript aus gelesen oder
+verändert werden kann.</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+Set-Cookie: style=gelb; expires=Tue, 29-Mar-2015 19:30:42 GMT; path=/admin/;  Secure; HttpOnly
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Die einzige Art ein Cookie zu löschen ist ein Cookie mit gleichem Namen und
+Ablaufdatum in der Vergangenheit zu setzen:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+Set-Cookie: style=wurscht; expires=Tue, 29-Mar-2005 19:30:42 GMT; path=/admin/
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="cookies-in-php">Cookies in PHP</h3>
+
+<p>In PHP finden Sie die bereits gesetzten Cookies, die vom Browser zurückgesendet
+wurden im Array <code>$_COOKIES</code><a href="http://php.net/manual/en/reserved.variables.cookies.php">*</a> 
+(und — zusammen mit GET und POST-Parametern — in $_REQUEST).</p>
+
+<p>Neue Cookies können Sie mit <code>setcookie()</code><a href="http://www.php.net/manual/en/function.setcookie.php">*</a> setzen.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="cookies-in-javascript">Cookies in Javascript</h3>
+
+<p>Im Client können Cookies (ausser <code>HttpOnly</code>) mit Javascript gelesen und geschrieben werden. Dies
+funktioniert über eine Zuweisung an die Eigenschaft <code>document.cookie</code>.</p>
+
+<p>Achtung: beim lesenden Zugriff auf diese Eigenschaft enthält man einen String
+mit allen Cookies die gerade gültig sind.</p>
+
+<p>Zum Setzen von neuen Cookies wird auf die Eigenschaft zugewiesen. Zum Setzen
+mehrere Cookies wird wiederholt zugewiesen — das hat aber (noch) keinen Einfluß
+auf den Wert den man aus document.cookie auslesen kann:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+alert(document.cookie);  // Zeigt die gültigen Cookies
+
+document.cookie = &quot;farbe=grün&quot;; document.cookie = &quot;anzahl=3&quot;; 
+document.cookie = &quot;passwort=total super geheimes aber recht langes passwort&quot;;
+</pre></div>
+
+<p>Erst wenn ein neuer Request an den Server erfolgt, werden die neu gesetzten
+Cookies mit gesendet und haben eventuell einen Auswirkung auf das
+Verhalten des Servers.</p>
+</div>
+    <div class="slide">
+      <h1>Cookies</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/session//slide.html">Login, Sessions und Datenbank verändern</a> | 
+        <a href="/session/cookies/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/session/session-und-login//slide.html">Session und Login</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

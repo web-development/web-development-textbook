@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Public und Private Key - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Public und Private Key</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/git/git-tools//slide.html">Tools für Git</a> | 
+        <a href="/git/public-private-key/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/http//slide.html">HTTP</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Sie kennen Passwörter als eine Methode, wie Sie sich am Computer “ausweisen” können:
+wie Sie beweisen können, dass Sie die Person sind, die Zugriff auf den Server haben soll.</p>
+
+<p>Für git wird statt eines Passworts meist ein Schlüsselpaar verwendet. Um
+das zu verstehen hier ein kurzer Einblick in 
+Asymmetrische Kryptosysteme.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="public-key-cryptography">Public Key Cryptography</h2>
+
+<p>Klassische Verschlüsselung kennt nur einen Schlüssel: er wird
+zum ver- und zum ent-schlüsseln verwendet.  Das ist eigentlich unpraktisch:
+wenn ich ein problem habe eine lange Botschaft ohne Abhören oder Manipulation von A nach B zu bringen,
+und sie deswegen verschlüssle, dann ist mir ja nicht geholfen: jetzt muss ich erst
+den gezeimen Schlüssel sicher (ohne Abhören oder Manipulation) von A nach B bringen. Das Problem
+hat jetzt einen kleinern Umfang, aber das Grundproblem bleibt bestehen.</p>
+
+<p>Bei einem asymmetrischen Verschlüsselungsverfahren gibt es zwei verschiedene
+Schlüssel: einen öffentlichen und einen privaten:</p>
+
+<p><img src="/images/public_key_crypto.svg"  alt="Ver- und Entschlüsseln" ></p>
+
+<p>Diese Art der Verschlüsselung wird im Internet z.B. für die Verschlüsselung
+und Signierung von E-Mail mit <a href="https://de.wikipedia.org/wiki/GNU_Privacy_Guard">GPG</a> verwendet,
+oder für die Authentifizierung beim Login mit <a href="https://de.wikipedia.org/wiki/Ssh">SSH</a>.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="authentisierung-fr-ssh-mit-private-und-public-key">Authentisierung für SSH mit private und public key</h2>
+
+<p>SSH bezeichnet sowohl ein Netzwerkprotokoll als auch entsprechende Programme, 
+mit deren Hilfe man eine verschlüsselte Netzwerkverbindung mit einem entfernten 
+Gerät herstellen kann. Häufig wird diese Methode verwendet, um lokal eine entfernte 
+Kommandozeile verfügbar zu machen, z.B. zur Fernwartung eines in einem entfernten Rechenzentrum stehenden Servers.</p>
+
+<p>Die Authentisierung kann dabei entweder über ein Passwort oder mit private/public keys erfolgen.</p>
+
+<p><img src="/images/ssh_login_with_public_key.svg"  alt="Authentisierung für SSH mit private/public key" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Das “Schüsselpaar” kann man jederzeit selbst erzeugen: mit dem Kommandozeilen-Programm
+ssh-keygen:</p>
+
+<div class="example">
+<h4 class="caption">Shell Code <small>Erzeugung eines Schlüsselpaares</small></h4>
+<pre class="lang-shell prettyprint linenums">
+$ ssh-keygen -t rsa -C &quot;vmustermann.mmt-b2014@fh-salzburg.ac.at&quot;
+# Erzeugt ein neues Schlüsselpaar, verwendet die E-Mail Adresse in der Beschriftung
+Generating public/private rsa key pair.
+Enter file in which to save the key (/Users/verena/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase):
+Your identification has been saved in /Users/verena/.ssh/id_rsa.
+Your public key has been saved in /Users/verena/.ssh/id_rsa.pub.
+The key fingerprint is:
+f3:e8:11:fb:d7:87:db:9d:31:54:be:46:8c:05:cf:b0 vmustermann.mmt-b2014@fh-salzburg.ac.at
+The key&#39;s randomart image is:
++--[ RSA 2048]----+
+|             o   |
+|              *  |
+|             E +.|
+|              +..|
+|        S    . +.|
+|         *    o .|
+|        + .  . * |
+|       . o  . +.*|
+|        . ..  .+o|
++-----------------+
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Das Endergebnis sind zwei Dateien: <code>id_rsa</code> enthält den privaten Schlüssel,
+<code>id_rsa.pub</code> den öffentlichen Schlüssel.  Beide Schlüssel könnne in einem Text-Editor
+betrachtet werden: der private Schlüssel besteht aus einem großen Text-Block
+innerhalb von zwei Zeilen mit vielen Minus-Zeichen:</p>
+
+<div class="example">
+<h4 class="caption">Plain Code <small>Beispiel für einen Privaten Schlüssel</small></h4>
+<pre class="lang-plain prettyprint linenums">
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpQIBAAKCAQEAy4h50jvgZcVBC4rrc1Q3ooxgPZA74oTtQDXMKkGUSMEJQbZ9
+HzWfJ6d3HSpluSmCcwxI7tkX7v6lRjCz09xtHFq21agTJWJ8P2YqqNpd7Bda36xf
+5q8Px8cAYbAKr9sNT8cw6cZBKjGaBqaa7arzcBeQjmB1jqe7CtL1nUexTjWIS8iu
+Xuh7QoECdmf01/Sx19lAzM1w8YtRrBT15K7O97fmGArOfTgWC48+vIiMxj91MPK0
+LcYinvxdbrY7qaI4bF7+KouiJeIfyjVycXINNAYDAhbj+Im1UYBz1T6VqnIIMpMz
+4Ga+Rtf3AnkIYYmtTLkvc68H5MEoryrtyjZQCwIDAQABAoIBAQCrRNCeJFyTxwUR
+HXk7tyaJ1e42X+TEnG64lYyUElMhVa7gaRuo44pl5/nHxSGMSm3HOhM1SeFl70pM
+YjcwlFAMiBlKeQCDePhssSA8rmRSguSpS3f3umBhEAg2K9kSWhY9h7SVQ4saYlrm
+NdQxIqVvMaUm6eyCeopedV7RVr7Qu6JeQuzGoIL5VyUu52MJ0/kQNhW99jscyE2d
+Z3VOIKBd0FCziI8n1+39b+OTUbeSTB6dxJweQkvFm0fvwgyE/5E2tVQRgFk2zrFc
+RfJ8b1GfRRdHkfwJmRC40l4GPpd6bba01U8SLowhxjOx7BXZQB/L5Psj8FQh/22q
+tzFWzaDBAoGBAPNWFtetmZZWhKzB+Xc18QedGnEjnVHUXpJptPgXF/1GJ4+QXKEq
+3Uew//UT1odNXeAbpUz6OuR5FRbMofNJHNjdjdb8viVlO9DiSkqlwPJgvREF0n2M
+wPh9CnaLR7ZIhUo3gqLCBH8fxZ8CHWrdaHqfm27FjufJWAqU/8gFxWoJAoGBANYg
+GTZeD5Z2ZuLVEmbmVNTvfglCYDoPn2nM6E6DAp1WppIwvPai7Su6GmCmbJAVd+gJ
+iKCCE4Yn80hKR4xcFTFBuoFoRaXw1agJxYrA0i8Ne9Qy7RgaK/SU3nWlL+f5kNx+
+u1uWwQbVb1hahrHS1MjuHrRA9yUg1aZ+kBpIbb5zAoGAMS6PQ1xlFIu8GSbDgyK1
+6rIILCHkpCtmSfVvjE0unhRV3qBw+Gove1P9B83QqFwswyUTTfGtgYwvhQIrIX7/
+g52UE4XV8Lz7UAbMuTWzP8nprM0edB3EyvSK7tbL0b3qosuBbeAFBKSpTrAgvf6u
+JUqpIcRwU8zQLKNc51KzSfECgYEAj+wPRj2+2HFJAloY/lT+3AkFfA/DQgNSMPjr
+hCoGzd56I3Ti7hvgsi1qoV/7RHVJnQsbbFdB7EBaA1L5+FvEWtFFHMoLVlgkI8g9
+oN+t5rZ3bs+0ESk2NjUBua2IH7HdLnd4Uz1nDMLVDlv6gPem0k9LD/lCpRAGytvy
+29em/AUCgYEAj+6NEIj9XWuYccXhimvJxFDRGqYybQyBK5DH+4ceg2IpZMM00lpG
+eHBMzHcPRALwg3sYNuIIDNTC2HXuf5SGgOQJcZoURoh+CbnjZ1bpJD9djIOMx/zK
+BLzFeSXDV4AkIdRxvganwBIV1FZFQRPfR9miuRUagMkwT6/LLBxhlJE=
+-----END RSA PRIVATE KEY-----
+</pre></div>
+
+<p>Der öffentliche Schlüssel bestezt aus einer einzigen Zeile Text, mit
+der E-Mail Adresse am Ende der Zeile:</p>
+
+<div class="example">
+<h4 class="caption">Plain Code <small>Beispiel für den dazu gehörigen öffentlichen Schlüssel</small></h4>
+<pre class="lang-plain prettyprint linenums">
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDLiHnSO+BlxUELiutzVDeijGA9kDvihO1ANcwqQZRIwQlBtn0fNZ8np3cdKmW5KYJzDEju2Rfu/qVGMLPT3G0cWrbVqBMlYnw/Ziqo2l3sF1rfrF/mrw/HxwBhsAqv2w1PxzDpxkEqMZoGpprtqvNwF5COYHWOp7sK0vWdR7FONYhLyK5e6HtCgQJ2Z/TX9LHX2UDMzXDxi1GsFPXkrs73t+YYCs59OBYLjz68iIzGP3Uw8rQtxiKe/F1utjupojhsXv4qi6Il4h/KNXJxcg00BgMCFuP4ibVRgHPVPpWqcggykzPgZr5G1/cCeQhhia1MuS9zrwfkwSivKu3KNlAL vmustermann.mmt-b2014@fh-salzburg.ac.at
+</pre></div>
+
+<p>Um das Einloggen am Server zu ermöglichen muss man den öffentlichen Schlüssel als
+Datei <code>~/.ssh/authorized_keys</code> installieren, bzw. falls die Datei schon besteht
+als zusätzliche Zeile an die Datei anfügen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="authentisierung-fr-gitlab-mit-private-und-public-key">Authentisierung für gitlab mit private und public key</h2>
+
+<p>SSH wird als Übertragungsprotokoll bei der Kommunikations
+mit einem entfernen Git-Repository verwendet. Somit wird
+auch die Authentifizierung von SSH mit private und public key verwendet.</p>
+
+<p>Die Konfiguration am Client (Ihrem Rechner) bleibt dabei gleich wie bei
+SSH: der private Key liegt als Datei <code>.ssh/id_rsa</code> in Ihrem Homeverzeichnis.</p>
+
+<p>Die Installation am Server wird mit gitlab etwas anders als bei ssh alleine:
+Sie verwenden die Web-Oberfläche von Gitlab um den Schlüssel hoch zu laden:</p>
+
+<p><img src="/images/gitlab-public-key.png"  alt="public key hochladen auf gitlab" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="weiterfhrende-literatur">Weiterführende Literatur</h2>
+
+<ul>
+  <li><a href="https://de.wikipedia.org/wiki/Asymmetrisches_Kryptosystem">Asymmetrisches Kryptosystem</a> in der Wikipedia</li>
+  <li><a href="https://en.wikipedia.org/wiki/Public-key_cryptography">Public-key Cryptography</a> in der Englischen Wikipedia</li>
+  <li><a href="https://help.github.com/articles/generating-ssh-keys">Generating SSH Keys</a> - englischsprachige Erklärung speziell für github</li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Public und Private Key</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/git/git-tools//slide.html">Tools für Git</a> | 
+        <a href="/git/public-private-key/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/http//slide.html">HTTP</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

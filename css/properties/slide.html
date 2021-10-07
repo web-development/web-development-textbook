@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Wichtige Properties - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Wichtige Properties</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css/css//slide.html">Syntax von CSS</a> | 
+        <a href="/css/properties/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css/css-sprites//slide.html">CSS Sprites</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+</div>
+<div class="slide">
+
+<h2 id="schrift">Schrift</h2>
+
+<p>Dieses Beispiel zeigt zusätlich zu den schon bekannten
+ein paar weitere  Properties für die Gestaltung der Schrift:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+h1,h2 {
+  font-family: Roboto, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: italic;
+
+  letter-spacing: 0.2ex;  //  Abstand zw. Buchstaben
+  text-decoration: underline;  // unterstrichen - gefährlich!
+  text-shadow: orange 0 -2px;  // Schatten Effekt
+}
+h1 {
+  text-transform: uppercase;   // alles Großbuchstaben
+}
+h2 {
+  font-variant: small-caps;    // Kapitälchen
+}
+</pre></div>
+
+<p><a href="/images/css/text-css.html">Demo</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="webfonts">Webfonts</h2>
+
+<p>Als Schriften kann man einerseits Schriftarten verwenden, die am Client schon
+installiert sind, und andererseits kann man auf Schriften verweisen, die im Web
+gespeichert sind.  Eine praktische Möglichkeit Webfonts aus den Web zu laden
+bietet <a href="http://www.google.com/webfonts">http://www.google.com/webfonts</a></p>
+
+<p>Bei Google findet man nur gratis-fonts.  Es gibt aber auch Fonts für die
+man Lizenzgebühren zahlen muss.</p>
+
+<p>Tipp beim Laden von Webfont: um zu vermeiden dass Text während der Ladezeit
+gar nicht(FOIT), oder mit einem anderne Font dargestellt wird(FOUT), im <code>@font-face</code> block
+<code>font-display: fallback;</code> setzen.  Siehe <a href="https://css-tricks.com/almanac/properties/f/font-display/">css-tricks</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="abstze">Absätze</h2>
+
+<p>Wie immer in HTML erfolgt der Zeilenumbruch automatisch.
+Die Standard-Darstellung von Absätzen erklärt sich über den <code>margin-top</code> 
+und <code>margin-bottom</code> des <code>&amp;lt;p&amp;gt;</code>-Tags:</p>
+
+<p><img src="/images/css/p-default-margin.png" srcset="/images/css/p-default-margin.png 1x, /images/css/p-default-margin@2x.png 2x"  alt="Standard-Darstellung von Absätzen (p-Tag) im Browser" ></p>
+
+<p>Mit CSS können Sie verschiedene Aspekte des Absatz-Layoutes verändern, einige davon sind hier gezeigt:</p>
+
+<p><img src="/images/css/absatz.png"  alt="Abbildung 18: Absatz mit CSS Formatanweisungen: text-indent und line-height" ></p>
+
+<p>Mit <code>text-align</code> können Sie die Ausrichtung des Texts im Absatz festlegen: <code>left</code>, <code>right</code>, <code>center</code> oder <code>justify</code> (Blocksatz). Blocksatz wurd am Web bis jetzt wenig verwendet, da die Browser lange keine Silbentrennung durchführten. Dadurch entstanden bei Blocksatz oft häßliche Löcher im Text. Seit dem Jahr 2011 unterstützen erste Browser die Silbentrennung, damit wird <code>justify</code> besser verwendbar.</p>
+
+<p>Die erste Zeile des Absatzes kann einen separaten Einzug haben, den Sie mit <code>text-indent</code> festlegen. Die Zeilenhöhe wird mit <code>line-height</code> festgelegt. Hier ist es sinnvoll für längere Texte einen etwas erhöhten Wert festzulegen (z. B. <code>1.5em</code> – d.h.1,5 mal die Breite des Buchstaben M in dieser Schrift) da die Standard-Darstellung der Browser etwas zu eng ist um gut lesbar zu sein.</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+p {
+   text-align: justify;
+   text-indent: 4em;
+   line-height: 1.2;
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="box-model">Box Model</h2>
+
+<p>Jeder blockbildende Tag (z. B. h1, h2, p, blockquote, div, …) hat einen Rahmen, Innen- und Außenabstand. Diese werden mit den Deklarationen border, padding und margin festgelegt. Ein Hintergrundbild und/oder eine Hintergrundfarbe des Tags reicht immer bis zum Rahmen, aber nicht darüber hinaus.</p>
+
+<p><a href="/images/css/box.html">Demo</a></p>
+
+<p><img src="/images/css/boxmodel.png" srcset="/images/css/boxmodel.png 1x, /images/css/boxmodel@2x.png 2x"  alt="Darstellung des Box Models in den Firefox Developer Tools" ></p>
+
+<p>Dabei wird direkt in der Webseite der Außenabstand (margin) gelb und der Innenabstand (padding) dunkelviolett hinterlegt.</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+  p {
+  padding: 5px;
+  margin-top: 5px;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  border-width: 0px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  background-color: #DDD;
+  }
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="border-box">border-box</h3>
+
+<p>Achtung: Im traditionelle Box Model bezieht sich die Breite (width) auf
+den Inhalt, padding, border und margin muss man erst dazu zählen, um den
+Gesamt-Platzbedarf zu errechnen. Mit der Deklaration <code>box-sizing: border-box</code> 
+kann man auf ein besseres Box-Model umschalten: dann gibt width die Gesamt-Breite an.</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+box-sizing: border-box;
+width: 200px;
+padding: 10px;
+border-width: 10px;
+margin: 32px 0px
+</pre></div>
+
+<p>Gesamtbreite inklusive Rahmen = 200px.
+Platz für den Inhalt = 200px - (10px + 10px + 10px + 10px) =  160px</p>
+
+<p><img src="/images/css/box-sizing-border-box.png"  alt="Abbildung 36a: width im Box-Model mit box-sizing: border-box" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="runde-ecken-und-schatten">Runde Ecken und Schatten</h3>
+
+<p>Mit CSS3 sind zusätzliche Effekte zum Box-Model dazu gekommen: abgerundete Ecken
+und Schatten:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+button{
+   color: white;
+   text-shadow: 0 1px 1px black;
+   padding: 5px 30px;
+   background-color: red;
+   border: 1px solid maroon;
+   border-radius: 4px;
+   box-shadow: inset 0 1px 3px pink, inset 0 -5px 15px maroon, 0 2px 1px black;
+}
+</pre></div>
+
+<p>So sieht’s aus:</p>
+
+<p><button style="color: white;   text-shadow: 0 1px 1px black;  padding: 5px 30px;  background-color: red;  border: 1px solid maroon;   border-radius: 4px;   box-shadow: inset 0 1px 3px pink, inset 0 -5px 15px maroon, 0 2px 1px black;">Test</button></p>
+
+<p>Das ist ein Beispiel aus Helmers:
+<a href="http://dev.opera.com/articles/view/beautiful-ui-styling-with-css3-text-shadow-box-shadow-and-border-radius/">Beautiful UI styling with CSS3 text-shadow, box-shadow, and border-radius</a>, dort finden
+sich noch viele ausführlichere Beispiele.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Und nun die schlechte Nachricht: seitem Schatten ganz einfach mit CSS erzeugt werden
+können (laut <a href="https://caniuse.com/#search=box-shadow">caniuse</a> ca. 2009) sind sie out.  Seitdem ist <a href="https://de.wikipedia.org/wiki/Flat_Design">flat design</a> in (ca. 2010).</p>
+
+</div>
+<div class="slide">
+
+<h2 id="farben-hintergrundfarben-hintergrundbilder">Farben, Hintergrundfarben, Hintergrundbilder</h2>
+
+<p>Die Farbe des Textes wird mit <code>color</code>, die Hintergrundfarbe mit <code>background-color</code> gesetzt.</p>
+
+<p>Jeder Tag kann mittels CSS ein oder mehrere Hintergrundbilder erhalten (<code>background-image</code>). Als „Hintergrundbild“ in einer Webseite kann jedes Bild in einem Web-geeigneten Dateiformat (gif, jpg, png) dienen. Das Bild wird einfach dargestellt oder „gekachelt“ –horizontal und vertikal so oft wiederholt, bis es die ganze Fläche des Tags ausfüllt (<code>background-repeat</code>).</p>
+
+<div class="resizable" style="background-image: url(/images/css/trefoilknots.svg);">
+<p><b style="text-shadow: #CCC 1px 0 10px;">Trefoil Knot</b> - <b>Trefoil Knot</b></p>
+<p><span style="text-shadow: #CCC 1px 0 10px;">Ein Hintergrundbild von <a href="https://commons.wikimedia.org/wiki/User:AnonMoos/Gallery">AnonMoos</a>.</span> Ein Hintergrundbild von <a href="https://commons.wikimedia.org/wiki/User:AnonMoos/Gallery">AnonMoos</a>.</p>
+</div>
+
+<p>Bitte beachten Sie: Der Inhalt der Seite sollte trotz Hintergrundbild
+ lesbar sein! In diesem Beispiel wurde auf Teile des
+Textes ein weißer <code>text-shadow</code> gelegt.  Erhöht der Schatten die  Lesbarkeit?</p>
+
+</div>
+<div class="slide">
+
+<h2 id="siehe-auch">Siehe Auch</h2>
+
+<ul>
+  <li><a href="https://www.w3.org/Style/CSS/all-properties.html">Alle CSS Properties</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Wichtige Properties</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css/css//slide.html">Syntax von CSS</a> | 
+        <a href="/css/properties/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css/css-sprites//slide.html">CSS Sprites</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

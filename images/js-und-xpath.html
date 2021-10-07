@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="UTF-8">
+  <title>Beispiel: XPath in Javascript</title>
+</head>
+<body>
+
+  <h1>HTML mit XPath abfragen in Javascript</h1>
+
+  <input id="path" value="//h2"><button id="go">auswerten</button> <br>
+  <textarea id="output" style="width:800px;height:300px;"></textarea>
+
+  <hr>
+
+  <p>Aus <a href="http://de.wikipedia.org/wiki/XPath">Wikipedia</a> lernen wir über XPath:</p>
+
+
+  <p>Die <b>XML Path Language</b> <b>(XPath)</b> ist eine vom W3-Konsortium entwickelte Abfragesprache, um Teile eines XML-Dokumentes zu adressieren. XPath dient als Grundlage einer Reihe weiterer Standards wie XSLT, XPointer und XQuery. Seit ihrer Verabschiedung am 23. Januar 2007 hat <i>XPath 2.0</i> die seit 1999 gültige Version <i>XPath 1.0</i> abgelöst. XPath 2.0 hat einige Konzepte von XPath 1.0 neu definiert und verfügt zudem über einen wesentlich erweiterten Funktionsumfang, wie beispielsweise die Unterstützung regulärer Ausdrücke oder Volltextsuche in Textknoten.</p>
+  <h2>Prinzipien</h2>
+  <p>Ein <i>XPath</i>-Ausdruck adressiert Teile eines XML-Dokuments, das dabei als Baum betrachtet wird, wobei einige Unterschiede zum „klassischen“ Baum der Graphentheorie zu beachten sind:</p>
+  <ul><li>Knoten <i>(nodes)</i> des Baumes sind XML-Elemente, -Attribute, -Textknoten, -Kommentare, -Namensräume und -Verarbeitungsanweisungen.</li>
+  <li>Nur XML-Elemente gelten als <code>child</code> im Sinne einer XPath-Achse. Alle anderen Knoten stehen auf der gleichen Hierarchie-Stufe des Baumes wie der Knoten, der sie enthält.</li>
+  <li>Die Achsen <code>preceding</code>, <code>following</code>, <code>preceding-sibling</code> und <code>following-sibling</code> orientieren sich nicht allein an der Baumstruktur, sondern auch an der Reihenfolge der Deklaration der Elemente im XML-Dokument (Linked-Tree).</li>
+  </ul><p><br>
+  Ein <i>XPath</i>-Ausdruck setzt sich aus einem oder mehreren <b>Lokalisierungsschritten</b> <i>(Location Steps)</i> zusammen. Sie werden mit dem Zeichen "<code>/</code>" getrennt.</p>
+  <p>Ein <i>Lokalisierungsschritt</i> <code>axis::node-test[predicate 1][predicate 2]...</code> besteht aus:</p>
+  <ul><li><b>Achse</b> <i>(axis)</i> und</li>
+  <li><b>Knotentest</b> <i>(node-test)</i>,</li>
+  <li>optional gefolgt von einem oder mehreren <b>Prädikaten</b> <i>(predicates)</i>:</li>
+  </ul><p><br>
+  Beliebig viele XPath-Ausdrücke lassen sich mit dem Pipe-Zeichen   |   mengenmäßig vereinigen.</p>
+  <p>Es gibt stets verschiedene Möglichkeiten, eine gesuchte Knotenmenge in XPath auszudrücken.</p>
+  <p>XPath operiert auf der logischen Dokumentenstruktur. Das bedeutet zum Beispiel, dass man Entitäten schon geparst vorfindet oder dass auch eventuelle Standard-Attribute und -Knoten, die durch ein Schema vorgegeben werden, schon im Baum enthalten sind.</p>
+  <h2>Achsen</h2>
+  <p>Durch Angabe von Achsen wird ausgehend vom aktuellen Kontextknoten in der Baumstruktur des XML-Dokuments navigiert.</p>
+  <p>Wird dabei von der Wurzel des XML-Dokuments ausgegangen, wird dem XPath-Ausdruck das Zeichen <code>/</code> vorangestellt.</p>
+  <p>Dieser Baum visualisiert beispielhaft die Struktur eines XML Dokument</p>
+  <pre>
+  <code>        A         
+         _|_        
+        |   |       
+        B   L       
+      __|________   
+     |   |   |   |  
+     C  (D)  H   I  
+        _|_     _|_ 
+       |   |   |   |
+       E   G   J   K
+       |            
+       F            
+  </code>
+  </pre>
+  <p>Die fünf Achsen <code>self</code>, <code>ancestor</code>, <code>descendant</code>, <code>preceding</code> und <code>following</code> bilden ausgehend von einem beliebigen Knoten den Dokumentbaum vollständig und überlappungsfrei ab.</p>
+  <h2>Knotentests</h2>
+  <p>Knotentests (geschrieben <code><i>Achse</i>::<i>Knotentest</i></code>) schränken die Elementauswahl einer Achse ein:</p>
+  <ul><li>Angabe eines Elementnamens wählt alle entsprechenden Elemente.<br>
+  Beispiel: <code>/descendant-or-self::Foo</code> wählt alle Elemente im Dokument, die den Namen „Foo“ haben.</li>
+  <li>Mit dem Zeichen <code>*</code> wählt man beliebige Elemente.<br>
+  Beispiel: <code>/descendant-or-self::Foo/child::*</code> wählt alle Elemente im Dokument, die Kinder von Elementen mit dem Namen „Foo“ sind.</li>
+  <li>Mit <code>text()</code>, <code>comment()</code> und <code>processing-instruction()</code> lassen sich Knoten bestimmten Typs wählen.</li>
+  </ul><h2>Prädikate</h2>
+  <p>Durch Angabe von Prädikaten kann das Ergebnis weiter eingeschränkt werden. Prädikate werden in eckige Klammern eingeschlossen und können in beliebiger Zahl hintereinander geschrieben werden, wobei die Reihenfolge wesentlich ist. Prädikate können XPath-Ausdrücke enthalten, außerdem kann eine Vielzahl von Funktionen verwendet werden. Die sind zum Beispiel:</p>
+  <ul><li>Zugriffsindex (Zählung beginnt bei 1)</li>
+  <li>Relationszeichen: <code>= != and or &lt; &gt; &lt;= &gt;=</code></li>
+  <li>Zeichenkettenfunktionen:
+  <ul><li><code>normalize-space()</code> – Entfernen von Leerzeichen am Anfang und Ende des Strings und Reduktion aufeinanderfolgender Leerzeichen auf eines</li>
+  <li><code>substring()</code> – Einen Teilstring selektieren</li>
+  <li><code>substring-before(source, splitter)</code> – Einen Teilstring vor dem ersten Vorkommen des Trennzeichens selektieren</li>
+  <li><code>substring-after(source, splitter)</code> – Einen Teilstring nach dem ersten Vorkommen des Trennzeichens selektieren</li>
+  <li><code>string-length()</code> – Länge des Strings</li>
+  </ul></li>
+  <li>Numerische Funktionen: <code>+ - * div mod</code></li>
+  <li>Knotenmengen-Funktionen:
+  <ul><li><code>count()</code> – Anzahl der Knoten in einer Knotenmenge</li>
+  <li><code>id()</code> – Selektiert Elemente über die DTD-ID</li>
+  <li><code>name()</code> – Name des Knotens</li>
+  </ul></li>
+  </ul><p>Beispiele:</p>
+  <ul><li><code>//child::Buch/Kapitel</code> Alle Kapitel aller Bücher.</li>
+  <li><code>//child::Buch/Kapitel[1]</code> Alle ersten Kapitel aller Bücher.</li>
+  <li><code>//child::Buch[count(./Seite)&lt;=100][count(./Seite)&gt;=10]</code> liefert alle Knoten vom Typ „Buch“, die mindestens 10 aber höchstens 100 Kindelemente vom Typ „Seite“ haben.</li>
+  </ul><p>(das gleiche leistet <code>//Buch[count(Seite)&lt;=100 and count(Seite)&gt;=10]</code>)</p>
+  <ul><li><code>substring-before(, ':')</code> Selektiert den Teilstring vor dem ersten Doppelpunkt aus dem Wert der Variable mit dem Namen variable</li>
+  </ul><h2>Beispiel</h2>
+  <p>Gegeben sei folgendes XML-Dokument:</p>
+
+  <p>Beispiele für XPath-Ausdrücke:</p>
+  <p>XPath-Visualisierer helfen, die mitunter komplizierten XPath-Abfragen auf konkrete XML-Dateien anzuwenden.</p>
+  <h2>Siehe auch</h2>
+  <ul><li>Document Object Model</li>
+  </ul><h2>Einzelnachweise</h2>
+  <ol class="references"><li id="cite_note-1">↑ http://www.w3.org/TR/xpath#axes</li>
+  </ol><h2>Literatur</h2>
+  <ul><li>Michael Kay: <i>XPath 2.0 Programmer's Reference</i> Wrox Press, 2004, ISBN 0-7645-6910-4 (englisch)</li>
+  </ul><ul><li> Margit Becher: <i>XML - DTD, XML-Schema, XPath, XQuery, XSLT, XSL-FO, SAX, DOM</i>. W3L Verlag, Witten 2009, ISBN 978-3-937137-69-8.</li>
+  </ul><h2>Weblinks</h2>
+  <ul><li>XML Path Language (XPath) Version 1.0 ; sowie deutsche Übersetzung</li>
+  <li>XML Path Language (XPath) Version 2.0</li>
+  <li>XQuery 1.0 and XPath 2.0 Functions and Operators</li>
+  <li>XPath Tutorial auf deutsch</li>
+  <li>XPath Tutorial von w3schools</li>
+  <li>ZVON: XPath Tutorial in deutscher Sprache</li>
+  <li>FH Wedel: XLink, XPath, XPointer</li>
+  <li>HTMLWorld: XPath</li>
+  <li>XPath Achsen Diagramme</li>
+  <li>XSLT und XPath Referenz sehr ausführlich</li>
+  <li>XPath Visualizer stellt XPath-Ausdrücke visuell auf Basis beliebiger XML-Dateien dar.</li>
+  </ul>
+  <script>  
+    iterator = document.evaluate('//h2', document, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null );
+    thisNode = iterator.iterateNext();
+    while (thisNode) {
+      console.dir(thisNode);
+      document.getElementById('output').value += thisNode.innerHTML + "\n";
+      thisNode = iterator.iterateNext();
+    } 
+
+    document.getElementById('go').addEventListener('click', function(){
+      document.getElementById('output').value = "";
+      iterator = document.evaluate( document.getElementById('path').value, document, null, XPathResult.UNORDERED_NODE_ITERATOR_TYPE, null );
+      thisNode = iterator.iterateNext();
+      while (thisNode) {
+        console.dir(thisNode);
+        document.getElementById('output').value += thisNode.innerHTML + "\n";
+        thisNode = iterator.iterateNext();
+      } 
+         
+    });
+
+  </script>
+</body>
+</html>

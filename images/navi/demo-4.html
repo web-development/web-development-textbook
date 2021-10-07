@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+
+    nav ul {
+      padding-left: 0;
+      display:flex;
+      flex-direction: row;
+      margin: 0;
+    }
+
+    nav li {
+      list-style-type:none;
+      margin-right:1px;
+      margin-bottom:1px;
+    }
+
+    nav li a:link {
+      text-decoration: none;
+      font-weight: bold;
+      display: block;
+      background:#6C6;
+      width:6em;
+      padding: 0.2em;
+    }
+
+    nav li a:link:hover {
+      background:#9f9;
+    }
+
+    nav li a.current {
+      background:#ddd;
+    }
+
+    button {
+      display: none;
+    }
+
+    @media screen and (max-width: 600px)  {
+      nav ul {
+        display: none;
+      }
+
+      nav ul.is-active {
+        display: flex;
+      }
+
+      nav ul {
+        flex-direction: column;
+      }
+
+      button {
+        display: block;
+      }
+
+      nav li a:link {
+        padding: 20px;
+      }
+
+      button {
+        border: 2px solid #bbb;
+        border-radius: 5px;
+        width: 80px;
+        height: 40px;
+        position: relative;
+      }
+      button:before {
+        content: "";
+        position: absolute;
+        top: 13px;
+        left: 8px;
+        width: 10px;
+        height: 2px;
+        border-top: 6px double #000;
+        border-bottom: 2px solid #000;
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <h1>Demo: Navigation</h1>
+    <p>Zurück zum <a href="/css-layout/navigation/">Kapitel Navigation</a></p>
+
+    <nav>
+    <button id="toggle" aria-expanded="false" aria-controls="menu">Menu</button>
+    <ul id="menu">
+        <li><a href="demo.html">home</a></li>
+        <li><a href="demo-1.html">vertikal</a></li>
+        <li><a href="demo-2.html">horizontal</a></li>
+        <li><a href="demo-3.html">fancy</a></li>
+        <li><a href="demo-4.html">burger</a></li>
+    </ul>
+    </nav>
+
+    <footer>
+      <p>Diese Version des Navigationsmenüs basiert auf
+      <a href="http://www.a11ymatters.com/pattern/mobile-nav/">Accessible Mobile Navigation</a>
+      und
+      <a href="https://css-tricks.com/three-line-menu-navicon/">Three Line Menu Navicon</a>.</p>
+    </footer>
+
+    <script>
+      let nav = document.getElementById('menu');
+      let anchor = nav.getElementsByTagName('a');
+      let current = new URL(window.location);
+        for (let i = 0; i < anchor.length; i++) {
+          console.log(anchor[i].href);
+          if(anchor[i].href == current) {
+              anchor[i].classList.add( "current" );
+          }
+      }
+
+      let toggle = document.querySelector('#toggle');
+      let menu = document.querySelector('#menu');
+      let menuItems = document.querySelectorAll('#menu li a');
+
+      toggle.addEventListener('click', function(){
+        if (menu.classList.contains('is-active')) {
+          this.setAttribute('aria-expanded', 'false');
+          menu.classList.remove('is-active');
+        } else {
+          menu.classList.add('is-active'); 
+          this.setAttribute('aria-expanded', 'true');
+          //menuItems[0].focus();
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="de" class="no-js web-development">
+<head>
+  <meta charset="utf-8">
+  <title>Lehrbuch Web-Development - AJAX</title>
+
+  <meta name="author" content="Brigitte Jellinek">
+  <meta name="description" content="Ein Lehrbuch für das Informatik- oder Medieninformatik-Studium.">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="nanoc 3.8.0">
+
+  <link rel="shortcut icon" href="/assets/img/favicon.png">
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link rel="stylesheet" href="/assets/css/prettify.css">
+  <style>
+    li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
+        list-style-type: inherit !important;
+    }
+    ol.linenums {
+        margin-left: 50px !important;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <a href="http://github.com/web-development/web-development-textbook/"><img
+    style="position: fixed; top: 0; right: 0; border: 0;"
+    src="/images/forkme.png" alt="Fork me on GitHub"></a>
+  <header class="row">
+    <div class="jumbotron sub-header span8" id="booktitle">
+      <h1><a href="/" title="Web Development">Web Development</a></h1>
+      <p class="lead">Ein Lehrbuch für das Informatik oder Medien-Informatik Studium.</p>
+    </div>
+  </header>
+
+
+
+
+<!-- body -->
+<article id="body" class="row">
+  <div class="span8">
+    
+    <div class="page-header">
+      <h2 class="title" id="slide-0">
+        AJAX
+      </h2>
+      <a href="/applied-js-and-css/ajax/slide.html">als Präsentation ▻</a>
+    </div>
+     <div id="slide-1" title="Folie Nr. 1"></div>
+<p>Wir kennen schon die Funktionsweise von <a href="/http/">HTTP</a>. Bisher
+wurde ein HTTP Request durch eine Handlung der UserIn ausgelöst
+(URL eintippen, Link anklicken), oder um Ressourcen zu laden
+die zu einem HTML-Dokument gehören.</p>
+
+<p>Mit AJAX lernen wir nun eine neue Art kennen, wie HTTP-Request
+verwendet werden: Asynchrone Requests.</p>
+
+
+<a class="slide_break" id="slide-2" href="slide.html#slide-2"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 2">▻</a>
+
+<h2 id="was-ist-ajax">Was ist AJAX?</h2>
+
+<p>AJAX ist die englische Abkürzung für „Asynchrones Javascript und XML“. In
+diesem Kapitel lernen Sie was das genau bedeutet, und dass sich hinter dem X
+zum Schluss auch andere Format verbergen können</p>
+
+<p>Ein Beispiel für die Verwendung von AJAX ist das in der Abbildung unten
+gezeigte Eingabefeld:
+schon während des Eintippens eines Suchwortes wird eine Anfrage an den Webserver
+geschickt. Dieser antwortet mit einer Liste von vorgeschlagenen Namen. Diese Liste
+wird mit Javascript in einer <code>div</code> unterhalb des Eingabefelds angezeigt:</p>
+
+<p><img src="/images/image375.png"  alt="Abbildung 50: Vorschläge für die Eingabe werden über AJAX geladen" ></p>
+
+<p>Mit AJAX wird hier eine HTTP-Anfrage gesendet.</p>
+
+<p>Bei einer „normalen“ HTTP-Anfrage schaltet der Browser auf
+„Warten“, eine neue vollständige Webseite wird geladen und angezeigt.</p>
+
+<p>Asynchron heisst hier: der Request wird abgesetzt, das Javascript-Programm läuft sofort
+weiter, die UserIn kann weiterhin mit der Webseite interagieren. Erst wenn die Antwort
+des Servers vorliegt wird die normale Darstellung der Seite kurz unterbrochen und ein
+Javascript-Programm fügt die Daten in die Seite ein.</p>
+
+
+<a class="slide_break" id="slide-3" href="slide.html#slide-3"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 3">▻</a>
+
+<h3 id="im-javascript-programm">Im Javascript Programm</h3>
+
+<p>Auf der Ebene des Javascript Programm-Codes sieht der Unterschied zwischen
+synchron und asynchron so aus:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>synchron</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+Befehl1();
+Befehl2();
+Antwort = synchron_laden(url);   // dauert ewig 
+Befehl3();                      // viel später
+Befehl4();
+</pre></div>
+
+<p>Bevor <code>Befehl3</code> ausgeführt werden kann muss erst die Antwort des Servers vorliegen –
+hier kann also eine Wartezeit von mehreren Sekunden entstehen.</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>asynchron</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function handle_data(Antwort) {  
+   ... 
+} 
+ 
+Befehl1();
+Befehl2();
+asynchron_laden(url, handle_data);  // dauert kurz 
+Befehl3();                         // kurz darauf
+Befehl4();
+</pre></div>
+
+<p><code>Befehl3</code> und <code>Befehl4</code> können sofort ausgeführt werden,
+egal ob und wie schnell der Server antwortet. Das Javascript-Programm (befehle 1 bis 4)
+läuft vollständig ab.</p>
+
+<p>Wenn die Daten vom Server schließlich einlangen wird die Funktion <code>handle_data</code>
+aufgerufen und die Daten zu verarbeiten.</p>
+
+
+<a class="slide_break" id="slide-4" href="slide.html#slide-4"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 4">▻</a>
+
+<h3 id="synchroner-ablauf-wird-nie-unterbrochen">Synchroner Ablauf wird nie unterbrochen</h3>
+
+<p>Achtung: ein laufendes Javascript programm wird nie unterbrochen.
+Im letzten Code-Beispiel wird es nie passieren, dass zwischen Befehl3
+und Befehl4 niemals etwas anderes (z.B. handle_data) passieren!</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>asynchron</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function handle_data(Antwort) {  
+   ... 
+} 
+ 
+Befehl1();
+Befehl2();
+asynchron_laden(url, handle_data);  // dauert kurz 
+Befehl3();                         // kurz darauf
+Befehl4();
+</pre></div>
+
+
+<a class="slide_break" id="slide-5" href="slide.html#slide-5"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 5">▻</a>
+
+<h3 id="asynchrones-beispiel-settimeout">Asynchrones Beispiel: setTimeout</h3>
+
+<p>Mit <code>setTimeout</code> kann man eine Funktion später (Angabe in Millisekunden) 
+ausführen lassen:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>asynchron</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function later() {
+  console.log(&quot;3 Sekunden später&quot;, Date.now());
+}
+
+console.log(&quot;tick&quot;, Date.now());
+setTimeout(later, 3000);
+console.log(&quot;tock&quot;, Date.now());
+console.log(&quot;tick&quot;, Date.now());
+console.log(&quot;tock&quot;, Date.now());
+</pre></div>
+
+
+<a class="slide_break" id="slide-6" href="slide.html#slide-6"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 6">▻</a>
+
+
+
+<p>Was passiert nun, wenn man den Timeout auf 0 setzt?</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>asynchron</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function later() {
+  console.log(&quot;0 Sekunden später?&quot;, Date.now());
+}
+console.log(&quot;tick&quot;, Date.now());
+setTimeout(later, 0);
+console.log(&quot;tock&quot;, Date.now());
+console.log(&quot;tick&quot;, Date.now());
+console.log(&quot;tock&quot;, Date.now());
+</pre></div>
+
+
+<a class="slide_break" id="slide-7" href="slide.html#slide-7"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 7">▻</a>
+
+
+
+<p>Antwort: das Javascript-Programm wird nicht unterbrochen!</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>asynchron</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function later() {
+  console.log(&quot;NICHT 0 Sekunden später!&quot;, Date.now());
+}
+console.log(&quot;tick&quot;, Date.now());
+setTimeout(later, 0);
+console.log(&quot;tock&quot;, Date.now());
+console.log(&quot;tick&quot;, Date.now());
+console.log(&quot;tock&quot;, Date.now());
+
+// Output in der Konsole:
+// tick 1588059630667
+// tock 1588059630668
+// tick 1588059630668
+// tock 1588059630668
+// nicht 0 Sekunden später 1588059630669
+</pre></div>
+
+
+<a class="slide_break" id="slide-8" href="slide.html#slide-8"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 8">▻</a>
+
+<h3 id="asynchrone-http-requests">Asynchrone HTTP Requests</h3>
+
+<p>Betrachten wir nun den Ablauf für ein Textfeld mit Autocomplete-Funktion,
+wie in der obigen Abbildung gezeigt. Folgende Abbildung ist ein
+<a href="http://de.wikipedia.org/wiki/Sequenzdiagramm">Sequenz Diagramm</a>, die Zeit
+läuft von oben nach unten.</p>
+
+<p>Zuerst wird die Webseite mit dem Formular geladen: der Browser schickt die
+Anfrage an den Server und erhält eine Antwort. Was immer zuvor im Browser
+angezeigt wurde wird - nach Ankunft des HTTP Response - gelöscht, die neue
+Seite wird im Browser dargestellt. Diese Verhalten des Browsers ist uns
+schon bekannt.</p>
+
+<p>Nun kommt der neue Teil: das Eintippten des ersten Buchstabens ins
+Eingabefeld löst ein Javascript-Programm aus, das einen AJAX-Request absetzt.
+Am Netzwerk ist das ein ganz normaler HTTP Request, für den Server gibt
+es keinen Unterschied zu jedem anderen Request.</p>
+
+<p>Was anders ist, ist das Verhalten des Browsers: Das Absenden des Requests
+bleibt die Webseite bestehen und bleibt interaktiv - das Absenden passiert
+meist von der UserIn unbemerkt.</p>
+
+<p>Wenn die Daten des Response
+einlangen wird <strong>nicht</strong> die Seite gelöscht, sondern es wird eine
+Javascript-Funktion in der Seite aufgerufen, die die Daten entgegen nimmt.
+Für das Autocomple-Verhalten bestehen die Daten aus einer Liste von Vorschlägen,
+die Javascript-Funktion zeigt diese Vorschläge unterhalb des Eingabefeldes an.</p>
+
+<p><img src="/images/ajax-sequence-diagram.svg"  alt="AJAX Ablauf" ></p>
+
+
+<a class="slide_break" id="slide-9" href="slide.html#slide-9"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 9">▻</a>
+
+<h3 id="datenformate---mehr-als-nur-xml">Datenformate - mehr als nur XML</h3>
+
+<p>Das X am Ende von AJAX steht für XML – das stimmt aber nicht: die Daten vom Server
+können im XML-Format gesendet werden, aber genauso auch als HTML oder reiner
+Text oder JSON. Man könnte das X in AJAX auch als „X-beliebiges Format“ deuten.</p>
+
+
+<a class="slide_break" id="slide-10" href="slide.html#slide-10"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 10">▻</a>
+
+<h2 id="simples-javascript-beispiel">Simples Javascript Beispiel</h2>
+
+<p>Im ersten AJAX Beispiel wird der Output eines PHP-Counters in eine HTML-Seite
+eingebunden.</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Counter einbinden mit Javascript</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;AJAX counter&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Webseite&lt;/h1&gt;
+
+  &lt;p&gt;mit total viel Inhalt&lt;/p&gt;
+
+  &lt;script&gt;
+    function handleCounterData() {
+      console.log(&quot;Response wurde empfangen&quot;);
+      let counter = this.responseText;
+      // counter enhält jetzt den output des php programms
+    }
+
+    let ajaxRequest = new XMLHttpRequest();
+    ajaxRequest.addEventListener(&quot;load&quot;, handleCounterData);
+    ajaxRequest.open(&quot;GET&quot;, &quot;counter_ajax.php&quot;);
+    ajaxRequest.send(); 
+    console.log(&quot;abgesendet, sofort weiter&quot;);   
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+
+<p>Das <code>XMLHttpRequest</code> Objekt liefert verschiedene Events, hier wird nur für das <code>load</code> Event
+eine Funktion als Listener angebracht. Mit der <code>open</code> Methode wird der HTTP-Request
+konfiguriert, aber erst mit <code>send</code> wirklich abgeschickt. Da er Request asynchron erfolgt
+geht der Javascript-Interpreter sofort von <code>send</code> weiter zu <code>console.log</code> in der nächsten
+Zeile.</p>
+
+<p>Erst sehr viel später, wenn der HTTP-Response vorliegt, wird die Funktion
+<code>handleCounterData</code> aufgerufen. Die Funktion erhält das <code>XMLHttpRequest</code> Objekt
+in der Variable <code>this</code> und kann aus <code>this.responseText</code> die Antwort auslesen.</p>
+
+
+<a class="slide_break" id="slide-11" href="slide.html#slide-11"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 11">▻</a>
+
+<h2 id="fetch-und-promises">Fetch und Promises</h2>
+
+<p>In modernem Javascript, in allen Browsern <a href="https://caniuse.com/#search=fetch">ausser Internet Explorer</a>, gibt es
+eine neue Schreibweise für AJAX-Request mit dem Befehl <code>fetch</code><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">mdn</a>.</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Counter einbinden mit Javascript</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;AJAX counter&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Webseite&lt;/h1&gt;
+
+  &lt;p&gt;mit total viel Inhalt&lt;/p&gt;
+
+  &lt;script&gt;
+    fetch(&quot;counter_ajax.php&quot;)
+      .then(function(response) {
+        console.log(&quot;Response wird empfangen&quot;);
+        let counter = response.text();
+        return counter;
+      })
+      .then(function(counter) {
+        console.log(&quot;counter wurde aus dem Response herausgelesen&quot;);
+        // ...
+      }); 
+    console.log(&quot;abgesendet, sofort weiter&quot;);   
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+
+<p>Mit <code>fetch</code> wird die Reihenfolge des Ablaufs klarer, aber der Ablauf
+wird auch komplizierter: ein weiterer asynchroner Verarbeitungsschritt
+kommt dazu: das auslesen des Textes aus dem Response.</p>
+
+
+<a class="slide_break" id="slide-12" href="slide.html#slide-12"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 12">▻</a>
+
+<h2 id="promises">Promises</h2>
+
+<p>Der Rückgabewert der funktion <code>fetch</code> ist eine <strong>Promise</strong>: ein Objekt,
+das den Umgang mit einer asynchrone Operation einfacher machen soll.
+Es ist ein Platzhalter für das Ergebnis der Operation, das noch nicht
+bekannt ist. In anderen Programmiersprachen ist die Promise auch als
+Future oder Deferred bekannt, siehe <a href="https://en.wikipedia.org/wiki/Futures_and_promises">wikipedia</a>.</p>
+
+<p>Mit der Methode <code>then()</code> kann eine Funktion als Callback angegeben
+werden, die aufgerufen wird wenn das Ergebnise vorliegt:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+fetch(&quot;counter_ajax.php&quot;)
+  .then(function(response) {
+    console.log(&quot;Response wird empfangen&quot;);
+    // tu ws mit response response
+  });
+console.log(&quot;abgesendet, sofort weiter&quot;);   
+</pre></div>
+
+
+<a class="slide_break" id="slide-13" href="slide.html#slide-13"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 13">▻</a>
+
+<h3 id="chaining">Chaining</h3>
+
+<p>Angenommen mit dem Ergebnis einer asynchronen Operation
+soll
+eine weitere asynchrone Operation aufgerufen werden.</p>
+
+<p>Mit Promises funktionert das mittels “aneinanderhängen” = “chaining” mit <code>then</code>:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+fetch(&quot;counter_ajax.php&quot;)
+  .then(function(response) {
+    console.log(&quot;Response wird empfangen&quot;);
+    let counter = response.text();
+    return counter;
+  })
+  .then(function(counter) {
+    console.log(&quot;counter wurde aus dem Response herausgelesen&quot;);
+    // ...
+  }); 
+console.log(&quot;abgesendet, sofort weiter&quot;);   
+</pre></div>
+
+<p>Dieser Code kann mit Arrow-Functions noch kürzer werden:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+fetch(&quot;counter_ajax.php&quot;)
+  .then(response =&gt; response.text())
+  .then(function(counter) {
+    console.log(&quot;Text wurde aus dem Response herausgelesen&quot;);
+    // tu was mit counter
+  });
+console.log(&quot;abgesendet, sofort weiter&quot;);   
+</pre></div>
+
+
+<a class="slide_break" id="slide-14" href="slide.html#slide-14"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 14">▻</a>
+
+<h3 id="fehlerbehandlung">Fehlerbehandlung</h3>
+
+<p>Für die Fehlerbehandlung gibt es zwei Schreibweisen, die
+üblichere ist die Verwendet von <code>catch</code>:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+fetch(&quot;counter_ajax.php&quot;)
+  .then(response =&gt; response.text())
+  .then(function(counter) {
+    console.log(&quot;Text wurde aus dem Response herausgelesen&quot;);
+    // tu was mit counter
+  }).catch(function(error) {
+    console.log(error);
+  });
+console.log(&quot;abgesendet, sofort weiter&quot;);
+</pre></div>
+
+<p>Aber Achtung: wenn der HTTP-Response z.B. 404 oder 500 ist, löst das noch
+keinen Error aus, der mit <code>catch</code> gefangen werden kann. Das müsste
+man selbst behandeln:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+fetch(&quot;counter_ajax.php&quot;)
+  .then(function(response){ 
+    console.log(&quot;response status is&quot;, response.status);
+    if (response.status !== 200) {
+        throw new Error(&quot;Not 200 response&quot;);
+    } 
+    return response.text(); 
+  }).then(function(counter) {
+    console.log(&quot;Text wurde aus dem Response herausgelesen&quot;);
+    // tu was mit counter
+  }).catch(function(error) {
+    console.log(error);
+  });
+  console.log(&quot;abgesendet, sofort weiter&quot;);   
+</pre></div>
+
+<p>Siehe auch</p>
+
+
+<a class="slide_break" id="slide-15" href="slide.html#slide-15"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 15">▻</a>
+
+<h2 id="autocomplete">Autocomplete</h2>
+
+<p>Wir werden in diesem Beispiel ein Autocomplete-Feld bauen.
+Beginnen wir mit dem Backend:</p>
+
+
+<a class="slide_break" id="slide-16" href="slide.html#slide-16"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 16">▻</a>
+
+<h3 id="backend">Backend</h3>
+
+<p>Am Server befindet sich eine Datenbank mit ca. 170.000 Städten.
+Mit der Anfrage</p>
+
+<p><code>search.php?term=w</code></p>
+
+<p>Werden nur die Städte die mit w beginnen geladen,
+und als JSON-Array zurück gegeben:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+[
+    &quot;Wa,GH&quot;,
+    &quot;WaKeeney,US&quot;,
+    &quot;Waabs,DE&quot;,
+    &quot;Waaia,AU&quot;,
+    &quot;Waajid,SO&quot;,
+    &quot;Waake,DE&quot;,
+    &quot;Waakirchen,DE&quot;,
+    &quot;Waal,DE&quot;,
+    ...
+    &quot;Wüstenzell,DE&quot;,
+    &quot;Wüstheuterode,DE&quot;,
+    &quot;Wāhan Murad,PK&quot;,
+    &quot;Wān Yampēng,MM&quot;,
+    &quot;Wŏnsŏngil-tong,KR&quot;,
+    &quot;Włocławek,PL&quot;,
+    &quot;Włodawa,PL&quot;,
+    &quot;Włoszczowa,PL&quot;,
+    &quot;Wāsiţ,EG&quot;,
+    &quot;Wąwolnica,PL&quot;
+]
+</pre></div>
+
+<p>Das sind ca. 5000 Namen.</p>
+
+<p>Beim Lesen aus der Datenbank wird ein Volltext-Index verwendet (siehe
+<a href="/php-db-optimierung/indexes/">Datenbank optimieren: Indexes</a>). Das
+sieht man aber weder der SQL-Query noch dem PHP an:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+$term = filter_var($_GET[&#39;term&#39;], FILTER_SANITIZE_STRING) . &#39;%&#39;;
+$sth-&gt;execute(array($term));
+$cities = $sth-&gt;fetchAll(PDO::FETCH_COLUMN);
+</pre></div>
+
+<p>Der Output des PHP-Programmes ist JSON. Das muss mit dem HTTP Header <code>Content-Type</code>
+angekündgt werden:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+header(&#39;Content-Type: application/json&#39;);
+echo json_encode($cities);
+</pre></div>
+
+
+<a class="slide_break" id="slide-17" href="slide.html#slide-17"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 17">▻</a>
+
+<h3 id="frontend">Frontend</h3>
+
+<p>Für das Frontend kann man eine fertige Library verwenden,
+z.B. <a href="https://github.com/Pixabay/JavaScript-autoComplete/">JavaScript-autoComplete</a>:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+new autoComplete({
+    selector: &#39;#cityinput&#39;,
+    source: function(term, handle_response){
+      // schicke suchwort &#39;term&#39; ans backend
+      // wenn die datenvorliegen, rufe die funktion handle_response auf           
+    }
+});
+</pre></div>
+
+
+<a class="slide_break" id="slide-18" href="slide.html#slide-18"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 18">▻</a>
+
+<h2 id="ajax-beispiel-mit-api">AJAX Beispiel mit API</h2>
+
+<p>In diesem Beispiel werden Wetter-Daten von zwei Quellen angezeigt. Dabei
+sieht man einen wichtigen Unterschied:</p>
+
+<ul>
+  <li>auf http://openweathermap.org/ ist der Zugriff nur mit API key möglich, auch vom frontend aus</li>
+  <li>auf http://at-wetter.tk/ ist der Zugriff auch ohne API key möglich, aber nicht von einem fremden Frontend aus, weil <a href="/cors/">CORS</a> nicht erlaubt ist.</li>
+</ul>
+
+
+<a class="slide_break" id="slide-19" href="slide.html#slide-19"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 19">▻</a>
+
+<h3 id="direkter-zugriff-auf-eine-fremde-api">Direkter Zugriff auf eine fremde API</h3>
+
+<p>Um die API von http://openweathermap.org/ zu benutzen
+ist eine Anmeldung und ein API key notwendig. Das ermöglicht
+eine Beschränkung der Zugriffe: am Server kann mitgezählt werden
+mit welchem API Key wie viele Zugriffe erfolgt sind, und je nach
+dem limitiert oder verrechnet werden. Die Preise für die API
+sind nach Anzahl der Zugriffen gestaffelt, im Mai 2017 waren die Preise:</p>
+
+<p><img src="/images/openweathermap-preise.png"  alt="Preise von openweathermap.org" ></p>
+
+<p>Beim Zugriff auf die API muss jeweils der API-Key als parameter
+mit gesendet werden:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Zugriff auf die openweathermap API</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+fetch(&quot;http://api.openweathermap.org/data/2.5/weather?&amp;units=metric&amp;q=London,uk&amp;apikey=....&quot;)
+.then(function...
+</pre></div>
+
+<p>Die genaue Struktur der Daten und wie man sie zerlegt kann man entweder
+<a href="https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2">der Dokumentation</a> entnehmen, oder einfach in der console erforschen.</p>
+
+<p>ABER ACHTUNG: diese API ist (gratis) nur über http zugänglich.
+Die resultierende Webseite kann wieder nur auf http veröffentlicht werden, nicht
+auf https.</p>
+
+<p>Um die openweahtermap api auch über https verwenden zu können
+ist die nächste Lösung notwendig:</p>
+
+
+<a class="slide_break" id="slide-20" href="slide.html#slide-20"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 20">▻</a>
+
+<h3 id="zugriff-auf-eine-api-ber-lokales-backend">Zugriff auf eine API über lokales Backend</h3>
+
+<p>Manchmal kann man nicht vom Frontend direkt auf die API zugreifen.</p>
+
+<p>Einen Grund haben wir schon bei openweathermap gesehen: die API ist über
+http zugänglich, das frontend wird auf https gehosted. So ist es verboten
+auf die API zuzugreifen.</p>
+
+<p>Der zweite mögliche Grund ist CORS. Das tritt zum Beispiel bei der API
+<code>at-wetter.tk</code> auf.
+Die Abfrage scheitert ohne sichtbare Fehlermeldung. In der console wird
+in manchen Browsern eine Meldung angezeigt:</p>
+
+<p><img src="/images/cors-error.png"  alt="CORS Fehlermeldung" ></p>
+
+<p>In beiden Fällen ist die Lösung dieselbe: man muss die Daten
+über das eigene Backend laden.</p>
+
+<p>In PHP ist der Zugriff auf die API ohne Problem möglich:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>zugriff auf die wetter-at.tk API</small></h4>
+<pre class="lang-php prettyprint linenums">
+header(&#39;Content-Type: application/json&#39;);
+...
+$url = &quot;http://at-wetter.tk/api/v1/station/11150/t/$date/7&quot;;
+$text=file_get_contents( $url );
+...
+</pre></div>
+
+
+<a class="slide_break" id="slide-21" href="slide.html#slide-21"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 21">▻</a>
+
+<h2 id="ausblick">Ausblick</h2>
+
+<p>Das waren nur einige wenige Anwendungsbeispiele für AJAX,
+es gibt natürlich noch viel mehr.</p>
+
+<p>Aber bevor man sich in AJAX Abenteuer stürzt sollte man sich auch
+über die Probleme bewusst sein, dazu mehr im nächsten Kapitel.</p>
+ <div class="pagination">
+  <ul>
+    
+      
+      
+      <li><a href="/applied-js-and-css/dynamisches-formular/">Dynamisches Formular</a></li>
+      
+      
+      
+      <li><a href="/applied-js-and-css/ajax-irrwege/">AJAX Irrwege</a></li>
+      
+    
+  </ul>
+</div>
+
+  </div>
+
+  <!-- sidebar -->
+<div id="sidebar" class="span3 offset1">
+        <div class="page-header"> 
+        <h2>Kapitel</h2>
+        </div>
+
+        
+        <ul class="nav nav-list">
+        
+          
+          <li class=" "><a href="/das-web-und-html/">Das Web Und Html</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/geschichte/">Eine Kurze Geschichte des World Wide Web</a></li>
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/standards/">Drei Standards definieren das Web</a></li>
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/bnf/">BNF</a></li>
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/html-grundkurs/">HTML Grundkurs</a></li>
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/upload/">Upload und Tools</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/css/">Css</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/css/css-kurz/">Kurzvorstellung von Stylesheets</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css/css/">Syntax von CSS</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css/properties/">Wichtige Properties</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css/css-sprites/">CSS Sprites</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css/basic-selectors/">CSS Selektoren</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/css-layout/">Css Layout</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/css-layout/rahmenbedingungen/">Rahmenbedingungen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/responsive/">Responsive Design</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/layout/">CSS für Layout</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/details/">Details zu Layout</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/navigation/">Navigationsmenü</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/selektoren/">CSS Selektoren im Detail</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/urls/">Urls</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/urls/absolut-relativ/">Absolute und relative URLs</a></li>
+                      
+                    
+                      
+                      <li ><a href="/urls/konfiguration/">Konfiguration Webserver</a></li>
+                      
+                    
+                      
+                      <li ><a href="/urls/tipps/">Pragmatische Tipps</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/formulare/">Formulare</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/formulare/form/">Formulare</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/interaktion/">Formular als Interaktion</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/css/">CSS und Formular</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/action/">Daten absenden</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/php/">Formular und PHP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/javascript/">Formular und Javascript</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/javascript-dom/">Javascript Dom</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/hintergrund/">Hintergründe</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/graceful/">Graceful Degradation</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/basic-javascript/">Basic Javascript</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/dom/">DOM</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/canvas/">2D Canvas</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/formular-zeile/">Formular++</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" separator"><a href="/jquery/">Jquery</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/jquery/unobstrusive/">Unobstrusive Javascript</a></li>
+                      
+                    
+                      
+                      <li ><a href="/jquery/graceful/">Graceful Degradation</a></li>
+                      
+                    
+                      
+                      <li ><a href="/jquery/schreibweise/">Besondere Javascript-Schreibwesen in jQuery</a></li>
+                      
+                    
+                      
+                      <li ><a href="/jquery/selektieren-manipulieren/">Selektieren und Manipulieren mit jQuery</a></li>
+                      
+                    
+                      
+                      <li ><a href="/jquery/interaktion/">Interaktion mit jQuery</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/kommandozeile/">Kommandozeile</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/kommandozeile/">Kommandozeile</a></li>
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/wo-bin-ich/">Wo bin ich</a></li>
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/vscode-remote-ssh/">VS Code</a></li>
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/zugriffsrechte/">Zugriffsrechte</a></li>
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/bild-und-video/">Bild und Video</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/git/">Git</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/git/versionskontrolle/">Versionskontrolle</a></li>
+                      
+                    
+                      
+                      <li ><a href="/git/basic-git/">Einfacher Arbeitsablauf in Git</a></li>
+                      
+                    
+                      
+                      <li ><a href="/git/git-status/">Status von Git abfragen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/git/git-tools/">Tools für Git</a></li>
+                      
+                    
+                      
+                      <li ><a href="/git/public-private-key/">Public und Private Key</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/http/">Http</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/http/tcpip-und-dns/">TCP/IP und DNS</a></li>
+                      
+                    
+                      
+                      <li ><a href="/http/http/">HTTP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/http/tools/">Werkzeuge</a></li>
+                      
+                    
+                      
+                      <li ><a href="/http/anwendungsbeispiele/">Beispiele</a></li>
+                      
+                    
+                      
+                      <li ><a href="/http/php-erzeugt/">PHP erzeugt nicht nur HTML</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/php-vorbereitung/">Php Vorbereitung</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php-vorbereitung/was-ist-php/">Was ist PHP? Was passiert am Webserver?</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-vorbereitung/apache/">Apache</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-vorbereitung/erstes-php-programm/">Das erste PHP-Programm</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/php/">Php</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php/warnhinweis/">Warnhinweis</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/syntax/">Syntax von PHP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/dateien/">Dateien und Ordnern in PHP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/mail/">PHP und E-Mail</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/php-und-parameter/">In PHP Daten aus Web-Formularen verarbeiten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/datei-upload/">Datei Upload</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/datei-upload-frontend/">Datei Upload - Frontend</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/error/">Errors + Debugging</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/php-db-lesen/">Php Db Lesen</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/db/">Datenbanken</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/start/">PHP und Datenbank</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/struktur-webapplikation/">Struktur einer Web-Applikation</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/datenbank-lesen/">Lesen aus der Datenbank</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/effizent/">Effizient Arbeiten mit der DB</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/session/">Session</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/session/cookies/">Cookies</a></li>
+                      
+                    
+                      
+                      <li ><a href="/session/session-und-login/">Session und Login</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/php-db-schreiben/">Php Db Schreiben</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/datenbank-schreiben/">Web-Applikation mit Schreibrecht</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/daten-loeschen/">Löschen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/daten-einfuegen/">Einfügen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/daten-editieren/">Daten Bearbeiten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/html-erlauben/">HTML erlauben</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/fehlerbehandlung/">Fehlerbehandlung</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" separator"><a href="/php-db-optimierung/">Php Db Optimierung</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/indexes/">Indexes</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/constraints/">Constraints</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/alter/">Änderungen an der Datenbank</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/transaktionen/">Transaktionen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/transaktionen-und-php/">Transaktionen und PHP</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/grafik/">Grafik</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/grafik/cssgrafik/">HTML+CSS für Grafik</a></li>
+                      
+                    
+                      
+                      <li ><a href="/grafik/images/">Pixel-Bilder</a></li>
+                      
+                    
+                      
+                      <li ><a href="/grafik/svg/">SVG - Vektor Grafik</a></li>
+                      
+                    
+                      
+                      <li ><a href="/grafik/2dcanvas/">2d Canvas</a></li>
+                      
+                    
+                      
+                      <li ><a href="/grafik/3dcanvas/">3d Canvas</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/javascript/">Javascript</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/javascript/variablen/">Variablen und Scope</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/funktionen/">Funktionen und this</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/objekte/">Objekte + Klassen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/closures/">Funktionen und Closures</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/module/">Module</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/style/">Stil + Tipps</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/debugging/">Debugging</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class="active "><a href="/applied-js-and-css/">Applied Js And Css</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/formularpruerung/">Formulardaten Prüfen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/header/">Fixe Kopfzeile mit Animation</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/langsam-scrollen/">Langsam Scrollen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/landkarte/">Landkarte</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/dynamisches-formular/">Dynamisches Formular</a></li>
+                      
+                    
+                      
+                      <li class="active"><a href="/applied-js-and-css/ajax/">AJAX</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/ajax-irrwege/">AJAX Irrwege</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/cors/">CORS</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/websocket/">Chat Websockets</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/json/">Json</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/json/syntax/">JSON Syntax</a></li>
+                      
+                    
+                      
+                      <li ><a href="/json/php/">JSON und PHP</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" separator"><a href="/xml/">Xml</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/xml/was-ist-xml/">Was ist XML</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/wohlgeformtes-xml/">wohlgeformtes XML</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/dtd/">DTD</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/xml-und-php/">XML und PHP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/xml-und-javascript/">XML und Javascript</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/xpath/">XPath</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/rss/">Beispiel RSS</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/security/">Security</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/security/thread-modeling/">Threat Modeling</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a1-injection/">A1 - Injection</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a2-auth/">A2 - Authentifizierung</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a3-data/">A3 - Sensible Daten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a4-xee/">A4 - XXE</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a5-zugriffskontrolle/">A5 - Zugriffskontrolle</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a6-fehlkonfiguration/">A6 - Fehlkonfiguration</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a7-cross-site-scripting-css/">A7 - XSS</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a8-deserialisierung/">A8 - Deserialisierung</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a9-komponenten/">A9 - Komponenten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a10-logging-monitoring/">A10 - Monitoring</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a8-csrf/">CSRF</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/wordpress/">Wordpress</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/wordpress/was-ist-wordpress/">Was ist Wordpress</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/installation/">Kurz-Installation von Wordpress</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/security/">Security</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/backend/">Überblick Backend</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/seiten/">Beiträge und Seiten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/multimedia/">Medien</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/themes-sidesbars-widgets/">Themes, Sidebars und Widgets verwenden</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/plugins/">Plugins verwenden</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/permalinks/">Permalinks</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/apache/">Apache</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/apache/konfigurieren/">Konfigurieren</a></li>
+                      
+                    
+                      
+                      <li ><a href="/apache/auth/">Authentisierung</a></li>
+                      
+                    
+                      
+                      <li ><a href="/apache/rewrite/">Rewrite</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/advanced-javascript/">Advanced Javascript</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/advanced-javascript/call/">Funktion Aufrufen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/advanced-javascript/event-und-closure/">Events und Closures</a></li>
+                      
+                    
+                      
+                      <li ><a href="/advanced-javascript/vererbung/">Prototypen + Vererbung</a></li>
+                      
+                    
+                      
+                      <li ><a href="/advanced-javascript/regular-expressions/">Regular Expressions</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/mobile/">Mobile</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/mobile/responsive/">Responsive Design</a></li>
+                      
+                    
+                      
+                      <li ><a href="/mobile/pwa/">Progressive Web App</a></li>
+                      
+                    
+                      
+                      <li ><a href="/mobile/cordova/">Cordova</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/qualitaet/">Qualitaet</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/qualitaet/barrierefreiheit/">Barrierefreiheit</a></li>
+                      
+                    
+                      
+                      <li ><a href="/qualitaet/datenschutz/">Datenschutz</a></li>
+                      
+                    
+                      
+                      <li ><a href="/qualitaet/performance/">Performance</a></li>
+                      
+                    
+                      
+                      <li ><a href="/qualitaet/rest/">REST</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+        
+        </ul>
+
+</div>
+<!-- sidebar -->
+
+</article>
+<!-- /body -->
+
+
+  <div class="row">
+    <div class="span12" id="legal">
+        <p class="copyright">veröffentlicht unter <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/at/deed.de">creative commons by-nc-sa</a> in den Jahren 2012-2019 von <a href="#">Brigitte Jellinek</a>.</p>
+        <p>Zum Weiterentwickeln dieser Seite: <a href="https://github.com/web-development/web-development-textbook">Projekt forken</a> oder <a href="https://github.com/web-development/web-development-textbook/blob/master/content/applied-js-and-css/ajax.md">Kommentar zu dieser Seite</a></p>
+        <p>Diese Seite ist sowohl auf <a href="https://web-development.github.io">github.io</a>
+        als auch auf <a href="http://web-development.netlify.com/">netlify.com</a> erhältlich.</p>
+    </div>
+  </div>
+
+</div> <!-- class="container" -->
+
+<script src="/assets/js/scripts.js?v=1"></script>
+<script>
+  $(document).ready(function(){
+    function save_state(){
+      var stored = "";
+      $('ul.nav > li').each(function(i,e){
+        if( $(e).find("i").attr('class') == 'icon-plus' ) {
+          stored += "-";
+        }  else {
+          stored += "+";
+        }
+      });
+      localStorage.setItem('nav-state', stored);
+    }
+    $('ul.nav > li > a').prepend("<i class='icon-plus'></i>");
+
+    // init state
+    var stored = localStorage.getItem('nav-state');
+    if ( stored ) {
+      var data = stored.split("");
+      $('ul.nav > li').each(function(i,e){
+        if( data[i] == "+" ) {
+          $(e).find(">ul").show();
+          $(e).find("i").removeClass('icon-plus').addClass('icon-minus');
+        } else {
+          $(e).find(">ul").hide();
+        }
+      });
+    } else {
+      $('ul.nav ul.sub').hide();
+    }
+    $('ul.nav li.active ul.sub').show();
+    $('ul.nav li.active i').removeClass('icon-plus').addClass('icon-minus');
+
+    $('ul.nav i').click(function(){
+      $this = $(this); 
+      $this.toggleClass('icon-plus').toggleClass('icon-minus');
+      $this.parent().next('ul').toggle();
+      save_state();
+      return false;
+    });
+  });
+</script>
+</body> 
+</html>
+

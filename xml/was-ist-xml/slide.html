@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Was ist XML - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Was ist XML</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/xml//slide.html">XML</a> | 
+        <a href="/xml/was-ist-xml/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/xml/wohlgeformtes-xml//slide.html">wohlgeformtes XML</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>XML ist eine wichtige Auszeichnungssprache, die mit HTML verwandt ist.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="geschichte-der-auszeichnungssprachen">Geschichte der Auszeichnungssprachen</h2>
+
+<p><img src="/images/SGML.svg"  alt="SGML, HTML, XML und XHTML - eine Sprach-Familie" ></p>
+
+<p>Tim Berners-Lee hat HTML nicht “aus dem Nichts” erfunden. Er basierte
+die Sprache auf SGML (Standard Generalized Markup Language).
+SGML ist eine Metasprache, mit deren Hilfe man verschiedene Auszeichnungssprachen
+(englisch: Markup Languages) definieren kann. SGML war damals (1990) bereits ein ISO-Standard.</p>
+
+<p>Im Jahr 1998 veröffentlichte das World Wide Web Consortium <a href="http://www.w3.org/TR/xml/">XML</a>, eine neue
+Meta-Sprache, als Teilmenge von SGML. Sprachen auf Basis von XML sind
+zum Beispiel RSS, SVG, oder XHTML.</p>
+
+<p>Mit HTML5 hat sich HTML von diesem Stammbaum emanzipiert: HTML5 ist
+nicht mehr eine Sprache, sondern zuerst das Document Object Model (DOM)
+als “in memory representation” im Browesr, und einige APIS für das DOM.
+Ausgehend davon werden zwei Darstellungsweisen definiert: HTML und XML.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="geschichte-von-xml">Geschichte von XML</h2>
+
+<p>XML sollte einfacher als SGML sein, und den Datenaustausch
+zwischen Programmen im Internet vereinfachen.<br />
+So kann für ein bestimmtes Thema eine XML-Sprache definiert
+werden, die dann für den Datenaustausch verwendet wird.
+Für diesen Zweck wird XML heute auch an vielen Stellen verwendet,
+es gibt viele XML-Sprachen die im Einsatz sind.</p>
+
+<p>Mit XHTML sollte XML auch HTML ersetzen. Dieses Ziel wurde aber
+nicht erreicht. Die strengere Syntax von XML konnte sich nicht
+durchsetzen.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Rund um XML gibt es eine gut ausgebaute Infrastruktur:
+In allen Programmiersprachen gibt es Libraries um XML zu verarbeiten,
+viele Programmier-Editoren unterstützen die Bearbeitung von XML.
+Zusätzlich gibt es noch eigene Sprachen zur Definition von XML
+und um XML Abzufragen.</p>
+
+<p>In den letzten Jahren hat sich mit JSON ein
+anderes, noch einfachers Format für den Datenaustausch etabliert.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="beispiele-fr-die-anwendung-von-xml">Beispiele für die Anwendung von XML</h2>
+
+<p>Drei XML-Sprachen die im Web verwendet werden:</p>
+
+</div>
+<div class="slide">
+
+<h3 id="svg">SVG</h3>
+
+<svg width="200" height="200" style="float:left;">
+  <circle cx="100" cy="100" r="80" stroke="black" stroke-width="2" fill="#4e9a06" />
+  <rect x="80" y="100" width="90" height="90" stroke="black" stroke-width="2" fill="#204a87" />
+</svg>
+
+<p>Scalable Vector Graphics (SVG, engl. „skalierbare Vektorgrafik“) ist die vom
+World Wide Web Consortium (W3C) empfohlene Spezifikation zur Beschreibung
+zweidimensionaler Vektorgrafiken. Sie wird von den meisten Browsern
+nativ untersützt <a href="http://caniuse.com/#feat=svg-html5">→ can i use svg</a>. SVG ist eine XML-Sprache.</p>
+
+<p><br clear="left" /></p>
+
+</div>
+<div class="slide">
+
+<h3 id="rss">RSS</h3>
+
+<p>RSS ist ein Format um die Inhalte eines Blogs maschienenlesbar anzubieten.
+Wo bietet z.B. der Wordpress Blog <code>http://multimediatechnology.at/</code>
+unter der URL <code>http://multimediatechnology.at/feed/</code> die gleichen Inhalte
+wie die Homepage des Blogs im RSS Format an.</p>
+
+<div class="example">
+<h4 class="caption">Xml Code <small>Beispiel für RSS</small></h4>
+<pre class="lang-xml prettyprint linenums">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;rss version=&quot;2.0&quot;
+  xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot;&gt;
+  &lt;channel&gt;
+    &lt;title&gt;MultiMediaTechnology&lt;/title&gt;
+    &lt;link&gt;http://multimediatechnology.at&lt;/link&gt;
+    &lt;description&gt;Das Studium an der FH Salzburg&lt;/description&gt;
+    &lt;lastBuildDate&gt;Mon, 01 Apr 2013 08:36:25 +0000&lt;/lastBuildDate&gt;
+    &lt;language&gt;de-DE&lt;/language&gt;
+    &lt;generator&gt;http://wordpress.org/?v=3.5.1&lt;/generator&gt;
+    &lt;item&gt;
+      &lt;title&gt;Barcamp März 2013: mit WebGL, Redis, ...&lt;/title&gt;
+      &lt;link&gt;http://multimediatechnology.at/2013/03/23/barcamp-marz-2013-mit-webgl-redis-memcached-riac-multi-user-games/&lt;/link&gt;
+      &lt;pubDate&gt;Sat, 23 Mar 2013 13:15:52 +0000&lt;/pubDate&gt;
+      &lt;dc:creator&gt;Brigitte Jellinek&lt;/dc:creator&gt;
+      &lt;description&gt;&lt;![CDATA[&lt;p&gt;Das 5. Barcamp &amp;#8220;The Next Web&amp;#8221; im März 2013 brachte wieder an die 70 Studierende und Fachleute an der FH Salzburg zusammen. Bei Workshops, Vorträgen und einer Ausstellung gab es nicht nur viel zu lernen, sondern auch viel Gelegenheit Leute &amp;#8230;&lt;/p&gt;]]&gt;&lt;/description&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+      &lt;title&gt;Welcome Lecture Zach Liebermann&lt;/title&gt;
+      &lt;link&gt;http://multimediatechnology.at/2013/03/18/welcome-lecture-zach-liebermann/&lt;/link&gt;
+      &lt;pubDate&gt;Mon, 18 Mar 2013 10:03:24 +0000&lt;/pubDate&gt;
+      &lt;dc:creator&gt;Martin Ortner&lt;/dc:creator&gt;
+      &lt;description&gt;&lt;![CDATA[&lt;p&gt;Er ist Inbegriff des kreativen Coders: Der vielfach ausgezeichnete Medienkünstler und Creative Technologist Zach Lieberman. Ende März übernimmt er eine Gastprofessur am Studiengang MultiMediaTechnology. Für seine Zeit in Puch/Urstein plant der New Yorker gemeinsam mit Studierenden die Stadt Salzburg zur &amp;#8230;&lt;/p&gt;]]&gt;&lt;/description&gt;
+    &lt;/item&gt;
+  &lt;/channel&gt;
+&lt;/rss&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="mathml">MathML</h3>
+
+<p>MathML ist eine Markup Language zur Darstellung von Mathematischen Formeln.
+Es wird seit vielen Jahren von Firefox und Safari unterstützt, aber nicht
+von Chrome und Edge (siehe <a href="http://caniuse.com/#feat=mathml">→ can i use MathML</a>).</p>
+
+<div class="example">
+<h4 class="caption">Xml Code <small>MathML Code-Beispiel</small></h4>
+<pre class="lang-xml prettyprint linenums">
+&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;
+&lt;mrow&gt;
+  &lt;mrow&gt;
+    &lt;msubsup&gt;
+      &lt;mo&gt;∫&lt;/mo&gt;
+      &lt;mrow&gt;
+        &lt;mi&gt;x&lt;/mi&gt;
+        &lt;mo&gt;=&lt;/mo&gt;
+        &lt;mi&gt;a&lt;/mi&gt;
+      &lt;/mrow&gt;
+      &lt;mrow&gt;
+        &lt;mi&gt;x&lt;/mi&gt;
+        &lt;mo&gt;=&lt;/mo&gt;
+        &lt;mi&gt;b&lt;/mi&gt;
+      &lt;/mrow&gt;
+    &lt;/msubsup&gt;
+    &lt;mrow&gt;
+      &lt;mi&gt;f&lt;/mi&gt;
+      &lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;
+      &lt;mi&gt;x&lt;/mi&gt;
+      &lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;
+      &lt;mi&gt;d&lt;/mi&gt;
+      &lt;mi&gt;x&lt;/mi&gt;
+    &lt;/mrow&gt;
+  &lt;/mrow&gt;
+&lt;/mrow&gt;
+&lt;/math&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p><img src="/images/mathml.png" srcset="/images/mathml.png 1x, /images/mathml@2x.png 2x"  alt="Screenshot der MathML Darstellung in Firefox" ></p>
+
+<p>Darstellung in diesem Browser:</p>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" style="border: 1px black solid;padding: 5px; margin: 10px 0">
+<mrow>
+<mrow>
+<msubsup>
+  <mo>∫</mo>
+  <mrow>
+    <mi>x</mi>
+    <mo>=</mo>
+    <mi>a</mi>
+  </mrow>
+  <mrow>
+    <mi>x</mi>
+    <mo>=</mo>
+    <mi>b</mi>
+  </mrow>
+</msubsup>
+<mrow>
+  <mi>f</mi>
+  <mo stretchy="false">(</mo>
+  <mi>x</mi>
+  <mo stretchy="false">)</mo>
+  <mi>d</mi>
+  <mi>x</mi>
+</mrow>
+</mrow>
+</mrow>
+</math>
+
+<p>Alternative: <a href="http://www.mathjax.org/">MathJAX</a> ist eine Javascript Library die MathML und LaTeX darstellen kann.</p>
+</div>
+    <div class="slide">
+      <h1>Was ist XML</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/xml//slide.html">XML</a> | 
+        <a href="/xml/was-ist-xml/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/xml/wohlgeformtes-xml//slide.html">wohlgeformtes XML</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

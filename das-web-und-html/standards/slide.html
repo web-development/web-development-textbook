@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Drei Standards definieren das Web - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Drei Standards definieren das Web</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/das-web-und-html/geschichte//slide.html">Eine Kurze Geschichte des World Wide Web</a> | 
+        <a href="/das-web-und-html/standards/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/das-web-und-html/bnf//slide.html">BNF</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Für diese Lehrbuch ist eine technische Sicht auf das World Wide Web die relevante. 
+Das World Wide Web ist also ein verteiltes (Client/Server) Informationssystem, 
+das durch folgende drei Standards definiert wird:</p>
+
+<ul>
+  <li>URL  <!-- XE "URL" -->   (Uniform Resource Locators) ursprünglich <a href="http://www.w3.org/Addressing/rfc1738.txt">RFC 1738</a></li>
+  <li>HTTP  <!-- XE "HTTP" -->   (Hypertext Transfer Protocol) ursprünglich <a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html">RFC 2616</a></li>
+  <li>HTML  <!-- XE "HTML" -->    <!-- XE "XHTML" -->   (Hypertext Markup Language)</li>
+</ul>
+
+<p>Die aktuelle Version von HTTP ist 1.2, wir befinden uns gerade im Übergang auf HTTP 2.0
+HTML verwenden wir in der Version 5.</p>
+
+<p>Rund um diese drei Standards ordnen sich weitere wichtige Begriffe an:</p>
+
+</div>
+<div class="slide">
+
+<h2 id="clientserver">Client/Server</h2>
+
+<p>Das Client  <!-- XE "Client" -->  /Server  <!-- XE "Server" -->   Prinzip ist ein allgemeines Prinzip wie 
+Dienste in einem Computernetzwerk aufgebaut sein können: Ein Server ist ein Computer der 
+einen bestimmten Dienst anbietet, ein Client ist der „Kunde“, also der Computer der den 
+Dienst in Anspruch nimmt.
+Nach diesem Prinzip funktionieren Web, E-Mail, SFTP:</p>
+
+<table class="table table-condensed table-bordered" style="width:auto">
+  <thead>
+    <tr>
+      <th style="text-align: left">Dienst</th>
+      <th style="text-align: left">Client</th>
+      <th style="text-align: left">Server</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">Web</td>
+      <td style="text-align: left">Webbrowser  <!-- XE "Webbrowser" --> - lädt Webseiten vom Server und stellt sie dar</td>
+      <td style="text-align: left">Webserver  <!-- XE "Webserver" -->   – liefert auf Anfrage die Webseiten</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">E-Mail</td>
+      <td style="text-align: left">E-Mail  <!-- XE "E-Mail" --> Programm – lädt E-Mails vom Server, zeigt sie an, kann neue E-Mails an einen Server schicken der sie zustellt, …</td>
+      <td style="text-align: left">Mailserver – speichert E-Mail in verschiedenen Postfächern, leitet E- Mail weiter (an den Server der EmpfängerIn)</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">SFTP</td>
+      <td style="text-align: left">SFTP-Client  <!-- XE "SFTP" -->   – lädt Dateien (verlüsselt) von einem Server herunter oder auf einen Server hinauf</td>
+      <td style="text-align: left">SFTP-Server – speichert Dateien</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Eine Alternative zu Client/Server ist Peer-zu-Peer  <!-- XE "Peer-zu-Peer" -->  . Dabei sind alle 
+beteiligten Computer gleichberechtigt, es gibt keine verschiedenen Rollen. Nach diesem 
+Prinzip funktionieren Datei-Tauschbörsen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="webbrowser">Webbrowser</h2>
+
+<p>Ein Webbrowser, oder kurz Browser  <!-- XE "Browser" -->  , ist ein Programm, das bei Eingabe 
+einer URL über HTTP eine HTML-Webseite laden und anzeigen kann, es ist also der Client 
+zum World Wide Web. 
+Es gibt sehr viele verschiedene Webbrowser. Die folgende Abbildung zeigt vier davon: den Browser 
+„Mosaic“ <!-- XE "Mosaic" -->    <!-- XE "Browser:Mosaic" -->  , der im Jahre 1993 als zweiter Webbrowser 
+mit grafischer Oberflächen stark zur Verbreitung des World Wide Web beigetragen hat,  und 
+die Browser Opera  <!-- XE "Opera" -->    <!-- XE "Browser:Opera" -->,   Mozilla  <!-- XE "Mozilla" -->    <!-- XE "Browser:Mozilla" --><br />
+und Chrome (in Versionen aus verschiedenen Jahren).</p>
+
+<p><img src="/images/das-web-und-html/browsers.png"  alt="Webbrowser: Mosaic (1993), Opera(2004) und Mozilla(2004), Chrome(2011)" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Alle eben erwähnten Browser haben gemeinsam, dass sie auf einem typischen „Büro-
+Computer“ eingesetzt werden, einem Computer mit grafischer Oberfläche und einem Farb-
+Monitor. 
+Es gibt aber auch „exotischere“ Browser. Die nächste Abbildung zeigt den Browser lynx,
+der nur Text darstellt, aber keine Bilder. Daneben sehen Sie eine 
+„Braille  <!-- XE "Braille" -->   Ausgabezeile“, ein Gerät, das eine Zeile Text in eine Zeile 
+Blindenschrift übersetzt. Mit diesem Webbrowser und diesem Ausgabegerät können Blinde 
+im Web surfen.</p>
+
+<p><img src="/images/das-web-und-html/anderebrowser.png"  alt="Text-Only Browser &quot;lynx&quot; und Braille Ausgabegerät" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>In den letzten Jahren haben mobile Geräte mit Internetzugang stark an Bedeutung 
+zugenommen: Smartphones und Tablets.</p>
+
+<p><img src="/images/das-web-und-html/statcounter2009-2020.png"  alt="Anteil Desktop-Mobile-Tablet laut StatsCounter" ></p>
+
+<p>Statistik von <a href="https://gs.statcounter.com/platform-market-share/desktop-mobile-tablet/worldwide/#monthly-200901-202008">StatsCounter</a></p>
+
+<p>Auf diesen neuen Geräten gibt es auch Webbrowser - teilweise spezialisierte Software (Android Browser), teilweise
+adaptionen der klassischen Desktop Browser (Firefox).</p>
+
+<p><img src="/images/das-web-und-html/browser-am-smartphone.jpg" srcset="/images/das-web-und-html/browser-am-smartphone-orig.jpg 1x, /images/das-web-und-html/browser-am-smartphone@2x.jpg 2x, /images/das-web-und-html/browser-am-smartphone.jpg 1x"  alt="Browser auf Smartphones, 2010" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="webseite">Webseite</h2>
+
+<p>Die Dokumente, die im Webbrowser dargestellt werden nennt man Webseiten. Eine Webseite  <!-- XE "Webseite" -->    <!-- XE "Seite" -->   ist – technisch gesehen – ein Dokument im HTML-Format.</p>
+
+<p>Eine Webseite kann – im Gegensatz zu einer Seite in einem Buch – beliebig lang sein. Ist 
+die Seite zu groß / zu lang für das Browser-Fenster, dann erscheint ein Scrollbalken  <!-- XE "Scrollen" -->  mit dem man den Rest der Seite erreichen kann, wie in der nächsten Abbildung gezeigt.</p>
+
+<p><img src="/images/das-web-und-html/lange-seite.png"  alt="Ein Browser zeigt eine lange Webseite an" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="website">Website</h2>
+
+<p>Als Webseite wird also ein Dokument bezeichnet. Verwechseln Sie diesen Begriff nicht mit 
+dem englischen Wort Website  <!-- XE "Website" -->  . Eine Website besteht aus mehreren 
+Webseiten, die zusammen gehören und untereinander verlinkt sind. Achtung: es gibt kein Wort <strike>Webside</strike>.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="webserver">Webserver</h2>
+
+<p>Als Webserver bezeichnet man entweder den ganzen Computer, 
+oder speziell nur die Software, die eine Webseite liefert.</p>
+
+<p>Es gibt zwei Open Source Projekte die
+meist als Webserver verwendet werden und auf allen
+Betriebssystemen laufen:</p>
+
+<ul>
+  <li>Apache</li>
+  <li>nginx</li>
+</ul>
+
+<p>Von Microsoft gibt es noch den Internet Information Server (IIS),
+der nur auf Windows läuft.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="url">URL</h2>
+
+<p>Eine URL  <!-- XE "URL" -->   ist die Adresse eines Dokuments am Web oder in einem anderen 
+Online-Informationssystem. Ein Beispiel:</p>
+
+<pre><code>http://multimediatechnology.at:80/web-communities/#master
+</code></pre>
+
+<p>Diese URL zerfällt in 4 Teile:</p>
+
+<p><code>http</code>  das Übertragungsprotokoll</p>
+
+<p><code>multimediatechnology.at</code>  Domain Name des Webservers</p>
+
+<p><code>80</code> Port am Server. Wenn es  Port 80 ist kann man :80 weglassen.</p>
+
+<p><code>/web-communities/</code> Wird vom Webserver interpretiert, meist eine Pfad-Angabe. In diesem Fall aber nicht, da die Seite von einem Content-Management-System (Wordpress) erstellt wird.</p>
+
+<p><code>master</code> Textmarke innerhalb des Dokuments – wird vom Browser interpretiert wenn das Dokument dargestellt wird</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Im Zusammenhang mit Web-Formularen werden wir oft mit URLs zu tun haben die 
+Parameter enthalten:</p>
+
+<pre><code>http://www.google.com/search?q=schokolade&amp;ie=utf-8&amp;oe=utf-8
+</code></pre>
+
+<p>Mit den Fragezeichen, dem kaufmännischen Und und dem Ist-Gleich-Zeichen werden hier Parameter  <!-- XE "Parameter" -->   an die URL angefügt.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Parameter</th>
+      <th style="text-align: left"> Wert</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">q</td>
+      <td style="text-align: left"> schokolade</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">ie</td>
+      <td style="text-align: left"> utf-8</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">oe</td>
+      <td style="text-align: left"> utf-8</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+<div class="slide">
+
+
+
+<p>Das war nur eine informelle Darstellung der Syntax einer URL. Die ganze Wahrheit
+finden wir im Dokument <a href="http://www.w3.org/Addressing/rfc1738.txt">RFC 1738</a>.
+Dort wird Die Syntax in <a href="http://de.wikipedia.org/wiki/Backus-Naur-Form">Backus-Naur-Form</a> beschrieben.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>HTTP-URLs sind nicht die einzigen URLs, ein Beispiel mit einem anderen 
+Übertragungsprotokoll:</p>
+
+<pre><code>mailto:brigitte.jellinek@fh-salzburg.ac.at
+</code></pre>
+
+</div>
+<div class="slide">
+
+<h2 id="http">HTTP</h2>
+
+<p>Das Hypertext Transfer Protocol  <!-- XE "Hypertext Transfer Protocol" -->    <!-- XE "HTTP" -->   ist ein 
+relativ simples Protokoll, das immer TCP  <!-- XE "TCP" -->   -Verbindungen verwendet. Alle 
+Aktivität wird vom Client (=Browser) initiiert.  In der einfachsten Form sieht
+HTTP so aus (hier 9 Schritte am Beispiel der URL <code>http://multimediatechnology.at/web-communities/#master</code>):</p>
+
+<ol>
+  <li>Eine URL wird in den Browser eingetippt, oder ein Link wird im Browser angeklickt</li>
+  <li>Der Browser analysiert die URL und ermittelt daraus den Domain Namen des Webservers (<code>multimediatechnology.at</code>), löst diese über DNS zur IP-Adresse auf, das Ergebnis lautet <code>193.170.119.85</code></li>
+  <li>Der Browser baut eine TCP-Verbindung zu <code>193.170.119.85</code>, Port 80 auf</li>
+  <li>Er sendet einen HTTP-Request:  <code>GET /web-communities/ HTTP/1.0\n\n</code></li>
+  <li>Der Webserver nimmt die Anfrage entgegen und analysiert sie. Meistens interpretiert er sie als Aufforderung, eine bestimmte Datei von der Platte zu lesen. In diesem Fall aber wird ein PHP Programm gestartet, dass Daten aus einer MySQL Datenbank abfragt und als HTML aufbereitet.</li>
+  <li>Der Webserver schickt einen HTTP-Response an den Browser, diese enthält einen Statuscode, z. B. <code>200 OK</code>, einige Zusatzinformationen und dann die eigentlichen Daten des Dokuments (den erzeugten HTML-Code)</li>
+  <li>Der Browser nimmt das Dokument in Empfang und stellt es dar</li>
+  <li>Der Browser scrollt das Dokument bis zur Textmarke <code>master</code></li>
+  <li>Der Browser beendet die TCP-Verbindung</li>
+</ol>
+
+</div>
+<div class="slide">
+
+
+
+<p>Die nächste Anfrage des Clients kann sich an einen anderen Server, oder wieder an 
+denselben Server richten. Die nächste Anfrage, die der Server beantwortet, kann vom selben 
+Client kommen, oder von einem anderen Client. Keiner der beiden (Client und Server) muß 
+speichern mit wem er gerade Daten ausgetauscht hat, um die nächste Anfrage 
+durchführen/beantworten zu können. Ein Protokoll mit dieser Eigenschafft nennt man 
+“zustandslos” (“stateless”).  <!-- XE "stateless" -->    <!-- XE "zustandslos" -->  Dadurch ist es sehr einfach einen Server zu programmieren.</p>
+
+<p>Das war ein sehr einfachs Beispiel, wie das Protokoll ablaufen kann. Einen tieferne Einblick in HTTP erhalten Sie im Kapitel <a href="/http/">http</a>.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="quellen-und-weiter-lektre">Quellen und weiter Lektüre</h2>
+
+<ul>
+  <li><a href="http://www.asymco.com/2012/01/17/the-rise-and-fall-of-personal-computing/">Aufstieg und Fall des PCs</a></li>
+  <li><a href="https://www.w3.org/TR/html5/">HTML5 Candidate Recommendation</a></li>
+  <li><a href="https://tools.ietf.org/html/rfc7540">RFC 7540 - HTTP/2</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Drei Standards definieren das Web</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/das-web-und-html/geschichte//slide.html">Eine Kurze Geschichte des World Wide Web</a> | 
+        <a href="/das-web-und-html/standards/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/das-web-und-html/bnf//slide.html">BNF</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

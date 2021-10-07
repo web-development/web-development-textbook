@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Konfiguration Webserver - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Konfiguration Webserver</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/urls/absolut-relativ//slide.html">Absolute und relative URLs</a> | 
+        <a href="/urls/konfiguration/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/urls/tipps//slide.html">Pragmatische Tipps</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Die Konfiguration des Webservers wird hier am Beispiel von Apache gezeigt.
+Andere Webserver, z.B: Internet Information Server von Microsoft oder nginx
+(ausgesprochen “engine x”) 
+verfügen auch über diese Fähigkeiten, werden aber anders konfiguriert.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="betriebssystem-des-webservers">Betriebssystem des Webservers</h2>
+<p>Viele Webserver werden auf einem UNIX-Betriebssystem betrieben. Die UNIX-Dateisysteme unterscheiden bei Datei- und Ordnernamen zwischen Groß- und Kleinschreibung, sind also „case-sensitive“. Der Rechner auf dem Sie Webseiten erstellen läuft wahrscheinlich unter Windows oder MacOS; dort sind die Dateisysteme „case-insensitive“.</p>
+
+<p>Ein Link auf die Datei <code>bild.JPG</code> funktioniert unter Windows oder MacOS auch
+dann, wenn er <code>bild.jpg</code> geschreiben wird.</p>
+
+<p>Liegt die Datei aber dann am (UNIX-)Webserver, so funktioniert der Link nicht mehr! 
+<code>bild.jpg</code> und <code>bild.JPG</code> sind zwei unterschiedliche Dateien!</p>
+
+</div>
+<div class="slide">
+
+<h2 id="webspace-und-ordner">Webspace und Ordner</h2>
+<p>Im einfachsten Fall wird im Webserver ein Ordner spezifiziert, der als Ausgangspunkt für den Webspace dient.</p>
+
+<ul>
+  <li>URL <code>http://multimediatechnology.at/wp-content/themes/mmt_blog_theme_2007/images/mmtlogo-400.png</code></li>
+  <li>Pfad im Dateisystem <code>/var/www/virthosts/multimediatechnology.at/wp-content/themes/mmt_blog_theme_2007/images/mmtlogo-400.png</code></li>
+</ul>
+
+<p>Die Apache-Konfiguration dazu sieht so aus:</p>
+
+<pre><code>&lt;VirtualHost mediacube.at&gt;
+DocumentRoot /var/www/virthosts/multimediatechnology.at/
+&lt;/VirtualHost&gt;
+</code></pre>
+
+</div>
+<div class="slide">
+
+<h2 id="standard-dokument">Standard-Dokument</h2>
+
+<p>Endet eine URL auf einen Schrägstrich, dann verweist sie eigentlich auf einen ganzen Ordner, nicht auf eine spezielle Datei. Für diesen Fall kann im Webserver ein Standard-Dokument definiert werden. Auf allen Webservern der FH ist dies die Datei <code>index.html</code>.  d.h. wenn eine URL auf einen Ordner verweist, und in diesem Ordner eine Datei mit Namen <code>index.html</code>  existiert, dann wird diese Datei geliefert.</p>
+
+<table class="table table-condensed table-bordered" style="width:auto">
+  <thead>
+    <tr>
+      <th>URL</th>
+      <th>Pfad im Dateisystem</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>http://mediacube.at/</td>
+      <td>/var/www/virthosts/mediacube.at/index.html</td>
+    </tr>
+    <tr>
+      <td>http://mediacube.at/pix/</td>
+      <td>/var/www/virthosts/mediacube.at/pix/index.html</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Die Apache-Konfigurationsanweisung dazu lautet</p>
+
+<pre><code>DirectoryIndex index.html
+</code></pre>
+
+<p>Achtung: die Konfiguration ist am Internet Information Server normalerweise anders, dort wird die Datei <code>default.htm</code> verwendet!</p>
+
+</div>
+<div class="slide">
+
+<h2 id="directory-index-datei-existiert-nicht">Directory Index Datei existiert nicht</h2>
+
+<p>Was passiert wenn keine Datei mit dem richtigen Namen vorhanden ist? entweder eine Auflistung der Dateien im Ordner oder eine Fehlermeldung.</p>
+
+<p><img src="/images/urls/apache-directory-index.png"  alt="Abbildung 43: Zugriff auf einen Ordner ohne Standard-Dokument (index.html): Auflistung oder Fehlermeldung" ></p>
+
+<p>Die entsprechenden Apache-Konfigurationsanweisung dazu sind:</p>
+
+<pre><code>Options +Indexes
+Options -Indexes
+</code></pre>
+
+</div>
+<div class="slide">
+
+<h3 id="automatischer-webspace-fr-alle">Automatischer Webspace für Alle</h3>
+
+<p>Auf UNIX-Servern mit vielen Accounts ist es üblich, dass  für jeden Account
+automatisch ein Webspace exsitert. Dieser Webspace befindet sich innerhalb des
+Home-Verzeichnisses des jeweiligen Accounts. Z.B. könnte eine Studentin den
+Username fhs303030 habe und das Home-Verzeichnis <code>/home/store/fhs303030/</code>. Ihr
+Webspace ist im Unter-Ordner <code>public_html</code>:</p>
+
+<table class="table table-condensed table-bordered" style="width:auto">
+  <thead>
+    <tr>
+      <th>URL</th>
+      <th>Pfad im Dateisystem</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>http://multimediatechnology.at/~fhs303030/test.html</td>
+      <td>/home/store/fhs303030/public_html/test.html</td>
+    </tr>
+    <tr>
+      <td>http://multimediatechnology.at/~fhs111111/test.html</td>
+      <td>/home/store/fhs111111/public_html/test.html</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Die Apache Konfigurationsanweisung lautet:</p>
+
+<pre><code>UserDir public_html
+</code></pre>
+
+</div>
+<div class="slide">
+
+<h2 id="relativer-link-dazu">relativer Link dazu</h2>
+
+<p>Beachten Sie: für das Formulieren von relativen URLs sind wirklich nur die URLs relevant,
+nicht die Position der Dokumente im Dateisystem! Der Ordnername <code>public_html</code> wird also nie in einer URL vorkommen.</p>
+
+<p>Der Link von einem User-Webspace zum nächsten funktioniert also so:</p>
+
+<pre><code>http://multimediatechnology.at/~fhs303030/test.html   
+                          +    ../~fhs111111/test   =
+http://multimediatechnology.at/~fhs111111/test
+</code></pre>
+
+<p>Oder relative zum Webserver:</p>
+
+<pre><code>http://multimediatechnology.at/~fhs303030/test.html   
+                          +   /~fhs111111/test   =
+http://multimediatechnology.at/~fhs111111/test
+</code></pre>
+
+</div>
+    <div class="slide">
+      <h1>Konfiguration Webserver</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/urls/absolut-relativ//slide.html">Absolute und relative URLs</a> | 
+        <a href="/urls/konfiguration/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/urls/tipps//slide.html">Pragmatische Tipps</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Navigationsmenü - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Navigationsmenü</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css-layout/details//slide.html">Details zu Layout</a> | 
+        <a href="/css-layout/navigation/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css-layout/selektoren//slide.html">CSS Selektoren im Detail</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Wenn man mit CSS ein Navigationsmenü gestaltet dann sollte man von einem HTML-Code ausgehen der auch ohne CSS gut benutzbar bleibt ( „graceful degradation“), und der nur mit CSS umgestaltet wird.</p>
+
+<p>Der Ausgangspunkt für ein Navigationsmenü ist eine Liste mit Links in einem <code>nav</code> Tag:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;nav&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;index.html&quot;&gt;home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;ort.html&quot;&gt;ort&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;dies.html&quot;&gt;dies&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;das.html&quot;&gt;das&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+</pre></div>
+
+<p>Ohne CSS wird die Liste ganz normal dargestellt <a href="/images/navi/demo.html">Demo</a>.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="vertikales-men">Vertikales Menü</h2>
+
+<p>Mit CSS kann man daraus ein vertikales Menü machen.</p>
+
+<p>Zuerst wird mit
+<code>list-style-type: none</code> der Listenpunkt <code>li</code> zu einem normalen Tag.</p>
+
+<p>Der Link selbst <code>a</code> wird mit <code>display:block</code> zu einem blockbildenden
+Element. Das hat den Vorteil, dass das ganze Rechteck als Link wirkt,
+und nicht nur der Text.</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+nav li {
+   list-style-type:none;
+   margin-bottom:1px;
+}
+
+nav li a:link {
+   text-decoration: none;
+   font-weight: bold;
+   display: block;
+   background: #6C6;
+   width: 6em;
+   padding: 0.2em;
+}
+</pre></div>
+
+<p>Der eigentliche Link wird zu einem blockbildenden Element gemacht.
+Damit ist dann das ganze Rechteck anklickbar, nicht nur der Text selbst.
+<a href="/images/navi/demo-1.html">Demo</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="horizontales-men">Horizontales Menü</h2>
+
+<p>Mit Hilfe von <code>flex</code> kann man das Menü auch horizontal darstellen.
+Die Default-Richtung von <code>flex-direction</code> ist ja <code>row</code>, und damit ein
+horizontales Menü.</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+.unsichtbar {display:none;}
+nav ul {
+  padding-left: 0;
+  display: flex;
+}
+
+nav li {
+  list-style-type:none;
+  margin-right: 1px;
+}
+
+nav li a:link {
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  background:#6C6;
+  width:6em;
+  padding: 0.2em;
+}
+</pre></div>
+
+<p><a href="/images/navi/demo-2.html">Demo</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="responsive-navigation-mit-burger-men">Responsive Navigation mit Burger Menü</h2>
+
+<p>Für sehr kleien Ausgabegeräte wie Smartphones sind horizontale
+Navigationsmenüs nicht gut geeignet.  Dort reduziert man das Navigationsmenü
+auf einen einzigen Button, der dann das Navigationsmenü ein- bzw. ausblendet:</p>
+
+<p><img src="/images/css-layout/burger-menu.png" srcset="/images/css-layout/burger-menu@2x.png 2x, /images/css-layout/burger-menu.png 1x"  alt="Burger Menu in Action" ></p>
+
+<p>Als Symbol für diese Art von Menü werden oft drei vertikale Stricke verwendet,
+auch  <a href="https://de.wikipedia.org/wiki/Hamburger-Men%C3%BC-Icon">Hamburger Icon</a>
+genannt.</p>
+
+<p><a href="/images/navi/demo-4.html">Demo</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="php-fr-navigationsmen">PHP für Navigationsmenü</h2>
+<p>Das Navigationsmenü sollte natürlich in allen Seiten der Site gleich vorhanden sein.
+Dazu könnte man den Code in alle HTML-Dateien kopieren. Wenn man
+dann eine neue Seite einfügen will, muss man wiederum alle Seiten editieren.</p>
+
+<p>Deswegen bietet es sich an, bei dieser Gelegenheit von einfachem HTML auf PHP umzusteigen.
+PHP ist eine Programmiersprache am Webserver mit der wir uns im Sommersemester 
+intensiv beschäftigen werden.</p>
+
+<p>Zur Umstellung müssen alle HTML-Dateien die Endung <code>.php</code> erhalten, 
+im Navigationsmenü sieht das dann so aus:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;nav&gt;
+   &lt;h3 class=&quot;unsichtbar&quot;&gt;Seitenauswahl&lt;/h3&gt;
+   &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;index.php&quot;&gt;home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;ort.php&quot;&gt;ort&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;dies.php&quot;&gt;dies&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;das.php&quot;&gt;das&lt;/a&gt;&lt;/li&gt;
+   &lt;/ul&gt;
+&lt;/nav&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Das Navigationsmenü wird nun in einer separaten Datei gespeichert,
+z.B. <code>navi.php</code>.  In den einzelnen Seiten wird das Menü dann mit <code>include</code> eingebunden:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;body&gt;
+&lt;?php include &quot;navi.php&quot;; ?&gt;
+&lt;h1&gt;News&lt;/h1&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="server-side">Server Side</h2>
+
+<p>Das Einfügen der inkuldierten Datei erfolgt auf dem Server. 
+Der Client erhält das vollständige HTML-Dokument inklusive Navigation, und merkt von der Inkludierung nichts. Mit ANSICHT → SEITENQUELLTEXT ANZEIGEN kann man den PHP-Code nicht sehen.</p>
+
+<p><img src="/images/php/view-source.png"  alt="Abbildung 41: Original PHP-Datei am Server und Quelltext-Ansicht im Webbrowser" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="ergebnis">Ergebnis</h2>
+
+<p>Damit ist nun das Einfügen eines neuen Menü-Punkts ins Navigationsmenü 
+ganz einfach: nur die Datei <code>navi.php</code> muss editiert werden.</p>
+
+</div>
+    <div class="slide">
+      <h1>Navigationsmenü</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css-layout/details//slide.html">Details zu Layout</a> | 
+        <a href="/css-layout/navigation/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css-layout/selektoren//slide.html">CSS Selektoren im Detail</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

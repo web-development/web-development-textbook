@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>A9 - Komponenten - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>A9 - Komponenten</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/security/a8-deserialisierung//slide.html">A8 - Deserialisierung</a> | 
+        <a href="/security/a9-komponenten/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/security/a10-logging-monitoring//slide.html">A10 - Monitoring</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Auf <a href="https://owasp.org/www-project-top-ten/2017/de/A9_2017-Nutzung_von_Komponenten_mit_bekannten_Schwachstellen">Platz 9 der OWASP Top 10 2017: Nutzung von Komponenten mit bekannten Schwachstellen</a></p>
+
+<p>Die OWASP beschreibt dieses Problem ungefähr so:</p>
+
+<blockquote>
+  <p>Web Applikationen verwenden Komponenten wie z.B. Bibliotheken, Frameworks oder andere Softwaremodule. Wenn eine verwundbare Komponente ausgenutzt wird, kann ein
+solcher Angriff zu schwerwiegendem Datenverlust oder bis zu einer Serverübernahme führen.
+Applikationen, die Komponenten mit bekannten Schwachstellen einsetzen, können Schutzmaßnahmen unterlaufen und so zahlreiche Angriffe und Auswirkungen ermöglichen.</p>
+</blockquote>
+
+</div>
+<div class="slide">
+
+<h2 id="manahmen">Maßnahmen</h2>
+
+<p>Schon während der Entwicklung einen Plan erstellen, wie die dauerhafte Wartung aller Komponenten erfolgen wird. Möglichst viel davon automatisieren.</p>
+
+<p>Siehe <a href="https://web-engineering.github.io/dependencies.html">Managing Dependencies</a> im Buch “Web Engineering”.</p>
+</div>
+    <div class="slide">
+      <h1>A9 - Komponenten</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/security/a8-deserialisierung//slide.html">A8 - Deserialisierung</a> | 
+        <a href="/security/a9-komponenten/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/security/a10-logging-monitoring//slide.html">A10 - Monitoring</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

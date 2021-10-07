@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Rahmenbedingungen - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Rahmenbedingungen</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css-layout//slide.html">CSS - Layout</a> | 
+        <a href="/css-layout/rahmenbedingungen/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css-layout/responsive//slide.html">Responsive Design</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Wie im Kapitel <a href="/das-web-und-html/">Das Web und HTML</a> beschrieben gibt es viele verschiedene Ausgabegeräte für Webseiten. Für die Gestaltung des visuellen Layouts von Webseiten spielt dabei die die Auflösung und die Pixeldichte eine wichtige Rolle.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="auflsung">Auflösung</h2>
+
+<p>Hier ein Überblick über mögliche Bildschirm-Auflösungen:</p>
+
+<p><img src="/images/css-layout/Vector_Video_Standards2.svg"  alt="Bildschirmauflösungen und Seitenverhältnisse" ></p>
+
+<p>basierend auf http://en.wikipedia.org/wiki/Image:Vector_Video_Standards2.svg</p>
+
+<p>Vergleichen Sie die höchsten hier dargestellte Auflösungen mit der geringsten Auflösungen. Da Breite und Höhe (mehr als) verdreifacht sind, steht bei der höchsten Auflösung also (mehr als) die neunfache Fläche zur Verfügung!</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Die typische Auflösung hat sich über Jahre stark verändert. Diese Statistik
+von w3schools.org reicht von 2000 bis 2018. In diesem Zeitraum hat sich die Mehrheit langsam von 800x600 (bis 2003) auf 1024x768 (bis 2008) und schließlich auf höhere Auflösungen verschoben.</p>
+
+<p>In der Statistik ist nicht ausgewiesen, ob Mobile Endgeräte mitgezählt werden oder nicht.
+An anderer Stelle kann man nachlesen das ca. 10% der Zugriff von Mobile erfolgen.</p>
+
+<p><img src="/images/css-layout/display-stats.png" srcset="/images/css-layout/display-stats.png 1x, /images/css-layout/display-stats@2x.png 2x"  alt="Abbildung 26: Statistik über die Bildschirmauflösung," ></p>
+
+<p><a href="http://www.w3schools.com/browsers/browsers_display.asp">Datenquelle: w3schools</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="pixeldichte">Pixeldichte</h2>
+
+<p>Die Angabe der Auflösung erfolgt in Pixel – die reale Größe des Ausgabegerätes (24“ Desktop, 13“ Laptop, mobiles Endgerät) ist bei gleicher Pixel-Auflösung sehr unterschiedlich! Mobile Geräte haben oft eine höhere Pixeldichte, die in Pixel pro Inch oder Pixel pro cm gemessen wird.</p>
+
+<table class="table table-condensed table-bordered" style="width:auto">
+  <thead>
+    <tr>
+      <th>Gerät</th>
+      <th>Erscheinungsjahr</th>
+      <th>Pixel</th>
+      <th>Diagonale Inch</th>
+      <th>Pixel per Inch</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Altes 19” LCD Display</td>
+      <td>2008</td>
+      <td>1280 × 1024</td>
+      <td>19 in</td>
+      <td>86 ppi</td>
+    </tr>
+    <tr>
+      <td>13” Macbook Pro/Air</td>
+      <td>2019</td>
+      <td>2560 x 1600</td>
+      <td>13 in</td>
+      <td>227 ppi</td>
+    </tr>
+    <tr>
+      <td>15” Macbook Pro ‘Retina’</td>
+      <td>2012</td>
+      <td>2880 × 1800</td>
+      <td>15.4 in</td>
+      <td>220 ppi</td>
+    </tr>
+    <tr>
+      <td>16” Macbook Pro</td>
+      <td>2019</td>
+      <td>3072×1920</td>
+      <td>16 in</td>
+      <td>226 ppi</td>
+    </tr>
+    <tr>
+      <td>Apple iPhone 3</td>
+      <td>2009</td>
+      <td>480 × 320</td>
+      <td>3.5 in</td>
+      <td>163 ppi</td>
+    </tr>
+    <tr>
+      <td>Apple iPhone 7</td>
+      <td>2016</td>
+      <td>1334 × 750 Pixel</td>
+      <td>5.5 in</td>
+      <td>326 ppi</td>
+    </tr>
+    <tr>
+      <td>Apple iPhone X</td>
+      <td>2017</td>
+      <td>2436 × 1125 Pixel</td>
+      <td>5.8 in</td>
+      <td>458 ppi</td>
+    </tr>
+    <tr>
+      <td>Google Nexus One</td>
+      <td>2010</td>
+      <td>800 × 480</td>
+      <td>3.7 in</td>
+      <td>254 ppi</td>
+    </tr>
+    <tr>
+      <td>Samsung Galaxy S7</td>
+      <td>2016</td>
+      <td>2560 × 1440 pixel</td>
+      <td>5.1 in</td>
+      <td>577 ppi</td>
+    </tr>
+    <tr>
+      <td>Samsung Galaxy S10</td>
+      <td>2019</td>
+      <td>3040 × 1440 pixel</td>
+      <td>6.1 in</td>
+      <td>550 ppi</td>
+    </tr>
+    <tr>
+      <td>Sony PSP 7th gen</td>
+      <td>2005</td>
+      <td>480 × 272</td>
+      <td>4.3 in</td>
+      <td>128 ppi</td>
+    </tr>
+    <tr>
+      <td>Apple iPad Pro 11</td>
+      <td>2018</td>
+      <td>2388 x 1668</td>
+      <td>11 in</td>
+      <td>264 ppi</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Hier findet man einen Faktor 6 zwischen höchster und geringster Pixeldichte.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="css-pixel-sind-virtuelle-pixel">CSS Pixel sind virtuelle Pixel</h2>
+
+<p>Um die Gestaltung von Webseiten zu vereinfachen verwendet CSS nicht die echten
+Pixel, sondern virtuelle Pixel als Grundmaß. Im <a href="https://drafts.csswg.org/css-values-3/#px">Standard</a> findet sich folgende
+Definition und folgende Abbildung:</p>
+
+<blockquote>
+  <p>The reference pixel is the visual angle of one pixel on a device with a pixel density of 96dpi and a distance from
+the reader of an arm’s length. For a nominal arm’s length of 28 inches, the visual angle is therefore about
+0.0213 degrees. For reading at arm’s length, 1px thus corresponds to about 0.26 mm (1/96 inch).</p>
+
+  <p>The image below illustrates the effect of viewing distance on the size of a reference pixel: a reading distance
+of 71 cm (28 inches) results in a reference pixel of 0.26 mm, while a reading distance of 3.5 m (12 feet)
+results in a reference pixel of 1.3 mm.</p>
+</blockquote>
+
+<p><img src="/images/css-layout/pixel.png" srcset="/images/css-layout/pixel@2x.png 2x, /images/css-layout/pixel-image-smaller.png 1x, /images/css-layout/pixel.png 1x, /images/css-layout/pixel-image-zoom.png 1x"  alt="Abbildung aus dem CSS Standard: definition des pixels als Winkel" ></p>
+
+<p>Mit <a href="https://www.mydevice.io/">mydevice.io</a> kann man den aktuellen Browser
+vermessen. Die angezeigten Pixel sind die virtuellen CSS Pixel. Mit dem Faktor “pixel-ratio” kann man
+die physikalischen Pixel ausrechnen.</p>
+
+<p>By mydevice.io gibt es auch eine <a href="https://www.mydevice.io/#compare-devices">ausführlichere Liste</a> von aktuellen
+Geräten.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="viele-auflsungen">Viele Auflösungen</h2>
+
+<p><img src="/images/resolutions.jpg" srcset="/images/resolutions.jpg 1x, /images/resolutions@2x.jpg 2x"  alt="Vergleich der Auflösungen" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="umgang-mit-der-problematik">Umgang mit der Problematik</h2>
+
+<p>Wie gehen WebdesignerInnen mit den verschiedenen Auflösungen und Pixeldichten um? Ein paar Varianten:</p>
+
+<ol>
+  <li>Ignorieren und für die eigene Bildschirmauflösung entwerfen. Manchmal in Kombination mit der Beschriftung „best viewed at 1600x1200“</li>
+  <li>Ignorieren dass es viele Bildschirmauflösungen gibt, und für das Minimum entwerfen.</li>
+  <li>Zwei oder drei Entwürfe, die den gleichen Inhalt für verschiedene Auflösungen unterschiedlich darstellen.</li>
+</ol>
+
+</div>
+<div class="slide">
+
+
+
+<p>Dazu ein strenges Urteil:</p>
+
+<ol>
+  <li>ist völlig inadäquat für das Medium Web. „best viewed“ ist eine Zumutung für alle LeserInnen auf “unpassenden” Ausgabegeräten. Stellen Sie sich vor, am Eingang eines Gebäudes wäre neben der Treppe ein Schild angebracht „nur benutzbar für Leute die Treppen steigen können“. Das Problem von Rollis und Kinderwägen wurde erkannt, und absichtlich nicht gelöst?</li>
+  <li>Zeigt schon ein Minimum an Wissen über das Web, ignoriert aber die gestalterische Herausforderung des Mediums. Weil solch ein Entwurf auf einem Bildschirm mit hoher Auflösung sehr klein auf einer großen leeren Fläche erscheint wird es spöttisch „Briefmarkenlayout“ genannt.</li>
+  <li>Nur das verdient wirklich die Bezeichnung „Webdesign“.</li>
+</ol>
+
+<p>Im nächsten Kapitel werden mit “Responsive Design” und “Responsive Images” die aktuellen
+Antworten im Web Design vorgestellt.</p>
+</div>
+    <div class="slide">
+      <h1>Rahmenbedingungen</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css-layout//slide.html">CSS - Layout</a> | 
+        <a href="/css-layout/rahmenbedingungen/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css-layout/responsive//slide.html">Responsive Design</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

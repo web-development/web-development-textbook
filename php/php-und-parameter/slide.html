@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>In PHP Daten aus Web-Formularen verarbeiten - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>In PHP Daten aus Web-Formularen verarbeiten</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php/mail//slide.html">PHP und E-Mail</a> | 
+        <a href="/php/php-und-parameter/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php/datei-upload//slide.html">Datei Upload</a>
+        
+      </p>
+    </div>
+    <div class="slide"><p>Der Zusammenhang zwischen Web-Formular, http-Request und den Arrays <code>$_POST</code> und <code>$_GET</code> in PHP sollte Ihnen schon klar sein.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="daten-prfen">Daten prüfen</h2>
+<p>Die Daten aus einem Web-Formular werden vom PHP-Interpreter verarbeitet, die Codierung aufgelöst und die Daten dann in mehreren superglobalen12 Arrays zur Verfügung gestellt:</p>
+
+<dl>
+  <dt>$_GET</dt>
+  <dd>Dieses Array enthält die Parameter einer GET-Anfrage.</dd>
+  <dt>$_POST</dt>
+  <dd>Dieses Array enthält die Parameter einer POST-Anfrage.</dd>
+  <dt>$_REQUEST</dt>
+  <dd>Dieses Array kombiniert die Daten aus $_GET und $_COOKIE und $_POST. Besser die spezifischen Arrays verwenden!</dd>
+  <dt>$_FILE</dt>
+  <dd>Enthält Daten von hochgeladenen Dateien</dd>
+</dl>
+
+<p>Warnhinweis: In frühen PHP Versionen konnte man noch direkt die Variable $nr verwenden um den Wert  aus einem Eingabefeld &lt;input name=”nr”&gt; zu lesen — das funktioniert heute nicht mehr!</p>
+
+<p>Um einen GET-Request zu verarbeiten haben wir bisher ein sehr simples Programm verwendet:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+&lt;?php
+  $anzahl  = $_GET[&#39;anzahl&#39;];
+  $adresse = $_GET[&#39;adresse&#39;];
+
+  echo(&quot;&lt;p&gt;Ihre Bestellung über $anzahl Flugzeuge ist eingelangt&lt;/p&gt;&quot;);
+  echo(&quot;&lt;p&gt;Die Flugzeuge werden binnen 1 Monat an $adresse geliefert&lt;/p&gt;&quot;);
+?&gt;
+</pre></div>
+
+<p>Dabei wird aber die Eingabe nicht geprüft. Eine bessere Version des Programmes prüft vorher jede Eingabe und gibt entsprechende Fehlermeldungen aus:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+&lt;?php
+$fehler = array(); // sammelt alle Fehlermeldungen
+
+if ( ! isset($_GET[&#39;anzahl&#39;])  or 
+     ! $anzahl = filter_var( $_GET[&#39;anzahl&#39;], FILTER_VALIDATE_INT )  ) {
+  $fehler[] = &quot;Bitte geben Sie die Anzahl der Flugzeuge ein - als Zahl!&quot;;
+}
+
+if ( ! isset($_GET[&#39;adresse&#39;]) or 
+     ! $adresse = filter_var( $_GET[&#39;adresse&#39;], FILTER_SANITIZE_STRING ) ) {
+  $fehler[] = &quot;Bitte geben Sie die Lieferadresse an!&quot;;
+} elseif ( strlen( $adresse ) &lt; 5 ) {
+  $fehler[] = &quot;Die Lieferadresse ist zu kurz - mindestens 5 Buchstaben!&quot;;
+}
+
+if ( $fehler ) {
+  echo(&quot;&lt;p&gt;Ihre Bestellung kann derzeit nicht bearbeitet werden:&lt;/p&gt;&quot;);
+  echo(&quot;&lt;ol&gt;&quot;);
+  foreach( $fehler as $fehler_text ) {
+    echo(&quot;&lt;li&gt;$fehler_text&lt;/li&gt;&quot;);
+  }
+  echo(&quot;&lt;/ol&gt;&quot;);
+  echo(&quot;&lt;p&gt;Bitte gehen Sie zurück und bessern Sie die Bestellung aus.&quot;);
+} else {
+  echo(&quot;&lt;p&gt;Ihre Bestellung über $anzahl Flugzeuge ist eingelangt&lt;/p&gt;&quot;);
+  echo(&quot;&lt;p&gt;Die Flugzeuge werden binnen 1 Monat an $adresse geliefert&lt;/p&gt;&quot;);
+}
+?&gt;
+</pre></div>
+
+</div>
+    <div class="slide">
+      <h1>In PHP Daten aus Web-Formularen verarbeiten</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php/mail//slide.html">PHP und E-Mail</a> | 
+        <a href="/php/php-und-parameter/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php/datei-upload//slide.html">Datei Upload</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

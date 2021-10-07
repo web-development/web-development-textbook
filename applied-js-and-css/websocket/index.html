@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="de" class="no-js web-development">
+<head>
+  <meta charset="utf-8">
+  <title>Lehrbuch Web-Development - Chat Websockets</title>
+
+  <meta name="author" content="Brigitte Jellinek">
+  <meta name="description" content="Ein Lehrbuch für das Informatik- oder Medieninformatik-Studium.">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="nanoc 3.8.0">
+
+  <link rel="shortcut icon" href="/assets/img/favicon.png">
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link rel="stylesheet" href="/assets/css/prettify.css">
+  <style>
+    li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
+        list-style-type: inherit !important;
+    }
+    ol.linenums {
+        margin-left: 50px !important;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <a href="http://github.com/web-development/web-development-textbook/"><img
+    style="position: fixed; top: 0; right: 0; border: 0;"
+    src="/images/forkme.png" alt="Fork me on GitHub"></a>
+  <header class="row">
+    <div class="jumbotron sub-header span8" id="booktitle">
+      <h1><a href="/" title="Web Development">Web Development</a></h1>
+      <p class="lead">Ein Lehrbuch für das Informatik oder Medien-Informatik Studium.</p>
+    </div>
+  </header>
+
+
+
+
+<!-- body -->
+<article id="body" class="row">
+  <div class="span8">
+    
+    <div class="page-header">
+      <h2 class="title" id="slide-0">
+        Chat Websockets
+      </h2>
+      <a href="/applied-js-and-css/websocket/slide.html">als Präsentation ▻</a>
+    </div>
+     <div id="slide-1" title="Folie Nr. 1"></div>
+<p>HTTP fängt immer mit dem Request des Browsers and, und endet mit dem Response des Servers.
+Dieses Protokoll ist nicht geeignet für Chat, für Spiele, …. wo die Kommunikation
+auch vom Server ausgehen muss.</p>
+
+<p>Das Websocket Protokoll ermöglicht die Kommunikation in beide Richtungen auf
+einer dauerhaften Verbindung zwischen Client und Server.  Es wird
+in <a href="https://www.rfc-editor.org/rfc/rfc6455.html">RFC 6455</a> definiert.</p>
+
+
+<a class="slide_break" id="slide-2" href="slide.html#slide-2"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 2">▻</a>
+
+<h2 id="das-websocket-protokoll">Das Websocket Protokoll</h2>
+
+<p>Das Websockets Protokol baut auf HTTP and HTTPS auf:</p>
+
+<ul>
+  <li>es verwendet die ports 80 bzw. 443</li>
+  <li>es startet immer mit einem normalen HTTP Request</li>
+  <li>es verwende Cookies</li>
+</ul>
+
+<p>Soweit die Ähnlichkeiten mit HTTP.</p>
+
+
+<a class="slide_break" id="slide-3" href="slide.html#slide-3"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 3">▻</a>
+
+
+
+<p>URLs für Websockt beginnen mit <code>ws</code> oder <code>wss</code> für die verschlüsselte Version:</p>
+
+<ul>
+  <li>ws://server.example.com/chat</li>
+  <li>wss://server.example.com/chat</li>
+</ul>
+
+
+<a class="slide_break" id="slide-4" href="slide.html#slide-4"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 4">▻</a>
+
+
+
+<p>Nach dem “Upgrade: websocket” Request wird die TCP Verbindung auf Dauer aufrechterhalten,
+und Client und Server wechseln in das eigentliche Websocket Protokoll:</p>
+
+<div class="example">
+<pre class="lang-plain prettyprint linenums">
+GET /chat HTTP/1.1
+Host: server.example.com
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==
+Origin: http://example.com
+Sec-WebSocket-Protocol: chat, superchat
+Sec-WebSocket-Version: 13
+
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo=
+Sec-WebSocket-Protocol: chat
+
+</pre></div>
+
+<p>Nach diesem ersten Austausch müssen schalten Server und  Client
+auf das senden von “Frames” um.  Nun können beide jederzeit
+senden und müssen bereits sein eingehenden Nachrichten zu empfangen.</p>
+
+<p>Websocket Frames sind viel sparsamer als HTTP Requests und Responses:
+10 bis 18 Byte für Meta-Information plus der eigentliche Payload bilden einen Frame.</p>
+
+<p><img src="/images/websockets/websocket-frame.png" srcset="/images/websockets/websocket-frame@2x.png 2x, /images/websockets/websocket-frame.png 1x"  alt="websocket frame" ></p>
+
+
+<a class="slide_break" id="slide-5" href="slide.html#slide-5"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 5">▻</a>
+
+
+
+<p>Der (4 bit) Opcode gibt an welchen Typ der Payload hat:</p>
+
+<ul>
+  <li><code>0000</code> - continuation frame, voriger Frame wird fortgesetzt</li>
+  <li><code>0001</code> - text frame</li>
+  <li><code>0010</code> - binary frame</li>
+  <li><code>1000</code> - connection close</li>
+  <li><code>1001</code> - ping</li>
+  <li><code>1010</code> - pong</li>
+</ul>
+
+<p>Wenn einer der beiden Endpunkte ein ping sendet muss der andere mit einem
+pong antworten.  Dieser Mechanismus wird verwendet um die TCP-Verbindung
+aufrecht zu erhalten auch wenn gerade keine Daten geschickt werden müssen (“keepalive”).</p>
+
+
+<a class="slide_break" id="slide-6" href="slide.html#slide-6"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 6">▻</a>
+
+<h2 id="werkzeuge">Werkzeuge</h2>
+
+
+<a class="slide_break" id="slide-7" href="slide.html#slide-7"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 7">▻</a>
+
+<h3 id="developer-tools">Developer Tools</h3>
+
+<p>Beim Programmieren und Debuggen von Websockets braucht man die
+Developer Tools: In der “Netzwerkanalyse” sieht man den ersten
+Request, noch mit HTTP, der dann mit “101 Switching Protocol” in eine Websocket
+umgewandelt wird:</p>
+
+<p><img src="/images/websockets/dev-tools-network-1.png" srcset="/images/websockets/dev-tools-network-1.png 1x, /images/websockets/dev-tools-network-1@2x.png 2x"  alt="" ></p>
+
+<p>Im Tab “Antwort” sieht man die Frames die hin oder her geschickt werden:</p>
+
+<p><img src="/images/websockets/dev-tools-network-2.png" srcset="/images/websockets/dev-tools-network-2@2x.png 2x, /images/websockets/dev-tools-network-2.png 1x"  alt="" ></p>
+
+<p>Hier sieht man auch dass Client und Server sich gegenseitig
+Ping- und Pong-Frames senden wenn sonst nichts zu senden ist.</p>
+
+
+<a class="slide_break" id="slide-8" href="slide.html#slide-8"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 8">▻</a>
+
+<h3 id="nodejs">node.js</h3>
+
+<p>Für die Programmierung am Server kann man PHP, Ruby,…. alle typischen
+Backend-Programmiersprachen verwenden.  Wir nutzen die Gelegenheit
+um <code>node.js</code> kennen zu lernen. Damit kann man das Backend in JavaScript programmieren.</p>
+
+<p>Ryan Dahl hat node.js im Jahr 2009 herausgebracht. Es war nicht die erste
+Möglichkeit JavaScript am Server zu Verwenden, aber die erste die echten Erfolge hatte.</p>
+
+<p>Node und der dazugehöriger package manager <code>npm</code> werden heute nicht
+nur im Backend Development verwendet, sondern auch sehr viel als Werkzeug
+für das Frontend Development.</p>
+
+<p>Für Node zu programmieren ist nicht einfach: wie im Browser, so wird auch in
+Node viel mit Asynchronen Aufrufen gearbeitet.</p>
+
+
+<a class="slide_break" id="slide-9" href="slide.html#slide-9"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 9">▻</a>
+
+<h3 id="glitch">glitch</h3>
+
+<p>Node.js kann man <a href="https://nodejs.org/en/download/">am eigenen Rechner installieren</a>, das
+ist aber für diese Beispiel nicht nötig. Wir verwenden <a href="https://glitch.com/">https://glitch.com/</a>.</p>
+
+<p>Mit Glitch kann man node.js Programme direkt im Browser schreiben. Der Code wird
+am Server von glitch gespeichert, und kann dort auch ausgeführt werden.</p>
+
+<p><img src="/images/websockets/glitch.png" srcset="/images/websockets/glitch@2x.png 2x, /images/websockets/glitch.png 1x"  alt="" ></p>
+
+<p>Damit braucht man also am eigenen Computer nur den Webbrowser.</p>
+
+<p>Das “Frontend” findet sich in der Datei <code>public/index.html</code>,  das Backend in <code>index.js</code>.</p>
+
+
+<a class="slide_break" id="slide-10" href="slide.html#slide-10"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 10">▻</a>
+
+<h3 id="socketio">Socket.io</h3>
+
+<p><code>socket.io</code> ist eine JavaScript Library für die Client und die Server-Seite
+von Websocket Verbindungen.</p>
+
+
+<a class="slide_break" id="slide-11" href="slide.html#slide-11"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 11">▻</a>
+
+<h2 id="programmierung-des-client">Programmierung des Client</h2>
+
+<p>Am Client ist bereits eine Eingabefeld für Chat-Messages vorhanden.
+Alle Chat-Messages sollen in der Liste mit der id <code>messages</code> angezeigt werden:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;ul id=&quot;messages&quot;&gt;&lt;/ul&gt;
+&lt;form action=&quot;&quot;&gt;
+  &lt;input id=&quot;m&quot; autocomplete=&quot;off&quot; /&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Senden&quot; /&gt;
+&lt;/form&gt;
+&lt;script src=&quot;socket.io/socket.io.js&quot;&gt;&lt;/script&gt;
+</pre></div>
+
+
+<a class="slide_break" id="slide-12" href="slide.html#slide-12"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 12">▻</a>
+
+<h3 id="an-den-server-senden">An den Server senden:</h3>
+
+<p>Wenn das Formular abgeschickt wird (durch den submit-button oder
+durch drücken von enter), wird eine Nachricht an den Server geschickt:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+var socket = io();
+let form = document.getElementsByTagName(&#39;form&#39;)[0];
+let input = document.getElementById(&#39;m&#39;);
+form.addEventListener(&#39;submit&#39;, function(event) {
+  event.preventDefault();  // Form wird nicht &quot;normal&quot; gesendet
+  socket.emit(&#39;chat message&#39;, input.value );  // nur über socket
+  input.value=&quot;&quot;; // Eingabefeld leeren
+});
+</pre></div>
+
+
+<a class="slide_break" id="slide-13" href="slide.html#slide-13"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 13">▻</a>
+
+<h3 id="vom-server-empfangen">Vom Server empfangen:</h3>
+
+<p>Wenn vom Server eine Nachricht kommt,
+wird sie als neues <code>li</code> an die Liste angefügt:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  let list = document.getElementById(&#39;messages&#39;);
+
+  socket.on(&#39;chat message&#39;, function(msg){
+    let li = document.createElement(&#39;li&#39;);
+    li.textContent = msg;
+    list.appendChild(li);
+    list.scrollTop = list.scrollHeight;
+  });
+</pre></div>
+
+
+<a class="slide_break" id="slide-14" href="slide.html#slide-14"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 14">▻</a>
+
+<h2 id="programmierung-des-servers">Programmierung des Servers:</h2>
+
+<p>Achtung: mit Node.js programmiert man nicht nur irgend
+ein Programm, das am Webserver läuft.  Man schreibt ein JavaScript-Programm,
+das den gesamten Job des Webserver mit erledigt.</p>
+
+<p>Das JavaScript-Programm läuft also die ganze Zeit und
+behandelt alle Anfragen.  Ein apache oder nginx ist nicht nötig.</p>
+
+<p>In folgendem Code repräsentiert <code>io</code> den ganzen Websocket:
+Die Variable <code>socket</code> repräsentiert einen verbundenen Client.
+<code>io.emit()</code>  ist ein broadcast an alle verbundenene Clients,
+<code>socket.emit()</code> sendet nur an einen Client.</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+io.on(&#39;connection&#39;, function(socket){
+  console.log(&#39;a user connected&#39;);
+
+  socket.on(&#39;chat message&#39;, function(msg){
+    console.log(`got message &#39;${msg}&#39;, broadcasting to all`);
+    io.emit(&#39;chat message&#39;, msg);
+  });
+
+  socket.on(&#39;disconnect&#39;, function(){
+    console.log(&#39;a user disconnected&#39;);
+  });
+});
+</pre></div>
+
+
+<a class="slide_break" id="slide-15" href="slide.html#slide-15"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 15">▻</a>
+
+<h2 id="messages">Messages</h2>
+
+<p>Wir haben vom Client zum Server gesendet mit dem Befehl:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+socket.emit(&#39;chat message&#39;, m.value ); 
+</pre></div>
+
+<p>Am Server haben wir auf diese Message reagiert mit:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+socket.on(&#39;chat message&#39;, function(msg){
+  console.log(`got message &#39;${msg}&#39;...`);
+});
+</pre></div>
+
+<p>Der String ‘chat message’ ist frei gewählt.  Wir haben hier
+ein Protokoll auf dem Websocket erfunden, das bisher nur diese
+eine Message kennt.</p>
+
+
+<a class="slide_break" id="slide-16" href="slide.html#slide-16"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 16">▻</a>
+
+<h2 id="weiterentwicklung">Weiterentwicklung</h2>
+
+<p>Es gibt viele Möglichkeiten das Beispielprogramm weiter zu entwickeln:</p>
+
+
+<a class="slide_break" id="slide-17" href="slide.html#slide-17"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 17">▻</a>
+
+<h3 id="neue-message">neue Message</h3>
+
+<p>In diesem Beispiel haben wir nur <code>chat message</code> messages
+gesendet und empfangen.  Wir können beliebig neue Arten von
+messages, mit oder ohne payload, dazu erfinden.</p>
+
+<p>Zum Beispiel für Applaus:  Der Client kann eine Applause-Meldung
+ohne weitere Daten schicken.  Der Server kann applause mit
+einer Zahl schicken</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+// am Client:
+  document.getElementById(&#39;applause&#39;).addEventListener(&#39;click&#39;,function(){
+    socket.emit(&#39;applause&#39;);
+  })
+  socket.on(&#39;applause&#39;, function(text){
+    let li = document.createElement(&#39;li&#39;);
+    let strength = parseInt(text);
+    li.textContent = &quot;👏&quot;.repeat(strength);
+    list.appendChild(li);
+    list.scrollTop = list.scrollHeight;
+  });
+</pre></div>
+
+
+<a class="slide_break" id="slide-18" href="slide.html#slide-18"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 18">▻</a>
+
+<h3 id="andere-ein--und-ausgabe-im-client">Andere Ein- und Ausgabe im Client</h3>
+
+<p>Nicht jede Eingabe muss aus dem Texteingabefeld kommen: auch
+clicks auf Buttons, Mausbewegungen, u.s.w. können Websocket-Botschaften auslösen.</p>
+
+<p>Nicht jede Ausgabe ist ein Chatmeldung.  Als Applaus könnte
+man zum Beispiel einen Audio-Clip abspielen.</p>
+
+
+<a class="slide_break" id="slide-19" href="slide.html#slide-19"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 19">▻</a>
+
+<h3 id="andere-logik-am-server">Andere Logik am Server</h3>
+
+<p>Am Server könnte man mit-zählen wie viel User anwesend sind.
+Dazu legt man eine globale Variable <code>users</code> an.  Solange das JavaScript-Programm 
+am Server läuft bleibt diese Variable erhalten.  Wenn der Server neu gestartet
+werden muss - z.B. weil man die Datei <code>index.js</code> editiert hat - dann geht der
+Inhalt der Variable verloren.</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+let users = [];
+function remove_from(users, socket){
+  users = users.filter(s =&gt; s.id != socket.id);
+}
+io.on(&#39;connection&#39;, function(socket){
+  // called every time a client connects
+  console.log(`ein neuer client mit id ${socket.id}`);
+  users.push(socket);
+  io.emit(&#39;chat message&#39;, `there are now ${users.length} users`);
+
+  ....
+  socket.on(&#39;disconnect&#39;, function(){
+    remove_from(users, socket);
+    console.log(&#39;user disconnected&#39;);
+    io.emit(&#39;chat message&#39;, `there are now ${users.length} users`);
+  });
+});
+</pre></div>
+
+
+<a class="slide_break" id="slide-20" href="slide.html#slide-20"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 20">▻</a>
+
+<h2 id="see-also">See Also</h2>
+
+<ul>
+  <li><a href="https://www.rfc-editor.org/rfc/rfc6455.html">RFC 6455</a></li>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API">Websockets im MDN</a></li>
+  <li><a href="https://socket.io/">socket.io</a></li>
+</ul>
+ <div class="pagination">
+  <ul>
+    
+      
+      
+      <li><a href="/applied-js-and-css/cors/">CORS</a></li>
+      
+      
+      
+      <li><a href="/json/">JSON</a></li>
+      
+    
+  </ul>
+</div>
+
+  </div>
+
+  <!-- sidebar -->
+<div id="sidebar" class="span3 offset1">
+        <div class="page-header"> 
+        <h2>Kapitel</h2>
+        </div>
+
+        
+        <ul class="nav nav-list">
+        
+          
+          <li class=" "><a href="/das-web-und-html/">Das Web Und Html</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/geschichte/">Eine Kurze Geschichte des World Wide Web</a></li>
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/standards/">Drei Standards definieren das Web</a></li>
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/bnf/">BNF</a></li>
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/html-grundkurs/">HTML Grundkurs</a></li>
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/upload/">Upload und Tools</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/css/">Css</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/css/css-kurz/">Kurzvorstellung von Stylesheets</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css/css/">Syntax von CSS</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css/properties/">Wichtige Properties</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css/css-sprites/">CSS Sprites</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css/basic-selectors/">CSS Selektoren</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/css-layout/">Css Layout</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/css-layout/rahmenbedingungen/">Rahmenbedingungen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/responsive/">Responsive Design</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/layout/">CSS für Layout</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/details/">Details zu Layout</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/navigation/">Navigationsmenü</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/selektoren/">CSS Selektoren im Detail</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/urls/">Urls</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/urls/absolut-relativ/">Absolute und relative URLs</a></li>
+                      
+                    
+                      
+                      <li ><a href="/urls/konfiguration/">Konfiguration Webserver</a></li>
+                      
+                    
+                      
+                      <li ><a href="/urls/tipps/">Pragmatische Tipps</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/formulare/">Formulare</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/formulare/form/">Formulare</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/interaktion/">Formular als Interaktion</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/css/">CSS und Formular</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/action/">Daten absenden</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/php/">Formular und PHP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/javascript/">Formular und Javascript</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/javascript-dom/">Javascript Dom</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/hintergrund/">Hintergründe</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/graceful/">Graceful Degradation</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/basic-javascript/">Basic Javascript</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/dom/">DOM</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/canvas/">2D Canvas</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/formular-zeile/">Formular++</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" separator"><a href="/jquery/">Jquery</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/jquery/unobstrusive/">Unobstrusive Javascript</a></li>
+                      
+                    
+                      
+                      <li ><a href="/jquery/graceful/">Graceful Degradation</a></li>
+                      
+                    
+                      
+                      <li ><a href="/jquery/schreibweise/">Besondere Javascript-Schreibwesen in jQuery</a></li>
+                      
+                    
+                      
+                      <li ><a href="/jquery/selektieren-manipulieren/">Selektieren und Manipulieren mit jQuery</a></li>
+                      
+                    
+                      
+                      <li ><a href="/jquery/interaktion/">Interaktion mit jQuery</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/kommandozeile/">Kommandozeile</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/kommandozeile/">Kommandozeile</a></li>
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/wo-bin-ich/">Wo bin ich</a></li>
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/vscode-remote-ssh/">VS Code</a></li>
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/zugriffsrechte/">Zugriffsrechte</a></li>
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/bild-und-video/">Bild und Video</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/git/">Git</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/git/versionskontrolle/">Versionskontrolle</a></li>
+                      
+                    
+                      
+                      <li ><a href="/git/basic-git/">Einfacher Arbeitsablauf in Git</a></li>
+                      
+                    
+                      
+                      <li ><a href="/git/git-status/">Status von Git abfragen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/git/git-tools/">Tools für Git</a></li>
+                      
+                    
+                      
+                      <li ><a href="/git/public-private-key/">Public und Private Key</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/http/">Http</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/http/tcpip-und-dns/">TCP/IP und DNS</a></li>
+                      
+                    
+                      
+                      <li ><a href="/http/http/">HTTP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/http/tools/">Werkzeuge</a></li>
+                      
+                    
+                      
+                      <li ><a href="/http/anwendungsbeispiele/">Beispiele</a></li>
+                      
+                    
+                      
+                      <li ><a href="/http/php-erzeugt/">PHP erzeugt nicht nur HTML</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/php-vorbereitung/">Php Vorbereitung</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php-vorbereitung/was-ist-php/">Was ist PHP? Was passiert am Webserver?</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-vorbereitung/apache/">Apache</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-vorbereitung/erstes-php-programm/">Das erste PHP-Programm</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/php/">Php</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php/warnhinweis/">Warnhinweis</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/syntax/">Syntax von PHP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/dateien/">Dateien und Ordnern in PHP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/mail/">PHP und E-Mail</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/php-und-parameter/">In PHP Daten aus Web-Formularen verarbeiten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/datei-upload/">Datei Upload</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/datei-upload-frontend/">Datei Upload - Frontend</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/error/">Errors + Debugging</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/php-db-lesen/">Php Db Lesen</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/db/">Datenbanken</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/start/">PHP und Datenbank</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/struktur-webapplikation/">Struktur einer Web-Applikation</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/datenbank-lesen/">Lesen aus der Datenbank</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/effizent/">Effizient Arbeiten mit der DB</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/session/">Session</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/session/cookies/">Cookies</a></li>
+                      
+                    
+                      
+                      <li ><a href="/session/session-und-login/">Session und Login</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/php-db-schreiben/">Php Db Schreiben</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/datenbank-schreiben/">Web-Applikation mit Schreibrecht</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/daten-loeschen/">Löschen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/daten-einfuegen/">Einfügen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/daten-editieren/">Daten Bearbeiten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/html-erlauben/">HTML erlauben</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/fehlerbehandlung/">Fehlerbehandlung</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" separator"><a href="/php-db-optimierung/">Php Db Optimierung</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/indexes/">Indexes</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/constraints/">Constraints</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/alter/">Änderungen an der Datenbank</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/transaktionen/">Transaktionen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/transaktionen-und-php/">Transaktionen und PHP</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/grafik/">Grafik</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/grafik/cssgrafik/">HTML+CSS für Grafik</a></li>
+                      
+                    
+                      
+                      <li ><a href="/grafik/images/">Pixel-Bilder</a></li>
+                      
+                    
+                      
+                      <li ><a href="/grafik/svg/">SVG - Vektor Grafik</a></li>
+                      
+                    
+                      
+                      <li ><a href="/grafik/2dcanvas/">2d Canvas</a></li>
+                      
+                    
+                      
+                      <li ><a href="/grafik/3dcanvas/">3d Canvas</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/javascript/">Javascript</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/javascript/variablen/">Variablen und Scope</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/funktionen/">Funktionen und this</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/objekte/">Objekte + Klassen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/closures/">Funktionen und Closures</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/module/">Module</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/style/">Stil + Tipps</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/debugging/">Debugging</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class="active "><a href="/applied-js-and-css/">Applied Js And Css</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/formularpruerung/">Formulardaten Prüfen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/header/">Fixe Kopfzeile mit Animation</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/langsam-scrollen/">Langsam Scrollen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/landkarte/">Landkarte</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/dynamisches-formular/">Dynamisches Formular</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/ajax/">AJAX</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/ajax-irrwege/">AJAX Irrwege</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/cors/">CORS</a></li>
+                      
+                    
+                      
+                      <li class="active"><a href="/applied-js-and-css/websocket/">Chat Websockets</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/json/">Json</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/json/syntax/">JSON Syntax</a></li>
+                      
+                    
+                      
+                      <li ><a href="/json/php/">JSON und PHP</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" separator"><a href="/xml/">Xml</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/xml/was-ist-xml/">Was ist XML</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/wohlgeformtes-xml/">wohlgeformtes XML</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/dtd/">DTD</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/xml-und-php/">XML und PHP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/xml-und-javascript/">XML und Javascript</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/xpath/">XPath</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/rss/">Beispiel RSS</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/security/">Security</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/security/thread-modeling/">Threat Modeling</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a1-injection/">A1 - Injection</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a2-auth/">A2 - Authentifizierung</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a3-data/">A3 - Sensible Daten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a4-xee/">A4 - XXE</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a5-zugriffskontrolle/">A5 - Zugriffskontrolle</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a6-fehlkonfiguration/">A6 - Fehlkonfiguration</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a7-cross-site-scripting-css/">A7 - XSS</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a8-deserialisierung/">A8 - Deserialisierung</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a9-komponenten/">A9 - Komponenten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a10-logging-monitoring/">A10 - Monitoring</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a8-csrf/">CSRF</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/wordpress/">Wordpress</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/wordpress/was-ist-wordpress/">Was ist Wordpress</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/installation/">Kurz-Installation von Wordpress</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/security/">Security</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/backend/">Überblick Backend</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/seiten/">Beiträge und Seiten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/multimedia/">Medien</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/themes-sidesbars-widgets/">Themes, Sidebars und Widgets verwenden</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/plugins/">Plugins verwenden</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/permalinks/">Permalinks</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/apache/">Apache</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/apache/konfigurieren/">Konfigurieren</a></li>
+                      
+                    
+                      
+                      <li ><a href="/apache/auth/">Authentisierung</a></li>
+                      
+                    
+                      
+                      <li ><a href="/apache/rewrite/">Rewrite</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/advanced-javascript/">Advanced Javascript</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/advanced-javascript/call/">Funktion Aufrufen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/advanced-javascript/event-und-closure/">Events und Closures</a></li>
+                      
+                    
+                      
+                      <li ><a href="/advanced-javascript/vererbung/">Prototypen + Vererbung</a></li>
+                      
+                    
+                      
+                      <li ><a href="/advanced-javascript/regular-expressions/">Regular Expressions</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/mobile/">Mobile</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/mobile/responsive/">Responsive Design</a></li>
+                      
+                    
+                      
+                      <li ><a href="/mobile/pwa/">Progressive Web App</a></li>
+                      
+                    
+                      
+                      <li ><a href="/mobile/cordova/">Cordova</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/qualitaet/">Qualitaet</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/qualitaet/barrierefreiheit/">Barrierefreiheit</a></li>
+                      
+                    
+                      
+                      <li ><a href="/qualitaet/datenschutz/">Datenschutz</a></li>
+                      
+                    
+                      
+                      <li ><a href="/qualitaet/performance/">Performance</a></li>
+                      
+                    
+                      
+                      <li ><a href="/qualitaet/rest/">REST</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+        
+        </ul>
+
+</div>
+<!-- sidebar -->
+
+</article>
+<!-- /body -->
+
+
+  <div class="row">
+    <div class="span12" id="legal">
+        <p class="copyright">veröffentlicht unter <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/at/deed.de">creative commons by-nc-sa</a> in den Jahren 2012-2019 von <a href="#">Brigitte Jellinek</a>.</p>
+        <p>Zum Weiterentwickeln dieser Seite: <a href="https://github.com/web-development/web-development-textbook">Projekt forken</a> oder <a href="https://github.com/web-development/web-development-textbook/blob/master/content/applied-js-and-css/websocket.md">Kommentar zu dieser Seite</a></p>
+        <p>Diese Seite ist sowohl auf <a href="https://web-development.github.io">github.io</a>
+        als auch auf <a href="http://web-development.netlify.com/">netlify.com</a> erhältlich.</p>
+    </div>
+  </div>
+
+</div> <!-- class="container" -->
+
+<script src="/assets/js/scripts.js?v=1"></script>
+<script>
+  $(document).ready(function(){
+    function save_state(){
+      var stored = "";
+      $('ul.nav > li').each(function(i,e){
+        if( $(e).find("i").attr('class') == 'icon-plus' ) {
+          stored += "-";
+        }  else {
+          stored += "+";
+        }
+      });
+      localStorage.setItem('nav-state', stored);
+    }
+    $('ul.nav > li > a').prepend("<i class='icon-plus'></i>");
+
+    // init state
+    var stored = localStorage.getItem('nav-state');
+    if ( stored ) {
+      var data = stored.split("");
+      $('ul.nav > li').each(function(i,e){
+        if( data[i] == "+" ) {
+          $(e).find(">ul").show();
+          $(e).find("i").removeClass('icon-plus').addClass('icon-minus');
+        } else {
+          $(e).find(">ul").hide();
+        }
+      });
+    } else {
+      $('ul.nav ul.sub').hide();
+    }
+    $('ul.nav li.active ul.sub').show();
+    $('ul.nav li.active i').removeClass('icon-plus').addClass('icon-minus');
+
+    $('ul.nav i').click(function(){
+      $this = $(this); 
+      $this.toggleClass('icon-plus').toggleClass('icon-minus');
+      $this.parent().next('ul').toggle();
+      save_state();
+      return false;
+    });
+  });
+</script>
+</body> 
+</html>
+

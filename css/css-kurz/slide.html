@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Kurzvorstellung von Stylesheets - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Kurzvorstellung von Stylesheets</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css//slide.html">CSS - Einstieg</a> | 
+        <a href="/css/css-kurz/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css/css//slide.html">Syntax von CSS</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Von Anfang an sollte eine HTML-Datei keine Information darüber enthalten, wie der Text dargestellt werden soll - keine Schriftart oder Schriftgröße. HTML sollte nur strukturelle Information enthalten („das ist eine Überschrift“ aber nicht „Helvetica 24pt“). Die Formatierungs-Information sollte in sogenannten „Stylesheets“ gespeichert werden, das Format für die Stylesheets war aber noch nicht definiert. Im Jahre 1993 sah eine typische Webseite so aus</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>typische Webseite von 1993 - HTML-Code stellt nur die Struktur dar</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;html&gt;&lt;body&gt;
+&lt;h1&gt;Das Studium&lt;/h1&gt;
+&lt;p&gt;Studienziel ist es, breit gefächerte technische und kreative Kompetenzen...
+&lt;/body&gt;&lt;/html&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Da es keine Stylesheets gab „erfand“ Netscape ab 1994 zusätzliche HTML-Tags, die die Darstellung der Webseite festlegen. Andere Browser übernahmen diese Tags von Netscape.</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>typische Webseite von 1995 - Neue HTML-Tags für visuelle Darstellung</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;html&gt;&lt;body&gt;
+&lt;h1&gt;&lt;font face=&quot;Arial&quot; color=&quot;blue&quot;&gt;Das Studium&lt;/font&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;font size=&quot;+1&quot;&gt;S&lt;/font&gt;tudienziel ist es, breit gefächerte technische und kreative Kompetenzen...&lt;/p&gt;
+&lt;p&gt;&lt;font size=&quot;+1&quot;&gt;P&lt;/font&gt;rojekte und Praxissemster stellen schon während des Studiums die Verbindung...&lt;/p&gt;
+&lt;/body&gt;&lt;/html&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Durch das Hinzufügen der Tags für Formatierung wurde der HTML-Code komplizierter und unübersichtlicher. Erst ab ab 1995 wurde endlich an den Standards für Stylesheets gearbeitet, seit den frühen 2000ern ist die Unterstützung in den gängigen Browsern vorhanden. So sieht nun eine HTML-Seite mit separatem Stylesheet aus:</p>
+
+<p>Die html-Datei</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>typische Webseite von 2001 - HTML-Tags für Struktur, Verweis auf CSS</small></h4>
+<pre class="lang-html prettyprint linenums">
+  &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;fh.css&quot;&gt;
+&lt;/head&gt;&lt;body&gt;
+  &lt;h1&gt;Das Studium&lt;/h1&gt;
+  &lt;p&gt;Studienziel ist es, breit gefächerte technische und wirtschaftliche Kompetenzen...
+&lt;/body&gt;&lt;/html&gt;
+</pre></div>
+
+<div class="example">
+<h4 class="caption">Css Code <small>Die Datei fh.css</small></h4>
+<pre class="lang-css prettyprint linenums">
+h1 {
+  font-family: Arial;
+  color: blue;
+}
+p:first-letter {
+  font-size: large;
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Mit der Trennung von Stylesheet und HTML wurde HTML wieder einfacher und übersichtlicher. Besonders das nachträgliche Verändern der Gestaltung wurde vereinfacht. 
+Wichtige Argumente für den Einsatz von Stylesheets sind:</p>
+
+<ul>
+  <li>Zusätzliche Gestaltungsmöglichkeiten</li>
+  <li>Einheitliche Gestaltung von mehreren Webseiten</li>
+  <li>Arbeitsteilung zwischen DesignerInnen (die CSS erstellen) und RedakteuerInnen (die Inhalte erstellen)</li>
+</ul>
+
+</div>
+<div class="slide">
+
+
+
+<p>Aber Achtung: CSS ist nicht die Lösung jedes Problems:</p>
+
+<ul>
+  <li>Um ein Stylesheet zu erstellen, muss die DesignerIn die HTML-Tags kennen, z. B. wissen, dass h1, h2, h3 für die Überschriften stehen.</li>
+  <li>Damit das Stylesheet wirkt, muss die RedakteurIn, die das HTML-Dokument erstellt, die richtigen HTML-Tags verwenden, z. B. Überschriften wirklich mit h1, h2, h3, p formatieren, und nicht mit b, i, br, font.</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="beispiel">Beispiel</h2>
+
+<p>Das Stylesheet definiert für die einzelnen HTML-Tags wie sie dargestellt werden sollen. In folgendem Code werden Formatierungen für die Tags body, p, h1 und h2 vorgenommen, der gezeigte &lt;style&gt;-Tag wird im Head des HTML-Dokument eingebunden:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Hintergrundfarbe, Schriftfamilie, Schriftgröße mit CSS festlegen</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;style type=&quot;text/css&quot;&gt;
+  p {
+    font-family: Libertine, serif;
+    font-size: 22px;
+  }
+  h1,h2 {
+    font-family: Biolinum, sans-serif;
+  }
+  h1 { font-size: 32px; }
+  h2 { font-size: 24px; }
+  body { background-color: green; }
+&lt;/style&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="css-erforschen-mit-developer-tools">CSS erforschen mit Developer Tools</h2>
+
+<p>Sie haben nun einen kurzen Einblick in die Schreibweise und die Möglichkeiten von Stylesheets. Genug um Stylesheets von Webseiten zu lesen um neue Möglichkeiten kennen zu lernen. Beim Lesen und Verstehen von CSS helfen die Developer Tools des Browsers.</p>
+
+<p><img src="/images/css/firefox-developer-tools.png" srcset="/images/css/firefox-developer-tools@2x.png 2x, /images/css/firefox-developer-tools.png 1x, /images/css/firefox-developer-tools@3x.png 3x"  alt="Abbildung 19: Firefox Add-On Firebug" ></p>
+
+</div>
+    <div class="slide">
+      <h1>Kurzvorstellung von Stylesheets</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css//slide.html">CSS - Einstieg</a> | 
+        <a href="/css/css-kurz/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css/css//slide.html">Syntax von CSS</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

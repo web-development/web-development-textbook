@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>DOM - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>DOM</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript-dom/basic-javascript//slide.html">Basic Javascript</a> | 
+        <a href="/javascript-dom/dom/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript-dom/canvas//slide.html">2D Canvas</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+</div>
+<div class="slide">
+
+<h2 id="lesen-aus-dem-dom">Lesen aus dem DOM</h2>
+<p>Die wichtigsten Befehle zur Manipulation des DOM finden Sie im Objekten „document“ und in Objecten vom Typ „node“. 
+Ein Node ist ein Knoten DOM-Baum, entspricht also einem HTML-Tag oder einem Stück Text. 
+Die Attribute des HTML-Tags sind über <code>getAttribute</code> / <code>setAttribute</code> zugänglich und manipulierbar.</p>
+
+<p>Hier eine Liste der wichtigen Objekte, Methoden, Eigenschaften für die DOM:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+document.getElementById()     /* liefert 1 Node  */
+document.getElementsByTagName() /*       Array   */
+document.querySelectorAll()   /* liefert Array   */
+document.querySelector()      /* liefert 1 Node  */
+
+document.createElement()
+
+node.parentNode   /* liefert 1 Node          */
+node.childNodes   /* liefert Array von Nodes */
+node.firstChild
+node.lastChild
+node.previousSibling
+node.nextSibling
+node.textContent
+node.attributes
+node.innerHTML
+
+node.getElementById()            
+node.getElementsByTagName() 
+node.querySelectorAll() 
+node.querySelector() 
+
+node.appendChild()
+node.cloneNode()
+node.getAttribute()
+node.setAttribute()
+node.hasChildNodes()
+node.insertBefore()
+node.removeAttribute()
+node.removeChild()
+node.replaceChild()
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="simples-beispiel">Simples Beispiel</h3>
+
+<p>Ein bestimmter Tag wird über die ID ausgewählt und sein Style-Attribut gesetzt:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+let d = document.getElementById(&quot;person_25&quot;);
+d.setAttribute(&quot;style&quot;, &quot;display:none&quot;);
+</pre></div>
+
+<p>Diese beiden Zeilen könnten auch zu einer kombiniert werden:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+document.getElementById(&quot;person_25&quot;).setAttribute(&quot;style&quot;, &quot;display:none&quot;);
+</pre></div>
+
+<p>Achtung: Falls der Tag schon ein Style-Attribute hatte wurde dieses überschrieben.  Der Wert des Attributes ist ein einfacher String.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="manipulieren-der-klassen">Manipulieren der Klassen</h3>
+
+<p>Statt den Style direkt zu manipulieren, könnte
+man eine Klasse setzen:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+document.getElementById(&quot;person_25&quot;).classList.add(&#39;sichtbar&#39;);
+document.getElementById(&quot;person_25&quot;).classList.remove(&#39;sichtbar&#39;);
+document.getElementById(&quot;person_25&quot;).classList.toggle(&#39;sichtbar&#39;);
+if( document.getElementById(&quot;person_25&quot;).classList.contains(&#39;sichtbar&#39;) ) {
+  // wird nur ausgeführt falls person sichtbar
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="selektieren">Selektieren</h3>
+
+<p>Man kann CSS-Selektoren verwenden um Element auszuwählen, und zwar mit der Methode <code>document.querySelectorAll()</code>:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+let inputs = document.querySelectorAll(&quot;input&quot;);
+let i=0;
+while(i &lt; inputs.length) {
+  console.log(&quot;input mit name &quot; + inputs[i].name );
+  i++;
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="text">Text</h3>
+
+<p>Den eigentlichen Text der HTML-Seite kann man als data eines Text-Nodes auslesen.</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;span id=&quot;v_25&quot; class=&quot;vorname&quot;&gt;Benjamin&lt;/span&gt;
+</pre></div>
+
+<p>Das erste und einzige Kind des Span ist ein Text-Node:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+let vn = document.getElementById(&quot;v_25&quot;).firstChild.data;
+</pre></div>
+
+<p>oder – etwas kürzer – über die Eigenschaft textContent:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+let vn = document.getElementById(&quot;v_25&quot;).textContent;
+</pre></div>
+
+<p><code>textContent</code> funktioniert auch bei Nodes die noch weitere verschachtelte 
+Tags enthalten und extrahiert immer den gesamten Text aus allen “Blättern” des DOM-Baums.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="manipulation-des-dom">Manipulation des DOM</h2>
+<p>Noch einmal eine Liste der wichtigen Objekte, Methoden, Eigenschaften die für das Erzeugen, Zerstören oder Verändern des DOM notwendig sind:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+let node = document.createElement(&quot;h1&quot;);  
+       // erzeugt eine Node, Tag-Name angeben
+node.innerHTML = &quot;bla &lt;strong&gt;bla&lt;/strong&gt; bla&quot;;                
+       // Zugriff auf den &quot;Inhalt&quot; der node als String, 
+       // ist of schneller als DOM manipulation! 
+node.appendChild(newchild);     
+       // fügt die newchild als Kind an 
+let newnode = node.cloneNode()    
+       // gibt eine Kopie der Node zurück, 
+       // die Kopie ist noch nicht im DOM Baum eingefügt! 
+node.insertBefore(newchild, oldchild)    
+       // fügt newchild als Kind von node ein, vor dem oldchild 
+let oldchild = node.removeChild(child)    
+       // löscht child als Kind von node, 
+       // gibt es als &quot;frei schwebende&quot; node zurück 
+node.replaceChild(newchild, oldchild)  
+       // ersetzt kind oldchild durch kind newchild 
+node.setAttribute(&#39;value&#39;, 42)  // setzt ein attribut 
+node.removeAttribute(&#39;value&#39;)   // löscht ein attribute 
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="einfgen">Einfügen</h3>
+
+<p>Das Einfügen eines ganz neuen Elements in die Webseite ist am einfachsten mit der Eigenschaft <code>innerHTML</code>:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+document.querySelector(&quot;body&quot;).innerHTML = &quot;&lt;p&gt;All &lt;b&gt;new&lt;/b&gt;&lt;/p&gt;&quot;;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="duplizieren">Duplizieren</h3>
+
+<p>Mit <code>cloneNode</code> kann man einen ganzen Teil-Baum duplizieren, und wo anders wieder einfügen. So kann man z.B. in einem Pizza-Bestell-Formular die Eingabeelement für eine Pizza in einer div zusammenfassen:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+  &lt;div class=&quot;pizza&quot;&gt;
+    &lt;p&gt;
+      &lt;select name=&quot;pizzatype[]&quot;&gt;
+        &lt;option&gt;Magaritha&lt;/option&gt;
+        &lt;option&gt;Vegetarian&lt;/option&gt;
+        &lt;option&gt;Quattro Staggione&lt;/option&gt;
+      &lt;/select&gt;
+      ...
+    &lt;/p&gt;
+  &lt;/div&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Dieses div kann man dann clonen, falls man mehrere Pizzen braucht:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  let  first_pizza = document.querySelector(&quot;div.pizza&quot;);
+  let  new_pizza = first_pizza.cloneNode(true);
+  first_pizza.insertBefore(new_pizza, null);
+</pre></div>
+
+<p><a href="/images/javascript-dom/example_js_add_to_form.html">Beispiel live im Browser</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="einfgen-von-event-handlern">Einfügen von Event Handlern</h2>
+<p>Wir haben im Kapitel <a href="/javascript-dom/hintergrund/">Hintergründe</a> schon gesehen, 
+wie Event-Handler direkt im HTML definiert werden können:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;form&gt;
+  &lt;input type=&quot;button&quot; value=&quot;Rot&quot;  onclick=&quot;setcolor(&#39;red&#39;)&quot;&gt;
+  &lt;input type=&quot;button&quot; value=&quot;Grün&quot; onclick=&quot;setcolor(&#39;#0F0&#39;)&quot;&gt;
+  &lt;input type=&quot;button&quot; value=&quot;Blau&quot; onclick=&quot;setcolor(&#39;blue&#39;)&quot;&gt;
+&lt;/form&gt;
+&lt;script&gt;
+  function setcolor( c ) {
+    let b = document.getElementById(&#39;farbfeld&#39;);
+    b.style.backgroundColor = c
+  }
+&lt;/script&gt;
+</pre></div>
+
+<p>Mit der Methode <code>addEventListener</code> kann das auch von Javascript aus erfolgen.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="farb-beispiel">Farb-Beispiel</h3>
+
+<p>Hier ein erster Entwurf: Um die Buttons einzeln anzusprechen,
+müssen wir eine id hinzufügen:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;form&gt;
+  &lt;input type=&quot;button&quot; value=&quot;Rot&quot;  id=&quot;r&quot;&gt;
+  &lt;input type=&quot;button&quot; value=&quot;Grün&quot; id=&quot;g&quot;&gt;
+  &lt;input type=&quot;button&quot; value=&quot;Blau&quot; id=&quot;b&quot;&gt;
+&lt;/form&gt;
+&lt;script&gt;
+  function setcolor( ev ) {
+    let b = document.getElementById(&#39;farbfeld&#39;);
+    b.style.backgroundColor = &#39;red&#39;;
+  }
+  document.getElementById(&#39;r&#39;).addEventListener(&#39;click&#39;, setcolor);
+  document.getElementById(&#39;g&#39;).addEventListener(&#39;click&#39;, setcolor);
+  document.getElementById(&#39;b&#39;).addEventListener(&#39;click&#39;, setcolor);
+&lt;/script&gt;
+</pre></div>
+
+<p>Wir haben aber ein Problem: der Methode <code>addEventListern</code> wird als
+zweites Argument die Methode <code>setcolor</code> übergeben.  Das ist nicht dasselbe
+wie ein Aufruf der Methode, dann würde man schreiben: <code>setcolor()</code>.</p>
+
+<p>Hier gibt es keine einfache Möglichkeit ein Argument für die Farbe mit zu geben!</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Eine Lösung für dieses Problem: was in der Methode <code>setcolor</code> zur Verfügung steht
+ist <code>this</code>: die Node die angeklickt wurde, in unserem Fall der jeweilige Button.
+Wir müssen also einen Weg finden die Farbe direkt aus dem Button auzulesen.
+So können wir zum Beispiel die Hintergrundfarbe des Buttons verwenden:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;form&gt;
+  &lt;input type=&quot;button&quot; value=&quot;Rot&quot;  
+         style=&quot;background-color:red&quot;  id=&quot;r&quot;&gt;
+  &lt;input type=&quot;button&quot; value=&quot;Grün&quot; 
+         style=&quot;background-color:#0F0&quot; id=&quot;g&quot;&gt;
+  &lt;input type=&quot;button&quot; value=&quot;Blau&quot; 
+         style=&quot;background-color:blue&quot; id=&quot;b&quot;&gt;
+&lt;/form&gt;
+&lt;script&gt;
+  function setcolor( ev ) {
+    let b = document.getElementById(&#39;farbfeld&#39;);
+    b.style.backgroundColor = this.style.backgroundColor;
+  }
+  document.getElementById(&#39;r&#39;).addEventListener(&#39;click&#39;, setcolor);
+  document.getElementById(&#39;g&#39;).addEventListener(&#39;click&#39;, setcolor);
+  document.getElementById(&#39;b&#39;).addEventListener(&#39;click&#39;, setcolor);
+&lt;/script&gt;
+</pre></div>
+
+<p>Programm <a href="/images/javascript-dom/farbfeld-dom.html">live im browser</a></p>
+
+</div>
+<div class="slide">
+
+<h3 id="pizza-beispiel">Pizza-Beispiel</h3>
+
+<p>Hier wieder am Beispiel des Pizza-Bestellformulars: mit einem kleinen „x“ in der rechten obere Ecke soll man eine Pizza löschen können.</p>
+
+<p><img src="/images/javascript-dom/pizza-x.png"  alt="Abbildung 59: Pizza löschen mit Klick auf das x in der rechten oberen Ecke" ></p>
+
+<p>Im HTML-Code fügen wir dafür einen span-Tag ein:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+ &lt;div class=&quot;pizza&quot;&gt;
+    &lt;p&gt;
+      &lt;span class=&quot;removethis&quot;&gt;x&lt;/span&gt;
+      &lt;select name=&quot;pizzatype[]&quot;&gt;…&lt;/select&gt;
+      …
+    &lt;/p&gt;
+  &lt;/div&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Im Javascript-Code können wir nun das Event an den span-Tag binden. Dafür müssen
+wir erst eine Funktion definieren, die aufgerufen werden soll, hier heisst die
+funktion removeMe. Mit addEventListener können wir dann die Funktion als
+zuständig für das click-event am spam <code>.removthis</code> definieren.</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+function removeMe(e){
+  let me = e.target;
+  let my_pizza = me.parentNode.parentNode;
+  my_pizza.parentNode.removeChild( my_pizza ); 
+}
+document.querySelector(&quot;.removethis&quot;)
+        .addEventListener(&quot;click&quot;, removeMe); 
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="referenz">Referenz</h3>
+
+<ul>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document">Document</a> im Mozilla Developer Network</li>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node">Node</a> im Mozilla Developer Network</li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>DOM</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript-dom/basic-javascript//slide.html">Basic Javascript</a> | 
+        <a href="/javascript-dom/dom/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript-dom/canvas//slide.html">2D Canvas</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

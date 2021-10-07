@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Events und Closures - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Events und Closures</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/advanced-javascript/call//slide.html">Funktion Aufrufen</a> | 
+        <a href="/advanced-javascript/event-und-closure/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/advanced-javascript/vererbung//slide.html">Prototypen + Vererbung</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Dieses Kapitel ist ein Tutorial zu folgenden Projekt:
+Ein SVG-Editor soll programmiert werden, mit dem man
+Kreise und Rechtecke im Browser erzeugen und positioniern kann.</p>
+
+<p>An diesem Beipiel wird die Behandlung von Event und
+die Notwendigkeit von Closures erläutert.</p>
+
+<p>Der Fokus in diesem Kapitel liegt auf der Drag und Drop Funktionalität.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="die-ausgangslage">Die Ausgangslage</h2>
+
+<p>Dieses Programm wird umfangreich. Deswegen werden von Anfang an Strukturen
+zur Wiederverwertung von Code gelegt:</p>
+
+<p>Für den Editor, und für Rechtecke (Rectangles) und Kreise (Circles) werden
+jeweils Konstruktor-Funktionen angelegt, mit der Editor-, Rechteck-, und Kreis-Objekte
+erzeugt werden können.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="editor">Editor</h3>
+
+<p>Die Konstruktur-Funktion des <strong>Editor</strong> Objekts nimmt folgende Argumente</p>
+
+<ul>
+  <li><code>css_selector</code> - ein String, wird als CSS-Selector interpretiert. Der Inhalt des ausgewählten DOM-Elements wird gelöscht, statt dessen wird der Editor angezeigt</li>
+  <li><code>w</code> - optional eine Zahl oder ein String der eine Zahl enthält. Breite des Editors. Default Wert 600.</li>
+  <li><code>h</code> - optional eine Zahl oder ein String der eine Zahl enthält. Höhe des Editors. Default Wert 600.</li>
+</ul>
+
+<p>Das <strong>Editor</strong> Objekt hat folgende Attribute:</p>
+
+<ul>
+  <li><code>dom</code> - das SVG-Element</li>
+  <li><code>renderlist</code> - eine Liste mit Objekten, die im Editor dargestellt werden</li>
+</ul>
+
+<p>Das <strong>Editor</strong> Objekt hat folgende Methoden</p>
+
+<ul>
+  <li><code>rectangle</code> - Erzeugt ein Objekt mit dem <code>Rectangle</code>-Konstruktur, fügt es in der renderlist ein</li>
+  <li><code>circle</code> - Erzeugt ein Objekt mit dem <code>Circle</code>-Konstruktur, fügt es in der renderlist ein</li>
+</ul>
+
+</div>
+<div class="slide">
+
+
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Konstruktor</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function Editor( css_selector, w, h ) {
+  this.renderlist = [];
+  this.dom = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;svg&quot;);
+  this.dom.setAttribute(&quot;width&quot;, w || 600);
+  this.dom.setAttribute(&quot;height&quot;, h || 600);
+  emptyAndAppendChild( document.querySelector( css_selector ), this.dom );
+  return this;
+}
+
+Editor.prototype.rectangle = function(  x,y,w,h,att, text ) {
+  var o;
+  o = new Rectangle( x,y,w,h, att, this.dom );
+  this.renderlist.push(o);
+  return o;
+}
+
+Editor.prototype.circle = function( x,y,r,att, text ) {
+  var o;
+  o = new Circle( x,y,r,att, this.dom );
+  this.renderlist.push(o);
+  return o;
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="circle-und-rectangle">Circle und Rectangle</h3>
+
+<p>Circle und Rectangle funktionieren sehr ähnlich, deswegen werden sie hier gemeinsam
+beschreiben.  Als SVG-Elemente betrachtet gibt es größere Unterschiede: so wird die
+Position eines <code>&lt;circles&gt;</code> über die Attribute <code>cx</code> und <code>cy</code> gesetzt, die Position eines
+<code>&lt;rect&gt;</code> über <code>x</code> und <code>y</code>.  Diese Unterschiede werden durch die neu erstellen Javascript-Objekte
+möglichst verborgen.</p>
+
+<p>Die Signatur der Konstruktur-Funktion sind:</p>
+
+<ul>
+  <li>Rectangle(x,y,w,h,att,canvas)</li>
+  <li>Circle(x,y,r,att, canvas )</li>
+</ul>
+
+<p>Fast alle Argumente sind also gleich und gleich bedeutend. Der einzige Unterschied: Die 
+Größe des  Rechtecks wird über Breite <code>w</code> und Höhe <code>h</code> definiert, die Größe
+des Kreis über den Radius <code>r</code>.  Der Aufruf der Konstruktors erzeugt das SVG-Element,
+fügt es in den canvas ein, setzt die Attribute und fügt geeignete Event-Handler für drag-and-drop
+ein.</p>
+
+<p>Die anderen Argumente sind:</p>
+
+<ul>
+  <li><code>x</code> und <code>y</code>- Position (beim Rechteck: der linken oberen Ecke. beim Kreis: des Mittelpunktes)</li>
+  <li><code>att</code> - ein Objekt. Die Attribute des Objekts werden auf das erzeugte SVG-Element übertragen, z.B. <code>{'stroke': 'red', 'fill': 'white'}</code></li>
+  <li><code>canvas</code> - eine DOM-Element das geeignet ist ein <code>&lt;rect&gt;</code> oder <code>&lt;circle&gt;</code> Element aufzunehmen. z.B. ein <code>&lt;svg&gt;</code> Element.</li>
+</ul>
+
+<p>Das <strong>Rectangle</strong> und das <strong>Circle</strong> Objekt haben folgende Attribute:</p>
+
+<ul>
+  <li><code>dom</code> - das SVG-Element, also der Kreis oder das Rechteck</li>
+  <li><code>canvas</code> - das parent-Element in das es eingefügt wurde</li>
+  <li><code>id</code> - die ID (wird auch im SVG-Element selbst noch einmal gesetzt)</li>
+</ul>
+
+<p>Das <strong>Rectangle</strong> und das <strong>Circle</strong> Objekt haben folgende Methoden</p>
+
+<ul>
+  <li><code>getPosition</code> - Liefert die Position (aus den SVG-Attributen x/y bzw. cx/xy) als Objekt mit Eigenschaften <code>x</code> und <code>y</code></li>
+  <li><code>setPosition( position )</code> - erwartet die Position als Objekt mit Eigenschaften <code>x</code> und <code>y</code>, positioniert das Element entsprechend</li>
+</ul>
+
+</div>
+<div class="slide">
+
+
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Konstruktor für Kreis</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+var nextCircleId = idGenerator( &quot;cicle&quot; );
+
+function Circle( x,y,r,att, canvas ) {
+  var shape,a;
+
+  this.id = nextCircleId();
+  this.canvas = canvas;
+
+  //   &lt;circle&gt;
+  this.dom = document.createElementNS(&quot;http://www.w3.org/2000/svg&quot;, &quot;circle&quot;);
+  this.dom.setAttribute(&quot;id&quot;, this.id);
+  this.dom.setAttribute(&quot;cx&quot;, x);
+  this.dom.setAttribute(&quot;cy&quot;, y);
+  this.dom.setAttribute(&quot;r&quot;,  r);
+  addAttributes(this.dom, att, {&quot;fill&quot;: &quot;white&quot;, &quot;stroke&quot;: &quot;black&quot;, &quot;stroke-width&quot;: 1});
+  canvas.appendChild(this.dom);
+  
+  addDragability( this, this.dom );
+}
+Circle.prototype.getPosition = function () {
+  return {  x: parseInt( this.dom.getAttribute( &quot;cx&quot; ) ), y : parseInt( this.dom.getAttribute(&quot;cy&quot;) ) };
+};
+Circle.prototype.setPosition = function ( position ) {
+  this.dom.setAttribute(&quot;cx&quot;, position.x );
+  this.dom.setAttribute(&quot;cy&quot;, position.y );
+};
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="drag-and-drop">Drag and Drop</h2>
+
+<p>Wie funktioniert Drag-and-Drop?  Wir haben die Events <code>mousedown</code>, <code>mouseup</code> und <code>mousemove</code> zur Verfügung.</p>
+
+<ul>
+  <li>Wenn die Maus-Taste gedrückt wird, und der Mauszeiger über einem Rechteck oder Kreis steht, dann beginnt das Drag-and-Drop. Die Position der Maus und des Objekt zu diesem Start-Zeitpunkt müssen gespeichert werden.</li>
+  <li>Wenn die Maus sich beweget, und wir in einem Drag-and-Drop sind, dann wird die differenz zwischen aktueller Maus-Position und der Start-Position berechnet. Das ergibt einen Translations-Vektor. Dieser Vektor wird zur Startposition des Objekts addiert und ergibt die aktuelle Position des Objekts. (“Drag”)</li>
+  <li>Wenn die Maus los gelassen wird wird Drag-and-Drop beendet</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h3 id="mausposition">Mausposition</h3>
+
+<p>Das Auslesen der aktuellen Mous-Position ist leider nicht einheitlich implementiert.
+Hier eine Implementierung die in allen Browsern funktionieren sollte:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>auslesen der Maus-Position aus einem Event-Objekt</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function cursorPoint(e) {
+  var posx = 0;
+  var posy = 0;
+  if (!e) var e = window.event;
+  if (e.pageX || e.pageY)   {
+    posx = e.pageX;
+    posy = e.pageY;
+  }
+  else if (e.clientX || e.clientY)  {
+    posx = e.clientX + document.body.scrollLeft
+      + document.documentElement.scrollLeft;
+    posy = e.clientY + document.body.scrollTop
+      + document.documentElement.scrollTop;
+  }
+  // posx and posy contain the mouse position relative to the document
+  // Do something with this information
+  return { &#39;x&#39;: posx, &#39;y&#39;: posy  };
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="wiederholung-event-listener">Wiederholung: Event-Listener</h3>
+
+<p>Wenn wir Event-Listener-Funktionen für diese Events definieren haben wir der
+Funktion jeweils Zugriff auf ein Element der DOM, das durch das Event betroffen ist.</p>
+
+<p>Also zum Beispiel:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Event Listener</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function onMouseDown(e) {
+  console.log(&quot;Mouse down. this is &quot; + this.id + &quot; event is &quot; + e);
+}
+
+element.addEventListener( &#39;mousedown&#39;, onMouseDown);
+</pre></div>
+
+<p>Wenn die Funktion onMouseDown aufgerufen wird enthält
+<code>this</code> das angeklickte Element, und <code>e</code> enthält ein Event-Objekt mit
+weiteren Details.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="problemstellung-vom-dom-element-zum-javascript-objekt">Problemstellung: vom DOM-Element zum Javascript-Objekt</h3>
+
+<p>In unserem Javascript-Programm wird ein Kreis nicht alleine durch
+die SVG-Node <code>&lt;circle&gt;</code> repräsentiert, sondern durch ein Javascript-Objekt
+das mit dem Konstruktor <code>Circle</code> erzeugt wurde.</p>
+
+<p>Wie kann die Listener-Funktion Zugriff zu diesem Javascript-Objekt erhalten?</p>
+
+<p>Ein Versuch wäre, das Javascript-Objekt im SVG-Element zu speichern.
+zum Beispiel in einem Data-Attribut. In HTML5 darf man ja zu jedem
+Tag / Element beliebige neue Attribute dazu erfinden, solange der
+Name des Attributs mit “data-“ beginnt.</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>data-Attribute in HTML5</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;h1 data-geheim=&quot;wichtig daten&quot;&gt;Normaler Überschrift&lt;/h1&gt;
+....
+&lt;circle data-weight=&quot;10kg&quot;&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Ein Data-Attribut könnte man mit Javascript setzen. Hier ein Versuch:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Javascript-Objekte in einem Data-Attribut in der DOM speichern - geht nicht</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+// Versuch ein Objekt zu speichern
+c = document.getElementById(&quot;circle_1&quot;);
+c.setAttribute(&quot;data-myobject&quot;, { color: &#39;red&#39;, no: 42 } ); 
+
+// auslesen der Daten
+o = c.getAttribute(&quot;data-myobject&quot;);    
+typeof o        // ergibt &quot;string&quot;
+console.log(o)  // ergibt &quot;[object Object]&quot;
+</pre></div>
+
+<p>Beim Speichern in der DOM wurde also mein Objekt in einen String umgewandelt,
+und nur der String wurde gespeichert.</p>
+
+<p><strong>Es ist nicht möglich beliebige Javascript-Objekte in der DOM zu speicher!</strong></p>
+
+</div>
+<div class="slide">
+
+<h3 id="lsungs-ansatz-mit-closure">Lösungs-Ansatz mit Closure</h3>
+
+<p>Die übliche Lösung in Javascript ist die Verwendung von Closures: die Event-Listener-Funktion
+ist eine Closure, die das Javascript-Objekt kennt, und deswegen darauf Zugriff hat.</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Event-Listener-Funktion als Closure</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function addDragability( jsobj, element ) {
+
+  function onMouseDown(e) {
+    console.log(&quot;Mouse down&quot;);
+    console.log(&quot;my element is &quot; + this);
+    console.log(&quot;my javascript object is &quot; + jsobj);
+    console.log(&quot;my event is &quot; + e);
+  }
+
+  element.addEventListener( &#39;mousedown&#39;, onMouseDown);
+}
+
+addDragability( jsobj, element );
+addDragability( other_jsobj, other_element );
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="umsetzung">Umsetzung</h3>
+
+<p>Wenn man die Beschreibung von Drag-and-Drop nochmal betrachtet …</p>
+
+<ul>
+  <li>Wenn die Maus-Taste gedrückt wird, und der Mauszeiger über einem Rechteck oder Kreis steht, dann beginnt das Drag-and-Drop. Die Position der Maus und des Objekt zu diesem Start-Zeitpunkt müssen gespeichert werden.</li>
+  <li>Wenn die Maus sich beweget, und wir in einem Drag-and-Drop sind, dann wird die Differenz zwischen aktueller Maus-Position und der Start-Position berechnet. Das ergibt einen Translations-Vektor. Dieser Vektor wird zur Startposition des Objekts addiert und ergibt die aktuelle Position des Objekts. (“Drag”)</li>
+  <li>Wenn die Maus los gelassen wird wird Drag-and-Drop beendet</li>
+</ul>
+
+<p>und das nun in Event-Listener umsetzen will kommt man zu folgender Struktur</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Struktur der Event-Listener für Drag-and-Drop</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function addDragability( jsobj, element ) {
+  function onMove(e) {
+    // die Differenz zwischen aktueller Maus-Position 
+    // und der Start-Position berechnen. Das ergibt 
+    // einen Translations-Vektor. 
+    // Diesen Vektor zur Startposition des Objekts 
+    // addieren, aktuelle Position des Objekts setzen
+  }
+  function onMouseDown(e) {
+    // Drag-und-Drop beginnt: den richtigen Eventlistener 
+    // für mousemove setzen
+    // Die Position der Maus und des Objekt zu diesem 
+    // Start-Zeitpunkt müssen gespeichert werden.
+  }
+  function onMouseUp(e) {
+    // Drag-and-Drop beenden: nicht mehr gebrauchte 
+    // event-listener entfernen
+  }
+
+  console.log( jsobj + &quot; und damit &quot; + element + &quot; sind nun draggable&quot;);
+</pre></div>
+
+<div class="alert"><strong>ToDo</strong> fertigen Code zeigen - später</div>
+</div>
+    <div class="slide">
+      <h1>Events und Closures</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/advanced-javascript/call//slide.html">Funktion Aufrufen</a> | 
+        <a href="/advanced-javascript/event-und-closure/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/advanced-javascript/vererbung//slide.html">Prototypen + Vererbung</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

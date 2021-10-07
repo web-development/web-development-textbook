@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Plugins verwenden - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Plugins verwenden</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/wordpress/themes-sidesbars-widgets//slide.html">Themes, Sidebars und Widgets verwenden</a> | 
+        <a href="/wordpress/plugins/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/wordpress/permalinks//slide.html">Permalinks</a>
+        
+      </p>
+    </div>
+    <div class="slide"><p>Plugins können die Funktionsweise von Wordpress erweitern – sowohl was die Anzeige betrifft als auch im Backend. Es gibt ein „offizielles“ Plugin-Verzeichnis von Wordpress unter der Adresse  <a href="http://wordpress.org/extend/plugins/">wordpress.org/extend/plugins</a></p>
+
+<p>Ein Plugin ist ein Ordner mit PHP-Dateien im Ordner <code>wp-content/plugins</code>,. Die Installation erfolgt wie bei einem Theme.</p>
+
+<p>Als letzter Installations-Schritt wird das Plugin im Backend unter dem Menüpunkt Plugins aktiviert.</p>
+
+<p><img src="/images/wordpress-plugins.png"  alt="Abbildung 120: Wordpress Backend: Plugins aktivieren und deaktivieren" ></p>
+
+<p>Im Folgenden werden einige wenige Plugins vorgestellt – es gibt noch viel mehr!
+Die beliebtestens findet man im <a href="http://plugintable.com/">Periodic Table of Wordpress Plugins</a>.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="zugriffs-statistik">Zugriffs-Statistik</h2>
+<p>Das Plugin statpress3 führt Statistiken über die Zugriffe. Es fügt im Backend einen neuen Haupt-Navigationspunkt ein.</p>
+
+<p><img src="/images/wordpress-statpress.png"  alt="Abbildung 121: Wordpress Plugin statpress" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="suchmaschinen-optimierung">Suchmaschinen-Optimierung</h2>
+<p>All in One SEO Pack4 führt mehrere Veränderungen an Wordpress durch um die Findbarkeit für Suchmaschinen zu erhöhen. Die Optionen können unter Einstellungen ⇒ All In One SEO verändert werden, das ist aber nicht unbedingt notwendig.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="ankndigungen-von-events-konzerten-etc">Ankündigungen von Events, Konzerten, etc.</h2>
+<p>Der Event Kalender http://www.wp-eventscalendar.com/  Ermöglicht das erstellen und ankündigen von Events in einem Kalender. Der Kalender ist zwar nicht hübsch, aber mit AJAX bedienbar</p>
+
+</div>
+    <div class="slide">
+      <h1>Plugins verwenden</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/wordpress/themes-sidesbars-widgets//slide.html">Themes, Sidebars und Widgets verwenden</a> | 
+        <a href="/wordpress/plugins/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/wordpress/permalinks//slide.html">Permalinks</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

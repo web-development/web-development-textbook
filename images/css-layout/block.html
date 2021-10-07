@@ -1,0 +1,41 @@
+<h1>Basic document flow</h1>
+
+<p>
+  I am a basic block level element. My adjacent block level elements sit on new
+  lines below me.
+</p>
+
+<p>
+  By default we span 100% of the width of our parent element, and we are as tall
+  as our child content. Our total width and height is our content + padding +
+  border width/height.
+</p>
+
+<p lang="en">
+  Inline elements <span>like this one</span> and <span>this one</span> sit on
+  the same line as one another if there is space on the same line. When needed,
+  they <span>wrap onto a new line</span>, or just go on to a new line.
+  <span>pneumonoultramicroscopicsilicovolcanoconiosis.</span>
+</p>
+
+<p lang="de">
+  In einem deutschsprachigen Absatz geht das mit der
+  <span lang="de">Donaudampfschiffahrtsgesellschaft.</span>
+</p>
+<style>
+  body {
+    width: 500px;
+    margin: 0 auto;
+  }
+
+  p {
+    background: rgba(255, 84, 104, 0.3);
+    border: 2px solid rgb(255, 84, 104);
+    padding: 10px;
+    margin: 10px;
+  }
+  span {
+    border: 1px solid black;
+    background-color: white;
+  }
+</style>

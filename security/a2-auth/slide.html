@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>A2 - Authentifizierung - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>A2 - Authentifizierung</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/security/a1-injection//slide.html">A1 - Injection</a> | 
+        <a href="/security/a2-auth/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/security/a3-data//slide.html">A3 - Sensible Daten</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Auf <a href="https://owasp.org/www-project-top-ten/2017/de/A2_2017-Fehler_in_der_Authentifizierung">Platz 2 der OWASP Top 10 2017</a>.</p>
+
+<p>Rund um Authentifizierung und Session-Management treten viele Probleme auf.
+Ein Angriff mittels “Credential Stuffing” ist einfach umzusetzen: ein kleines
+Programm probiert automatisch das Login mit den bekanntesten Passwörtern aus.</p>
+
+<p>Als BenutzerIn des Internet empfiehlt sich auf jeden Fall: neues Passwort für jedes
+neue Login das ich anlege. Mit Hilfe eine <a href="https://prism-break.org/de/all/#password-managers">Passwort-Managers</a>.</p>
+
+<p>Hier ein paar Maßnahmen, die man als EntwicklerIn auch schon im ersten PHP-Projekt umsetzen kann:</p>
+
+</div>
+<div class="slide">
+
+<h2 id="keine-information-in-fehlermeldungen-preisgeben">Keine Information in Fehlermeldungen preisgeben</h2>
+
+<p>Authentisierung kann aus vielen Gründen fehl schlagen:</p>
+
+<ul>
+  <li>der Username existiert gar nicht</li>
+  <li>dieser Account ist gesperrt</li>
+  <li>das Passwort passt nicht</li>
+</ul>
+
+<p>Egal was die Gründe sind: die Rückmeldung an die UserIn muss immer genau gleich ausfallen:</p>
+
+<p>“Login Fehlgeschlagen - Falscher Username oder Falsches Passwort”</p>
+
+<p>Warum? Die Information, ob ein bestimmter Username im System exisitiert ist wertvoll! Es
+ist ja bereits die Hälfte der nötigen Information für ein Login. Deswegen soll man die Existenz
+von Usernamen genau so geheim halten wie die Passwörter.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="weg-mit-alten-passwort-regeln">Weg mit alten Passwort Regeln</h2>
+
+<p>Oft werden strenge Passwort Regeln verwendet:</p>
+
+<p>“Das Passwort muss mindestens einen Großbuchstaben, einen Kleinbuchstaben, ein Sonderzeichen und zwei verscheidene Ziffern enthalten und darf nicht länger als 8 Zeichen sein”</p>
+
+<p>Diese Regeln sind veraltet.  So empfiehlt das amerikanische National  Institute of Standards and Technology seit 2017 in <a href="https://pages.nist.gov/800-63-3/sp800-63b.html#memsecret">NIST 800-63 </a>:</p>
+
+<ul>
+  <li>Passwörter sollen mindestens 8 oder mehr Zeichen lang sein</li>
+  <li>Passwörter sollen bis zu 64 Zeichen lang sein können</li>
+  <li>“Bekannte” Passwörter sollen verboten sein. Das kann man z.B. mit <a href="https://haveibeenpwned.com/API/v2#SearchingPwnedPasswordsByRange">der haveibeenpwned API</a> implementieren</li>
+  <li>Es soll keine weiteren  Regeln für die Zusammensetzung des Passworts geben (z.b. nicht verlangen dass verschiedene Zeichentypen enhält, oder Verbot von Zeichen-Wiederholungen)</li>
+  <li>Es soll keinen Zwang geben das Passwort ohne Anlass zu Ändern. Ein guter Anlass ist wenn das Passwort öffentlich wurde</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="session-id-wie-passwort-schtzen">Session ID wie Passwort schützen</h2>
+
+<p>Das Protokoll HTTP ist stateless. Wenn man trotzdem UserInnen authentifizieren
+will,  muss bei jedem Request eine authentifizierende Information, zum Beispiel eine Session-ID,
+mitgeschickt werden. Dies geschieht zum Beispiel in einem Cookie.</p>
+
+<p>Wenn es gelingt diese Information abzuhören und wieder zu verwenden,
+dann erhält man den gleichen Zugang wie die eigentliche UserIn. Diese
+Art der Angriffs nennt man “Replay Attacke” - ein Request wird abgehört und
+gleich wieder verwendet.</p>
+
+<p>Um Passwörter ebenso wie Session Ids und Cookies vor dem Abhören zu
+schützen muss man den gesamten HTTP-Request verschlüssen - das ist über SSL/TLS möglich.</p>
+
+<p>Ein weiterer Punkt wo diese Informationen eventuell aufscheinen sind Logfiles.
+Auch beim Logging sollte man diese Informationen vorher ausfiltern oder verschlüsseln:</p>
+
+</div>
+<div class="slide">
+
+<h2 id="nicht-selbst-implementieren">Nicht selbst implementieren</h2>
+
+<p>Es ist sehr schwierig, ein sicheres Authentifizierungs- und Session-Management zu implementieren. Man sollte nicht auf eigene Lösungen setzen - Diese haben dann oft Fehler bei Abmeldung und Passwortmanagement, bei der Wiedererkennung der BenutzerInnen, bei Timeouts, Sicherheitsabfragen usw. Das Auffinden dieser Fehler kann sehr schwierig sein, besonders wenn es sich um individuelle Implementierungen handelt.</p>
+
+<p>PHP liefert nur ein Session-System. Frameworks wie <a href="https://symfony.com/doc/current/security.html#c-encoding-passwords">Symphony</a> oder <a href="https://laravel.com/docs/7.x/authentication">Laravel</a> liefern
+fertige Lösungen für den gesamten Login Prozess.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="selbst-implementieren-passwrter-speichern">Selbst implementieren: Passwörter speichern</h2>
+
+<p>Passwörter sollten niemals im Klartext in der Datenbank gespeichert werden.
+Statt dessen wir nur ein <strong>Hash</strong> des Passworts gespeichert.</p>
+
+<p>Beim Login wir das eingegebene Passwort dann wieder mit derselben Hash-Funktion
+behandelt, und mit dem gespeicherten Wert verglichen.</p>
+
+<p>PHP stellt eine geeignete Hash-Funktion zur Verfügung: <a href="https://www.php.net/manual/de/function.password-hash.php">password_hash</a>.</p>
+
+<p>Mehr zum Speichern von Passwörtern im <a href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Password_Storage_Cheat_Sheet.md">OWASP Password Storage Cheat Sheet</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="neue-session-bei-login--logout--neuen-rechten">Neue Session bei Login / Logout / neuen Rechten</h2>
+
+<p>Die “Session Fixation” Attacke funktioniert mit der Session ID. Ein Beispiel:</p>
+
+<p>Alyssa P. Hacker sendet einen Link an Peter Publikum. Dieser Link führt
+zur Bank von Peter Publikum, und gibt schon eine Session ID vor. Wenn sich
+Peter Publikum nun bei seinem Online-Banking einloggt, die Session ID aber
+gleich bleibt, dann kann Alyssa P. Hacker mit der gleichen Session die Online Banking
+Seite aufrufen, und ist schon eingeloggt - als Peter Publikum.</p>
+
+<p>Um diese Art der Attacke zu vermeiden kann man beim Login und Logout jeweils eine neue Session starten.</p>
+
+<p>In PHP geht das mit folgenden Befehlen:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>neue Session starten nach erfolgreichem Login</small></h4>
+<pre class="lang-php prettyprint linenums">
+  session_start();
+  session_regenerate_id();
+  session_destroy();
+  unset($_SESSION);
+  session_start();
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="mehr">Mehr</h2>
+
+<p>Komplexere Maßnahmen wären:</p>
+
+<ul>
+  <li>Zwei Faktor Authentisierung</li>
+  <li>Automatische Prüfung der neu eingegebenen Passwörter mit</li>
+</ul>
+
+<p>Die OWAAS bietet noch mehr Informationen zu diesem Thema an
+im <a href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md">Authentication Cheat Sheet</a>
+und im <a href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md">Session Management Cheat Sheet</a>.</p>
+</div>
+    <div class="slide">
+      <h1>A2 - Authentifizierung</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/security/a1-injection//slide.html">A1 - Injection</a> | 
+        <a href="/security/a2-auth/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/security/a3-data//slide.html">A3 - Sensible Daten</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

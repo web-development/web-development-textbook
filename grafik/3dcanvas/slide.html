@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>3d Canvas - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>3d Canvas</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/grafik/2dcanvas//slide.html">2d Canvas</a> | 
+        <a href="/grafik/3dcanvas/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript//slide.html">Javascript die Sprache</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Wenn der <code>canvas</code> Tag in der 3d Variante verwendet wird,
+kommt wirklich die Grafikkarte mit ihrer ganzen Render-Pipeline zum Einsatz
+um 3D Szenen zu rendern. Diese API des Browsers wird
+‘'’WebGL’’’ genannt, und basiert auf OpenGL ES 2.0.</p>
+
+<p>WebGL wird <a href="http://caniuse.com/#feat=webgl">von allen Browsern unterstützt</a>,
+sogar am Smartphone.</p>
+
+<ul>
+  <li><a href="http://learningwebgl.com/blog/?page_id=1217">Learning WebGL</a></li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="libraries-fr-webgl">Libraries für WebGL</h2>
+
+<p>WebGL direkt zu programmieren ist sehr aufwändig. Die Library <code>three.js</code>
+ermöglicht die direkt arbeit mit 3d-Objekten, Materialien, Szenen, Kameras.</p>
+
+<canvas id="my_canvas" width="500" height="500"></canvas>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r77/three.js"></script>
+
+<script src="/images/cube.js"></script>
+
+<ul>
+  <li><a href="http://blog.teamtreehouse.com/the-beginners-guide-to-three-js">Library three.js</a></li>
+  <li><a href="https://discoverthreejs.com/book/1-first-steps/intro/">Online Tutorial for three.js</a></li>
+  <li><a href="https://github.com/cedricpinson/osgjs">Library osgjs</a> zum Import von Open Scenegraph</li>
+  <li><a href="https://www.babylonjs.com/">Babylon.js</a></li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="game-engines">Game Engines</h2>
+
+<p>Auf WebGL basieren viele Game Engines für das Web. z.B:</p>
+
+<p><img src="/images/grafik/playcanvas.png" srcset="/images/grafik/playcanvas@2x.png 2x, /images/grafik/playcanvas.png 1x"  alt="Playcanvas" ></p>
+
+<ul>
+  <li><a href="https://playcanvas.com/">Playcanvas</a></li>
+  <li><a href="https://www.pixijs.com/">Pixijs</a></li>
+</ul>
+
+<p>Einen Überblick bietet <a href="https://html5gameengine.com/tag/webgl">html5gameengine.com</a></p>
+</div>
+    <div class="slide">
+      <h1>3d Canvas</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/grafik/2dcanvas//slide.html">2d Canvas</a> | 
+        <a href="/grafik/3dcanvas/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript//slide.html">Javascript die Sprache</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

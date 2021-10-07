@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Funktionen und Closures - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Funktionen und Closures</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript/objekte//slide.html">Objekte + Klassen</a> | 
+        <a href="/javascript/closures/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript/module//slide.html">Module</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Javascript baut nicht nur auf die Traditionen der
+objektorientierten Programmierung auf, sondern auch
+auf die der Funktionalen Programmierung<a href="http://de.wikipedia.org/wiki/Funktionale_Programmierung">→</a>.</p>
+
+<p>In diesem Kapitel lernen wir die Besonderheiten
+von Funktionen in Javascript kennen, darunter
+auch Closures <a href="http://de.wikipedia.org/wiki/Closure">→</a> (Funktionsabschlüsse).</p>
+
+</div>
+<div class="slide">
+
+<h2 id="funktionen-und-lebenszeit-von-variablen">Funktionen und Lebenszeit von Variablen</h2>
+
+<p>Nach dem Aufruf einer Funktion verschwinden ihre lokalen Variablen,
+bei einem neuen Aufruf sind die vorhergehenden Werte nicht mehr vorhanden:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Lebenszeit einer Variable in einer Funktionen</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  function g( x ) {
+    var b;
+    console.log(&quot;beim Einstieg in g ist b = &quot; + b );
+    b = x;
+    console.log(&quot;beim Ausstieg aus g ist b = &quot; + b );
+  }
+  g(10);
+  g(20);
+
+  // output:
+  // beim Einstieg in g ist b = undefined
+  // beim Ausstieg aus g ist b = 10
+  // beim Einstieg in g ist b = undefined
+  // beim Ausstieg aus g ist b = 20
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Die Lebenszeit einer Variable kann aber verlängert werden, wenn sie in einer
+inneren Funktion verwendet wird. Das nennt man eine Closure (deutsch: “Funktionsabschluss”).</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Closure verlängert die Lebenszeit einer Variable in einer Funktionen</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  function g( x ) {
+    var b = x;
+    return function() {
+      console.log(&quot;ich bin eine Funktion und verwende b = &quot; + b );
+    }
+  }
+  f = g(10);
+  f();
+  // output: ich bin eine Funktion und verwende b = 10
+  h = g(20);
+  h();
+  // output: ich bin eine Funktion und verwende b = 20
+  f();
+  // output: ich bin eine Funktion und verwende b = 10
+</pre></div>
+
+<p>Die Funktion <code>f</code> hat also immer noch Zugriff auf die “alte” Variable <code>b</code>!</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Closures kann man zum Beispiel verwenden um einen Countdown zu erzeugen:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Erzeuge eine Countdown-Funktion</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  function create_countdown( max ) {
+    var i = max+1;
+    return function() {
+      i--;
+      return i;
+    }
+  } 
+  top10 = create_countdown(10);
+  top20 = create_countdown(20);
+
+  while( i = top10() ) {
+    console.log(&quot;und auf Platz &quot; + i + &quot; .... &quot;);
+  }
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wozu werden Closures verwendet?  Eine erste Anwendung sind Eventhandler.
+Betrachten wir eine Funktion die bei  <code>addEventListener</code> oder in jQuery bei <code>on</code>
+als Eventhanlder angegeben wird:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Eventhandler wird übergeben</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  button.on(&#39;click&#39;, do_something);
+</pre></div>
+
+<p>Die Funktion kann an dieser stelle keine Argumente
+erhalten, weil sie ja nicht <strong>aufgerufen</strong> werden soll,
+sondern nur <strong>übergeben</strong> werden soll!</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Eventhandler wird aufgerufen - funktioniert nicht!</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  button.on(&#39;click&#39;, do_something(10, &#39;Hallo&#39;));
+</pre></div>
+
+<p>Hier ein größeres Beispiel: Die Schriftart der Seite soll
+mittels 3 Buttons verändert werden können.  Die Buttons und die
+dazugehörigen Eventhandler werden dynamisch erzeugt:</p>
+
+<p><a href="/images/closure-for-event-broken.html">Demo: so funktioniert es nicht</a></p>
+
+<p>Als Eventhandler kann nur eine Funktion eingesetzt werden, die schon alle
+notwendigen Parameter enthält, und keine weiteren Argumente braucht.
+Diese Funktion erzeugt man zuerst, und verwendet dabei eine Closure
+um die Parameter zu speichern:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Eventhandler ist eine Closure, enthält Argumente schon</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  function insert_button(text) {
+    return $(`&lt;button&gt;${text}&lt;/button&gt;`).insertAfter(&#39;h1&#39;);
+  }
+  
+  function makeSizer(size) {
+    return function() {
+      document.body.style.fontSize = size + &#39;px&#39;;
+    };
+  }
+
+  var b,f;
+
+  b = insert_button(&#39;Schrift 16&#39;);
+  f = makeSizer(16);
+  b.on(&#39;click&#39;, f);
+
+  b = insert_button(&#39;Schrift 14&#39;);
+  f = makeSizer(14);
+  b.on(&#39;click&#39;, f);
+
+  b = insert_button(&#39;Schrift 12&#39;);
+  f = makeSizer(12);
+  b.on(&#39;click&#39;, f);  
+</pre></div>
+
+<p><a href="/images/closure-for-event.html">Demo: so funktioniert es</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="siehe-auch">Siehe auch</h2>
+
+<ul>
+  <li><a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Closures"></a></li>
+</ul>
+
+</div>
+    <div class="slide">
+      <h1>Funktionen und Closures</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript/objekte//slide.html">Objekte + Klassen</a> | 
+        <a href="/javascript/closures/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript/module//slide.html">Module</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

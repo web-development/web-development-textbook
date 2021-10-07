@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Beispiel RSS - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Beispiel RSS</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/xml/xpath//slide.html">XPath</a> | 
+        <a href="/xml/rss/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/security//slide.html">Web Security</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>RSS ist ein Format um die Daten eines Blogs maschienenlesbar anzubieten.
+Wo bietet z.B. der Wordpress Blog <code>http://multimediatechnology.at/</code> 
+unter der URL <code>http://multimediatechnology.at/feed/</code> die gleichen Inhalte
+wie die Homepage des Blogs im RSS Format an.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="was-ist-rss">Was ist RSS?</h2>
+
+<p>RSS ist eine XML-Sprache, die Spezifikation findet sich auf <a href="http://www.rssboard.org/rss-specification">rssboard.org</a>
+Eine URL unter der man immer die aktuellen Daten im RSS Format abrufen
+kann nennt man auch einen “Feed”. Das gängige Icon dafür ist orange:</p>
+
+<p><img src="/images/feed-icon.png"  alt="RSS Feed Icon" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<div class="example">
+<h4 class="caption">Xml Code <small>Beispiel für RSS</small></h4>
+<pre class="lang-xml prettyprint linenums">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;rss version=&quot;2.0&quot;
+  xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot;&gt;
+  &lt;channel&gt;
+    &lt;title&gt;MultiMediaTechnology&lt;/title&gt;
+    &lt;link&gt;http://multimediatechnology.at&lt;/link&gt;
+    &lt;description&gt;Das Studium an der FH Salzburg&lt;/description&gt;
+    &lt;lastBuildDate&gt;Mon, 01 Apr 2013 08:36:25 +0000&lt;/lastBuildDate&gt;
+    &lt;language&gt;de-DE&lt;/language&gt;
+    &lt;generator&gt;http://wordpress.org/?v=3.5.1&lt;/generator&gt;
+    &lt;item&gt;
+      &lt;title&gt;Barcamp März 2013: mit WebGL, Redis, ...&lt;/title&gt;
+      &lt;link&gt;http://multimediatechnology.at/2013/03/23/barcamp-marz-2013-mit-webgl-redis-memcached-riac-multi-user-games/&lt;/link&gt;
+      &lt;pubDate&gt;Sat, 23 Mar 2013 13:15:52 +0000&lt;/pubDate&gt;
+      &lt;dc:creator&gt;Brigitte Jellinek&lt;/dc:creator&gt;
+      &lt;description&gt;&lt;![CDATA[&lt;p&gt;Das 5. Barcamp &amp;#8220;The Next Web&amp;#8221; im März 2013 brachte wieder an die 70 Studierende und Fachleute an der FH Salzburg zusammen. Bei Workshops, Vorträgen und einer Ausstellung gab es nicht nur viel zu lernen, sondern auch viel Gelegenheit Leute &amp;#8230;&lt;/p&gt;]]&gt;&lt;/description&gt;
+    &lt;/item&gt;
+    &lt;item&gt;
+      &lt;title&gt;Welcome Lecture Zach Liebermann&lt;/title&gt;
+      &lt;link&gt;http://multimediatechnology.at/2013/03/18/welcome-lecture-zach-liebermann/&lt;/link&gt;
+      &lt;pubDate&gt;Mon, 18 Mar 2013 10:03:24 +0000&lt;/pubDate&gt;
+      &lt;dc:creator&gt;Martin Ortner&lt;/dc:creator&gt;
+      &lt;description&gt;&lt;![CDATA[&lt;p&gt;Er ist Inbegriff des kreativen Coders: Der vielfach ausgezeichnete Medienkünstler und Creative Technologist Zach Lieberman. Ende März übernimmt er eine Gastprofessur am Studiengang MultiMediaTechnology. Für seine Zeit in Puch/Urstein plant der New Yorker gemeinsam mit Studierenden die Stadt Salzburg zur &amp;#8230;&lt;/p&gt;]]&gt;&lt;/description&gt;
+    &lt;/item&gt;
+  &lt;/channel&gt;
+&lt;/rss&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="darstellung-von-rss">Darstellung von RSS</h2>
+
+</div>
+<div class="slide">
+
+<h3 id="im-browser">im Browser</h3>
+
+<p>In Firefox werden RSS-Dateien nicht als Code, sondern bereits mit
+einem Stylsheet aufbereitet angezeigt.</p>
+
+<p><img src="/images/rss-in-firefox.png"  alt="Darstellung von RSS in Firefox" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Ebenso in Chrome:</p>
+
+<p><img src="/images/rss-in-chrome.png"  alt="Darstellung von RSS in Chrome" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="im-online-feed-reader">im Online Feed Reader</h3>
+
+<p>Der meist benutzte Feed Reader war <a href="http://www.google.de/reader/view/">Google Reader</a>, er wird im Jahr 2013 eingestellt:</p>
+
+<p><img src="/images/rss-in-google-reader.png"  alt="Darstellung von RSS in Google Reader" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p><a href="http://www.netvibes.com/">Netvibes</a> stellt verschiedene Feeds auf einer Art Desktop dar:</p>
+
+<p><img src="/images/rss-netvibes.png"  alt="Darstellung von RSS in Netvibes" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p><a href="http://www.feedly.com/">Feedly</a> stellt Feeds in einer Art Online-Magazin dar:</p>
+
+<p><img src="/images/rss-feedly.png"  alt="Darstellung von RSS in Feedly" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="bedeutung-von-rss">Bedeutung von RSS</h2>
+
+<p>Anfang der 2000er waren einzelne Blogs eine wichtige Informationsquelle
+im Internet. Es gab noch keine sozialen Netzwerke wie Facebook.  Ein Feed Reader
+war damals die beste Möglichkeit viele Blogs zu lesen.</p>
+
+<p>Mit dem Aufkommen der Sozialen Netzwerke wurden die vielen einzelnen Daten-Quellen
+durch große, in sich abgeschlossene Daten-Silos abgelöst. Auf der anderen
+Seite kam mit Twitter eine schnellere Alternative zu Blogs hinzu.</p>
+
+<p>Mit dem PubSubHubbub Protokoll gibt es seit ca. 2009 die Möglichkeit
+Feeds von “Pull” auf “Push” umzustellen, und damit fast in Echtzeit über
+neue Daten informiert zu werden. <a href="http://en.wikipedia.org/wiki/PubSubHubbub">→ PubSubHubbub</a></p>
+</div>
+    <div class="slide">
+      <h1>Beispiel RSS</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/xml/xpath//slide.html">XPath</a> | 
+        <a href="/xml/rss/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/security//slide.html">Web Security</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

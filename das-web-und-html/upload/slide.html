@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Upload und Tools - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Upload und Tools</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/das-web-und-html/html-grundkurs//slide.html">HTML Grundkurs</a> | 
+        <a href="/das-web-und-html/upload/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css//slide.html">CSS - Einstieg</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Der HTML-Code ist fertig, aber damit ist die Arbeit noch lange nicht vorbei.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="validator">Validator</h2>
+
+<!-- XE "Validator" -->
+<p>Um Fehler im HTML-Code zu finden reicht ein Webbrowser nicht aus. Wie oben beschrieben 
+sind Webbrowser sehr tolerant, was kaputten Code  <!-- XE "Code" -->   betrifft.
+Für eine strenge Prüfung  <!-- XE "Prüfung:von HTML Code" --> <br />
+des HTML-Codes kann man den Validator des W3C verwenden:</p>
+
+<p><a href="http://validator.w3.org/">http://validator.w3.org/</a></p>
+
+<p><img src="/images/das-web-und-html/w3-validator.png" srcset="/images/das-web-und-html/w3-validator.png 1x, /images/das-web-und-html/w3-validator-error.png 1x, /images/das-web-und-html/w3-validator-ok.png 1x"  alt="Abbildung 11:  Der HTML-Validator des World Wide Web Consortiums" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Die Fehlermeldungen des Validators muss man sorgfältig lesen, von oben nach unten 
+durcharbeiten und reparieren. Mit etwas Glück repariert man das erste Problem und viele 
+Folge-Fehler fallen damit auch weg.</p>
+
+<p><img src="/images/das-web-und-html/w3-validator-error.png"  alt="Abbildung 12:  Fehlermeldung des Validators" ></p>
+
+<p>Die Fehlermeldung in Abbildung 12 geht auf einen Tippfehler zurück: der schließende Tag 
+wurde falsch geschreiben.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wenn der Code dem HTML-Standard entspricht erscheint eine 
+Erfolgsmeldung:</p>
+
+<p><img src="/images/das-web-und-html/w3-validator-ok.png"  alt="Abbildung 13:   Erfolgsmeldung des Validators" ></p>
+
+<p>Bei der Verwendung von HTML5 erscheint aber immer noch ein Warning, dass
+der Validator experimentell sei. Das kann man ignorieren.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="upload">Upload</h2>
+
+<!-- XE "Upload" -->
+<p>Die fertige Webseite muss auf einem Webserver veröffentlicht werden. In der FH Salzburg steht Ihnen 
+dafür der  Webserver users.multimediatechnology.at zur Verfügung. 
+Um die Daten vom eigenen Computer auf den Webserver zu laden gibt es verschiedene 
+Methoden, die wichtigsten sind FTP,  <!-- XE "FTP" -->   WebDAV,  <!-- XE "WebDAV" -->  SFTP.</p>
+
+<p>Bei jeder Upload-Methode brauchen Sie folgende Informationen: den Namen des Servers, Usernamen, 
+Passwort, in welchen Ordner Sie die Daten speichern, unter welcher URL die Daten im Web 
+sichtbar sind.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Ein hypothetisches Beispiel: Auf dem Server meinhoster.at ist auch ihre
+Domain meinefirma.at untergebracht. Die Konfiguration ist wahrscheinlich so ähnlich:</p>
+
+<ul>
+  <li>Name des SFTP- Servers: meinhoster.at</li>
+  <li>Port für SFTP 4711</li>
+  <li>Username + Passwort</li>
+  <li>Ordner bei Upload public_html/</li>
+  <li>URL http://meinefirma.at</li>
+</ul>
+
+</div>
+<div class="slide">
+
+
+
+<p>Ein paar Programme zum Upload:</p>
+
+<ul>
+  <li><a href="https://addons.mozilla.org/en-US/firefox/addon/fireftp/">FireFTP</a>,  <!-- XE "FireFTP" -->    <!-- XE "Firefox AddOn:FireFTP" -->  ein AddOn von Firefox, Windows und Mac.</li>
+  <li><a href="http://winscp.net">Secure File Transfer Client</a>  <!-- XE "Secure File Transfer Client" -->  : nur für SFTP, nur auf Windows.</li>
+  <li><a href="https://www.jetbrains.com/help/phpstorm/2016.2/working-with-web-servers-copying-files.html">PHPStorm</a>  <!-- XE "PHPStorm" -->  :  Upload ist nach der Definition einer „Server Access Configuration“ möglich, auf Windows und Mac.</li>
+</ul>
+
+</div>
+<div class="slide">
+
+
+
+<p>Achten Sie beim Upload darauf, dass die Ordnerstruktur   und die relative 
+Position der Dateien beibehalten wird; nur dann funktionieren die relativen
+Links!</p>
+
+<p>PHPStorm und FireFTP bieten Hilfe beim Erhalt der Struktur. Sie können
+im linken Teil des Fensters eine Datei auswählen, und durch klicken des
+Buttons mit dem Pfeil nach rechts in den richtigen Ordner hochladen.</p>
+
+<p>Mit Drag-and-Drop kann man es aber auch schaffen, die Datei in den falschen
+Ordner hochzuladen. Dann funktionieren die relativen Links nicht mehr.</p>
+
+<p><img src="/images/das-web-und-html/upload-falsch.png" srcset="/images/das-web-und-html/upload-falsch.png 1x, /images/das-web-und-html/upload-falsch@3x.png 3x, /images/das-web-und-html/upload-falsch@2x.png 2x"  alt="Upload einer Datei in den falschen Ordner" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Bevor Sie mit PHPStorm ihre Site hochladen können müssen Sie unter
+Tools → Deployment → Configuration die richtige Konfiguration eintragen:</p>
+
+<p><img src="/images/das-web-und-html/phpstorm-upload-config.png"  alt="Bearbeiten der Deployment-Konfiguration in PHPStrom" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Die anderen erwähnten Programme funktionieren sehr ähnlich, bieten aber etwas
+weniger Automatik.</p>
+
+<p>Immer gilt: mit dem Browser nachprüfen, ob die Webseite nach dem Upload
+wirklich unter der richtigen URL erreichbar ist.</p>
+
+</div>
+    <div class="slide">
+      <h1>Upload und Tools</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/das-web-und-html/html-grundkurs//slide.html">HTML Grundkurs</a> | 
+        <a href="/das-web-und-html/upload/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css//slide.html">CSS - Einstieg</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

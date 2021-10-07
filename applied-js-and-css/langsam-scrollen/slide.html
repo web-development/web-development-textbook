@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Langsam Scrollen - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Langsam Scrollen</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/applied-js-and-css/header//slide.html">Fixe Kopfzeile mit Animation</a> | 
+        <a href="/applied-js-and-css/langsam-scrollen/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/applied-js-and-css/landkarte//slide.html">Landkarte</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Das Ziel dieser Übung ist: Wenn ein “interner” Link, ein Link zu einer Textmarke
+in derselben Seite, angeklickt wird, dann soll das Fenster
+langsam zur Zielposition scrollen, so dass man besser nachvollziehen kann
+dass der Link innerhalb der Seite erfolgte.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="interne-links-mit-hash">Interne Links mit Hash</h2>
+
+<p>Links innerhalb einer Seite können auf jede <code>id</code> in der Seite verweisen.
+In folgendem Beispiel verweist der dritte Link im Navigationsmenü
+auf die <code>&lt;section&gt;</code> mit der id <code>order</code>:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Navigationsmenü mit internen Links</small></h4>
+<pre class="lang-html prettyprint linenums">
+    &lt;nav&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&quot;#hero&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#menu&quot;&gt;Speisekarte&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#order&quot;&gt;Online Bestellen&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#guest&quot;&gt;Gästebuch&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#newsletter&quot;&gt;Newsletter&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&quot;#contact&quot;&gt;Kontakt&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/nav&gt;
+    ....
+    &lt;section id=&quot;order&quot;&gt;
+    ....
+    &lt;footer id=&quot;contact&quot;&gt;
+</pre></div>
+
+<p>Wird so ein interner Link angeklick, erfolgt die neue Darstellung der
+Seite blitzschnell. Es ist schwer zu erkennen, dass man sich nun nicht
+auf einer neuen, anderern Seite befindet, sondern einfach nur weiter
+unten auf derselben Seite.</p>
+
+<p>Die Lösung: langsam scrollen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="mit-css-scroll-behaviour">Mit CSS: scroll-behaviour</h2>
+
+<p>Seit Jänner 2020 
+<a href="https://caniuse.com/#feat=css-scroll-behavior">unterstützt auch Edge</a>
+die css property
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior">scroll-behaviour</a>:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+html {
+  scroll-behavior: smooth;
+}
+</pre></div>
+
+<p>Damit ist die Aufgabe erledigt.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="mit-javascript">Mit Javascript</h2>
+
+<p>Diese Erklärung ist nicht mehr nötig, die Lösung mit CSS ist besser.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="normalen-link-verhindern">Normalen Link verhindern</h3>
+
+<p>Als ersten Schritt setzen wir einen EventListener
+um das <code>click</code> event
+abzufangen, und mit <code>preventDefault</code> das “normale” Verhalten des Links zu
+unterbinden.</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+// let l = .... ein link in der Seite ...
+l.addEventListener(&#39;click&#39;, scroll_to_link);
+function scroll_to_link(ev) {
+  console.log(`link geclickt. wird ignoriert!`);
+  ev.preventDefault();
+}
+</pre></div>
+
+<p>Damit sind die Links erst mal kaputt:
+Im Event-Handler ist die Variable <code>this</code> gesetzt: sie verweist
+auf das angeklickte Element der Webseite. In diesem Fall ist das
+immer ein <code>a</code>-Tag. Mit der Methode <code>href</code> könnte man die vollständige
+URL auslesen, auf die der Link verweist. Wir sind aber nur am letzten
+Teil der URL interessiert. Den kann man mit der Methode <code>hash</code> auslesen:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+let hash = this.hash; // z.B. &#39;#order&#39;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="zum-element-hin-scrollen">Zum Element hin Scrollen</h3>
+
+<p>Die DOM-Methode <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView">scrollIntoView</a>
+erledigt das eigentliche Scrollen zum Element hin.</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+document.querySelector(hash).scrollIntoView({ behavior: &quot;smooth&quot; });
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="kompatibilitt">Kompatibilität</h3>
+
+<p>Die Funktion scrollIntoView wird nicht von allen Browsern implementiert.
+Woher kann ich das wissen? Wie kann man damit umgehen?</p>
+
+<p>Ein guter Startpunkt für diese Fragen ist die Webseite “can i use”. Hier kann
+man für verschiedene HTML, CSS, JavaScript Features nachlesen welche
+Browser dieses Feature unterstützen. In diesem Fall unter <a href="https://caniuse.com/#search=scrollintoview">https://caniuse.com/#search=scrollintoview</a>.</p>
+
+<p>Bei caniuse lernen wir: die Option “smooth” ist in Safari
+und IE nicht implementiert. Unter dem Tab “Resourcse” liefert die Seite
+auch gleich eine Lösung: Ein <a href="http://iamdustan.com/smoothscroll/">polyfill</a> - eine Javascript Libary
+die die fehlende Funktionalität implementiert: <a href="http://iamdustan.com/smoothscroll/">smooth scroll behavior polyfill</a>.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="der-browser-funktioniert-nicht-mehr">Der Browser funktioniert nicht mehr</h3>
+
+<p>Da wir mit <code>event.preventDefault</code> die “normale” Behandlung des Links verhindert
+haben, wird auch die URL nicht mehr korrekt gesetzt und im Browser angezeigt.</p>
+
+<p>Das heisst wenn ich den Link zum Gästebuch anklicke, dann zeigt der Browser
+danach nicht korrekt <code>http://users.multimediatechnology.at/~fhs0000/pizza/#guest</code> an,
+sondern weiterhin die URL <code>http://users.multimediatechnology.at/~fhs0000/pizza/</code>.</p>
+
+<p>Ohne Korrekte URL funktioniert die Navigation nicht wie erwartet:</p>
+
+<p>z.B. Lisa liest einen Eintrag im Gästebuch, findet ihn witzig, und schickt den
+Link weiter an Bart. Wenn Bart die URL verwendet, landet er aber ganz oben auf
+der Seite, und versteht nicht was Lisa so witzig findet.</p>
+
+<p>z.B. Homer betrachtet gerade seinen Kontostand im Online-Banking und ist deprimiert.
+Um seine Laune zu heben will er eine Pizza bestellen, und tippt die URL der Pizzaria ein.
+Im Navigationsmenü klickt auf “Speisekarte”, sucht sich eine Pizza aus, und klickt danach auf “Online Bestellen”.
+Er hat aber schon wieder vergessen welche Pizza er wollte, und verwendet den “Zurück”-Button des Browsers
+um zur Speisekarte zurück zu gehen. Statt dessen landet er aber wieder im Online-Banking.
+Denn für den “Zurück”-Button zählt eine Seite nur, wenn sie eine eigene URL hat. Da die Klicks
+im Navigationsmenü der Pizzaria-Seite die URL nicht verändert haben zählen sie nicht.</p>
+
+<p>Wenn wir die erwartete Funktionsweise des Browsers wiederherstellen wollen,
+müssen wir die korrekte URL setzen.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="korrekte-url-setzen">Korrekte URL setzen</h3>
+
+<p>Welche Seiten in welcher Reihenfolge angesurft wurden ist im Browser gespeichert,
+und in Javascript durch das <code>window.history</code> Objekt dargestellt. Auf dieses
+Objekt hat man aber nicht vollen Zugriff: sonst könnte ja jede Webseite
+die BesucherInnen ausspionieren und herausfinden wo sie vorher waren.</p>
+
+<p>Einige wenige <a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API">Manipulationen</a>
+des History Objekts sind erlaubt: mit den Methoden <code>back()</code>, <code>forward()</code> und <code>go()</code> kann
+man von Javascript aus die “Vorwärts” und “Zurück” Buttons bedienen.</p>
+
+<p>Mit <code>pushState()</code> und <code>replaceState()</code> kann man der History einen neuen Eintrag
+hinzufügen. Ganz so, als würde eine neue Seite geladen. Aber: es wird nicht wirklich
+eine neue Seite geladen, das HTML-Dokument und der Zustand des Javascript-Programmes
+bleiben genau gleich. Alle Variablen enthalte dieselben Werte, alle Funktionen sind noch definiert.</p>
+
+<p>Für unser Beispiel brauchen wir nur das dritte Argument von <code>pushState</code>: die neue URL
+die angezeigt werden soll. Es reicht eine relative URL, in unserem Fall nur das Hash-Zeichen
+und die id.</p>
+
+<p>Das erste Argument von pushState muss ein Objekt sein (es reicht ein leeres Objekt),
+das zweite Argument muss ein String sein (es reicht ein leerer String), das dritte
+Argument ist die relative URL:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+window.history.pushState({}, &quot;&quot;, hash);
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="fertig">Fertig</h3>
+
+<p>Wenn wir alles richtig programmiert haben funktioniert nun das Navigations-Menü
+wieder: bei klick wird langsam zum entsprechenden Teil der seite gescrollt, und die URLs
+ändern sich.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="mehr">Mehr</h2>
+
+<ul>
+  <li>A.Ricaud <a href="https://calendar.perfplanet.com/2020/html-and-css-techniques-to-reduce-your-javascript/">HTML and CSS techniques to reduce your JavaScript</a> im <a href="https://calendar.perfplanet.com/2020/">Web Performance (Advent) Calendar 2020</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Langsam Scrollen</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/applied-js-and-css/header//slide.html">Fixe Kopfzeile mit Animation</a> | 
+        <a href="/applied-js-and-css/langsam-scrollen/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/applied-js-and-css/landkarte//slide.html">Landkarte</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>HTML+CSS für Grafik - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>HTML+CSS für Grafik</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/grafik//slide.html">Grafik im Browser</a> | 
+        <a href="/grafik/cssgrafik/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/grafik/images//slide.html">Pixel-Bilder</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<div style="width: 100px; height: 100px; background: red; -moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px; color: red; margin: 10px 0px"></div>
+
+<p>Mit HTML und CSS kann man grafisch arbeiten, sogar in 3d.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="rechtecke-und-balkengrafik">Rechtecke und Balkengrafik</h2>
+
+<p>Block-Bildende Tags in HTML werden als Rechtecke dargestellt. Das
+alleine reicht schon aus um z.B. eine einfache Balkengrafik zu gestalten.</p>
+
+<p>Im Artikel <a href="http://alistapart.com/article/accessibledatavisualization">Accessible Data Visualization with Web Standards</a>
+beschreibt Wilson Miner die Entwicklung solch einer Grafik:</p>
+
+<p><img src="/images/balken.png" srcset="/images/balken@2x.png 2x, /images/balken.png 1x"  alt="Screenshot der Balkengrafik" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="css-und-formen">CSS und Formen</h2>
+
+<p>Mit etwas CSS kann man von den Rechtecken zu anderen Formen gelangen.
+Auf der Webseite <a href="https://css-tricks.com/examples/ShapesOfCSS/">CSS Tricks: The Shapes of CSS</a> beschreibt
+Chris Coyier wie man mit <code>border-radius</code> und transparenten rahmen
+Kreise, Ellipsen, Dreiecke und so weiter bauen kann:</p>
+
+<p><img src="/images/dreieck.png" srcset="/images/dreieck.png 1x, /images/dreieck@2x.png 2x"  alt="Bild der Dreiecks" ></p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+#triangle-up { 
+   width: 0; height: 0; 
+   border-left: 50px solid transparent; 
+   border-right: 50px solid transparent; 
+   border-bottom: 100px solid red; 
+} 
+</pre></div>
+
+<p>An einem Standard für CSS Shapes wird gearbeitet, es gibt aber noch
+keine Implementierungen, siehe <a href="https://drafts.csswg.org/css-shapes/">Draft: CSS Shapes</a>.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="perspektive">Perspektive</h2>
+
+<p>Seit 2013 liegt der Standard für CSS Transforms vor, er
+ist aber immer noch ein “Draft”. In den Browsern sind <a href="http://caniuse.com/#search=perspective">3D Transforms aber längst implementiert</a></p>
+
+<p><img src="/images/weather-app-transition.jpg"  alt="Bild" ></p>
+
+<p>Von David DeSandro gibt es ein ausführliches <a href="http://desandro.github.io/3dtransforms/">Tutorial</a> dazu.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="resume">Resume</h2>
+
+<p>Im Zweifelsfall sollten Sie immer die einfachste technische Lösung
+für ihr Problem wählen. Bei Grafik kann das ganz oft einfaches HTML + CSS sein.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="siehe-auch">Siehe auch</h2>
+
+<ul>
+  <li><a href="https://tobiasahlin.com/moving-letters/">Animation mit CSS</a> von Tobias Ahlin</li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>HTML+CSS für Grafik</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/grafik//slide.html">Grafik im Browser</a> | 
+        <a href="/grafik/cssgrafik/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/grafik/images//slide.html">Pixel-Bilder</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

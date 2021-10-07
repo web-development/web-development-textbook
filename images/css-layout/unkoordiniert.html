@@ -1,0 +1,46 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Demo Seite für eine nicht gelungen Mischung von absolut und inline Positionierung</title>
+  <style>
+  body {
+    margin:0;
+  }
+  section {
+    border: 1px transparent solid;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 10px;
+    background-color: #ddd;
+  }
+
+  nav {
+    background-color: rgba(255,0,0,0.2);
+    position: absolute;
+    width: 220px;
+    top: 0px;
+    left: 0px;
+  }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="/css-layout/rahmenbedingungen/">Rahmenbedingungen</a></li>
+      <li><a href="/css-layout/layout/">CSS für Layout</a></li>
+      <li><b><a href="/css-layout/details/">Details zu Layout</a></b></li>
+      <li><a href="/css-layout/navigation/">Navigationsmenü</a></li>
+      <li><a href="/css-layout/responsive/">Responsive Design</a></li>
+      <li><a href="/css-layout/interaktion/">CSS für Interaktion</a></li>
+      <li><a href="/css-layout/selektoren/">CSS Selektoren im Detail</a></li>
+    </ul>
+  </nav>
+  <section>
+    <h1>Inhalt der Seite</h1>
+    <p>Der Inhalt befindet sich in einer
+      <kbd>section</kbd> die auf der Seite zentriert ist. Wenn man also die Breite des Browserfensters ändert, dann bewegt sich der zentrierte Teil, der Abstand zum linken Rand verändert sich. </p>
+  </section>
+</body>
+
+</html>

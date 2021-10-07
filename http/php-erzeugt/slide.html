@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>PHP erzeugt nicht nur HTML - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>PHP erzeugt nicht nur HTML</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/http/anwendungsbeispiele//slide.html">Beispiele</a> | 
+        <a href="/http/php-erzeugt/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-vorbereitung//slide.html">Vorbereitungen für PHP</a>
+        
+      </p>
+    </div>
+    <div class="slide"><p>Ein PHP-Programm gibt normalerweise HTML aus. Entsprechend liefert 
+der PHP-Interpreter einen http-Header  <code>Content-Type: text/html</code>. 
+Mit dem Befehl <code>header()</code> kann dies verändert werden.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="php-erzeugt-css">PHP erzeugt CSS</h2>
+<p>Eine externes Stylesheet kann auch Output eines PHP-Programmes sein:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>referenziert ein Stylesheet das von PHP erzeugt wird</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;style.php&quot;&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Überschrift&lt;/h1&gt;
+    &lt;p&gt;text text text&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+
+<p>Ein Stylesheet, das von PHP aus erzeugt wird, hat den Vorteil, dass man Variablen verwenden kann, z.B. für die Definition von Farben, die mehrmals im Stylesheet verwendet werden sollen. In folgendem Beispiel wird einfach das ganze Stylesheet mit einem echo ausgegeben:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>PHP erzeugt CSS</small></h4>
+<pre class="lang-php prettyprint linenums">
+  &lt;?php
+      $blau = &quot;rgb(0,0,255)&quot;;
+  echo &quot;
+  body { padding: 3em; }
+  h1 {   color: $blau; }
+  .box {
+      background-color: $blau;
+  }
+  &quot;;
+  ?&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Für mehrzeilige Strings gibt es in PHP eine alternative Schreibweise, die hier sehr praktisch wäre:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>PHP erzeugt CSS, mit HEREDoc</small></h4>
+<pre class="lang-php prettyprint linenums">
+&lt;?php
+    $blau = &quot;rgb(0,0,255)&quot;;
+echo &lt;&lt;&lt;ENDE
+  body { padding: 3em; }
+  h1 {   color: $blau; }
+  .box {
+      background-color: $blau;
+  }
+ENDE;
+?&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="php-erzeugt-bild">PHP erzeugt Bild</h2>
+<p>Das PHP-Programm kann auch Bilddaten ausgeben, diese können dann auf die bekannten Arten im Web verwendet werden:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Dieses HTML-Dokument referenziert ein Hintergrundbild das von PHP erzeugt wird</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;style&gt;
+      body {
+          margin-left: 120px;
+          background-image: url(drawbackground.php);
+          background-repeat: repeat-y;
+      }
+    &lt;/style&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Zufalls-Hintergrund&lt;/h1&gt;
+    &lt;p&gt;Das verwendete Hintergrundbild wurde von PHP erzeugt:&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;drawbackground.php&quot; /&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Welches Bildformat verwendet wird (jpg, gif, png, …) wird wieder über den http-Header Content-Type angekündigt. Die Befehle zur Bild-Erzeugung in Manipulation sind unter dem Stichwort „Image Funktions“ in der PHP-Doku zu finden.</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>PHP erzeugt PNG</small></h4>
+<pre class="lang-php prettyprint linenums">
+&lt;?php  // Waagrechte Linien zufälliger Länge
+    header(&quot;Content-type: image/png&quot;);
+
+    $max = 100;  // maximale Breite des Bildes
+    $im = imagecreate($max, 100);
+    $background_color = imagecolorallocate($im, 255, 255, 255);
+    $drawing_color    = imagecolorallocate($im, 255, 0, 255);
+
+    imagefill($im, 0, 0, $background_color);
+    $y=0;
+    while( $y &lt; 100 ) {
+        $x = rand(0,$max);
+        imageline($im, 0, $y, $x, $y, $drawing_color);
+        $y=$y+2;
+    }
+    
+    imagepng($im);  // gibt das Bild aus
+    imagedestroy($im);
+?&gt; 
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="php-erzeugt-variablen-fr-flash">PHP erzeugt Variablen für Flash</h2>
+
+<p>Wenn PHP als „Backend“ für Flash verwendet wird kommt eine sehr einfache Form der Ausgabe zum Einsatz:  die Variablennamen und Werte werden wie für eine URL encodiert und ausgegeben. So könnte der Output eines Counters so aussehen:</p>
+
+<pre><code>count=25856&amp;date=2.Mai+2014&amp;time=10:15
+</code></pre>
+
+<p>Unter dem Stichwort „URL Funktionen“ finden Sie in der PHP-Doku die Funktion <code>http_build_query()</code> die hier weiterhilft.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="php-erzeugt-xml">PHP erzeugt XML</h2>
+
+<p>Bei der Zusammenarbeit mit Flash kommt auch XML zum Einsatz. Dies ist notwendig wenn komplexe Datenstrukturen übertragen werden sollen. Für eine Flash-Bildergalerie, die alle Bild-Dateien am Server darstellen soll, muss man zum Beispiel die Liste der Bilder übertragen:</p>
+
+<pre><code>  &lt;bilder&gt;
+          &lt;bild imageurl="img/DSC_3461.jpg" /&gt;
+          &lt;bild imageurl="img/DSC_3462.jpg" /&gt;
+  &lt;/bilder&gt;
+</code></pre>
+
+<p>Das PHP-Programm dazu könnte so aussehen:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>PHP erzeugt XML</small></h4>
+<pre class="lang-php prettyprint linenums">
+&lt;?php
+   header(&quot;Content-Type: application/xml&quot;);
+
+   $bilder = glob(&quot;*.jpg&quot;);
+   
+   echo(&quot;&lt;bilder&gt;\n&quot;);
+   foreach( $bilder as $bild ) {
+     echo(&quot;&lt;bild imgurl=&#39;$bild&#39; /&gt;\n&quot;);
+   }
+   echo(&quot;&lt;/bilder&gt;\n&quot;);
+?&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="php-leitet-weiter">PHP leitet weiter</h2>
+<p>Ein PHP-Programm kann den Browser zu einer anderen URL weiterleiten. So kann zum Beispiel die Verarbeitung einer Bestellung (im ersten PHP-Programm) von der Darstellung des Bestellstatus (im zweiten PHP-Programm) getrennt werden:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>PHP Redirect</small></h4>
+<pre class="lang-php prettyprint linenums">
+&lt;?php
+    // hier passieren wichtige Dinge ...
+    header(&quot;Location: bestell_status.php&quot;);
+    exit; /* fertig, nichts weiter ausgeben! */ 
+?&gt; 
+</pre></div>
+
+</div>
+    <div class="slide">
+      <h1>PHP erzeugt nicht nur HTML</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/http/anwendungsbeispiele//slide.html">Beispiele</a> | 
+        <a href="/http/php-erzeugt/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-vorbereitung//slide.html">Vorbereitungen für PHP</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

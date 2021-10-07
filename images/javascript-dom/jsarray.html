@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <h1>Array b</h1>
+    <script>
+      var b;
+      b = ["eins", 2, 3.141, true];           // JSON-Schreibweise
+      b = new Array("eins", 2, 3.141, true);  // Objekt-Schreibweise
+      // typeof(b) == "object"
+      var i,t; 
+      i = 0; 
+      t = "Das Array:\n";
+      while( i < b.length ) {
+      t += "Index " + i    + ", ";
+      t += "Wert  " + b[i] + "\n";
+      i++;
+      }   
+      alert(t); 
+    </script>
+  </body>
+</html>

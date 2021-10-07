@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>2d Canvas - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>2d Canvas</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/grafik/svg//slide.html">SVG - Vektor Grafik</a> | 
+        <a href="/grafik/2dcanvas/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/grafik/3dcanvas//slide.html">3d Canvas</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Der <code>canvas</code> Tag kann auf zwei Arten verwendet werden: für 2d und 3d Grafik.
+Als 2d Grafik ist der Canvas einfach ein Rechteck aus Pixeln, auf das
+man mit Javascript zeichnen kann, und in das man Pixel-Bilder hineinkopieren kann:</p>
+
+<p><img src="/images/canvas.png"  alt="Bild" ></p>
+
+<p>Das Koordinatensystem des Canvas beginnt links oben. Es wird der “Painters Algorithm”
+verwendet: später gezeichnets übermalt früher gezeichnetes. Egal ob Text, Linie,
+Bild, alles wird in einzelne Pixel verwandelt. Man kann später nicht mehr identifizieren
+welches Pixel vom Text, oder welches vom Bild stammt.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="canvas-und-javascript">Canvas und Javascript</h3>
+
+<p>Um den Canvas zu nutzen braucht es immer zwei Schritte:
+erst die DOM-Node des Canvas finden, dann den 2d-Kontext dieses
+Canvas:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+const w = 770, h = 50;
+const my_canvas = document.getElementById(&quot;c&quot;);
+const my_context = my_canvas.getContext(&quot;2d&quot;);
+
+my_canvas.width = w;
+my_canvas.height = h;
+draw(my_context);
+</pre></div>
+
+<p>Darstellung im Browser (nicht optimal bei hohen Auflösungen):</p>
+
+<canvas id="c1" style="width:770px; height: 50px"></canvas>
+
+</div>
+<div class="slide">
+
+
+
+<p>Achtung: auf Geräten mit besonder hoher Auflösung erscheinen die Canvas-Zeichnungen unscharf. Die folgenden Screenshots zeigen den Effekt vergrößert:</p>
+
+<p><img src="/images/grafik/canvas-retina-vergleich.png"  alt="Vergleich Canvas mit korrekten einstellungen für retina displays mit default darstellung" ></p>
+
+<p>Um eine optimale Darstellung zu erreichen ist mehr Code notwendig.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Zur Erinnerung: wir rechnen in Webseite meist in virtuellen Pixeln. Wenn wir die Breite des Canvas auf 770 einstellen sind das virtuelle Pixel.</p>
+
+<p>Im einfachen Fall setzt der Browser diese virtuellen Pixel 1:1 in physikalische Pixel um. Dann spricht man von einer <code>devicePixelRatio</code> von 1.</p>
+
+<p>Auf Geräten mit besonders hoher Auflösung verwendet der Browser zum Beispiel eine <code>devicePixelRatio</code> von 2. Aus den 770 Pixel Breite werden also 1540 Pixel. Als Koordinatensystem im canvas werden
+aber weiterhin die virtuellen Pixel verwendet. X-Koordinaten größer als 770 werden nicht mehr angezeigt.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Um die höhere Auflösung optimal zu nutzen sind vier Schritte notwendig:</p>
+
+<ul>
+  <li>Verhältnis (virtuelle zu reale) Pixel aus <code>window.devicePixelRatio</code> auslesen</li>
+  <li><code>scale</code> des Kontexts auf diesen Wert setzen (aber erst nach den folgenden beiden Schritten)</li>
+  <li><code>width</code> und <code>height</code> des Canvas auf die physikalische (größere) Pixelzahl setzen</li>
+  <li><code>width</code> und <code>height</code> des Canvas Style auf die virtuelle (kleinere) Pixelzahl setzen, mit ‘px’</li>
+</ul>
+
+<p>Achtung: beim Style erfolgt die Angabe mit Größeneinheit, also mit <code>px</code>, bei allen anderen Eigenschaften als reine Zahl!</p>
+
+<p>Darstellung im Browser (optimal):</p>
+
+<canvas id="c2" style="width:770px; height: 50px"></canvas>
+
+</div>
+<div class="slide">
+
+
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+const w = 770, h = 50;
+const my_canvas = document.getElementById(&quot;c&quot;);
+const my_context = my_canvas.getContext(&quot;2d&quot;);
+
+let ratio = window.devicePixelRatio;
+my_context.scale(ratio, ratio);
+
+my*canvas.width = w * ratio;
+my*canvas.height = h * ratio;
+
+my_canvas.style.width = `${w}px`;
+my_canvas.style.height = `${h}px`;
+
+draw(my_context);
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="text-setzen">Text setzen</h3>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+my_context.font = &quot;bold 12px sans-serif&quot;;
+my_context.fillText(&quot;hier bin ich&quot;, 30, 50);
+</pre></div>
+
+<canvas id="c3" style="width:770px; height: 50px"></canvas>
+
+</div>
+<div class="slide">
+
+<h3 id="linien-zeichnen">Linien Zeichnen</h3>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+my_context.moveTo(0, 0);
+my_context.lineTo(50, 50);
+my_context.lineTo(100, 0);
+my_context.lineTo(150, 50);
+// ...
+my_context.stroke();
+</pre></div>
+
+<canvas id="c4" style="width:770px; height: 50px"></canvas>
+
+</div>
+<div class="slide">
+
+<h3 id="bild-kopieren">Bild kopieren</h3>
+
+<p>Achtung: das Laden des Originalbildes dauert lange. Wenn der Kopierbefehl <code>drawImage</code> zu früh durchgeführt wird ist das Bild noch nicht geladen und das leere Bild wird kopiert. Deswegen starten wir den Kopierbefehl erst beim <code>load</code> Event des Bildes.</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+let canvas = document.getElementById(&quot;e&quot;);
+let context = canvas.getContext(&quot;2d&quot;);
+let image = document.getElementById(&quot;the_img_tag&quot;);
+image.addEventListener(&#39;load&#39;, function(){
+  context.drawImage(image, 0, 0);
+});
+the_img.src = &quot;/images/grafik/dolly.jpg&quot;;
+</pre></div>
+
+<p><img id="the_img_tag" /></p>
+
+<p>Bild von Dolly dem Klon-Schaf - Photograf <a href="https://www.flickr.com/photos/12793495@N05/3233344867/">Toni Barros</a>.</p>
+
+<canvas id="c5" style="width:770px; height: 50px"></canvas>
+
+</div>
+<div class="slide">
+
+<h2 id="referenz">Referenz</h2>
+
+<p>Tutorials</p>
+
+<ul>
+  <li><a href="http://diveintohtml5.info/canvas.html">Dive into Canvas</a></li>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Using_images">MDN Canvas Tutorial</a></li>
+  <li><a href="https://www.html5canvastutorials.com/">even more canvas tutorials</a></li>
+</ul>
+
+<p>Aufbauend auf den Canvas gibt es viele Libraries, z.B:</p>
+
+<ul>
+  <li><a href="http://jdan.github.io/isomer/">Library Isomer</a></li>
+  <li><a href="http://phaser.io/">Phaser Game Engine</a></li>
+  <li><a href="http://impactjs.com/">Impact.js</a></li>
+</ul>
+
+<p><a href="https://news.ycombinator.com/item?id=17080985">Diskussion zu HTML5 Games auf Steam</a></p>
+
+<p>Mit der <code>getUserMedia</code> API kann man von einer Webcam entweder
+Standbilder oder Video Streams übertragen. Die Kombination
+Webcam + 2d Canvas ermöglicht damit viele interessante Anwendungen.</p>
+
+<ul>
+  <li><a href="http://www.html5rocks.com/en/tutorials/getusermedia/intro/">Tutorial zu getUserMedia</a></li>
+  <li><a href="https://webcamtoy.com/">Webcamtoy</a></li>
+</ul>
+
+<script src="/images/grafik/canvas.js"></script>
+
+</div>
+    <div class="slide">
+      <h1>2d Canvas</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/grafik/svg//slide.html">SVG - Vektor Grafik</a> | 
+        <a href="/grafik/2dcanvas/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/grafik/3dcanvas//slide.html">3d Canvas</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

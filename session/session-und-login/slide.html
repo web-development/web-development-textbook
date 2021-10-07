@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Session und Login - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Session und Login</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/session/cookies//slide.html">Cookies</a> | 
+        <a href="/session/session-und-login/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-schreiben//slide.html">Schreiben in die Datenbank</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>HTTP ist “statelesse” - jeder HTTP Request ist ein isoliertes Ereignis, der
+Server kann nicht erkennen ob Requests zusammen gehören.</p>
+
+<p><img src="/images/stateless-http.svg"  alt="HTTP als &quot;stateless protocol&quot;" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Mit der Einführung von Cookies, und damit von state, können
+wir nun erkennen, dass mehrere Requests zusammen gehören,
+vom selben Browser ausgelöst wurden.</p>
+
+<p><img src="/images/stateful-http-with-cookies.svg"  alt="HTTP mit cookies wird &quot;stateful&quot;" ></p>
+
+<p>Wir nennen diese Folge von Requests dann eine “Session”.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="session">Session</h2>
+<p>PHP hilft beim Erkennen und Verwenden von Sessions:</p>
+
+<p>Mit dem Befehle  <code>session_start()</code><a href="http://www.php.net/manual/de/function.session-start.php">*</a>  wird</p>
+
+<ul>
+  <li>…beim ersten Aufruf
+    <ul>
+      <li>automatisch ein Cookie gesetzt.</li>
+      <li>Wenn im Array <code>$_SESSION</code> Daten gespeichert werden, sorgt PHP dafür, dass die Daten am Server permanent gespeichert werden.</li>
+    </ul>
+  </li>
+  <li>…bei jedem weiteren Aufruf
+    <ul>
+      <li>die Session an Hand des Cookies wieder identifiziert.</li>
+      <li>und die Daten wieder ins <code>$_SESSION</code>-Array geladen.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Für unsere Applikation werden wir das <code>$_SESSION</code>-Array verwenden, um den <code>username</code> der angemeldeten Person zu speichern.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="struktur-der-applikation-mit-login">Struktur der Applikation mit Login</h3>
+
+<p>Die folgende Tabelle zeigt die Seiten der Applikation, die für
+das Login nötig sind. 
+Diesmal ist auch die Methode angegeben, da <code>login.php</code> verschiedene Aufgaben hat,
+je nachdem ob es mit GET oder POST aufgerufen wird.</p>
+
+<table class="table table-condensed table-bordered" style="width:auto">
+  <thead>
+    <tr>
+      <th>Titel</th>
+      <th>Methode</th>
+      <th>Dateiname</th>
+      <th>Parameter</th>
+      <th>Beschreibung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Login Formular</td>
+      <td>GET</td>
+      <td><code>login.php</code></td>
+      <td> </td>
+      <td>Zeigt das Formular für den Login an</td>
+    </tr>
+    <tr>
+      <td>Login</td>
+      <td>POST</td>
+      <td><code>login.php</code></td>
+      <td>username, passwort</td>
+      <td>Prüft die Daten, setzt Username in der Session, dann Redirect zu index.php</td>
+    </tr>
+    <tr>
+      <td>Logout</td>
+      <td>POST</td>
+      <td><code>logout.php</code></td>
+      <td> </td>
+      <td>Löschte Session und Session-Cookie, dann Redirect zu index.php</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+<div class="slide">
+
+<h3 id="sessionstart">session_start</h3>
+
+<p><code>session_start()</code> wird in <code>functions.php</code> ausgeführt, also bei jedem Aufruf einer der Seiten der Applikation. Die Applikation zeigt direkt in der Navigationsleiste die Login/Logout-Möglichkeit  an:</p>
+
+<p><img src="/images/session/login-logout.png"  alt="Abbildung 146: Anzeige des Usernamens und Login/Logout-Möglichkeit" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="login">Login</h3>
+
+<p>Das Login-Formular (Dateiname <code>login.php</code>) sieht ganz einfach aus und sendet die Daten mit POST wieder an <code>login.php</code>:</p>
+
+<p><img src="/images/session/login-form.png" srcset="/images/session/login-form@2x.png 2x, /images/session/login-form.png 1x"  alt="Abbildung 147: Login-Formular der Applikation" ></p>
+
+<p>Username und Passwort werden überprüft, falls Sie passen wird der Username in der Session gespeichert. Mit dem Befehl <code>header("Location: index.php")</code> wird der Browser dann automatisch an die Hauptseite weitergeleitet.</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Überprüfung von username und passwort</small></h4>
+<pre class="lang-php prettyprint linenums">
+if ( strlen($username) &gt; 0  and check_login( $username, $passwort ) ) {
+    $_SESSION[&#39;USER&#39;] = $username;
+    header(&quot;Location: index.php&quot;);
+    exit;
+}
+</pre></div>
+
+<p>Nach dem gelungen Login kann man jede beliebige Seite der Applikation aufrufen, immer wird im Array <code>$_SESSION</code> der Username gespeichert sein. So kann er z.B. in der Navigations-Leiste angezeigt werden.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="logout">Logout</h3>
+
+<p>Das Logout erfolgt ebenfalls mit der Methode POST:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+  &lt;form action=&quot;logout.php&quot; method=&quot;post&quot;&gt;
+      &lt;input type=&quot;submit&quot; value=&quot;Logout&quot; /&gt;
+  &lt;/form&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Das Logout ist etwas umständlich zu Programmieren: das Cookie, das von PHP gesetzt wurde, muß man nun selbst löschen. Dazu wird das „Ablaufdatum“ des Cookies auf ein Datum in der Vergangenheit gesetzt, dann wird der Browser es löschen.</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+// Löschen aller Session-Variablen.
+$_SESSION = array();
+
+// Löscht das Session-Cookie.
+if (isset($_COOKIE[session_name()])) {
+  setcookie(
+    session_name(),  // Cookie-Name war gleich Name der Session 
+    &#39;&#39;,             // Cookie-Daten. Achtung! Leerer String hier hilft nicht!
+    time()-42000,  // Ablaufdatum in der Vergangenheit. Erst das löscht!
+    &#39;/&#39;           // Wirkungsbereich des Cookies: der ganze Server
+   );
+}
+session_destroy();
+header(&quot;Location: index.php&quot;);
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="redirect--weiterleitung">Redirect / Weiterleitung</h3>
+
+<p>Das Setzen und Löschen der Session-Cookies dauert immer einen Request länger als gedacht! Deswegen ist eine Weiterleitung mit <code>Location:</code> sinnvoll.</p>
+
+<p>Die Weiterleitung funktioniert nur, wenn noch keine Ausgabe erfolgt ist, also vor dem Laden der header-include-Datei. Hier am Beispiel von login:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+&lt;?php
+    $pagetitle = &quot;Login&quot;;
+    include &quot;functions.php&quot;;
+
+    $username = $_POST[&#39;username&#39;];
+    $passwort = $_POST[&#39;passwort&#39;];
+
+    if ( strlen($username) &gt; 0  and check_login( $username, $passwort ) ) {
+        $_SESSION[&#39;USER&#39;] = $username;	
+        header(&quot;Location: index.php&quot;);
+        exit;
+    } 
+
+    include &quot;header.php&quot;;
+</pre></div>
+
+<p>Eine Weiterleitung nach der Behandlung eines POST-Requests ist allgemein sinnvoll.</p>
+
+<p>In diesem Beispiel wird eine funktion <code>check_login</code> aufgerufen die man
+selbst implementieren muss.  So kann man z.B. username und passwort mit Daten
+vergleichen die an verschiedenen Stellen gespeichert sein können:
+in der Datenbank, in der <code>config.php</code> Datei, in Umgebungsvariabeln.</p>
+
+<p><img src="/images/session/login-flow.svg"  alt="Abbildung 148: Login mit einer Weiterleitung" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="neue-php-befehle">Neue PHP Befehle</h3>
+
+<ul>
+  <li><code>$_SESSION()</code> <a href="http://php.net/manual/en/reserved.variables.session.php">PHP Doku</a></li>
+  <li><code>$_COOKIE()</code> <a href="http://php.net/manual/en/reserved.variables.cookies.php">PHP Doku</a></li>
+  <li><code>header()</code> <a href="http://www.php.net/manual/de/function.header.php">PHP Doku</a></li>
+  <li><code>session_name()</code> <a href="http://www.php.net/manual/de/function.session-name.php">PHP Doku</a></li>
+  <li><code>session_start()</code> <a href="http://www.php.net/manual/de/function.session-start.php">PHP Doku</a></li>
+  <li><code>setcookie()</code> <a href="http://www.php.net/manual/de/function.setcookie.php">PHP Doku</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Session und Login</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/session/cookies//slide.html">Cookies</a> | 
+        <a href="/session/session-und-login/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-schreiben//slide.html">Schreiben in die Datenbank</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

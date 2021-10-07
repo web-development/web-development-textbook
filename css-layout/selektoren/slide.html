@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>CSS Selektoren im Detail - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>CSS Selektoren im Detail</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css-layout/navigation//slide.html">Navigationsmenü</a> | 
+        <a href="/css-layout/selektoren/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/urls//slide.html">URLs</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Im Kapitel <a href="/css/basic-selectors/">CSS Selektoren</a> haben Sie CSS schon
+einige Selektoren
+kennen gelernt. In der CSS 2.1 Spezifikation werden u.a. 
+folgende Schreibweisen für Selektoren beschrieben:</p>
+
+<table class="table table-condensed table-bordered" style="width:auto">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Muster</th>
+      <th>Beschreibung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Universal selector</td>
+      <td>*</td>
+      <td>Stimmt mit jedem Element überein.</td>
+    </tr>
+    <tr>
+      <td>Type selectors</td>
+      <td>E</td>
+      <td>Stimmt mit jedem E-Element überein</td>
+    </tr>
+    <tr>
+      <td>Grouping</td>
+      <td>E, F, G</td>
+      <td>Stimmt mit jedem E-, sowie jedem F-, sowie jedem G-Element überein. E, F und G könnten auch komplexere Selektoren sein!</td>
+    </tr>
+    <tr>
+      <td>Descendant selectors</td>
+      <td>E F</td>
+      <td>Stimmt mit jedem F-Element überein, das ein Nachfahre eines E-Elements ist, also z.B. <code>&lt;E&gt;bla &lt;div&gt; &lt;F&gt;hier&lt;/F&gt; &lt;/div&gt; &lt;/E&gt;</code>.</td>
+    </tr>
+    <tr>
+      <td>Child selectors</td>
+      <td>E &gt; F</td>
+      <td>Stimmt mit allen F-Elementen überein, die Kindelemente eines Elements E sind, also z.B. <code>&lt;E&gt;bla &lt;span&gt;bla&lt;/span&gt; &lt;F&gt;hier&lt;/F&gt; &lt;/E&gt;</code> .</td>
+    </tr>
+    <tr>
+      <td>The link pseudo-classes</td>
+      <td>:link :visited</td>
+      <td>Stimmt mit Links überein, deren Ziel noch nicht besucht wurde (<code>:link</code>), oder deren Ziel bereits besucht wurde (<code>:visited</code>).</td>
+    </tr>
+    <tr>
+      <td>The dynamic pseudo-classes</td>
+      <td>:active :hover :focus</td>
+      <td>Stimmt während bestimmter Interaktionen überein: auswahl, Maus-Cursor,….</td>
+    </tr>
+    <tr>
+      <td>Adjacent selectors</td>
+      <td>E + F</td>
+      <td>Stimmt mit jedem F-Element überein, dem unmittelbar ein Element E vorausgeht, also <code>&lt;E&gt;dies&lt;/E&gt; &lt;F&gt;das&lt;/F&gt;</code></td>
+    </tr>
+    <tr>
+      <td>Class selectors</td>
+      <td>E.warning</td>
+      <td>(Nur in HTML, nicht in XML) Stimmt mit jedem E-Element überein, dessen CLASS gleich „mwarning“ ist.</td>
+    </tr>
+    <tr>
+      <td>ID selectors</td>
+      <td>E#myid</td>
+      <td>Stimmt mit jedem E-Element überein, dessen ID gleich „myid“ ist.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Mit CSS3 kommen u.a. folgende Selektoren dazu:</p>
+
+<table class="table table-condensed table-bordered" style="width:auto">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Muster  / Beispiel</th>
+      <th>Beschreibung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Attribute Selector: Begins with</td>
+      <td>E[attr^=”stringl”] a[href^=”mailto:”]</td>
+      <td>Stimmt mit jedem Element überein, bei dem der Wert des Attributs mit dem geforderten String beginnt.</td>
+    </tr>
+    <tr>
+      <td>The Target pseudo-class</td>
+      <td>:target</td>
+      <td>Stimmt mit dem Element überein, dessen ID mit dem Anker in der URL übereinstimmt. Z.B. bei URL http://at.at/index.html#kontakt stimmt  :target mit &lt;div id=”kontakt”&gt; überein</td>
+    </tr>
+    <tr>
+      <td>The UI element states pseudo-classes</td>
+      <td>:enabled :disabled :checked</td>
+      <td>Diese Selektoren beziehen sich auf mögliche Zustände von Eingabefeldern – die werden aber erst im nächsten Kapitel erklärt.</td>
+    </tr>
+    <tr>
+      <td>Root pseudo-class</td>
+      <td>:root</td>
+      <td>Stimmt mit der Wurzel des DOM überein, immer &lt;html&gt;</td>
+    </tr>
+    <tr>
+      <td>:nth-child() pseudo-class</td>
+      <td>:first-child :nth-child(13) :nth-child(odd) :nth-child(even) :nth-child(3n+1) :last-child</td>
+      <td>Zählt die Geschwister des Elements, stimmt mit dem Element überein wenn die Zahl bestimmte Bedingungen erfüllt: erstes Kind, 13.Kind, ungerade Zahl, gerade Zahl, ….(auch Moduleo 3, 4, n)… letztes.</td>
+    </tr>
+    <tr>
+      <td>:nth-of-type() pseudo-class</td>
+      <td>img:nth-of-type(odd) { float: right; } img:nth-of-type(even) { float: left; }</td>
+      <td>Zählt die Elemente dieses Typs, die bis zu dieser Stelle in der DOM vorkamen, …. Im Beispiel also die geraden / ungeraden Bilder.</td>
+    </tr>
+    <tr>
+      <td>Empty pseudo-class</td>
+      <td>:empty</td>
+      <td>Element ist ganz leer – enthält weder Kinder-Knoten noch Text.</td>
+    </tr>
+    <tr>
+      <td>Pseudo-Element</td>
+      <td>E::first-letter E::first-line p::first-letter</td>
+      <td>Achtung: mit diesem Pseudo-Element kann man etwas aus HTML herausholen, was nicht explizit drinnen ist: Obwohl im Abstz der erste Buchstabe nicht extra in einen Tag eingeschlossen ist kann man ihn mit p::first-letter auswählen.</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+<div class="slide">
+
+<h2 id="child-selector">Child Selector</h2>
+
+<p>Wir kennen schon den Descendant Selector, der beliebige Nachfahren auswählt.
+Der Child Selector ist auf direkte Kinder beschränkt.</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+  li &gt; a { color: yellow; }
+</pre></div>
+
+<p><img src="/images/css-layout/selector-child.png"  alt="Document Object Model und Selektor" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="pseudo-classes">Pseudo Classes</h2>
+
+<p>Wir haben im Zusammenhang mit Links schon die Pseudo Classes <code>:link</code> und
+<code>:visited</code> kennen gelernt, und im Zusammenhang mit Interaktion <code>:hover</code> und
+<code>:focus</code>.</p>
+
+<p>Es gibt noch eine Hand voll weiterer Pseudo Classes:</p>
+
+<ul>
+  <li><code>:first-child</code> selektiert ein Element nur, wenn es das erste Kind seiner Eltern-Node ist</li>
+  <li><code>:first-letter</code>  selektiert nur den ersten Buchstaben!  Das funktioniert auch,
+wenn der Buchstabe gar keine eigenen Node in der DOM ist!</li>
+  <li><code>:first-word</code>  selektiert das erste Wort.  Das funktioniert auch,
+wenn das Wort      gar keine eigenen Node in der DOM ist!</li>
+  <li><code>::selection</code> der aktuell ausgewählte Bereich, siehe <a href="http://css-tricks.com/examples/DifferentSelectionColors/">css-tricks</a></li>
+  <li><code>:nth-child(odd)</code> wählt jedes zweite Element aus - 1,3,5,…</li>
+  <li><code>:nth-child(even)</code> wählt jedes zweite Element aus - 2,4,6,…</li>
+</ul>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+  li:first-child { color: yellow; }
+</pre></div>
+
+<p><img src="/images/css-layout/selector-firstchild.png"  alt="Document Object Model und Selektor" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="adjacent-selector">Adjacent selector</h2>
+
+<p>Dieser Selector wählt das direkte Geschwister-Node aus.</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+  p + h1 { color: yellow; }
+  li + li { color: yellow; }
+</pre></div>
+
+<p><img src="/images/css-layout/selector-adj.png"  alt="Document Object Model und Selektor" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="kombinationen-von-selektoren">Kombinationen von Selektoren</h2>
+
+<p>Wenn man mehrere Selektoren kombiniert hat das Komma die geringste Präzedenz:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+  p, div a { color: yellow; }
+</pre></div>
+
+<p><img src="/images/css-layout/selector-precedence.png"  alt="Document Object Model und Selektor" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="css-selektoren-ben">CSS Selektoren Üben</h2>
+
+<ul>
+  <li><a href="http://flukeout.github.io/">css diner - css üben mit japanischem essen</a></li>
+  <li><a href="https://www.w3schools.com/cssref/trysel.asp">try selectors - von w3schools</a></li>
+</ul>
+
+</div>
+    <div class="slide">
+      <h1>CSS Selektoren im Detail</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css-layout/navigation//slide.html">Navigationsmenü</a> | 
+        <a href="/css-layout/selektoren/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/urls//slide.html">URLs</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

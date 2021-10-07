@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Formular++ - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Formular++</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript-dom/canvas//slide.html">2D Canvas</a> | 
+        <a href="/javascript-dom/formular-zeile/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/jquery//slide.html">jQuery - Einführung</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+</div>
+<div class="slide">
+
+<h2 id="zeile-zu-einem-formular-hinzufgen">Zeile zu einem Formular hinzufügen</h2>
+<p>Ohne Javascript sind Web Formulare statisch. Um Eingabelemente hinzuzufügen
+oder zu löschen braucht man Javascript.</p>
+
+<p>In diesem Beispiel verwenden wir Javascript, um ein Pizza-Bestellformular zu verändern.</p>
+
+<p>Die wichtigsten DOM-Befehle für dieses Beispiel sind <code>cloneNode()</code> und <code>insertBefore()</code>.
+Mit <code>cloneNode</code> können wir die Kopie eines einzelnen DOM-Knoten oder eines ganzen DOM-Baums erstellen. 
+Dieser Klon ist zuerst einmal nicht Teil des Originaldokuments. Man muss ihn erst wieder
+einfügen:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+let p = document.querySelector(&quot;div.pizza&quot;);
+let new_pizza = p.cloneNode(true);
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Eingabeelemente zu clonen ist nicht trivial: jedes Eingabeelement benötigt einen eindeutigen Namen. 
+Es wäre eine Menge Arbeit, um neue Namen für neue Eingabeelemente zu erzeugen. In diesem Beispiel 
+vermeinden wird das mit Hilfe von PHP: PHP kann GET-Parameter als Array behandeln: 
+Wenn wir das Eingabe-Element <code>size</code> nennen, ist sein Wert in in PHP als <code>$_GET['size']</code> erhältlich und zwar als String.
+Wenn wir mehrere Eingabeelemente mit dem namen <code>size[]</code> versehen (mit eckigen Klammern als Teil des Namen),
+sind die Werte all dieser Felder wieder als <code>$_GET['size']</code> erhältlich, und zwar als Array.</p>
+
+<p>Deswegen sieht eine Zeile des Pizza-Bestellformulars so aus:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;div class=&quot;pizza&quot;&gt;
+  &lt;span class=&quot;removethis&quot;&gt;x&lt;/span&gt;
+  &lt;select name=&quot;pizzatype[]&quot;&gt;
+    &lt;option selected=&quot;selected&quot;&gt;Magaritha&lt;/option&gt;
+    &lt;option&gt;Vegetarian&lt;/option&gt;
+    &lt;option&gt;Quattro Staggione&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;br&gt;
+  &lt;label&gt;add Garlic 
+    &lt;select name=&quot;addgarlic[]&quot;&gt;
+      &lt;option selected=&quot;selected&quot;&gt;no&lt;/option&gt;
+      &lt;option&gt;yes&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/label&gt;
+  &lt;label&gt;add Cheese 
+    &lt;select name=&quot;addcheese[]&quot;&gt;
+      &lt;option selected=&quot;selected&quot;&gt;no&lt;/option&gt;
+      &lt;option&gt;yes&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/label&gt;
+  &lt;br&gt;
+  &lt;label&gt;anything else? 
+    &lt;input name=&quot;comment[]&quot; type=&quot;text&quot;&gt;
+  &lt;/label&gt;
+&lt;/div&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Fertiges Formular <a href="/images/javascript-dom/example_js_add_to_form.html">Demo</a></p>
+</div>
+    <div class="slide">
+      <h1>Formular++</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript-dom/canvas//slide.html">2D Canvas</a> | 
+        <a href="/javascript-dom/formular-zeile/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/jquery//slide.html">jQuery - Einführung</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

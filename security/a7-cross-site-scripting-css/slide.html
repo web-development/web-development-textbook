@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>A7 - XSS - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>A7 - XSS</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/security/a6-fehlkonfiguration//slide.html">A6 - Fehlkonfiguration</a> | 
+        <a href="/security/a7-cross-site-scripting-css/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/security/a8-deserialisierung//slide.html">A8 - Deserialisierung</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Auf <a href="https://owasp.org/www-project-top-ten/2017/de/A7_2017-Cross-Site_Scripting_(XSS)">Platz 7 der OWASP Top 10 2017: Cross Site Scripting (XSS)</a>.</p>
+
+<p>Die OWASP beschreibt dieses Problem allgemein so:</p>
+
+<blockquote>
+  <p>XSS-Schwachstellen treten dann auf, wenn die Anwendung von BenutzerIn X eingegebene Daten übernimmt und an den Browser anderer BenutzerInnen zurücksendet, ohne sie hinreichend zu validieren und zu escapen.</p>
+</blockquote>
+
+<p>Als mögliche Auswirkung einer XSS-Schwachstelle beschreibt die OWASP:</p>
+
+<blockquote>
+  <p>Cookies (und damit auch Sessions) von BenutzerInnen meiner Seite können gestohlen werden, die Darstellung der Webseite kann verfälscht werden, eine automatische Weiterleitung auf andere Seiten, z.B. Malware-Seiten kann eingebaut werden.</p>
+</blockquote>
+
+<p>Der schlimmste Fall wäre die Installation eines sogenannten XSS Proxies, der es der AngreiferIn ermöglicht die Browser von BesucherInnen fernzusteuern.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="cross-site">Cross Site?</h2>
+
+<p>Diese Attacke erfolgt nicht direkt  (AngreiferIn : Opfer), sondern es braucht drei Personen:</p>
+
+<ul>
+  <li>Hilda Harmlos stellt eine Webseite mit XSS-Schwachstelle aufs Netz, zum Beispiel mit einem Forum.</li>
+  <li>Alyssa P. Hacker erstellt einen Forum-Eintrag, der die XSS-Schwachstelle ausnutzt.</li>
+  <li>Peter Publikum will das Forum lesen, und wird dabei attackiert.</li>
+</ul>
+
+<p>Es ist also nicht die Webseite der Hackerin, die hier gefählich ist, sondern eine andere, scheinbar
+harmlose Seite.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="vermeidung-von-xss">Vermeidung von XSS</h2>
+
+<p>Cross Site Scripting kann komplett vermieden werden, wenn man niemals Input von BenutzerInnen auf der Webseite wiedergibt.
+Das ist ein seltener, aber sehr sicherer Fall.</p>
+
+<p>XSS vermeinden kann man mit zwei Verteidigungs-Linien:</p>
+
+<ul>
+  <li>Schon bei der Eingabe (mit einer white-list) alles Entfernen was nicht harmlos ist.</li>
+  <li>Bei der Ausgabe immer ein geeignetes Escaping verwenden.</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="eingabe-validieren-in-php">Eingabe validieren in PHP</h2>
+
+<p>Achtung: der PHP Befehl <code>strip_tags</code> enfernt keine Attribute aus erlaubten Tags, es ist
+also ganz leicht möglich Javascript in einem <code>onmouseover</code> Attribut einzuschummeln.</p>
+
+<p>Statt dessen sollte man einen HTML-Filter wie <a href="http://htmlpurifier.org/">HTML Purifier</a> verwenden.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="richtig-escapen">Richtig Escapen</h2>
+
+<p>Je nachdem in welchem Kontext man Daten ausgibt muss man verschiedenes Escaping verwenden.
+Drei Beispiele, und die dafür passenden PHP-Befehle:</p>
+
+<ol>
+  <li>in einer URL - <code>urlencode</code></li>
+  <li>in HTML - <code>htmlspecialchars</code></li>
+  <li>in Javascript, als Wert einer Variable - <code>json_encode</code></li>
+</ol>
+
+<p>Es gibt aber noch viele andere Kontexte: XML, PDF, … jedes Format hat seine eigenen Regeln.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="wann-escapen">Wann Escapen?</h2>
+
+<p>Wann soll ich die Daten escapen: möglichst früh, direkt nach der Eingabe,
+oder möglichst spät, erst bei der Ausgabe?</p>
+
+<p>Die Antwort ergibt sich aus den eben beschreibenen verschiedenen Kontexten:</p>
+
+<p>Bei der Eingabe weiss ich noch nicht, in welchem Kontext die Daten später 
+verwendet werden.  Ich speichere die Daten in einem möglichst neutralen Format
+in der Datenbank.  Bei der Ausgabe kenne ich den Kontext, und kann die
+richtige Escape-Funktion wählen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="content-security-policy">Content Security Policy</h2>
+
+<p>Eine Content Security Policy wird als Header im HTTP Response oder als
+META-Tag in HTML and den Client übermittelt.  Aktuelle Browser halten die Policy ein.</p>
+
+<p>Ein Beispiel für den HTTP Header: <code>Content-Security-Policy: default-src https:</code></p>
+
+<p>Im HTML Code kann man den Meta-Tag mit Attribut <code>http-equiv</code> verwenden,
+um dieselbe Policy zu setzen:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+    &lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src https:&quot;&gt;
+</pre></div>
+
+<p>Diese Policy bewirkt zwei Dinge:</p>
+
+<ul>
+  <li>explizit: das Laden von weiteren Resourcen für diese Webseite (Bilder, Fonts, Javascript) wird nur über https erfolgen</li>
+  <li>implizit: script-Tags im HTML und der JavaScript-Befehl <code>eval</code> sind deaktiviert</li>
+</ul>
+
+<p>Falls man script-Tags im HTML zulassen will, kann man die option <code>unsave-inline</code> verwenden:</p>
+
+<p><code>
+Content-Security-Policy: default-src https: 'unsafe-inline'
+</code></p>
+
+</div>
+<div class="slide">
+
+<h2 id="mehr">Mehr</h2>
+
+<ul>
+  <li>Siehe <a href="https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md">XSS (Cross Site Scripting) Prevention Cheat Sheet</a></li>
+  <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">Content Security Policy</a></li>
+  <li>Wir haben das Problem zuerst besprochen im Kaptiel <a href="https://web-development.github.io/php-db-schreiben/daten-editieren/">PHP DB Schreiben: Daten Bearbeiten</a></li>
+</ul>
+
+</div>
+    <div class="slide">
+      <h1>A7 - XSS</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/security/a6-fehlkonfiguration//slide.html">A6 - Fehlkonfiguration</a> | 
+        <a href="/security/a7-cross-site-scripting-css/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/security/a8-deserialisierung//slide.html">A8 - Deserialisierung</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

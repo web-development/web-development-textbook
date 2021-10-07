@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="de" class="no-js web-development">
+<head>
+  <meta charset="utf-8">
+  <title>Lehrbuch Web-Development - Formular und Javascript</title>
+
+  <meta name="author" content="Brigitte Jellinek">
+  <meta name="description" content="Ein Lehrbuch für das Informatik- oder Medieninformatik-Studium.">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="nanoc 3.8.0">
+
+  <link rel="shortcut icon" href="/assets/img/favicon.png">
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link rel="stylesheet" href="/assets/css/prettify.css">
+  <style>
+    li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
+        list-style-type: inherit !important;
+    }
+    ol.linenums {
+        margin-left: 50px !important;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <a href="http://github.com/web-development/web-development-textbook/"><img
+    style="position: fixed; top: 0; right: 0; border: 0;"
+    src="/images/forkme.png" alt="Fork me on GitHub"></a>
+  <header class="row">
+    <div class="jumbotron sub-header span8" id="booktitle">
+      <h1><a href="/" title="Web Development">Web Development</a></h1>
+      <p class="lead">Ein Lehrbuch für das Informatik oder Medien-Informatik Studium.</p>
+    </div>
+  </header>
+
+
+
+
+<!-- body -->
+<article id="body" class="row">
+  <div class="span8">
+    
+    <div class="page-header">
+      <h2 class="title" id="slide-0">
+        Formular und Javascript
+      </h2>
+      <a href="/formulare/javascript/slide.html">als Präsentation ▻</a>
+    </div>
+     <div id="slide-1" title="Folie Nr. 1"></div>
+<p>Am Beispiel eines Formular werden wir nun einfaches Javascript kennen lernen. Die Details von Javascript werden in den nächsten Kaptieln, hier geht es nur um ein erstes Kennenlernen.</p>
+
+
+<a class="slide_break" id="slide-2" href="slide.html#slide-2"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 2">▻</a>
+
+<h2 id="javascript-einbetten">Javascript Einbetten</h2>
+<p>Javascript kann innerhalb des <code>&lt;script&gt;</code>-Tags irgendwo in den HTML-Code eingefügt werden.</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Berechnungen in Javascript, in einem script-Tag</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;h1&gt;Hallo Welt&lt;/h1&gt;
+&lt;script&gt;
+      var pi,r,a;
+      pi = 3.141;
+      r = 2;
+      a = r * r * pi;
+&lt;/script&gt;
+</pre></div>
+
+<p>Ohne Output merkt man aber gar nichts davon, das dieses Programm läuft.</p>
+
+
+<a class="slide_break" id="slide-3" href="slide.html#slide-3"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 3">▻</a>
+
+<h3 id="konsole">Konsole</h3>
+
+<p>In den Developer Tools von Firefox kann man die Variablen auslesen:</p>
+
+<p><img src="/images/formulare/ff-console-variable.png" srcset="/images/formulare/ff-console-variable@2x.png 2x, /images/formulare/ff-console-variable.png 1x"  alt="Mit Firefox Developer Tools den Wert einzelnen Javascript-Variablen  auslesen" ></p>
+
+<p>In Google Chrome gibt es ebenfalls eine Console, das entsprechende Fenster wird geöffnet wenn Sie irgendwo in der Webseite mit der rechten Maustaste klicken, und „Element überprüfen“ auswählen:</p>
+
+<p><img src="/images/formulare/chrome-console-variable.png" srcset="/images/formulare/chrome-console-variable.png 1x, /images/formulare/chrome-console-variable@2x.png 2x"  alt="Mit Chrome den Wert einzelnen Javascript-Variablen  auslesen" ></p>
+
+
+<a class="slide_break" id="slide-4" href="slide.html#slide-4"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 4">▻</a>
+
+<h2 id="popup-fenster">Popup-Fenster</h2>
+<p>Mit den Befehlen <code>alert</code>, <code>confirm</code> und <code>prompt</code> können Sie kleine Popup-Fenster öffnen:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Popup-Fenster</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+alert(&quot;peng, du bist tot!&quot;);
+var ja_nein = confirm(&quot;sollen die daten nicht gelöscht werden?&quot;);
+var antwort = prompt(&quot;welche Daten sollen gelöscht werden. Keine Angabe löscht alles&quot;);
+</pre></div>
+
+<p><img src="/images/formulare/popups.png"  alt="Darstellung der Popup-Fenster in den Browsern Firefox, Chrome, Opera auf Mac" ></p>
+
+<p>Achtung: So können Sie zwar bei gutgläubigen Menschen Herzinfarkte auslösen, aber Sie können mit Javascript nicht wirklich Dateien löschen.</p>
+
+
+<a class="slide_break" id="slide-5" href="slide.html#slide-5"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 5">▻</a>
+
+<h2 id="formulare">Formulare</h2>
+
+<p>Mit der Konsole von Firebug können Sie auch Formulare genauer untersuchen. Achtung! Wir geben ab jetzt allen Formular-Eingabefeldern nicht nur einen <code>name</code>, sondern auch eine <code>id</code>, das erleichtert die Handhabung in Javascript!</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;form method=&quot;get&quot; action=&quot;mail.php&quot;&gt;
+&lt;label for=&quot;mail&quot;&gt;E-Mail:
+   &lt;input type=&quot;text&quot; name=&quot;mail&quot; id=&quot;mail&quot;&gt;
+&lt;/label&gt;
+&lt;label&gt;Hochschule:
+    &lt;input type=&quot;text&quot; name=&quot;hochschule&quot; id=&quot;hochschule&quot;&gt;
+&lt;/label&gt;
+&lt;input type=&quot;submit&quot; value=&quot;speichern&quot;&gt;
+&lt;/form&gt;
+</pre></div>
+
+
+<a class="slide_break" id="slide-6" href="slide.html#slide-6"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 6">▻</a>
+
+
+
+<p><img src="/images/formulare/manipulate-form-js.png" srcset="/images/formulare/manipulate-form-js.png 1x, /images/formulare/manipulate-form-js@2x.png 2x"  alt="Mit Firefox Developer Tools Formulare und Eingabefelder auslesen" ></p>
+
+<p>Mit <code>document.getElementById</code> kann man also das einen bestimmten Tag  ansprechen, wenn man die id kennt.</p>
+
+<p>Jedes Eingabefeld bietet mit value den aktuell eingegeben Wert (als String) an, hier z.B. <code>document.getElementById("hochschule").value</code>.  Die letzten beiden Zeilen in der Konsole zeigen, dass es auch umgekehrt funktioniert: man kann auch Werte ins Eingabefeld hineinschreiben, der neue Werte wird sofort im Browser angezeigt.</p>
+
+
+<a class="slide_break" id="slide-7" href="slide.html#slide-7"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 7">▻</a>
+
+<h2 id="ereignisse-und-ereignisgesteuerte-programmierung">Ereignisse und Ereignisgesteuerte Programmierung</h2>
+<p>Javascript entstand als Programmiersprache für das „Frontend“, für die
+Gestaltung von Benutzerschnittstellen. Für grafische Benutzerschnittstellen hat
+sich ein besonderer Programmierstil entwickelt: die ereignisgesteuerte
+Programmierung. Dieser Stil kommt immer Einsatz, wenn es um Schnittstellen zu Menschen geht,
+und auf die Eingaben von Menschen reagiert werden soll.</p>
+
+<p>Siehe auch <a href="https://youtu.be/XIGSJshYb90?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo&amp;t=316">Crash Course Computer Science #26: Graphical User Interfaces</a></p>
+
+
+<a class="slide_break" id="slide-8" href="slide.html#slide-8"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 8">▻</a>
+
+<h2 id="events-im-browser">Events im Browser</h2>
+
+<p>Im Webbrowser sind solche Ereignisse z.B.:</p>
+
+<ul>
+  <li>Klicken auf einen Link</li>
+  <li>Eintippen in ein Textfeld</li>
+  <li>Anklicken einer Checkbox</li>
+  <li>Absenden eines Formulares</li>
+</ul>
+
+<p>Eine Liste der gültigen Events bzw. on-Attributen für HTML-Tags finden Sie im <a href="https://developer.mozilla.org/de/docs/Web/Events">Mozilla Developer Networ (MDN)</a>.  Aber für den Anfang
+werden Sie mit viel weniger Events auskommen!</p>
+
+
+<a class="slide_break" id="slide-9" href="slide.html#slide-9"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 9">▻</a>
+
+<h2 id="beispiel">Beispiel</h2>
+
+<p>Ein Beispiel für ereignisgesteuerte Programmierung mit einem Web-Formular: Das Bestellformular für Bücher soll automatisch den Gesamtpreis berechnen.</p>
+
+<p><img src="/images/image248.png"  alt="Abbildung 55: Bestellformular für Bücher mit Berechnung" ></p>
+
+<p>Wenn in ein Anzahl-Feld ein neuer Wert eingegeben wird soll dieser mit dem Preis
+multipliziert werden und in die rechte Spalte geschrieben werden.</p>
+
+
+<a class="slide_break" id="slide-10" href="slide.html#slide-10"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 10">▻</a>
+
+<h3 id="schritt-eine-berechnung">1.Schritt: eine Berechnung</h3>
+
+<p>Betrachten wir zuerst einen Schritt der Berechnung alleine an einem vereinfachten Formular mit einem
+Eingabefeld und einem span-tag für die Ausgabe.</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;input value=&quot;0&quot; name=&quot;in&quot;&gt;
+&lt;span id=&quot;out&quot;&gt;&lt;/span&gt;
+</pre></div>
+
+<p>Für die Formulierung „Wenn in das Feld in ein neuer Wert eingegeben wird, dann…“  gibt es ein passendes Event in HTML/Javascript: onchange. Die wird als Attribut in den HTML-Code des Eingabefeldes geschrieben:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;input value=&quot;0&quot; name=&quot;in&quot;  onchange=&quot;hier Javascript&quot;&gt;
+&lt;span id=&quot;out&quot;&gt;&lt;/span&gt;
+</pre></div>
+
+
+<a class="slide_break" id="slide-11" href="slide.html#slide-11"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 11">▻</a>
+
+
+
+<p>In das Attribut kann nun Javascript-Code eingefügt werden der die richtige Berechnung vornimmt und das Ergebnis in das richtige Element schreibt:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;input value=&quot;0&quot; name=&quot;in&quot;
+  onchange=&quot;document.getElementById(&#39;out&#39;).innerHTML = this.value * 100&quot;&gt;
+&lt;span id=&quot;out&quot;&gt;&lt;/span&gt;
+</pre></div>
+
+<p><input value="0" name="in" onchange="document.getElementById('out').innerHTML = this.value * 100" />
+<span id="out"></span></p>
+
+
+<a class="slide_break" id="slide-12" href="slide.html#slide-12"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 12">▻</a>
+
+
+
+<p>Betrachten wir die Javascript-Befehl im Detail: Es handelt sich um eine
+Zuweisung mit <code>=</code>.</p>
+
+<p>Auf der rechten Seite der Zuweisung befindet sich die Variable <code>this</code>, diese
+verweist auf das Element, das das Event ausgelöst hat, in diesem Fall also das
+Eingabefeld. Mit <code>this.value</code> kann aus dem Eingabefeld der eingegebene Wert (als
+String) ausgelesen werden.</p>
+
+<p>Dieser Wert wird nun mit 100 multipliziert. In Javascript ist dabei keine explizite Typ-Umwandlung von String zu Zahl nötig, das erledigt der Javascript-Compiler automatisch. Das Ergebnis auf der rechten Seite ist also eine Zahl, z.B. 300.</p>
+
+<p>Auf der linken Seite der Zuweisung wird zuerst mit
+<code>document.getElementById('out')</code> ein bestimmter HTML-Tag ausgewählt, hier ist es
+der span-Tag. Diesem Tag wird dann als „inneres HTML“ das Ergebnis der
+Multiplikation zugewisen. Dabei wir die Zahl (z.B. 300) wieder in einen String
+zurückverwandelt (z.B. “300”).</p>
+
+
+<a class="slide_break" id="slide-13" href="slide.html#slide-13"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 13">▻</a>
+
+
+
+<p>Nun wäre es natürlich unpraktisch in das onchange-Attribut ein längeres Javascript-Programm zu schreiben. Dafür kann man in Javascript Funktionen definieren, die dann nur noch aufgerufen werden. Z.B. um die Gesamtsumme im Bestellformular zu berechnen ist eine Funktion praktisch:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;head&gt;
+&lt;script&gt;
+function compute() {
+
+  document.getElementById(&#39;outtotal&#39;).innerHTML =
+
+    document.getElementById(&#39;in1&#39;).value * 100
+  + document.getElementById(&#39;in2&#39;).value * 200
+  + document.getElementById(&#39;in3&#39;).value * 0
+  + document.getElementById(&#39;in4&#39;).value * 1000
+  + document.getElementById(&#39;in5&#39;).value * 10
+  + document.getElementById(&#39;in6&#39;).value * 5
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+</pre></div>
+
+<p>Bei den einzelnen Berechnungen für die einzelnen Bücher wird jeweils zum Schluss compute() aufgerufen.</p>
+
+
+<a class="slide_break" id="slide-14" href="slide.html#slide-14"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 14">▻</a>
+
+
+
+<p>Achtung: beim „Rechnen“ mit Eingabefelder von Javascript tritt häufig folgender
+Fehler auf: in Javascript werden die Datentypen number, string, boolean, object zwar unterschieden,
+aber nicht deklariert. Es kann in einer Variable einmal ein
+String und einmal eine Zahl gespeichert sein:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+  var a,b,c;
+  a = 10;
+  console.log(`wie viel ist ${a} plus 20?`);
+  console.log(a + 20);
+  a = &quot;zehn&quot;;
+  console.log(`wie viel ist ${a} plus 20?`);
+  console.log(a + 20);
+  a = &quot;10&quot;;
+  console.log(`wie viel ist ${a} plus 20?`);
+  console.log(a + 20);
+</pre></div>
+
+<p>Hier der Output des Programms:</p>
+
+<div class="example">
+<pre class="lang-plain prettyprint linenums">
+wie viel ist 10 plus 20?
+30
+wie viel ist zehn plus 20?
+zehn20 debugger eval code:7:3
+wie viel ist 10 plus 20?
+1020
+</pre></div>
+
+
+<a class="slide_break" id="slide-15" href="slide.html#slide-15"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 15">▻</a>
+
+
+
+<p>Der <code>+</code> Operator verhält sich also je nach Datentype des ersten Arguments verschieden: steht links des Plus-Zeichens eine Zahl, dann erfolgt eine Addition. Steht links des Plus-Zeichens ein String, dann erfolgt eine String-Konkatenation; ein Aneinanderfügen von Text.</p>
+
+<p>Eingabefelder in Web-Formularen liefern immer einen String. Deswegen ist es falsch, sie einfach zu addieren. <code>100 + 200 + 0 + 0 + 0 + 0</code> wäre <code>1002000000</code>. Bei der Multiplikation mit <code>*</code> tritt dieses Problem nicht auf, da der Stern keine zweite Bedeutung hat.</p>
+
+<p>Mit der Funktion <code>parseInt()</code> können Sie einen String in eine Integer-Zahl verwandeln bevor Sie eine Addition durchführen.</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  a = &quot;10&quot;;
+  console.log(`wie viel ist ${a} plus 20?`);
+  console.log(parseInt(a) + 20);
+</pre></div>
+
+<p>gibt das erwartete Ergebnis</p>
+
+<div class="example">
+<pre class="lang-plain prettyprint linenums">
+  wie viel ist 10 plus 20? 30
+</pre></div>
+
+
+<a class="slide_break" id="slide-16" href="slide.html#slide-16"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 16">▻</a>
+
+<h2 id="formular-prfen">Formular prüfen</h2>
+<p>Mit HTML5 kann man mit den Attributen <code>required</code> und <code>pattern</code> einfache Prüfungen
+der Eingabe
+vornehmen. Das Formular kann erst gesendet werden, wenn alle Prüfungen erfüllt
+sind.</p>
+
+<p><a href="/images/formulare/form.html#required_and_pattern">Demo</a></p>
+
+
+<a class="slide_break" id="slide-17" href="slide.html#slide-17"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 17">▻</a>
+
+
+
+<p>Mit Javascript kann man noch komplizierte Prüfungen vornehmen, und ebenfalls
+verhindern, dass das Formular abgesendet werden kann.</p>
+
+<p>Dafür gibt es das Event „onsubmit“ im form-Tag.</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;form name=&quot;pizzaformular&quot; 
+  action=&quot;http://webcode.multimediatechnology.at/code/echo.php&quot;
+  onsubmit= &quot;wert=formularok(); return wert;&quot;&gt;
+</pre></div>
+
+<p>Die Besonderheit dieses Events: wenn am Ende des Events ein falscher-Wert zurück gegeben wird, verhindert der Browser das Senden der Formulardaten.</p>
+
+
+<a class="slide_break" id="slide-18" href="slide.html#slide-18"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 18">▻</a>
+
+
+
+<p>Entsprechend kann man eine Funktion schreiben:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;script&gt;
+function formularok() {
+  // ... Berechnung der Gesamtsumme ...
+
+  if ( total &lt; 100 ) {
+    alert(&quot;Die Gesamt-Bestellung muss mindestens 100€ betragen\n&quot;);
+    return false;
+  }
+  return true;
+}
+&lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;form name     = &quot;pizzaformular&quot;
+        action   = &quot;bestellung.php&quot;
+        onsubmit = &quot;wert=formularok(); return wert;&quot;&gt;
+  .... viele eingabefelder ...
+  &lt;input name=&quot;&quot; type=&quot;submit&quot; /&gt;
+  &lt;/form&gt;
+&lt;/body&gt;
+</pre></div>
+
+ <div class="pagination">
+  <ul>
+    
+      
+      
+      <li><a href="/formulare/php/">Formular und PHP</a></li>
+      
+      
+      
+      <li><a href="/javascript-dom/">Javascript und das Document Object Model (DOM)</a></li>
+      
+    
+  </ul>
+</div>
+
+  </div>
+
+  <!-- sidebar -->
+<div id="sidebar" class="span3 offset1">
+        <div class="page-header"> 
+        <h2>Kapitel</h2>
+        </div>
+
+        
+        <ul class="nav nav-list">
+        
+          
+          <li class=" "><a href="/das-web-und-html/">Das Web Und Html</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/geschichte/">Eine Kurze Geschichte des World Wide Web</a></li>
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/standards/">Drei Standards definieren das Web</a></li>
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/bnf/">BNF</a></li>
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/html-grundkurs/">HTML Grundkurs</a></li>
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/upload/">Upload und Tools</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/css/">Css</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/css/css-kurz/">Kurzvorstellung von Stylesheets</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css/css/">Syntax von CSS</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css/properties/">Wichtige Properties</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css/css-sprites/">CSS Sprites</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css/basic-selectors/">CSS Selektoren</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/css-layout/">Css Layout</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/css-layout/rahmenbedingungen/">Rahmenbedingungen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/responsive/">Responsive Design</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/layout/">CSS für Layout</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/details/">Details zu Layout</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/navigation/">Navigationsmenü</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/selektoren/">CSS Selektoren im Detail</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/urls/">Urls</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/urls/absolut-relativ/">Absolute und relative URLs</a></li>
+                      
+                    
+                      
+                      <li ><a href="/urls/konfiguration/">Konfiguration Webserver</a></li>
+                      
+                    
+                      
+                      <li ><a href="/urls/tipps/">Pragmatische Tipps</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class="active "><a href="/formulare/">Formulare</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/formulare/form/">Formulare</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/interaktion/">Formular als Interaktion</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/css/">CSS und Formular</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/action/">Daten absenden</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/php/">Formular und PHP</a></li>
+                      
+                    
+                      
+                      <li class="active"><a href="/formulare/javascript/">Formular und Javascript</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/javascript-dom/">Javascript Dom</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/hintergrund/">Hintergründe</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/graceful/">Graceful Degradation</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/basic-javascript/">Basic Javascript</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/dom/">DOM</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/canvas/">2D Canvas</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/formular-zeile/">Formular++</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" separator"><a href="/jquery/">Jquery</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/jquery/unobstrusive/">Unobstrusive Javascript</a></li>
+                      
+                    
+                      
+                      <li ><a href="/jquery/graceful/">Graceful Degradation</a></li>
+                      
+                    
+                      
+                      <li ><a href="/jquery/schreibweise/">Besondere Javascript-Schreibwesen in jQuery</a></li>
+                      
+                    
+                      
+                      <li ><a href="/jquery/selektieren-manipulieren/">Selektieren und Manipulieren mit jQuery</a></li>
+                      
+                    
+                      
+                      <li ><a href="/jquery/interaktion/">Interaktion mit jQuery</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/kommandozeile/">Kommandozeile</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/kommandozeile/">Kommandozeile</a></li>
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/wo-bin-ich/">Wo bin ich</a></li>
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/vscode-remote-ssh/">VS Code</a></li>
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/zugriffsrechte/">Zugriffsrechte</a></li>
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/bild-und-video/">Bild und Video</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/git/">Git</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/git/versionskontrolle/">Versionskontrolle</a></li>
+                      
+                    
+                      
+                      <li ><a href="/git/basic-git/">Einfacher Arbeitsablauf in Git</a></li>
+                      
+                    
+                      
+                      <li ><a href="/git/git-status/">Status von Git abfragen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/git/git-tools/">Tools für Git</a></li>
+                      
+                    
+                      
+                      <li ><a href="/git/public-private-key/">Public und Private Key</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/http/">Http</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/http/tcpip-und-dns/">TCP/IP und DNS</a></li>
+                      
+                    
+                      
+                      <li ><a href="/http/http/">HTTP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/http/tools/">Werkzeuge</a></li>
+                      
+                    
+                      
+                      <li ><a href="/http/anwendungsbeispiele/">Beispiele</a></li>
+                      
+                    
+                      
+                      <li ><a href="/http/php-erzeugt/">PHP erzeugt nicht nur HTML</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/php-vorbereitung/">Php Vorbereitung</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php-vorbereitung/was-ist-php/">Was ist PHP? Was passiert am Webserver?</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-vorbereitung/apache/">Apache</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-vorbereitung/erstes-php-programm/">Das erste PHP-Programm</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/php/">Php</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php/warnhinweis/">Warnhinweis</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/syntax/">Syntax von PHP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/dateien/">Dateien und Ordnern in PHP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/mail/">PHP und E-Mail</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/php-und-parameter/">In PHP Daten aus Web-Formularen verarbeiten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/datei-upload/">Datei Upload</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/datei-upload-frontend/">Datei Upload - Frontend</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/error/">Errors + Debugging</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/php-db-lesen/">Php Db Lesen</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/db/">Datenbanken</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/start/">PHP und Datenbank</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/struktur-webapplikation/">Struktur einer Web-Applikation</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/datenbank-lesen/">Lesen aus der Datenbank</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/effizent/">Effizient Arbeiten mit der DB</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/session/">Session</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/session/cookies/">Cookies</a></li>
+                      
+                    
+                      
+                      <li ><a href="/session/session-und-login/">Session und Login</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/php-db-schreiben/">Php Db Schreiben</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/datenbank-schreiben/">Web-Applikation mit Schreibrecht</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/daten-loeschen/">Löschen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/daten-einfuegen/">Einfügen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/daten-editieren/">Daten Bearbeiten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/html-erlauben/">HTML erlauben</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/fehlerbehandlung/">Fehlerbehandlung</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" separator"><a href="/php-db-optimierung/">Php Db Optimierung</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/indexes/">Indexes</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/constraints/">Constraints</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/alter/">Änderungen an der Datenbank</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/transaktionen/">Transaktionen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/transaktionen-und-php/">Transaktionen und PHP</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/grafik/">Grafik</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/grafik/cssgrafik/">HTML+CSS für Grafik</a></li>
+                      
+                    
+                      
+                      <li ><a href="/grafik/images/">Pixel-Bilder</a></li>
+                      
+                    
+                      
+                      <li ><a href="/grafik/svg/">SVG - Vektor Grafik</a></li>
+                      
+                    
+                      
+                      <li ><a href="/grafik/2dcanvas/">2d Canvas</a></li>
+                      
+                    
+                      
+                      <li ><a href="/grafik/3dcanvas/">3d Canvas</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/javascript/">Javascript</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/javascript/variablen/">Variablen und Scope</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/funktionen/">Funktionen und this</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/objekte/">Objekte + Klassen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/closures/">Funktionen und Closures</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/module/">Module</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/style/">Stil + Tipps</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/debugging/">Debugging</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/applied-js-and-css/">Applied Js And Css</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/formularpruerung/">Formulardaten Prüfen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/header/">Fixe Kopfzeile mit Animation</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/langsam-scrollen/">Langsam Scrollen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/landkarte/">Landkarte</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/dynamisches-formular/">Dynamisches Formular</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/ajax/">AJAX</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/ajax-irrwege/">AJAX Irrwege</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/cors/">CORS</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/websocket/">Chat Websockets</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/json/">Json</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/json/syntax/">JSON Syntax</a></li>
+                      
+                    
+                      
+                      <li ><a href="/json/php/">JSON und PHP</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" separator"><a href="/xml/">Xml</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/xml/was-ist-xml/">Was ist XML</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/wohlgeformtes-xml/">wohlgeformtes XML</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/dtd/">DTD</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/xml-und-php/">XML und PHP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/xml-und-javascript/">XML und Javascript</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/xpath/">XPath</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/rss/">Beispiel RSS</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/security/">Security</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/security/thread-modeling/">Threat Modeling</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a1-injection/">A1 - Injection</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a2-auth/">A2 - Authentifizierung</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a3-data/">A3 - Sensible Daten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a4-xee/">A4 - XXE</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a5-zugriffskontrolle/">A5 - Zugriffskontrolle</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a6-fehlkonfiguration/">A6 - Fehlkonfiguration</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a7-cross-site-scripting-css/">A7 - XSS</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a8-deserialisierung/">A8 - Deserialisierung</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a9-komponenten/">A9 - Komponenten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a10-logging-monitoring/">A10 - Monitoring</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a8-csrf/">CSRF</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/wordpress/">Wordpress</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/wordpress/was-ist-wordpress/">Was ist Wordpress</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/installation/">Kurz-Installation von Wordpress</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/security/">Security</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/backend/">Überblick Backend</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/seiten/">Beiträge und Seiten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/multimedia/">Medien</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/themes-sidesbars-widgets/">Themes, Sidebars und Widgets verwenden</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/plugins/">Plugins verwenden</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/permalinks/">Permalinks</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/apache/">Apache</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/apache/konfigurieren/">Konfigurieren</a></li>
+                      
+                    
+                      
+                      <li ><a href="/apache/auth/">Authentisierung</a></li>
+                      
+                    
+                      
+                      <li ><a href="/apache/rewrite/">Rewrite</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/advanced-javascript/">Advanced Javascript</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/advanced-javascript/call/">Funktion Aufrufen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/advanced-javascript/event-und-closure/">Events und Closures</a></li>
+                      
+                    
+                      
+                      <li ><a href="/advanced-javascript/vererbung/">Prototypen + Vererbung</a></li>
+                      
+                    
+                      
+                      <li ><a href="/advanced-javascript/regular-expressions/">Regular Expressions</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/mobile/">Mobile</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/mobile/responsive/">Responsive Design</a></li>
+                      
+                    
+                      
+                      <li ><a href="/mobile/pwa/">Progressive Web App</a></li>
+                      
+                    
+                      
+                      <li ><a href="/mobile/cordova/">Cordova</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/qualitaet/">Qualitaet</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/qualitaet/barrierefreiheit/">Barrierefreiheit</a></li>
+                      
+                    
+                      
+                      <li ><a href="/qualitaet/datenschutz/">Datenschutz</a></li>
+                      
+                    
+                      
+                      <li ><a href="/qualitaet/performance/">Performance</a></li>
+                      
+                    
+                      
+                      <li ><a href="/qualitaet/rest/">REST</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+        
+        </ul>
+
+</div>
+<!-- sidebar -->
+
+</article>
+<!-- /body -->
+
+
+  <div class="row">
+    <div class="span12" id="legal">
+        <p class="copyright">veröffentlicht unter <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/at/deed.de">creative commons by-nc-sa</a> in den Jahren 2012-2019 von <a href="#">Brigitte Jellinek</a>.</p>
+        <p>Zum Weiterentwickeln dieser Seite: <a href="https://github.com/web-development/web-development-textbook">Projekt forken</a> oder <a href="https://github.com/web-development/web-development-textbook/blob/master/content/formulare/javascript.md">Kommentar zu dieser Seite</a></p>
+        <p>Diese Seite ist sowohl auf <a href="https://web-development.github.io">github.io</a>
+        als auch auf <a href="http://web-development.netlify.com/">netlify.com</a> erhältlich.</p>
+    </div>
+  </div>
+
+</div> <!-- class="container" -->
+
+<script src="/assets/js/scripts.js?v=1"></script>
+<script>
+  $(document).ready(function(){
+    function save_state(){
+      var stored = "";
+      $('ul.nav > li').each(function(i,e){
+        if( $(e).find("i").attr('class') == 'icon-plus' ) {
+          stored += "-";
+        }  else {
+          stored += "+";
+        }
+      });
+      localStorage.setItem('nav-state', stored);
+    }
+    $('ul.nav > li > a').prepend("<i class='icon-plus'></i>");
+
+    // init state
+    var stored = localStorage.getItem('nav-state');
+    if ( stored ) {
+      var data = stored.split("");
+      $('ul.nav > li').each(function(i,e){
+        if( data[i] == "+" ) {
+          $(e).find(">ul").show();
+          $(e).find("i").removeClass('icon-plus').addClass('icon-minus');
+        } else {
+          $(e).find(">ul").hide();
+        }
+      });
+    } else {
+      $('ul.nav ul.sub').hide();
+    }
+    $('ul.nav li.active ul.sub').show();
+    $('ul.nav li.active i').removeClass('icon-plus').addClass('icon-minus');
+
+    $('ul.nav i').click(function(){
+      $this = $(this); 
+      $this.toggleClass('icon-plus').toggleClass('icon-minus');
+      $this.parent().next('ul').toggle();
+      save_state();
+      return false;
+    });
+  });
+</script>
+</body> 
+</html>
+

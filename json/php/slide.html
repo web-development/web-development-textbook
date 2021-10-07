@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>JSON und PHP - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>JSON und PHP</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/json/syntax//slide.html">JSON Syntax</a> | 
+        <a href="/json/php/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/xml//slide.html">XML</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Die PHP Datenstrukturen passen nicht gut zu JSON, deswegen
+gibt es beim Serialisieren zu JSON Probleme.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="objekt">Objekt</h2>
+
+<p>Ein PHP Objekt lässt sich als JSON Objekt darstellen:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+$object = new stdClass();
+$object-&gt;foo = 10;
+$object-&gt;bar = &quot;zwanzig&quot;;
+$object-&gt;baz = 30;
+echo json_encode( $object );
+// {&quot;foo&quot;:10,&quot;bar&quot;:&quot;zwanzig&quot;,&quot;baz&quot;:30}
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="array">Array</h2>
+
+<p>Ein “normales” Array mit Integer als Index lässt sich
+direkt auf JSON abbilden:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+$array = array( &quot;a&quot;, &quot;b&quot;, &quot;c&quot; );
+echo json_encode( $array );
+// [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="assoziatives-array">Assoziatives Array</h2>
+
+<p>Jedes Array kann in PHP auch Strings als Index enthalten.
+Ist das der Fall, dann wird es in JSON als Objekt dargestellt:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+$array = array( &quot;foo&quot; =&gt; 10, &quot;bar&quot; =&gt; 30, &quot;baz&quot; =&gt; 30, 0 =&gt; &quot;a&quot;);
+echo json_encode( $array );
+// {&quot;foo&quot;:10,&quot;bar&quot;:30,&quot;baz&quot;:30,&quot;0&quot;:&quot;a&quot;}
+</pre></div>
+
+<p>In JSON gibt es keine entsprechung für das Assoziative Array
+in PHP. Deswegen wird es als Objekt dargestellt.  Wenn man
+dieses Objekt wieder in JSON zurück wandelt erhält man aber
+ein PHP Objekt mit einer Property “0”:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+$array = array( &quot;foo&quot; =&gt; 10, &quot;bar&quot; =&gt; 30, &quot;baz&quot; =&gt; 30, 0 =&gt; &quot;a&quot;);
+$string = json_encode( $array );
+// {&quot;foo&quot;:10,&quot;bar&quot;:30,&quot;baz&quot;:30,&quot;0&quot;:&quot;a&quot;}
+$o = json_decode( $string );
+print_r( $o );
+//  stdClass Object
+//  (
+//    [foo] =&gt; 10
+//    [bar] =&gt; 30
+//    [baz] =&gt; 30
+//    [0] =&gt; a
+//  )
+echo &quot;Wert von foo: &quot; . $o-&gt;foo;
+echo &quot;Wert von 0: &quot; . $o-&gt;{&#39;0&#39;};
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Im zweiten Argument von <code>json_decode</code> kann man angeben ob
+<strong>alle</strong> Objekte als Assoziative Arrays decodiert werden sollen:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+$string = &#39;{&quot;foo&quot;:10,&quot;bar&quot;:30,&quot;baz&quot;:30,&quot;0&quot;:&quot;a&quot;}&#39;;
+$o = json_decode( $string, true );
+print_r( $o );
+// Array
+// (
+//   [foo] =&gt; 10
+//   [bar] =&gt; 30
+//   [baz] =&gt; 30
+//   [0] =&gt; a
+// )
+echo &quot;Wert von foo: &quot; . $o[&#39;foo&#39;];
+echo &quot;Wert von 0: &quot; . $o[0];  
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="referenz">Referenz</h2>
+
+<ul>
+  <li><a href="http://www.php.net/manual/de/book.json.php">JSON in der PHP Doku</a></li>
+</ul>
+
+</div>
+    <div class="slide">
+      <h1>JSON und PHP</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/json/syntax//slide.html">JSON Syntax</a> | 
+        <a href="/json/php/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/xml//slide.html">XML</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

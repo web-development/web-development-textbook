@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Unobstrusive Javascript - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Unobstrusive Javascript</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/jquery//slide.html">jQuery - Einführung</a> | 
+        <a href="/jquery/unobstrusive/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/jquery/graceful//slide.html">Graceful Degradation</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>In Zusammenhang mit jQuery werden die Fachbegriffe „graceful degradation“, „progressive enhancement“  und „unobstrusive“ verwendet. Dahinter verbergen sich zwei verwandte, aber verschiedene Konzepte.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="unobstrusive-javascript">Unobstrusive Javascript</h2>
+
+<p>“obstrusive” bedeutet störend oder aufdringlich. Unobstrusive Javascript ist
+also Javascript dass nicht stört.  Und zwar den HTML-Code nicht stört.</p>
+
+<p>Bei der Verwendung von jQuery bleibt der HTML-Code „javascript-frei“: jQuery wird nur an einer Stelle, im Head des Dokuments eingebaut.</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+  &lt;script
+        src=&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;
+        integrity=&quot;sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=&quot;
+        crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+  $(document).ready(function(){ 
+        // Javascript code here 
+  }); 
+  &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+        &lt;!--  plain html here, no onclick or onload or ... --&gt;
+  &lt;/body&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="jquery-vom-cdn">jquery vom CDN</h2>
+
+<p>Unter <code>https://code.jquery.com/</code>  kann man jquery in verschiedenen Versionen beziehen, und den
+code auch direkt einbinden. Hinter <code>code.jquery.com</code> steht nicht nur ein Server, sondern das <a href="http://www.netdna.com/">NetDNA</a> CDN (Content Delivery Network).</p>
+
+<p>Der empfohlene Code zur Einbindung enthält eine Quersumme zur Sicherheit: so kann es
+nicht passieren, dass eine gefälchste Version von jQuery verwendet wird, die Schadcode enthält.</p>
+
+<p>Nur wenn man offline Entwickeln will, oder die Webseite offline funktioniern soll, muss man die Library wirklich herunterladen.</p>
+
+</div>
+    <div class="slide">
+      <h1>Unobstrusive Javascript</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/jquery//slide.html">jQuery - Einführung</a> | 
+        <a href="/jquery/unobstrusive/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/jquery/graceful//slide.html">Graceful Degradation</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

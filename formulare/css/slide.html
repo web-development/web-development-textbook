@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>CSS und Formular - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>CSS und Formular</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/formulare/interaktion//slide.html">Formular als Interaktion</a> | 
+        <a href="/formulare/css/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/formulare/action//slide.html">Daten absenden</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Wie ordne ich die Beschriftungen und Eingabefelder
+eines Formualares an?</p>
+
+<p>Mit CSS Grid:</p>
+
+<p><img src="/images/formulare/grid-layout-form.png" srcset="/images/formulare/grid-layout-form@2x.png 2x, /images/formulare/grid-layout-form.png 1x"  alt="Beispiel CSS Grid und Formular" ></p>
+
+<p><a href="/images/formulare/grid-form.html">Beispiel CSS Grid und Formular</a></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Dabei verwenden wir das CSS Grid ohne zu wissen, wie viele Eingabfelder
+das Formular im Ende enthalten wird.</p>
+
+<p>Wir definieren nur zwei Spalten:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+form {
+  display: grid;
+  grid-template-columns: [labels] auto [controls] 1fr;
+  grid-gap: 10px;
+}
+</pre></div>
+
+<p>In eckigen Klammern werden hier die Namen für die beiden
+ersten senkrechten Linien des Grid festgelegt: <code>labels</code> und <code>controls</code>.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="berzhlige-element-im-grid">Überzählige Element im grid</h3>
+
+<p>Was soll mit überzähligen Kinder-Tags des grids passieren?
+Das wird mit der Property  <code>grid-auto-flow</code> festgelegt:</p>
+
+<p>Das Grid kann um zusätzliche Zeilen erweiteret werden, um zusätzliche
+Spalten, oder es können Lücken im Grid aufgefüllt werden:</p>
+
+<ul>
+  <li><code>grid-auto-flow: rows</code></li>
+  <li><code>grid-auto-flow: columns</code></li>
+  <li><code>grid-auto-flow: dense</code></li>
+</ul>
+
+<p>Im Fall des Formulars sollen neue Zeilen eingefügt werden.</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+form {
+  display: grid;
+  grid-template-columns: [labels] auto [controls] 1fr;
+  grid-gap: 10px;
+  grid-auto-flow: rows;
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="welche-elemente-in-welche-spalten">Welche Elemente in welche Spalten?</h3>
+
+<p>Wenn die HTML-Tags innerhalb des Forms abwechseln <code>label</code> und <code>input</code> tags
+sind, dann landen sie automatisch in den richtigenspalten:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Formular HTML Code mit Grid</small></h4>
+<pre class="lang-html prettyprint linenums">
+ &lt;form&gt;
+      &lt;label for=&quot;customer_name&quot;&gt;Name &lt;/label&gt;
+      &lt;input type=&quot;text&quot; name=&quot;customer_name&quot; id=&quot;customer_name&quot; required&gt;
+
+      &lt;label for=&quot;phone_number&quot;&gt;Phone &lt;/label&gt;
+      &lt;input type=&quot;tel&quot; name=&quot;phone_number&quot; id=&quot;phone_number&quot;&gt;
+
+      &lt;label for=&quot;email_address&quot;&gt;Email &lt;/label&gt;
+      &lt;input type=&quot;email&quot; name=&quot;email_address&quot; id=&quot;email_address&quot;&gt;
+      ...
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="absende-button-positionieren">Absende-Button positionieren</h3>
+
+<p>Der absende Button  <code>&lt;input type="submit" value="Submit Booking"&gt;</code> würde
+so automatisch in der linken Spalte landen. Mit folgendem CSS-Code
+kann er in der rechten Spalte positiniert werden:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+form &gt; input[type=submit] {
+  grid-column: controls;
+}
+</pre></div>
+
+<p>Der name <code>controls</code> bezieht sich dabei auf die  mit <code>grid-template-columns</code>
+definierte Namen für die Linien.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="grssere-zellen">Grössere Zellen</h3>
+
+<p>Die <code>fieldsets</code> sollen beide Spalten überspannen.
+Das erreichen wir mit der Property <code>grid-column</code>:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+form &gt; fieldset {
+  grid-column: span 2;
+}
+</pre></div>
+
+<p>Ein fieldset Tag der ein direktes Kind eines form Tags ist,
+soll zwei Spalten überspannen.</p>
+
+</div>
+    <div class="slide">
+      <h1>CSS und Formular</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/formulare/interaktion//slide.html">Formular als Interaktion</a> | 
+        <a href="/formulare/css/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/formulare/action//slide.html">Daten absenden</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

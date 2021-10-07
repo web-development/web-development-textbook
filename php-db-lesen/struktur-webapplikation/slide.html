@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Struktur einer Web-Applikation - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Struktur einer Web-Applikation</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-lesen/start//slide.html">PHP und Datenbank</a> | 
+        <a href="/php-db-lesen/struktur-webapplikation/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-lesen/datenbank-lesen//slide.html">Lesen aus der Datenbank</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>An einem Beispiel lernen wir nun den typischen Aufbau einer einfachen Web-Applikation
+kennen. Die fertige Applikation soll Werke und Personen aus einem
+Gemeinschafts-Portfolio anzeigen:</p>
+
+<p><img src="/images/dbapp-home.png"  alt="Abbildung 144: Homepage der Mini-Applikation" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Die folgende Tabelle zeigt alle (geplanten) Seiten der Applikation im Überblick. Zu jeder Seite wird der Titel angeführt (wird auf der Seite angezeigt), der Dateiname der PHP-Datei (wichtig für die Verlinkung), eventuell notwendige Parameter und eine Beschreibung was die Seite anzeigt.</p>
+
+<table class="table table-condensed table-bordered" style="width:auto">
+  <thead>
+    <tr>
+      <th>Titel</th>
+      <th>Dateiname</th>
+      <th>Parameter</th>
+      <th>Beschreibung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Home</td>
+      <td><code>index.php</code></td>
+      <td> </td>
+      <td>Zeigt Gesamtzahl der Personen und Werke an, sowie Bilder von 10 zufälligen Werken</td>
+    </tr>
+    <tr>
+      <td>Personen</td>
+      <td><code>personen.php</code></td>
+      <td> </td>
+      <td>Zeigt alle sichtbaren Profile an, mit Links zu  person.php</td>
+    </tr>
+    <tr>
+      <td>Personensuche</td>
+      <td><code>psuche.php</code></td>
+      <td> </td>
+      <td>Zeigt Ein Such-Formular für Personen an</td>
+    </tr>
+    <tr>
+      <td>Personensuche</td>
+      <td><code>psuche.php</code></td>
+      <td>suchwort</td>
+      <td>Zeigt alle sichtbaren Profile an, wo Vor- oder Nachname like suchwort</td>
+    </tr>
+    <tr>
+      <td>Profil einer Person</td>
+      <td><code>person.php</code></td>
+      <td>id (Schlüssel der Person)</td>
+      <td>Zeigt Details zu einer bestimmten Person an: Anzahl der Werke und Username</td>
+    </tr>
+    <tr>
+      <td>Werke</td>
+      <td><code>werke.php</code></td>
+      <td> </td>
+      <td>Zeigt alle sichtbaren Werke an, mit Links zu werk.php</td>
+    </tr>
+    <tr>
+      <td>Details zu einem Werk</td>
+      <td><code>werk.php</code></td>
+      <td>id (Schlüssel des Werks)</td>
+      <td>Zeigt Details zu einer bestimmten Werk an: Titel, Datum der Publikation, eventuell eine Liste der Beteiligten Personen und ihrer Rollen</td>
+    </tr>
+    <tr>
+      <td>Werksuche</td>
+      <td><code>wsuche.php</code></td>
+      <td> </td>
+      <td>Zeigt Ein Such-Formular für Werke an</td>
+    </tr>
+    <tr>
+      <td>Werksuche</td>
+      <td><code>wsuche.php</code></td>
+      <td>suchwort</td>
+      <td>Zeigt alle sichtbaren Werke an, wo Titel like suchwort</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+<div class="slide">
+
+
+
+<p>Jede einzelne Seite ist mit Hilfe von includes aufgebaut. Dabei werden immer die
+Dateien <code>functions.php</code> (mit dem Aufbau der Datenbank-Verbindung), <code>header.php</code> und 
+<code>footer.php</code> inkluidert.</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+&lt;?
+  $pagetitle = &quot;Titel der Seite&quot;;
+  include &quot;functions.php&quot;;
+
+  // hier passiert die eigentliche Arbeit
+  
+  include &quot;header.php&quot;;
+  // und hier die Ausgabe
+  include &quot;footer.php&quot;;
+?&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="verlinkung">Verlinkung</h2>
+
+<p>In der Datei personen.php wird zu jeder Person ein passender Link zu person.php angezeigt:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Links von Personen zur einzelnen Person</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;li&gt;
+  &lt;b&gt;Michael A&lt;/b&gt;
+  &lt;a href=&quot;person.php?id=577&quot;&gt;mehr&lt;/a&gt;
+&lt;/li&gt;
+&lt;li&gt;
+  &lt;b&gt;Benjamin A&lt;/b&gt;
+  &lt;a href=&quot;person.php?id=579&quot;&gt;mehr&lt;/a&gt;
+&lt;/li&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="datenstze-suchen">Datensätze suchen</h2>
+<p>In der Datei <code>psuche.php</code> wird ein Formular zur Suche nach Vornamen angezeigt:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;form action=&quot;psuche.php&quot; method=&quot;get&quot;&gt;
+  Suche nach einer Person mit Namen &lt;input name=&quot;suchwort&quot;&gt; 
+  &lt;input type=&quot;submit&quot;&gt;
+&lt;/form&gt;
+</pre></div>
+
+</div>
+    <div class="slide">
+      <h1>Struktur einer Web-Applikation</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-lesen/start//slide.html">PHP und Datenbank</a> | 
+        <a href="/php-db-lesen/struktur-webapplikation/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-lesen/datenbank-lesen//slide.html">Lesen aus der Datenbank</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

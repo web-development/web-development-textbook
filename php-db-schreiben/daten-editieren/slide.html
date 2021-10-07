@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Daten Bearbeiten - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Daten Bearbeiten</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-schreiben/daten-einfuegen//slide.html">Einfügen</a> | 
+        <a href="/php-db-schreiben/daten-editieren/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-schreiben/html-erlauben//slide.html">HTML erlauben</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Wir wollen einen Datensatz aus der Datenbank laden, in einem Formular zur
+Bearbeitung anbieten, und dann wieder in der Datenbank speichern.</p>
+
+<p><img src="/images/person_edit.png"  alt="Formular zum Bearbeiten einer Person" ></p>
+
+<p>Das Lesen des Datensatzes aus der Datenbank erfolgt nun auch mit einem prepared Statement,
+da die ID aus dem GET-Parameter gelesen wurde:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>laden des Datensatzes, der editiert werden soll</small></h4>
+<pre class="lang-php prettyprint linenums">
+$sth = $dbh-&gt;prepare( &quot;SELECT * FROM users WHERE id=?&quot; );
+$sth-&gt;execute( array( $id ) );
+$person = $sth-&gt;fetch();
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="das-bearbeitungs-formular">Das Bearbeitungs-Formular</h3>
+
+<p>Bei der Darstellung des Bearbeitungs-Formulars werden die Daten nun als
+Standardwerte dargestellt. Das passiert bei Textfeldern mit dem Value-Attribute
+und bei Textareas als Inhalt des Tags:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;input name=&quot;firstname&quot; value=&quot;Tobias&quot;&gt;
+&lt;textarea name=&quot;description&quot; rows=&quot;7&quot;&gt;Webdesigner&lt;/textarea&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Achtung: Falls in den Daten Anführungszeichen, kaufmännische Unds oder
+Kleiner-Zeichen vorkommen müssen diese für HTML escaped werden.  Hier ein
+Beispiel:</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+portfolio_playground=# select firstname,description from users where id=438;
+     firstname      |          description
+--------------------+--------------------------------
+ Tobias &quot;the Coder&quot; | Mein Lieblings-Tag ist &lt;style&gt;
+(1 row)
+</pre></div>
+
+<p>So würde die Darstellung der Eingabefelder nicht funktionieren:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;input name=&quot;firstname&quot; value=&quot;Tobias &quot;the Coder&quot;&quot;&gt;
+&lt;textarea name=&quot;description&quot; rows=&quot;7&quot;&gt;Mein Lieblings-Tag ist &lt;style&gt;&lt;/textarea&gt;
+</pre></div>
+
+<p>Das Attribut <code>value</code> endet zu früh, und der <code>&lt;style&gt;</code> Tag lässt
+den Rest der Webseite verschwinden.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Richtig ist die Darstellung gewisser Zeichen als HTML Entities:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;input name=&quot;firstname&quot; value=&quot;Tobias &amp;quot;the coder&amp;quot;&quot;&gt;
+&lt;textarea name=&quot;description&quot; rows=&quot;7&quot;&gt;Mein Lieblings-Tag ist &amp;lt;style&amp;gt;&lt;/textarea&gt;
+</pre></div>
+
+<p>Diese Ersetzung wird mit der Funktion
+<code>htmlspecialchars</code><a href="http://www.php.net/manual/en/function.htmlspecialchars.php">→</a> vorgenommen:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+htmlspecialchars( $person-&gt;firstname );
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Zusammenfassend sieht die Darstellung des Eingabeformulars so aus:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Darstellung eines Eingabe-Felds des Edit-Formulars mit PHP</small></h4>
+<pre class="lang-php prettyprint linenums">
+&lt;input name=&quot;firstname&quot; value=&quot;&lt;?= htmlspecialchars( $person-&gt;firstname ); ?&gt;&quot;&gt;
+&lt;textarea name=&quot;description&quot; rows=&quot;7&quot;&gt;&lt;?= htmlspecialchars( $person-&gt;description ); ?&gt;&lt;/textarea&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="verarbeitung-des-post-request">Verarbeitung des POST-Request</h3>
+
+<p>Die veränderten Daten werden mit POST an person_edit.php geschickt. Aus den Daten wird ein UPDATE-Statement erstellt:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Update der Daten von PHP aus</small></h4>
+<pre class="lang-php prettyprint linenums">
+$sth = $dbh-&gt;prepare(
+  &quot;UPDATE users SET
+    firstname=?,surname=?,email=?,
+    profile_visible=?,description=? 
+   WHERE id=?&quot;);
+
+$update_went_ok = $sth-&gt;execute(
+  array(
+    $_POST[&#39;firstname&#39;],
+    $_POST[&#39;surname&#39;],
+    $_POST[&#39;email&#39;],
+    $_POST[&#39;profile_visible&#39;],
+    $_POST[&#39;description&#39;],
+    $_POST[&#39;id&#39;]
+  )
+);
+
+header(&quot;Location: person.php?id=&quot; . $_POST[&#39;id&#39;]);
+exit;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="escapen-von-html">Escapen von HTML</h2>
+<p>Das Escapen der Daten für HTML hätten wir von Anfang an bei jeder Ausgabe von Daten aus der Datenbank durchführen müssen. Wir haben bisher einfach die Daten direkt mit echo ausgegeben:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Ausgabe von Daten aus der Datenbank ohne html-escaping</small></h4>
+<pre class="lang-php prettyprint linenums">
+&lt;?php echo $person-&gt;firstname ?&gt;
+&lt;?php echo $person-&gt;surname ?&gt;
+hat insgesamt  &lt;?php echo $no ?&gt; Werke in dieser Datenbank.
+// problematisch!
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wenn hier in der Description „Mein Lieblings-Tag ist &lt;style&gt;“ steht, und dieser Text einfach ausgegeben wird, dann „verschwindet“ der Rest der Webseite, weil er sich nun innerhalb eines Style-Tags befindet.</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Ausgabe von Daten aus der Datenbank mit html-escaping</small></h4>
+<pre class="lang-php prettyprint linenums">
+$username    = htmlspecialchars( $person-&gt;username     );
+$firstname   = htmlspecialchars( $person-&gt;firstname    );
+$surname     = htmlspecialchars( $person-&gt;surname      );
+$description = htmlspecialchars( $person-&gt;description  );
+
+echo &lt;&lt;&lt;EOM
+  &lt;p&gt;$anrede $vorname $nachname hat insgesamt 
+  $no Werke in dieser Datenbank.
+  $ersie hat den Usernamen $username.&lt;/p&gt;
+
+  &lt;div&gt;$description&lt;/div&gt;
+EOM;
+</pre></div>
+
+<p>Damit funktioniert nun die Darstellung des Datensatzes richtig:</p>
+
+<p><img src="/images/html-escaped1.png"  alt="Korrekte Darstellung eines Datensatzes mit kleiner-Zeichen" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="siehe-auch">Siehe auch</h2>
+
+<ul>
+  <li>Kapitel über <a href="/security/a3-xss/">Cross Site Scripting (XSS)</a></li>
+</ul>
+
+</div>
+    <div class="slide">
+      <h1>Daten Bearbeiten</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-schreiben/daten-einfuegen//slide.html">Einfügen</a> | 
+        <a href="/php-db-schreiben/daten-editieren/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-schreiben/html-erlauben//slide.html">HTML erlauben</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

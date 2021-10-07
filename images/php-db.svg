@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 14.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 43363)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+	 id="svg2" inkscape:output_extension="org.inkscape.output.svg.inkscape" xmlns:dc="http://purl.org/dc/elements/1.1/" inkscape:version="0.45" xmlns:cc="http://web.resource.org/cc/" sodipodi:docname="Nonce-uml.svg" sodipodi:version="0.32" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" sodipodi:docbase="/home/nick/Desktop" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" sodipodi:modified="true" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="864.751px" height="289px"
+	 viewBox="0 -59.873 864.751 289" enable-background="new 0 -59.873 864.751 289" xml:space="preserve">
+<sodipodi:namedview  inkscape:cy="110.45852" inkscape:window-y="24" inkscape:window-x="0" inkscape:window-height="954" inkscape:document-units="px" inkscape:window-width="1280" showgrid="false" inkscape:current-layer="layer1" bordercolor="#666666" inkscape:pageopacity="0.0" objecttolerance="10" guidetolerance="10" inkscape:cx="176.39324" pagecolor="#ffffff" inkscape:zoom="3.959798" inkscape:pageshadow="2" gridtolerance="10000" borderopacity="1.0" height="330.51px" width="345px" id="base">
+	</sodipodi:namedview>
+<path id="rect2160" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M157.662,6.25h78.818
+	c0.05,0,0.091,0.041,0.091,0.091v28.818c0,0.05-0.041,0.091-0.091,0.091h-78.818c-0.05,0-0.091-0.041-0.091-0.091V6.339
+	C157.571,6.29,157.612,6.25,157.662,6.25z"/>
+<text transform="matrix(1 0 0 1 164.5 24.2188)" font-family="'MyriadPro-Regular'" font-size="12">W</text>
+<text transform="matrix(1 0 0 1 174.2559 24.2188)" font-family="'MyriadPro-Regular'" font-size="12">e</text>
+<text transform="matrix(1 0 0 1 180.2681 24.2188)" font-family="'MyriadPro-Regular'" font-size="12">b</text>
+<text transform="matrix(1 0 0 1 187.0957 24.2188)" font-family="'MyriadPro-Regular'" font-size="12">b</text>
+<text transform="matrix(1 0 0 1 193.9238 24.2188)" font-family="'MyriadPro-Regular'" font-size="12">r</text>
+<text transform="matrix(1 0 0 1 197.7275 24.2188)" font-family="'MyriadPro-Regular'" font-size="12">o</text>
+<text transform="matrix(1 0 0 1 204.2314 24.2188)" font-family="'MyriadPro-Regular'" font-size="12">w</text>
+<text transform="matrix(1 0 0 1 212.9917 24.2188)" font-family="'MyriadPro-Regular'" font-size="12">s</text>
+<text transform="matrix(1 0 0 1 217.7437 24.2188)" font-family="'MyriadPro-Regular'" font-size="12">e</text>
+<text transform="matrix(1 0 0 1 223.7554 24.2188)" font-family="'MyriadPro-Regular'" font-size="12">r</text>
+<path id="path4124" inkscape:connector-type="polyline" fill="none" stroke="#000000" stroke-dasharray="2,2" d="M197.071,34.87
+	l0.155,161.562"/>
+<path id="rect10380" fill="#FFFFFF" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M568.225,89.161h6.387
+	c0.05,0,0.091,0.041,0.091,0.091v50.626c0,0.05-0.041,0.091-0.091,0.091h-6.387c-0.051,0-0.092-0.041-0.092-0.091V89.251
+	C568.133,89.201,568.174,89.161,568.225,89.161z"/>
+<path id="rect4110" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M414.396,5.208h78.817
+	c0.05,0,0.091,0.04,0.091,0.09v28.696c0,0.05-0.041,0.09-0.091,0.09h-78.817c-0.051,0-0.09-0.041-0.09-0.09V5.298
+	C414.307,5.247,414.346,5.208,414.396,5.208z"/>
+<text transform="matrix(1 0 0 1 293 67.7188)" font-family="'MyriadPro-Regular'" font-size="12">H</text>
+<text transform="matrix(1 0 0 1 300.8237 67.7188)" font-family="'MyriadPro-Regular'" font-size="12">T</text>
+<text transform="matrix(1 0 0 1 307.2437 67.7188)" font-family="'MyriadPro-Regular'" font-size="12">T</text>
+<text transform="matrix(1 0 0 1 313.2075 67.7188)" font-family="'MyriadPro-Regular'" font-size="12">P</text>
+<text transform="matrix(1 0 0 1 319.5918 67.7188)" font-family="'MyriadPro-Regular'" font-size="12"> </text>
+<text transform="matrix(1 0 0 1 322.1357 67.7188)" font-family="'MyriadPro-Regular'" font-size="12">R</text>
+<text transform="matrix(1 0 0 1 328.6396 67.7188)" font-family="'MyriadPro-Regular'" font-size="12">e</text>
+<text transform="matrix(1 0 0 1 334.6514 67.7188)" font-family="'MyriadPro-Regular'" font-size="12">q</text>
+<text transform="matrix(1 0 0 1 341.4072 67.7188)" font-family="'MyriadPro-Regular'" font-size="12">u</text>
+<text transform="matrix(1 0 0 1 348.0195 67.7188)" font-family="'MyriadPro-Regular'" font-size="12">e</text>
+<text transform="matrix(1 0 0 1 354.0312 67.7188)" font-family="'MyriadPro-Regular'" font-size="12">s</text>
+<text transform="matrix(1 0 0 1 358.7832 67.7188)" font-family="'MyriadPro-Regular'" font-size="12">t</text>
+<path id="rect10380_1_" fill="#FFFFFF" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M193.615,42.247h6.384
+	c0.05,0,0.091,0.111,0.091,0.248v138.316c0,0.136-0.041,0.248-0.091,0.248h-6.384c-0.051,0-0.092-0.112-0.092-0.248V42.494
+	C193.523,42.357,193.564,42.247,193.615,42.247z"/>
+<path id="rect4110_1_" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M532.662,6.245h78.818
+	c0.05,0,0.091,0.04,0.091,0.09V35.03c0,0.05-0.041,0.09-0.091,0.09h-78.818c-0.051,0-0.091-0.041-0.091-0.09V6.335
+	C532.571,6.284,532.611,6.245,532.662,6.245z"/>
+<text transform="matrix(1.0043 0 0 1 561.0039 17.6953)" font-family="'MyriadPro-Regular'" font-size="11.9488">P</text>
+<text transform="matrix(1.0043 0 0 1 567.3877 17.6953)" font-family="'MyriadPro-Regular'" font-size="11.9488">H</text>
+<text transform="matrix(1.0043 0 0 1 575.2119 17.6953)" font-family="'MyriadPro-Regular'" font-size="11.9488">P</text>
+<text transform="matrix(1.0043 0 0 1 581.5957 17.6953)" font-family="'MyriadPro-Regular'" font-size="11.9488"> </text>
+<text transform="matrix(1.0043 0 0 1 546.1289 29.6436)" font-family="'MyriadPro-Regular'" font-size="11.9488">P</text>
+<text transform="matrix(1.0043 0 0 1 552.3213 29.6436)" font-family="'MyriadPro-Regular'" font-size="11.9488">r</text>
+<text transform="matrix(1.0043 0 0 1 556.125 29.6436)" font-family="'MyriadPro-Regular'" font-size="11.9488">o</text>
+<text transform="matrix(1.0043 0 0 1 562.7129 29.6436)" font-family="'MyriadPro-Regular'" font-size="11.9488">g</text>
+<text transform="matrix(1.0043 0 0 1 569.3486 29.6436)" font-family="'MyriadPro-Regular'" font-size="11.9488">r</text>
+<text transform="matrix(1.0043 0 0 1 573.2129 29.6436)" font-family="'MyriadPro-Regular'" font-size="11.9488">a</text>
+<text transform="matrix(1.0043 0 0 1 578.9971 29.6436)" font-family="'MyriadPro-Regular'" font-size="11.9488">m</text>
+<text transform="matrix(1.0043 0 0 1 589.0049 29.6436)" font-family="'MyriadPro-Regular'" font-size="11.9488">m</text>
+<path id="rect4110_3_" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M24.091,5.208h78.818
+	c0.05,0,0.091,0.041,0.091,0.09v28.695c0,0.05-0.041,0.091-0.091,0.091H24.091c-0.051,0-0.091-0.041-0.091-0.091V5.297
+	C24,5.248,24.04,5.208,24.091,5.208z"/>
+<text transform="matrix(1.0043 0 0 1 44.4102 23.6387)" font-family="'MyriadPro-Regular'" font-size="11.9488">M</text>
+<text transform="matrix(1.0043 0 0 1 54.1299 23.6387)" font-family="'MyriadPro-Regular'" font-size="11.9488">e</text>
+<text transform="matrix(1.0043 0 0 1 60.1416 23.6387)" font-family="'MyriadPro-Regular'" font-size="11.9488">n</text>
+<text transform="matrix(1.0043 0 0 1 66.8018 23.6387)" font-family="'MyriadPro-Regular'" font-size="11.9488">s</text>
+<text transform="matrix(1.0043 0 0 1 71.5537 23.6387)" font-family="'MyriadPro-Regular'" font-size="11.9488">c</text>
+<text transform="matrix(1.0043 0 0 1 76.9297 23.6387)" font-family="'MyriadPro-Regular'" font-size="11.9488">h</text>
+<path id="rect4110_2_" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M642.091,6.712h78.818
+	c0.05,0,0.091,0.041,0.091,0.09v28.695c0,0.05-0.041,0.091-0.091,0.091h-78.818c-0.051,0-0.091-0.041-0.091-0.091V6.802
+	C642,6.752,642.04,6.712,642.091,6.712z"/>
+<g id="use6182_2_" transform="translate(256.34516,0.8611366)">
+	<path id="path4124_3_" inkscape:connector-type="polyline" fill="none" stroke="#000000" stroke-dasharray="2,2" d="
+		M-193.287,33.296l0.154,163.873"/>
+</g>
+<g id="use6182_4_" transform="translate(256.34516,0.8611366)">
+	<path id="path4124_1_" inkscape:connector-type="polyline" fill="none" stroke="#000000" stroke-dasharray="2,2" d="
+		M315.726,33.792l0.155,163.873"/>
+</g>
+<g id="use6182_1_" transform="translate(256.34516,0.8611366)">
+	<path id="path4124_2_" inkscape:connector-type="polyline" fill="none" stroke="#000000" stroke-dasharray="2,2" d="
+		M424.572,34.128L424.726,198"/>
+</g>
+<g id="use6182_3_" transform="translate(256.34516,0.8611366)">
+	<path id="path4124_4_" inkscape:connector-type="polyline" fill="none" stroke="#000000" stroke-dasharray="2,2" d="
+		M197.598,33.214l0.154,163.872"/>
+</g>
+<text transform="matrix(1.0043 0 0 1 666.9346 18.1621)" font-family="'MyriadPro-Regular'" font-size="11.9488">D</text>
+<text transform="matrix(1.0043 0 0 1 674.9268 18.1621)" font-family="'MyriadPro-Regular'" font-size="11.9488">a</text>
+<text transform="matrix(1.0043 0 0 1 680.6621 18.1621)" font-family="'MyriadPro-Regular'" font-size="11.9488">t</text>
+<text transform="matrix(1.0043 0 0 1 684.5625 18.1621)" font-family="'MyriadPro-Regular'" font-size="11.9488">e</text>
+<text transform="matrix(1.0043 0 0 1 690.5742 18.1621)" font-family="'MyriadPro-Regular'" font-size="11.9488">i</text>
+<text transform="matrix(1.0043 0 0 1 693.3818 18.1621)" font-family="'MyriadPro-Regular'" font-size="11.9488">-</text>
+<text transform="matrix(1.0043 0 0 1 663.9639 30.1104)" font-family="'MyriadPro-Regular'" font-size="11.9488">S</text>
+<text transform="matrix(1.0043 0 0 1 669.7842 30.1104)" font-family="'MyriadPro-Regular'" font-size="11.9488">y</text>
+<text transform="matrix(1.0043 0 0 1 675.3643 30.1104)" font-family="'MyriadPro-Regular'" font-size="11.9488">s</text>
+<text transform="matrix(1.0043 0 0 1 680.1162 30.1104)" font-family="'MyriadPro-Regular'" font-size="11.9488">t</text>
+<text transform="matrix(1.0043 0 0 1 684.0156 30.1104)" font-family="'MyriadPro-Regular'" font-size="11.9488">e</text>
+<text transform="matrix(1.0043 0 0 1 690.0273 30.1104)" font-family="'MyriadPro-Regular'" font-size="11.9488">m</text>
+<path id="rect10380_2_" fill="#FFFFFF" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M450.615,45.259h6.384
+	c0.05,0,0.091,0.107,0.091,0.242v135.03c0,0.132-0.041,0.241-0.091,0.241h-6.384c-0.051,0-0.092-0.11-0.092-0.241V45.5
+	C450.523,45.366,450.564,45.259,450.615,45.259z"/>
+<g>
+	<g>
+		<line fill="none" x1="571.034" y1="140.248" x2="465" y2="140.248"/>
+		<path fill="#FFFFFF" d="M458.965,140.248c2.84-1.054,6.363-2.852,8.547-4.755l-1.72,4.755l1.72,4.755
+			C465.328,143.099,461.805,141.3,458.965,140.248z"/>
+	</g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-dasharray="5,3" x1="571.034" y1="140.248" x2="465" y2="140.248"/>
+		<path d="M458.965,140.248c2.84-1.054,6.363-2.852,8.547-4.755l-1.72,4.755l1.72,4.755
+			C465.328,143.099,461.805,141.3,458.965,140.248z"/>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 262 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">H</text>
+<text transform="matrix(1 0 0 1 269.8237 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">T</text>
+<text transform="matrix(1 0 0 1 276.2437 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">T</text>
+<text transform="matrix(1 0 0 1 282.2075 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">P</text>
+<text transform="matrix(1 0 0 1 288.5918 147.7188)" font-family="'MyriadPro-Regular'" font-size="12"> </text>
+<text transform="matrix(1 0 0 1 291.1357 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">R</text>
+<text transform="matrix(1 0 0 1 297.6396 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">e</text>
+<text transform="matrix(1 0 0 1 303.6514 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">s</text>
+<text transform="matrix(1 0 0 1 308.4033 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">p</text>
+<text transform="matrix(1 0 0 1 315.231 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">o</text>
+<text transform="matrix(1 0 0 1 321.8193 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">n</text>
+<text transform="matrix(1 0 0 1 328.4785 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">s</text>
+<text transform="matrix(1 0 0 1 333.2305 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">e</text>
+<text transform="matrix(1 0 0 1 339.2422 147.7188)" font-family="'MyriadPro-Regular'" font-size="12"> </text>
+<text transform="matrix(1 0 0 1 341.7871 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">(</text>
+<text transform="matrix(1 0 0 1 345.1953 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">i</text>
+<text transform="matrix(1 0 0 1 348.002 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">n</text>
+<text transform="matrix(1 0 0 1 354.6621 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">k</text>
+<text transform="matrix(1 0 0 1 360.459 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">.</text>
+<text transform="matrix(1 0 0 1 362.9424 147.7188)" font-family="'MyriadPro-Regular'" font-size="12"> </text>
+<text transform="matrix(1 0 0 1 365.4863 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">H</text>
+<text transform="matrix(1 0 0 1 373.3105 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">T</text>
+<text transform="matrix(1 0 0 1 379.2734 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">M</text>
+<text transform="matrix(1 0 0 1 388.9219 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">L</text>
+<text transform="matrix(1 0 0 1 394.5859 147.7188)" font-family="'MyriadPro-Regular'" font-size="12">)</text>
+<text transform="matrix(1 0 0 1 500 137.7188)" font-family="'MyriadPro-Regular'" font-size="12">HTML</text>
+<g>
+	<g>
+		<line fill="none" x1="679.65" y1="83.962" x2="462.65" y2="83.962"/>
+		<path fill="#FFFFFF" d="M456.615,83.962c2.84-1.053,6.362-2.852,8.547-4.754l-1.72,4.754l1.72,4.756
+			C462.979,86.813,459.455,85.017,456.615,83.962z"/>
+	</g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-dasharray="5,3" x1="679.65" y1="83.962" x2="462.65" y2="83.962"/>
+		<path d="M456.615,83.962c2.84-1.053,6.362-2.852,8.547-4.754l-1.72,4.754l1.72,4.756
+			C462.979,86.813,459.455,85.017,456.615,83.962z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<line fill="none" x1="459" y1="90.718" x2="560" y2="90.718"/>
+		<path fill="#FFFFFF" d="M566.035,90.718c-2.84,1.054-6.363,2.852-8.547,4.755l1.72-4.755l-1.72-4.755
+			C559.672,87.866,563.195,89.666,566.035,90.718z"/>
+	</g>
+	<g>
+		<line fill="none" stroke="#000000" x1="459" y1="90.718" x2="560" y2="90.718"/>
+		<path d="M566.035,90.718c-2.84,1.054-6.363,2.852-8.547,4.755l1.72-4.755l-1.72-4.755
+			C559.672,87.866,563.195,89.666,566.035,90.718z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<line fill="none" x1="200" y1="72.718" x2="444" y2="72.718"/>
+		<path fill="#FFFFFF" d="M450.035,72.718c-2.84,1.054-6.363,2.852-8.547,4.755l1.72-4.755l-1.72-4.755
+			C443.672,69.866,447.195,71.666,450.035,72.718z"/>
+	</g>
+	<g>
+		<line fill="none" stroke="#000000" x1="200" y1="72.718" x2="444" y2="72.718"/>
+		<path d="M450.035,72.718c-2.84,1.054-6.363,2.852-8.547,4.755l1.72-4.755l-1.72-4.755
+			C443.672,69.866,447.195,71.666,450.035,72.718z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<line fill="none" x1="458.331" y1="77.472" x2="674.331" y2="77.472"/>
+		<path fill="#FFFFFF" d="M680.366,77.472c-2.84,1.055-6.363,2.854-8.547,4.756l1.72-4.756l-1.72-4.754
+			C674.003,74.622,677.526,76.42,680.366,77.472z"/>
+	</g>
+	<g>
+		<line fill="none" stroke="#000000" x1="458.331" y1="77.472" x2="674.331" y2="77.472"/>
+		<path d="M680.366,77.472c-2.84,1.055-6.363,2.854-8.547,4.756l1.72-4.756l-1.72-4.754
+			C674.003,74.622,677.526,76.42,680.366,77.472z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<line fill="none" x1="798.182" y1="119.897" x2="581.182" y2="119.897"/>
+		<path fill="#FFFFFF" d="M575.146,119.897c2.84-1.053,6.362-2.852,8.547-4.754l-1.72,4.754l1.72,4.756
+			C581.51,122.748,577.986,120.952,575.146,119.897z"/>
+	</g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-dasharray="5,3" x1="778.535" y1="119.897" x2="581.182" y2="119.897"/>
+		<path d="M575.146,119.897c2.84-1.053,6.362-2.852,8.547-4.754l-1.72,4.754l1.72,4.756
+			C581.51,122.748,577.986,120.952,575.146,119.897z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<line fill="none" x1="555.862" y1="102.407" x2="771.862" y2="102.407"/>
+		<path fill="#FFFFFF" d="M777.897,102.407c-2.84,1.055-6.363,2.854-8.547,4.756l1.72-4.756l-1.72-4.754
+			C771.534,99.557,775.058,101.355,777.897,102.407z"/>
+	</g>
+	<g>
+		<line fill="none" stroke="#000000" x1="575.212" y1="102.408" x2="771.862" y2="102.407"/>
+		<path d="M777.897,102.407c-2.84,1.055-6.363,2.854-8.547,4.756l1.72-4.756l-1.72-4.754
+			C771.534,99.557,775.058,101.355,777.897,102.407z"/>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 133 146.7188)" enable-background="new    "><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">Parsen +</tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">Darstellung</tspan></text>
+<g>
+	<g>
+		<line fill="none" x1="67" y1="57.718" x2="185" y2="57.718"/>
+		<path fill="#FFFFFF" d="M191.035,57.718c-2.84,1.054-6.363,2.852-8.547,4.755l1.72-4.755l-1.72-4.755
+			C184.672,54.866,188.195,56.666,191.035,57.718z"/>
+	</g>
+	<g>
+		<line fill="none" stroke="#000000" x1="67" y1="57.718" x2="185" y2="57.718"/>
+		<path d="M191.035,57.718c-2.84,1.054-6.363,2.852-8.547,4.755l1.72-4.755l-1.72-4.755
+			C184.672,54.866,188.195,56.666,191.035,57.718z"/>
+	</g>
+</g>
+<g>
+	<g>
+		<line fill="none" x1="450" y1="154.718" x2="207" y2="154.718"/>
+		<path fill="#FFFFFF" d="M200.965,154.718c2.84-1.054,6.363-2.852,8.547-4.755l-1.72,4.755l1.72,4.755
+			C207.328,157.569,203.805,155.771,200.965,154.718z"/>
+	</g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-dasharray="5,3" x1="450" y1="154.718" x2="207" y2="154.718"/>
+		<path d="M200.965,154.718c2.84-1.054,6.363-2.852,8.547-4.755l-1.72,4.755l1.72,4.755
+			C207.328,157.569,203.805,155.771,200.965,154.718z"/>
+	</g>
+</g>
+<path id="rect10380_3_" fill="#FFFFFF" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M59.525,41.718h6.384
+	c0.05,0,0.091,0.118,0.091,0.264v147.061c0,0.144-0.041,0.263-0.091,0.263h-6.384c-0.051,0-0.092-0.119-0.092-0.263V41.982
+	C59.434,41.836,59.475,41.718,59.525,41.718z"/>
+<text transform="matrix(1 0 0 1 422.998 22.6318)" font-family="'MyriadPro-Regular'" font-size="12">W</text>
+<text transform="matrix(1 0 0 1 432.7539 22.6318)" font-family="'MyriadPro-Regular'" font-size="12">e</text>
+<text transform="matrix(1 0 0 1 438.7656 22.6318)" font-family="'MyriadPro-Regular'" font-size="12">b</text>
+<text transform="matrix(1 0 0 1 445.5938 22.6318)" font-family="'MyriadPro-Regular'" font-size="12">s</text>
+<text transform="matrix(1 0 0 1 450.3457 22.6318)" font-family="'MyriadPro-Regular'" font-size="12">e</text>
+<text transform="matrix(1 0 0 1 456.3574 22.6318)" font-family="'MyriadPro-Regular'" font-size="12">r</text>
+<text transform="matrix(1 0 0 1 460.582 22.6318)" font-family="'MyriadPro-Regular'" font-size="12">v</text>
+<text transform="matrix(1 0 0 1 466.2334 22.6318)" font-family="'MyriadPro-Regular'" font-size="12">e</text>
+<text transform="matrix(1 0 0 1 472.2451 22.6318)" font-family="'MyriadPro-Regular'" font-size="12">r</text>
+<path id="rect4110_4_" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M742.408,5.208h78.817
+	c0.05,0,0.091,0.04,0.091,0.09v28.696c0,0.05-0.041,0.09-0.091,0.09h-78.817c-0.051,0-0.09-0.041-0.09-0.09V5.298
+	C742.318,5.247,742.357,5.208,742.408,5.208z"/>
+<g id="use6182_5_" transform="translate(256.34516,0.8611366)">
+	<path id="path4124_5_" inkscape:connector-type="polyline" fill="none" stroke="#000000" stroke-dasharray="2,2" d="M525.61,33.214
+		l0.154,163.872"/>
+</g>
+<path id="rect10380_4_" fill="#FFFFFF" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M778.627,45.259h6.384
+	c0.05,0,0.091,0.107,0.091,0.242v135.03c0,0.132-0.041,0.241-0.091,0.241h-6.384c-0.051,0-0.092-0.11-0.092-0.241V45.5
+	C778.535,45.366,778.576,45.259,778.627,45.259z"/>
+<text transform="matrix(1 0 0 1 482.2676 74.335)" font-family="'MyriadPro-Regular'" font-size="12">PHP Datei lesen</text>
+<text transform="matrix(1 0 0 1 472.2451 102.335)" font-family="'MyriadPro-Regular'" font-size="12">PHP starten</text>
+<text transform="matrix(1 0 0 1 23.75 -18.873)" font-family="'Arial-BoldMT'" font-size="21">PHP-Programm mit DB-Abfrage</text>
+<text transform="matrix(1 0 0 1 85.8433 52.9629)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">URL eintippe</tspan><tspan x="64.354" y="0" font-family="'MyriadPro-Regular'" font-size="12">n</tspan></text>
+<text transform="matrix(1 0 0 1 756.998 21.6318)" font-family="'MyriadPro-Regular'" font-size="12">DB-Server</text>
+<text transform="matrix(1 0 0 1 607.9336 98.813)" font-family="'MyriadPro-Regular'" font-size="12">SQL</text>
+<text transform="matrix(1 0 0 1 707.2666 116.5894)" font-family="'MyriadPro-Regular'" font-size="12">Daten</text>
+</svg>

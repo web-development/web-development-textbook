@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Demo Seite für link icon</title>
+  <style>
+  div { display: flex; }
+  section { width: 50%;}
+  :link { color: blue; }
+  :visited { color: rgb(0, 119, 204); }
+  #background a:link, #background a:visited {
+     background-image:    url(link.svg);
+     background-position: center right;
+     background-repeat:   no-repeat;
+     padding-right:       14px;
+  }
+
+  #mask a:link::after, #mask a:visited::after {
+    content: " ";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-color: lightblue;
+    mask-image: url(link.svg);
+    -webkit-mask-image: url(link.svg);
+  }
+  #mask a:link::after {
+    background-color: blue;
+  }
+  #mask a:visited::after {
+    background-color: rgb(0, 119, 204);
+  }
+  </style>
+</head>
+<body>
+
+
+<h1>Link-Icon mit Background-Image</h1>
+
+<div>
+
+  <section id="background">
+
+    <p>Hier wird ein SVG als Hintergrundbild verwendet.
+      Die Farbe ist in der SVG Datei festgelegt.</p>
+
+  <ul>
+  <li><a href="/css/css-kurz/">Kurzvorstellung von Stylesheets</a></li>
+  <li><a href="/css/css/">Syntax von CSS</a></li>
+  <li><a href="/css/properties/">Wichtige Properties</a></li>
+  <li><a href="/css/basic-selectors/">CSS Selektoren</a></li>
+  </ul>
+
+
+  <pre>
+  background-image:    url(link.svg);
+  background-position: center right;
+  background-repeat:   no-repeat;
+  padding-right:       14px;
+  </pre>
+
+  </section>
+
+<section id="mask">
+
+    <p>Hier wird ein SVG als Maske verwendet. Die Farbe des Icons
+      wird in CSS als Hintergrundfarbe definiert.</p>
+
+  <ul>
+  <li><a href="/css/css-kurz/">Kurzvorstellung von Stylesheets</a></li>
+  <li><a href="/css/css/">Syntax von CSS</a></li>
+  <li><a href="/css/properties/">Wichtige Properties</a></li>
+  <li><a href="/css/basic-selectors/">CSS Selektoren</a></li>
+  </ul>
+
+
+  <pre>
+  #mask a:link::after, #mask a:visited::after {
+    content: " ";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-color: lightblue;
+    mask-image: url(link.svg);
+    -webkit-mask-image: url(link.svg);
+  }
+  #mask a:link::after {
+    background-color: blue;
+  }
+  #mask a:visited::after {
+    background-color: violet;
+  }
+  </pre>
+
+  </section>
+</div>

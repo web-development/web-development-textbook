@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tools für Git - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Tools für Git</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/git/git-status//slide.html">Status von Git abfragen</a> | 
+        <a href="/git/git-tools/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/git/public-private-key//slide.html">Public und Private Key</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Verschiedene Tools stellen für Git eine grafische Oberfläche zur Verfügung. (Warnung: So eine Oberfläche ersetzt nicht das Verständnis von git!)</p>
+
+</div>
+<div class="slide">
+
+<h2 id="sourcetree">sourcetree</h2>
+
+<p>Das Programm sourcetree ist gratis (aber nicht open source)
+und für Mac OS und Windows verfügbar: <a href="http://www.sourcetreeapp.com/">Homepage</a></p>
+
+<p><img src="/images/git-source-tree.png"  alt="" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="phpstorm">PHPStorm</h2>
+
+<p>WebStorm,  PHPStorm und RubyMine sind IDEs für Web Projekte (von derselben Firma).
+Die Interaktion mit einem Versionskontrollsystem ist eingebaut.
+<a href="http://www.jetbrains.com/phpstorm/">Homepage</a>
+<img src="/images/git-phpstrom-722.png"  alt="" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="vs-code">VS Code</h2>
+
+<p>VS Code kann mit Versionskontrollsystemen umgehen - oder man verwendet
+das Terminal.</p>
+
+<p><a href="https://code.visualstudio.com/docs/editor/versioncontrol">Dokumentation</a>
+<img src="/images/git-vscode.png" srcset="/images/git-vscode@2x.png 2x, /images/git-vscode.png 1x"  alt="" ></p>
+
+</div>
+    <div class="slide">
+      <h1>Tools für Git</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/git/git-status//slide.html">Status von Git abfragen</a> | 
+        <a href="/git/git-tools/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/git/public-private-key//slide.html">Public und Private Key</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

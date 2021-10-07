@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Besondere Javascript-Schreibwesen in jQuery - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Besondere Javascript-Schreibwesen in jQuery</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/jquery/graceful//slide.html">Graceful Degradation</a> | 
+        <a href="/jquery/schreibweise/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/jquery/selektieren-manipulieren//slide.html">Selektieren und Manipulieren mit jQuery</a>
+        
+      </p>
+    </div>
+    <div class="slide"><p>jQuery Code ist auf den ersten Blick nicht einfach lesbar. Wenn man ein paar Grundprinzipien verstanden hat profitiert man aber von den ungewohnten Schreibweisen: der Code bleibt relativ kurz.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="mein-name-ist-dollar">Mein Name ist Dollar</h2>
+<p>In Javascript kann das Dollar-Zeichen in Bezeichnen (Variablennamen, Funktionsnamen) verwendet werden. jQuery nutzt diese Besondernheit von Javascript aus und definiert eine Funktion und ein Objekt mit dem Dollarzeichen als Namen. Hier eine kleine Lese-Schule:</p>
+
+<p>Eine Funktion mit dem Namen `$ wird mit einem Argument aufgerufen, das Argument ist ein String:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  $(&quot;a&quot;)
+</pre></div>
+
+<p>Eine Funktion mit dem Namen <code>$</code>  wird mit einem Argument aufgerufen, das Argument ist das document-Objekt:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  $(document)
+</pre></div>
+
+<p>Das Objekt mit dem Namen <code>$</code>  hat eine Methode `get. Diese wird mit zwei Argumenten aufgerufen:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  $.get(&quot;backend.php&quot;, callback)
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="chaining--eine-kette-von-methodenaufrufen">Chaining – eine Kette von Methodenaufrufen</h2>
+<p>Die meisten jQuery-Methoden geben wieder ein jQuery-Objekt zurück. In folgendem Code sind <code>o1</code>, <code>o2</code>, <code>o3</code> jeweils jQuery-Objekte.  Jedes jQuery-Objekt bietet die Methoden addClass und append an.</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  o1 = $(&#39;h1&#39;);
+  o2 = o1.addClass(&quot;gag&quot;);
+  o3 = o2.append(&quot;:&quot;);
+</pre></div>
+
+<p>Wenn man die “Zwischen-Objekte” <code>o1</code>, <code>o2</code>, <code>o3</code> nicht wirklich noch einmal verwenden will, dann braucht man sie auch nicht in einer Variable zu speichern. Eine alternative Schreibweise ist dann:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  $(&#39;h1&#39;).addClass(&quot;gag&quot;).append(&quot;:&quot;);
+</pre></div>
+
+<p>Dabei kann man auch Zeilenumbrüche verwenden, folgender Code hat genau die gleiche Wirkung:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  $(&#39;h1&#39;)
+    .addClass(&quot;gag&quot;)
+    .append(&quot;:&quot;);
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="funktionen-als-first-class-citizens">Funktionen als first-class citizens</h2>
+<p>In Javascript können Funktionen zur Laufzeit erzeugt werden, in Variablen gespeichert werden, haben eine Identität auch wenn sie keinen Namen haben. Betrachten wir eine ganz normale Funktion:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  function create_gold() { 
+       // Details nicht so wichtig
+       return gold;
+  }
+</pre></div>
+
+<p>Sie kennen schon die Schreibweise für den Aufruf der Funktion: auch wenn die Funktion keine Argumente hat werden auf jeden Fall die runden Klammern geschrieben:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  gold1 = create_gold();
+</pre></div>
+
+<p>In Javascript gibt es eine zweite, ähnliche Scheibweise ohne die runden Klammern. Dabei wird die Funktion nicht aufgerufen, sondern in der Variable <code>f</code> gespeichert:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  f = create_gold;
+</pre></div>
+
+<p>Nun kann die Funktion auch unter dem neuen Namen <code>f</code> aufgerufen werden:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  gold2 = f();
+</pre></div>
+
+<p>Wir haben diese Schreibweise schon bei addEventListener verwendet:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+...addEventListener(&quot;click&quot;, create_gold);
+</pre></div>
+
+<p>auch hier wird die Funktion nur übergeben, aber noch nicht aufgerufen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="anonyme-funktionen">Anonyme Funktionen</h2>
+<p>Da Funktionen in Variablen gespeichert werden können, ist es nicht unbedingt nötig, dass Sie einen normalen Funktionsnamen haben. Die folgende Funktion hat den Funktionsnamen hase:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  function hase() { 
+    alert (&quot;mein name ist hase&quot;); 
+  } 
+</pre></div>
+
+<p>Alternativ eine Schreibweise ohne Namen, die Funktion wird sofort in der Variable anon gespeichert:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  anon = function() {
+       alert(&quot;ich habe keinen namen&quot;);
+  };
+</pre></div>
+
+<p>Die beiden Funktionen können nur auf die gleiche Weise aufgerufen werden:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  hase();
+  anon();
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="document-ready">document ready</h2>
+
+<p>Bei der Verwendung von jQuery werden oft Funktionen ohne Namen verwendet. Ein Beispiel ist die <code>ready</code>-Funktion: Die Funktion <code>ready()</code> von jQuery verlangt ein Argument: eine Funktion, die aufgerufen werden soll wenn die Webseite vollständig geladen ist:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  function nach_dem_laden () { 
+        // Your code here 
+  } 
+  $(document).ready(nach_dem_laden); 
+</pre></div>
+
+<p>Da die Funktion <code>nach_dem_laden</code> nur einmal verwendet wird, ist es eigentlich nicht nötig ihr einen Namen zu geben. Stattdessen verwendet man eine anonyme Funktion:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  $(document).ready( function(){ 
+        // Your code here 
+  }); 
+</pre></div>
+
+<p>Seit ES6 kann man die anonyme Funktion noch kürzer schreiben, als Arrow Function:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+  $(document).ready( () =&gt; { 
+        // Your code here 
+  }); 
+</pre></div>
+
+<p>Zur Beruhigung: auch wenn Sie die Schreibweise jetzt noch nicht ganz durchschauen können Sie jQuery erfolgreich verwenden. Sie können die drei Zeilen einfach mit copy-und-paste in eine Webseite übertragen und Ihren eigenen Code dann einfügen. (Wahrscheinlich arbeiten die meisten DesignerInnen so mit jQuery.) Wenn Sie aber hauptberuflich in der Programmierung arbeiten wollen, dann müssen Sie das eines Tages genau verstehen!</p>
+
+</div>
+    <div class="slide">
+      <h1>Besondere Javascript-Schreibwesen in jQuery</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/jquery/graceful//slide.html">Graceful Degradation</a> | 
+        <a href="/jquery/schreibweise/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/jquery/selektieren-manipulieren//slide.html">Selektieren und Manipulieren mit jQuery</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

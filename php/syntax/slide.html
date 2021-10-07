@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Syntax von PHP - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Syntax von PHP</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php/warnhinweis//slide.html">Warnhinweis</a> | 
+        <a href="/php/syntax/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php/dateien//slide.html">Dateien und Ordnern in PHP</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+</div>
+<div class="slide">
+
+<h2 id="html-und-php">HTML und PHP</h2>
+
+<p>Ein erstes längeres Beispiel zeigt wie eng HTML und PHP vermischt werden:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>HTML und PHP - der Sourcecode</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt; 
+  &lt;title&gt;Beispielseite für ein PHP-Programm&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+  &lt;h1&gt;PHP-Beispiel&lt;/h1&gt;
+  &lt;?php
+      $entfernung = 296;
+      $h = 2;
+      $min = 40;
+      $zeit = $h + $min / 60;
+      $kmh = $entfernung / $zeit;
+      echo &quot;  &lt;p&gt;$entfernung km in $h:$min sind $kmh km/h&lt;/p&gt;\n&quot;;
+      if( $kmh &gt; 130 ) {
+           echo(&quot;  &lt;p&gt;&lt;b&gt;Das ist zu schnell!&lt;/b&gt;&lt;/p&gt;\n&quot;);
+      }
+  ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+
+<p>Der Quellcode besteht hier aus einem HTML-Dokument, in dem in
+Zeile 09 bis 19 PHP eingebettet ist. In den Zeilen 10 bis 14
+werden nur Berechnungen durchgeführt, diese Zeilen haben keine
+Auswirkung auf das resultierende HTML-Dokument. In den Zeile
+15 und 17 wird mit der echo() – Funktion ein Output erstellt.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Der PHP-Interpreter fügt den Output an der Stelle in den HTML-Code
+ein, wo der PHP-Code war; das Ergebnis sieht wie folgt aus:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>HTML und PHP - der Output</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt; 
+  &lt;title&gt;Beispielseite für ein PHP-Programm&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+  &lt;h1&gt;PHP-Beispiel&lt;/h1&gt;
+  &lt;p&gt;296 km in 2:40 sind 111 km/h&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+
+<p>Welcher Teil des Dokuments statisch war und welcher von PHP berechnet wurde ist nicht mehr erkennbar.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Ein PHP-Dokument kann mehrere Einbettungen enthalten, dabei können
+sogar Kontrollstrukturen in einem anderen Teil fortgesetzt werden:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>HTML und PHP - mehrere PHP-Abschnitte in einem HTML-Dokument</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt; 
+  &lt;title&gt;Beispielseite für ein PHP-Programm&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+  &lt;h1&gt;Wilde Mischung&lt;/h1&gt;
+
+  &lt;?php
+    $i = 0;
+    while ( $i &lt; 22 ) {
+  ?&gt;
+
+  &lt;p&gt;Alles Gute zum Geburtstag &lt;img src=&quot;torte.jpg&quot;&gt; !&lt;/p&gt;
+
+  &lt;?php
+      $i++;
+    }
+  ?&gt;
+
+  &lt;p&gt;Und ein gutes nächstes Jahr!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+
+<p>Diese Schreibweise widerspricht den Lese-Gewohnheiten von ProgrammiererInnen:
+diese Art von Verschachtelung (geschwungenen Klammern in PHP vs. HTML-Tags)
+ist in den meisten Sprachen verboten.</p>
+
+<p>z.B. in HTML ist diese Verschachtelung falsch: <code>&lt;b&gt;fett &lt;i&gt;und&lt;/b&gt; kursiv&lt;/i&gt;</code></p>
+
+<p>In PHP wird diese Schreibweise aber oft verwendet.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Es gibt auch eine alternative
+Schreibweise für die Kontrollstrukturen, die besser zu unseren
+Lesegewohnheiten passt: Statt der öffnenden geschwungenen Klammer
+wird ein Doppelpunkt geschrieben, das Ende der Schleife wird
+mit einem eigenen Schlüsselwort (endwhile, endif, endfor) markiert:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>HTML und PHP - While-Schleife ohne geschungene Klammern</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;h1&gt;Wilde Mischung&lt;/h1&gt;
+&lt;?php
+  $i = 0;
+  while ( $i &lt; 22 ) :
+?&gt;
+
+    &lt;p&gt;Alles Gute zum Geburtstag &lt;img src=&quot;torte.jpg&quot;&gt; !&lt;/p&gt;
+
+&lt;?php
+    $i++;
+  endwhile;
+?&gt;
+
+&lt;p&gt;Und ein gutes nächstes Jahr!&lt;/p&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Bei größeren Projekten empfiehlt sich aber auf jeden Fall die
+möglichst starke Trennung von Programm-Logik und Darstellung.</p>
+
+<p>Der erste Schritt in diese Richtung wäre, die Berechnung an den Anfang der Datei zu stellen.</p>
+
+<p>Welcher Teil schon als Ausgabe zählt und in das HTML-Dokument eingebettet
+wird ist dabei wieder eine Abwägungsfrage, auf die es keine fixe Antwort gibt.</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>HTML und PHP - Erst Berechnung, dann Ausgabe</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;?php   // Berechnung zuerst
+  $entfernung = 296;
+  $h = 2;
+  $min = 40;
+  $zeit = $h + $min / 60;
+  $kmh = $entfernung / $zeit;
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt; 
+  &lt;title&gt;Beispielseite für ein PHP-Programm&lt;/title&gt;
+&lt;/head&gt;&lt;body&gt;
+  &lt;h1&gt;PHP-Beispiel&lt;/h1&gt;
+   
+  &lt;?php
+    echo &quot;&lt;p&gt;$entfernung km in $h:$min sind $kmh km/h&lt;/p&gt;&quot;;
+    if( $kmh &gt; 130 ) {
+      echo(&quot;&lt;p&gt;&lt;b&gt;Das ist zu schnell!&lt;/b&gt;&lt;/p&gt;&quot;);
+    }
+  ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="includes">Includes</h2>
+
+<p>Bei PHP-Applikationen mit mehr als einer Datei empfiehlt sich die
+Verwendung von <code>include</code> um Duplizierung von Code zu vermeiden.
+PHP-Code, der mehrmals verwendet wird,
+kann z.B. als Funktionen in eine Datei phpfunctions.php ausgelagert werden:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Datei phpfunction.php enthält eine Funktion in PHP</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;?php
+  function calc( $entfernung, $h, $min ) {
+    $zeit = $h + $min / 60;
+    $kmh = $entfernung / $zeit;
+    return $kmh;
+  }
+?&gt;
+</pre></div>
+
+<p>Wenn diese Datei direkt aufgerufen wird (http://www.meinhost.at/phpfunctions.php)
+erscheint kein Output, aber auch keine Fehlermeldung 404
+wie bei einer nicht existierenden Seite.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Der Anfang und das Ende einer Webseite (head inklusive Titel, Navigation, footer)
+können z.B. in Dateien <code>header.php</code> und <code>footer.php</code> ausgelagert werden.
+Im Header wird hier ein klein wenig PHP verwendet, um
+den Titel der Seite dynamisch generieren zu können:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Datei header.php</small></h4>
+<pre class="lang-php prettyprint linenums">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt; 
+  &lt;title&gt;Brigittes totale Web-App: &lt;?php echo $pagetitle ?&gt;&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot; /&gt;
+&lt;/head&gt;&lt;body&gt;
+  &lt;nav id=&quot;top_nav&quot;&gt;&lt;ul&gt;
+    &lt;li&gt;Home&lt;/li&gt;
+    &lt;li&gt;Hier&lt;/li&gt;
+    &lt;li&gt;Da&lt;/li&gt;
+  &lt;/ul&gt;&lt;/nav&gt;
+  &lt;h1&gt;&lt;?php echo $pagetitle ?&gt;&lt;/h1&gt;
+</pre></div>
+
+<p>Wenn diese Seite direkt aufgerufen wird (http://www.meinhost.at/header.php)
+erscheint der HTML-Code. Da die Variable $pagetitle nicht gesetzt ist
+(undefined) wir sie behandelt als ob sie den leeren String enthält: die Überschrift ist leer.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Dieser Footer könnte auch eine statische HTML-Datei sein,
+da hier gar keine Variablen oder PHP-Code verwendet werden:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Datei footer.php</small></h4>
+<pre class="lang-php prettyprint linenums">
+  &lt;footer&gt;&amp;copy; 2012 Brigitte&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>In der “Haupt-Datei” index.php werden alle diese Einzelteile zusammengefügt:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Datei index.php</small></h4>
+<pre class="lang-php prettyprint linenums">
+&lt;?php   
+  include &quot;phpfunctions.php&quot;;   // kein Output!
+  $pagetitle = &quot;Berechnung der Geschwindigkeit&quot;;
+  $entfernung = 296;
+  $h = 2;
+  $min = 40;
+  $kmh = calc($entfernung, $h, $min);
+  include &quot;header.php&quot;;    // erster Output von HTML
+  echo &quot;  &lt;p&gt;$entfernung km in $h:$min sind $kmh km/h&lt;/p&gt;&quot;;
+  if( $kmh &gt; 130 ) {
+      echo(&quot;  &lt;p&gt;&lt;b&gt;Das ist zu schnell!&lt;/b&gt;&lt;/p&gt;&quot;);
+  }
+  include &quot;footer.php&quot; 
+?&gt;
+</pre></div>
+
+<p>Und wieder gilt: die „Zusammensetzung“ erfolgt am Server.
+Im Client landet nur der fertige HTML-Code. Die UserIn
+kann nicht erkennen, dass die Seite ursprünglich
+aus mehreren Dateien bestand.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="variablen-und-typen">Variablen und Typen</h2>
+
+<p>Variablennamen in PHP beginnen mit einem Dollar-Zeichen. Warum?
+Sie haben im Beispielprogramm schon gesehen,
+wie Variablen einfach in Strings eingebettet werden können:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+echo &quot;$entfernung km in $h:$min sind $kmh km/h&quot;;
+</pre></div>
+
+<p>Das ist nur möglich weil die Variablennamen mit einem besonderen
+Zeichen gekennzeichnet sind.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Es gibt in PHP eine
+zweite Schreibweise für Strings: einfache Anführungszeichen.
+Diese Variante erlaubt keine Variablen:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+echo &#39;Bei einfachen Anführungszeichen ist ein $ einfach ein $&#39;;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Eine weitere Methode einen String zu definieren - neben einfachen
+und doppelten Anführungszeichen - ist das “heredoc” Schreibweise<a href="http://www.php.net/manual/de/language.types.string.php#language.types.string.syntax.heredoc">→</a></p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Beispiel für heredoc</small></h4>
+<pre class="lang-php prettyprint linenums">
+echo &lt;&lt;&lt;EOT
+My name is $lastname, $firstname $lastname. 
+I am printing some $foo-&gt;foo.
+Now, I am printing some {$foo-&gt;bar[1]}.
+I can&#39;t mess up this string
+by mentioning 19&quot; racks!
+EOT;
+</pre></div>
+
+<p>Da der String durch “EOT” beendet wird, kann
+man beide Arten von Anführungszeichen gefahrlos verwenden.
+Variableninterpolation funktioniert.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>PHP unterscheidet zwischen den Datentypen boolean, integer,
+float, string, array, object, resource und NULL.</p>
+
+<p>In einer Variablen können nacheinander verschiedene Datentypen
+gespeichert werden, die Variable selbst hat also keinen Typ!</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+&lt;?php
+  $foo = &quot;Hallo 🦄&quot;;   // $foo contains a string
+  $foo = 2;           // $foo now contains an integer (2)
+  $foo = 3.3;        // $foo now contins a float (3.3)
+?&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Variablen in PHP müssen nicht deklariert oder initialisiert werden.</p>
+
+<p>Seit PHP 7 <strong>kann</strong> man für Funktions-Parameter und Rückgabewerte
+einen Datentyp deklarieren, siehe <a href="http://php.net/manual/de/functions.arguments.php#functions.arguments.type-declaration">PHP Dokumentation: Funktionsparameter</a>.</p>
+
+<p>Je nach verwendeten Operatoren und Funktionen werden die Typen konvertiert:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+&lt;?php
+  $foo = &quot;0&quot;;         // $foo is a string with one character (ASCII 48)
+  $foo = $foo + 2;    // $foo is now an integer (2)
+  $foo = $foo + 1.3;  // $foo is now a float (3.3)
+  $bar = 5 + &quot;10 Little Piggies&quot;; // $bar is an integer (15)
+  $baz = 5 . &quot;10 Small Pigs&quot;;     // $baz is a longer string &quot;510 ...&quot; 
+?&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Betrachten wir die letzten zwei Zeilen des Codes genauer:</p>
+
+<div class="example">
+<pre class="lang-php prettyprint linenums">
+&lt;?php
+  $bar = 5 + &quot;10 Little Piggies&quot;; // $bar is an integer (15)
+  $baz = 5 . &quot;10 Small Pigs&quot;;     // $baz is a longer string &quot;510 ...&quot; 
+?&gt;
+</pre></div>
+
+<p>Die Addition mit <code>+</code> interpretiert beide Summanden als Zahl.
+Falls ein Summand ein String ist, wird am Beginn
+des Strings nach einer Zahl gesucht und diese verwendet.</p>
+
+<p>Der Punkt-Operator fügt Strings zusammen und
+interpretiert seine beiden Operanden als Strings.</p>
+
+<p>Der Operator bestimmt also den Typ!</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>In Javascript ist es
+genau umgekehrt: da entscheidet der Datentyp<br />
+über die Bedeutung des Operators:</p>
+
+<p><img src="/images/php-javascript-plus.png"  alt="Abbildung: Bespiel für den Operator + in Javascript (Firebug)" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="arrays">Arrays</h2>
+
+<p>Arrays in PHP können auf ähnliche Art verwendet werden
+wie in C++ (und C, und Java, und Ruby,…) und verhalten
+sich auf den ersten Blick auch wie erwartet:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Array in PHP</small></h4>
+<pre class="lang-php prettyprint linenums">
+$foo[2] = 2008;
+$foo[3] = 2009;
+$foo[0] = &quot;Halli&quot;;
+$foo[1] = &quot;Hallo&quot;;
+
+for($i=0;$i&lt;count($foo);$i++) {
+echo(&quot;Der $i. Wert im Array ist $foo[$i]&lt;br&gt;&quot;);
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Auf den zweiten Blick sind Arrays in PHP aber wesentlich
+komplexer: nicht nur Integers sind als Index zulässig,
+sondern auch Strings, es handelt sich also um
+assoziative Arrays in denen ein Schlüssel
+mit einem Wert assoziiert wird.</p>
+
+<p>Mit der <code>foreach</code> Schleife kann man Schlüssel und Wert auslesen.
+Dabei wird offenbar, dass die Reihenfolge des Einfügens
+ins Array erhalten geblieben ist: Die
+Schlüssel-Wert-Paare sind im Array weiterhin geordnet!</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Array in PHP ist auch ein assoziatives Array (Hashmap)</small></h4>
+<pre class="lang-php prettyprint linenums">
+$foo[2] = 2008;
+$foo[3] = 2009;
+$foo[0] = &quot;Halli&quot;;
+$foo[1] = &quot;Hallo&quot;;
+
+foreach( $foo as $key =&gt; $value ) {
+    echo(&quot;Zum Schlüssel $key ist der Wert \$value gespeichert&lt;br /&gt;&quot;);
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Mit der Schreibweise <code>$foo[]</code> kann ein Wert unter der
+kleinsten (noch nicht verwendet) Integer-Zahl als Schlüssel gespeichert werden:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Einfügen in ein Array in PHP</small></h4>
+<pre class="lang-php prettyprint linenums">
+$foo[2] = 2008;
+$foo[3] = 2009;
+$foo[0] = &quot;Halli&quot;;
+$foo[1] = &quot;Hallo&quot;;
+$foo[&#39;dies&#39;] = &quot;etwas Nahes&quot;;
+$foo[&#39;das&#39;]  = &quot;etwas Fernes&quot;;
+$foo[] = &quot;das Nächste&quot;;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Das Array in PHP ist also ein wesentlich komplexerer Datentyp
+als ein Array in anderen Programmiersprachen –
+es verbindet Eigenschaften von Arrays mit denen von Hashmaps.</p>
+
+<p>Ein Array zu sortieren ist entsprechend kompliziert; es
+gibt eine ganze Reihe von Sortier-Funktionen. Sie finden
+diese im Abschnitt <a href="http://at.php.net/manual/de/ref.array.php">→Array-Funktionen</a> der PHP-Doku.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="funktionen-und-scope">Funktionen und Scope</h2>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Funktion in PHP</small></h4>
+<pre class="lang-php prettyprint linenums">
+function foo($arg_1, $arg_2 = &quot;Euro&quot;) {
+  $a = 1 * 2;
+  return $a . $arg_2;
+}
+$x = foo(10);
+$y = foo(20, &quot;Pfund&quot;);
+</pre></div>
+
+<p>Die Schreibweise von Funktionen inklusive Argumentliste und
+Rückgabewert ist leicht verständlich.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Eine Falle
+für erfahrene ProgrammiererInnen ist das Scoping von globalen Variablen:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Globale Variablen und Funktionen in PHP</small></h4>
+<pre class="lang-php prettyprint linenums">
+$pi = 3.141;
+function inhalt($radius) {
+  return $radius * $radius * $pi;
+}
+$r = 10;
+$a = inhalt($r);
+echo(&quot;ein Kreis mit Radius $r hat eine Fläche von $a&quot;);
+// ergibt 0 !
+</pre></div>
+
+<p>Dieses Programm funktioniert nicht wie erwartet, da innerhalb
+einer Funktion kein Zugriff auf die außerhalb definierten Variablen
+möglich ist! Die Variable <code>$pi</code> ist in der Funktion nicht sichtbar,
+stattdessen wird mit einer neuen Variable <code>$pi</code> mit Default-Wert <code>0</code> gerechnet.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Mit dem Keyword global wird die Variable „in die Funktion eingeladen“
+und ist dann auch innerhalb der Funktion sichtbar, lesbar und veränderbar.</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Globale Variablen und Funktionen in PHP</small></h4>
+<pre class="lang-php prettyprint linenums">
+$pi = 3.141;
+function inhalt($radius) {
+  global $pi;
+  return $radius * $radius * $pi;
+}
+$r = 10;
+$a = inhalt($r);
+echo(&quot;ein Kreis mit Radius $r hat eine Fläche von $a&quot;);
+// korrekte Berechnung und Ausgabe
+</pre></div>
+
+<p>Siehe auch <a href="http://php.net/manual/de/language.variables.scope.php">PHP Dokumentation: Geltungsbereich von Variablen</a></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Ausgenommen von dieser Regelung sind die sogenannten „superglobals“.
+Das sind Variablen, die auf jeden Fall sichtbar sind. Vier davon
+werden hier vorgestellt, die anderen werden erst später behandelt.</p>
+
+<table class="table table-condensed table-bordered" style="width:auto">
+  <thead>
+    <tr>
+      <th>Variable</th>
+      <th>Beschreibung</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>$GLOBALS</td>
+      <td>Dieses Array enthält alle globalen Variablen.</td>
+    </tr>
+    <tr>
+      <td>$_SERVER</td>
+      <td>Dieses Array enthält Konfigurations-Informationen des (Web-)Servers und allgemeine Informationen zur aktuellen Anfrage (z.B. IP-Adresse des Browsers)</td>
+    </tr>
+    <tr>
+      <td>$_ENV</td>
+      <td>Dieses Array enthält die Umgebungsvariablen (je nach Betriebssystem verschieden).</td>
+    </tr>
+    <tr>
+      <td>$_GET</td>
+      <td>Die Parameter die über die URL an das PHP-Programm übergeben wurden.</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+<div class="slide">
+
+<h2 id="empfohlene-lektre">Empfohlene Lektüre</h2>
+
+<ul>
+  <li>Kapitel <a href="http://www.phptherightway.com/pages/The-Basics.html">The Basics</a> aus “PHP the Right Way”</li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Syntax von PHP</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php/warnhinweis//slide.html">Warnhinweis</a> | 
+        <a href="/php/syntax/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php/dateien//slide.html">Dateien und Ordnern in PHP</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

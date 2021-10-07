@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>Demo Seite für hover, active und focus</title>
+  <style>
+    a:link { color: blue; }          /* Unvisited links */
+    a:visited { color: purple; }     /* Visited links */
+    a:hover { background: yellow; }  /* User hovers */
+    a:active { color: red; }        /* Active links */
+    a:any-link { text-decoration: none; }
+
+    #manhattan {
+      width: 800px;
+      height: 188px;
+      background-image: url(manhattan.jpg);
+      background-size: cover;
+      background-position:  left top;
+    }
+    #manhattan:hover {
+      background-position: left 192px;
+    }
+
+    @media screen and (min-resolution: 2dppx) {
+      #manhattan { background-image: url(manhattan@2x.jpg); }
+    }
+    @media screen and (min-resolution: 3dppx) {
+      #manhattan { background-image: url(manhattan@3x.jpg); }
+    }
+  </style>
+</head>
+<body>
+
+
+<h1>hover, active</h1>
+
+<h2>Bei Links</h2>
+
+<p>Warnhinweis: <kbd>active</kbd> gilt nur einen kurzen Moment lang,
+  wenn der Klick / der Touch erfolgt.  </p>
+<ul>
+<li><a href="/css/css-kurz/">Kurzvorstellung von Stylesheets</a></li>
+<li><a href="/css/css/">Syntax von CSS</a></li>
+<li><a href="/css/properties/">Wichtige Properties</a></li>
+<li><a href="/css/basic-selectors/">CSS Selektoren</a></li>
+</ul>
+
+
+<pre>
+a:link { color: blue; }          /* Unvisited links */
+a:visited { color: purple; }     /* Visited links */
+a:hover { background: yellow; }  /* User hovers */
+a:active { color: red; }        /* Active links */
+a:any-link { text-decoration: none; }
+</pre>
+
+
+<h2>Bei einem Bild</h2>
+
+<p>Warnhinweis: Auf Geräten ohne Maus (z.B. Smartphones) ist
+  die 2. Version des Bildes nicht zugänglich!  Keine Maus, kein hover!</p>
+
+
+<div id="manhattan"></div>
+
+
+<pre>
+#manhattan {
+  width: 800px;
+  height: 188px;
+  background-image: url(manhattan.jpg);
+  background-size: cover;
+  background-position:  left top;
+}
+#manhattan:hover {
+  background-position: left 192px;
+}
+</pre>
+
+
+<p>Und hier nochmal <a href="manhattan.jpg">das ganze Bild</a>.</p>
+
+
+
+

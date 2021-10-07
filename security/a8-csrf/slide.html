@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>CSRF - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>CSRF</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/security/a10-logging-monitoring//slide.html">A10 - Monitoring</a> | 
+        <a href="/security/a8-csrf/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/wordpress//slide.html">Wordpress</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Auf Platz 8 der OWASP Top 10 2013. In den OWASP Top 10 2017 nicht mehr enthalten.</p>
+
+<p>Die CSRF ist ein Angriff “über die Bande”:  Um Site C zu attackieren, wird auf Site B Code hinterlegt. Wenn Userin Alice mit Site B interagiert wird ohne ihr Wissen eine HTTP-Request an Site C geschickt. Da Alice bei C schon eingeloggt ist wird dieser Request “erfolgreich” durchgeführt.</p>
+
+<p>Das Problem tritt also potentiell bei allen Sites auf, bei denen
+man auf Dauer eingeloggt bleibt.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Ein hypothetisches Beispiel: Die verwundbare Web-Applikation (“Site C”) sei
+eine Spenden-Plattform.  So könnte das Formular zum Spenden aussehen:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Verwundbarer Web-Applikation</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;form action=&quot;spende.php&quot; method=&quot;...&quot;&gt;
+  &lt;input name=&quot;betrag&quot;&gt;
+  &lt;select name=&quot;kontonummer&quot;&gt;
+    &lt;option value=&quot;23456789&quot;&gt;Greenpeace&lt;/option&gt;
+    &lt;option value=&quot;34567890&quot;&gt;Amnesty International&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;input type=&quot;submit&quot;&gt;
+&lt;form&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Je nachdem ob <code>GET</code> oder <code>POST</code>  verwendet wird, sieht der Code
+der Attacke verschieden aus.</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Attacke auf das Formular</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;!-- Attacke auf GET --&gt;
+&lt;img src=&quot;http://spendenportal.ch/spende.php?betrag=1000&amp;kontonummer=6666666&quot; alt=&quot;i can has cheezburger&quot;&gt;
+
+&lt;!-- Attacke auf POST --&gt;
+&lt;form action=&quot;http://spendenportal.ch/spende.php&quot; method=&quot;POST&quot;&gt;
+  &lt;input name=&quot;betrag&quot;      value=&quot;1000&quot; type=&quot;hidden&quot;&gt;
+  &lt;input name=&quot;kontonummer&quot; value=&quot;6666&quot; type=&quot;hidden&quot;&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Like this on Facebook&quot;&gt;
+&lt;/form&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="verteidigung-gegen-csrf">Verteidigung gegen CSRF</h2>
+
+<p>Auf meiner Site sollen die UserInnen auf Dauer eingeloggt bleiben können,
+aber gleichzeitig sicher sein, dass nicht in ihrem Namen unerwartete Aktionen
+vorgenommen werden.  Wie kann ich das sicher stellen?</p>
+
+<p>Die OWASP schlägt als Verteidigungsstrategie einen “Synchronizer Token” vor:
+Im Source-Code aller Web-Formulare wird ein Token eingefügt, das zu einer konkreten
+Session gehört und nur eine beschränkte Zeit lang gültig ist.</p>
+
+<p>Bei der Behandlung jeder Anfrage wird überprüft ob dieses Token vorhanden ist,
+zur Session passt und noch gültig ist.  Ein Request der auf Grund eine CSRF-Attacke
+gesendet wurde hat dieses Token nicht und wird nicht bearbeitet.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Chris Shiflett schlägt folgenden PHP-Code zur Erzeugung des Tokens vor:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Erzeugung des Tokens</small></h4>
+<pre class="lang-php prettyprint linenums">
+if (!isset($_SESSION[&#39;token&#39;])) {
+  $token = md5(uniqid(rand(), TRUE));
+  $_SESSION[&#39;token&#39;]      = $token;
+  $_SESSION[&#39;token_time&#39;] = time();
+}
+...
+&lt;form action=&quot;spende.php&quot; method=&quot;post&quot;&gt;
+  &lt;input type=&quot;hidden&quot; name=&quot;token&quot; value=&quot;&lt;?php echo $token; ?&gt;&quot;&gt;
+  &lt;input name=&quot;betrag&quot;&gt;
+  ...
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wenn ein Request verarbeitet wird, wird überprüft ob das Token vorhanden
+ist und noch gültig ist:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Check des Tokens</small></h4>
+<pre class="lang-php prettyprint linenums">
+if (!isset($_SESSION[&#39;token&#39;]))            throw TokenException;
+if ($_POST[&#39;token&#39;] != $_SESSION[&#39;token&#39;]) throw TokenException;
+
+$token_age = time() - $_SESSION[&#39;token_time&#39;];
+ 
+if ($token_age &gt; 300)                      throw TokenException;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="quellen">Quellen</h2>
+
+<p>Die hier vorgeschlagene Lösung ist eine Variante von
+<a href="http://shiflett.org/articles/cross-site-request-forgeries">Shiflett, Chris(2004): Cross-Site Request Forgeries. In: PHP Architect.</a></p>
+
+</div>
+    <div class="slide">
+      <h1>CSRF</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/security/a10-logging-monitoring//slide.html">A10 - Monitoring</a> | 
+        <a href="/security/a8-csrf/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/wordpress//slide.html">Wordpress</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

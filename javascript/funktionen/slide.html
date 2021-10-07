@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Funktionen und this - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Funktionen und this</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript/variablen//slide.html">Variablen und Scope</a> | 
+        <a href="/javascript/funktionen/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript/objekte//slide.html">Objekte + Klassen</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>In Javascript kann eine Funktion mit Namen definiert werden, oder anonym:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Funktionen definieren</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  function r1( s, x ) {
+    let result = &quot;&quot;;
+    while( x ) {
+      result += s;
+      x--;
+    }
+    return result;
+  }
+
+  function ( s, x ) {
+    let result = &quot;&quot;;
+    while( x ) {
+      result += s;
+      x--;
+    }
+    return result;
+  }
+
+  // Aufruf:
+  r1(&#39;*&#39;, 10);
+</pre></div>
+
+<p>Die zweite Funktion kann aber nicht aufgerufen werden.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Damit man eine anonyme Funktion verwenden kann, muss sie erst
+auf eine Variable zugewiesen werden:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Funktionen definieren</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  function r1( s, x ) {
+    let result = &quot;&quot;;
+    while( x ) {
+      result += s;
+      x--;
+    }
+    return result;
+  }
+
+  r2 = function ( s, x ) {
+    let result = &quot;&quot;;
+    while( x ) {
+      result += s;
+      x--;
+    }
+    return result;
+  }
+
+  // Aufruf:
+  r1(&#39;*&#39;, 10);
+  r2(&#39;*&#39;, 10);
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Seit Javascript 2015 gibt es doch eine weitere Schreibweise für anonyme 
+Funktionen: die Arrow Function</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Arrow Function</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  let f1 = ( s, x ) =&gt; {
+    let result = &quot;&quot;;
+    while( x ) {
+      result += s;
+      x--;
+    }
+    return result;
+  }
+</pre></div>
+
+<p>Wenn die Funktion nur eine einzige Expression enthält wird die Schreibweise noch kürzer:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Arrow Function</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  let f2 = ( s, x ) =&gt; s + &quot; mal &quot; + x;
+</pre></div>
+
+<p>Und wenn die Funktion nur ein Argument nimmt kann man auch noch die Klammern rund um
+die Argumente weglassen:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Arrow Function</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  let f3 = x =&gt; `${x} ist das beste`;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wir haben auch schon die JSON-Schreibweise von Arrays und Objekten kennen gelernt.
+Kombiniert mit der anonymen Schreibweise für Funktionen können wir so Funktionen als
+Teile von Objekten oder Arrays definieren:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Funktionen in JSON</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  objekt = {
+    prop1 : &quot;Schokolade&quot;,
+    prop2 : 42,
+    method_1 : function () {  console.log( &quot;method 1&quot; ); },
+    method_2 : x =&gt; `${x} ist das beste`
+  }
+</pre></div>
+
+<p>Die beiden Methoden kann man ganz normal aufrufen:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Methoden aufrufen</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+objekt.method_1();
+objekt.method_2(&quot;Eis&quot;);
+objekt.method_2(objekt.prop1);
+</pre></div>
+
+<p>Achtung: Wenn das Objekt serialisiert wird, also in einem String
+gespeichert wird (um es in LocalStorage zu speichern oder 
+über HTTP zu verschicken) dann gehen die Funktionen verloren!</p>
+
+</div>
+<div class="slide">
+
+<h2 id="was-ist-this">Was ist this?</h2>
+
+<p>Die Variable <code>this</code> hat eine besondere Bedeutung in Javascript Funktionen.
+Erst einmal verweist <code>this</code> auf das <code>window</code> Objekt:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>this in einer normalen Funktion</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  function f() {
+    console.log(&quot;this = &quot; + this);
+  }
+
+  console.log(&quot;this = &quot; + this);
+  f();
+
+  // output auf der Console:
+  // this = [object Window]
+  // this = [object Window]
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wird eine Funktion als Methode eines Objekts aufgerufen, dann verweist <code>this</code> auf das Objekt:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>this in einer Methode</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  var objekt = {
+    prop1 : &quot;string&quot;,
+    prop2 : 42,
+    f : function () {  
+      console.log( &quot;this = &quot; + this ) 
+      console.log( &quot;this.prop2 = &quot; + this.prop2 ) 
+    }
+  }
+
+  objekt.f();
+
+  // output auf der Console:
+  // this = [object Object]
+  // this.prop2 = 42
+</pre></div>
+
+<p>Achtung: Arrow Functions verhalten sich hier anders!</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Eine Arrow Function hat nie ein eigenes this.
+Wird eine Methode mit einer Arrow Function definiert, dann bezieht
+sich <code>this</code> also nicht auf das aufrufende Objekt, sondern behält seinen
+Wert:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>this in einer Methode</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  var objekt = {
+    prop1 : &quot;string&quot;,
+    prop2 : 42,
+    f : () =&gt; {  
+      console.log( &quot;this = &quot; + this ) 
+      console.log( &quot;this.prop2 = &quot; + this.prop2 ) 
+    }
+  }
+
+  objekt.f();
+
+  // output auf der Console:
+  // this = [object Window]
+  // this.prop2 = undefined
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Bei Event-Handlern wird <code>this</code> wieder anders gesetzt:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>this im Event Handler</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  function f() {
+    console.log(&quot;this = &quot; + this);
+  }
+
+  document.getElementById(&quot;button&quot;).addEventListener(&quot;click&quot;, f);
+
+  // bei klick auf den Button
+  // output in der Console:
+  // this = [object HTMLInputElement]
+</pre></div>
+
+<p>Der Event Handler wird also als Methode auf dem jeweils betroffenen
+HTML-Element aufgerufen. <code>this</code> zeigt in diesem Fall also auf den Button.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Es gibt keine Möglichkeit Argumente an den Funktion mit zu übergeben:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>keine Argument an den event handler!</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  function f( mein_argument ) {
+    console.log(&quot;this = &quot; + mein_argument); 
+    // funktioniert nicht wie erwartet !!!
+  }
+ 
+  document.getElementById(&quot;button&quot;).addEventListener(&quot;click&quot;, f(43) );
+
+  // hier wird die Funktion f aufgerufen, 
+  // der listener an das Event gebunden wird,
+  // das funktioniert so nicht !!!
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Die als Listener definierte Funktion erhält als Argument Infos zum Event:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>this und event im Event Handler</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  function f( ev ) {
+    console.log(&quot;this = &quot; + this);
+    console.log(&quot;ev = &quot; + ev);
+    console.log(&quot;ev.target = &quot; + ev.target);
+  }
+ 
+  document.getElementById(&quot;button&quot;).addEventListener(&quot;click&quot;, f);
+
+  // bei klick auf den Button
+  // output in der Console:
+  // this = [object HTMLInputElement]
+  // ev = [object MouseEvent]
+  // ev.target = [object HTMLInputElement]
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Das Event-Objekt beinhaltet Informationen wie z.B. die Koordinaten
+an denen geklickt wurde, ob dazu noch Shift, Alt und/oder Ctrl gedrückt wurden,
+und noch einmal einen Verweis auf den Button.  Hier ein Screenshot aus Chrome der 
+die Eigenschaften des MouseEvents zeigt:</p>
+
+<p><img src="/images/chrome-mouse-event.png"  alt="Abbildung: Details des MouseEvents, angezeigt in der Console von Chrome" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Es gibt noch eine besondere Art eine Funktion in Javascript aufzurufen: mit <code>new</code>.
+Damit wird die Funktion als Konstruktor für ein Objekt verwendet. Es ist üblich
+Konstruktur-Funktionen mit großen Anfangsbuchstaben zu benennen.</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Objekte mit einer Konstruktor-Funktion</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  function Studiengang(name, seit) {
+    this.name = name;
+    this.seit = seit;
+  }
+
+  mmtb = new Studiengang( &quot;BSc MultiMediaTechnology&quot;, 2008 );
+  mmtm = new Studiengang( &quot;MSc MultiMediaTechnology&quot;, 2011 );
+</pre></div>
+
+<p>Innerhalb der Konstruktur-Funktion <code>Studiengang</code> ist bereits
+ein neues Objekt vorhanden, und über <code>this</code> zugänglich. Dieses
+Objekt ist auch automatisch Rückgabewert der Funktion.</p>
+
+<p>Arrow Funktionen können nicht als Constructor verwendet werden.
+Dafür gibt es in Javascript 2015 <code>class</code> und <code>constructor</code> als Alternative.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="eine-funktion-ist-ein-objekt">Eine Funktion ist ein Objekt</h2>
+
+<p>Jede Funktion in Javascript ist auch ein Objekt. Sie kann Attribute haben,
+die man mit der ganz normalen Schreibweise setzten kann:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Funktion mit einem Attribut</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+  function repeat( s, x ) {
+    var result = &quot;&quot;;
+    while( x ) {
+      result += s;
+      if( repeat.sep &amp;&amp; x &gt; 1 ) result += repeat.sep;
+      x--;
+    }
+    console.log(result);
+    return result;
+  } 
+
+  repeat(&quot;x&quot;, 3);
+  // rückgabewert ist &quot;xxx&quot;;
+
+  repeat.sep = &quot;, &quot;;
+  repeat(&quot;x&quot;, 3);
+  // rückgabewert ist &quot;x, x, x&quot;;
+</pre></div>
+
+</div>
+    <div class="slide">
+      <h1>Funktionen und this</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript/variablen//slide.html">Variablen und Scope</a> | 
+        <a href="/javascript/funktionen/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript/objekte//slide.html">Objekte + Klassen</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

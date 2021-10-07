@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Details zu Layout - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Details zu Layout</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css-layout/layout//slide.html">CSS für Layout</a> | 
+        <a href="/css-layout/details/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css-layout/navigation//slide.html">Navigationsmenü</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>In diesem Kapitel werden weitere Properties vorgestellt,
+die das Layout mit CSS ermöglichen.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="text">Text</h3>
+
+<p>Die Darstellung einer HTML-Seite durch den Browser erfolgt von oben nach unten, je nach Sprache von links nach rechts oder von rechts nach links. Dabei wird zwischen blockbildenden Tags und nicht-blockbildenden Tags unterschieden. In folgendem Beipiel wird
+der blockbindente Tag <code>p</code> und der inline-Tag <code>span</code> verwendet.</p>
+
+<pre><code>p { background-color:#CCCCCC; }
+span { background-color:#FFFF66; }
+</code></pre>
+
+</div>
+<div class="slide">
+
+
+
+<p>Bei der Darstellung im Browser wird der Text innheralb der Paragraphen je nach
+zu verfügung stehenem Platz ‘'’umgebrochen’’’:</p>
+
+<div class="resizable">
+<p style="background-color:#ddd">Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+I am a block level element - p for paragraph.  Ich bin ein blockbildender Tag, nämlich ein Pargraph P. I am a block level element - p for paragraph. <span style="background-color: red;">Und ein span
+in der Mitte. And some inline content  right here.</span> Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+I am a block level element - p for paragraph.
+</p>
+
+<p style="background-color:#ddd">Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+I am a block level element - p for paragraph.  Ich bin ein blockbildender Tag, nämlich ein Pargraph P.  <span style="background-color: red;">Und ein span
+in der Mitte. And some inline content  right here.</span> Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+
+</p>
+<p style="background-color:#ddd">Ich bin ein blockbildender Tag, nämlich ein Pargraph P. I am a block level element - p for paragraph. <span style="background-color: red;">Und ein span
+in der Mitte. And some inline content  right here.</span> Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+I am a block level element - p for paragraph.
+</p>
+</div>
+
+</div>
+<div class="slide">
+
+<h3 id="bild-im-text">Bild im Text</h3>
+
+<p>Ein Bild wird dabei wie ein Wort im Text behandelt, und nicht etwa frei auf der Webseite positioniert. Wenn Sie das Bild wie hier mitten in einen Absatz hinein setzen, ergibt das meist ein sehr hässliches Layout:</p>
+
+<div class="resizable">
+  <p style="background-color:#ddd">Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+  I am a block level element - p for paragraph.  Ich bin ein blockbildender Tag, nämlich ein Pargraph P. I am a block level element - p for paragraph. 
+  <img src="/images/css-layout/silhouette_hand.svg"  style="height: 5ex;" alt="Hand!" >
+  Das Bild der Hand stammt von <a href="https://commons.wikimedia.org/wiki/File:Silhouette_hand.svg">SimonWaldherr</a>.
+  Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
+  I am a block level element - p for paragraph.
+  </p>
+</div>
+
+</div>
+<div class="slide">
+
+<h3 id="umbruch-von-wrtern">Umbruch von Wörtern</h3>
+
+<p>Browser können lange Wörter in mehreren Sprachen umbrechen wenn
+man in CSS <code>hyphens: auto</code> aktiviert.
+Die richtige Sprache stellt man mit dem Attribut <code>lang</code> ein,
+z.B. einfach am html-Tag: <code>&lt;html lang="de"&gt;</code>.</p>
+
+<div class="resizable">
+  <p style="background-color:#ddd; hyphens: none;">Das Rindfleisch­etikettierungs­überwachungs­aufgaben­übertragungs­gesetz (RflEttÜAÜG) war
+    im Jahre 1999 im deutschen Bundesland Mecklenburg-Vorpommern Teil eines Gesetzesvorhabens.
+    <br />
+    Quelle: https://de.wikipedia.org/wiki/Rindfleischetikettierungs%C3%BCberwachungsaufgaben%C3%BCbertragungsgesetz
+    <br />
+    <kbd>hyphens: none;</kbd> ist der Standardwert.
+  </p>
+
+  <p style="background-color:#ddd; hypens: auto;">Das Rindfleisch­etikettierungs­überwachungs­aufgaben­übertragungs­gesetz (RflEttÜAÜG) war
+    im Jahre 1999 im deutschen Bundesland Mecklenburg-Vorpommern Teil eines Gesetzesvorhabens.
+    <br />
+        Quelle: https://de.wikipedia.org/wiki/Rindfleischetikettierungs%C3%BCberwachungsaufgaben%C3%BCbertragungsgesetz
+    <br />
+    <kbd>hyphens: auto;</kbd>
+  </p>
+</div>
+
+</div>
+<div class="slide">
+
+<h2 id="width-und-auto">Width und Auto</h2>
+
+<p>Normalerweise nimmt ein Block die maximal zur Verfügung stehende Breite ein. Mit
+<code>width</code> kann eine andere Breite eines Blocks definiert werden:
+Um einen Element zu zentrieren kann margin mit Wert auto verwendet werden, der den zur Verfügung stehenden Platz automatisch gleichmäßig verteilt.</p>
+
+<div class="resizable">
+<div style="max-width: 60%; margin: 0 auto; background-color: #ddd;">
+<p>Der Margin wird links und rechts gleich verteilt mit "auto"</p>
+<p><kbd>
+div {<br />
+  width: 60%;<br />
+  margin-left:  auto;<br />
+  margin-right: auto;<br />
+}</kbd></p>
+</div>
+</div>
+
+<p>Statt einer fixen Breite <code>width: 900px</code> kann man eine maximale Breite
+mit <code>max-width: 900px</code> angeben. Stehen weniger als 900px zur Verfügung
+dann wird diese CSS Anweisung ignoriert, und der Block nimmt wieder 100% der
+Breite ein.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="float">Float</h2>
+
+<p>Eine Möglichkeit aus der normalen Reihenfolge der Darstellung auszubrechen
+bietet die Deklaration <code>float</code> mit den Werten <code>left</code> und <code>right</code>. Damit wird
+ein Element nach links bzw. rechts gesetzt, der Rest des Inhalts
+„rutscht nach oben“ und wird neben das Element gesetzt („umfließt das Element“).</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Hier sind drei Absätze zu sehen, die jeweils als Erstes ein Bild enthalten.
+Im ersten Absatz ist die Darstellung ganz normal – das Bild wird wie ein Wort
+im Text behandelt. Im zweiten Absatz „floated“ das Bild nach rechts,
+der Text rutscht links davon nach oben. Im dritten Absatz „floated“
+das Bild nach links, der Text rutscht rechts davon nach oben.</p>
+
+<p><a href="/images/css-layout/float.html">Beispiel als Demo-Seite</a></p>
+
+<p><img src="/images/css-layout/float-img.png" srcset="/images/css-layout/float-img@3x.png 3x, /images/css-layout/float-img.png 1x, /images/css-layout/float-img@2x.png 2x"  alt="Bilder mit float" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Werden statt Bildern andere Elemente gefloatat muss ausserdem
+noch eine Breite gesetzt werden:</p>
+
+<p><a href="/images/css-layout/floatp.html">Beispiel als Demo-Seite</a></p>
+
+<p>Float wurde vor der Einführung von Flexbox und CSS Grid für viele
+Layout Aufgaben verwendet und war die Grundlage Grid-Systemen wie
+z.B. <a href="https://getbootstrap.com/docs/4.0/layout/grid/#equal-width">Bootstrap</a>.</p>
+
+<p>Mit der Einführung von CSS Grid ist die Verwendung von <code>float</code> für
+diesen Zweck nicht mehr sinnvoll.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="fallen-bei-der-absoluten-positionierung">Fallen bei der absoluten Positionierung</h2>
+
+<p>Mit der Deklaration <code>position: absolute</code> wird ein Tag aus der normalen Darstellung
+herausgenommen und über dem restlichen Inhalt der Seite platziert.</p>
+
+<p>Wenn man nicht explizit ein Koordinatensystem mit <code>position: relative</code> angibt,
+dann gilt die linke obere Ecke des Browserfensters als Ursprung.</p>
+
+<p>Das führt oft zu Verwirrung, zum Beipiel wenn der meiste Inhalt der Seite
+zentriert ist, sich also je nach Fensterbreite verschriebt, und dann ein Element
+absolut darauf platziert wird.</p>
+
+<p><a href="/images/css-layout/unkoordiniert.html">Beispiel-Seite</a></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>In folgendem Beispiel wird ein absolut positiniertes Menü kombiniert mit
+einem Inhalt mit <code>margin-left</code> - sonst würde das Menü den Inhalt verdecken!</p>
+
+<div class="example twopane">
+<pre class="lang-css prettyprint linenums left">
+#navi {
+  position: absolute;
+  width: 80px;
+  top:    0px;
+  left:   0px;
+}
+</pre><pre class="lang-css prettyprint linenums right">
+#content {
+  margin-left: 100px;
+}
+
+</pre><div class="clearfix"></div></div>
+
+</div>
+<div class="slide">
+
+
+
+<p><img src="/images/css-layout/image142.png"  alt="Abbildung 40: Kombination von absoluter Positionierung und margin-left" ></p>
+</div>
+    <div class="slide">
+      <h1>Details zu Layout</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css-layout/layout//slide.html">CSS für Layout</a> | 
+        <a href="/css-layout/details/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css-layout/navigation//slide.html">Navigationsmenü</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

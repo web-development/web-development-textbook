@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Syntax von CSS - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Syntax von CSS</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css/css-kurz//slide.html">Kurzvorstellung von Stylesheets</a> | 
+        <a href="/css/css/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css/properties//slide.html">Wichtige Properties</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Die CSS Spezifikation wird von der W3C herausgegeben: <a href="https://www.w3.org/Style/CSS/#specs">https://www.w3.org/Style/CSS</a>.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="ein-beispiel">Ein Beispiel</h3>
+
+<div class="example">
+<h4 class="caption">Css Code <small>Die Datei fh.css</small></h4>
+<pre class="lang-css prettyprint linenums">
+h1,h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  color: lightblue;
+}
+body {
+  margin-left: 150px;
+  background-color: white;
+}
+p {
+  text-align: justify;
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p><img src="/images/css/rules-declarations.png" srcset="/images/css/rules-declarations.png 1x, /images/css/rules-declarations@2x.png 2x"  alt="" ></p>
+
+<p>Sie können beliebig Zeilenumbrüche und Whitespace einfügen, beides wird ignoriert.</p>
+
+<p>Eine Stylesheet-Regel („Rule“) besteht aus einem Selektor gefolgt von einer geschwungenen Klammer die eine oder mehrere Deklarationen enthalten kann.</p>
+
+<p>Der einfachste Selektor besteht aus dem Namen eines einzelnen HTML-Tags. Es gibt aber auch komplexere Selektoren, wie im Beipiel “h1,h2”.</p>
+
+<p>Eine Deklaration besteht immer aus einem property, gefolgt von einem doppelpunkt, einem Wert und einem Strickpunkt. Der Wert kann wie im Beispiel bei der ersten Deklaration gezeigt komplex aufgebaut sein.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="style-fr-mehrere-seiten">Style für mehrere Seiten</h3>
+
+<p>Die Seiten einer gesamten Website haben meist ein einheitliches Aussehen. Dies können Sie erreichen, wenn Sie für jede Webseite dieselbe CSS Datei verwenden. Dazu müssen Sie in jede HTML-Datei die CSS Datei mittels folgender Anweisung einbinden:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;link rel=&quot;stylesheet&quot; href=&quot;mystyle.css&quot;&gt;
+</pre></div>
+
+<p>Diese Zeile sollte innerhalb des head Bereiches der HTML-Datei stehen (da sonst die Darstellung der Seite verzögert werden kann). <code>mysyle.css</code> könnte etwa so aussehen wie im vorigen Beispiel.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="style-fr-eine-seite">Style für eine Seite</h3>
+
+<p>Wenn Sie einen Style nur auf einer einzigen Webseite verwenden, können Sie die Style-Angaben direkt in die HTML-Datei schreiben, und zwar innerhalb des head Bereiches.</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;style&gt;
+  h1,h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: lightblue
+  }
+&lt;/style&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="style-fr-einen-tag">Style für einen Tag</h3>
+
+<p>Style Angaben können auch direkt in einen einzelnen HTML-Tag geschrieben werden. In diesem Fall gilt die Angabe nur für diesen ganz speziellen Tag.</p>
+
+<p>Um einen style für einen einzelnen Tag zu definieren, müssen Sie innerhalb des Tags das Attribut style verwenden.</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;h1 style=&quot;color:red; text-align:center;&quot;&gt;Rote, zentrierte Überschrift&lt;/h1&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="gltigkeitsbereich-einer-style-angabe">Gültigkeitsbereich einer Style Angabe</h3>
+
+<p>Sie können innerhalb einer HTML-Datei sowohl eine externe Style Sheet Datei verwenden (eingebunden durch eine entsprechende Anweisung im head Bereich) als auch eine lokale Definition im head Bereich angeben, als auch spezielle Angaben für einzelne Tags erstellen.</p>
+
+<p>Was passiert nun, wenn die verschiedenen Style-Deklarationen sich widersprechen? Die Angaben bei einem einzelnen Tag haben immer Vorrang. danach folgen die lokalen Angabe im head Bereich und erst zum Schluß die externe Datei. „Je näher beim Tag desto stärker wirkt es.“</p>
+
+</div>
+<div class="slide">
+
+<h2 id="klassen-ids-spans-und-divs">Klassen, IDs, SPANs und DIVs</h2>
+
+<p>Wenn Sie mit den Style-Angaben den p-Tag umformatieren, betrifft das alle p-Tags in der Webseite.</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+p { background-color: #ddd; }
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="klassen">Klassen</h3>
+
+<p>Oft möchten Sie aber ein oder zwei Absätze anders formatieren als die anderen Absätze. Zu diesem Zweck können Sie sich im Stylesheet noch weitere Formatvorlagen - sogenannte “Klassen” - definieren:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+.wichtig { color: red; }
+</pre></div>
+
+<p>Diesen Klassen können Sie eigene Namen geben (hier „wichtig“), vor dem Klassennamen steht immer ein Punkt.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Jedem beliebigen HTML-Tag können Sie nun diese Klasse zuweisen. Dies geschieht mit dem Attribut class.</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;p&gt;Eine &lt;b class=&quot;wichtig&quot;&gt;ganz wichtige&lt;/b&gt; Meldung&lt;/p&gt;
+&lt;p class=&quot;wichtig&quot;&gt;Ein ganz wichtiger Absatz&lt;/p&gt;
+&lt;p&gt;Ein ganz normaler Absatz&lt;/p&gt;
+</pre></div>
+
+<p>Zur „normalen“ Wirkung des HTML-Tags kommt nun die Formatierung durch die Klasse hinzu: der Text „ganz wichtige“ und „Ein ganz wichtiger Absatz“ ist in diesem Beispiel also rot. Eine Klasse kann also mehrmals in einem Dokument verwendet werden. Ein Tag kann mehrere Klassen erhalten, diese werden durch Leerzeichen getrennt im class-Attribut angeführt.</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;p class=&quot;wichtig eilmeldung&quot;&gt;Ein wichtiger Absatz als Eilmeldung&lt;/p&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="ids">ids</h3>
+
+<p>Zur eindeutigen Kennzeichnung von Tags wird das Attribut id verwendet:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;p&gt;Eine &lt;b class=&quot;wichtig&quot;&gt;ganz wichtige&lt;/b&gt; Meldung&lt;/p&gt;
+&lt;p class=&quot;wichtig&quot;&gt;Ein ganz wichtiger Absatz&lt;/p&gt;
+&lt;p id=&quot;impressum&quot;&gt;Das einzige Impressum dieser Seite&lt;/p&gt;
+</pre></div>
+
+<p>Auf diese eindeutigen IDs kann in CSS mit der Raute (englisch: „hash sign“) referenziert werden:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+#impressum { background-color: #DDD; }
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="kombinationen">Kombinationen</h3>
+
+<p>Sowohl Klassen als auch IDs können mit Tags kombiniert werden um einen komplexen Selektor zu bilden, aber das macht nur bei Klassen wirklich Sinn:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+.wichtig { font-size: 20px; }     /* alle Tags mit der Klasse wichtig     */
+p.wichtig { color: red;    }     /* nur der Tag p mit der Klasse wichtig */
+b.wichtig { color: yellow; }    /* nur der Tag b mit der Klasse wichtig */
+
+#impressum { background-color:#ddd; }  /* nur der Tag mit der id #impressum */
+p#impressum { background-color:#ddd; } /* nur der p-Tag mit der id #impressum */
+
+b#impressum { background-color:#ddd; } /* nix! */
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="div-und-span">div und span</h3>
+
+<p>Es wird öfter vorkommen, dass Sie einem Bereich eine bestimmte Klasse zuweisen möchten, ohne dass ein passender Tag vorhanden ist. Hier können Sie die beiden Tags &lt;span&gt; und &lt;div&gt; verwenden, die beide selber kaum Eigenschaft aufweisen. &lt;span&gt; eignet sich für die Verwendung in Fließtext, &lt;div&gt; ist ein blockbildender Tag.</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;p&gt;Es gibt hier ganz &lt;span class=&quot;wichtig&quot;&gt;besonders interessante&lt;/span&gt; Meldungen.&lt;/p&gt;
+</pre></div>
+
+<p>Die Worte „besonders interessante“ erscheinen rot.</p>
+
+<p>Aber meist hat man  das Bedürfnis nach “styling” ja, weil man eine bestimmte
+Bedeutung übermitteln will …. für die es schon einen HTML-Tag gibt. Besser wäre hier also
+die Verwendung des Tags <code>em</code> der für “Betonung” steht.</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;p&gt;Es gibt hier ganz &lt;em class=&quot;wichtig&quot;&gt;besonders interessante&lt;/em&gt; Meldungen.&lt;/p&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="maeinheiten-in-stylesheets">Maßeinheiten in Stylesheets</h2>
+
+<p>Für Längen- und Größen-Angaben gibt es viele Maßeinheiten:</p>
+
+<ul>
+  <li>vw (Hundertstel der Viewport-Breite),</li>
+  <li>vh (Hunderstel der Viewport-Höhe),</li>
+  <li>px (Pixel),</li>
+  <li>rem (Höhe des Großbuchstaben M im root-Element),</li>
+  <li>em (Höhe des Großbuchstaben M im Eltern-Element),</li>
+  <li>ex (Höhe des Kleinbuchstaben x im Eltern-Element),</li>
+  <li>ch (Breite eines Buchstaben)</li>
+  <li>% (Prozent),</li>
+  <li>cm (Zentimeter),</li>
+  <li>in (Inch)</li>
+  <li>und noch <a href="https://developer.mozilla.org/de/docs/Web/CSS/length">viele mehr</a></li>
+</ul>
+
+<p>Einige davon sind relativ (em = relativ zur Schriftgröße, px = relativ zur Pixel-Größe am aktuellen Ausgabemedium), andere absolut (Centimeter, Inch). Die absoluten Angaben kann man nur bei der Ausgabe auf Papier sinnvoll verwenden. <a href="/images/css-masse.html">Demo</a></p>
+
+</div>
+<div class="slide">
+
+<h3 id="farben">Farben</h3>
+
+<p>Farbangaben können auf mehrer Arten erfolgen: mit einigen Farbwörtern (red, green,…) oder mit der Angabe von rot-, grün- und blau-Anteil in verschiedenen Schreibweisen:</p>
+
+<ul>
+  <li>Dezimal <code>rgb(16,0,255)</code>,</li>
+  <li>hexadezimal <code>#10F</code> oder</li>
+  <li>zweistellig hexadezimal <code>#1000FF</code>.</li>
+</ul>
+
+<p>Zusätzlich ist auch die Angabe eines Alpha-Wertes möglich: Hier ein Braun-Ton der nur zu 20% deckend ist, und zu 80% den darunter liegenden Content bzw. das Hintergrundbild durchscheinen lässt:</p>
+
+<ul>
+  <li><code>rgba(153, 134, 117, 0.2);</code></li>
+</ul>
+
+</div>
+<div class="slide">
+
+
+
+<p>Tool-Tipp: Mit den Developer Tools in Firefox kann man die Farben einer Webseite auslesen:</p>
+
+<p><img src="/images/css/pipette.png" srcset="/images/css/pipette@2x.png 2x, /images/css/pipette.png 1x"  alt="Abbildung 20: Colorzilla Pipette zum auslesen einer Farbe und Colorzilla Menü zum kopieren des Codes" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="urls">URLs</h3>
+
+<p>Wird in einem Stylesheet auf eine URL verwiesen (z.B. auf die URL eines Hintergrundbildes), dann kommt die Schreibweise</p>
+
+<ul>
+  <li><code>url(http://absolute.com/bild.gif)</code> oder</li>
+  <li><code>url(relativ/bild.gif)</code></li>
+</ul>
+
+<p>zum Einsatz. Achtung: die relative URL bezieht sich auf das Stylesheet (nicht die HTML-Datei in der es verwendet wird).</p>
+
+</div>
+<div class="slide">
+
+<h3 id="variablen-in-css">Variablen in CSS</h3>
+
+<p>Für Werte die mehrmals verwendet werden kann man Variablen setzen:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+:root {
+  --important-color: darkcyan;              /* Variable setzen */
+  --text-on-important-color: darkcyan;
+}
+
+h1 {
+color: var(--important-color);              /* Variable verwenden */
+}
+nav {
+background-color: var(--important-color);
+color: var(--text-on-important-color);
+}
+</pre></div>
+
+</div>
+    <div class="slide">
+      <h1>Syntax von CSS</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css/css-kurz//slide.html">Kurzvorstellung von Stylesheets</a> | 
+        <a href="/css/css/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css/properties//slide.html">Wichtige Properties</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

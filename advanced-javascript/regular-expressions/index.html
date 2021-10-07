@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="de" class="no-js web-development">
+<head>
+  <meta charset="utf-8">
+  <title>Lehrbuch Web-Development - Regular Expressions</title>
+
+  <meta name="author" content="Brigitte Jellinek">
+  <meta name="description" content="Ein Lehrbuch für das Informatik- oder Medieninformatik-Studium.">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="nanoc 3.8.0">
+
+  <link rel="shortcut icon" href="/assets/img/favicon.png">
+  <link rel="stylesheet" href="/assets/css/all.css">
+  <link rel="stylesheet" href="/assets/css/prettify.css">
+  <style>
+    li.L0, li.L1, li.L2, li.L3, li.L5, li.L6, li.L7, li.L8 {
+        list-style-type: inherit !important;
+    }
+    ol.linenums {
+        margin-left: 50px !important;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <a href="http://github.com/web-development/web-development-textbook/"><img
+    style="position: fixed; top: 0; right: 0; border: 0;"
+    src="/images/forkme.png" alt="Fork me on GitHub"></a>
+  <header class="row">
+    <div class="jumbotron sub-header span8" id="booktitle">
+      <h1><a href="/" title="Web Development">Web Development</a></h1>
+      <p class="lead">Ein Lehrbuch für das Informatik oder Medien-Informatik Studium.</p>
+    </div>
+  </header>
+
+
+
+
+<!-- body -->
+<article id="body" class="row">
+  <div class="span8">
+    
+    <div class="page-header">
+      <h2 class="title" id="slide-0">
+        Regular Expressions
+      </h2>
+      <a href="/advanced-javascript/regular-expressions/slide.html">als Präsentation ▻</a>
+    </div>
+     <div id="slide-1" title="Folie Nr. 1"></div>
+<p>Regular Expressions sind eine kleine “Programmiersprache in der Programmiersprache”,
+eine besondere Schreibweise die es erlaubt in Strings nach Mustern zu suchen
+und Ersetzungen vorzunehmen.</p>
+
+
+<a class="slide_break" id="slide-2" href="slide.html#slide-2"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 2">▻</a>
+
+
+
+<p>Mit Regular Expressions kann man die Welt retten:</p>
+
+<p><img src="/images/regex-hero.png"  alt="" ></p>
+
+<p>Basierend auf <a href="http://xkcd.com/208/">http://xkcd.com/208/</a> von Randall Munroe - verändert und verwendet unter der <a href="https://creativecommons.org/licenses/by-nc/2.5/">CC-BY-NC</a> Lizenz</p>
+
+
+<a class="slide_break" id="slide-3" href="slide.html#slide-3"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 3">▻</a>
+
+
+
+<p>Regular Expressions sind keine Besonderheit von Javascript.
+und die meisten Programmiersprachen bieten Regular Expressions an. Egal ob Sie also mit vi, grep, mod_rewrite,
+Javascript, C++ oder Ruby arbeiten, alles was Sie über Regular Expressions lernen
+zahlt sich aus!</p>
+
+<p>Auch in Kommandozeilne Befehlen (vi, sed) und Editoren gibt es Regular Expressions, z.B. in Visual Studio Code:</p>
+
+<p><img src="/images/advanced-javascript/vscode.png" srcset="/images/advanced-javascript/vscode.png 1x, /images/advanced-javascript/vscode@2x.png 2x"  alt="" ></p>
+
+<p>Vielleicht kennst Du Regular Expressions also schon? Wie schätzt Du Dich selbst ein? ⭐? 🌧?</p>
+
+
+<a class="slide_break" id="slide-4" href="slide.html#slide-4"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 4">▻</a>
+
+
+
+<p><a href="http://de.wikipedia.org/wiki/Regul%C3%A4rer_Ausdruck">Reguläre Ausdrücke</a> sind
+ein Konzept aus der Theoretischen Informatik. Diese ursprünglichen regulären Ausdrücke
+bieten nur 3 Operatoren an. Bei der praktischen Umsetzung wurden mehr und mehr Operatoren hinzugefügt.</p>
+
+<p>Diese Kapitel beschreibt die praktische Umsetzung, und nicht den Begriff aus der theoretischen Informatik.</p>
+
+
+<a class="slide_break" id="slide-5" href="slide.html#slide-5"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 5">▻</a>
+
+
+
+<p>Regular Expressions nennt man oft auch Muster (en: patterns), man spricht von
+Mustersuche (en: pattern matching). Wenn ein Muster auf ein Zeichenkette zutrifft
+sagt man auf Halb-Englisch: “der Pattern matched”.</p>
+
+
+<a class="slide_break" id="slide-6" href="slide.html#slide-6"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 6">▻</a>
+
+<h2 id="verwendung-von-regular-expressions">Verwendung von Regular Expressions</h2>
+
+<p>In Javascript gibt es viele verschiedene Schreibweise für Regular Expressions,
+wir beginnen mit der Methode <code>match</code> des String-Objekts:</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>match</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+var s = &quot;begreifen&quot;;
+if( s.match(/greif/) ) {
+  console.log(&quot;greif gefunden!&quot;);
+}
+</pre></div>
+
+<p>Hier wird im String “begreifen” nach dem String “greif” gesucht.
+Falls er gefunden wird (ja, wird er), gibt die Match-Methoden einen
+Wert zurück, der als wahr gilt.</p>
+
+
+<a class="slide_break" id="slide-7" href="slide.html#slide-7"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 7">▻</a>
+
+
+
+<p>Für diesen einfachsten Fall wird man aber nicht eine RegEx verwenden,
+sondern <code>indexOf</code>: diese Methode gibt -1 zurück falls der String
+nicht gefunden wurde, und die Position der Fundstelle anderfalls.</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>match</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+var s = &quot;begreifen&quot;;
+if( s.indexOf(&#39;greif&#39;) &gt; -1) {
+  console.log(&quot;greif gefunden!&quot;);
+}
+</pre></div>
+
+
+<a class="slide_break" id="slide-8" href="slide.html#slide-8"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 8">▻</a>
+
+<h2 id="zeichenkette">Zeichenkette</h2>
+
+<p>Die einfachste Regular Expression besteht aus einer
+Zeichenkette, nach der “wörtlich” gesucht werden soll.
+Falls die Zeichenkette irgendwo im String gefunden wird
+ist die Suche erfolgreich:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/hallo/
+</pre></div>
+
+<p><a href="/images/match.html?pattern=hallo&amp;listname=hallo&amp;list%5B%5D=&amp;list%5B%5D=hallo&amp;list%5B%5D=aber%20hallo!&amp;list%5B%5D=die%20hallobergrenze&amp;list%5B%5D=halo&amp;list%5B%5D=Hallo">RegEx Tester: /hallo/</a></p>
+
+
+<a class="slide_break" id="slide-9" href="slide.html#slide-9"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 9">▻</a>
+
+<h2 id="alternative">Alternative</h2>
+
+<p>Mit dem senkrechten Strich <code>|</code> kann man Alternative definieren, er
+entspricht also einem logischen “oder”;</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/en|sk|zh|us|uk/
+</pre></div>
+
+<p><a href="/images/match.html?pattern=en%7Csk%7Czh%7Cus%7Cuk&amp;listname=L%C3%A4nder&amp;list%5B%5D=&amp;list%5B%5D=en&amp;list%5B%5D=sk&amp;list%5B%5D=uk&amp;list%5B%5D=ukulele&amp;list%5B%5D=esuu">RegEx Tester: /en|sk|zh|us|uk/</a></p>
+
+
+<a class="slide_break" id="slide-10" href="slide.html#slide-10"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 10">▻</a>
+
+<h2 id="verankern">Verankern</h2>
+
+<p>Mit den Zeichen Zirkumflex <code>^</code> und Dollar <code>$</code> kann die Suche am
+Anfang bzw. Ende der Strings verankert werden.</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/^Am Anfang war/
+/dann leben sie noch heute.$/
+/^Ganzer String$/
+</pre></div>
+
+<p><a href="/images/match.html?pattern=%5E(en%7Csk%7Cus%7Cuk)$&amp;listname=countries&amp;list%5B%5D=&amp;list%5B%5D=en&amp;list%5B%5D=sk&amp;list%5B%5D=uk&amp;list%5B%5D=ukulele&amp;list%5B%5D=Maske&amp;list%5B%5D=schlafen">RegEx Tester: /^(en|sk|us|uk)$/</a></p>
+
+<p>Achtung: der Zirkumflex <code>^</code> hat auch noch andere Bedeutungen (wenn er nicht am Anfang des Patterns steht).</p>
+
+
+<a class="slide_break" id="slide-11" href="slide.html#slide-11"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 11">▻</a>
+
+<h2 id="zeichen-klassen">Zeichen-Klassen</h2>
+
+<p>Wenn für ein Zeichen im String mehrere Zeichen zur
+Auswahl stehen fasst man sie in einer “Zeichen-Klasse” (en: “character class”) zusammen:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/[aeiou]/
+</pre></div>
+
+<p>Achtung! Eine Erwähnung der Zeichenklasse matched genau ein Zeichen im String, nicht mehrere Zeichen!</p>
+
+<p><a href="/images/match.html?pattern=hall%5Boia%5D&amp;listname=hallos&amp;list%5B%5D=&amp;list%5B%5D=halli&amp;list%5B%5D=hallo&amp;list%5B%5D=halla&amp;list%5B%5D=halloi&amp;list%5B%5D=hall&amp;list%5B%5D=hall%C3%B6">RegEx Tester: /hall[oia]/</a></p>
+
+
+<a class="slide_break" id="slide-12" href="slide.html#slide-12"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 12">▻</a>
+
+<h2 id="zeichen-klasse-mit-zeichenbereich">Zeichen-Klasse mit Zeichenbereich</h2>
+
+<p>Mit einem Bindestrich <code>-</code> innerhalb der Klasse kann
+man einen Bereich von Zeichen angeben, die im Zeichensatz hintereinander
+stehen.</p>
+
+<p>Die folgenden beiden pattern sind also gleichbedeutend:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/[abcdef]/
+/[a-f]/
+</pre></div>
+
+<p><a href="/images/match.html?pattern=%5Ba-z%5D&amp;listname=buchstaben&amp;list%5B%5D=&amp;list%5B%5D=a&amp;list%5B%5D=b&amp;list%5B%5D=c&amp;list%5B%5D=x&amp;list%5B%5D=y&amp;list%5B%5D=z&amp;list%5B%5D=A&amp;list%5B%5D=.&amp;list%5B%5D=%25">RegEx Tester: /[a-z]/</a></p>
+
+
+<a class="slide_break" id="slide-13" href="slide.html#slide-13"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 13">▻</a>
+
+<h2 id="komplement-der-zeichen-klasse">Komplement der Zeichen-Klasse</h2>
+
+<p>Mit dem Zirkumflex <code>^</code> kann man das Komplement der Zeichen-Klasse bilden,
+es werden dann alle Zeichen gematched die <strong>nicht</strong> in der eckigen
+Klammer erwähnt werden:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/[^aeiou]/
+</pre></div>
+
+<p><a href="/images/match.html?pattern=u%5B%5E1234%5D&amp;listname=U-Bahnen&amp;list%5B%5D=&amp;list%5B%5D=u1&amp;list%5B%5D=u2&amp;list%5B%5D=u3&amp;list%5B%5D=u4&amp;list%5B%5D=u5&amp;list%5B%5D=u6&amp;list%5B%5D=usa">RegEx Tester: /u[^1234]/</a></p>
+
+<p>Achtung: das war die zweite Bedeutung des Zirkumflex <code>^</code>, wenn er am Anfang der Klasse steht.</p>
+
+
+<a class="slide_break" id="slide-14" href="slide.html#slide-14"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 14">▻</a>
+
+<h2 id="abkrzungen-fr-hufig-benutze-zeichenklassen">Abkürzungen für häufig benutze Zeichenklassen</h2>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/\d/       eine Ziffer, entspricht /[0-9]/
+/\D/       keine Ziffer, entspricht /[^0-9]/
+/\w/       Wort-Zeichen, entspricht /[a-zA-Z0-9_]/
+/\W/       kein Wort-Zeichen, entspricht /[^a-zA-Z0-9_]/
+</pre></div>
+
+<p><a href="/images/match.html?pattern=u%5Cd&amp;listname=U-Bahnen&amp;list%5B%5D=&amp;list%5B%5D=u1&amp;list%5B%5D=u2&amp;list%5B%5D=u3&amp;list%5B%5D=u4&amp;list%5B%5D=u5&amp;list%5B%5D=u6&amp;list%5B%5D=u9&amp;list%5B%5D=usa">RegEx Tester: /u\d/</a></p>
+
+
+<a class="slide_break" id="slide-15" href="slide.html#slide-15"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 15">▻</a>
+
+<h2 id="plus-operator-mindestens-einmal-oder-mehrmals">Plus-Operator: mindestens einmal, oder mehrmals</h2>
+
+<p>Der Plus-Operator erlaubt eine Wiederholung des vorigen Zeichens. Um also <code>"i"</code> und <code>"iiii"</code> und <code>"wir sind die Ritter die ni sagen"</code> zu matchen:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/i+/  
+</pre></div>
+
+<p>Der Operator kann auch auf Zeichenklassen oder Gruppen angewandt werden.</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/\d+/
+</pre></div>
+
+<p><a href="/images/match.html?pattern=%5Cd%2B&amp;listname=Ziffern&amp;list%5B%5D=&amp;list%5B%5D=1&amp;list%5B%5D=12&amp;list%5B%5D=123&amp;list%5B%5D=&amp;list%5B%5D=1a&amp;list%5B%5D=a123">RegEx Tester: /\d+/</a></p>
+
+<p>Wenn man sich den Operator als Schleife vorstellt, kann
+bei jeder “Wiederholung” ein anderes Zeichen aus der Klasse oder eine
+andere Alternative gewählt werden:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/(do|re|mi)+/
+</pre></div>
+
+
+<a class="slide_break" id="slide-16" href="slide.html#slide-16"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 16">▻</a>
+
+<h2 id="bung">Übung</h2>
+
+<p>Eine kurze Übung in <a href="https://tddbin.com/">TDDbin</a>: <a href="https://gitlab.mediacube.at/snippets/43">Längenangaben finden</a></p>
+
+
+<a class="slide_break" id="slide-17" href="slide.html#slide-17"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 17">▻</a>
+
+<h2 id="irgend-ein-zeichen">Irgend ein Zeichen</h2>
+
+<p>Der Punkt <code>.</code> steht für <strong>ein</strong> beliebiges Zeichen. Achtung, Verwechslungsgefahr:
+bei Pfadangaben hat das Fragezeichen <code>?</code> diese Funktion!</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/^...$/       genau drei Zeichen
+</pre></div>
+
+<p><a href="/images/match.html?pattern=%5E...$&amp;listname=Studiengang&amp;list%5B%5D=&amp;list%5B%5D=NA&amp;list%5B%5D=MMT&amp;list%5B%5D=mmt&amp;list%5B%5D=%20%20%20&amp;list%5B%5D=___&amp;list%5B%5D=MMT-B">RegEx Tester: /^…$/</a></p>
+
+
+<a class="slide_break" id="slide-18" href="slide.html#slide-18"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 18">▻</a>
+
+<h2 id="ein-echter-punkt">Ein echter Punkt</h2>
+
+<p>Da der Punkt <code>.</code> eine besondere Bedeutung in einer Regular Expression
+hat stellt sich die Frage: wie erkennt man dann einen echten Punkt?
+Die Antwort: man escaped die Sonderzeichen von RegEx mit einem Backslash <code>\</code>.</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/\./     ein echter punkt
+</pre></div>
+
+<p><a href="/images/match.html?pattern=%5E%5Cd%5C.%5Cd$&amp;listname=Kapitel-Nummern&amp;list%5B%5D=&amp;list%5B%5D=1&amp;list%5B%5D=1.1&amp;list%5B%5D=1.2&amp;list%5B%5D=1.3&amp;list%5B%5D=2&amp;list%5B%5D=2.1&amp;list%5B%5D=2.2&amp;list%5B%5D=35&amp;list%5B%5D=35.1">RegEx Tester: /^\d.\d$/</a></p>
+
+
+<a class="slide_break" id="slide-19" href="slide.html#slide-19"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 19">▻</a>
+
+<h2 id="stern-operator-beliebig-viele">Stern-Operator: beliebig viele</h2>
+
+<p>Wir kennen schon den Plus-Operator. Der Stern-Operator erlaubt auch null Wiederholungen.</p>
+
+<p>Der Stern-Operator dient auch der Vervielfältigung: das davor stehende Zeichen
+kann nullmal, einmal oder mehrmals vorkommen:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/i*/  
+</pre></div>
+
+
+<a class="slide_break" id="slide-20" href="slide.html#slide-20"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 20">▻</a>
+
+<h2 id="fragezeichen-operator-einmal-oder-keinmal">Fragezeichen-Operator: einmal oder keinmal</h2>
+
+<p>Der Frage-Operator erlaubt 0 oder 1 vorkommen des Zeichens.</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/\d?/  
+</pre></div>
+
+<p><a href="/images/match.html?pattern=%5E%5Cd?$&amp;listname=Ziffern&amp;list%5B%5D=&amp;list%5B%5D=1&amp;list%5B%5D=12&amp;list%5B%5D=123&amp;list%5B%5D=&amp;list%5B%5D=1a&amp;list%5B%5D=a1">RegEx Tester: /^\d?$/</a></p>
+
+
+<a class="slide_break" id="slide-21" href="slide.html#slide-21"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 21">▻</a>
+
+<h2 id="gruppieren-und-merken">Gruppieren und Merken</h2>
+
+<p>Mit runden Klammern kann man Teile der Regular Expression zusammen fassen:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/(de|fr)_(DE|CH)/
+</pre></div>
+
+<p><a href="/images/match.html?pattern=(de%7Cfr)_(DE%7CCH)&amp;listname=locale&amp;list%5B%5D=&amp;list%5B%5D=de_DE&amp;list%5B%5D=fr_DE&amp;list%5B%5D=de_CH&amp;list%5B%5D=fr_CH&amp;list%5B%5D=de_AT&amp;list%5B%5D=it_CH">RegEx Tester: /(de|fr)_(DE|CH)/</a></p>
+
+<p>Ausserdem stehen die von den Klammern gefundenen Teile des
+Strings nach der Auswertung zur Verfügung: die Methode <code>match</code>
+liefert ein Array als Rückgabewert, an der Stelle 0 ist der
+gesamte gefundene String gespeichert, auf 1, 2, 3 der Reihe
+nach die gefundnen Gruppen:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+locale = &quot;de_CH&quot;;
+if( match = locale.match(/(de|fr)_(DE|CH)/ ) {
+  console.log(&quot;gesamt:  &quot; + match[0]);
+  console.log(&quot;sprache: &quot; + match[1]);
+  console.log(&quot;land:    &quot; + match[2]);
+}
+</pre></div>
+
+
+<a class="slide_break" id="slide-22" href="slide.html#slide-22"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 22">▻</a>
+
+<h2 id="bung-1">Übung</h2>
+
+<p>Eine längere Übung in <a href="https://tddbin.com/">TDDbin</a>: <a href="https://gitlab.mediacube.at/snippets/43">Längenangaben finden</a></p>
+
+
+<a class="slide_break" id="slide-23" href="slide.html#slide-23"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 23">▻</a>
+
+<h2 id="operatoren-sind-gierig">Operatoren sind gierig</h2>
+
+<p>Die Operatoren <code>*</code> und <code>+</code> versuchen immer
+möglichst lange Strings zu erfassen.</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/o.*o/    möglichst viele Zeichen zwischen o und o
+</pre></div>
+
+<p>Diese Eigenschaft sieht man sehr gut in folgendem Beispiel:</p>
+
+<p><a href="/images/match.html?pattern=_.*_&amp;listname=BlaBla&amp;list%5B%5D=&amp;list%5B%5D=zeugs%20und%20_bla_%20und%20zeugs&amp;list%5B%5D=_bla_%20und%20zeugs&amp;list%5B%5D=zeugs%20und%20_bla_&amp;list%5B%5D=_bla_%20und%20_bla_%20und%20noch%20mehr%20_bla_">RegEx Tester: /<em>.*</em>/</a></p>
+
+
+<a class="slide_break" id="slide-24" href="slide.html#slide-24"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 24">▻</a>
+
+
+
+<p>Wie kann man das gierige Verhalten der Operatoren umgehen?</p>
+
+<p>Die “altmodisch” Methode ist eine Komplement-Klasse:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/o[^o]*o/    
+</pre></div>
+
+<p>Hier wird ein erstes o gematched, dann kommen (null bis viele) zeichen
+die kein o sind, und dann ein zweites o. Damit ist der Pattern beendet,
+auch wenn es später im String noch weitere o’s geben würde.</p>
+
+<p><a href="/images/match.html?pattern=_%5C%5B%5E_%5C%5D*_&amp;listname=BlaBla&amp;list%5B%5D=&amp;list%5B%5D=zeugs%20und%20_bla_%20und%20zeugs&amp;list%5B%5D=_bla_%20und%20zeugs&amp;list%5B%5D=zeugs%20und%20_bla_&amp;list%5B%5D=_bla_%20und%20_bla_%20und%20noch%20mehr%20_bla_">RegEx Tester: /<em>[^</em>]*_/</a></p>
+
+
+<a class="slide_break" id="slide-25" href="slide.html#slide-25"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 25">▻</a>
+
+
+
+<p>In modernen RegEx Engines gibt es nicht-gierige Varianten der
+Operatoren: ein Fragezeichen wird nachgestellt</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+/o(.*?)o/    
+/o(.+?)o/    
+</pre></div>
+
+<p><a href="/images/match.html?pattern=_.*?_&amp;listname=BlaBla&amp;list%5B%5D=&amp;list%5B%5D=zeugs%20und%20_bla_%20und%20zeugs&amp;list%5B%5D=_bla_%20und%20zeugs&amp;list%5B%5D=zeugs%20und%20_bla_&amp;list%5B%5D=_bla_%20und%20_bla_%20und%20noch%20mehr%20_bla_">RegEx Tester: /<em>.*?</em>/</a></p>
+
+
+<a class="slide_break" id="slide-26" href="slide.html#slide-26"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 26">▻</a>
+
+<h2 id="mehrmals-suchen">Mehrmals suchen</h2>
+
+<p>Alle bisher geschriebenen Patterns werden mit der Funktion <code>match</code>
+einmal gesucht. Wenn ich in einem string aber mehrere Vorkommen
+finden will, braucht es das global-Flag:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+m = &quot;Nana nana nana nana batman&quot;.match(/na/);
+// findet das erste na
+m = &quot;Nana nana nana nana batman&quot;.match(/na/g);
+// findet alle 7 nax
+</pre></div>
+
+
+<a class="slide_break" id="slide-27" href="slide.html#slide-27"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 27">▻</a>
+
+<h2 id="warnhinweis-was-regex-nicht-kann">Warnhinweis: Was RegEx nicht kann</h2>
+
+<p>Mit dem letzten Beispiel könnte man nun in Versuchung kommen
+verschachtelte Ausdrücke wie HTML, XML, mathematische Ausdrücke, Programmiersprachen
+mit Hilfe von RegEx zu parsen.</p>
+
+<p>Das funktioniert aber nicht. Das müssten Sie an dieser Stelle
+einfach mal glauben - den Beweis überlassen wir der “Theoretischen Informatik”.</p>
+
+<p>Die Frage ob das geht kommt immer wieder auf StackOverflow,
+hier ist die <a href="https://stackoverflow.com/questions/1732348/regex-match-open-tags-except-xhtml-self-contained-tags#answer-1732454">Standard Antwort</a>.</p>
+
+<p>Wenn Sie also in Javascript oder PHP HTML oder XML parsen wollen, dann
+verwenden Sie dafür einen der vielen fertigen Parser.</p>
+
+<p>Wenn Sie aus einem längeren HTML-Dokument “unverschachtelte” Teile wie
+z.B. <code>&lt;img&gt;</code> Tags herausholen wollen, dann könnsn Sie das mit Regular Expressions machen.
+Aber nichts komplizierteres.</p>
+
+
+<a class="slide_break" id="slide-28" href="slide.html#slide-28"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 28">▻</a>
+
+<h2 id="ersetzen-mit-regular-expression-in-javascript">Ersetzen mit Regular Expression in Javascript</h2>
+
+<p>Ein häufiger Anwendungsfall von RegEx ist “Suchen und Ersetzen”</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+s = &quot;Voldemort hat keine Nase&quot;;
+s.replace(/Voldemort/, 
+          &quot;Er, dessen Name nicht genannt werden darf,&quot;);
+</pre></div>
+
+<p>Es erfolgt nur eine einzige Ersetzung. Mit dem Modifikator <code>g</code> am
+Ende der RegEx kann man alle Ersetzungen durchführen:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+s = &quot;Voldemort hat keine Nase. Voldemort ist verschwunden.&quot;;
+s.replace(/Voldemort/g, 
+          &quot;Er, dessen Name nicht genannt werden darf,&quot;);
+</pre></div>
+
+<p>Achtung, auch hier kommt man bald an die Grenzen
+von Regular Expressions:</p>
+
+<div class="example">
+<pre class="lang-javascript prettyprint linenums">
+s = &quot;Harry greift Voldemort an. Voldemorts Zauberstab bricht.&quot;;
+s.replace(/Voldemort/g, 
+          &quot;Er, dessen Name nicht genannt werden darf,&quot;);
+</pre></div>
+
+<p>Dass im zweiten Satz ein anderer Fall notwendig wäre,
+und wie man das dann richtige formuliert,
+kann eine Regular Expression nicht erkennen. Dafür gibt es
+eine eigene Wissenschaft: die <a href="https://de.wikipedia.org/wiki/Computerlinguistik">Computer-Linguistik</a> beschäftigt
+sich mit der Analyse, Synthese und Übersetzung von natürlichen Sprachen.</p>
+
+
+<a class="slide_break" id="slide-29" href="slide.html#slide-29"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 29">▻</a>
+
+<h2 id="regex-in-php">RegEx in PHP</h2>
+
+<div class="example">
+<h4 class="caption">Php Code <small>RegEx Beispiel-Code aus Wordpress Plugins</small></h4>
+<pre class="lang-php prettyprint linenums">
+# Beispiel Link Suchen
+if (preg_match(&#39;/^(http)(s?)(:)\/\//&#39;,$linky)){ ...
+
+# Beispiel Sprache-Code
+
+if (preg_match ( &quot;/en|sk|zh|us|uk/&quot;, \$locale_code )){ ...
+</pre></div>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Suchen mit RegEx in PHP</small></h4>
+<pre class="lang-php prettyprint linenums">
+preg_match( &quot;/regex/i&quot;, &quot;string in dem ich suche&quot;) 
+</pre></div>
+
+
+<a class="slide_break" id="slide-30" href="slide.html#slide-30"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 30">▻</a>
+
+<h2 id="tools">Tools</h2>
+
+<ul>
+  <li><a href="https://regexr.com/">regexr.com</a> ein CodePen für Regular Expressions</li>
+</ul>
+
+
+<a class="slide_break" id="slide-31" href="slide.html#slide-31"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 31">▻</a>
+
+<h2 id="vertiefung">Vertiefung</h2>
+
+<ul>
+  <li><a href="http://www.youtube.com/watch?v=EkluES9Rvak">Video: Lea Verou Demystifying Regular Expressions</a></li>
+  <li><a href="https://developer.mozilla.org/en-US/docs/JavaScript/Guide/Regular_Expressions">Regular Expressions Guide auf MDN</a></li>
+  <li><a href="http://de.wikipedia.org/wiki/Regular_Expression">Wikipedia: Regular Expression</a></li>
+</ul>
+
+
+<a class="slide_break" id="slide-32" href="slide.html#slide-32"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. 32">▻</a>
+
+<h2 id="merchandize">Merchandize</h2>
+
+<ul>
+  <li><a href="http://store-xkcd-com.myshopify.com/products/i-know-regular-expressions">XKCD T-Shirt</a></li>
+  <li><a href="http://www.spreadshirt.de/to-be-or-not-to-be-that-is-the-question-t-shirts-C4408A14434558/">to be or not to be T-Shirt</a></li>
+</ul>
+ <div class="pagination">
+  <ul>
+    
+      
+      
+      <li><a href="/advanced-javascript/vererbung/">Prototypen + Vererbung</a></li>
+      
+      
+      
+      <li><a href="/mobile/">Mobile</a></li>
+      
+    
+  </ul>
+</div>
+
+  </div>
+
+  <!-- sidebar -->
+<div id="sidebar" class="span3 offset1">
+        <div class="page-header"> 
+        <h2>Kapitel</h2>
+        </div>
+
+        
+        <ul class="nav nav-list">
+        
+          
+          <li class=" "><a href="/das-web-und-html/">Das Web Und Html</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/geschichte/">Eine Kurze Geschichte des World Wide Web</a></li>
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/standards/">Drei Standards definieren das Web</a></li>
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/bnf/">BNF</a></li>
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/html-grundkurs/">HTML Grundkurs</a></li>
+                      
+                    
+                      
+                      <li ><a href="/das-web-und-html/upload/">Upload und Tools</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/css/">Css</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/css/css-kurz/">Kurzvorstellung von Stylesheets</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css/css/">Syntax von CSS</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css/properties/">Wichtige Properties</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css/css-sprites/">CSS Sprites</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css/basic-selectors/">CSS Selektoren</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/css-layout/">Css Layout</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/css-layout/rahmenbedingungen/">Rahmenbedingungen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/responsive/">Responsive Design</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/layout/">CSS für Layout</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/details/">Details zu Layout</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/navigation/">Navigationsmenü</a></li>
+                      
+                    
+                      
+                      <li ><a href="/css-layout/selektoren/">CSS Selektoren im Detail</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/urls/">Urls</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/urls/absolut-relativ/">Absolute und relative URLs</a></li>
+                      
+                    
+                      
+                      <li ><a href="/urls/konfiguration/">Konfiguration Webserver</a></li>
+                      
+                    
+                      
+                      <li ><a href="/urls/tipps/">Pragmatische Tipps</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/formulare/">Formulare</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/formulare/form/">Formulare</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/interaktion/">Formular als Interaktion</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/css/">CSS und Formular</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/action/">Daten absenden</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/php/">Formular und PHP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/formulare/javascript/">Formular und Javascript</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/javascript-dom/">Javascript Dom</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/hintergrund/">Hintergründe</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/graceful/">Graceful Degradation</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/basic-javascript/">Basic Javascript</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/dom/">DOM</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/canvas/">2D Canvas</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript-dom/formular-zeile/">Formular++</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" separator"><a href="/jquery/">Jquery</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/jquery/unobstrusive/">Unobstrusive Javascript</a></li>
+                      
+                    
+                      
+                      <li ><a href="/jquery/graceful/">Graceful Degradation</a></li>
+                      
+                    
+                      
+                      <li ><a href="/jquery/schreibweise/">Besondere Javascript-Schreibwesen in jQuery</a></li>
+                      
+                    
+                      
+                      <li ><a href="/jquery/selektieren-manipulieren/">Selektieren und Manipulieren mit jQuery</a></li>
+                      
+                    
+                      
+                      <li ><a href="/jquery/interaktion/">Interaktion mit jQuery</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/kommandozeile/">Kommandozeile</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/kommandozeile/">Kommandozeile</a></li>
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/wo-bin-ich/">Wo bin ich</a></li>
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/vscode-remote-ssh/">VS Code</a></li>
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/zugriffsrechte/">Zugriffsrechte</a></li>
+                      
+                    
+                      
+                      <li ><a href="/kommandozeile/bild-und-video/">Bild und Video</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/git/">Git</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/git/versionskontrolle/">Versionskontrolle</a></li>
+                      
+                    
+                      
+                      <li ><a href="/git/basic-git/">Einfacher Arbeitsablauf in Git</a></li>
+                      
+                    
+                      
+                      <li ><a href="/git/git-status/">Status von Git abfragen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/git/git-tools/">Tools für Git</a></li>
+                      
+                    
+                      
+                      <li ><a href="/git/public-private-key/">Public und Private Key</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/http/">Http</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/http/tcpip-und-dns/">TCP/IP und DNS</a></li>
+                      
+                    
+                      
+                      <li ><a href="/http/http/">HTTP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/http/tools/">Werkzeuge</a></li>
+                      
+                    
+                      
+                      <li ><a href="/http/anwendungsbeispiele/">Beispiele</a></li>
+                      
+                    
+                      
+                      <li ><a href="/http/php-erzeugt/">PHP erzeugt nicht nur HTML</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/php-vorbereitung/">Php Vorbereitung</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php-vorbereitung/was-ist-php/">Was ist PHP? Was passiert am Webserver?</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-vorbereitung/apache/">Apache</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-vorbereitung/erstes-php-programm/">Das erste PHP-Programm</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/php/">Php</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php/warnhinweis/">Warnhinweis</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/syntax/">Syntax von PHP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/dateien/">Dateien und Ordnern in PHP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/mail/">PHP und E-Mail</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/php-und-parameter/">In PHP Daten aus Web-Formularen verarbeiten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/datei-upload/">Datei Upload</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/datei-upload-frontend/">Datei Upload - Frontend</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php/error/">Errors + Debugging</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/php-db-lesen/">Php Db Lesen</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/db/">Datenbanken</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/start/">PHP und Datenbank</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/struktur-webapplikation/">Struktur einer Web-Applikation</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/datenbank-lesen/">Lesen aus der Datenbank</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-lesen/effizent/">Effizient Arbeiten mit der DB</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/session/">Session</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/session/cookies/">Cookies</a></li>
+                      
+                    
+                      
+                      <li ><a href="/session/session-und-login/">Session und Login</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/php-db-schreiben/">Php Db Schreiben</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/datenbank-schreiben/">Web-Applikation mit Schreibrecht</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/daten-loeschen/">Löschen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/daten-einfuegen/">Einfügen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/daten-editieren/">Daten Bearbeiten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/html-erlauben/">HTML erlauben</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-schreiben/fehlerbehandlung/">Fehlerbehandlung</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" separator"><a href="/php-db-optimierung/">Php Db Optimierung</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/indexes/">Indexes</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/constraints/">Constraints</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/alter/">Änderungen an der Datenbank</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/transaktionen/">Transaktionen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/php-db-optimierung/transaktionen-und-php/">Transaktionen und PHP</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/grafik/">Grafik</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/grafik/cssgrafik/">HTML+CSS für Grafik</a></li>
+                      
+                    
+                      
+                      <li ><a href="/grafik/images/">Pixel-Bilder</a></li>
+                      
+                    
+                      
+                      <li ><a href="/grafik/svg/">SVG - Vektor Grafik</a></li>
+                      
+                    
+                      
+                      <li ><a href="/grafik/2dcanvas/">2d Canvas</a></li>
+                      
+                    
+                      
+                      <li ><a href="/grafik/3dcanvas/">3d Canvas</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/javascript/">Javascript</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/javascript/variablen/">Variablen und Scope</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/funktionen/">Funktionen und this</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/objekte/">Objekte + Klassen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/closures/">Funktionen und Closures</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/module/">Module</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/style/">Stil + Tipps</a></li>
+                      
+                    
+                      
+                      <li ><a href="/javascript/debugging/">Debugging</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/applied-js-and-css/">Applied Js And Css</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/formularpruerung/">Formulardaten Prüfen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/header/">Fixe Kopfzeile mit Animation</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/langsam-scrollen/">Langsam Scrollen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/landkarte/">Landkarte</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/dynamisches-formular/">Dynamisches Formular</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/ajax/">AJAX</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/ajax-irrwege/">AJAX Irrwege</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/cors/">CORS</a></li>
+                      
+                    
+                      
+                      <li ><a href="/applied-js-and-css/websocket/">Chat Websockets</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/json/">Json</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/json/syntax/">JSON Syntax</a></li>
+                      
+                    
+                      
+                      <li ><a href="/json/php/">JSON und PHP</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" separator"><a href="/xml/">Xml</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/xml/was-ist-xml/">Was ist XML</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/wohlgeformtes-xml/">wohlgeformtes XML</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/dtd/">DTD</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/xml-und-php/">XML und PHP</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/xml-und-javascript/">XML und Javascript</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/xpath/">XPath</a></li>
+                      
+                    
+                      
+                      <li ><a href="/xml/rss/">Beispiel RSS</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/security/">Security</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/security/thread-modeling/">Threat Modeling</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a1-injection/">A1 - Injection</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a2-auth/">A2 - Authentifizierung</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a3-data/">A3 - Sensible Daten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a4-xee/">A4 - XXE</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a5-zugriffskontrolle/">A5 - Zugriffskontrolle</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a6-fehlkonfiguration/">A6 - Fehlkonfiguration</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a7-cross-site-scripting-css/">A7 - XSS</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a8-deserialisierung/">A8 - Deserialisierung</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a9-komponenten/">A9 - Komponenten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a10-logging-monitoring/">A10 - Monitoring</a></li>
+                      
+                    
+                      
+                      <li ><a href="/security/a8-csrf/">CSRF</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/wordpress/">Wordpress</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/wordpress/was-ist-wordpress/">Was ist Wordpress</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/installation/">Kurz-Installation von Wordpress</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/security/">Security</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/backend/">Überblick Backend</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/seiten/">Beiträge und Seiten</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/multimedia/">Medien</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/themes-sidesbars-widgets/">Themes, Sidebars und Widgets verwenden</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/plugins/">Plugins verwenden</a></li>
+                      
+                    
+                      
+                      <li ><a href="/wordpress/permalinks/">Permalinks</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/apache/">Apache</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/apache/konfigurieren/">Konfigurieren</a></li>
+                      
+                    
+                      
+                      <li ><a href="/apache/auth/">Authentisierung</a></li>
+                      
+                    
+                      
+                      <li ><a href="/apache/rewrite/">Rewrite</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class="active "><a href="/advanced-javascript/">Advanced Javascript</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/advanced-javascript/call/">Funktion Aufrufen</a></li>
+                      
+                    
+                      
+                      <li ><a href="/advanced-javascript/event-und-closure/">Events und Closures</a></li>
+                      
+                    
+                      
+                      <li ><a href="/advanced-javascript/vererbung/">Prototypen + Vererbung</a></li>
+                      
+                    
+                      
+                      <li class="active"><a href="/advanced-javascript/regular-expressions/">Regular Expressions</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/mobile/">Mobile</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/mobile/responsive/">Responsive Design</a></li>
+                      
+                    
+                      
+                      <li ><a href="/mobile/pwa/">Progressive Web App</a></li>
+                      
+                    
+                      
+                      <li ><a href="/mobile/cordova/">Cordova</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+          <li class=" "><a href="/qualitaet/">Qualitaet</a>
+              <ul class="sub">
+                
+                  
+                    
+                      
+                    
+                      
+                      <li ><a href="/qualitaet/barrierefreiheit/">Barrierefreiheit</a></li>
+                      
+                    
+                      
+                      <li ><a href="/qualitaet/datenschutz/">Datenschutz</a></li>
+                      
+                    
+                      
+                      <li ><a href="/qualitaet/performance/">Performance</a></li>
+                      
+                    
+                      
+                      <li ><a href="/qualitaet/rest/">REST</a></li>
+                      
+                    
+                  
+                
+              </ul>
+            </li>
+          
+        
+        </ul>
+
+</div>
+<!-- sidebar -->
+
+</article>
+<!-- /body -->
+
+
+  <div class="row">
+    <div class="span12" id="legal">
+        <p class="copyright">veröffentlicht unter <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/at/deed.de">creative commons by-nc-sa</a> in den Jahren 2012-2019 von <a href="#">Brigitte Jellinek</a>.</p>
+        <p>Zum Weiterentwickeln dieser Seite: <a href="https://github.com/web-development/web-development-textbook">Projekt forken</a> oder <a href="https://github.com/web-development/web-development-textbook/blob/master/content/advanced-javascript/regular-expressions.md">Kommentar zu dieser Seite</a></p>
+        <p>Diese Seite ist sowohl auf <a href="https://web-development.github.io">github.io</a>
+        als auch auf <a href="http://web-development.netlify.com/">netlify.com</a> erhältlich.</p>
+    </div>
+  </div>
+
+</div> <!-- class="container" -->
+
+<script src="/assets/js/scripts.js?v=1"></script>
+<script>
+  $(document).ready(function(){
+    function save_state(){
+      var stored = "";
+      $('ul.nav > li').each(function(i,e){
+        if( $(e).find("i").attr('class') == 'icon-plus' ) {
+          stored += "-";
+        }  else {
+          stored += "+";
+        }
+      });
+      localStorage.setItem('nav-state', stored);
+    }
+    $('ul.nav > li > a').prepend("<i class='icon-plus'></i>");
+
+    // init state
+    var stored = localStorage.getItem('nav-state');
+    if ( stored ) {
+      var data = stored.split("");
+      $('ul.nav > li').each(function(i,e){
+        if( data[i] == "+" ) {
+          $(e).find(">ul").show();
+          $(e).find("i").removeClass('icon-plus').addClass('icon-minus');
+        } else {
+          $(e).find(">ul").hide();
+        }
+      });
+    } else {
+      $('ul.nav ul.sub').hide();
+    }
+    $('ul.nav li.active ul.sub').show();
+    $('ul.nav li.active i').removeClass('icon-plus').addClass('icon-minus');
+
+    $('ul.nav i').click(function(){
+      $this = $(this); 
+      $this.toggleClass('icon-plus').toggleClass('icon-minus');
+      $this.parent().next('ul').toggle();
+      save_state();
+      return false;
+    });
+  });
+</script>
+</body> 
+</html>
+

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<h1>Javascript Spielplatz</h1>
+
+<p>Öffne die Console (in Firebug oder Developer Tools)</p>
+
+<script>
+  var hs = {
+    name: "FH Salzburg",
+    typ: "Fachhochschule",
+    seit: 1996
+  };
+
+  function Studiengang(name, seit, hs) {
+    this.name = name;
+    this.seit = seit;
+    this.hs = hs;
+  }
+
+  mmtb = new Studiengang( "BSc MultiMediaTechnology", 2008, hs );
+  mmtm = new Studiengang( "MSc MultiMediaTechnology", 2011, hs );
+
+
+  // ----- Pet ---------
+  function Pet() {
+    this.status = "sleeping";
+  }
+  Pet.prototype.log = function() {
+    console.log("i am " + this.status.get() + ". " + this.word + "!");
+  }
+
+  // ----- Mammal ---------
+  function Mammal() {
+    this.legs = 4;
+  }
+  Mammal.prototype = new Pet();
+  Mammal.prototype.constructor = Mammal;
+
+  // ----- Dog --------
+  function Dog( b ) {
+    this.breed = b;
+    this.word = "wau! ";
+  }
+  Dog.prototype = new Mammal();
+  Dog.prototype.constructor = Dog;
+
+  Dog.prototype.sit = function() {
+    this.status.set("sitting");
+  }
+
+  d1 = new Dog("Beagle");
+  d2 = new Dog("Schnauzer");
+  d2.legs = 3;
+</script>
+
+<p>Es stehen die Konstruktur-Funktion 
+<kbd>Studiengang</kbd>,
+<kbd>Pet</kbd>,
+<kbd>Mammal</kbd>,
+<kbd>Dog</kbd> und die Objekte
+<kbd>hs</kbd>,
+<kbd>mmtb</kbd>,
+<kbd>mmtm</kbd>,
+<kbd>d1</kbd>,
+<kbd>d2</kbd> zur Verfügung.</p>
+
+
+</body>
+</html>
+

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 14.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 43363)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+	 id="svg2" inkscape:output_extension="org.inkscape.output.svg.inkscape" xmlns:dc="http://purl.org/dc/elements/1.1/" sodipodi:modified="true" xmlns:cc="http://web.resource.org/cc/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" sodipodi:docname="Nonce-uml.svg" sodipodi:docbase="/home/nick/Desktop" xmlns:svg="http://www.w3.org/2000/svg" sodipodi:version="0.32" inkscape:version="0.45" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="736.5px"
+	 height="365.254px" viewBox="0 0 736.5 365.254" enable-background="new 0 0 736.5 365.254" xml:space="preserve">
+<sodipodi:namedview  height="330.51px" width="345px" id="base" inkscape:cy="110.45852" inkscape:window-y="24" inkscape:window-x="0" inkscape:window-height="954" inkscape:document-units="px" inkscape:window-width="1280" showgrid="false" inkscape:current-layer="layer1" inkscape:cx="176.39324" pagecolor="#ffffff" guidetolerance="10" inkscape:pageshadow="2" gridtolerance="10000" inkscape:zoom="3.959798" inkscape:pageopacity="0.0" objecttolerance="10" borderopacity="1.0" bordercolor="#666666">
+	</sodipodi:namedview>
+<g>
+	<path id="rect4110" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M494.734,9.021h78.818
+		c0.049,0,0.09,0.04,0.09,0.09v28.696c0,0.05-0.041,0.09-0.09,0.09h-78.818c-0.051,0-0.09-0.041-0.09-0.09V9.111
+		C494.645,9.06,494.684,9.021,494.734,9.021z"/>
+	<g>
+		<g>
+			<path id="rect2160" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M238,10.063h78.818
+				c0.05,0,0.091,0.041,0.091,0.091v28.818c0,0.05-0.041,0.091-0.091,0.091H238c-0.05,0-0.091-0.041-0.091-0.091v-28.82
+				C237.909,10.103,237.95,10.063,238,10.063z"/>
+			<text transform="matrix(1 0 0 1 244.8384 28.0317)" font-family="'MyriadPro-Regular'" font-size="12">W</text>
+			<text transform="matrix(1 0 0 1 254.5942 28.0317)" font-family="'MyriadPro-Regular'" font-size="12">e</text>
+			<text transform="matrix(1 0 0 1 260.6064 28.0317)" font-family="'MyriadPro-Regular'" font-size="12">b</text>
+			<text transform="matrix(1 0 0 1 267.4341 28.0317)" font-family="'MyriadPro-Regular'" font-size="12">b</text>
+			<text transform="matrix(1 0 0 1 274.2622 28.0317)" font-family="'MyriadPro-Regular'" font-size="12">r</text>
+			<text transform="matrix(1 0 0 1 278.0659 28.0317)" font-family="'MyriadPro-Regular'" font-size="12">o</text>
+			<text transform="matrix(1 0 0 1 284.5698 28.0317)" font-family="'MyriadPro-Regular'" font-size="12">w</text>
+			<text transform="matrix(1 0 0 1 293.3301 28.0317)" font-family="'MyriadPro-Regular'" font-size="12">s</text>
+			<text transform="matrix(1 0 0 1 298.082 28.0317)" font-family="'MyriadPro-Regular'" font-size="12">e</text>
+			<text transform="matrix(1 0 0 1 304.0938 28.0317)" font-family="'MyriadPro-Regular'" font-size="12">r</text>
+			<path id="path4124" inkscape:connector-type="polyline" fill="none" stroke="#000000" stroke-dasharray="2,2" d="M277.409,39.432
+				l0.155,313.857"/>
+		</g>
+		<path id="rect10380_1_" fill="#FFFFFF" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M273.954,46.584
+			h6.384c0.05,0,0.091,0.221,0.091,0.494v275.529c0,0.271-0.041,0.494-0.091,0.494h-6.384c-0.051,0-0.092-0.223-0.092-0.494V47.077
+			C273.861,46.804,273.902,46.584,273.954,46.584z"/>
+	</g>
+	<g>
+		<g>
+			<path id="rect2160_1_" fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M107,9.944h78.818
+				c0.05,0,0.091,0.041,0.091,0.091v28.818c0,0.05-0.041,0.091-0.091,0.091H107c-0.05,0-0.091-0.041-0.091-0.091v-28.82
+				C106.909,9.984,106.95,9.944,107,9.944z"/>
+			<text transform="matrix(1 0 0 1 113.8384 27.9126)" font-family="'MyriadPro-Regular'" font-size="12">W</text>
+			<text transform="matrix(1 0 0 1 123.5942 27.9126)" font-family="'MyriadPro-Regular'" font-size="12">e</text>
+			<text transform="matrix(1 0 0 1 129.6064 27.9126)" font-family="'MyriadPro-Regular'" font-size="12">b</text>
+			<text transform="matrix(1 0 0 1 136.4341 27.9126)" font-family="'MyriadPro-Regular'" font-size="12">b</text>
+			<text transform="matrix(1 0 0 1 143.2622 27.9126)" font-family="'MyriadPro-Regular'" font-size="12">r</text>
+			<text transform="matrix(1 0 0 1 147.0659 27.9126)" font-family="'MyriadPro-Regular'" font-size="12">o</text>
+			<text transform="matrix(1 0 0 1 153.5698 27.9126)" font-family="'MyriadPro-Regular'" font-size="12">w</text>
+			<text transform="matrix(1 0 0 1 162.3301 27.9126)" font-family="'MyriadPro-Regular'" font-size="12">s</text>
+			<text transform="matrix(1 0 0 1 167.082 27.9126)" font-family="'MyriadPro-Regular'" font-size="12">e</text>
+			<text transform="matrix(1 0 0 1 173.0938 27.9126)" font-family="'MyriadPro-Regular'" font-size="12">r</text>
+			<path id="path4124_1_" inkscape:connector-type="polyline" fill="none" stroke="#000000" stroke-dasharray="2,2" d="
+				M146.409,39.313l0.155,313.857"/>
+		</g>
+		<path id="rect10380_3_" fill="#FFFFFF" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M142.954,46.465
+			h6.384c0.05,0,0.091,0.221,0.091,0.494v275.529c0,0.271-0.041,0.494-0.091,0.494h-6.384c-0.051,0-0.092-0.223-0.092-0.494V46.958
+			C142.861,46.685,142.902,46.465,142.954,46.465z"/>
+	</g>
+	<g id="use6182_3_" transform="translate(256.34516,0.8611366)">
+		<path id="path4124_4_" inkscape:connector-type="polyline" fill="none" stroke="#000000" stroke-dasharray="2,2" d="
+			M277.936,37.027l0.154,318.344"/>
+	</g>
+	<path id="rect10380_2_" fill="#FFFFFF" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" d="M530.953,46.584h6.385
+		c0.049,0,0.09,0.215,0.09,0.482v268.983c0,0.264-0.041,0.48-0.09,0.48h-6.385c-0.051,0-0.092-0.219-0.092-0.48V47.066
+		C530.861,46.798,530.902,46.584,530.953,46.584z"/>
+	<g>
+		<g>
+			<line fill="none" x1="280.338" y1="76.531" x2="524.338" y2="76.531"/>
+			<path fill="#FFFFFF" d="M530.373,76.531c-2.84,1.054-6.363,2.852-8.547,4.755l1.721-4.755l-1.721-4.755
+				C524.01,73.679,527.533,75.479,530.373,76.531z"/>
+		</g>
+		<g>
+			<line fill="none" stroke="#000000" x1="280.338" y1="58.94" x2="524.338" y2="76.531"/>
+			<path d="M530.373,76.531c-2.84,1.054-6.363,2.852-8.547,4.755l1.721-4.755l-1.721-4.755
+				C524.01,73.679,527.533,75.479,530.373,76.531z"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line fill="none" x1="281.338" y1="233.529" x2="525.338" y2="233.529"/>
+			<path fill="#FFFFFF" d="M531.373,233.529c-2.84,1.055-6.363,2.854-8.547,4.756l1.721-4.756l-1.721-4.754
+				C525.01,230.68,528.533,232.479,531.373,233.529z"/>
+		</g>
+		<g>
+			<line fill="none" stroke="#000000" x1="281.303" y1="215.939" x2="525.338" y2="233.529"/>
+			<path d="M531.373,233.529c-2.84,1.055-6.363,2.854-8.547,4.756l1.721-4.756l-1.721-4.754
+				C525.01,230.68,528.533,232.479,531.373,233.529z"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line fill="none" x1="530.355" y1="106.136" x2="287.356" y2="106.136"/>
+			<path fill="#FFFFFF" d="M281.321,106.136c2.84-1.054,6.363-2.852,8.547-4.755l-1.72,4.755l1.72,4.755
+				C287.684,108.987,284.161,107.189,281.321,106.136z"/>
+		</g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-dasharray="5,3" x1="530.355" y1="85.545" x2="287.356" y2="106.136"/>
+			<path d="M281.321,106.136c2.84-1.054,6.363-2.852,8.547-4.755l-1.72,4.755l1.72,4.755
+				C287.684,108.987,284.161,107.189,281.321,106.136z"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line fill="none" x1="279.829" y1="116.7" x2="523.828" y2="116.7"/>
+			<path fill="#FFFFFF" d="M529.863,116.7c-2.84,1.054-6.363,2.852-8.547,4.755l1.721-4.755l-1.721-4.755
+				C523.5,113.848,527.023,115.648,529.863,116.7z"/>
+		</g>
+		<g>
+			<line fill="none" stroke="#000000" x1="149.428" y1="86.94" x2="525.59" y2="116.7"/>
+			<path d="M529.863,116.7c-2.84,1.054-6.363,2.852-8.547,4.755l1.721-4.755l-1.721-4.755
+				C523.5,113.848,527.023,115.648,529.863,116.7z"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line fill="none" x1="399.362" y1="155.159" x2="156.363" y2="155.159"/>
+			<path fill="#FFFFFF" d="M150.328,155.159c2.84-1.053,6.363-2.852,8.547-4.754l-1.72,4.754l1.72,4.756
+				C156.691,158.01,153.168,156.211,150.328,155.159z"/>
+		</g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-dasharray="5,3" x1="529.863" y1="126.94" x2="156.363" y2="155.159"/>
+			<path d="M150.328,155.159c2.84-1.053,6.363-2.852,8.547-4.754l-1.72,4.754l1.72,4.756
+				C156.691,158.01,153.168,156.211,150.328,155.159z"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line fill="none" x1="280.829" y1="211.316" x2="524.828" y2="211.316"/>
+			<path fill="#FFFFFF" d="M530.863,211.316c-2.84,1.055-6.363,2.852-8.547,4.756l1.721-4.756l-1.721-4.756
+				C524.5,208.465,528.023,210.264,530.863,211.316z"/>
+		</g>
+		<g>
+			<line fill="none" stroke="#000000" x1="150.328" y1="181.557" x2="524.828" y2="210.316"/>
+			<path d="M530.863,211.316c-2.84,1.055-6.363,2.852-8.547,4.756l1.721-4.756l-1.721-4.756
+				C524.5,208.465,528.023,210.264,530.863,211.316z"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line fill="none" x1="398.741" y1="244.775" x2="155.742" y2="244.775"/>
+			<path fill="#FFFFFF" d="M149.707,244.775c2.84-1.053,6.363-2.852,8.547-4.754l-1.72,4.754l1.72,4.756
+				C156.07,247.627,152.547,245.828,149.707,244.775z"/>
+		</g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-dasharray="5,3" x1="529.863" y1="215.939" x2="155.742" y2="244.775"/>
+			<path d="M149.707,244.775c2.84-1.053,6.363-2.852,8.547-4.754l-1.72,4.754l1.72,4.756
+				C156.07,247.627,152.547,245.828,149.707,244.775z"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line fill="none" x1="530.355" y1="264.184" x2="287.356" y2="264.184"/>
+			<path fill="#FFFFFF" d="M281.321,264.184c2.84-1.053,6.363-2.852,8.547-4.754l-1.72,4.754l1.72,4.756
+				C287.685,267.035,284.162,265.238,281.321,264.184z"/>
+		</g>
+		<g>
+			<line fill="none" stroke="#000000" stroke-dasharray="5,3" x1="530.355" y1="242.594" x2="287.356" y2="264.184"/>
+			<path d="M281.321,264.184c2.84-1.053,6.363-2.852,8.547-4.754l-1.72,4.754l1.72,4.756
+				C287.685,267.035,284.162,265.238,281.321,264.184z"/>
+		</g>
+	</g>
+	<text transform="matrix(1 0 0 1 503.3359 26.4448)" font-family="'MyriadPro-Regular'" font-size="12">W</text>
+	<text transform="matrix(1 0 0 1 513.0918 26.4448)" font-family="'MyriadPro-Regular'" font-size="12">e</text>
+	<text transform="matrix(1 0 0 1 519.1035 26.4448)" font-family="'MyriadPro-Regular'" font-size="12">b</text>
+	<text transform="matrix(1 0 0 1 525.9316 26.4448)" font-family="'MyriadPro-Regular'" font-size="12">s</text>
+	<text transform="matrix(1 0 0 1 530.6836 26.4448)" font-family="'MyriadPro-Regular'" font-size="12">e</text>
+	<text transform="matrix(1 0 0 1 536.6953 26.4448)" font-family="'MyriadPro-Regular'" font-size="12">r</text>
+	<text transform="matrix(1 0 0 1 540.9199 26.4448)" font-family="'MyriadPro-Regular'" font-size="12">v</text>
+	<text transform="matrix(1 0 0 1 546.5723 26.4448)" font-family="'MyriadPro-Regular'" font-size="12">e</text>
+	<text transform="matrix(1 0 0 1 552.584 26.4448)" font-family="'MyriadPro-Regular'" font-size="12">r</text>
+	<text transform="matrix(1 0 0 1 540.6191 76.5312)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">oh, irgend eine Anfrage!</tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">nimm das cookie „id=1“</tspan></text>
+	<text transform="matrix(1 0 0 1 541.8066 117.4551)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">oh, irgend eine Anfrage!</tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">nimm das cookie „id=2“</tspan></text>
+	<text transform="matrix(1 0 0 1 540.9199 213.9551)" font-family="'MyriadPro-Regular'" font-size="12">aha, id=2, dich kenne ich!</text>
+	<text transform="matrix(1 0 0 1 540.9199 242.5938)" font-family="'MyriadPro-Regular'" font-size="12">aha, id=1, dich kenne ich</text>
+	<g>
+		<circle fill="#FFFFFF" stroke="#000000" cx="489.973" cy="93.521" r="6.775"/>
+		<text transform="matrix(1 0 0 1 486.748 97.1011)" font-family="'MyriadPro-Regular'" font-size="12">1</text>
+	</g>
+	<g>
+		<circle fill="#FFFFFF" stroke="#000000" cx="276.224" cy="121.455" r="6.775"/>
+		<text transform="matrix(1 0 0 1 272.9995 125.0356)" font-family="'MyriadPro-Regular'" font-size="12">1</text>
+	</g>
+	<g>
+		<circle fill="#FFFFFF" stroke="#000000" cx="492.904" cy="232.549" r="6.775"/>
+		<text transform="matrix(1 0 0 1 489.6797 236.1289)" font-family="'MyriadPro-Regular'" font-size="12">1</text>
+	</g>
+	<g>
+		<circle fill="#FFFFFF" stroke="#000000" cx="492.904" cy="134.855" r="6.775"/>
+		<text transform="matrix(1 0 0 1 489.6797 138.4355)" font-family="'MyriadPro-Regular'" font-size="12">2</text>
+	</g>
+	<g>
+		<circle fill="#FFFFFF" stroke="#000000" cx="145.224" cy="166.69" r="6.775"/>
+		<text transform="matrix(1 0 0 1 141.9995 170.2705)" font-family="'MyriadPro-Regular'" font-size="12">2</text>
+	</g>
+	<g>
+		<circle fill="#FFFFFF" stroke="#000000" cx="467.646" cy="203.91" r="6.775"/>
+		<text transform="matrix(1 0 0 1 464.4219 207.4902)" font-family="'MyriadPro-Regular'" font-size="12">2</text>
+	</g>
+	<text transform="matrix(1 0 0 1 211.0889 111.9448)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">cookie wird</tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">im browser</tspan><tspan x="0" y="28.8" font-family="'MyriadPro-Regular'" font-size="12">gespeichert</tspan></text>
+	<text transform="matrix(1 0 0 1 73.7554 160.2266)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">cookie wird</tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">im browser</tspan><tspan x="0" y="28.8" font-family="'MyriadPro-Regular'" font-size="12">gespeichert</tspan></text>
+</g>
+</svg>

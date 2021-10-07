@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <title>plain Javascript example: add more input elements to a form</title>
+  <style>
+    body { font-family: Georgia, "Times New Roman", Times, serif; }
+    div.pizza {
+      background-color: #EEEEEE;
+      padding: 10px;
+      margin: 3px 0px;
+    }
+    div.pizza .main, div.pizza select { font-size: 20px; font-family: Georgia, "Times New Roman", Times, serif;  }
+    div.pizza .main {
+      display: block;
+      margin-bottom: 20px;
+    }
+    label  {
+      font-weight: bold;
+    }
+    form {
+      width: 600px;
+      background-color: #CCCCCC;
+      padding: 20px;
+    }
+    .removethis {
+      display: block;
+      float: right;
+    }
+  </style>
+</head>
+<body onload="start()">
+  <h1>Add more input elements to a form</h1>
+
+  <form method="post" action="https://users.multimediatechnology.at/~bjelline/echo.php">
+    <p><label>Your Name    <input name="name"    id="name"    type="text"></label></p>
+    <p><label>Your Address <input name="address" id="address" type="text"></label></p>
+
+    <p id="insert_point">Your Pizzas</p>
+    <div class="pizza">
+      <p>
+      <span class="removethis">x</span>
+        <select name="pizzatype[]">
+          <option selected="selected">Magaritha</option>
+          <option>Vegetarian</option>
+          <option>Quattro Staggione</option>
+        </select>
+        <br>
+        <label>add Garlic  <select name="addgarlic[]"><option selected="selected">no</option><option>yes</option></select></label>
+        <label>add Cheese <select name="addcheese[]"><option selected="selected">no</option><option>yes</option></select> </label>
+        <br>
+        <label>anything else?<input name="comment[]" type="text"></label>
+      </p>
+    </div>
+
+    <input id="more" value="add another pizza" type="button">
+    <p>
+      <input type="submit">
+    </p>
+  </form>
+
+  <script>
+    function removeMe(e){
+      let me = e.target;
+      let my_pizza = me.parentNode.parentNode;
+      my_pizza.parentNode.removeChild( my_pizza );
+    }	
+    function dontRemoveMe(e) {
+      console.log("don't remove the first one, we need it for cloning!");
+    }
+    function addPizza(){
+      let f = document.querySelector("form");
+      let p = document.querySelector("div.pizza");
+      let new_pizza = p.cloneNode(true);
+      new_pizza.children[0].children[0].addEventListener("click", removeMe);
+      f.insertBefore(new_pizza, p);
+    }
+    function start(){
+      document.querySelector(".removethis").addEventListener("click", dontRemoveMe);
+      document.getElementById("more").addEventListener("click", addPizza);
+    }
+    window.addEventListener('load', start);
+  </script>
+
+</body>
+</html>

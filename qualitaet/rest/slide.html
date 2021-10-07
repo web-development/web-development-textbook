@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>REST - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>REST</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/qualitaet/performance//slide.html">Performance</a> | 
+        <a href="/qualitaet/rest/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Der Begriff Representational State Transfer - kurz “REST” - wurde von Roy Fielding 2000 in seiner Dissertation definiert .
+Fielding hat unter anderem an der HTTP-Spezifikation und an WebDAV
+mitgearbeitet. In seiner Dissertation stellt er grundlegende Überlegungen zur Architektur von
+verteilten Systemen an.</p>
+
+<p>Die Grundfrage könnte man so stellen: das Web ist ein sehr erfolgreiches 
+verteiltes System, viele Hersteller entwickeln dafür Software (Microsoft,
+Mozilla, IBM, …) und die Zusammenarbeit funktioniert. Es gibt viele Komponenten die erfolgreich
+zusammenspielen (Browser, Server, Proxies, Suchmaschinen, Browser-Erweiterungen, 
+…).</p>
+
+<p><strong>Welche Eigenschaften des Webs führen dazu, dass dieses
+Zusammenspiel funktioniert?</strong></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>REST ist – nach der Analyse von Fielding – die zugrundeliegende <strong>Architektur</strong> des
+Webs.  Wenn man versucht, beim Bau einer Web-Applikation die Prinzipien von REST
+einzuhalten dann wird diese Applikation sich besonders gut in die vorhandene
+Infrastruktur des Web (Server, Browser, Proxies, Caches, etc.) einpassen und davon profitieren.</p>
+
+<p>Wenn man REST missachtet wird die Infrastruktur nicht funktionieren.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>In der REST-Terminologie ist das Web ist eine Ansammlung von „<strong>Ressourcen</strong>“. In
+diesem Skriptum wird für Ressourcen auch der Begriff „<strong>Dokumente</strong>“ verwendet. Wir
+gehen hier nicht direkt von Fieldings Dissertation aus, sondern von der vereinfachten
+Darstellung in 
+<a href="http://www.infoq.com/articles/rest-introduction">Tilkov, Stefan(2007): A Brief Introduction to REST. In: InfoQ</a></p>
+
+<p>Die REST-Prinzipien sind (vereinfacht):</p>
+
+<ol>
+  <li>Gib jedem Dokument eine eindeutige URL.</li>
+  <li>Dokumente sollen Links auf andere Dokumente enthalten.</li>
+  <li>Verwende die HTTP-Methoden GET, POST, PUT, DELETE;  Verwende sie ihrer Bedeutung entsprechend.</li>
+  <li>Ein Dokument kann auf verschiedene Arten repräsentiert werden (kann in verschiedenen Datentypen geliefert werden: HTML, XML, JSON, …).</li>
+  <li>Zustandslosigkeit = Statelessness.</li>
+</ol>
+
+<p>Im Folgenden finden Sie zu jedem dieser Punkte eine kurze Erklärung.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="jedes-dokument-soll-eine-eindeutige-url-haben">Jedes Dokument soll eine eindeutige URL haben</h3>
+
+<p>Wenn jedes Dokument eine URL hat, dann ist es verlinkbar, kann in Lesezeichen
+gespeichert werden, kann von Google gefunden und verlinkt werden, etc.
+Wenn Sie eine statische Webseite bauen erzeugen Sie die URLs beim Festlegen der 
+Dateinamen.</p>
+
+<p>Bei einer PHP-Applikation sind es die Dateinamen und die GET-
+Parameter, die die URL ausmachen. In der Portfolio-Applikation, die wir in den
+Kapiteln <a href="/php-db-lesen/">PHP Datenbank Lesen</a> und <a href="/php-db-schreiben/">PHP Datenbank schreiben</a> gebaut haben, 
+waren die URLs:</p>
+
+<ul>
+  <li>http://ich.multimediatechnology.at/projekt-1/index.php</li>
+  <li>http://ich.multimediatechnology.at/projekt-1/personen.php</li>
+  <li>http://ich.multimediatechnology.at/projekt-1/person.php?pid=1</li>
+  <li>http://ich.multimediatechnology.at/projekt-1/person.php?pid=2</li>
+  <li>http://ich.multimediatechnology.at/projekt-1/person.php?pid=3</li>
+</ul>
+
+<p>und so weiter. Das erfüllt schon das REST-Prinzip.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>In Wordpress haben Sie schon gesehen, dann man die URLs
+im Webserver umschreiben kann, mit der RewriteEngine von Apache.</p>
+
+<ul>
+  <li>http://ich.multimediatechnology.at/projekt-1/</li>
+  <li>http://ich.multimediatechnology.at/projekt-1/personen</li>
+  <li>http://ich.multimediatechnology.at/projekt-1/person/max_mustermann</li>
+  <li>http://ich.multimediatechnology.at/projekt-1/person/nina_nocheinbeispiel</li>
+  <li>http://ich.multimediatechnology.at/projekt-1/person/klaus_maria_nachname</li>
+</ul>
+
+<p>Im Beispiel der  Portfolio-Applikation könnte man das auch erreich,
+z.B. könnte man in die Datei <code>.htaccess</code> im Ordner projekt-1 schreiben:</p>
+
+<div class="example">
+<div class="filename">.htaccess</div>
+<pre class="lang-plain prettyprint linenums">
+RewriteEngine On
+
+RewriteRule ^personen$     personen.php  [L]
+RewriteRule ^person/(.*)   person.php?slug=$1  [L]
+</pre></div>
+
+<h4 id="umsetzung">Umsetzung</h4>
+
+<p>die Umstellung einer bestehenden Applikation 
+auf diese URLs hat Auswirkungen falls sie relative Links 
+verwendet haben, um z.B. auf Stylesheets zu verweisen. Deswegen rate ich von
+einer nachträglichen Umstellung der URLs ab – das ist sehr viel mehr Arbeit als man
+denkt.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="dokumente-sollen-links-auf-andere-dokument-enthalten">Dokumente sollen Links auf andere Dokument enthalten</h3>
+
+<p>Dieses Prinzip haben wir in allen bisher gezeigten Beispielen erfüllt.
+Einzige Ausnahme: der im Kapitel <a href="/applied-javascript/ajax/">AJAX</a> verwendete
+Wetter-Service von Yahoo liefert nicht Links auf die dazugehörigen Bilder,
+sondern nur IDs, aus denen man dann (mit zusätzlichem Hintergrundwissen) die
+URLs konstruieren muss.</p>
+
+<h4 id="umsetzung-1">Umsetzung</h4>
+
+<p>dieses Prinzip müssen Ihre Web-Applikationen auf jeden Fall erfüllen.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="http-methoden-get-post-put-delete">HTTP-Methoden GET, POST, PUT, DELETE</h3>
+
+<p>Wie sollen diese Methoden verwendet werden? Jede Methode hat eine Bedeutung:</p>
+
+<ul>
+  <li><strong>GET</strong> Eine Repräsentation einer Ressource soll geholt werden. Das verändert 
+nichts an der Ressource, diese Methode ist also harmlos.</li>
+  <li><strong>POST</strong> Eine Ressource (die bisher noch keine URL hatte) soll neu erzeugt 
+werden. z.B. könnte ein POST auf <code>/dings/</code> eine neue Ressource mit der 
+URL <code>/dings/17</code> erzeugen</li>
+  <li><strong>PUT</strong> Diese Methode dient zum Speichern einer Ressource unter der  angegebenen URL. 
+Diese Methode steht bei Web-Formularen aber nicht zur Verfügung. Deswegen 
+wird statt dessen meist ein POST auf eine übergeordnete Ressource verwendet.</li>
+  <li><strong>DELETE</strong> Diese Methode dient zum Löschen einer Ressource. Auch diese Methode 
+steht bei Web-Formularen nicht zur Verfügung.</li>
+</ul>
+
+<h4 id="umsetzung-2">Umsetzung</h4>
+
+<p>Bei der Programmierung mit simplem PHP ist wichtig, dass Sie GET und POST korrekt
+einsetzen.  Erst mit Frameworks wie Ruby on Rails oder dem ZEND Framework für
+PHP werden sie die anderen Methoden verwenden.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="ein-dokument--mehrere-reprsentationen">Ein Dokument – mehrere Repräsentationen</h3>
+
+<p>Ein Dokument kann auf verschiedene Arten repräsentiert werden: z.B. kann die
+Darstellung einer Person in HTML, XML und JSON erfolgen. Die HTML-Variante kennen Sie 
+schon:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;h1&gt;Details zu einer Person&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&quot;http://multimediaart.at/media/profil/edvard_1_2.jpg&quot; /&gt;
+Herr Edvard Paul Beispieler hat insgesamt 4 Werke in dieser Datenbank.
+Er hat den Usernamen fhs14287.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#39;werk/24&#39;&gt;The Thin Red Line&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#39;werk/50&#39;&gt;Der böse Wolf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#39;werk/83&#39;&gt;nimm zwei, schatz&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#39;werk/303&#39;&gt;the neighbour.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Dieselbe Person könnte man auch als XML darstellen, z.B. als:</p>
+
+<div class="example">
+<h4 class="caption">Plain Code <small>Daten einer Person als XML</small></h4>
+<pre class="lang-plain prettyprint linenums">
+&lt;person&gt;
+&lt;image ref=&#39;http://multimediaart.at/media/profil/edvard_1_2.jpg&#39; /&gt;
+&lt;vorname&gt;Edvard Paul&lt;/vorname&gt;
+&lt;nachname&gt;Beispieler&lt;/nachname&gt;
+&lt;username&gt;fhs14287&lt;/username&gt;
+&lt;werke&gt;
+&lt;werk ref=&#39;http://ich.multimediatechnology.at/projekt-1/werk/24&#39;&gt;The Thin Red Line&lt;/werk&gt;
+&lt;werk ref=&#39;http://ich.multimediatechnology.at/projekt-1/werk/50&#39;&gt;Der böse Wolf&lt;/werk&gt;
+&lt;werk ref=&#39;http://ich.multimediatechnology.at/projekt-1/werk/83&#39;&gt;nimm zwei, schatz&lt;/werk&gt;
+&lt;werk ref=&#39;http://ich.multimediatechnology.at/projekt-1/werk/303&#39;&gt;the neighbour.&lt;/werk&gt;
+&lt;/werke&gt;
+&lt;/person&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Dieselbe Person als JSON:</p>
+
+<div class="example">
+<h4 class="caption">Plain Code <small>Daten einer Person als JSON</small></h4>
+<pre class="lang-plain prettyprint linenums">
+{&quot;image&quot;:&quot;http://multimediaart.at/media/profil/edvard_1_2.jpg&quot;,
+ &quot;vorname&quot;:&quot;Eduard Paul&quot;,
+ &quot;nachname&quot;:&quot;Beisteiner&quot;,
+ &quot;werk&quot;:[
+    {&quot;titel&quot;:&quot;The Thin Red Line&quot;,
+     &quot;url&quot;:&quot;http://ich.multimediatechnology.at/projekt-1/werk/24&quot;},
+    {&quot;titel&quot;:&quot;Der böse Wolf&quot;,
+     &quot;url&quot;:&quot;http://ich.multimediatechnology.at/projekt-1/werk/50&quot;},
+    {&quot;titel&quot;:&quot;nimm zwei, schatz&quot;,
+     &quot;url&quot;:&quot;http://ich.multimediatechnology.at/projekt-1/werk/83&quot;},
+    {&quot;titel&quot;:&quot;the neighbour.&quot;,
+     &quot;url&quot;:&quot;http://ich.multimediatechnology.at/projekt-1/werk/303&quot;}]}
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Besonders praktisch ist das, wenn ich Teile meiner Applikation später
+AJAXifizieren will: ich kann die schon vorhandenen Ressourcen weiter nutzen, aber einfach die XML-
+oder JSON-Repräsentation abfragen.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Ob die Repräsentation als Teil der URL, als URL-Parameter oder nur als
+http-Header spezifiziert werden soll ist umstritten. RESTfull ist eigentlich nur die Abfrage
+im http-Header:</p>
+
+<div class="example">
+<h4 class="caption">Plain Code <small>HTTP Request: Accept-Header verlangt html als Antwort</small></h4>
+<pre class="lang-plain prettyprint linenums">
+GET /mini/person/3 HTTP/1.1
+Host: ich.multimediatechnology.at 
+Accept: text/html
+</pre></div>
+
+<p>Bzw.</p>
+
+<div class="example">
+<h4 class="caption">Plain Code <small>HTTP Request: Accept-Header verlangt xml als Antwort</small></h4>
+<pre class="lang-plain prettyprint linenums">
+GET /mini/person/3 HTTP/1.1
+Host: ich.multimediatechnology.at 
+Accept: application/xml
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Eine beliebte Vereinfachung ist die Verwendung von Endungen in der URL:</p>
+
+<ul>
+  <li>http://ich.multimediatechnology.at/projekt-1/person/83.html</li>
+  <li>http://ich.multimediatechnology.at/projekt-1/person/83.xml</li>
+  <li>http://ich.multimediatechnology.at/projekt-1/person/83.json</li>
+</ul>
+
+<h4 id="umsetzung-3">Umsetzung</h4>
+
+<p>Diesen Aspekt von REST werden sie wahrscheinlich erst
+bei der Verwendung von Frameworks umsetzten.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="zustandslosigkeit--statlessness">Zustandslosigkeit = Statlessness.</h2>
+
+<p>Zustandslosigkeit ist ein sehr wichtiges Prinzip im Web. Was das bedeutet zeigt
+man am einfachsten an einem Gegenbeispiel: Beim Suchen  im alten 
+Katalog der FH-Bibliotek hatte das Ergebnis eine sehr lange URL (hier mit dem Suchwort „Web“)</p>
+
+<p><code>http://aleph20-prod-sh1.obvsg.at/F/VY5F42S4132QETN8I7DXHJNF4RSEE7Y7S7K3EKI2QU6R6XQK4B-50822?func=find-b&amp;find_code=WRD&amp;request=Web&amp;adjacent=N&amp;x=0&amp;y=0&amp;filter_code_1=WSP&amp;filter_request_1=&amp;filter_code_2=WEF&amp;filter_request_2=&amp;filter_code_5=WYR&amp;filter_request_5=&amp;filter_code_6=WYR&amp;filter_request_6=&amp;filter_code_7=WDA&amp;filter_request_7=&amp;filter_code_8=WZW&amp;filter_request_8=</code></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wenn ich diese URL zwei Tage später wieder verwende erhalte ich keine Antwort
+mehr, sondern die Fehlermeldung:</p>
+
+<p><img src="/images/session-timeout-error.png"  alt="Abbildung 52: Fehlermeldung von ALEPHINO, einer Webapplikation mit zuviel State" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Warum ist das so?  Auch zwei Tage später sollte die Ressource „Liste der Bücher
+mit dem Wort ‚Web’ im Titel“ noch vorhanden sein!
+Die Antwort ist: Das alte Katalog-Programm Alephino legt zu viel Wert auf den State – den Zustand der
+Session.</p>
+
+<p>Die gute Nachricht: das neue Katalog-Programm funktioniert anders,
+die URL für die Suche enthält keinen Verweis auf die Session mehr, und funktionert
+damit jederzeit:</p>
+
+<p>https://search-fsa.obvsg.at/primo-explore/search?query=any,contains,web&amp;tab=default_tab&amp;search_scope=default_scope&amp;vid=FSA&amp;offset=0</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Nach dem REST-Prinzip sollte man also den Zustand der Session nur dann
+verwenden, wenn er unbedingt notwendig ist.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>z.B. könnte man denken „Liste meiner ausgeliehenen Bücher“ sei von der Session abhängig. 
+Aber selbst hier könnte man eine fixe URL
+verwenden:</p>
+
+<p><code>http://alephino.fh-salzburg.ac.at/alipac/entlehnte/fhs007</code></p>
+
+<p>Auf diese URL muß es nun Zugriffsbeschränkungen geben: nur ich und die
+BibliothekarIn darf zugreifen. Alle anderen erhalten keinen Zugriff sondern den Statuscode
+<code>403 Access Denied</code>. Die BibliothekarIn hat aber Zugriff auf alle URLs dieser Form.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p><strong>Achtung</strong>: wir haben schon ein Szenario kennen gelernt, wo die
+Zeitbeschränkung von Sessions einen Sinn macht: Zum Verhindern von
+<a href="/security/a8-csrf/">Cross Site Request Forgeries - CSRF</a>.  Das
+ist aber nur bei Operationen sinnvoll, die etwas am Server ändern,
+bzw. die Daten abfragen die besonders geschützt werden müssen.</p>
+
+<p>Die “Liste der Bücher mit dem Wert <code>Web</code> im Titel” ist nicht schützenswert.</p>
+
+<h4 id="umsetzung-4">Umsetzung</h4>
+
+<p>Diesen Aspekt von REST können und sollen Sie voll umsetzten. 
+Verwenden Sie nur die php-SESSION um den Zustand der Applikation zu speichern, und
+gehen Sie möglichst sparsam damit um.</p>
+
+</div>
+    <div class="slide">
+      <h1>REST</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/qualitaet/performance//slide.html">Performance</a> | 
+        <a href="/qualitaet/rest/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Web-Applikation mit Schreibrecht - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Web-Applikation mit Schreibrecht</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-schreiben//slide.html">Schreiben in die Datenbank</a> | 
+        <a href="/php-db-schreiben/datenbank-schreiben/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-schreiben/daten-loeschen//slide.html">Löschen</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>In diesem Kapitel werden wir die Web-Applikation weiter entwickeln:
+Daten werden nicht nur angezeigt, sondern auch gelöscht und editiert.</p>
+
+<p>Hier der Plan für die einzelnen Seiten dieser Applikation:</p>
+
+<table class="table table-condensed table-bordered" style="width:auto">
+  <tbody>
+    <tr>
+      <td>Titel</td>
+      <td>Dateiname</td>
+      <td>Methode / Parameter</td>
+      <td>Beschreibung</td>
+    </tr>
+    <tr>
+      <td>Person löschen</td>
+      <td>person_delete.php</td>
+      <td>POST id</td>
+      <td>Löscht die Person mit der angegeben id.</td>
+    </tr>
+    <tr>
+      <td>Person einfügen</td>
+      <td>person_new.php</td>
+      <td>GET</td>
+      <td>Zeigt Eingabeformular für eine neue Person</td>
+    </tr>
+    <tr>
+      <td>Person einfügen</td>
+      <td>person_new.php</td>
+      <td>POST isfemale, title, firstname, surname, email, type, profile_visible, description</td>
+      <td>Legt eine neue Person an.</td>
+    </tr>
+    <tr>
+      <td>Person bearbeiten</td>
+      <td>person_edit.php</td>
+      <td>GET id</td>
+      <td>Zeigt Bearbeitungs-Formuar an</td>
+    </tr>
+    <tr>
+      <td>Person bearbeiten</td>
+      <td>person_edit.php</td>
+      <td>POST id, isfemale, title, firstname, surname, email, type, profile_visible, description</td>
+      <td>Speichert neue Daten zur Person id</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Warum wird hier manchmal GET und manchmal POST als Methode verwendet?
+Dazu gibt es im HTTP Protokoll eine ganz klare Vorschrift in
+<a href="https://tools.ietf.org/html/rfc2616#page-51">Kapitel 9.1 Safe and Idempotent Methods</a>:</p>
+
+<p>… the GET and HEAD methods SHOULD NOT have the significance of taking an action
+   other than retrieval. These methods ought to be considered “safe”.
+   This allows user agents (= browsers) to represent other methods, such as POST, PUT
+   and DELETE, in a special way, so that the user is made aware of the
+   fact that a possibly unsafe action is being requested.</p>
+
+<p>Wir verwenden also GET wenn nur Daten Abgefragt werden, und POST wenn
+Daten gelöscht, angelegt oder verändert werden.</p>
+
+<p>Bei der Implementierung dieser Applikation lernen wir Schritt für Schritt verschiedene Sicherheitprobleme kennen.</p>
+
+</div>
+    <div class="slide">
+      <h1>Web-Applikation mit Schreibrecht</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-schreiben//slide.html">Schreiben in die Datenbank</a> | 
+        <a href="/php-db-schreiben/datenbank-schreiben/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-schreiben/daten-loeschen//slide.html">Löschen</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

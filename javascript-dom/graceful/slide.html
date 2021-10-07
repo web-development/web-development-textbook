@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Graceful Degradation - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Graceful Degradation</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript-dom/hintergrund//slide.html">Hintergründe</a> | 
+        <a href="/javascript-dom/graceful/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript-dom/basic-javascript//slide.html">Basic Javascript</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+</div>
+<div class="slide">
+
+<h1 id="graceful-degradation-und-progressive-enhancement">graceful degradation und progressive enhancement</h1>
+
+<p>Die Idee ist dabei immer die Gleich: man baut die Webseite zuerst ohne Javascript, und fügt dann Javascript hinzu (ohne die Verwendbarkeit ohne Javscript zu zerstören). Der Inhalt (Content) der Webseite bleibt auch ohne Javascript zugänglich.</p>
+
+<p><img src="/images/image267.png"  alt="Abbildung 60: Die Rolle von Content, Darstellung und Programmierung (Unobstrusive Javascript)" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Die Motivation dahinter ist, die Zugänglichkeit für Alle Leser*innen, alle Browser zu 
+gewährleisten.  Im Artikel <a href="https://shkspr.mobi/blog/2021/01/the-unreasonable-effectiveness-of-simple-html/">The unreasonable effectiveness of simple HTML</a> schreibt Terence Eden dazu eine Geschichte.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Von dieser Herangehensweise profitieren nicht nur Blinde, Menschen mit veralteten Browsern oder exotischen Ausgabegeräte. Auch für Suchmaschinen wie Google oder andere Programme die die Information aus den Webseiten weiter verarbeiten ist dieses Prinzip hilfreich.</p>
+
+<p>Um zu testen, ob das wirkliche funktioniert kann man ganz einfach mit dem AddOn <a href="https://addons.mozilla.org/de/firefox/addon/disable-javascript/">Disable JavaScript</a> (in Firefox und Chrome) testen. Wie hier gezeigt kann Javascript mit einem Klick deaktiviert werden.</p>
+
+<p><img src="/images/javascript-dom/js-toggle.png" srcset="/images/javascript-dom/js-toggle@2x.png 2x, /images/javascript-dom/js-toggle.png 1x"  alt="Disable JavaScript - die Icons" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="grenzen-von-graceful-degradation">Grenzen von Graceful Degradation</h2>
+
+<p>Es gibt Websites, bei denen dieser Ansatz nicht funktionieren kann.
+z.B. für einen Shooter als Browsergame kann man nicht nicht eine
+Alternative ohne Javascript anbieten.</p>
+
+<p>Für viele Apps funktioniert das aber. Probieren Sie z.B. gmail ohne javascript
+aus, oder das Webmail der FH (zimbra). Die Interaktion ist etwas
+umständlicher, aber man kann alle Features der Mail benutzen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="ein-praktisches-beispiel">Ein praktisches Beispiel</h2>
+
+<p>Die Aufgabenstellung: ein einer langen Webseite sind mehrere Anker-Punkte
+mit <code>&lt;a name=...&gt;</code> gesetzt, über ein Navigationsmenü soll man diese erreichen
+können. <a href="http://brigitte-jellinek.at">Diese Seite</a> zeigt ein funktionierendes
+Beispiel (letzte Version).</p>
+
+</div>
+<div class="slide">
+
+<h3 id="version-1">Version 1</h3>
+
+<p>Wir beginnen mit völlig problemlosem HTML</p>
+
+<div class="example twopane">
+<h4 class="caption">Html Code <small>webseite mit Anker-Punkten, fixe Navigation</small></h4>
+<pre class="lang-html prettyprint linenums left">
+&lt;div id=&quot;navigation&quot;&gt;
+  &lt;a href=&quot;#s0&quot;&gt;Thema 0&lt;/a&gt; 
+  &lt;a href=&quot;#s1&quot;&gt;Thema 1&lt;/a&gt; 
+  ...
+&lt;/div&gt;  
+&lt;section id=&quot;s0&quot;&gt;
+  &lt;h2&gt;Thema 0&lt;/h1&gt; 
+  &lt;p&gt;bla bla ...&lt;/p&gt;
+&lt;/section&gt;
+&lt;section id=&quot;s1&quot;&gt;
+  &lt;h2&gt;Thema 1&lt;/h1&gt; 
+  &lt;p&gt;bla bla ...&lt;/p&gt;
+&lt;/section&gt;
+...
+</pre><pre class="lang-html prettyprint linenums right">
+#navigation {
+  position: fixed;
+  z-index: 10;
+  bottom: -1px;
+}
+</pre><div class="clearfix"></div></div>
+
+</div>
+<div class="slide">
+
+<h3 id="version-2">Version 2</h3>
+
+<p>In einem Versuch die Seite zu verbessern ersetzen wir nun die
+Links durch den Aufruf einer Javascript-Funktion:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Version 2</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;div id=&quot;navigation&quot;&gt;
+  &lt;a onClick=&quot;scrollToMe(&#39;#s0&#39;)&quot;&gt;Thema 0&lt;/a&gt; 
+  &lt;a onClick=&quot;scrollToMe(&#39;#s1&#39;)&quot;&gt;Thema 1&lt;/a&gt; 
+  ...
+&lt;/div&gt;    
+</pre></div>
+
+<p>Die Javsacript-Funktion verwendet jQuery und die übergebene
+ID um den Ziel des Links ausfindig zu machen, und dann die
+jQuery Methode <code>offset</code> um die Position des Ziels im Dokument
+zu berechnen.</p>
+
+<p>Mit der jQuery-Methode <code>animate</code> wird dann eine Animation erzeugt:
+binnen 800 Millisekunden wird die Seite durch setzen von <code>scrollTop</code>
+von der aktuellen Scrollposition in die Scrollposition gebracht,
+die das Ziel ganz oben im Fenster anzeigt.</p>
+
+<p>Mit <code>return false</code> wird die “normale” Funktion des Links deaktiviert.</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Javascript für Version 1</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function scrollToMe(id) {
+  console.log(`link zu ${hash} geclickt. scroll!`);
+  document.querySelector(hash).scrollIntoView({ behavior: &quot;smooth&quot; });
+  return false;
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Diese Version ist kein Beispiel für gutes Javascript:
+in manchen Browsern funktioniert das Scrollen der Seite mit <code>scrollTop</code> nicht.</p>
+
+<p>Mit dieser Version haben wir</p>
+
+<ul>
+  <li>die klassischen Links zerstört</li>
+  <li>für manche javascript-fähige Browser eine Animation eingefügt</li>
+  <li>für manche javascript-fähige Browser keine Animation eingefügt</li>
+</ul>
+
+<p>Wir haben dabei beide Prinzipien gebrochen</p>
+
+<ul>
+  <li>kein Progressive Enhancement: Links funktionieren nicht mehr</li>
+  <li>kein Unobstrusive Javascript: Javascript-Code direkt in HTML-Attributen</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h3 id="version-3">Version 3</h3>
+
+<p>Im nächsten Versuch werden wir jQuery verwenden, um unobstrusive zu
+programmieren:</p>
+
+<p>Die Navigation wird wieder zurück-gestellt auf normale HTML-Links:</p>
+
+<div class="example">
+<h4 class="caption">Html Code <small>Version 3</small></h4>
+<pre class="lang-html prettyprint linenums">
+&lt;div id=&quot;navigation&quot;&gt;
+  &lt;a href=&quot;#s0&quot;&gt;Thema 0&lt;/a&gt;
+  &lt;a href=&quot;#s1&quot;&gt;Thema 1&lt;/a&gt;
+  ...
+&lt;/div&gt;
+</pre></div>
+
+<p>An diese Links wird ein neuer Eventhandler angefügt, abernicht mit <code>onclick</code>
+im HTML, sondern in JavaScript, nach dem Laden der Seite.</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Version 3</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+links = document.querySelectorAll(&quot;nav a&quot;);
+for (let l of links) {
+  l.addEventListener(&quot;click&quot;, scroll_to_link);
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Die Funktion <code>scroll_to_link</code> wird als Eventhandler implementiert:
+sie erwartet ein Event als Argument und die angeklickte Node
+in der Variablen <code>this</code>.</p>
+
+<p>Ausserdem verwendet die Funktion
+die <code>preventDefault</code> um das “normale” Verhalten
+des click-events zu unterbinden.</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Version 3</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function scroll_to_link(ev) {
+  let hash = this.hash;
+  console.log(`link zu ${hash} geclickt. scroll!`);
+  document.querySelector(hash).scrollIntoView({ behavior: &quot;smooth&quot; });
+  window.history.pushState({}, &quot;&quot;, hash);
+  ev.preventDefault();
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Diese Variante funktioniert schon besser:</p>
+
+<ul>
+  <li>die klassischen Links funktionier für Browser ohne Javascript</li>
+  <li>für manche javascript-fähige Browser eine Animation eingefügt</li>
+  <li>für manche javascript-fähige Browser ist die Animation immer noch kaputt</li>
+</ul>
+
+<p>Wir haben damit schon ein Prinzip eingehalten, und sind
+beim anderen Prinzipien auf halben Weg</p>
+
+<ul>
+  <li>teilweise progressive enhancement:
+    <ul>
+      <li>Links funktionieren für Browser ohne Javascript</li>
+      <li>in der Javascript-Variante bleibt die URL immer gleich</li>
+    </ul>
+  </li>
+  <li>unobstrusive javascript: erfüllt</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h3 id="version-4">Version 4</h3>
+
+<p>Im nächsten Schritt werden wir sicher stellen, dass die Animation
+nur in solchen Browsern verwendet wird, wo sie auch funktioniert.</p>
+
+<p>Achtung: hier gibt es einen falschen und einen richtigen Ansatz:</p>
+
+<ol>
+  <li>Browser Detection: Unterscheidung nach Namen, Versionsnummer, Betriebssystem des Browsers</li>
+  <li>Feature Detection: Unterscheidung nach genau der Fähigkeit, die ich verwenden will</li>
+</ol>
+
+<p>Die erste Variante funktioniert nicht: die Selbstoffenbarung der Browser
+kann falsch sein, ich kenne nicht alle Browser und ihre Fähigkeiten.
+Siehe auch
+<a href="https://learn.jquery.com/code-organization/feature-browser-detection/">Feature &amp; Browser Detection im jQuery learning center</a></p>
+
+<p>Die Funktion <code>scroll_to_link</code> bleibt unverändert.
+Wir testen ob die Funktion <code>scrollIntoView</code> wirklich existiert.
+Wenn das funktioniert wird
+die globale Variable <code>can_scroll</code> auf <code>true</code> gesetzt,
+andernfalls auf <code>false</code>.</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Version 4</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+window.can_scroll = (typeof document.body.scrollIntoView === &#39;function&#39;);
+</pre></div>
+
+<p>Diese Herangehensweise - Feature Detection, dann Flags setzen,
+die im weiteren Code verwendet werden können - wird von der Library
+<a href="http://modernizr.com/">modernizr</a> für eine lange Liste von Features
+angeboten.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Diese Variante behebt das Problem mit nicht-funktionierenden
+Javascript-Browsern:</p>
+
+<ul>
+  <li>die klassischen Links funktionier für Browser ohne Javascript</li>
+  <li>die klassische Version wird auch für “animations-unfähige” Javascript Browser verwendet</li>
+  <li>für manche javascript-fähige Browser funktioniert die Animation</li>
+</ul>
+
+<p>Es bleibt aber noch in Problem:</p>
+
+<ul>
+  <li>teilweise progressive enhancement:
+    <ul>
+      <li>in der Javascript-Variante bleibt die URL immer gleich</li>
+    </ul>
+  </li>
+  <li>unobstrusive javascript: erfüllt</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h3 id="version-5">Version 5</h3>
+
+<p>In der klassischen Version ändert sich beim navigieren zwischen den
+Ankern jeweils die URL im Browser. Wenn ich ein Ziel annavigiere,
+und dann die URL kopiere um einen Link zu setzen / mir eine Bookmark setze,
+dann verweist die URL die ich verwende wirklich wieder genauf auf das Ziel.</p>
+
+<p>Dieses Verhalten ist erstrebenswert, wird aber von der “animierten” Version
+derzeit nicht geliefert.</p>
+
+<p>(Diese “Navigierbarkeit” ist auch ein klassisches Problem von AJAX-Applikationen,
+die Lösung die wir hier entwickeln funktioniert auch dort)</p>
+
+<p>In die Funktion <code>scroll_to_link</code> wird eine Zeile eingefügt.</p>
+
+<div class="example">
+<h4 class="caption">Javascript Code <small>Version 4</small></h4>
+<pre class="lang-javascript prettyprint linenums">
+function scroll_to_link(ev) {
+  ...
+  window.history.pushState({}, &quot;&quot;, hash);
+  ...
+}
+
+</pre></div>
+
+<p>Mit dem <code>window.history</code> Objekt kann man den Browser von Javascript aus “navigieren”:
+mit <code>history.back()</code> zum Beispiel einen Schritt zurück gehen.</p>
+
+<p>Mit <code>history.pushState()</code> kann man zu einer neuen Seite navigieren,
+sie wird dabei an die History angefügt - das ist das “normale” Verhalten
+des Browsers.</p>
+
+<p>Eine Alternative ist <code>history.replaceState()</code> - dabei wird die aktuelle Seite
+ersetzt, die Browser-History wird nicht länger.</p>
+
+<p>Beide Methoden erwarten drei Argumente - ein Objekt und zwei Strings -
+aber nur das letzte Argument wird derzeit benutzt. Es ist ein String mit der
+URL die geladen werden soll.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Mit dieser Variante haben wir für die Javascript-Browser
+alle Funktionalität der einfachen HTML-Version wiederhergestellt.
+Und zusätzlich gibt es eventuell noch eine schöne Animation.</p>
+
+<p>Damit sind beide Prinzipien voll erfüllt:</p>
+
+<ul>
+  <li>progressive enhancement - alle Browser erhalten die maximal mögliche Funktionalität</li>
+  <li>unobstrusive javascript - kein Javascript-Code im HTML</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="siehe-auch">Siehe auch</h2>
+
+<ul>
+  <li>Andy Bell(2019)<a href="https://hankchizljaw.com/wrote/the-p-in-progressive-enhancement-stands-for-pragmatism/">The “P” in Progressive Enhancement stands for “Pragmatism”</a> - mit einem sehr schönen Beispiel</li>
+  <li>Stuart Langridge(2019)<a href="https://kryogenix.org/code/browser/everyonehasjs.html">Everyone has JavaScript, right?</a></li>
+  <li>Archibald(2013)<a href="http://jakearchibald.com/2013/progressive-enhancement-still-important/">Progressive Enhancement is Still Important</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Graceful Degradation</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/javascript-dom/hintergrund//slide.html">Hintergründe</a> | 
+        <a href="/javascript-dom/graceful/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/javascript-dom/basic-javascript//slide.html">Basic Javascript</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

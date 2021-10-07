@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Effizient Arbeiten mit der DB - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Effizient Arbeiten mit der DB</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-lesen/datenbank-lesen//slide.html">Lesen aus der Datenbank</a> | 
+        <a href="/php-db-lesen/effizent/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/session//slide.html">Login, Sessions und Datenbank verändern</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Ein wichtiges Grundprinzip beim Programmieren mit Datenbanken: Das Filtern
+und Berechnen der Daten möglichst in der Datenbank erledigen und möglichst
+wenige Daten zu PHP übermitteln.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="filtern-in-der-datenbank">Filtern in der Datenbank</h3>
+
+<p>Folgender Ansatz ist also ineffizent,
+besonders wenn viele Daten in der Datenbank gespeichert sind:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Ineffiziente Abfrage der Datenbank</small></h4>
+<pre class="lang-php prettyprint linenums">
+$sth = $dbh-&gt;query(&quot;SELECT * FROM person&quot;);  // SO NICHT!
+$personen = $sth-&gt;fetchAll();
+foreach( $personen as $person ) {
+  if ( $person-&gt;profile_visible ) {
+    echo &quot;$person-&gt;firstname $person-&gt;email&lt;/br&gt;\n&quot;;
+  }
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Besser wäre, den Filter bereits im SELECT einzubauen:</p>
+
+<div class="example">
+<h4 class="caption">Php Code <small>Effiziente Abfrage der Datenbank</small></h4>
+<pre class="lang-php prettyprint linenums">
+$sth = $dbh-&gt;query(
+  &quot;SELECT * FROM person WHERE profile_visible=1&quot;
+);
+$personen = $sth-&gt;fetchAll();
+foreach( $personen as $person ) {
+  echo &quot;$person-&gt;firstname $person-&gt;email&lt;/br&gt;\n&quot;;
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="seitenweise-anzeigen">Seitenweise Anzeigen</h3>
+
+<p>Die gleichen Überlegungen gelten auch, wenn Datensätze “seitenweise” angezeigt
+werden sollen: hier verwendet man bereits in der Datenbank <code>LIMIT</code> um nur
+die benötigten Datensätze zu laden.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="datentypen-der-datenbank">Datentypen der Datenbank</h3>
+
+<p>Die Verwendung der richtigen Datentypen in der Datenbank erleichtert die
+Abfragen.  Zum Beipiel zum Speichern eines Datums sollte man den Typ <code>DATE</code> oder
+<code>TIMESTAMP</code> verwenden.  Das ermöglicht das Sortieren nach Datum und  Berechnungen wie 
+„falls Datum nicht älter als 100 Tage ist“</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+select titel,publicationdate from projects
+where datediff( curdate( ) , publicationdate ) &lt;= 100; 
+</pre></div>
+
+<p>Diese SQL-Abfage zeigt Titel und Publikations-Datum aller Werke die in den
+letzten 100 Tagen publiziert wurden.  Hätte man das Datum nur
+als String in der Datenbank gespeichert, dann wäre das sehr viel umständlicher.</p>
+
+</div>
+    <div class="slide">
+      <h1>Effizient Arbeiten mit der DB</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-lesen/datenbank-lesen//slide.html">Lesen aus der Datenbank</a> | 
+        <a href="/php-db-lesen/effizent/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/session//slide.html">Login, Sessions und Datenbank verändern</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

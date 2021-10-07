@@ -1,0 +1,35 @@
+<html>
+<head>
+  <title>AJAX counter</title>
+  <style>
+      p#counter_zeile { display: none; }
+  </style>
+</head>
+<body>
+  <h1>Webseite</h1>
+
+  <p>mit total viel Inhalt</p>
+
+  <p id="counter_zeile">Counter: <span id="counter_zahl">?</span></p>
+
+  <script>
+    window.addEventListener('load', loadCounterWithFetch);
+
+    function loadCounterWithFetch() {
+      document.getElementById('counter_zeile').style.display = "block";
+
+      const response = await fetch('counter_ajax.php');
+      const reader = response.body.getReader();
+
+      let complete_value = "";
+      while(true) {
+        const {done, value} = await reader.read();
+        complete_value += value;
+        if(done) break;
+        console.log(value);
+      }
+      document.getElementById('counter_zahl').innerHTML = complete_value;
+    }
+  </script>
+</body>
+</html>

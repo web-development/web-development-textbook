@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Barrierefreiheit - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Barrierefreiheit</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/qualitaet//slide.html">Das Web - Qualitätskriterien</a> | 
+        <a href="/qualitaet/barrierefreiheit/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/qualitaet/datenschutz//slide.html">Datenschutz</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Der deutsche Begriff „Barrierefreiheit“ entspricht dem englischen
+Begriff „Accessability“. Ein Tipp zur Recherche: der englische Begriff wird manchmal als
+a11y abgekürzt - a, gefolgt von 11 Buchstaben, gefolgt von y.</p>
+
+<p>Barrierefreiheit ist ein Thema das
+von Stadtplanung und Architektur bis zur Gestaltung einzelner
+Produkte und Dienstleistungen viele Fachgebiete betrifft.</p>
+
+<p>Als WebprogrammierInnen liegt es in unserer Verantwortung
+Webseiten und Webapplikationen barrierefrei zu gestalten:</p>
+
+<p>„<strong>Barrierefreies Internet</strong> sind Web-Angebote, die von
+allen Nutzern unabhängig von ihren
+Einschränkungen oder technischen Möglichkeiten
+uneingeschränkt ( barrierefrei ) genutzt werden
+können“ - <a href="https://de.wikipedia.org/wiki/Barrierefreies_Internet">Wikipedia</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="alle-profitieren-von-barrierefreiheit">Alle profitieren von Barrierefreiheit</h2>
+
+<p>Nun könnte man meinen: es gibt nur wenige behinderte Menschen; Barrierefreiheit ist
+also ein Rand-Thema, das kann ich ignorieren. Das wäre aber ein Fehlschluss.</p>
+
+<p>Alle Menschen erleben - wenn nicht permanent, dann vorübergehend - Einschränkungen.</p>
+
+<p>Die Illustration aus dem Microsofts <a href="https://www.microsoft.com/design/inclusive/">Inclusive 101 Handbuch</a>
+stellt das gut dar (verwendet unter CC)</p>
+
+<p><img src="/images/qualitaet/microsoft-situational.png" srcset="/images/qualitaet/microsoft-situational.png 1x, /images/qualitaet/microsoft-situational@2x.png 2x"  alt="Inclusive 101 Handbuch" ></p>
+
+<p>Es gibt vielleicht wenig Menschen, die nur einen Arm haben. Aber es gibt
+schon sehr viel mehr Menschen die vorübergehend nur einen Arm benutzen können,
+z.B. weil ein Arm im Gips ist. Und es gibt sehr viele Menschen, die gerade
+nur einen Arm frei haben.  Wie zum Beispiel Scott Hanselman in <a href="https://www.youtube.com/watch? v=fjE4I1XNzRs">diesem Video</a> aus dem Oktober 2020.  (Seine anderen Videos über <a href="https://www.youtube.com/playlist?list=PL0M0zPgJ3HSesuPIObeUVQNbKqlw5U2Vr">Computer Stuff they didn’t teach you</a> sind auch sehr empfehlenswert)</p>
+
+</div>
+<div class="slide">
+
+<h2 id="richtlinien-zur-barrierefreiheit-im-web">Richtlinien zur Barrierefreiheit im Web</h2>
+
+<p>Die Web Accessibility Initiative (WAI) der W3C existiert seit 1997. Sie
+hat verscheidene Standards herausgegeben: WCAG, ATAG, UAAG, WAI-ARIA. Für uns
+als Web ProgrammiererInnen relevant sind:</p>
+
+<ul>
+  <li>für Webseiten: <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/">Web Content Accessibility Guidelines WCAG</a> für Content - von Text bis HTML Code.</li>
+  <li>für Web-Applikationen: <a href="https://www.w3.org/TR/wai-aria-1.1/">Accessible Rich Internet Applications (WAI-ARIA)</a> für interaktive Appliationen mit viel Javascript.</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h3 id="web-content-accessibility-guidelines-wcag-20">Web Content Accessibility Guidelines WCAG 2.0</h3>
+
+<p>Diese Guidelines basieren auf <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/intro.html#introduction-fourprincs-head">4 Grundprinzipien</a></p>
+
+<ul>
+  <li>Wahrnehmbar (Perceivable) - Information und Interface muss so dargestellt werden, dass die BenutzerInnen es wahrnehmen können.</li>
+  <li>Bedienbar (Operable) - Interface und Navigation müssen verwendbar sein.</li>
+  <li>Verständlich (Understandable) - Information und Interface müssen verständlich sein.</li>
+  <li>Robust (Robust) - Der Inhalt muss von verschiedenen Geräten darstellbar sein, nicht nur heute, sondern auch in der Zukunft. Wenn die Technik weiter entwickelt wird, muss der Inhalt zugänglich bleiben.</li>
+</ul>
+
+<p>WCAG definiert drei “Konformitätsstufen”: A, AA, AAA.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="gesetzeslage-in-sterreich">Gesetzeslage in Österreich</h3>
+
+<p>Von der Webseite <a href="https://www.digitales.oesterreich.gv.at/barrierefreiheit">Digitales Österreich</a>, die vom “Bundesministerium für Digitalisierung und Wirtschaftsstandort” betrieben wird:</p>
+
+<p>Öffentliche Stellen in Österreich müssen seit 22. Dezember 2016 WCAG 2.0 AA-Konform sein.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="erste-schritte">Erste Schritte</h2>
+
+</div>
+<div class="slide">
+
+<h3 id="einfach-und-semantisch">Einfach und Semantisch</h3>
+
+<p>Wir haben HTML, CSS, JavaScript in dieser Reihenfolge gelernt,
+wir haben die korrekte Verwendung der HTML Tags gelernt.  Das ist
+eine gute Basis für barrierefreie Webseiten.</p>
+
+<p>Wenn ein Effekt mit HTML, CSS oder JavaScript erzieht werden kann, dann
+verwende immer die einfachste Technologie.</p>
+
+<p>Folgende Folie aus eine Votragt von <a href="https://twitter.com/g33konaut">Martin Splitt</a>
+zeigt verschiedene Arten einen Link zu bauen.  Die einfachste Art ist die Beste!</p>
+
+<p><img src="/images/qualitaet/accessible-link.jpg" srcset="/images/qualitaet/accessible-link@2x.jpg 2x, /images/qualitaet/accessible-link.jpg 1x"  alt="Beispiel für barrierefreies Web - lieber ein link mit href als mit JavaScript" ></p>
+
+</div>
+<div class="slide">
+
+<h3 id="sprache-mit-lang">Sprache mit <code>lang</code></h3>
+
+<p>Das <code>lang</code>-Attribut hilft bei der Interpretation der natürlichen Sprache. Das wird
+vom Browser selbst verwendet um Anführungszeichen (wenn sie mit dem <code>q</code>-Tag gesetzt sind),
+und Datumsangaben darzustellen. Ebenso von Vorleseprogrammen, Suchmaschinen, Übersetzungsprogrammen, ….</p>
+
+<p>Den Standardwert setzt man im <code>html</code>-Tag. In jedem Tag kann man lokal die Sprache ändern:</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;de&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;Lieblingsbücher&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Meine Lieblingsbücher&lt;/h1&gt;
+
+    &lt;p lang=&quot;en&quot;&gt;Neal Stephenson: &lt;q&gt;Diamond Age&lt;/q&gt;&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+
+<p>Siehe auch <a href="https://www.w3.org/International/questions/qa-lang-why">w3c: Why use the lang attribute?</a></p>
+
+</div>
+<div class="slide">
+
+<h3 id="landmarks-und-berschriften">Landmarks und Überschriften</h3>
+
+<p>Einen Überblick über die Inhalte der Seite zu erhalten ist schwierig, wenn man
+nicht sehen kann. Screen Reader verwenden die Überschriften und sogenannte Landmarks
+um diesen Überblick zu schaffen.</p>
+
+<p>Damit das funktioniert, muss man die HTML-Tags korrekt verwenden, oder - falls das nicht geht - die
+Rolle explizit mit dem <code>role</code> Attribut definieren:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Role</th>
+      <th>HTML</th>
+      <th>Bedeutung</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>main</td>
+      <td>MAIN-Tag</td>
+      <td>primary content of the page.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>region</td>
+      <td>SECTION-Tag</td>
+      <td>a perceivable section that is sufficiently important that users will likely want to be able to navigate to the section easily and to have it listed in a summary of the page.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>navigation</td>
+      <td>NAV-Tag</td>
+      <td>links that are intended to be used for website or page content navigation.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>search</td>
+      <td>keine HTML-Entsprechung;</td>
+      <td>search functionality for content on the website.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>banner</td>
+      <td>HEADER-Tag</td>
+      <td>the logo or identity of the site sponsor, and site-specific search tool. A banner usually appears at the top of the page</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>contentinfo</td>
+      <td>FOOTER-Tag</td>
+      <td>information such as copyrights and links to privacy and accessibility statements.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>complementary</td>
+      <td>ASIDE-Tag</td>
+      <td>complementary to the main content at a similar level in the DOM hierarchy, but remains meaningful when separated from the main content.</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>form</td>
+      <td>FORM-Tag</td>
+      <td>a form when no other named landmark is appropriate (e.g. main or search)</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="example table table-condensed table-bordered" style="width:auto">
+<pre class="lang-html prettyprint linenums">
+&lt;form role=&quot;search&quot;&gt;
+  &lt;input type=&quot;search&quot; aria-label=&quot;search text&quot; size=&quot;20&quot;&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Search&quot;&quot;&gt;
+&lt;/form&gt; 
+</pre></div>
+
+<p>Siehe auch <a href="https://www.w3.org/TR/wai-aria-practices/examples/landmarks/index.html">w3c: ARIA Landmarks Example</a></p>
+
+</div>
+<div class="slide">
+
+<h3 id="textformatierung">Textformatierung</h3>
+
+<p>Die Empfehlung für die Schriftgröße ist mit der immer höheren Auflösung der Ausgabegeräte gewachsen. Im Jahr 2019 verwenden z.B. Die <a href="https://www.zeit.de/2016/51/bundesteilhabegesetz-inklusion-barrierefreiheit-gleichstellung">Zeit Online</a> 20px, <a href="https://medium.com/@damianjo/line-spacing-leading-the-way-for-accessibility-d94344b9e26c">Medium</a> 21px,
+<a href="http://www.zeldman.com/2016/12/14/font-size-widgets/">Jeffrey Zeldman</a> 21px.</p>
+
+<p>Ein Zeilenabstand 1.5x (mit <code>line-height</code> festgelegt) erhöht die Lesbarkeit.</p>
+
+<p>Im Web gibt es weiterhin Probleme mit Blocksatz. Flattersatz (“linksbündig”) führt zu
+zuverlässigeren Ergebnissen.</p>
+
+<p>Die Zeilenlänge sollte man von der Schriftgröße abhängig machen, oder gleich die relativ neue
+Einheit <code>ch</code> (Breite des Zeichens 0) in CSS verwenden, um die maximal zulässige Anzahl von Zeichen in einer Zeile
+festzulegen:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+p {
+    max-width: 65ch;
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="ist-das-alles">Ist das Alles?</h2>
+
+<p>Nein, das ist noch nicht Alles was man über Accessability wissen sollte.  Aber
+es ist ein guter Start.  Das Web macht - ohne dass wir etwas tun müssen - schon vieles richtig.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="testing-und-werkzeuge">Testing und Werkzeuge</h2>
+
+<ul>
+  <li><a href="http://wave.webaim.org/extension/">Wave Tool</a> als AddOn für Firefox und Chrome.</li>
+  <li><a href="https://www.axe-core.org/">Axe Core</a> als AddOn für Firefox und Chrome.</li>
+  <li><a href="http://khan.github.io/tota11y/">tota11y</a> als bookmarklet</li>
+  <li><a href="https://github.com/pa11y/pa11y">pa11y</a> Kommandozeilen Programm</li>
+  <li>Chrome Developer Tools: Lighthouse</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="vertiefung">Vertiefung</h2>
+
+<ul>
+  <li><a href="https://github.com/microsoft/Web-Dev-For-Beginners/tree/main/1-getting-started-lessons/3-accessibility">Accessibility Lecture</a> in a Microsoft Curriculum</li>
+  <li><a href="https://de.wikipedia.org/wiki/Design_f%C3%BCr_Alle">Design für Alle</a></li>
+  <li><a href="https://www.edx.org/course/web-accessibility-introduction">edx Kurs: Introduction to Web Accessibility by W3C</a></li>
+  <li><a href="https://de.udacity.com/course/web-accessibility--ud891">Udacity Kurs: Web Accessability by Google</a></li>
+  <li><a href="https://www.youtube.com/watch?v=srLRSQg6Jggg">YouTube: a11ycasts</a></li>
+  <li>Kalbag, Laura. Accessibility for everyone. A Book Apart, 2017. ISBN-13: 978-1937557614.</li>
+  <li><a href="https://a11yweekly.com/">Accessability Weekly, Newsletter</a></li>
+  <li><a href="https://adrianroselli.com/">Adrian Rosellis Blog</a></li>
+  <li><a href="https://marcysutton.com/talk/radically-accessible-internet-applications-beyond-tellerrand/">Marcy Sutton: Radically Accessible Internet Applications</a></li>
+  <li><a href="https://www.davidmacd.com/blog/wai-aria-accessbility-for-average-web-developers.html">19 WAI-ARIA attributes that every web developer should know</a></li>
+  <li><a href="https://whatsock.com/training/">The Accessibility Tree</a></li>
+  <li><a href="https://www.davidmacd.com/blog/wai-aria-accessbility-for-average-web-developers.html">Demystifying WAI-ARIA</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Barrierefreiheit</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/qualitaet//slide.html">Das Web - Qualitätskriterien</a> | 
+        <a href="/qualitaet/barrierefreiheit/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/qualitaet/datenschutz//slide.html">Datenschutz</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

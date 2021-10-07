@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1086" height="627" viewBox="-1712.1322 -1242 3424.2644 1977" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>Background tile of interlinked trefoil knots</title>
+  <defs>
+    <path id="Main" d="M-42.1521,273.01A248.6736,248.6736 0 1,1-257.51,-100 L257.51-100A248.6736,248.6736 0 1,1 42.1521,273.01 L-215.357-173.01A248.6736,248.6736 0 1,1 215.357-173.01Z" />
+    <g id="BlueTref">
+      <use xlink:href="#Main" />
+      <use xlink:href="#Main" stroke-width="36" stroke="rgb(235,245,255)" />
+      <path d="M232,-100H113 M-29.3977,250.918L30.1023,147.861 M-202.602,-150.918L-143.102,-47.8608" />
+      <path stroke-width="36" stroke="rgb(235,245,255)" d="M237,-100H108 M-31.8977,255.248L32.6023,143.531 M-205.102,-155.248L-140.602,-43.5308" />
+    </g>
+  </defs>
+  <rect x="-1712.1322" y="-1242" width="3424.2644" height="1977" fill="#fffcf8" />
+  <g stroke-width="72" stroke="rgb(200,200,200)" fill="none" transform="scale(1,-1)">
+    <g id="GreenTref">
+      <use xlink:href="#Main" />
+      <use xlink:href="#Main" stroke-width="36" stroke="rgb(222,248,222)" />
+      <path d="M-232,-100H-113 M29.3977,250.918L-30.1023,147.861 M202.602,-150.918L143.102,-47.8608" />
+      <path stroke-width="36" stroke="rgb(222,248,222)" d="M-237,-100H-108 M31.8977,255.248L-32.6023,143.531 M205.102,-155.248L140.602,-43.5308" />
+    </g>
+    <use xlink:href="#GreenTref" transform="translate(-1141.4215,0)" />
+    <use xlink:href="#GreenTref" transform="translate(1141.4215,0)" />
+    <use xlink:href="#GreenTref" transform="translate(-570.7107,-988.5)" />
+    <use xlink:href="#GreenTref" transform="translate(570.7107,-988.5)" />
+    <use xlink:href="#GreenTref" transform="translate(-1712.1322,-988.5)" />
+    <use xlink:href="#GreenTref" transform="translate(1712.1322,-988.5)" />
+    <use xlink:href="#GreenTref" transform="translate(-570.7107,988.5)" />
+    <use xlink:href="#GreenTref" transform="translate(570.7107,988.5)" />
+    <use xlink:href="#GreenTref" transform="translate(-1712.1322,988.5)" />
+    <use xlink:href="#GreenTref" transform="translate(1712.1322,988.5)" />
+    <use xlink:href="#BlueTref" transform="translate(0,659)scale(1,-1)" />
+    <use xlink:href="#BlueTref" transform="translate(-570.7107,-329.5)scale(1,-1)" />
+    <use xlink:href="#BlueTref" transform="translate(570.7107,-329.5)scale(1,-1)" />
+    <use xlink:href="#BlueTref" transform="translate(-1712.1322,-329.5)scale(1,-1)" />
+    <use xlink:href="#BlueTref" transform="translate(1712.1322,-329.5)scale(1,-1)" />
+    <use xlink:href="#BlueTref" transform="translate(-1141.4215,659)scale(1,-1)" />
+    <use xlink:href="#BlueTref" transform="translate(1141.4215,659)scale(1,-1)" />
+    <use xlink:href="#BlueTref" transform="translate(-570.7107,1647.5)scale(1,-1)" />
+    <use xlink:href="#BlueTref" transform="translate(570.7107,1647.5)scale(1,-1)" />
+    <use xlink:href="#BlueTref" transform="translate(-1712.1322,1647.55)scale(1,-1)" />
+    <use xlink:href="#BlueTref" transform="translate(1712.1322,1647.5)scale(1,-1)" />
+    <g id="Fixes">
+      <path d="M-505.843,161.688C-504.401,189.201,-498.397,216.283,-488.076,241.828 M-122.073,357.229C-98.9666,342.223,-78.5142,323.482,-61.5522,301.772 M112.895,-518.917C88.3474,-531.424,61.8911,-539.766,34.6086,-543.6 M-248.333,-284.332C-246.891,-256.819,-240.887,-229.737,-230.566,-204.192 M392.947,357.229C416.053,342.223,436.505,323.482,453.467,301.772 M370.405,-72.8962C345.857,-85.4038,319.401,-93.7456,292.118,-97.5801" />
+      <path stroke-width="36" stroke="rgb(222,248,222)" d="M-506.032,157.352C-504.969,187.8,-498.319,217.793,-486.415,245.838 M-125.733,359.561C-99.896,343.416,-77.2454,322.66,-58.9102,298.329 M116.745,-516.912C89.845,-531.215,60.5449,-540.454,30.3057,-544.167 M-248.522,-288.668C-247.459,-258.22,-240.809,-228.227,-228.905,-200.182 M389.287,359.561C415.124,343.416,437.774,322.66,456.109,298.329 M374.255,-70.8921C347.355,-85.1951,318.055,-94.4336,287.815,-98.1465" />
+    </g>
+    <use xlink:href="#Fixes" transform="translate(-1141.4215,0)" />
+    <use xlink:href="#Fixes" transform="translate(1141.4215,0)" />
+    <use xlink:href="#Fixes" transform="translate(-570.7107,-988.5)" />
+    <use xlink:href="#Fixes" transform="translate(570.7107,-988.5)" />
+    <use xlink:href="#Fixes" transform="translate(-1712.1322,-988.5)" />
+    <use xlink:href="#Fixes" transform="translate(1712.1322,-988.5)" />
+    <use xlink:href="#Fixes" transform="translate(-570.7107,988.5)" />
+    <use xlink:href="#Fixes" transform="translate(570.7107,988.5)" />
+    <use xlink:href="#Fixes" transform="translate(-1712.1322,988.5)" />
+    <use xlink:href="#Fixes" transform="translate(1712.1322,988.5)" />
+  </g>
+</svg>

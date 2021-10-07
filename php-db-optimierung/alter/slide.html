@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Änderungen an der Datenbank - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Änderungen an der Datenbank</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-optimierung/constraints//slide.html">Constraints</a> | 
+        <a href="/php-db-optimierung/alter/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-optimierung/transaktionen//slide.html">Transaktionen</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Der erste Entwurf der Datenbank ist wahrscheinlich nicht der letzte.
+Während der Entwicklung werden neue Anforderungen an die Datenbank
+klar, und die Datenbank soll verändert werden.</p>
+
+<p>Ein Beispiel:  Zwischen Tabelle zimmerbuchung und zimmer besteht ein
+foreign key constraint:</p>
+
+<div class="example">
+<h4 class="caption">Sql Code <small>ein foreign key constraint</small></h4>
+<pre class="lang-sql prettyprint linenums">
+ \d zimmerbuchung
+             Table &quot;public.zimmerbuchung&quot;
+   Column   |  Type   | Collation | Nullable | Default
+------------+---------+-----------+----------+---------
+ zinr       | integer |           |          |
+ buchungsnr | integer |           |          |
+Foreign-key constraints:
+    &quot;zimmerbuchung_buchungsnr_fkey&quot; FOREIGN KEY (buchungsnr) REFERENCES buchung(buchungsnr)
+    &quot;zimmerbuchung_zinr_fkey&quot; FOREIGN KEY (zinr) REFERENCES zimmer(zinr)
+</pre></div>
+
+<p>Diesem Constraint fehlt das Attribut <code>on delete cascade</code>. Wie kann man
+das im Nachhinein ändern?</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Wir könnten die betroffenen Tabellen mit <code>DROP TABLE</code> löschen
+und neu anlegen.  Das funktioniert, solange noch keine wichtigen
+Daten in den Tabellen sind.</p>
+
+<p>Ist das Projekt aber einmal in Betrieb, dann ist diese Methode
+nicht mehr möglich.  Unsere ersten Kunden finden es sicher nicht
+gut wenn ihre Daten gelöscht werden.</p>
+
+<p>Wir können die Datenbank also nicht löschen und neu aufbauen,
+sondern müssen sie ändern.</p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Zum Ändern des Datenbank-Schemas gibt es verschieden Befehle die meist mit <code>ALTER</code>
+beginnen, z.B: <a href="https://www.postgresql.org/docs/11/sql-altertable.html">ALTER TABLE</a>
+oder</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+ALTER TABLE distributors ADD COLUMN address varchar(30);
+ALTER TABLE distributors DROP COLUMN address RESTRICT;
+ALTER TABLE distributors
+    ALTER COLUMN address TYPE varchar(80),
+    ALTER COLUMN name TYPE varchar(100);
+ALTER TABLE distributors RENAME COLUMN address TO city;
+...
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="constraint-entfernen-und-neu-setzen">Constraint entfernen und neu setzen</h2>
+
+<p>Mit diesen Befehlen können wir das alte Constraint entfernen,
+und dann neu setzen:</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+ALTER TABLE zimmerbuchung
+DROP CONSTRAINT zimmerbuchung_zinr_fkey;
+
+ALTER TABLE zimmerbuchung
+add CONSTRAINT zimmerbuchung_zinr_fkey
+FOREIGN KEY (zinr) 
+REFERENCES zimmer(zinr)
+ON DELETE CASCADE;
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Leider gibt es nicht für Alles ein einfaches <code>ALTER</code> statement.
+Wenn man eine Tabelle mit einem <code>PRIMARY KEY</code> als <code>INTEGER</code> angelegt hat
+und im Nachhinein ein <code>SERIAL</code> daraus machen will ist das sehr viel Arbeit:</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+-- CREATE TABLE gast (kunr INTEGER PRIMARY KEY, 
+CREATE SEQUENCE gast_kunr_seq OWNED BY gast.kunr;
+SELECT setval(&#39;gast_kunr_seq&#39;, coalesce(max(kunr), 1)) FROM gast;
+ALTER TABLE gast ALTER COLUMN kunr SET DEFAULT nextval(&#39;gast_kunr_seq&#39;);
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>So ein kleiner Änderungs-Schritt in der Datenbank wird auch Migration genannt.
+Wir müssen sicherstellen, dass die Migration sowohl auf dem Entwicklungsrechner
+als auch auf dem Production-Server durchgeführt wird.
+Migrations sind genau so wichtig
+wie der Programmcode, und sollten auch im Versionskontrollsystem erfasst werden.</p>
+
+<p>Bei Migrations ist die Reihenfolge wichtig.  Wir könnten sie
+also der Reihe nach in einer Daten speichern, oder einzelne Dateien anlegen
+deren Reihenfolge aus dem Dateinamen erkennbar ist, z.B:</p>
+
+<p><code>
+migration-1-add-description.sql
+migration-2-foreigen-key-zimmerbuchung.sql
+migration-3....
+</code></p>
+
+</div>
+    <div class="slide">
+      <h1>Änderungen an der Datenbank</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-optimierung/constraints//slide.html">Constraints</a> | 
+        <a href="/php-db-optimierung/alter/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-optimierung/transaktionen//slide.html">Transaktionen</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+.resizable {
+  resize: both; 
+  overflow: scroll; 
+  border: 2px #ddd solid; 
+  padding: 10px; 
+  position: relative;
+}
+
+.hyphenate {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.resizable *, .resizable * * {
+  font-size: 80% !important;
+}
+
+ .slide  .resizable img[src$="svg"] {
+  width: auto !important;
+}
+
+.slide .resizable  img {
+  display: inline !important;
+  margin-bottom: 0 !important;
+
+}
+
+.resizable::after {
+  content: "resize";
+  background-color: #EA7600;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  left: 0;
+  font-family: sans-serif;
+  font-variant: small-caps;
+}
+
+#booktitle {  
+  border-bottom: 1px solid #EEEEEE; 
+}
+
+header {  
+  position: fixed;
+  background-color: white;
+  z-index: 1;
+}
+
+article {  
+  padding-top: 80px; 
+}
+
+body, p, li, dt, dd {  
+  font-size: 18px; 
+  line-height: 1.5 ; 
+} 
+
+pre {
+  font-size: 15px;
+  line-height: 1.5; 
+}
+
+.example.twopane pre {
+  width: 42%;
+  float:left; 
+}
+
+.deck-container div .example.twopane pre {
+  font-size: 20px;
+}
+
+pre.left {  
+  border-right: 1px #ddd dashed ; 
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+pre.right {  
+  border-left: none; 
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+a[name]:before {
+   content: "";
+}

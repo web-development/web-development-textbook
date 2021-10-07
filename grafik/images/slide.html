@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Pixel-Bilder - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Pixel-Bilder</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/grafik/cssgrafik//slide.html">HTML+CSS für Grafik</a> | 
+        <a href="/grafik/images/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/grafik/svg//slide.html">SVG - Vektor Grafik</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Im <a href="/das-web-und-html/html-grundkurs/">Grundkurs HTML</a> haben wir als
+erstes Bildformat <code>svg</code> gennen gelernt. Das ist praktisch, weil es
+auf jeder Bildschirmgröße gut funktioneirt.</p>
+
+<p>Für Photos kann man aber kein Vektorformat verwenden, da brauchen wir ein Pixelformat wie <code>webp</code> oder <code>jpg</code>.
+Mit diesen Pixelbildern kommen wir aber in Konflikt mit einer
+Grundeigenschaft des Web:  Sowohl <a href="/css-layout/rahmenbedingungen/#slide-4">Auflösung als auch Pixeldichte</a> variieren stark.</p>
+
+<p>Besonders Mobile Geräte mit sehr <a href="/css-layout/rahmenbedingungen/#slide-4">hoher Pixeldichte</a>
+stellen das Web Design vor ein Dilemma:</p>
+
+<ul>
+  <li>hohen Auflösung und Pixeldichte - soll ich riesige Bilder ausliefern?</li>
+  <li>Datenübertragung über das Handy-Netz ist langsam und teuer - kleine Bilder ausliefern?</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="wiederholung-css-pixel-vs-physikalische-pixel">Wiederholung: CSS Pixel vs. Physikalische Pixel</h2>
+
+<p>Die Pixel in CSS sind keine “echten” Pixel, sondern
+entsprechen dem, was das menschliche Auge ungefähr als Punkt erkennen kann.
+Damit ist das Pixel je nach Entfernung verschieden groß - gleich bleibt
+der Einfallswinkeln ins Auge von 0.0213°</p>
+
+<p>Siehe <a href="https://drafts.csswg.org/css-values-4/#reference-pixel">Spezifikation: reference pixel</a></p>
+
+<p>Wenn ein Ausgabegerät eine höhere Pixeldichte hat, kann
+ein CSS Pixel z.B. 2x2 physikalischen Pixeln entsprechen,
+bei einer “Device Pixel Ratio” von 2.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="responsive-images">Responsive Images</h2>
+
+<p>Wer soll die Entscheidung treffen welche Auflösung eines Bildes die Beste ist? Wir, beim Erstellen der Webseite? Nein, wir haben nicht genug Informationen. Diese Entscheidung trifft der Browser.</p>
+
+<p>Wann trifft der Browser diese Entscheidung? Möglichst früh!  Schon während die HTML-Seite noch
+geladen wird soll der Browser möglichst viel Information haben um die Entscheidung zu treffen.
+Daraus ergibt sich, dass wir hier nicht Javascript verwenden können, oder CSS das aus einer
+separaten Datei geladen wird.  Die nötige Information muss direkt im HTML-Code vorhanden sein.</p>
+
+<p>Wir bieten Bilder in verschiedenen Größen also mittels HTML an.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="srcset-attribut">srcset-Attribut</h2>
+
+<p>Das Attribute <strong>srcset</strong> für den <strong>img</strong>-Tag ermöglicht es mehrere
+Varianten des Bildes anzugeben.
+Das  Attribut wird seit 2017 von
+allen Browsern unterstützt, siehe <a href="http://caniuse.com/#feat=srcset">caniuse srcset</a>.</p>
+
+<p>Im Attribut <code>srcset</code> gibt man mehrere Bilder an, und ihre intrinsische Größe in Pixeln.
+Hier wird <code>w</code> statt <code>px</code> verwendet -  das wären ja CSS-Pixel.</p>
+
+<p>Im Attribut <code>sizes</code> gibt man die Breite in CSS-Pixel an, in der das Bild dargestellt wird.
+Achtung: man muss immer noch mit CSS diese Breite setzen!</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+&lt;img src=&quot;japanischer-garten_350px.webp&quot;
+  sizes=&quot;350px&quot;
+  srcset=&quot;japanischer-garten_350px.webp 350w,
+     japanischer-garten_701px.webp 701w,
+     japanischer-garten_1401px.webp 1401w,
+     japanischer-garten_2802px.webp 2802w,
+     japanischer-garten_4500px.webp 4500w,
+     japanischer-garten_6000px.webp 6000w&quot; /&gt;
+</pre></div>
+
+<p>Nun kann der Browser das geeignete Bild auswählen. z.B. bei einer Pixeldichte von 2 dppx:
+350 * 2 = 700.  Der Browser wählt dann das nächstgrößere Bild aus und stellt es dar, also in diesem
+Beispiel das Bild mit einer Breite von 701.</p>
+
+<p><a href="/images/responsive-images/index.html">Demo-Seite für “Responsive Images”</a></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Im Attribut <code>sizes</code> können auch Mediaqueries verwenden.</p>
+
+<div class="example">
+<pre class="lang-html prettyprint linenums">
+sizes=&quot;(max-width: 600px) 480px, 800px&quot;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="bilder-erzeugen">Bilder erzeugen</h2>
+
+<p>Zur Erzeugung von Varianten des Bildes kann man den <a href="http://www.responsivebreakpoints.com/">Responsive Image Breakpoints Generator</a> verwenden.</p>
+
+<p>Mit den “imagemagick” command line tools kann man das auch am eigenen Computer
+machen und automatisieren, siehe <a href="/kommandozeile/bild-und-video/#slide-5">Kommandozeile: Bild und Video</a>.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="weitere-quellen">Weitere Quellen</h2>
+
+<ul>
+  <li><a href="http://blog.cloudfour.com/picking-responsive-tables-solution/">Responsive Tables</a></li>
+  <li><a href="https://www.youtube.com/watch?v=6NcIJXTlugc">Bildgrößen verändern mit Seam Carving</a>, jetzt auch <a href="http://davidalbertoadler.com/seam-carving-js/">in JavaScript</a></li>
+  <li><a href="https://images.guide/">images guide</a> von Addy Osmani</li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Pixel-Bilder</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/grafik/cssgrafik//slide.html">HTML+CSS für Grafik</a> | 
+        <a href="/grafik/images/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/grafik/svg//slide.html">SVG - Vektor Grafik</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

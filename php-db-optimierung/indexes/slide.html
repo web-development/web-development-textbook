@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Indexes - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Indexes</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-optimierung//slide.html">Änderungen, Constraints und Transaktionen in der DB</a> | 
+        <a href="/php-db-optimierung/indexes/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-optimierung/constraints//slide.html">Constraints</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<div class="example">
+<h4 class="caption">Sql Code <small>Eine Abfrage die sehr lange dauert</small></h4>
+<pre class="lang-sql prettyprint linenums">
+# SELECT name, time, yes_rsvp_count FROM events ORDER BY yes_rsvp_count DESC LIMIT 10;
+         name         |        time         | yes_rsvp_count
+----------------------+---------------------+----------------
+ Facebook. Twitter. V | 2014-04-24 22:30:00 |            614
+ Future of 21st Centu | 2013-05-01 22:30:00 |            598
+ The AppNexus Ad Plat | 2012-11-12 23:30:00 |            550
+ Programmable Big Dat | 2014-05-01 22:30:00 |            496
+ Open-Source Database | 2014-05-08 22:30:00 |            450
+ Future of NoSQL &amp; Ne | 2014-05-13 22:30:00 |            444
+ Bridging the gap, OL | 2014-05-06 22:30:00 |            414
+ Throw Some Keys on I | 2014-07-14 22:30:00 |            334
+ Resolving the Cloud  | 2012-11-15 23:30:00 |            326
+ Creator of MySQL: My | 2013-05-30 22:30:00 |            325
+ (10 rows)
+
+Time: 674.327 ms
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Warum dauert diese Abfrage so lange? Das können wir mit dem Befehl <code>EXPLAIN</code> erforschen:</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+# explain SELECT name, time, yes_rsvp_count FROM events ORDER BY yes_rsvp_count DESC LIMIT 10;
+                                 QUERY PLAN
+----------------------------------------------------------------------------
+ Limit  (cost=30988.25..30988.28 rows=10 width=54)
+   -&gt;  Sort  (cost=30988.25..32504.05 rows=606317 width=54)
+         Sort Key: yes_rsvp_count
+         -&gt;  Seq Scan on events  (cost=0.00..17885.96 rows=606317 width=54)
+(4 rows)
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="index-erzeugen">Index erzeugen</h2>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+# CREATE INDEX yes_rsvp_count ON events(yes_rsvp_count);
+CREATE INDEX
+Time: 1212.178 ms
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+# explain SELECT name, time, yes_rsvp_count FROM events ORDER BY yes_rsvp_count DESC;
+                                           QUERY PLAN
+------------------------------------------------------------------------------------------------
+ Index Scan Backward using yes_rsvp_count on events  (cost=0.42..57684.59 rows=606317 width=54)
+(1 row)
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+SELECT substring(name from 1 for 20) AS name, time, yes_rsvp_count FROM events ORDER BY yes_rsvp_count DESC LIMIT 10;
+         name         |        time         | yes_rsvp_count
+----------------------+---------------------+----------------
+ Facebook. Twitter. V | 2014-04-24 22:30:00 |            614
+ Future of 21st Centu | 2013-05-01 22:30:00 |            598
+ The AppNexus Ad Plat | 2012-11-12 23:30:00 |            550
+ Programmable Big Dat | 2014-05-01 22:30:00 |            496
+ Open-Source Database | 2014-05-08 22:30:00 |            450
+ Future of NoSQL &amp; Ne | 2014-05-13 22:30:00 |            444
+ Bridging the gap, OL | 2014-05-06 22:30:00 |            414
+ Throw Some Keys on I | 2014-07-14 22:30:00 |            334
+ Resolving the Cloud  | 2012-11-15 23:30:00 |            326
+ Champions League FIN | 2014-05-24 18:30:00 |            325
+(10 rows)
+
+Time: 0.775 ms
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="die-datenstruktur-hinter-dem-index-b-baum">Die Datenstruktur hinter dem Index: B-Baum</h2>
+
+<p>Das Anlegen eines Index mit  <code>CREATE INDEX</code> erzeugt eine zusätzliche
+Datenstruktur: einen <a href="https://de.wikipedia.org/wiki/B-Baum">B-Baum</a>.</p>
+
+<p><img src="/images/php-db-optimierung/b-baum.svg"  alt="B-Baum" ></p>
+
+<p>Der B-Baum ist sortiert, ausbalanziert, und seine Knoten haben jeweils viele
+Kinder.</p>
+
+<p>Mit dem Wissen über die Datenstruktur gewinnen wir ein besserer Verständnis für
+die Fähigkeiten und Grenzen eines Index:</p>
+
+<ul>
+  <li>Ein Index bedeutet immer zusätzliche Arbeit beim Einfügen, beim Löschen, …</li>
+  <li>das Auslesen kann in logarithmischer Zeit erfolgen</li>
+  <li>…</li>
+</ul>
+
+<p>Besonders effizient ist der Index wenn alle Daten der Abfrage schon
+direkt im Baum gespeichert sind, und nicht nochmal separat gelesen werden müssen:</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+# SELECT name, time, yes_rsvp_count FROM events ORDER BY yes_rsvp_count DESC LIMIT 10; 
+# SELECT yes_rsvp_count FROM events ORDER BY yes_rsvp_count DESC LIMIT 10; 
+</pre></div>
+
+<p>Die erste Abfrage braucht einen Zugriff auf die vollständigen Daten der Tabelle um 
+name und time auszulesen. Die zweite Abfrage findet alle nötigen Daten direkt im Index.</p>
+
+<p>Manche Datenbank bieten die Möglichkeit zusätzliche Attribute in den Index aufzunehmen,
+um einen “covering index” zu erzeugen:</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+# CREATE INDEX yes_rsvp_count_with_name_and_time ON events(yes_rsvp_count) INCLUDE (name, time);
+</pre></div>
+
+<p>Siehe <a href="https://blog.crunchydata.com/blog/why-covering-indexes-are-incredibly-helpful">Katz (2018): Why Covering Indexes in Postgres Are Incredibly Helpful</a> und <a href="https://www.postgresql.org/docs/13/sql-createindex.html">Postgres Dokumentation</a>.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="index-fr-volltexsuche">Index für Volltexsuche</h2>
+
+<p>Für Abfragen mit <code>LIKE</code> hilft ein normaler Index nicht.
+Dafür braucht man eigenen eigenen Index für die Volltextsuche.</p>
+
+<p>Hier ein Beispiel: eine Tabelle mit Namen und Länderkürzel von ca. 170.000 Städten:</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+# explain analyze SELECT concat(name,&#39;,&#39;,country) as label FROM city WHERE name ILIKE &#39;Salz%&#39;  ORDER BY name LIMIT 150;
+                                                      QUERY PLAN
+----------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=3065.44..3065.48 rows=17 width=43) (actual time=1698.352..1698.370 rows=24 loops=1)
+   -&gt;  Sort  (cost=3065.44..3065.48 rows=17 width=43) (actual time=1698.350..1698.357 rows=24 loops=1)
+         Sort Key: name
+         Sort Method: quicksort  Memory: 26kB
+         -&gt;  Seq Scan on city  (cost=0.00..3065.09 rows=17 width=43) (actual time=1303.415..1679.370 rows=24 loops=1)
+               Filter: ((name)::text ~~* &#39;Salz%&#39;::text)
+               Rows Removed by Filter: 168780
+ Planning time: 1.086 ms
+ Execution time: 1698.456 ms
+(9 rows)
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Nun legen wir einen Index an:</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+CREATE INDEX trgm_idx_city_name ON city USING gin(name gin_trgm_ops);
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Danach ist die Abfage wesentlich schneller:</p>
+
+<div class="example">
+<pre class="lang-sql prettyprint linenums">
+# explain analyze SELECT concat(name,&#39;,&#39;,country) as label FROM city WHERE name ILIKE &#39;Salz%&#39;  ORDER BY name LIMIT 150;
+                                                                QUERY PLAN
+------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=113.93..113.97 rows=17 width=43) (actual time=0.936..0.948 rows=24 loops=1)
+   -&gt;  Sort  (cost=113.93..113.97 rows=17 width=43) (actual time=0.935..0.940 rows=24 loops=1)
+         Sort Key: name
+         Sort Method: quicksort  Memory: 26kB
+         -&gt;  Bitmap Heap Scan on city  (cost=52.13..113.58 rows=17 width=43) (actual time=0.751..0.845 rows=24 loops=1)
+               Recheck Cond: ((name)::text ~~* &#39;Salz%&#39;::text)
+               Rows Removed by Index Recheck: 13
+               Heap Blocks: exact=11
+               -&gt;  Bitmap Index Scan on trgm_idx_city_name  (cost=0.00..52.13 rows=17 width=0) (actual time=0.676..0.676 rows=37 loops=1)
+                     Index Cond: ((name)::text ~~* &#39;Salz%&#39;::text)
+ Planning time: 0.962 ms
+ Execution time: 1.006 ms
+(12 rows)
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="siehe-auch">Siehe auch</h2>
+
+<ul>
+  <li><a href="https://gist.github.com/jboner/2841832">Latency Numbers Every Programmer Should Know </a></li>
+  <li><a href="https://gist.github.com/hellerbarde/2843375#file-latency_humanized-markdown">Latency Numbers, Humanized</a></li>
+  <li><a href="https://prezi.com/pdkvgys-r0y6/latency-numbers-for-programmers-web-development/">prezi</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Indexes</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/php-db-optimierung//slide.html">Änderungen, Constraints und Transaktionen in der DB</a> | 
+        <a href="/php-db-optimierung/indexes/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/php-db-optimierung/constraints//slide.html">Constraints</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

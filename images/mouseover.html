@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <title>Beispiel: Behandlung von Events in jQuery</title>
+    <style>
+      a span {
+        position: relative;
+        width: 200px;
+        background-color: #FFE3A6;
+        border-color: #A47319;
+        border-radius: 20px;
+        border-bottom-left-radius: 0px;
+        padding: 8px;
+        text-decoration: none;
+        font-size: 10px;
+        top: -15px;
+        color: black;
+      }
+      a:link, a:visited {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Link mit Mousover</h1>
+
+    <p><a href="http://multimediatechnology.at">Studium MMT <span style='display:none;'>Ein Studium an der FH Salzburg</span></a></p>
+    <script src="//code.jquery.com/jquery-latest.js"></script>
+    <script> 
+      $(document).ready(function(){ 
+          $("a").on('mouseover', function(){
+              $(this).find("span").show();
+          });
+          $("a").on('mouseout', function(){
+              $(this).find("span").hide();
+          });
+      }); 
+    </script>
+  </body>
+</html>

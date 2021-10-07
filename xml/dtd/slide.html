@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>DTD - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>DTD</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/xml/wohlgeformtes-xml//slide.html">wohlgeformtes XML</a> | 
+        <a href="/xml/dtd/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/xml/xml-und-php//slide.html">XML und PHP</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Eine Dokumenttypdefinition (DTD) wird für SGML und XML verwendet, um 
+die Grammatik festzulegen.  Ein XML Dokument das einer DTD entspricht
+heisst “gültig” (englisch: “valid”).</p>
+
+<p>Die DTD definiert den strukturellen Aufbau des Dokuments: welche Tags es gibt, wie diese verschachtelt werden können,
+welche Attribute sie haben.  In frühen Versionen von HTML, wie z.B. HTML 3.2,
+wurde diese DTD auch wirklich in der <a href="http://www.w3.org/TR/REC-html32-19970114#dtd">HTML Spezifikation</a> angegeben.</p>
+
+<p>Hier werden nicht alle Details der DTD-Syntax vorgestellt,
+sondern nur die wichtigsten Regeln.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="doctype">Doctype</h2>
+
+<p>Ein XML-Dokument, das eine von mir geschriebene DTD verwendet,
+verweist mittels des <code>DOCTYPE</code> auf das Wurzelelement und die Datei mit der DTD:</p>
+
+<p><code>&lt;!DOCTYPE root SYSTEM "FILENAME"&gt;</code></p>
+
+<p>In folgendem Beispiel heisst die Datei “serie.dtd”, und das Wurzelelement
+heisst ebenfalls <code>&lt;serie&gt;</code>:</p>
+
+<div class="example">
+<pre class="lang-xml prettyprint linenums">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE serie SYSTEM &quot;serie.dtd&quot;&gt;
+&lt;serie&gt;
+....
+&lt;/serie&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="tags">Tags</h2>
+
+<p>Welche Tags verwendet werden wird mit dem <code>ELEMENT</code> Befehl in der DTD
+festgelegt. <a href="http://www.w3.org/TR/2008/REC-xml-20081126/#elemdecls">→ XML: Element Type Declarations</a></p>
+
+</div>
+<div class="slide">
+
+<h3 id="leeres-element">Leeres Element</h3>
+
+<p>Ein allein stehender Tag (ohne Inhalt) wird wie folgt definiert:</p>
+
+<div class="example">
+<pre class="lang-xml prettyprint linenums">
+&lt;!ELEMENT br EMPTY&gt;
+</pre></div>
+
+<p>Sie kennen den Break-Tag aus HTML. In einem XML-Dokument muss
+er entweder mit einem zusätzlichesn Slash am Ende geschrieben werden <code>&lt;br /&gt;</code>
+oder mit einem Ende-Tag  <code>&lt;br&gt;&lt;/br&gt;</code>.<br />
+Diese beiden Schreibweisen sind gleichbedeutend.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="element-mit-text-inhalt">Element mit Text-Inhalt</h3>
+
+<p>Wird ein Element als <code>(#PCDATA)</code> deklariert, dann kann
+es nur reinen Text enthalten, aber keine weiteren Tags.</p>
+
+<div class="example">
+<pre class="lang-xml prettyprint linenums">
+&lt;!ELEMENT option (#PCDATA)&gt;
+</pre></div>
+
+<p>So ist z.B. <code>&lt;option&gt;gr&amp;uuml;n&lt;/option&gt;</code> ein valider Tag (Entities sind erlaubt), 
+aber <code>&lt;option&gt;&lt;b&gt;nur&lt;/b&gt; grün&lt;/option&gt;</code> nicht, da Tags verboten sind.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="kinder-element-element-content">Kinder-Element (“Element Content”)</h3>
+
+<p>Hat ein Tag nur Kinder-Elemente, aber keine reinen Text als Inhalt,
+dann spricht man von “Element Content”.</p>
+
+<p>Für die Angabe von Kinder-Elementen gibt es dann eine
+eigene kleine Sprache, mit der die Reihenfolge und Anzahl
+der Kinder-Element festgelegt wird. Damit kann man
+auch komplizierte Bedingungen zusammen bauen:</p>
+
+<ul>
+  <li>Eine Liste von Kinder-Elementen mit einer fixen Reihenfolge: mit Kommas</li>
+  <li>Eine Auswahl von Kinder-Elementen (entweder/oder): mit einem senkrechten Strich</li>
+  <li>Eine beliebige Anzahl: mit einem Stern</li>
+  <li>mindestens einmal: mit einem Plus</li>
+  <li>Einmal oder Keinmal: mit einem Fragezeichen</li>
+</ul>
+
+<p>ausserdem kann man noch Klammern verwenden - so wie man sie aus
+mathematischen Ausdrücken kennt.</p>
+
+<p>Ein paar Beispiele:</p>
+
+<div class="example">
+<pre class="lang-xml prettyprint linenums">
+&lt;!ELEMENT html   (head, body) &gt;
+&lt;!ELEMENT ul     (li)+        &gt;
+&lt;!ELEMENT select (option)+    &gt;
+&lt;!ELEMENT dl     (dt|dd)+     &gt;
+</pre></div>
+
+<p>Zeile 1: Für das <code>html</code>-Element wird festgelegt, dass es genau einen <code>head</code>-Element gefolgt von genau einem <code>body</code>-Element enthalten muss.
+Keine anderen Tags, keine andere Reihenfolge, kein Text ist erlaubt.</p>
+
+<p>Zeile 2 und 3: Der <code>ul</code> Tag muss mindestens einen bis beliebig viele <code>li</code> Tags enthalten - nichts anderes ist erlaubt. Gleiches gilt für den <code>select</code> und <code>option</code> Tag.</p>
+
+<p>Zeile 4: Hier wird wieder das Plus-Zeichen verwendet, umd “mindestens eins bis beliebig viele” anzuzeigen. Diesmal bezieht sich das Plus aber auf die Auswahl in der Klammer: es kann also eine bliebige Kombination von <code>dt</code> und <code>dd</code> Tags sein.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="gemischter-inhalt-mixed-content">Gemischter Inhalt (“Mixed Content”)</h3>
+
+<p>Hat ein Tag auch reinen Text als Inhalt, dann kann man
+zwar noch einschränken welche Kinder-Elemente er enthält, man kann
+aber keine Reihenfolge oder Anzahl mehr festlegen.</p>
+
+<p>Die Regel beginnt dann immer mit <code>(#PCDATA |</code> und endet mit <code>)*</code>:</p>
+
+<div class="example">
+<pre class="lang-xml prettyprint linenums">
+&lt;!ELEMENT p ( #PCDATA | a | ul | dl | b | i )*&gt;
+</pre></div>
+
+<p>Hier kann ein <code>p</code>-Tag also nur die Kinder-Tags 5 aufgeführten Kinder-Tags
+enthalten, aber diese in beliebiger Reihenfolge und Anzahl, mit beliebigem
+reinen Text dazwischen.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="attribute">Attribute</h2>
+
+<p>Welche Attribute ein Tag haben kann wird mit dem <code>ATTLIST</code> Befehl festgelegt. 
+<a href="http://www.w3.org/TR/2008/REC-xml-20081126/#attdecls">→ XML: Attribute-List Declarations</a></p>
+
+<p>Dabei wird als erstes der Name des Elements angegeben, für den die Attribute
+definiert werden.  Danach kommen Werte in 3er-Gruppen: immer Attributname, Attributtyp und
+einen Default.</p>
+
+<p>Hier ein Beispiel für ein Element <code>img</code> das zwei mögliche Attribute hat: <code>id</code> und <code>src</code>.</p>
+
+<div class="example">
+<pre class="lang-xml prettyprint linenums">
+&lt;!ATTLIST img
+  id       ID       #IMPLIED
+  src      CDATA    #REQUIRED
+&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="default">Default</h3>
+
+<p>Beim dritte Wert in der Liste, der Default, gibt es vier Alternativen</p>
+
+<ul>
+  <li><code>#REQUIRED</code> bedeutet, dass das Attribut vorhanden sein muss</li>
+  <li><code>#IMPLIED</code> bedeutet, dass das Attribut optional ist, also weggelassen werden kann</li>
+  <li>mit <code>#FIXED</code>, gefolgt von einem Wert  wird dieser als fixer Wert angegeben</li>
+  <li>wird nur ein Wert angegeben, so ist dies der Defaultwert</li>
+</ul>
+
+<div class="example">
+<pre class="lang-xml prettyprint linenums">
+&lt;!ATTLIST foo
+  bar     CDATA #REQUIRED
+  baz     CDATA #IMPLIED
+  qux     CDATA &quot;42&quot;
+  wibble  CDATA #FIXED &quot;wobble&quot;
+&gt;
+</pre></div>
+
+<p>Ein korreter Tag wäre als <code>&lt;foo bar='barbar' wibble='wobble'&gt;</code>.  Ein XML Parser
+würde aber zusätzlich noch das Attribut <code>qux</code> mit Wert <code>42</code> erkennen.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="attributtypen-cdata-und-liste">Attributtypen: CDATA und Liste</h3>
+
+<ul>
+  <li>Der Typ <code>CDATA</code> steht für beliebige “Character Data”</li>
+  <li>Mit runden Klammern kann eine Liste von möglichen Werten aufgeführt werden</li>
+</ul>
+
+<div class="example">
+<pre class="lang-xml prettyprint linenums">
+&lt;!ATTLIST p
+  title  CDATA      #IMPLIED
+  dir    (ltr|rtl)  #IMPLIED
+&gt;
+</pre></div>
+
+<p>Das Titel-Attribut kann einen bliebigen Text enthalten. Das Attribut
+<code>dir</code> (für “direction”, Schreib-Richtung) kann die Werte <code>ltr</code> (“left to right”) und
+<code>rtl</code> (“right to left”) annehmen.  Beide Attribute können auch weggelassen werden.</p>
+
+<p>(Beide Attribute gibt es in HTML wirklich.)</p>
+
+</div>
+<div class="slide">
+
+<h3 id="attributtypen-fr-ids">Attributtypen für IDs</h3>
+
+<ul>
+  <li>Der Typ <code>ID</code> verlangt einen (dokument-weit) eindeutigen Identifier als Wert.</li>
+  <li>Der Typ <code>IDREF</code> verweist auf einen solchen Identifier</li>
+  <li>Der Typ <code>IDREFS</code> verweist auf mehrere solchen Identifier</li>
+</ul>
+
+<div class="example">
+<pre class="lang-xml prettyprint linenums">
+&lt;!ATTLIST person
+  id     ID     #REQUIRED
+  kinder IDREFS #IMPLIED
+&gt;
+</pre></div>
+
+<p>Mit dieser DTD kann man Personen und Ihre Kinder definieren, z.B. das Haus Stark:</p>
+
+<div class="example">
+<pre class="lang-xml prettyprint linenums">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE leute SYSTEM &quot;leute.dtd&quot;&gt;
+&lt;leute&gt;
+  &lt;person id=&quot;rickard&quot; kinder=&quot;ned&quot;&gt;Rickard Stark&lt;/person&gt;
+  &lt;person id=&quot;ned&quot; kinder=&quot;jon robb sansa arya brandon rickon&quot;&gt;Ned Stark&lt;/person&gt;
+  &lt;person id=&quot;catelyn&quot; kinder=&quot;robb sansa arya brandon rickon&quot;&gt;Catelyn Tully&lt;/person&gt;
+  &lt;person id=&quot;jon&quot;&gt;Jon Snow&lt;/person&gt;
+  &lt;person id=&quot;robb&quot;&gt;Robb Stark&lt;/person&gt;
+  &lt;person id=&quot;sansa&quot;&gt;Sansa Stark&lt;/person&gt;
+  &lt;person id=&quot;arya&quot;&gt;Arya Stark&lt;/person&gt;
+  &lt;person id=&quot;brandon&quot;&gt;Brandon Stark&lt;/person&gt;
+  &lt;person id=&quot;rickon&quot;&gt;Rickon Stark&lt;/person&gt;
+&lt;/leute&gt;
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h2 id="prfen-von-validem-xml">Prüfen von validem XML</h2>
+
+<p>Wie kann man überprüfen, ob eine XML-Datei eine DTD erfüllt?</p>
+
+<p>Zum Beispiel auf der Kommandozeile mit <code>xmllint --valid beispiel.xml</code>.
+Dieses Programm prüft die Wohlgeformtheit und die Validtät.</p>
+
+<p>Zum Beispiel in einem Editor wie “Netbeans”:</p>
+
+<p><img src="/images/xml-valid-netbeans.png"  alt="XML Prüfung mit netbeans" ></p>
+</div>
+    <div class="slide">
+      <h1>DTD</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/xml/wohlgeformtes-xml//slide.html">wohlgeformtes XML</a> | 
+        <a href="/xml/dtd/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/xml/xml-und-php//slide.html">XML und PHP</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

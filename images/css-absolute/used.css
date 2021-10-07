@@ -1,0 +1,186 @@
+body {
+    font-family: 'Droid Serif', serif, arial;
+    font-size: 12px;
+}
+
+
+.container {
+  display: flex;
+}
+
+div,
+a,
+img {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+a {
+  color: rgb(60, 60, 60);
+  text-decoration: none;
+}
+
+.sans {
+  font-family: "Droid Sans", arial;
+}
+
+
+
+::selection {
+  background: #ffff9e;
+}
+
+
+img::selection {
+  background: transparent;
+}
+
+.project_partial.no_back {
+  background-color: white;
+}
+
+.project_partial {
+  box-shadow: 5px 5px 25px #ddd;
+  flex-shrink: 0;
+  width: 160px;
+  height: 275px;
+  margin: 24px 12px 0 12px;
+  background-color: #292927;
+  overflow: hidden;
+  color: white;
+  position: relative;
+}
+
+.project_partial img {
+  background-color: #E5E5E5;
+  height: 170px;
+  width: 160px;
+}
+
+.project_partial div.edition_5 {
+  background-image: url(badge_topleft.png);
+}
+
+.project_partial .in_edition_badge {
+  height: 170px;
+  position: absolute;
+  width: 160px;
+}
+
+.project_partial .title {
+  text-transform: uppercase;
+  font-weight: bold;
+  word-wrap: break-word;
+  padding-bottom: 4px;
+  letter-spacing: 1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 32px;
+}
+
+.project_partial .description {
+  padding: 10px;
+}
+
+.project_partial .hover_buttons {
+  position: absolute;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  width: 160px;
+  height: 170px;
+  text-align: center;
+  background-image: url(0_5_black.png);
+}
+
+.project_partial a {
+  margin-top: 17px;
+}
+
+.project_partial .hover_buttons:hover {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+.project_partial .hover_buttons.always_on {
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+
+.project_partial .button {
+  width: 120px;
+
+  box-shadow: inset 0px 1px 0px 0px #d6d6d6;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, gray), color-stop(1, #242424));
+  background: -moz-linear-gradient(center top, gray 5%, #242424 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#808080', endColorstr='#242424');
+  background-color: #808080;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  display: inline-block;
+  color: #ffffff;
+  font-family: arial;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 3px 0;
+  text-decoration: none;
+}
+
+.project_partial .button:hover {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #242424), color-stop(1, gray));
+  background: -moz-linear-gradient(center top, #242424 5%, gray 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#242424', endColorstr='#808080');
+  background-color: #242424;
+}
+
+.project_partial .button:active {
+  position: relative;
+  top: 1px;
+}
+
+div,
+a,
+img {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+a img {
+  border: 0;
+}
+
+a {
+  color: #3c3c3c;
+  text-decoration: none;
+}
+
+.big {
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.sans {
+  font-family: 'Droid Sans', arial;
+}
+
+
+/*! CSS Used fontfaces */
+
+
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Droid Sans Regular'), local('DroidSans-Regular'), url(https://fonts.gstatic.com/s/droidsans/v8/s-BiyweUPV0v-yRb-cjciAzyDMXhdD8sAj6OAJTFsBI.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Droid Sans Bold'), local('DroidSans-Bold'), url(https://fonts.gstatic.com/s/droidsans/v8/EFpQQyG9GqCrobXxL-KRMWaVI6zN22yiurzcBKxPjFE.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}

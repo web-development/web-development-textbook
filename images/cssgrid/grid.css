@@ -1,0 +1,99 @@
+/* Desktop */
+
+
+    .page_container {
+      display: grid;
+
+      grid-template-columns: 270px 5fr 3fr;
+      grid-template-rows: 60px 2fr 210px;
+
+      grid-template-areas:  "w1        headline     stylename"
+                            "portrait  description  css"
+                            "w2        facts        navigation";
+    }
+
+    section {
+      background-color: white;
+      padding: 10px;
+      font-size: 22px;
+      line-height: 20px;
+    }
+
+    .page_container h1 { margin:0; padding:0; }
+
+    .headline {
+      background-color: #EBBB5B;
+      padding-top: 19px;
+    }
+
+    .description {
+      padding-top: 12px;
+      line-height: 40px;
+    }
+
+    .facts {
+      padding-top: 61px;
+    }
+
+    ul {
+      list-style-type: square;
+      padding-left: 30px;
+      padding-top: 12px;
+      line-height: 40px;
+    }
+
+    .stylename {
+      background-color: #EBBB5B;
+      padding-top: 23px;
+    }
+
+    .css {
+      font-size: 18px;
+      line-height: 40px;
+      padding-top: 13px;
+    }
+    .css b { display: block;}
+
+    .portrait {
+      width: auto;
+      height: auto;
+      background-color: #EBBB5B;
+      background-size: cover;
+    }
+
+    .navigation {
+      line-height: 40px;
+      padding-top: 17px;
+    }
+    .navigation h2 {
+      font-size: 18px;
+      line-height: 40px;
+      margin-left: 10px;
+      margin-bottom: 0;
+    }
+    .navigation ul {
+      padding-top: 0px;
+    }
+
+
+
+
+    .gelb { display: none; }
+    .rot { display: none; }
+    .w1 {display: none; }
+    .w2 {display: none; }
+
+    .w3 {display: none; }
+    .w4 {display: none; }
+    .w5 {display: none; }
+    .w6 {display: none; }
+    .w7 {display: none; }
+    .w8 {display: none; }
+    .w9 {display: none; }
+    .w10 {display: none; }
+    .w11{display: none; }
+
+
+
+
+}

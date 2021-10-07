@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Responsive Design - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Responsive Design</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css-layout/rahmenbedingungen//slide.html">Rahmenbedingungen</a> | 
+        <a href="/css-layout/responsive/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css-layout/layout//slide.html">CSS für Layout</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Wie gehen wir mit der Herausforderung der verschiedenen
+Auflösungen und Pixeldichten um?</p>
+
+</div>
+<div class="slide">
+
+<h2 id="responsive-design">Responsive Design</h2>
+
+<p>Große Unterschiede im Platz kann man mit Mediaqueries in CSS behandeln. Die Verwendung von Mediaqueries wurde 2010 in einem Artikel von Ethan Marcotte in “A List Apart” unter dem Begriff “Responsive Webdesign” popularisiert <a href="http://www.alistapart.com/articles/responsive-web-design/">→</a>.</p>
+
+<p>In diesem ersten Beispiel von responsive Design werden drei verschiedene Layouts
+für verschiedene Größen angeboten. Der Inhalt und das HTML Dokument bleiben dabei gleich.</p>
+
+<p><img src="/images/css-layout/responsive.png"  alt="Das erste Beispiel für &quot;Responsive Webdesign&quot;: Darstellung der Seite auf verschiedenen Breiten" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Die technische Umsetzung des verschiedenen Layouts ist relativ einfach: Mediaqueries erlauben eine “Verzweigung” in CSS.</p>
+
+<div class="example">
+<h4 class="caption">Css Code <small>CSS mit Mediaqueries</small></h4>
+<pre class="lang-css prettyprint linenums">
+@media screen and (max-width: 480px) {
+  .column {
+    width: 100px;
+  }
+  /* weitere Regeln für kleine Screens */
+}
+/* allgemein gültige Regeln */
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="mobile-first">Mobile First</h3>
+
+<p>Luke Wroblewski schlug 2009 unter dem Slogan “Mobile First” vor, zuerst die mobile Version der Website zu gestalten, und davon dann die “größeren” Versionen abzuleiten <a href="http://www.lukew.com/ff/entry.asp?933">→</a>.</p>
+
+<p><img src="/images/responsive/mobile-first.jpg"  alt="/images/responsive/mobile-first.jpg" ></p>
+
+<p><a href="https://www.flickr.com/photos/saucef/7184615025">Bild: (CC BY-NC) Sauce Babilonia</a></p>
+
+</div>
+<div class="slide">
+
+<h3 id="mediaqueries-and-featurequeries">Mediaqueries and Featurequeries</h3>
+
+<div class="example">
+<h4 class="caption">Css Code <small>CSS Medaqueries Beispiel</small></h4>
+<pre class="lang-css prettyprint linenums">
+@media print {
+  body { font-size: 10pt; }
+}
+
+@media screen {
+body { font-size: 13px; }
+}
+
+@supports not (display: grid) {
+div {
+float: right;
+}
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+<h3 id="dark-mode">Dark Mode</h3>
+
+<p>Es gibt sogar mediaqueries für die Präferenz des “dark mode”:</p>
+
+<div class="example">
+<h4 class="caption">Css Code <small>CSS Medaqueries für color-scheme</small></h4>
+<pre class="lang-css prettyprint linenums">
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #ddd;
+    background-color: black; 
+  }  
+  h1,h2,h3 {
+    color: #d39060;
+  }  
+}
+
+@media (prefers-color-scheme: light) {
+body {
+color: #333333;
+background-color: #ffffff;
+}
+h1,h2,h3 {
+color: #333333;
+}  
+}
+</pre></div>
+
+<p>siehe auch <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Media_features">MDN: media features</a> und <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@supports">MDN: features queries</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="bilder-und-responsive-design">Bilder und Responsive Design</h2>
+
+<p>Bilder waren lange Zeit ein Grund, warum das Layout von Webseiten nicht flexibel war: weil die Bilder nur für die Darstellung bei einer bestimmten Größe geeigenet waren. Das ist aber seit ca. 2010 anders.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="pixel">Pixel</h3>
+
+<p>Als Bildformate für <code>&lt;img&gt;</code> Tags in Webseiten wurden lange nur Pixel-Formate unterstützt. Diese Formate (jpg, png, gif) sind für die Darstellung bei einer bestimmten Größe gedacht. Die Vergrößerte Darstellung von Pixel-Bildern liefert keine guten Ergebnisse:</p>
+
+<p><img src="/images/css-layout/pixel-image-zoom.png"  alt="Abbildung 29: Ausschnitte aus einem Pixel Bild, vom Browser (Firefox) in 3 Stufen vergrößert dargestellt" ></p>
+
+<p>Die Verkleinerte Darstellung ist eine Verschwendung: Wenn ich ein Bild herunterladen muss, dass doppelt So breit und
+doppelt so hoch ist, wie mein Browser darstellen kann, dann sind das viermal so viele Daten, und damit eine viermal
+so lange Wartezeit!</p>
+
+<p>Es gibt eine moderne Lösung für diese Problematik <a href="/grafik/images/">Responsive Images</a> - diese werden wir später genauer kennen lernen.</p>
+
+</div>
+<div class="slide">
+
+<h3 id="vektor">Vektor</h3>
+
+<p>Mit dem Format SVG steht auch ein vektor-basiertes Bildformat für das Web zur Verfügung. SVG-Bilder können in beliebiger Größe verwendet werden. Die Einbindung erfolgt mit dem img-Tag:</p>
+
+<pre><code>&lt;img src="circle.svg"&gt;
+</code></pre>
+
+<p><img src="/images/circle.svg"  alt="Abbildung: Kreis in SVG-Darstelllung" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="schriftgre">Schriftgröße</h2>
+
+<p>Die Schriftgröße im Browser unterliegt nur bedingte der Kontrolle durch HTML und CSS Code. Das „letzte Wort“ hat hier die LeserIn, die die Schrift größer oder kleiner stellen kann. z.B. in MSIE unter Ansicht → Schriftgrad, in Firefox mit der Tastenkombination <code>STRG +</code> oder <code>STRG –</code>.</p>
+
+<p>Je nach Schriftgröße und zur Verfügung stehendem Platz im Browser-Fenster wird der Browser die Absätze geeignet in Zeilen umbrechen, wie in Abbildung 31 gezeigt.</p>
+
+<p><img src="/images/css-layout/zeilenumbruch.png"  alt="Abbildung 31: Darstellung von Text bei verschiedenen Fensterbreiten und Schriftgrößen" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="zoomen">Zoomen</h2>
+
+<p>Alle Browser bieten das Vergrößern und Verkleinern der Webseite an,
+meist mit einer Tastenkombination mit <code>+</code> bzw. <code>-</code>.
+Dabei werden die CSS Pixel vergrößert bzw. verkleinert. Die Größe des
+Viewport und die CSS pixel-ratio verändern sich also, dadurch werden
+andere Mediaqueries schlagend.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="beispiel">Beispiel</h2>
+
+<p>Die <a href="/images/cssgrid/#!/responsive">Demo Seite für CSS Grid</a> ist responsive.</p>
+
+<p><img src="/images/css-layout/example-responsive.png" srcset="/images/css-layout/example-responsive@3x.png 3x, /images/css-layout/example-responsive@2x.png 2x, /images/css-layout/example-responsive.png 1x"  alt="/images/css-layout/example-responsive.png" ></p>
+
+</div>
+<div class="slide">
+
+
+
+<p>Für Smartphones ist kein Grid vorgesehen:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+@media screen and (max-width: 660px)  {
+  .page_container {
+    padding: 10px;
+    max-width: 80em;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  ...
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Für Tablets gilt ein Grid mit zwei Spalten:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+@media screen and (min-width: 660px) and (max-width: 1150px)  {
+
+    .page_container {
+      display: grid;
+
+      grid-template-columns: 2fr 3fr;
+      grid-template-rows: 60px 403px 1fr 1fr 60px 3fr;
+
+      grid-template-areas:  &quot;w1        headline &quot;
+                            &quot;portrait  description&quot;
+                            &quot;w2        facts&quot;
+                            &quot;w2        navigation&quot;
+                            &quot;w2        stylename&quot;
+                            &quot;w2        css&quot;;
+    }
+    ....
+
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>für Desktops ein Grid mit drei Spalten:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+@media screen and (min-width: 1200px)  {
+
+    .page_container {
+      display: grid;
+
+      grid-template-columns: 270px 5fr 3fr;
+      grid-template-rows: 60px 2fr 210px;
+
+      grid-template-areas:  &quot;w1        headline     stylename&quot;
+                            &quot;portrait  description  css&quot;
+                            &quot;w2        facts        navigation&quot;;
+    }
+    ...
+
+}
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>und als Easter Egg ist noch eine ganz verrücktes Grid dabei:</p>
+
+<p><img src="/images/css-layout/easteregg-responsive.png" srcset="/images/css-layout/easteregg-responsive.png 1x, /images/css-layout/easteregg-responsive@2x.png 2x"  alt="/images/css-layout/easteregg-responsive.png" ></p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+@media screen and (min-width: 1150px) and (max-width: 1200px) {
+
+    .page_container {
+      height:1200px;
+      width:1200px;
+
+      display: grid;
+
+      grid-template-columns: 140fr 131fr 152fr 283fr 190fr 166fr;
+      grid-template-rows: 114fr 306fr 305fr 131fr 129fr 70fr;
+
+      background-color: black;
+      grid-gap: 25px 25px;
+
+      grid-template-areas:
+        &quot;w1    w1           w2           w2           headline  headline&quot;
+        &quot;w4    description  description  description  facts     facts&quot;
+        &quot;w5    description  description  description  portrait  w11&quot;
+        &quot;w5    navigation   navigation   w6           w7        w7&quot;
+        &quot;gelb  navigation   navigation   w8           css       css&quot;
+        &quot;gelb  w9           w9           stylename    css       css&quot;
+        &quot;gelb  w9           w9           w10          w10       w10&quot;;
+    }
+    ...
+
+}
+</pre></div>
+
+</div>
+    <div class="slide">
+      <h1>Responsive Design</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css-layout/rahmenbedingungen//slide.html">Rahmenbedingungen</a> | 
+        <a href="/css-layout/responsive/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css-layout/layout//slide.html">CSS für Layout</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

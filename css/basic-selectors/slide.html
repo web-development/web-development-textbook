@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>CSS Selektoren - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>CSS Selektoren</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css/css-sprites//slide.html">CSS Sprites</a> | 
+        <a href="/css/basic-selectors/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css-layout//slide.html">CSS - Layout</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Um CSS Selektoren zu verstehen muss man das Document Object Betrachten:
+die Darstellung des HTML-Dokuments als Baum:</p>
+
+<p><img src="/images/css/html-und-dom.png"  alt="Document Object Model und Selektor" ></p>
+
+<p>Bei der Beschreibung des Baumes verwendet man folgende Fachbegriffe:</p>
+
+<ul>
+  <li>Elemente,</li>
+  <li>Texte,</li>
+  <li>Nodes</li>
+  <li>Eltern-Element,</li>
+  <li>Kinder</li>
+  <li>Vorfahren,</li>
+  <li>Nachkommen</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="universal-selector">Universal Selector</h2>
+
+<p>Der Selektor <code>*</code> wählt alle Elemente des Baums aus:</p>
+
+<p><img src="/images/css/selector-universal.png"  alt="Document Object Model und Selektor" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="type-selector">Type Selector</h2>
+
+<p>Über den Namen des HTML-Tags wählt man alle Elemente dieses Typs aus,
+zum Beispiel wählt <code>li</code>  alle Listen-Elemente aus:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+  li { color: red; }
+</pre></div>
+
+<p><img src="/images/css/selector-type.png"  alt="Document Object Model und Selektor" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="group-selector">Group Selector</h2>
+
+<p>Mehrere Selektoren können mit Kommas zu einem neuen Selektor gruppiert werden.
+Das Komma entspricht einem “Oder”: selektiert werden Tags die entweder <code>h1</code> sind,
+oder <code>h2</code>, oder <code>a</code>:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+  h1,h2,a { color: red; }
+</pre></div>
+
+<p><img src="/images/css/selector-group.png"  alt="Document Object Model und Selektor" ></p>
+
+<p>(Achtung Falle: für Links mit dem <code>a</code> Tag gelten noch zusätzliche Regeln,
+siehe weiter Unten.)</p>
+
+</div>
+<div class="slide">
+
+<h2 id="descendant-selector">Descendant Selector</h2>
+
+<p>Hier wird ein Element ausgewählt, das Nachkomme eines anderen Elements ist.</p>
+
+<p>Achtung: <code>div</code> wird nur zur Auswahl benützt, wird aber selber nicht ausgewählt!</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+  div a { color: red; }
+</pre></div>
+
+<p><img src="/images/css/selector-desc.png"  alt="Document Object Model und Selektor" ></p>
+
+<p>(Achtung Falle: für Links mit dem <code>a</code> Tag gelten noch zusätzliche Regeln,
+siehe weiter Unten.)</p>
+
+</div>
+<div class="slide">
+
+<h2 id="links-formatieren">Links formatieren</h2>
+
+<p>Der Browser unterscheidet bei der Darstellugn von Links zwischen denen  die schon einmal besucht wurden (visited) und neuen Links (link).</p>
+
+<p>Die Default Einstellung der Browser entspricht ungefähr folgendem CSS:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+  a:any-link { text-decoration: underline; }
+  a:link    { color:blue; }
+  a:visited { color:#FF00FF; }
+</pre></div>
+
+<p>Achtung: <code>:any-link</code> ist noch experimentell, und wird (im Herbst 2019) von
+Internet Explorer und Edge noch nicht akzeptiert. Siehe <a href="https://caniuse.com/#search=%3Aany-link">caniuse</a>.</p>
+
+<p>Für Internet Explorer und Edge müsste man also schreiben:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+  a:link, a:visited { text-decoration: underline; }
+  a:link    { color:blue; }
+  a:visited { color:#FF00FF; }
+</pre></div>
+
+</div>
+<div class="slide">
+
+
+
+<p>Im folgenden Beispiel werden die Links mit einem Icon markiert:</p>
+
+<div class="example">
+<pre class="lang-css prettyprint linenums">
+  a:link, a:visited {
+     background-image:    url(icon-link.gif);
+     background-position: center right;
+     background-repeat:   no-repeat;
+     padding-right:       9px;
+  }
+</pre></div>
+
+<p><a href="/images/css/link-icon.html">Demo</a></p>
+
+</div>
+<div class="slide">
+
+<h3 id="interaktion">Interaktion</h3>
+
+<p>Die Pseudo-Klassen <code>:hover</code> und <code>:active</code> gelten  bevor ein Link wirklich geladen wird:
+<code>:hover</code> schlägt an wenn die Maus sich über dem Element befindet. Danache 
+wird <code>:active</code> wirksam, wenn der Link wirklich mit Klick oder Touch ausgelöst wird:</p>
+
+<p><a href="/images/css/hover-active.html">Demo</a></p>
+
+</div>
+<div class="slide">
+
+<h2 id="und-noch-viel-mehr">Und noch viel mehr</h2>
+
+<p>Im Kapitel <a href="/css-layout/selektoren/">CSS Selektoren im Detail</a> geht es weiter.</p>
+</div>
+    <div class="slide">
+      <h1>CSS Selektoren</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/css/css-sprites//slide.html">CSS Sprites</a> | 
+        <a href="/css/basic-selectors/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/css-layout//slide.html">CSS - Layout</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

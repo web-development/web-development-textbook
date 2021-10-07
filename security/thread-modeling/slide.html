@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>Threat Modeling - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>Threat Modeling</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/security//slide.html">Web Security</a> | 
+        <a href="/security/thread-modeling/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/security/a1-injection//slide.html">A1 - Injection</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Für verschiedene Situationen gibt es verschiedene Threat Models,
+wie in diesem <a href="https://twitter.com/hvcco/status/1364104368228859906">tweet</a> von
+Nik gezeigt:</p>
+
+<p><img src="/images/security/threat-model-endoscopy.jpg" srcset="/images/security/threat-model-endoscopy@2x.jpg 2x, /images/security/threat-model-endoscopy.jpg 1x"  alt="Tweet &quot;Your threat model is not my threat model, hospital edition&quot;" ></p>
+
+<p>Die Gefahr, dass der Snack-Automat mit Endoskopie-Geräten attackiert wird, ist
+wohl nur in einem Krankenhaus gegeben, nicht aber in einer Schule oder einem Büro.</p>
+
+<p>Zuerst betrachten wir zwei Schritte aus der Definition von <a href="https://owasp.org/www-community/Threat_Modeling">Threat Modeling</a> der OWASP:</p>
+
+</div>
+<div class="slide">
+
+<h2 id="assessment-scope">Assessment Scope</h2>
+
+<blockquote>
+  <p>Assessment Scope - The first step is always to understand what’s on the line. Identifying tangible
+assets, like databases of information or sensitive files is usually easy. Understanding the
+capabilities provided by the application and valuing them is more difficult. Less concrete things, such
+as reputation and goodwill are the most difficult to measure, but are often the most critical.</p>
+</blockquote>
+
+<p>Ein Beispiel als Diagram:</p>
+
+<p><img src="/images/security/cryptowallet.vsdx.svg"  alt="Beispiel Threat Model Diagramm aus dem Threat Modeling Cookbook" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="identify-threat-agents-and-possible-attacks">Identify Threat Agents and Possible Attacks</h2>
+
+<blockquote>
+  <p>Identify Threat Agents and Possible Attacks - A key part of the threat model is a characterization of
+the different groups of people who might be able to attack your application. These groups should
+include insiders and outsiders, performing both inadvertent mistakes and malicious attacks.</p>
+</blockquote>
+
+<p>Hier kann man ein Attack Tree einsetzen:</p>
+
+<p><img src="/images/security/cryptowallet.plantuml.svg"  alt="Beispiel plantuml Diagramm aus dem Threat Modeling Cookbook" ></p>
+
+</div>
+<div class="slide">
+
+<h2 id="weitere-quellen">Weitere Quellen</h2>
+
+<ul>
+  <li>Beispiele aus dem <a href="https://github.com/OWASP/threat-model-cookbook/blob/master/INDEX.md">OWASP Threat Model Cookbook</a></li>
+  <li>Bruce Schneier: <a href="https://www.schneier.com/academic/archives/1999/12/attack_trees.html#rf1">Attack Tree</a></li>
+  <li>Wikipedia <a href="https://en.wikipedia.org/wiki/Threat_model#Visual_representations_based_on_data_flow_diagrams">Threat Model</a></li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>Threat Modeling</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/security//slide.html">Web Security</a> | 
+        <a href="/security/thread-modeling/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/security/a1-injection//slide.html">A1 - Injection</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

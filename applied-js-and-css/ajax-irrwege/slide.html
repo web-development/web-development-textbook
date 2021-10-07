@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="de" style="background-color: #cff0f1;">
+  <head>
+    <meta charset="utf-8" />
+    <title>AJAX Irrwege - als Präsentation</title>
+    <meta name="viewport" content="width=1024, user-scalable=no" />
+
+    <!-- Replace path with correct path to deck.core.css. -->
+    <link rel="stylesheet" href="/assets/css/deck.core.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/css/style-theme.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/transition-theme.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="/assets/css/deck.goto.css" />
+    <link rel="stylesheet" href="/assets/css/deck.status.css" />
+    <link rel="stylesheet" href="/assets/css/deck.hash.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <style>
+      /* google code prettify */
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: inherit !important;
+      }
+      li.L1,
+      li.L3,
+      li.L5,
+      li.L7,
+      li.L9 {
+        background: none repeat scroll 0 0 #eefeee;
+      }
+      ol.linenums {
+        margin-left: 80px !important;
+      }
+
+      /* deck */
+      h4.caption {
+        color: #999999;
+      }
+      h4.caption small {
+        color: black;
+      }
+      table.table-bordered {
+        border-collapse: separate;
+      }
+      table.table-bordered td,
+      table.table-bordered th {
+        border: 2px white solid;
+        padding: 2px;
+      }
+
+      .slide img[src$="svg"] {
+        width: 100%;
+      }
+    </style>
+
+    <!-- Any other extension CSS files go here. -->
+
+    <!-- Replace path with correct path to Modernizr file. -->
+    <script src="/assets/js/modernizr.custom.js"></script>
+  </head>
+  <body class="deck-container">
+    <!-- Create any number of elements with class slide within the container -->
+    <div class="slide">
+      <h1>AJAX Irrwege</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/applied-js-and-css/ajax//slide.html">AJAX</a> | 
+        <a href="/applied-js-and-css/ajax-irrwege/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/applied-js-and-css/cors//slide.html">CORS</a>
+        
+      </p>
+    </div>
+    <div class="slide">
+<p>Wie im vorigen Kapitel gelernt ist AJAX die englische Abkürzung für „Asynchrones
+Javascript und XML“. Mit AJAX kann man Webseiten verbessern – man kann sie aber
+auch verschlechtern.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="ajax-statt-links---die-idee">AJAX statt Links - die Idee</h2>
+
+<p>Stellen Sie sich vor Sie haben eine Website mit 5 statischen HTML-Seiten, die
+durch einfache Links verbunden sind.</p>
+
+<p><a href="/images/ajax-good/">Demo Seite</a></p>
+
+<p>Wenn man AJAX kennen lernt, kommt man vielleicht
+auf die Idee: statt normaler Links lädt man die neue Seite nur noch mit AJAX und ersetzt dann den Inhalt der aktuellen Seite. Was spricht dafür?</p>
+
+<ul>
+  <li>Keine Code-Wiederholung: head, footer muss nur einmal, in der erste Seite, gespeichert werden</li>
+  <li>die einzelnen Seite wir kleiner, das Laden der Seite entsprechend schneller</li>
+  <li>es entfällt das erneute checken/laden von CSS und Javascript Ressourcen.</li>
+</ul>
+
+</div>
+<div class="slide">
+
+<h2 id="beispiel">Beispiel</h2>
+
+<p>Nun surfen wir durch diese Site und beobachten in den Developer Tools welche http-Requests
+gemacht werden: <a href="/images/ajax-bad/">Demo Seite</a></p>
+
+<p><img src="/images/ajax-bad.png" srcset="/images/ajax-bad@2x.png 2x, /images/ajax-bad.png 1x"  alt="AJAX statt normaler Links - in den developer tools" ></p>
+
+<p>Beim Anklicken des „Links“ wird jeweils ein GET
+Request abgesetzt. Aber: die URL in der Adresszeile des Browsers bleibt immer
+gleich. Keine der „Seiten“ hat eine eigene URL.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="keine-url-viele-probleme">Keine URL, viele Probleme</h2>
+
+<p>Das hat viele Auswirkungen, unter anderem:</p>
+
+<ul>
+  <li>Man kann keinen Link zu einer bestimmten Seite setzen – nur zur „Startseite“</li>
+  <li>Man kann kein Lesezeichen (Bookmark, Favoriten) auf eine bestimmte Seite setzen</li>
+  <li>Google „sieht“ den Text der einzelnen Seite zwar, aber kann immer nur auf das Deckblatt verweisen.</li>
+</ul>
+
+<p>Vergleicht man Vor- und Nachteile sieht man schnell, dass in diesem Fall die
+Version ohne AJAX (ganz normale Links) besser wäre.</p>
+
+</div>
+<div class="slide">
+
+<h2 id="single-page-apps">Single Page Apps</h2>
+
+<p>Um das Problem der “fehlendes URLs” zu lösen gibt es in der
+“History API” die Methoden <code>pushState</code> und <code>replaceState</code>.</p>
+
+<p>Damit kann man für die verschiedenen Zustände innerhalb ein und deselben
+HTML Dokuments jeweis eine URL definieren. Damit funktionieren das
+verlinken, Lesezeichen setzen, u.s.w. wieder.</p>
+
+<p>Webseite die Javascript und pushState in dieser Weise nutzen nennt
+man “Single Page Apps” (SPA).</p>
+
+</div>
+<div class="slide">
+
+<h2 id="siehe-auch">Siehe auch</h2>
+
+<ul>
+  <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#the-history-interface">HTML5 History API</a></li>
+  <li><a href="https://www.frontendjournal.com/html5-pushstate-and-single-page-apps/">HTML5 pushState and Single-Page apps</a></li>
+  <li><a href="https://visionmedia.github.io/page.js/">page.js</a> eine Library die die Verwendung von der History API einfach macht</li>
+</ul>
+</div>
+    <div class="slide">
+      <h1>AJAX Irrwege</h1>
+      <p>
+          vorige Präsentation:
+        <a href="/applied-js-and-css/ajax//slide.html">AJAX</a> | 
+        <a href="/applied-js-and-css/ajax-irrwege/"
+          >zurück zum Buch-Kapitel [esc]</a
+        >
+         
+        | Nächste Präsentation
+        <a href="/applied-js-and-css/cors//slide.html">CORS</a>
+        
+      </p>
+    </div>
+
+    <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+    <!-- deck.status snippet -->
+    <p class="deck-status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.hash snippet -->
+    <a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+    <!-- Update these paths to point to the correct files. -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/deck.core.js"></script>
+    <script src="/assets/js/deck.hash.js"></script>
+    <script src="/assets/js/deck.goto.js"></script>
+    <script src="/assets/js/deck.status.js"></script>
+
+    <!-- Add any other extension JS files here -->
+    <script src="/assets/js/deck.escape.js"></script>
+    <script src="/assets/js/deck.fullscreen.js"></script>
+
+    <!-- Initialize the deck. You can put this in an external file if desired. -->
+    <script>
+      $(function() {
+        $.deck(".slide");
+      });
+    </script>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 pages:
   tags:
-    - ruby:2.7.1
+    - ruby-2-7
   stage: deploy
   script:
     - sudo apt-get install libcurl4 libcurl3-gnutls libcurl4-openssl-dev  

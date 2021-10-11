@@ -11,7 +11,7 @@ Schon bisher wurden die Elemente unserer Webseite
 auf eine bestimmte Weise angeordnet: nach dem "normal flow" (siehe [MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Normal_Flow)):
 
 Alle Block-Bildendenden Tags erzeugen eine achsenparallelle Box,
-deren Größe wir mit `width`, `padding`, `border` und `margin``
+deren Größe wir mit `width`, `padding`, `border` und `margin`
 beeinflussen können.
 
 Nicht-Blockbildente Elemente werden von links nach rechts auf Zeilen
@@ -66,7 +66,7 @@ linksbündig, rechtsbündig, zentriert, mit Platz dazwischen oder Platz rundum.
 }
 </css>
 
-Siehe [justify-content](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#article-header-id-6)
+Siehe [justify-content](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#justify-content)
 
 Oder die Elemente können sich ausdehnen, um den Platz einzunehmen:
 
@@ -77,7 +77,7 @@ Oder die Elemente können sich ausdehnen, um den Platz einzunehmen:
 }
 </css>
 
-Siehe [flex-grow](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#article-header-id-10)
+Siehe [flex-grow](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#flex-grow)
 
 ### Wrap
 

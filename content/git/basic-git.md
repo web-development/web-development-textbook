@@ -63,6 +63,6 @@ Damit habe ich meine Änderungen im lokalen Repository gespeichert.
 
 Nun kann ich das nächste Arbeitspaket angehen. Wenn ich einige Arbeitspakete erledigt habe und meine Ergebnisse veröffentlichen will (egal ob in einem kleinen Team, oder auf github für die ganze Welt) führe ich einen push auf ein remote repository durch:
 
-    git push origin master
+    git push origin main
 
-Das erste Argument „origin“ ist der Name des remote Repositories, das zweite Argument ist der Branch der gepushed werden soll. Sie werden in diesem Semester immer nur mit einem remote repository und mit dem Branch master arbeiten.
+Das erste Argument „origin“ ist der Name des remote Repositories, das zweite Argument ist der Branch der gepushed werden soll. Sie werden in diesem Semester immer nur mit einem remote repository und mit dem Branch main arbeiten.

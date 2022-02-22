@@ -17,7 +17,7 @@ oder auf verschiedenen macht für die Programmierung kaum einen Unterschied.
 Datenbank-Schnittstellen
 ------------------
 
-Um von PHP auf die Datenbank zuzugreifen gibt es verschiedene Schnittstellen. 
+Um von PHP auf die Datenbank zuzugreifen gibt es verschiedene Schnittstellen.
 Hier werden die „PHP Database Objects“ (PDO) vorgestellt, siehe auch
 [PDO Dokumentation](http://php.net/manual/de/book.pdo.php).
 
@@ -27,13 +27,13 @@ So funktioniert der Verbindung-Aufbau (und -Abbau) zur postgres-Datenbank:
 
 <php caption="new PDO für den Verbindungs-Aufbau">
 $dbh = new PDO($DSN, $DB_USER, $DB_PASS);
-</php> 
+</php>
 
 Der Rückgabewert ist ein sogenanntes "Datenbank-Handle".
 Das zweite und dritte Argument sind einfach Strings mit
 dem Usernamen und Passwort für die Datenbank.
 
-Das erste Argument wird in der [Dokumentation](http://www.php.net/manual/en/pdo.construct.php) 
+Das erste Argument wird in der [Dokumentation](http://www.php.net/manual/en/pdo.construct.php)
 als "Data Source Name" bezeichnet und enthält mehrere Informationen, die in
 einen String gepackt werden.
 
@@ -53,31 +53,31 @@ Hier eine konkrete Implementierung des Verbindungs-Aufbaus:
 <php caption="Verbindungs-Aufbau">
 include "config.php";
 $dbh = new PDO($DSN, $DB_USER, $DB_PASS);
-</php> 
+</php>
 
 Hier werden die Argumente für `new PDO` in der Datei `config.php` gesetzt,
 die zuvor inkludiert wird.  Warum?
 
-### Datenbank-Zugangsdaten 
+### Datenbank-Zugangsdaten
 
 So sieht die Datei `config.php` aus:
 
 <php caption="Zugangsdaten für die Datenbank">
-$DB_NAME = "portfolio_playground"; 
-$DB_USER = "mmtuser"; 
+$DB_NAME = "portfolio_playground";
+$DB_USER = "mmtuser";
 $DB_PASS = "****";
 $DSN     = "pgsql:dbname=$DB_NAME;host=localhost";
 </php>
 
 Warum zwei Dateien?  Weil wir die Zugangsdaten (Username, Passwort)
-niemals, niemals, niemals in git speichern wollen!  
+niemals, niemals, niemals in git speichern wollen!
 wir wollen den Code im Repository vielleicht
-veröffentlichen und die Zugangsdaten weiter geheimhalten.  
+veröffentlichen und die Zugangsdaten weiter geheimhalten.
 
 ### .gitignore
 
 Um zu verhindern, dass die Datei `config.php` in git committed werden kann,
-wird der Dateiname in die Datei `.gitignore` eingetragen. 
+wird der Dateiname in die Datei `.gitignore` eingetragen.
 `.gitignore` ist einfach eine Text-Datei im Hauptverzeichnis der Working Copy.
 
 §
@@ -87,8 +87,8 @@ zeigt der Vorher / Nachher-Vergleich am besten:
 
     D:\Webprojekte\wp2>git status
 
-    # On branch master
-    # Your branch is ahead of 'origin/master' by 2 commits.
+    # On branch main
+    # Your branch is ahead of 'origin/main' by 2 commits.
     #
     # Untracked files:
     #   (use "git add <file>..." to include in what will be committed)
@@ -96,7 +96,7 @@ zeigt der Vorher / Nachher-Vergleich am besten:
     #       config.php
     nothing added to commit but untracked files present (use "git add" to track)
 
-Hier erkennt git die datei `config.php` als neue Datei, die wir in Zukunft vielleicht mit `git add` hinzufügen wollen. 
+Hier erkennt git die datei `config.php` als neue Datei, die wir in Zukunft vielleicht mit `git add` hinzufügen wollen.
 
 §
 
@@ -107,15 +107,15 @@ Ein Check ob es funktioniert hat:
     *.bak
     config.php
 
-Damit ist git angewiesen, alle Dateien mit der Endung `.bak` und alle Dateien mit dem Namen 
-`config.php` (egal in welchem Ordner) zu ignorieren. 
+Damit ist git angewiesen, alle Dateien mit der Endung `.bak` und alle Dateien mit dem Namen
+`config.php` (egal in welchem Ordner) zu ignorieren.
 
 §
 
     D:\Webprojekte\wp2>git status
 
-    # On branch master
-    # Your branch is ahead of 'origin/master' by 2 commits.
+    # On branch main
+    # Your branch is ahead of 'origin/main' by 2 commits.
     #
     # Changed but not updated:
     #   (use "git add <file>..." to update what will be committed)
@@ -125,8 +125,8 @@ Damit ist git angewiesen, alle Dateien mit der Endung `.bak` und alle Dateien mi
     #
     no changes added to commit (use "git add" and/or "git commit -a")
 
-Wie man sieht zeigt `git status` nun die Datei `config.php` nicht mehr an. 
-Dafür hat git bemerkt dass die Datei `.gitignore` geändert wurde. 
+Wie man sieht zeigt `git status` nun die Datei `config.php` nicht mehr an.
+Dafür hat git bemerkt dass die Datei `.gitignore` geändert wurde.
 Die sollte man ganz normal committen.
 
 ### Empfohlene Optionen für den Verbindungsaufbau
@@ -165,7 +165,7 @@ Der Rückgabewert enthält die Anzahl der betroffenen Datensätze.
 
 ### Abfrage der Datenbank
 
-Eine Abfrage aus der Datenbank liefert normalerweise eine ganze Tabelle von Daten (mehrere Datensätze). 
+Eine Abfrage aus der Datenbank liefert normalerweise eine ganze Tabelle von Daten (mehrere Datensätze).
 
 
 Mit der Methode `query`[*](http://www.php.net/manual/en/pdo.query.php)  schickt man die Anfrage an die Datenbank,

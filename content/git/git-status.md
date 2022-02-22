@@ -3,7 +3,7 @@ title: Status von Git abfragen
 order: 40
 ---
 
-Mit dem Befehl `git status` kann man den aktuellen Zustand des lokalen Repositories und der working copy abfragen. 
+Mit dem Befehl `git status` kann man den aktuellen Zustand des lokalen Repositories und der working copy abfragen.
 
 Clean
 ------
@@ -11,7 +11,7 @@ Clean
 Bevor man mit der Arbeit beginnt ist die working copy clean:
 
       D:\Webprojekte\wp2>git status
-      On branch master
+      On branch main
       Initial commit
       nothing to commit (create/copy files and use "git add" to track)
 
@@ -23,7 +23,7 @@ Changed but not updated
 Wenn ich nun zwei Dateien verändere zeigt mir git status das genau an:
 
       D:\Webprojekte\wp2>git status
-      # On branch master
+      # On branch main
       #
       # Changed but not updated:
       #   (use "git add <file>..." to update what will be committed)
@@ -40,7 +40,7 @@ Changes to be commited
 Nach dem git add werden die beiden Dateien als gestaged angezeigt:
 
       D:\Webprojekte\wp2>git status
-      # On branch master
+      # On branch main
       #
       # Changes to be committed:
       #   (use "git reset HEAD <file>..." to unstage)
@@ -49,7 +49,7 @@ Nach dem git add werden die beiden Dateien als gestaged angezeigt:
       #       modified:   form.html
       #
 
-Nach dem Commit ist die working copy wieder clean. 
+Nach dem Commit ist die working copy wieder clean.
 
 git log
 ------

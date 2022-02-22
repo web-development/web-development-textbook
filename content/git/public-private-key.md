@@ -7,51 +7,42 @@ Sie kennen Passwörter als eine Methode, wie Sie sich am Computer "ausweisen" k�
 wie Sie beweisen können, dass Sie die Person sind, die Zugriff auf den Server haben soll.
 
 Für git wird statt eines Passworts meist ein Schlüsselpaar verwendet. Um
-das zu verstehen hier ein kurzer Einblick in 
+das zu verstehen hier ein kurzer Einblick in
 Asymmetrische Kryptosysteme.
 
 
 ## Public Key Cryptography
 
 Klassische Verschlüsselung kennt nur einen Schlüssel: er wird
-zum ver- und zum ent-schlüsseln verwendet.  Das ist eigentlich unpraktisch:
-wenn ich ein problem habe eine lange Botschaft ohne Abhören oder Manipulation von A nach B zu bringen,
+zum ver- und zum ent- schlüsseln verwendet.  Das ist eigentlich unpraktisch:
+wenn ich ein Problem habe eine lange Botschaft ohne Abhören oder Manipulation von A nach B zu bringen,
 und sie deswegen verschlüssle, dann ist mir ja nicht geholfen: jetzt muss ich erst
-den gezeimen Schlüssel sicher (ohne Abhören oder Manipulation) von A nach B bringen. Das Problem
+den geheimen Schlüssel sicher (ohne Abhören oder Manipulation) von A nach B bringen. Das Problem
 hat jetzt einen kleinern Umfang, aber das Grundproblem bleibt bestehen.
+
+§
 
 Bei einem asymmetrischen Verschlüsselungsverfahren gibt es zwei verschiedene
 Schlüssel: einen öffentlichen und einen privaten:
 
-![Ver- und Entschlüsseln](/images/public_key_crypto.svg)
+![Ver- und Entschlüsseln](/images/git/public_key_crypto.svg)
 
 Diese Art der Verschlüsselung wird im Internet z.B. für die Verschlüsselung
 und Signierung von E-Mail mit [GPG](https://de.wikipedia.org/wiki/GNU_Privacy_Guard) verwendet,
-oder für die Authentifizierung beim Login mit [SSH](https://de.wikipedia.org/wiki/Ssh). 
-
-## Authentisierung für SSH mit private und public key
-
-SSH bezeichnet sowohl ein Netzwerkprotokoll als auch entsprechende Programme, 
-mit deren Hilfe man eine verschlüsselte Netzwerkverbindung mit einem entfernten 
-Gerät herstellen kann. Häufig wird diese Methode verwendet, um lokal eine entfernte 
-Kommandozeile verfügbar zu machen, z.B. zur Fernwartung eines in einem entfernten Rechenzentrum stehenden Servers. 
-
-Die Authentisierung kann dabei entweder über ein Passwort oder mit private/public keys erfolgen.
-
-![Authentisierung für SSH mit private/public key](/images/ssh_login_with_public_key.svg)
+oder für die Authentifizierung beim Login mit [SSH](https://de.wikipedia.org/wiki/Ssh).
 
 
-§
+## Schlüsselpaar erzeugen
 
 
 Das "Schüsselpaar" kann man jederzeit selbst erzeugen: mit dem Kommandozeilen-Programm
 ssh-keygen:
 
 <shell caption="Erzeugung eines Schlüsselpaares">
-$ ssh-keygen -t rsa -C "vmustermann.mmt-b2014@fh-salzburg.ac.at"
+$ ssh-keygen -t rsa -C "vmustermann.mmt-b2022@fh-salzburg.ac.at"
 # Erzeugt ein neues Schlüsselpaar, verwendet die E-Mail Adresse in der Beschriftung
 Generating public/private rsa key pair.
-Enter file in which to save the key (/Users/verena/.ssh/id_rsa): 
+Enter file in which to save the key (/Users/verena/.ssh/id_rsa):
 Enter passphrase (empty for no passphrase):
 Your identification has been saved in /Users/verena/.ssh/id_rsa.
 Your public key has been saved in /Users/verena/.ssh/id_rsa.pub.
@@ -73,10 +64,15 @@ The key's randomart image is:
 
 §
 
-
 Das Endergebnis sind zwei Dateien: `id_rsa` enthält den privaten Schlüssel,
-`id_rsa.pub` den öffentlichen Schlüssel.  Beide Schlüssel könnne in einem Text-Editor
-betrachtet werden: der private Schlüssel besteht aus einem großen Text-Block
+`id_rsa.pub` den öffentlichen Schlüssel.
+
+Beide Schlüssel könnne in einem Text-Editor
+betrachtet werden, oder im Text einer E-Mail oder eines Chat verschicket werden.
+
+§
+
+Der private Schlüssel besteht aus einem großen Text-Block
 innerhalb von zwei Zeilen mit vielen Minus-Zeichen:
 
 
@@ -110,18 +106,18 @@ BLzFeSXDV4AkIdRxvganwBIV1FZFQRPfR9miuRUagMkwT6/LLBxhlJE=
 -----END RSA PRIVATE KEY-----
 </plain>
 
+
+§
+
 Der öffentliche Schlüssel bestezt aus einer einzigen Zeile Text, mit
 der E-Mail Adresse am Ende der Zeile:
 
 <plain caption="Beispiel für den dazu gehörigen öffentlichen Schlüssel">
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDLiHnSO+BlxUELiutzVDeijGA9kDvihO1ANcwqQZRIwQlBtn0fNZ8np3cdKmW5KYJzDEju2Rfu/qVGMLPT3G0cWrbVqBMlYnw/Ziqo2l3sF1rfrF/mrw/HxwBhsAqv2w1PxzDpxkEqMZoGpprtqvNwF5COYHWOp7sK0vWdR7FONYhLyK5e6HtCgQJ2Z/TX9LHX2UDMzXDxi1GsFPXkrs73t+YYCs59OBYLjz68iIzGP3Uw8rQtxiKe/F1utjupojhsXv4qi6Il4h/KNXJxcg00BgMCFuP4ibVRgHPVPpWqcggykzPgZr5G1/cCeQhhia1MuS9zrwfkwSivKu3KNlAL vmustermann.mmt-b2014@fh-salzburg.ac.at
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDLiHnSO+BlxUELiutzVDeijGA9kDvihO1ANcwqQZRIwQlBtn0fNZ8np3cdKmW5KYJzDEju2Rfu/qVGMLPT3G0cWrbVqBMlYnw/Ziqo2l3sF1rfrF/mrw/HxwBhsAqv2w1PxzDpxkEqMZoGpprtqvNwF5COYHWOp7sK0vWdR7FONYhLyK5e6HtCgQJ2Z/TX9LHX2UDMzXDxi1GsFPXkrs73t+YYCs59OBYLjz68iIzGP3Uw8rQtxiKe/F1utjupojhsXv4qi6Il4h/KNXJxcg00BgMCFuP4ibVRgHPVPpWqcggykzPgZr5G1/cCeQhhia1MuS9zrwfkwSivKu3KNlAL vmustermann.mmt-b2022@fh-salzburg.ac.at
 </plain>
 
-Um das Einloggen am Server zu ermöglichen muss man den öffentlichen Schlüssel als
-Datei `~/.ssh/authorized_keys` installieren, bzw. falls die Datei schon besteht
-als zusätzliche Zeile an die Datei anfügen.
 
-## Authentisierung für gitlab mit private und public key
+## Authentisierung für git mit private und public key
 
 SSH wird als Übertragungsprotokoll bei der Kommunikations
 mit einem entfernen Git-Repository verwendet. Somit wird
@@ -133,11 +129,20 @@ SSH: der private Key liegt als Datei `.ssh/id_rsa` in Ihrem Homeverzeichnis.
 Die Installation am Server wird mit gitlab etwas anders als bei ssh alleine:
 Sie verwenden die Web-Oberfläche von Gitlab um den Schlüssel hoch zu laden:
 
-![public key hochladen auf gitlab](/images/gitlab-public-key.png)
+![public key hochladen auf gitlab](/images/git/gitlab-ssh-key.png)
 
+
+## Authentisierung für SSH
+
+Mit SSH ("secure shell") kann man einen (verschlüsselte) Verbindung mit einem anderen Computer
+am Internet herstellen um dort mit der Kommandozeile zu arbeiten.
+
+Die Authentisierung kann dabei entweder über ein Passwort oder mit private/public keys erfolgen.
+
+![Authentisierung für SSH mit private/public key](/images/git/ssh_login_with_public_key.svg)
 
 ## Weiterführende Literatur
 
-* [Asymmetrisches Kryptosystem](https://de.wikipedia.org/wiki/Asymmetrisches_Kryptosystem) in der Wikipedia 
-* [Public-key Cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography) in der Englischen Wikipedia 
+* [Asymmetrisches Kryptosystem](https://de.wikipedia.org/wiki/Asymmetrisches_Kryptosystem) in der Wikipedia
+* [Public-key Cryptography](https://en.wikipedia.org/wiki/Public-key_cryptography) in der Englischen Wikipedia
 * [Generating SSH Keys](https://help.github.com/articles/generating-ssh-keys) - englischsprachige Erklärung speziell für github

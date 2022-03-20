@@ -17,7 +17,7 @@ Das local repository befindet sich im Ordner **.git**
 
 Fachbegriffe und wichtigste Aktionen mit git
 
-![Abbildung 141: Fachbegriffe und wichtigste Aktionen mit git](/images/image356.png)
+![Abbildung 141: Fachbegriffe und wichtigste Aktionen mit git](/images/git/git-basic-workflow.png)
 
 §
 

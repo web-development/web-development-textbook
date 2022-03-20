@@ -1,8 +1,8 @@
 .resizable {
-  resize: both; 
-  overflow: scroll; 
-  border: 2px #ddd solid; 
-  padding: 10px; 
+  resize: both;
+  overflow: scroll;
+  border: 2px #ddd solid;
+  padding: 10px;
   position: relative;
 }
 
@@ -20,6 +20,9 @@
   width: auto !important;
 }
 
+.slide img[src$="svg"] {
+  max-height: 80vh;
+}
 .slide .resizable  img {
   display: inline !important;
   margin-bottom: 0 !important;
@@ -39,46 +42,46 @@
   font-variant: small-caps;
 }
 
-#booktitle {  
-  border-bottom: 1px solid #EEEEEE; 
+#booktitle {
+  border-bottom: 1px solid #EEEEEE;
 }
 
-header {  
+header {
   position: fixed;
   background-color: white;
   z-index: 1;
 }
 
-article {  
-  padding-top: 80px; 
+article {
+  padding-top: 80px;
 }
 
-body, p, li, dt, dd {  
-  font-size: 18px; 
-  line-height: 1.5 ; 
-} 
+body, p, li, dt, dd {
+  font-size: 18px;
+  line-height: 1.5 ;
+}
 
 pre {
   font-size: 15px;
-  line-height: 1.5; 
+  line-height: 1.5;
 }
 
 .example.twopane pre {
   width: 42%;
-  float:left; 
+  float:left;
 }
 
 .deck-container div .example.twopane pre {
   font-size: 20px;
 }
 
-pre.left {  
-  border-right: 1px #ddd dashed ; 
+pre.left {
+  border-right: 1px #ddd dashed ;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
-pre.right {  
-  border-left: none; 
+pre.right {
+  border-left: none;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }

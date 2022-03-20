@@ -5,9 +5,9 @@ intro: Sie lernen mit dem Versionskontrollsystem git Ihre Dateien zu verwalten.
 
 ### Was Sie alle wissen sollten
 
-* Dass git ein Beispiel für ein Versionskontrollsystems (Version control system) ist. 
-* Dass mercurial und SVN andere VCSs sind die heute eingesetzt werden. 
-* Dass das git-Repository auf meinem lokalen Entwicklungsrechner im Unter-Ordner .git gespeichert ist 
+* Dass git ein Beispiel für ein Versionskontrollsystems (Version control system) ist.
+* Dass mercurial und SVN andere VCSs sind die heute eingesetzt werden.
+* Dass das git-Repository auf meinem lokalen Entwicklungsrechner im Unter-Ordner `.git` gespeichert ist
 
 nur falls sie mit git über ssh arbeiten:
 
@@ -35,7 +35,7 @@ nur falls sie mit git über ssh arbeiten:
 
 ### Weitere Informationsquellen
 
-* [Git Magic](http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/de/) 
+* [Git Magic](http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/de/)
 * [Das git community book](http://book.git-scm.com/)
 * [Deutsche Referenz zu git](http://weinimo.de/Git-Hilfen/)
 * [A Visual Git Reference](http://marklodato.github.com/visual-git-guide/index-en.html)

@@ -1,6 +1,6 @@
 ---
 title: Git für Zwei
-order: 36
+order: 50
 ---
 
 Wie funktioniert die Arbeit mit git, wenn ich auf zwei
@@ -11,7 +11,7 @@ Computern arbeite?  Oder wenn zwei Personen zusammen arbeiten?
 Git ist ein Verteiltes Versionskontrollsystem. "Verteilt" (distributed) heißt hier:
 Auf mehreren Computer kann eine Version des Repository liegen.
 
-![](/images/git/git-zwei.png)
+![](/images/git/git-zwei-computer.png)
 
 Mit dem Befehlen `push` und `pull` übertragen wir Information zwischen den
 verschiedenen Computern.
@@ -23,20 +23,28 @@ Szenario: ich beginne mein Projekte auf dem Laptop,
 pushe auf ein remote Repository.  Später will ich die Arbeit auf meinem
 PC fortsetzen.
 
-![](/images/git/git-zwei-todo.png)
+![](/images/git/git-zwei-laptop-pc.png)
 
 Wichtige Vorbereitung: auf dem zweiten Computer brauche ich wider meinen
 private key als Datei `~/.ssh/id_rsa`. Und bei ersten Mal hole ich das
 Repository mit `git clone` auf den Computer.
 
+Später brauche ich dann nur noch den Befehl `git pull` um die Daten vom
+remote repository ins local repository zu holen und von dort auch gleich in die
+working copy.
+
 ## Zwei Personen
 
 Szenario: ich arbeit mit Andreas zusammen an einem Projekt.
 
-![](/images/git/git-zwei-todo.png)
+![](/images/git/git-zwei-andreas.png)
 
 Wichtige Vorbereitung: Über die Weboberfläche gitlab gebe ich Andreas
 Zugriffsrechte auf das Remote Repository. (Projekt Information → Mitglieder → grüner Button 'Invite Members' ...). Bei ersten Mal holt  sich Andreas das Repository mit `git clone` auf seinen Computer.
+
+Später braucht er dann nur noch den Befehl `git pull` um die Daten vom
+remote repository ins local repository zu holen und von dort auch gleich in die
+working copy.
 
 ## Zwei Änderungen
 

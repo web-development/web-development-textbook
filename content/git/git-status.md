@@ -1,6 +1,6 @@
 ---
 title: Status von Git abfragen
-order: 40
+order: 35
 ---
 
 Mit dem Befehl `git status` kann man den aktuellen Zustand des lokalen Repositories und der working copy abfragen.

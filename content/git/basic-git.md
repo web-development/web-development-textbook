@@ -1,5 +1,5 @@
 ---
-title: Einfacher Arbeitsablauf in Git
+title: Arbeitsablauf
 order: 30
 ---
 

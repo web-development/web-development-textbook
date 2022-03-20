@@ -1,6 +1,6 @@
 ---
 title: Commit
-order: 33
+order: 40
 ---
 
 Mit `git add` bereiten wir einen Commit vor, mit `git commit` führen wir ihn durch - aber

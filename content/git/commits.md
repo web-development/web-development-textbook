@@ -3,10 +3,8 @@ title: Commit
 order: 33
 ---
 
-
 Mit `git add` bereiten wir einen Commit vor, mit `git commit` führen wir ihn durch - aber
 was ist ein Commit? Wofür verwendet man ihn?
-
 
 ## Chaos
 
@@ -93,8 +91,60 @@ Für den Anfang reichen einige ganz simple Regeln:
 
 Am Anfang der Commit Message kann man den Typ der Änderung bekannt geben, mit folgenden Abkürzungen:
 
-* '''fix:''' ein Fehler wurde behoben, das Programm funktioniert jetzt wieder
-* '''feat:''' ein neues Feature wurde eingebaut, das Programm kann jetzt mehr als vorher
-* '''refactor:''' der Code wurde verbessert, das Programm tut das selbe wie zuvor
+* fix: ein Fehler wurde behoben, das Programm funktioniert jetzt wieder
+* feat: ein neues Feature wurde eingebaut, das Programm kann jetzt mehr als vorher
+* refactor: der Code wurde verbessert, das Programm tut das selbe wie zuvor
+
+## Beispiel: Einfügen
+
+Ich bearbeite eine Webseite. Ich füge eine neue Bilddatei ein und
+verändere das Stylesheet:
+
+§include git/status-1.html
+
+Es gibt also eine neue Datei und zwei Veränderungen in meinem Projekt.
+Ich teste die Webeseite nochmal im Browser, um sicher zu stellen,
+dass das Projekt in einem guten Zustand ist und keine Errors enthält.
+
+§
+
+Diese drei Änderungen packe ich zusammen in einen Commit:
+
+§include git/status-2.html
+
+
+## Beispiel: Löschen
+
+Ich will ein Bild aus der Webseite entfernen. Zuerst entferne ich den `img` Tag
+aus der HTML Datei, danach ist der Status so:
+
+§include git/status-rm-1.html
+
+§
+
+Dann lösche ich die Bilddatei selbst mit dem Befehl `git rm` - damit
+wird die Datei aus der Working copy gelöscht, und der lösch-Befehl gestaged. Danach ist der Status so:
+
+§include git/status-rm-2.html
+
+§
+
+Nun kann ich den Commit abschließen:
+
+§include git/status-rm-3.html
+
+Ist die Datei damit auch auf dem Remote Repository gelöscht? Nein!
+
+§
+
+Damit das Remote Repository auch erfährt, dass die Datei gelöscht wurde
+muss ich erst Pushen:
+
+§include git/status-rm-4.html
+
+## Siehe auch
+
+* [Dateien Löschen](https://git-scm.com/book/de/v2/Git-Grundlagen-%C3%84nderungen-nachverfolgen-und-im-Repository-speichern#_removing_files) - Kapitel  im [Pro Git Buch](https://git-scm.com/book/de/v2)
+* [Conventional Commits](https://www.conventionalcommits.org/)
 
 

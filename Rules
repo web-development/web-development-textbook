@@ -50,7 +50,7 @@ class Nanoc3::Filter
     def srcset(file)
       pattern = "content" + file.gsub('.', '*.')
       files = Dir.glob(pattern)
-      set = files.map do |filename| 
+      set = files.map do |filename|
         if match = filename.match(/@(\d)x/)
           "#{filename.gsub('content','')} #{match[1]}x"
         else
@@ -68,7 +68,7 @@ class Nanoc3::Filter
       return unless match
       @string = match.post_match
       match
-    end    
+    end
   end
 
   class Peek < Nanoc3::Filter
@@ -107,7 +107,7 @@ class Nanoc3::Filter
         i += 1
         if match[0] =~ /§/ then
           # discard match
-        else 
+        else
           @output << match[0]
         end
       end # untile @string.empty?
@@ -146,7 +146,7 @@ class Nanoc3::Filter
         if match[0] =~ /§/ then
           #puts "ignore #{match[0]}"
           # discard match
-        else 
+        else
           @output << match[0]
         end
       end
@@ -196,7 +196,7 @@ class Nanoc3::Filter
     end
 
     def u_esc(s)
-      URI.escape(s).gsub(/\+/, '%2B').gsub(/\[/, '%5B').gsub(/\]/, '%5D')
+      CGI.escape(s).gsub(/\+/, '%2B').gsub(/\[/, '%5B').gsub(/\]/, '%5D')
     end
 
     def replace_with_link(name, pattern)
@@ -269,16 +269,16 @@ class Nanoc3::Filter
           @output << %{<div class="example twopane">\n}
           @output << %{<div class="filename">#{filename}</div>\n} if filename
           @output << %{<h4 class="caption">#{replace.capitalize} Code <small>#{caption}</small></h4>\n} if caption
-          @output << %{<pre class="lang-#{replace} prettyprint linenums left">} 
+          @output << %{<pre class="lang-#{replace} prettyprint linenums left">}
           @output << CGI.escapeHTML(code1) << %{</pre>}
-          @output << %{<pre class="lang-#{replace} prettyprint linenums right">} 
+          @output << %{<pre class="lang-#{replace} prettyprint linenums right">}
           @output << CGI.escapeHTML(code2) << %{</pre>}
           @output << %{<div class="clearfix"></div></div>\n}
-        else 
+        else
           @output << %{<div class="example">\n}
           @output << %{<div class="filename">#{filename}</div>\n} if filename
           @output << %{<h4 class="caption">#{replace.capitalize} Code <small>#{caption}</small></h4>\n} if caption
-          @output << %{<pre class="lang-#{replace} prettyprint linenums">} 
+          @output << %{<pre class="lang-#{replace} prettyprint linenums">}
           @output << CGI.escapeHTML(code) << %{</pre>}
           @output << %{</div>\n}
         end
@@ -303,17 +303,17 @@ Nanoc3::Filter.register '::Nanoc3::Filter::ResponsiveImages', :responsive_images
 preprocess do
   @chapterOrder = [
     "das-web-und-html",
-    "css", 
-    "css-layout", 
+    "css",
+    "css-layout",
     "urls",
-    "formulare", 
-    "javascript-dom", 
-    "jquery", 
+    "formulare",
+    "javascript-dom",
+    "jquery",
     "---",
-    "kommandozeile", 
-    "git", 
-    "http", 
-    "php-vorbereitung", 
+    "kommandozeile",
+    "git",
+    "http",
+    "php-vorbereitung",
     "php",
     "php-db-lesen",
     "session",
@@ -326,11 +326,11 @@ preprocess do
     "json",
     "xml",
     "---",
-    "security",    
-    "wordpress",    
-    "apache", 
+    "security",
+    "wordpress",
+    "apache",
     "advanced-javascript",
-    "mobile",    
+    "mobile",
     "qualitaet"
   ]
 
@@ -341,7 +341,7 @@ preprocess do
   }
 
   @items.each do |item|
-    item[:chapter] = item[:filename].split('/')[1] 
+    item[:chapter] = item[:filename].split('/')[1]
     item[:chapter_title] = item[:chapter].gsub(/-/, " ").gsub(/Qualitaet/, 'Qualität')   # .upcase
     item[:github] = "bjelline"
   end
@@ -359,9 +359,9 @@ preprocess do
 
   last_folder = 0
   @chapterOrder.each do |folder|
-    if folder == "---" then 
+    if folder == "---" then
       @chapters[ last_folder ][ :separator ] = true
-    else 
+    else
       myitems = @groupedItems[ folder ]
       @chapters[ folder ] = {}
       if ! @groupedItems[folder].nil? then
@@ -376,7 +376,7 @@ preprocess do
     end
     last_folder=folder
   end
-  
+
   @items.each do |item|
     i = item[:ordinal_index] = @orderedItems.index(item)
     if i
@@ -415,8 +415,9 @@ end
 
 compile '*' do
   # filter :noslides
-  filter :pattern_tester
   filter :code_blocks
+  filter :kramdown
+  filter :pattern_tester
   filter filters[item[:extension].to_sym] || item[:extension].to_sym
   if item[:homepage]
     layout 'home'
@@ -428,6 +429,7 @@ compile '*' do
     filter :responsive_images
     layout 'default'
   end
+  filter :includes
 end
 
 route '*' do
@@ -463,10 +465,11 @@ compile '*', :rep => :slide do
   filter :slides
   if item[:homepage]
     # noop
-#  elsif item.identifier.match /\/dex\/$/
+    #  elsif item.identifier.match /\/dex\/$/
   else
     layout 'slide'
   end
+  filter :includes
 end
 
 route '*', :rep => :slide do

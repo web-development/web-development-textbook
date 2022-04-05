@@ -1,1 +1,2 @@
-alert("foo");
+function calculateDaysBetweenDates(begin, end) {
+}

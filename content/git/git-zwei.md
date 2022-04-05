@@ -84,6 +84,32 @@ bearbeiten kann.
 §include git/pull-to-push.html
 
 
+## Die Merge Nachricht schreiben
+
+
+## Merge Konflikt erkennen
+
+In diesem Beispiel tritt nach dem Pull ein Merge Konflikt auf.
+Welche Dateien sind betroffen?
+
+§include git/merge-conflict.html
+
+Antwort: nur eine Datei, `2/index.html` ist betroffen.
+
+## Merge Konflikt in der Datei
+
+Was macht git mit den beiden verschiedenen Versionen einer Datei?
+
+Es speichert beide Versionen in der Datei und fügt zusätzliche Zeilen ein: mit kleiner-Zeichen, mit gleich-Zeichen und mit größer-Zeichen (die Farben sind nur zur Orientierung hinzugefügt.)
+
+§include git/merge-conflict-2.html
+
+Achtung! Damit ist die Datei
+erst einmal kaputt: compiliert nicht mehr, wird vom Browser nicht mehr korrekt angzeigt,
+ist kein valides HTML mehr, ...
+
+
+
 
 
 

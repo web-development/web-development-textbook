@@ -12,17 +12,16 @@ Bild und Video einfach zu arbeiten
 
 Das Paket enthält mehrere spearate Befehle:
 
-- `identify` zum anzeigen des Typs und der Dimensionen von Bildern
-- `mogrify` zum Verändern einer Bild-Datei "in place" - das Original wird also überschrieben
-- `convert` zum Verändern des Typs
-- `montage` zum Zusammenstellen von Collagen aus mehreren Bildern.
+- `magick` zum Verändern einer Bild-Datei
+- `magick identify` zum anzeigen des Typs und der Dimensionen von Bildern
+- `magick montage` zum Zusammenstellen von Collagen aus mehreren Bildern.
 
 ### Bilder identifizieren
 
-Der Befehl `identify` zeigt den typ und die wichtigsten Eckdaten eines Bildes an:
+Der Befehl `magick identify` zeigt den typ und die wichtigsten Eckdaten eines Bildes an:
 
 <shell>
-$ identify *
+$ magick identify *
 teletype.jpg JPEG 1600x1200 1600x1200+0+0 8-bit sRGB 189649B 0.000u 0:00.000
 terminal-pwd.png PNG 336x128 336x128+0+0 8-bit sRGB 14051B 0.000u 0:00.000
 terminal.png PNG 848x552 848x552+0+0 8-bit sRGB 171623B 0.000u 0:00.000
@@ -33,7 +32,7 @@ tinymce@2x.png PNG 1534x428 1534x428+0+0 8-bit sRGB 44612B 0.000u 0:00.000
 Bei gif-Animationen werden die einzelnen Frames angezeigt:
 
 <shell>
-$ identify drag-and-drop-upload.gif
+$ magick identify drag-and-drop-upload.gif
 drag-and-drop-upload.gif[0] GIF 600x206 600x206+0+0 8-bit sRGB 256c 0.000u 0:00.002
 drag-and-drop-upload.gif[1] GIF 600x206 600x206+0+0 8-bit sRGB 256c 0.000u 0:00.002
 ...
@@ -48,9 +47,9 @@ So erzeugt der Mac alle Bildschirmphotos als pngs.
 Manche profitieren durch die jpg-Komprimierung:
 
 <shell>
-$ convert Bildschirmfoto.png Bildschirmfoto.jpg
-$ convert Bildschirmfoto.png Bildschirmfoto.webp
-$ identify Bildschirmfoto.*
+$ magick Bildschirmfoto.png Bildschirmfoto.jpg
+$ magick Bildschirmfoto.png Bildschirmfoto.webp
+$ magick identify Bildschirmfoto.*
 Bildschirmfoto.jpg JPEG 2880x1800 2880x1800+0+0 8-bit sRGB 656908B 0.000u 0:00.000
 Bildschirmfoto.png PNG 2880x1800 2880x1800+0+0 8-bit sRGB 1.73215MiB 0.000u 0:00.000
 Bildschirmfoto.webp WEBP 2880x1800 2880x1800+0+0 8-bit sRGB 182964B 0.070u 0:00.064
@@ -67,17 +66,17 @@ Ein Faktor 10 Kompression zahlt sich auf jeden Fall aus!
 Oft erhält man Photos mit sehr hoher Auflösung:
 
 <shell>
-$ identify Hochzeit.jpg
+$ magick identify Hochzeit.jpg
 Hochzeit.jpg JPEG 5760x3840 5760x3840+0+0 8-bit sRGB 18.2662MiB 0.000u 0:00.005
 </shell>
 
 Aus diesem Bild kann man kleinere Varianten erzeugen
 
 <shell>
-$ convert -geometry 2400x Hochzeit.jpg hochzeit_2400.jpg
-$ convert -geometry 1200x Hochzeit.jpg hochzeit_1200.jpg
-$ convert -geometry 800x Hochzeit.jpg hochzeit_800.jpg
-$ identify hochzeit_*
+$ magick Hochzeit.jpg -geometry 2400x hochzeit_2400.jpg
+$ magick Hochzeit.jpg -geometry 1200x hochzeit_1200.jpg
+$ magick Hochzeit.jpg -geometry 800x  hochzeit_800.jpg
+$ magick identify hochzeit_*
 hochzeit_1200.jpg JPEG 1200x800 1200x800+0+0 8-bit sRGB 1.06958MiB 0.000u 0:00.003
 hochzeit_2400.jpg JPEG 2400x1600 2400x1600+0+0 8-bit sRGB 4076950B 0.000u 0:00.000
 hochzeit_800.jpg JPEG 800x533 800x533+0+0 8-bit sRGB 555496B 0.000u 0:00.000
@@ -90,7 +89,7 @@ Aus mehreren Standbildern - in diesem Beispiel mehreren png-dateien
 kann imagemagic ein animiertes gif machen:
 
 <shell>
-convert -delay 7 -loop 0 -alpha set -dispose previous *.png sprite.gif
+magick *.png -delay 7 -loop 0 -alpha set -dispose previous  sprite.gif
 </shell>
 
 ### Collagen
@@ -98,26 +97,26 @@ convert -delay 7 -loop 0 -alpha set -dispose previous *.png sprite.gif
 Mehrere Bilder nebeneinander zusammenfügen:
 
 <shell>
-convert left.jpg right.jpg +append side_by_side.jpg
+magick left.jpg right.jpg +append side_by_side.jpg
 </shell>
 
 Mehrere Bilder untereinander zusammenfügen:
 
 <shell>
-convert top.jpg bottom.jpg -append above_and_below.jpg
+magick top.jpg bottom.jpg -append above_and_below.jpg
 </shell>
 
 ### Meta-Information über Rotation entfernen
 
 Handy-Photos können Information über die Orientierung
 des Bildes enhalten.  Falls die Kamera am Kopf steht wenn
-man das Bild macht, dann wird im Bild gespeichert dass es um 180° 
+man das Bild macht, dann wird im Bild gespeichert dass es um 180°
 gedreht angezeigt werden soll.  Das fukntioniert aber nicht immer.
 
 Folgender Befehl rückt das Bild gerade und entfernt die Meta-Information:
 
 <shell>
-convert IMG_20180830_110737.jpg -auto-orient -strip aufrecht.jpg
+magick IMG_20180830_110737.jpg -auto-orient -strip aufrecht.jpg
 </shell>
 
 ### Mehr über image magick

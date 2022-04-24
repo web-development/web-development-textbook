@@ -45,7 +45,7 @@ auf eine Variable zugewiesen werden:
     return result;
   }
 
-  r2 = function ( s, x ) {
+  let r2 = function ( s, x ) {
     let result = "";
     while( x ) {
       result += s;
@@ -61,7 +61,7 @@ auf eine Variable zugewiesen werden:
 
 §
 
-Seit Javascript 2015 gibt es doch eine weitere Schreibweise für anonyme 
+Seit Javascript 2015 gibt es doch eine weitere Schreibweise für anonyme
 Funktionen: die Arrow Function
 
 <javascript caption="Arrow Function">
@@ -75,7 +75,7 @@ Funktionen: die Arrow Function
   }
 </javascript>
 
-Wenn die Funktion nur eine einzige Expression enthält wird die Schreibweise noch kürzer:
+Wenn die Funktion nur eine einzige Expression enthält wird die Schreibweise noch kürzer, man braucht gar kein `return` mehr:
 
 <javascript caption="Arrow Function">
   let f2 = ( s, x ) => s + " mal " + x;
@@ -98,22 +98,22 @@ Teile von Objekten oder Arrays definieren:
   objekt = {
     prop1 : "Schokolade",
     prop2 : 42,
-    method_1 : function () {  console.log( "method 1" ); },
-    method_2 : x => `${x} ist das beste`
+    method_1 : function (x) { return `${x} ist schlecht` },
+    method_2 : x => `${x} ist gut`
   }
 </javascript>
 
 Die beiden Methoden kann man ganz normal aufrufen:
 
 <javascript caption="Methoden aufrufen">
-objekt.method_1();
+objekt.method_1("Kopfweh");
 objekt.method_2("Eis");
 objekt.method_2(objekt.prop1);
 </javascript>
 
 Achtung: Wenn das Objekt serialisiert wird, also in einem String
-gespeichert wird (um es in LocalStorage zu speichern oder 
-über HTTP zu verschicken) dann gehen die Funktionen verloren!
+gespeichert wird - z.B. um das Objekt in LocalStorage zu speichern oder
+über HTTP zu verschicken - dann gehen die Funktionen verloren!
 
 ## Was ist this?
 
@@ -121,12 +121,12 @@ Die Variable `this` hat eine besondere Bedeutung in Javascript Funktionen.
 Erst einmal verweist `this` auf das `window` Objekt:
 
 <javascript caption="this in einer normalen Funktion">
-  function f() {
+  console.log("this = " + this);
+
+  function what_is_this() {
     console.log("this = " + this);
   }
-
-  console.log("this = " + this);
-  f();
+  what_is_this();
 
   // output auf der Console:
   // this = [object Window]
@@ -141,20 +141,20 @@ Wird eine Funktion als Methode eines Objekts aufgerufen, dann verweist `this` au
   var objekt = {
     prop1 : "string",
     prop2 : 42,
-    f : function () {  
-      console.log( "this = " + this ) 
-      console.log( "this.prop2 = " + this.prop2 ) 
+    report : function () {
+      console.log( "this = " + this )
+      console.log( "this.prop2 = " + this.prop2 )
     }
   }
 
-  objekt.f();
+  objekt.report();
 
   // output auf der Console:
   // this = [object Object]
   // this.prop2 = 42
 </javascript>
 
-Achtung: Arrow Functions verhalten sich hier anders!  
+Achtung: Arrow Functions verhalten sich hier anders!
 
 §
 
@@ -167,131 +167,17 @@ Wert:
   var objekt = {
     prop1 : "string",
     prop2 : 42,
-    f : () => {  
-      console.log( "this = " + this ) 
-      console.log( "this.prop2 = " + this.prop2 ) 
+    broken_report : () => {
+      console.log( "this = " + this )
+      console.log( "this.prop2 = " + this.prop2 )
     }
   }
 
-  objekt.f();
+  objekt.broken_report();
 
   // output auf der Console:
   // this = [object Window]
   // this.prop2 = undefined
-</javascript>
-
-§
-
-Bei Event-Handlern wird `this` wieder anders gesetzt:
-
-<javascript caption="this im Event Handler">
-  function f() {
-    console.log("this = " + this);
-  }
-
-  document.getElementById("button").addEventListener("click", f);
-
-  // bei klick auf den Button
-  // output in der Console:
-  // this = [object HTMLInputElement]
-</javascript>
-
-Der Event Handler wird also als Methode auf dem jeweils betroffenen
-HTML-Element aufgerufen. `this` zeigt in diesem Fall also auf den Button.
-
-§
-
-Es gibt keine Möglichkeit Argumente an den Funktion mit zu übergeben:
-
-<javascript caption="keine Argument an den event handler!">
-  function f( mein_argument ) {
-    console.log("this = " + mein_argument); 
-    // funktioniert nicht wie erwartet !!!
-  }
- 
-  document.getElementById("button").addEventListener("click", f(43) );
-
-  // hier wird die Funktion f aufgerufen, 
-  // der listener an das Event gebunden wird,
-  // das funktioniert so nicht !!!
-</javascript>
-
-§
-
-Die als Listener definierte Funktion erhält als Argument Infos zum Event:
-
-<javascript caption="this und event im Event Handler">
-  function f( ev ) {
-    console.log("this = " + this);
-    console.log("ev = " + ev);
-    console.log("ev.target = " + ev.target);
-  }
- 
-  document.getElementById("button").addEventListener("click", f);
-
-  // bei klick auf den Button
-  // output in der Console:
-  // this = [object HTMLInputElement]
-  // ev = [object MouseEvent]
-  // ev.target = [object HTMLInputElement]
-</javascript>
-
-
-§
-
-Das Event-Objekt beinhaltet Informationen wie z.B. die Koordinaten
-an denen geklickt wurde, ob dazu noch Shift, Alt und/oder Ctrl gedrückt wurden,
-und noch einmal einen Verweis auf den Button.  Hier ein Screenshot aus Chrome der 
-die Eigenschaften des MouseEvents zeigt:
-
-![Abbildung: Details des MouseEvents, angezeigt in der Console von Chrome](/images/chrome-mouse-event.png)
-
-§
-
-Es gibt noch eine besondere Art eine Funktion in Javascript aufzurufen: mit `new`.
-Damit wird die Funktion als Konstruktor für ein Objekt verwendet. Es ist üblich
-Konstruktur-Funktionen mit großen Anfangsbuchstaben zu benennen. 
-
-<javascript caption="Objekte mit einer Konstruktor-Funktion">
-  function Studiengang(name, seit) {
-    this.name = name;
-    this.seit = seit;
-  }
-
-  mmtb = new Studiengang( "BSc MultiMediaTechnology", 2008 );
-  mmtm = new Studiengang( "MSc MultiMediaTechnology", 2011 );
-</javascript>
-
-Innerhalb der Konstruktur-Funktion `Studiengang` ist bereits
-ein neues Objekt vorhanden, und über `this` zugänglich. Dieses
-Objekt ist auch automatisch Rückgabewert der Funktion.
-
-Arrow Funktionen können nicht als Constructor verwendet werden.
-Dafür gibt es in Javascript 2015 `class` und `constructor` als Alternative.
-
-## Eine Funktion ist ein Objekt
-
-Jede Funktion in Javascript ist auch ein Objekt. Sie kann Attribute haben,
-die man mit der ganz normalen Schreibweise setzten kann:
-
-<javascript caption="Funktion mit einem Attribut">
-  function repeat( s, x ) {
-    var result = "";
-    while( x ) {
-      result += s;
-      if( repeat.sep && x > 1 ) result += repeat.sep;
-      x--;
-    }
-    console.log(result);
-    return result;
-  } 
-
-  repeat("x", 3);
-  // rückgabewert ist "xxx";
-
-  repeat.sep = ", ";
-  repeat("x", 3);
-  // rückgabewert ist "x, x, x";
 </javascript>
 
 

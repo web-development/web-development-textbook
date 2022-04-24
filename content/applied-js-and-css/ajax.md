@@ -37,26 +37,29 @@ Javascript-Programm fügt die Daten in die Seite ein.
 
 ### Im Javascript Programm: synchorn
 
-Nehmen wir an Befehl1, Befehl2, Befehl3, Befehl4,
-und synchron_laden sind alles Funktionen, die wir in einem anderne Teile des
+Nehmen wir an `rechnen1`, `rechnen2`, `rechnen3`, `rechnen4`,
+und `synchronLaden` sind Funktionen, die wir in einem anderne Teile des
 Programmes definiert haben.
 
-Bei jedem Aufruf passiert dasselbe: erst wenn Befehl1 fertig ist
-geht's weiter mit Befehl2, erste wenn Befehl2 fertig ist geht's weiter
-mit synchron_laden, erst wenn synchron_laden fertig ist geht's weiter
-mit Befehl3.
+Bei jedem Aufruf einer der Funktionen passiert dasselbe:
+
+* erst wenn `rechnen1` fertig ist geht's weiter mit `rechnen2`,
+* erst wenn `rechnen2` fertig ist geht's weiter mit `synchronLaden`,
+* erst wenn `synchronLaden` fertig ist geht's weiter mit `rechnen3`,
+* erst wenn `rechnen3` fertig ist geht's weiter mit `rechnen4`.
 
 Dieser Ablauf ist "synchron".
 
 <javascript caption="synchron">
-Befehl1();
-Befehl2();
-Antwort = synchron_laden(url);
-Befehl3();
-Befehl4();
+rechnen1();
+rechnen2();
+data = synchronLaden(url);
+console.log("data arrived", data);
+rechnen3();
+rechnen4();
 </javascript>
 
-Wenn nun die Funktion `synchron_laden` wirklich Daten von der url
+Wenn nun die Funktion `synchronLaden` wirklich Daten von der url
 mittels HTTP lädt, dann kann das sehr lange dauern - vielleicht
 eine ganze Sekunde?
 
@@ -65,108 +68,55 @@ eine ganze Sekunde?
 Es gibt nun in Javascript die Möglichkeit Funktionen
 zu schreiben die sich anders verhalten, nämlich asynchron.
 
-Hier ein Beispiel mit mehreren synchronen Funktionen  Befehl1, Befehl2, Befehl3, Befehl4,
-und einer asynchronen Funktion genannt `asynchron_laden`:
+Hier ein Beispiel mit mehreren synchronen Funktionen  rechnen1, rechnen2, rechnen3, rechnen4,
+und einer asynchronen Funktion genannt `asynchronLaden`:
 
 <javascript caption="asynchron">
-function handle_data(data) {
+function handleData(data) {
   console.log("data arrived", data);
 }
 
-Befehl1();
-Befehl2();
-asynchron_laden(url, handle_data);
-Befehl3();
-Befehl4();
+rechnen1();
+rechnen2();
+asynchronLaden(url, handleData);
+rechnen3();
+rechnen4();
 </javascript>
 
-Erst wenn Befehl1 fertig ist geht's weiter mit Befehl2, erste wenn Befehl2 fertig ist geht's weiter mit `asynchron_laden` - aber dann passiert etwas besonders:
+Erst wenn rechnen1 fertig ist geht's weiter mit rechnen2, erste wenn rechnen2 fertig ist geht's weiter mit `asynchronLaden` - aber dann passiert etwas besonders:
 
-`asynchron_laden` will etwas sehr zeitaufwändiges tun - Daten von der URL mittels HTTP laden.
-Trotzdem scheint sie ganz schnell fertig zu sein, das Programm  geht gleich zu `Befehl3` als
+`asynchronLaden` will etwas sehr zeitaufwändiges tun - Daten von der URL mittels HTTP laden.
+Trotzdem scheint sie ganz schnell fertig zu sein, das Programm  geht gleich zu `rechnen3` als
 nächstes weiter, egal ob und wie schnell der Server auf den HTTP-Request antwortet. Wenn
-`Befehl3` feritg ist wird `Befehl4` ausgeführt, und dann endet das JavaScript programm.
+`rechnen3` feritg ist wird `rechnen4` ausgeführt, und dann endet das JavaScript programm.
 
-Aber eine Sekunde später passiert was neues:  Die Daten, die in `asynchron_laden`
+Aber eine Sekunde später passiert was neues:  Die Daten, die in `asynchronLaden`
 angefragt wurden sind eingelangt - das ist irgendwie im Hintergrund passiert - und sind
 nun bereit zur Weiterverarbeitung.
 
-Wenn die Daten vom Server schließlich einlangen wird die Funktion `handle_data`
+Wenn die Daten vom Server schließlich einlangen wird die Funktion `handleData`
 aufgerufen und die Daten zu verarbeiten.
 
 ### Synchroner Ablauf wird nie unterbrochen
 
 Achtung: ein laufendes Javascript Programm wird nie unterbrochen.
-Im letzten Code-Beispiel wird es nie passieren, dass zwischen Befehl3
-und Befehl4 etwas anderes (z.B. handle_data) passieren!
+Im letzten Code-Beispiel wird es nie passieren, dass zwischen `rechnen3`
+und `rechnen4` etwas anderes (z.B. `handleData`) passieren!
 
 Erst wenn dieses kleine Programm fertig durchgelaufen ist
-stellt sich die Frage ob handle_data schon dran ist.
+stellt sich die Frage ob das laden der Daten über HTTP fertig,
+und damit `handleData` dran ist.
 
 <javascript caption="asynchron">
-function handle_data(data) {
+function handleData(data) {
   console.log("data arrived", data);
 }
 
-Befehl1();
-Befehl2();
-asynchron_laden(url, handle_data);
-Befehl3();
-Befehl4();
-</javascript>
-
-### Asynchrones Beispiel: setTimeout
-
-Mit `setTimeout` kann man eine Funktion später (Angabe in Millisekunden)
-ausführen lassen:
-
-<javascript caption="asynchron">
-function later() {
-  console.log("3 Sekunden später", Date.now());
-}
-
-console.log("tick", Date.now());
-setTimeout(later, 3000);
-console.log("tock", Date.now());
-console.log("tick", Date.now());
-console.log("tock", Date.now());
-</javascript>
-
-§
-
-Was passiert nun, wenn man den Timeout auf 0 setzt?
-
-<javascript caption="asynchron">
-function later() {
-  console.log("0 Sekunden später?", Date.now());
-}
-console.log("tick", Date.now());
-setTimeout(later, 0);
-console.log("tock", Date.now());
-console.log("tick", Date.now());
-console.log("tock", Date.now());
-</javascript>
-
-§
-
-Antwort: das Javascript-Programm wird nicht unterbrochen!
-
-<javascript caption="asynchron">
-function later() {
-  console.log("NICHT 0 Sekunden später!", Date.now());
-}
-console.log("tick", Date.now());
-setTimeout(later, 0);
-console.log("tock", Date.now());
-console.log("tick", Date.now());
-console.log("tock", Date.now());
-
-// Output in der Konsole:
-// tick 1588059630667
-// tock 1588059630668
-// tick 1588059630668
-// tock 1588059630668
-// nicht 0 Sekunden später 1588059630669
+rechnen1();
+rechnen2();
+asynchronLaden(url, handleData);
+rechnen3();
+rechnen4();
 </javascript>
 
 ### Asynchrone HTTP Requests
@@ -231,7 +181,7 @@ eingebunden.
     let ajaxRequest = new XMLHttpRequest();
     ajaxRequest.addEventListener("load", handleCounterData);
     ajaxRequest.open("GET", "counter_ajax.php");
-    ajaxRequest.send();
+    ajaxRequest.send();  // asynchron!
     console.log("abgesendet, sofort weiter");
   </script>
 </body>
@@ -240,7 +190,7 @@ eingebunden.
 
 Das `XMLHttpRequest` Objekt liefert verschiedene Events, hier wird nur für das `load` Event
 eine Funktion als Listener angebracht. Mit der `open` Methode wird der HTTP-Request
-konfiguriert, aber erst mit `send` wirklich abgeschickt. Da er Request asynchron erfolgt
+konfiguriert, aber erst mit `send` wirklich abgeschickt. Da der Request asynchron erfolgt
 geht der Javascript-Interpreter sofort von `send` weiter zu `console.log` in der nächsten
 Zeile.
 
@@ -251,7 +201,7 @@ in der Variable `this` und kann aus `this.responseText` die Antwort auslesen.
 ## Fetch und Promises
 
 In modernem Javascript, in allen Browsern [ausser Internet Explorer](https://caniuse.com/#search=fetch), gibt es
-eine neue Schreibweise für AJAX-Request mit dem Befehl `fetch`[mdn](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
+eine neue Schreibweise für AJAX-Request mit `fetch`[mdn](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
 
 <htmlcode caption="Counter einbinden mit Javascript">
 <html>
@@ -283,13 +233,23 @@ eine neue Schreibweise für AJAX-Request mit dem Befehl `fetch`[mdn](https://dev
 
 Mit `fetch` wird die Reihenfolge des Ablaufs klarer, aber der Ablauf
 wird auch komplizierter: ein weiterer asynchroner Verarbeitungsschritt
-kommt dazu: das auslesen des Textes aus dem Response.
+kommt dazu: aus dem Response wird erst der Text ausgelesen, das erfolgt
+wieder asynchron, erst dann kann der Text verwendet werden.
 
 ## Promises
 
 Der Rückgabewert der funktion `fetch` ist eine **Promise**: ein Objekt,
 das den Umgang mit einer asynchrone Operation einfacher machen soll.
-Es ist ein Platzhalter für das Ergebnis der Operation, das noch nicht
+
+
+<javascript>
+  <script>
+    let promise = fetch("counter_ajax.php");
+  </script>
+</javascript>
+
+
+Das Promise Objekt ist ein Platzhalter für das Ergebnis der Operation, das noch nicht
 bekannt ist. In anderen Programmiersprachen ist die Promise auch als
 Future oder Deferred bekannt, siehe [wikipedia](https://en.wikipedia.org/wiki/Futures_and_promises).
 
@@ -297,8 +257,7 @@ Mit der Methode `then()` kann eine Funktion als Callback angegeben
 werden, die aufgerufen wird wenn das Ergebnise vorliegt:
 
 <javascript>
-fetch("counter_ajax.php")
-  .then(function(response) {
+  promise.then(function(response) {
     console.log("Response wird empfangen");
     // tu ws mit response response
   });
@@ -307,8 +266,7 @@ console.log("abgesendet, sofort weiter");
 
 ### Chaining
 
-Angenommen mit dem Ergebnis einer asynchronen Operation
-soll
+Angenommen mit dem Ergebnis einer asynchronen Operation soll
 eine weitere asynchrone Operation aufgerufen werden.
 
 Mit Promises funktionert das mittels "aneinanderhängen" = "chaining" mit `then`:
@@ -356,9 +314,12 @@ fetch("counter_ajax.php")
 console.log("abgesendet, sofort weiter");
 </javascript>
 
-Aber Achtung: wenn der HTTP-Response z.B. 404 oder 500 ist, löst das noch
-keinen Error aus, der mit `catch` gefangen werden kann. Das müsste
-man selbst behandeln:
+## Fehlerbehandlung bei fetch
+
+Achtung: wenn bei einem fetch der HTTP-Response z.B. 404 oder 500 ist
+löst das noch keine Exceltion aus, die mit `catch` gefangen werden kann.
+
+Das müsste man selbst behandeln:
 
 <javascript>
 fetch("counter_ajax.php")
@@ -391,8 +352,8 @@ Mit der Anfrage
 
 `search.php?term=w`
 
-Werden nur die Städte die mit w beginnen geladen,
-und als JSON-Array zurück gegeben:
+sollen nur die Städte, die mit w beginnen, geladen werden
+und als JSON-Array zurück gegeben werden:
 
 <javascript>
 [
@@ -420,21 +381,12 @@ und als JSON-Array zurück gegeben:
 
 Das sind ca. 5000 Namen.
 
-Beim Lesen aus der Datenbank wird ein Volltext-Index verwendet (siehe
-[Datenbank optimieren: Indexes](/php-db-optimierung/indexes/)). Das
-sieht man aber weder der SQL-Query noch dem PHP an:
-
-<php>
-$term = filter_var($_GET['term'], FILTER_SANITIZE_STRING) . '%';
-$sth->execute(array($term));
-$cities = $sth->fetchAll(PDO::FETCH_COLUMN);
-</php>
-
-Der Output des PHP-Programmes ist JSON. Das muss mit dem HTTP Header `Content-Type`
+Der Output des PHP-Programmes ist also JSON. Das muss mit dem HTTP Header `Content-Type`
 angekündgt werden:
 
 <php>
 header('Content-Type: application/json');
+// $cities aus der Datenbank holen
 echo json_encode($cities);
 </php>
 
@@ -492,7 +444,8 @@ ist die nächste Lösung notwendig:
 
 ### Zugriff auf eine API über lokales Backend
 
-Manchmal kann man nicht vom Frontend direkt auf die API zugreifen.
+Es gibt zwei Gründe, warum der direkte Zugriff vom Frontend
+auf die API verboten sein kann:
 
 Einen Grund haben wir schon bei openweathermap gesehen: die API ist über
 http zugänglich, das frontend wird auf https gehosted. So ist es verboten

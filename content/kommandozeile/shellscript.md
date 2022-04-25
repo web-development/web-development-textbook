@@ -43,7 +43,7 @@ Wenn man eine Variable setzt hat sie kein Dollar-Zeichen,
 wenn man sie verwendet hat sie ein Dollar-Zeichen
 
 
-</shell>
+<shell>
 NAME="Brigitte"
 
 echo "Hallo $NAME"

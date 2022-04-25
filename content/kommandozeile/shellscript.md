@@ -67,12 +67,13 @@ fi
 
 Weitere Operatoren:
 
-    - `-eq` für "equal"
-    - `-ne` für "not equal"
-    - `-gt` für "greater than"
-    - `-ge` für "greater or equal"
-    - `-lt` für "less than"
-    - `-le` für "less or equal"
+    - `=`  ein Gleichzeichen für Vergleich von Strings
+    - `-eq` für "equal" bei Zahlen
+    - `-ne` für "not equal" bei Zahlen
+    - `-gt` für "greater than" bei Zahlen
+    - `-ge` für "greater or equal" bei Zahlen
+    - `-lt` für "less than" bei Zahlen
+    - `-le` für "less or equal" bei Zahlen
 
 Und weitere Tests:
 
@@ -149,14 +150,33 @@ Mit Mac wäre das nicht passiert
 
 Mehr Tricks im [Advanced Bash Scripting Guide](https://tldp.org/LDP/abs/html/string-manipulation.html)
 
+## Meine Konfiguration für Bash in der Datei `~/.bashrc`
+
+Falls es in meinem Homeverzeichnis eine Datei `.bashrc` gibt,
+dann wird die immer ausgeführt wenn ich eine neue Bash-Session starte.
+
+Also z.B. wenn ich das git-bash Fenster aufmache.
+
+In dieser Datei kann man zum Beispiel Umgebung-Variablen setzen,
+die immer gelten sollen:
+
+<shell>
+export SPRUCH="Mit Linux wäre das nicht passiert."
+</shell>
+
+Dann kann ich die Varialbe $SPRUCH auf der Kommandozeile
+und in allen Shell-Skripts nutzen, sie ist schon da.
+
 ## Meine Shellscripts im Ordner `~/bin`
 
 Skripte die man oft braucht kann man in einem
 eigenen Ordner ablegen. Auf Linux und Mac wäre der typische Ort
 dafür der Order `bin` im eigenen Home-Verzeichnis.
 
-Diesen Ordner gibt man in die PATH Variable, z.B.
-indem man in der Datei `~/.bash_profile` einen
+Diesen Ordner gibt man in die PATH Variable.
+
+
+ z.B. indem man in der Datei `~/.bash_profile` einen
 entsprechenen Eintrag macht:
 
 <shell>
@@ -166,15 +186,11 @@ export PATH="$PATH:/home/bjelline/bin"
 hier wird die PATH Variable neu gesetzt, und zwar auf den schon
 vorhandnen Wert plus den Pfad zum bin-Ordner in meinem Home-Verzeichnis.
 
-Das `export` vor der Variable ist wichig, damit die Variable auch
-nach Ende des Skripts `.bash_profile` weiter verfügbar ist.
+Wenn die Pfad-Variable so getzt ist,
+kann ich Skripts aus meinem bin-Ordner von überall aus aufrufen.
 
-`.bash_profile` wird jedesmal ausgefürht wenn ich eine neue Shell starte.
-
-
-Nun kann ich Skripts aus meinem bin-Ordner von überall aus aufrufen, z.B:
-wenn in meinem bin ordner die Skripte `create_algodat_project` und `mksizes`
-liegen kann ich sie überall verwenden:
+Wenn in meinem bin ordner die Skripte `create_algodat_project` und `mksizes`
+liegen kann ich sie so verwenden:
 
 <shell>
 cd ~/dev/studium/Jellinek_Brigitte_algodat

@@ -121,7 +121,7 @@ done
 
 ##  In eine Datei schreiben
 
-Man kann die Ausgabe in eine Datei umleiten mit `>`, das Überschreibt
+Man kann die Ausgabe in eine Datei umleiten mit `>`, das überschreibt
 die Datei. Oder man kann mit `>>` an die Datei anfügen:
 
 
@@ -189,8 +189,8 @@ vorhandnen Wert plus den Pfad zum bin-Ordner in meinem Home-Verzeichnis.
 Wenn die Pfad-Variable so getzt ist,
 kann ich Skripts aus meinem bin-Ordner von überall aus aufrufen.
 
-Wenn in meinem bin ordner die Skripte `create_algodat_project` und `mksizes`
-liegen kann ich sie so verwenden:
+Wenn in meinem `bin` Ordner die Skripte `create_algodat_project` und `mksizes`
+liegen kann ich sie so verwenden, egal "wo" ich bin:
 
 <shell>
 cd ~/dev/studium/Jellinek_Brigitte_algodat

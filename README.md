@@ -29,29 +29,46 @@ typos, add clarifications.
 
 Send me a pull request when you're done.
 
-## How to contribute large changes
+## How to contribute large changes - with docker (UNFINISHED)
 
 Same as before: fork the repository 
 https://github.com/web-development/web-development-textbook
 
-install the staic site builder nanoc on your computer
-using gem install nanoc.
+have a look at the Dockerfile to make sure everything is ok,
+then run
+
+  docker build . -t bjelline/nanoc
+  docker run -d -p 3000:3000 --name nanoc_web_development bjelline/nanoc
+
+after a few seconds you can now view the page on http://localhost:3000
+
+## How to contribute large changes - with ruby
+
+Same as before: fork the repository 
+https://github.com/web-development/web-development-textbook
+
+
+install ruby version 2.7.1 on your computer
+
+  rvm install 2.7.1
+
+install the dependencies on your computer
+
+  bundle isntall
 
 run nanoc in the root folder like so:
 
   bundle exec nanoc compile
   bundle exec nanoc view
 
-in a second shell start the nanoc watcher:
+after every change in the source code run
 
-  bundle exec nanoc watch
+  bundle exec nanoc compile
 
 now edit the files in content/* and see the results at http://localhost:3000/
 
 When you are content with your changes, push up to your own github repository,
 and send me a pull request.
-
-
 
 ## How the images were generated:
 

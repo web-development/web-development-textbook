@@ -75,16 +75,19 @@ Ich habe also Änderungen (commits) in meinem lokal Repository, und andere Ände
 im remote Repository.  Wenn ich nun den Befehl `git pull` ausführe werden diese Änderungen
 zusammengefürt. Der englische Fachbegriff ist `merge`.
 
-![](basic-merging-2.png)
+![](images/git/basic-merging-2.png)
 
-Dieser Schritt der Zusammenführung wird ein eigener Commit (c6 im Bild) mit einer Commit Message.
-Deswegen öffnet git automatisch einen Editor, in dem ich diese Commit Message (oder genauer: Merge Message)
-bearbeiten kann.
+Bei der Zusammenführung entsteht ein neuer Commit (c6 im Bild) mit einer Commit Message.
+
+## Die Merge Nachricht schreiben
+
+Damit ich für den Merge Commit die Commit Message zu schreiben
+kann öffnet git automatisch einen Editor.
+Nachdem ich die Message gespeichert habe wird der Vorgang abgeschlossen,
+das sieht so aus:
 
 §include git/pull-to-push.html
 
-
-## Die Merge Nachricht schreiben
 
 
 ## Merge Konflikt erkennen
@@ -100,13 +103,29 @@ Antwort: nur eine Datei, `2/index.html` ist betroffen.
 
 Was macht git mit den beiden verschiedenen Versionen einer Datei?
 
-Es speichert beide Versionen in der Datei und fügt zusätzliche Zeilen ein: mit kleiner-Zeichen, mit gleich-Zeichen und mit größer-Zeichen (die Farben sind nur zur Orientierung hinzugefügt.)
+Git speichert beide Versionen in einer Datei und fügt zusätzliche Zeilen ein: mit kleiner-Zeichen, mit gleich-Zeichen und mit größer-Zeichen (die Farben sind nur zur Orientierung hinzugefügt.)
 
 §include git/merge-conflict-2.html
 
 Achtung! Damit ist die Datei
 erst einmal kaputt: compiliert nicht mehr, wird vom Browser nicht mehr korrekt angzeigt,
 ist kein valides HTML mehr, ...
+
+## Merge Konflikt auflösen
+
+Die Datei mit dem Merge Konfligt kann ich ganz normal editieren.
+Ich überlege welche Version ich behalten will, und entferne die andere
+Version und die extra-Zeilen:
+
+§include git/merge-conflict-3.html
+
+Nun teste ich ob alles funktioniert: ich schau mir die HTML-Datei im Browser an.
+
+Wenn alles passt muss ich nun die Datei neu committen, damit ist
+der merge Konflikt beseitigt.
+
+§include git/merge-conflict-4.html
+
 
 
 

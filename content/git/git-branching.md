@@ -13,8 +13,7 @@ aber noch nicht sicher bin, dass ich sie einsetzen werde,
 kann ich für das Experimentieren einen Branch einrichten.
 
 Später möchten ich vielleicht
-den Branche wieder mit dem Haupt-Branch zusammenführen - dass
-heißt dann "to merge".
+den Branche wieder mit dem Haupt-Branch zusammenführen.
 
 ## Branches anzeigen
 
@@ -31,13 +30,13 @@ Der aktuelle Branch wird bei der Anzeige mit einem Sternchen markiert:
 
 <shell>
 $ git branch
-* Haupt
+* main
   iss50
 
 $ git branch experiment_mit_three_js
 
 $ git branch
-* Haupt
+* main
   iss50
   experiment_mit_three_js
 </shell>
@@ -51,13 +50,13 @@ Ein Branch ist immer der aktuelle Branch. Sie beginnen
 auf dem `main` Branch und können zu einem anderen Branch wechseln
 indem Sie `checkout` benutzen:
 
-`` sh
+<shell>
 zu einem anderen Branch wechseln
 $ git checkout experiment_mit_three_js
 
 # Abkürzung: Erstellen eines neuen Branches + checkout
 git checkout -b foo
-```
+</shell>
 
 Wenn es sich um einen neu erstellten Branch handelt,  ändern sich die Dateien in Ihrer
 Arbeitskopie nicht verändert. Sie können nun in diesem
@@ -71,42 +70,60 @@ nachdem Sie alle Änderungen festgeschrieben haben!
 
 ## Hinter den Kulissen
 
-Git behält den Überblick über alle Übertragungen. Ein Branch ist
-ein Zeiger auf einen bestimmten Commit.  Zu Beginn haben Sie
-nur einen Main Branch, der auf den letzten Commit verweist,
+Git behält den Überblick über alle Commits. Ein Branch ist
+ein Zeiger auf einen bestimmten Commit.  Wenn man noch keine
+weiteren branches erstellt hat gibt es
+nur einen `main` Branch, der auf den letzten Commit verweist,
 in dieser Abbildung ist das c2:
 
 ![noch keine Branches](/images/git/branch-and-merge-0.svg)
 
 ## einen neuen Branch erstellen
 
-Ein neuer Branch verweist einfach auf die gleiche Übertragung wie der aktuelle Branch.
-In dieser Abbildung zeigt der neue Branch iss53 (wahrscheinlich erstellt, um Problem 53 zu beheben)
-verweist auch auf die Übergabe c2:
+Ein neuer Branch verweist nach dem Erstellen auf den gleichen Commit wie der aktuelle Branch.
+In dieser Abbildung wird der neue Branch mit dem Namen `iss53` erstellt,
+der auch auf den Commit c2 verweist.  (iss53 ist eine Abkürzung für Issue 53)
 
-```sh
-$git checkout -b iss53
-```
+<shell>
+$ git branch iss53
+$ git checkout iss53
+</shell>
 
 ![noch keine Branches](/images/git/branch-and-merge-1.svg)
 
-Mit `git checkout` können Sie zu einem anderen Branch wechseln -
-Dies wird die Branches in keiner Weise verändern:
+Mit `git checkout` kann man zu einem anderen Branch wechseln.
+Das verändert die Branches nicht.
 
-![git branch](/images/git/git-branch.png)
+<shell>
+$ git branch
+* main
+  iss50
+
+$ git checkout iss53
+
+$ git branch
+  main
+* iss50
+
+$ git checkout main
+
+$ git branch
+* main
+  iss50
+</shell>
+
 
 ## auf zwei verschiedenen Branches arbeiten
 
-Wenn Sie weiter an Ihrem Projekt arbeiten,
-und neue Commits an den Main Branch und den
-iss53 Branch machen, können Sie in eine Situation geraten wie
+Wenn man am Projekt weiterarbeitet und auf beiden
+Branches  neue Commits macht, kann man in eine Situation geraten wie
 in dieser Abbildung:
 
 ![was will ich zusammenführen?](/images/git/branch-and-merge-4.svg)
 
-Nun ist der Inhalt der beiden Branches unterschiedlich,
-wenn Sie mit `git checkout` in einen anderen Branch wechseln, werden Sie
-sehen Sie, wie sich die Dateien in Ihrer Arbeitskopie ändern.
+Nun ist der Inhalt der beiden Branches unterschiedlich.
+Wenn man mit `git checkout` in einen anderen Branch wechselt, kann
+man sehen wie sich  die Dateien in der Working Copy ändern.
 
 ## Merge = Zusammenführen
 
@@ -115,75 +132,38 @@ englischen Wort "merge" bezeichnet.
 Git versucht, dies automatisch zu tun, und in vielen Fällen ist das auch kein Problem.
 Zum Beispiel, wenn in den beiden Branches unterschiedliche Dateien verändert wurden.
 
-Du solltest sich auf dem Branch befinden, der
-weiter verwendet wird, im Beispiel unten ist dies `main`.
+Man startet den Prozess auf dem Branch, der weiter bestehen soll,
+also meist auf `main`.  Dort gibt man den Befehl `git merge ....` ein.
+
 Wenn alles gut geht, wird die Ausgabe wie folgt aussehen:
 
 
-`` sh
+<shell>
 $ git checkout main
 $ git merge experiment_mit_three_js
-Zusammenführen durch rekursiv.
- README | 1 +
- 1 Dateien geändert, 1 Einfügungen(+), 0 Löschungen(-)
-```
+Aktualisiere bdf7328..05d4ceb
+Fast-forward
+  README.md                |  189 +++++++
+  index.html               |  218 ++++++++
+ 2 files changed, 407 insertions(+)
+</shell>
 
-Nach der erfolgreichen Zusammenführung enthält der aktuelle Branch (`main`)
-alle Änderungen aus beiden Branches enthalten. Der andere Branch
-ist noch unverändert:
+Nach der erfolgreichen Zusammenführung enthält der aktuelle Branch `main`
+alle Änderungen aus beiden Branches.
+Der andere Branch ist noch unverändert:
 
 ![nach der Zusammenführung](/images/git/branch-and-merge-5.svg)
 
-Sie brauchen den anderen Branch wahrscheinlich nicht mehr und können ihn löschen:
+Wir brauchen den anderen Branch wahrscheinlich nicht mehr und können ihn  mit `-d` löschen:
 
-```` sh
+<shell>
 git branch -d iss53
-```
+</shell>
 
-### Konflikte
+## Konflikte
 
-Das Zusammenführen ist nicht immer so einfach.  Wenn beide Branches Änderungen für dieselbe Datei enthalten
-kann git sie möglicherweise nicht automatisch zusammenführen. Dann wird das Repository
-in einem "unmerged" Zustand belassen:
+Wie schon im Kapitel [Git für Zwei](/git/git-zwei/) beschreiben kann
+es zu Merge Konflikten kommen.  Dann wird das Repository
+in einem "unmerged" Zustand belassen, und ich muss erst
+die Konflikte beheben und danach die betroffenen Dateien comitten.
 
-```sh
-$ git status
-index.html: muss zusammengeführt werden
-# Auf Branch main
-# Geändert, aber nicht aktualisiert:
-#
-# unmerged: index.html
-#
-```
-
-Die "unmerged" Dateien enthalten "Konfliktmarkierungen", um
-um anzuzeigen, wo Git versucht hat, sie zusammenzuführen, aber gescheitert ist.  Here a developer
-is needed to look at the code and decide which version to keep,
-or how to combine the two versions.
-
-Here an example of an "unmerged" html file:
-
-``` html
-</div>
-<<<<<<< HEAD:index.html
-<footer>contact: support@github.com</footer>
-=======
-<div id="footer">
-  please contact us at support@github.com
-</div>
->>>>>>> iss53:index.html
-</body>
-</html>
-```
-
-If you use an editor with appropriate syntax highlighting
-this might be easier to read:
-
-![conflict marker with syntax highlighting](/images/git/conflict-markers.png)
-
-
-Before deciding how to edit this
-you probably also need to look at other files too
-- in this example at the
-
-Übersetzt mit www.DeepL.com/Translator (kostenlose Version)

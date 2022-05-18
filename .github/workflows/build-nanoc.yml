@@ -6,7 +6,7 @@ jobs:
     environment: Deploy    
     steps:
       - name: Install libcurl
-        run: sudo apt-get install libcurl4 libcurl3-gnutls libcurl4-openssl-dev
+        run: sudo apt-get install libcurl4 libcurl3-gnutls
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
         with:

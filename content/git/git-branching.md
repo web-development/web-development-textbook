@@ -13,12 +13,13 @@ aber noch nicht sicher bin, dass ich sie einsetzen werde,
 kann ich für das Experimentieren einen Branch einrichten.
 
 Später möchten ich vielleicht
-den Branche wieder mit dem Haupt-Branch zusammenführen.
+den Branch  wieder mit dem Haupt-Branch zusammenführen.
 
 ## Branches anzeigen
 
 Eine visuelle Darstellungen der Branches
 findet man z.B. in Gitlab unter Repository &rarr; Diagram.
+Jeder Knoten in diesem Graphen ist ein Commit.
 
 ![Diagram in Gitlab](/images/git/gitlab-branches.png)
 
@@ -43,12 +44,11 @@ $ git branch
 
 ## Aktuellen Branch wechseln
 
-Das Erstellen und Löschen von Branches an sich hat keine Auswirkungen auf
-Dateien und ändert nicht, in welchem Branch Sie sich befinden.
+Das Erstellen und Löschen von Branches hat alleine noch keine Auswirkungen auf
+Dateien und ändert auch nicht in welchem Branch man sich befindet.
 
-Ein Branch ist immer der aktuelle Branch. Sie beginnen
-auf dem `main` Branch und können zu einem anderen Branch wechseln
-indem Sie `checkout` benutzen:
+Ein Branch ist immer der aktuelle Branch. Man beginnt
+auf dem `main` Branch und kann mit `git checkout` zu einem anderen Branch wechseln:
 
 <shell>
 zu einem anderen Branch wechseln
@@ -58,20 +58,28 @@ $ git checkout experiment_mit_three_js
 git checkout -b foo
 </shell>
 
-Wenn es sich um einen neu erstellten Branch handelt,  ändern sich die Dateien in Ihrer
-Arbeitskopie nicht verändert. Sie können nun in diesem
-Branch wie gewohnt arbeiten: hinzufügen, übertragen, hinzufügen, übertragen.
-Jetzt ist der Branch wirklich anders als andere Branches.
-Wenn Sie jetzt einen anderen Branch auschecken, werden Sie sehen, dass sich die
-Dateien in Ihrem Dateisystem ändern!
+Wenn es sich um einen neu erstellten Branch handelt,
+ändern sich die Dateien in Ihrer Arbeitskopie nicht.  Der neu
+erstellte Branch enthält dieselben Dateien wie der Branch
+von dem er gerade "abgezweigt" wurde.
 
-Checken Sie einen anderen Branch erst aus, wenn Ihr Arbeitsverzeichnis sauber ist,
-nachdem Sie alle Änderungen festgeschrieben haben!
+Man kann nun in diesem
+Branch wie gewohnt arbeiten: `git add`, `git commit`, `git add`, `git commit`, ....
+Jetzt ist der Branch wirklich anders als Ursprungs-Branch.
+Wenn man jetzt einen anderen Branch auschecken
+ändern sich die
+Dateien im Dateisystem!
+
+Deswegen ist es gut alle Änderungen im Branch zu committen
+bevor man in einen anderen Branch wechselt.
 
 ## Hinter den Kulissen
 
-Git behält den Überblick über alle Commits. Ein Branch ist
-ein Zeiger auf einen bestimmten Commit.  Wenn man noch keine
+Git behält den Überblick über alle Commits. Die Commits sind Nodes
+in einem Graphen. Jeder Commit hat eine Kante, die auf
+den vorhergehenden Commit verweist.
+
+Ein Branch ist ein Zeiger auf einen bestimmten Commit.  Wenn man noch keine
 weiteren branches erstellt hat gibt es
 nur einen `main` Branch, der auf den letzten Commit verweist,
 in dieser Abbildung ist das c2:

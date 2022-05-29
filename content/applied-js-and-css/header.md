@@ -107,7 +107,7 @@ header {
 Der wichtigste Teil ist hier die Angabe `2s` für "zwei Sekunden".
 So lange wird der Übergang von der einen zur anderen Version des Headers dauern.
 
-## Srollen
+## Scrollen
 
 Nun müssen wir noch erfassen, ob gescrollt wurde, und je
 nachdem die `.shrunk` Klasse anwenden.

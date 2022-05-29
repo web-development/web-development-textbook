@@ -1,9 +1,9 @@
 ---
-title: A5 - Zugriffskontrolle
-order: 50
+title: A1 - Zugriffskontrolle
+order: 10
 ---
 
-Auf [Platz 5 der OWASP Top 10 2017: Fehler in der Zugriffskontrolle](https://owasp.org/www-project-top-ten/2017/de/A5_2017-Fehler_in_der_Zugriffskontrolle)
+Auf [Platz 1 der OWASP Top 10 2021: Fehler in der Zugriffskontrolle](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
 
 Die OWASP beschreibt dieses Problem allgemein so:
 
@@ -12,7 +12,7 @@ Die OWASP beschreibt dieses Problem allgemein so:
 ## Nur was serverseitig geprüft wird ist sicher
 
 Bei der Programmierung von Web-Applikationen muss man sich immer bewusst sein,
-dass Alles was im Client passiert, bzw vom Client geschickt wird, manipuliert werden kann.
+dass Alles was im Client passiert, bzw. vom Client geschickt wird, manipuliert werden kann.
 Meine serverseitigen Programme müssen jeden Input den sie bekommen selbst prüfen, und können
 sich nicht darauf verlassen dass so eine Prüfung bereits am Client passiert ist.
 
@@ -33,7 +33,9 @@ Ich benutze ein Online Banking System. Die URL meines Kontos ist
 
 Ich verändere die URL, und probiere aus ob ich so Zugang zu weiteren Konten erhalte:
 
-`https://www.onlinebank.com/user?acct=6066`
+    https://www.onlinebank.com/user?acct=6064
+    https://www.onlinebank.com/user?acct=6066
+    https://www.onlinebank.com/user?acct=6067
 
 Ich benutze ein Galerie um Fotos zu betrachten. Die URL für ein bestimmtes Bild ist
 
@@ -41,7 +43,9 @@ Ich benutze ein Galerie um Fotos zu betrachten. Die URL für ein bestimmtes Bild
 
 Ich verändere die URL, und versuche so die Anzeige von interessanten Dateien im System zu verursachen:
 
-`https://www.photos.com/show?img=100-0011_IMG.jpg&text=/etc/passwd`
+    https://www.photos.com/show?img=100-0011_IMG.jpg&text=.htaccess
+    https://www.photos.com/show?img=100-0011_IMG.jpg&text=../.htaccess
+    https://www.photos.com/show?img=100-0011_IMG.jpg&text=/etc/passwd
 
 ## Jede PHP-Datei, Jede URL ist ein Einstiegspunkt
 
@@ -53,7 +57,7 @@ PHP-Datei zuerst die Zugriffsrechte zu prüfen.
 <?php
   include "functions.php";
   check_permissions();
-  // .... 
+  // ....
 </php>
 
 Mit der Funktion `check_permissions` haben wir hier eine zentrale
@@ -112,12 +116,7 @@ Dateien am Server "erforschen".
 
 Gegen diese Art von Attacke kann man an mehreren Linien verteidigen:
 
-- Im Betriebssystem: das PHP Programm läuft unter dem User-Account des Webservers. Durch geeigenetes Setzen der Zugriffsrechte im Filesystem kann diesem User der Zugriff zu wichtigen Bereichen untersagt werden
-- In der PHP Konfiguration: Mit `open_basedir` kann in der Konfiguration festelegt werden, auf welche Dateien ein PHP-Programm zugreifen darf
-- In der Applikation selbst: mit einer whitelist wird nur der Zugriff auf ausgewählte Dateien erlaubt.
+- Im Betriebssystem: das PHP Programm läuft unter dem User-Account des Webservers. Durch geeignetes Setzen der Zugriffsrechte im Dateisystem kann diesem User der Zugriff zu wichtigen Bereichen untersagt werden
+- In der PHP Konfiguration: Mit `open_basedir` kann in der Konfiguration festgelegt werden, auf welche Dateien ein PHP-Programm zugreifen darf
+- In der Applikation selbst: mit einer "Liste der Erlaubten" wird nur der Zugriff auf ausgewählte Dateien erlaubt.
 
-## Mehr
-
-Die OWASP bietet noch vertiefende Informationen zu diesem Thema an:
-
-- [OWASP Top Ten Proactive Controls: C7: Enforce Access Controls](https://owasp.org/www-project-proactive-controls/v3/en/c7-enforce-access-controls)

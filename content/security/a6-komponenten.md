@@ -1,9 +1,9 @@
 ---
-title: A9 - Komponenten
-order: 90
+title: A6 - Komponenten
+order: 35
 ---
 
-Auf [Platz 9 der OWASP Top 10 2017: Nutzung von Komponenten mit bekannten Schwachstellen](https://owasp.org/www-project-top-ten/2017/de/A9_2017-Nutzung_von_Komponenten_mit_bekannten_Schwachstellen)
+Auf [Platz 6 der OWASP Top 10 2021: Anfällige und veraltete Komponenten ](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/)
 
 Die OWASP beschreibt dieses Problem ungefähr so:
 
@@ -13,6 +13,7 @@ Die OWASP beschreibt dieses Problem ungefähr so:
 
 ## Maßnahmen
 
-Schon während der Entwicklung einen Plan erstellen, wie die dauerhafte Wartung aller Komponenten erfolgen wird. Möglichst viel davon automatisieren.
+- Nur Komponenten inkludieren, die wirklich verwendet werden
+- regelmäßig automatisch prüfen, ob die Komponenten Sicherheitsprobleme haben
 
 Siehe [Managing Dependencies](https://web-engineering.github.io/dependencies.html) im Buch "Web Engineering".

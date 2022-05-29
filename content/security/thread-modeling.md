@@ -3,7 +3,7 @@ title: Threat Modeling
 order: 5
 ---
 
-Für verschiedene Situationen gibt es verschiedene Threat Models,
+Für verschiedene Situationen gibt es verschiedene Threat Models ([wikipedia](https://en.wikipedia.org/wiki/Threat_model)),
 wie in diesem [tweet](https://twitter.com/hvcco/status/1364104368228859906) von
 Nik gezeigt:
 

@@ -1,18 +1,19 @@
 ---
-title: A2 - Authentifizierung
-order: 20
+title: A7 - Identification and Authentication Failures
+order: 40
 ---
 
-Auf [Platz 2 der OWASP Top 10 2017](https://owasp.org/www-project-top-ten/2017/de/A2_2017-Fehler_in_der_Authentifizierung).
+Auf [Platz 7 der OWASP Top 10 2021: Identification and Authentication Failures](https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/).
 
-Rund um Authentifizierung und Session-Management treten viele Probleme auf.
+Rund um die Identifizierung und Authentifizierung und das Session-Management treten viele Probleme auf.
+
 Ein Angriff mittels "Credential Stuffing" ist einfach umzusetzen: ein kleines
 Programm probiert automatisch das Login mit den bekanntesten Passwörtern aus.
 
-Als BenutzerIn des Internet empfiehlt sich auf jeden Fall: neues Passwort für jedes
+Als Benutzer*in des Internet empfiehlt sich auf jeden Fall: neues Passwort für jedes
 neue Login das ich anlege. Mit Hilfe eine [Passwort-Managers](https://prism-break.org/de/all/#password-managers).
 
-Hier ein paar Maßnahmen, die man als EntwicklerIn auch schon im ersten PHP-Projekt umsetzen kann:
+Hier ein paar Maßnahmen, die man als Entwickler*in auch schon im ersten PHP-Projekt umsetzen kann:
 
 ## Keine Information in Fehlermeldungen preisgeben
 
@@ -22,7 +23,7 @@ Authentisierung kann aus vielen Gründen fehl schlagen:
 - dieser Account ist gesperrt
 - das Passwort passt nicht
 
-Egal was die Gründe sind: die Rückmeldung an die UserIn muss immer genau gleich ausfallen:
+Egal was die Gründe sind: die Rückmeldung an die User*in muss immer genau gleich ausfallen:
 
 "Login Fehlgeschlagen - Falscher Username oder Falsches Passwort"
 
@@ -42,14 +43,14 @@ Diese Regeln sind veraltet.  So empfiehlt das amerikanische National  Institute 
 * Passwörter sollen mindestens 8 oder mehr Zeichen lang sein
 * Passwörter sollen bis zu 64 Zeichen lang sein können
 * "Bekannte" Passwörter sollen verboten sein. Das kann man z.B. mit [der haveibeenpwned API](https://haveibeenpwned.com/API/v2#SearchingPwnedPasswordsByRange) implementieren
-* Es soll keine weiteren  Regeln für die Zusammensetzung des Passworts geben (z.b. nicht verlangen dass verschiedene Zeichentypen enhält, oder Verbot von Zeichen-Wiederholungen)
-* Es soll keinen Zwang geben das Passwort ohne Anlass zu Ändern. Ein guter Anlass ist wenn das Passwort öffentlich wurde
+* Es soll **keine weiteren  Regeln** für die Zusammensetzung des Passworts geben (z.b. nicht verlangen, dass es verschiedene Zeichentypen enthält, kein Verbot von Zeichen-Wiederholungen)
+* Es soll keinen Zwang geben das Passwort ohne Anlass zu Ändern. Ein guter Anlass ist wenn das Passwort öffentlich wurde.
 
 
 
 ## Session ID wie Passwort schützen
 
-Das Protokoll HTTP ist stateless. Wenn man trotzdem UserInnen authentifizieren
+Das Protokoll HTTP ist stateless. Wenn man trotzdem User*innen authentifizieren
 will,  muss bei jedem Request eine authentifizierende Information, zum Beispiel eine Session-ID,
 mitgeschickt werden. Dies geschieht zum Beispiel in einem Cookie.
 
@@ -67,14 +68,13 @@ Auch beim Logging sollte man diese Informationen vorher ausfiltern oder verschl�
 
 ## Nicht selbst implementieren
 
-Es ist sehr schwierig, ein sicheres Authentifizierungs- und Session-Management zu implementieren. Man sollte nicht auf eigene Lösungen setzen - Diese haben dann oft Fehler bei Abmeldung und Passwortmanagement, bei der Wiedererkennung der BenutzerInnen, bei Timeouts, Sicherheitsabfragen usw. Das Auffinden dieser Fehler kann sehr schwierig sein, besonders wenn es sich um individuelle Implementierungen handelt.
+Es ist sehr schwierig, ein sicheres Authentifizierungs- und Session-Management zu implementieren. Man sollte nicht auf eigene Lösungen setzen - Diese haben dann oft Fehler bei Abmeldung und Passwortmanagement, bei der Wiedererkennung der Benutzer*innen, bei Timeouts, Sicherheitsabfragen usw. Das Auffinden dieser Fehler kann sehr schwierig sein, besonders wenn es sich um individuelle Implementierungen handelt.
 
 PHP liefert nur ein Session-System. Frameworks wie [Symphony](https://symfony.com/doc/current/security.html#c-encoding-passwords) oder [Laravel](https://laravel.com/docs/7.x/authentication) liefern
 fertige Lösungen für den gesamten Login Prozess.
 
 
 ## Selbst implementieren: Passwörter speichern
-
 
 Passwörter sollten niemals im Klartext in der Datenbank gespeichert werden.
 Statt dessen wir nur ein **Hash** des Passworts gespeichert.
@@ -84,7 +84,7 @@ behandelt, und mit dem gespeicherten Wert verglichen.
 
 PHP stellt eine geeignete Hash-Funktion zur Verfügung: [password_hash](https://www.php.net/manual/de/function.password-hash.php).
 
-Mehr zum Speichern von Passwörtern im [OWASP Password Storage Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Password_Storage_Cheat_Sheet.md)
+Mehr zum Speichern von Passwörtern im [OWASP Password Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html)
 
 ## Neue Session bei Login / Logout / neuen Rechten
 
@@ -113,7 +113,7 @@ In PHP geht das mit folgenden Befehlen:
 Komplexere Maßnahmen wären:
 
 - Zwei Faktor Authentisierung
-- Automatische Prüfung der neu eingegebenen Passwörter mit 
+- Automatische Prüfung der neu eingegebenen Passwörter mit der "Have I Been Pwned" API, z.B. mit [hibp-php](https://packagist.org/packages/icawebdesign/hibp-php)
 
 Die OWAAS bietet noch mehr Informationen zu diesem Thema an
 im [Authentication Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md)

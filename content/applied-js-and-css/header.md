@@ -12,7 +12,7 @@ untereinander abgebildet:
 
 ![screenshot](/images/pizza-phases.jpg)
 
-Um diesen Effekt zu erreichen brauchen wir eine Briese CSS Animation
+Um diesen Effekt zu erreichen brauchen wir eine Prise CSS Animation
 und ein Event, das mit Javascript behandelt wird.
 
 ## Header fixieren
@@ -21,31 +21,30 @@ Um den Header am oberen Fensterrand fix zu positionieren
 verwenden wir die CSS-Anweisung `position: fixed`.
 
 <css>
-header{
+header {
   position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
-  color: #fff;
-  height: 70px;
-  background-color: transparent;
-  padding-top: 0px;  
+  padding: 35px 100px 0;
+  color: white;
+  z-index: 10;
 }
 </css>
 
 ## Style verändern? Nein Danke!
 
 Nun könnten wir mit Javascript
-direkt den stype des headers verändern
+direkt den Style des headers verändern
 
 vorher:
 
-`<header style="padding-top: 35px;">`
+`<header style="padding: 35px 100px 0;">`
 
 nachher:
 
-`<header style="padding-top: 0px;">`
+`<header style="padding: 15px 100px;">`
 
 Das ist aber unpraktisch. Einfacher ist
 es, die CSS-Details im Stylesheet zu belassen, und
@@ -66,9 +65,8 @@ wird mit einer Klasse `.shrunk` dargestellt:
 
 <css>
 header.shrunk {
-  height: 70px;
   background-color: black;
-  padding-top: 35px;  
+  padding: 15px 100px; 
 }
 </css>
 
@@ -101,24 +99,21 @@ oder `requestAnimationFrame` selbst ausprogrammiert kann die Grafikkarte nicht v
 
 <css>
 header {
-  will-change: background-color;
-  will-change: padding;
-  
-  transition: padding 2s;  
-  transition: background-color 2s;  
+  transition: padding 2s, background-color 2s;
+  /* transition: all 2s; */
 }
 </css>
 
 Der wichtigste Teil ist hier die Angabe `2s` für "zwei Sekunden".
-So lange wird er übergang von der einen zur anderen Version des headers dauern.
+So lange wird der Übergang von der einen zur anderen Version des Headers dauern.
 
 ## Srollen
 
-Nun müssen wir noch erfassen ob gescrollt wurde, und je
+Nun müssen wir noch erfassen, ob gescrollt wurde, und je
 nachdem die `.shrunk` Klasse anwenden.
 
-Wie weit schon gescrollt wurde kann man aus dem window-Objekt,
-aus der Eigenschaft `pageYOffset` auslesen. Man erhält eine
+Wie weit schon gescrollt wurde, kann man aus dem window-Objekt - 
+aus der Eigenschaft `pageYOffset` - auslesen. Man erhält eine
 Zahl, die Maßeinheit sind Pixel:
 
 <javascript>
@@ -128,7 +123,7 @@ window.pageYOffset
 ## Scroll Event behandeln
 
 Wenn die Userin / der User scrollt - egal ob mit Scrollbar, Maus, Touchscreen oder
-Keyboard, wird das `scroll` event am window-Objekt ausgelöst. Auf dieses
+Keyboard - wird das `scroll`-Event am window-Objekt ausgelöst. Auf dieses
 Event können wir reagieren:
 
 <javascript>
@@ -149,10 +144,10 @@ Browser (laut CSS-Anweisung) angewandt.
 Wenn alles funktioniert hat kann man jetzt beim Scrollen (egal ob mit Scrollbar, Maus, Touchscreen oder
 Keyboard) sehen wie sich der Header verwandelt.
 
-## Ausblick: Mehr spass beim Scrollen
+## Ausblick: Mehr Spass beim Scrollen
 
 Im Webdesign wird das Scrollen gerne als Auslöser für
 Animationen verwendet.  
 
-* [Scrolllama.js](https://github.com/russellgoldenberg/scrollama#scrollamajs)
+* [Scrollama.js](https://github.com/russellgoldenberg/scrollama#scrollamajs)
 * [Tutorial Parallax Scrolling](https://cssanimation.rocks/parallax/)

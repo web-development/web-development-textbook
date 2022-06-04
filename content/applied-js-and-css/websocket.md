@@ -114,8 +114,7 @@ für das Frontend Development verwendet.
 Für Node zu programmieren ist nicht einfach: wie im Browser, so wird auch in
 Node viel mit asynchronen Aufrufen gearbeitet.
 
-### glitch
-
+### Replit
 
 Node.js kann man [am eigenen Rechner installieren](https://nodejs.org/en/download/), das
 ist aber für diese Beispiel nicht nötig. Wir verwenden [https://replit.com/](https://replit.com/~).

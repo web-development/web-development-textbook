@@ -125,7 +125,7 @@ schreiben. Der Code wird am Server von Replit gespeichert, und kann
 dort auch ausgeführt werden.
 
 
-![](/images/websockets/glitch.png)
+![](/images/websockets/replit.png)
 
 Damit braucht man also am eigenen Computer nur den Webbrowser.
 
@@ -233,13 +233,12 @@ socket.on('chat message', function(msg){
 });
 </javascript>
 
-Der String 'chat message' ist frei gewählt.  Wir haben hier
+Der String 'chat message' ist frei gewählt. Wir haben hier
 ein Protokoll auf dem Websocket erfunden, das bisher nur dieses
 eine Event kennt. Es gibt auch andere Arten von Events, die schon
 belegt sind. "disconnect", welches du schon in dem Beispielcode finden kannst, 
 ist eines davon. Mehr vordefinierte Events findest du hier: 
 [Server Socket Events](https://socket.io/docs/v4/server-socket-instance/#events)
-
 
 
 ## Weiterentwicklung

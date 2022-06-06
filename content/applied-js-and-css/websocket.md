@@ -199,7 +199,7 @@ behandelt alle Anfragen. Ein Apache oder nginx ist nicht nötig.
 In folgendem Code repräsentiert `io` den ganzen Websocket:
 Die Variable `socket` repräsentiert einen verbundenen Client.
 `io.emit()`  ist ein Broadcast an alle verbundenen Clients,
-`socket.emit()` sendet nur an einen Client.
+`socket.emit()` würde nur an den einen Client senden.
 
 <javascript>
 io.on('connection', function(socket){
@@ -221,7 +221,7 @@ io.on('connection', function(socket){
 Wir haben vom Client zum Server gesendet mit dem Befehl:
 
 <javascript>
-socket.emit('chat message', m.value ); 
+socket.emit('chat message', input.value ); 
 </javascript>
 
 Am Server reagieren wir mit socket.on() auf die Message. Das kann man sich wie

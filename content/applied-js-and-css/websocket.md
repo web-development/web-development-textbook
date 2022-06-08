@@ -287,7 +287,7 @@ io.on('connection', function(socket){
 
   ....
   socket.on('disconnect', function(){
-    remove_from(users, socket); // Wenn ein User disconnected muss er wieder entfernt werden
+    remove_from(socket); // Wenn ein User disconnected muss er wieder entfernt werden
     console.log('User disconnected');
     io.emit('update users', users.length);
   });

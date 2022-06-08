@@ -273,10 +273,10 @@ Wir könnten jetzt ein neues Event erfinden (zB "update users"), auf welches der
 einen User-Counter in unserer Chat-App updaten.
 
 <javascript>
-const users = [];
+let users = [];
   
-function remove_from(users, socket){
-  users = users.filter(s => s.id != socket.id);
+function remove_from(socket){
+  users = users.filter(user => user.id !== socketId);
 }
   
 io.on('connection', function(socket){

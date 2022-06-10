@@ -3,7 +3,7 @@ title: Docker
 order: 90
 ---
 
-Das Logo von Docker ist ein Walfisch der Container trägt - aber was steck dahinter?
+Das Logo von Docker ist ein Walfisch der Container trägt - aber was steckt dahinter?
 
 ![](/images/docker/docker-logo.svg)
 
@@ -16,7 +16,7 @@ von Gütern vereinfacht. Wie zum Beispiel der [ISO Container](https://de.wikiped
 Wir arbeiten mit Betriebssystemen und Software, was bedeutet Container hier?
 
 Die [Containervirtualisierung](https://de.wikipedia.org/wiki/Containervirtualisierung) ist eine
-Methode auf einem Host-Betriebssystem mehrere Instanzen des Betreibsysstem voneinander Isoliert
+Methode auf einem Host-Betriebssystem mehrere Instanzen des Betriebssystem voneinander isoliert
 laufen zu lassen.
 
 Docker ist das bekannteste Beispiel für Containervirtualisierung.
@@ -24,13 +24,12 @@ Docker ist das bekannteste Beispiel für Containervirtualisierung.
 ## Vergleich Virtualisierung
 
 Schon vor der Containervirtualisierung gab es die Virtualisierung mit Hypervisor -
-z.B. mit Virtualbox oder VMWare.
-
-Ein Hypervisor lässt Virtuelle Maschienen auf derselben Hardware laufen. Jede "Gast-VM"
+z.B. mit VirtualBox oder VMWare.
+Ein Hypervisor lässt Virtuelle Maschinen (VMs) auf derselben Hardware laufen. Jede "Gast-VM"
 glaubt die Hardware alleine zu benutzen.
 
 Bei der Containervirtualisierung werden Teile des Host-Betriebssystem in den Containern
-mit verwendet, die Virtualiserung erfolgt also auf einer höheren Ebene:
+mit verwendet, die Virtualisierung erfolgt also auf einer höheren Ebene:
 
 ![](/images/docker/vm-vs-container.svg)
 
@@ -51,11 +50,11 @@ auch für das "Abbild" eines ganzen Dateisystems.
 Wenn man z.B. mit CDs oder DVDs arbeitet
 spricht man davon ein "Image zu brennen" wenn man Daten auf der CD oder DVD speichert.
 Dieses Image enthält ein ganzes Dateisystem, das man dann später auf der DVD verwenden kann.
-Aber zum Zeitpunkt des "brennens" ist das Image eine sehr große binäre Datei, die auf einen
+Aber zum Zeitpunkt des "Brennens" ist das Image eine sehr große binäre Datei, die auf einen
 Schlag auf die DVD geschrieben wird.
 
 Bei Docker ist ein Image ein vorbereitetes Dateisystem, das auf das
-Host-System "draufgesetzt" werden kann.
+Host-System "drauf-gesetzt" werden kann.
 
 Mit dem Kommandozeilen-Befehl `docker images` kann man sehen
 welche images schon vorhanden sind:

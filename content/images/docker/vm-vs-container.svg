@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 461 251" style="enable-background:new 0 0 461 251;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;}
+	.st1{fill:#DAE8FC;stroke:#6C8EBF;}
+	.st2{font-family:'Helvetica';}
+	.st3{font-size:12px;}
+	.st4{fill:#D5E8D4;stroke:#82B366;}
+	.st5{fill:#F8CECC;stroke:#B85450;}
+	.st6{fill:#FFE6CC;stroke:#D79B00;}
+	.st7{fill:#FFF2CC;stroke:#D6B656;}
+	.st8{font-family:'Helvetica-Bold';}
+	.st9{font-size:15px;}
+</style>
+<path class="st0" d="z"/>
+<path pointer-events="all" class="st1" d="M0.5,160.5h220v40H0.5V160.5z"/>
+<text transform="matrix(1 0 0 1 83.9902 184)" class="st2 st3">Hardware</text>
+<path pointer-events="all" class="st1" d="M240.5,160.5h220v40h-220V160.5z"/>
+<text transform="matrix(1 0 0 1 323.9902 184)" class="st2 st3">Hardware</text>
+<path pointer-events="all" class="st4" d="M0.5,120.5h220v40H0.5V120.5z"/>
+<text transform="matrix(1 0 0 1 50.9873 144)" class="st2 st3">(Host) Betriebssystem</text>
+<path pointer-events="all" class="st4" d="M240.5,120.5h220v40h-220V120.5z"/>
+<text transform="matrix(1 0 0 1 292.9766 144)" class="st2 st3">Betriebssystem Linux</text>
+<path pointer-events="all" class="st5" d="M0.5,90.5h220v20H0.5V90.5z"/>
+<text transform="matrix(1 0 0 1 40.417 104)" class="st2 st3">Hypervisor z.B. VirtualBox</text>
+<path pointer-events="all" class="st4" d="M0.5,40.5h80v40h-80V40.5z"/>
+<text transform="matrix(1 0 0 1 0.3232 64)" class="st2 st3">Betriebs-syst...</text>
+<path pointer-events="all" class="st6" d="M0.5,20.5h80v20h-80V20.5z"/>
+<text transform="matrix(1 0 0 1 16.9902 34)" class="st2 st3">Libraries</text>
+<path pointer-events="all" class="st7" d="M0.5,0.5h80v20h-80V0.5z"/>
+<text transform="matrix(1 0 0 1 11.9951 14)" class="st2 st3">Programm</text>
+<path pointer-events="all" class="st4" d="M90.5,40.5h80v40h-80V40.5z"/>
+<text transform="matrix(1 0 0 1 90.3232 64)" class="st2 st3">Betriebs-syst...</text>
+<path pointer-events="all" class="st6" d="M90.5,20.5h80v20h-80V20.5z"/>
+<text transform="matrix(1 0 0 1 106.9902 34)" class="st2 st3">Libraries</text>
+<path pointer-events="all" class="st7" d="M90.5,0.5h80v20h-80V0.5z"/>
+<text transform="matrix(1 0 0 1 101.9951 14)" class="st2 st3">Programm</text>
+<path pointer-events="all" class="st6" d="M240.5,74.5h80v20h-80V74.5z"/>
+<text transform="matrix(1 0 0 1 256.9902 88)" class="st2 st3">Libraries</text>
+<path pointer-events="all" class="st7" d="M240.5,54.5h80v20h-80V54.5z"/>
+<text transform="matrix(1 0 0 1 251.9951 68)" class="st2 st3">Programm</text>
+<path pointer-events="all" class="st6" d="M330.5,74.5h80v20h-80V74.5z"/>
+<text transform="matrix(1 0 0 1 346.9902 88)" class="st2 st3">Libraries</text>
+<path pointer-events="all" class="st7" d="M330.5,54.5h80v20h-80V54.5z"/>
+<text transform="matrix(1 0 0 1 341.9951 68)" class="st2 st3">Programm</text>
+<path pointer-events="all" class="st5" d="M240.5,94.5h220v16h-220V94.5z"/>
+<text transform="matrix(1 0 0 1 251.9951 108)" class="st2 st3">Docker Engine</text>
+<path pointer-events="all" class="st0" d="M0.5,210.5h180v40H0.5V210.5z"/>
+<text transform="matrix(1 0 0 1 2 235)" class="st8 st9">Virtuelle Maschienen</text>
+<path pointer-events="all" class="st0" d="M240.5,210.5h180v40h-180V210.5z"/>
+<text transform="matrix(1 0 0 1 242 235)" class="st8 st9">Container</text>
+<path class="st0" d="z"/>
+</svg>

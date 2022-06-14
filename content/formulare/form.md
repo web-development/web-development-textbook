@@ -13,8 +13,7 @@ noch in einem sehr strengen, sehr strukturierten Rahmen.
 §
 
 Zwei
-typische Anwendungsgebiete für Web-Formulare sind: das Eingabeformular der
-Suchmaschine Google und ein Bestellformular.
+typische Anwendungsgebiete für Web-Formulare sind: die Suche in Amazon und ein Bestellformular.
 
 ![Abbildung 44: Formulare in Webseiten](/images/formulare/formulare.png)
 
@@ -65,7 +64,7 @@ Eingabefeldern - normalerweise unverschlüsselt.
 Für größere Mengen Text gibt es `textarea`:
 
 <htmlcode>
-<textarea name="zitat">In a hole in the ground 
+<textarea name="zitat">In a hole in the ground
 there lived a Hobbit. </textarea>
 </htmlcode>
 
@@ -311,6 +310,3 @@ Siehe [Demo](/images/formulare/fieldset.html).
 </fieldset>
 </htmlcode>
 
-## Links
-
-- [html5pattern](http://html5pattern.com/) - bewährte Pattern für die Eingabeprüfung

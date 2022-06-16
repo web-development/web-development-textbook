@@ -84,7 +84,7 @@ Die veränderten Daten werden mit POST an person_edit.php geschickt. Aus den Dat
 $sth = $dbh->prepare(
   "UPDATE users SET
     firstname=?,surname=?,email=?,
-    profile_visible=?,description=? 
+    profile_visible=?,description=?
    WHERE id=?");
 
 $update_went_ok = $sth->execute(
@@ -124,7 +124,7 @@ $surname     = htmlspecialchars( $person->surname      );
 $description = htmlspecialchars( $person->description  );
 
 echo <<<EOM
-  <p>$anrede $vorname $nachname hat insgesamt 
+  <p>$anrede $vorname $nachname hat insgesamt
   $no Werke in dieser Datenbank.
   $ersie hat den Usernamen $username.</p>
 
@@ -143,5 +143,5 @@ Damit funktioniert nun die Darstellung des Datensatzes richtig:
 Siehe auch
 ----------
 
-* Kapitel über [Cross Site Scripting (XSS)](/security/a3-xss/) 
+* Kapitel über [Cross Site Scripting (XSS)](/security/a3-injection/#slide-7)
 

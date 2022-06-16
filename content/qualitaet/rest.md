@@ -7,13 +7,13 @@ order: 60
 Der Begriff Representational State Transfer - kurz “REST” - wurde von Roy Fielding 2000 in seiner Dissertation definiert .
 Fielding hat unter anderem an der HTTP-Spezifikation und an WebDAV
 mitgearbeitet. In seiner Dissertation stellt er grundlegende Überlegungen zur Architektur von
-verteilten Systemen an. 
+verteilten Systemen an.
 
-Die Grundfrage könnte man so stellen: das Web ist ein sehr erfolgreiches 
+Die Grundfrage könnte man so stellen: das Web ist ein sehr erfolgreiches
 verteiltes System, viele Hersteller entwickeln dafür Software (Microsoft,
 Mozilla, IBM, …) und die Zusammenarbeit funktioniert. Es gibt viele Komponenten die erfolgreich
-zusammenspielen (Browser, Server, Proxies, Suchmaschinen, Browser-Erweiterungen, 
-…). 
+zusammenspielen (Browser, Server, Proxies, Suchmaschinen, Browser-Erweiterungen,
+…).
 
 **Welche Eigenschaften des Webs führen dazu, dass dieses
 Zusammenspiel funktioniert?**
@@ -32,7 +32,7 @@ Wenn man REST missachtet wird die Infrastruktur nicht funktionieren.
 In der REST-Terminologie ist das Web ist eine Ansammlung von „**Ressourcen**“. In
 diesem Skriptum wird für Ressourcen auch der Begriff „**Dokumente**“ verwendet. Wir
 gehen hier nicht direkt von Fieldings Dissertation aus, sondern von der vereinfachten
-Darstellung in 
+Darstellung in
 [Tilkov, Stefan(2007): A Brief Introduction to REST. In: InfoQ](http://www.infoq.com/articles/rest-introduction)
 
 Die REST-Prinzipien sind (vereinfacht):
@@ -43,24 +43,24 @@ Die REST-Prinzipien sind (vereinfacht):
 4.  Ein Dokument kann auf verschiedene Arten repräsentiert werden (kann in verschiedenen Datentypen geliefert werden: HTML, XML, JSON, …).
 5.  Zustandslosigkeit = Statelessness.
 
-Im Folgenden finden Sie zu jedem dieser Punkte eine kurze Erklärung. 
+Im Folgenden finden Sie zu jedem dieser Punkte eine kurze Erklärung.
 
 ### Jedes Dokument soll eine eindeutige URL haben
 
 Wenn jedes Dokument eine URL hat, dann ist es verlinkbar, kann in Lesezeichen
 gespeichert werden, kann von Google gefunden und verlinkt werden, etc.
-Wenn Sie eine statische Webseite bauen erzeugen Sie die URLs beim Festlegen der 
-Dateinamen. 
+Wenn Sie eine statische Webseite bauen erzeugen Sie die URLs beim Festlegen der
+Dateinamen.
 
 Bei einer PHP-Applikation sind es die Dateinamen und die GET-
 Parameter, die die URL ausmachen. In der Portfolio-Applikation, die wir in den
-Kapiteln [PHP Datenbank Lesen](/php-db-lesen/) und [PHP Datenbank schreiben](/php-db-schreiben/) gebaut haben, 
+Kapiteln [PHP Datenbank Lesen](/php-db-lesen/) und [PHP Datenbank schreiben](/php-db-schreiben/) gebaut haben,
 waren die URLs:
 
-* http://ich.multimediatechnology.at/projekt-1/index.php 
-* http://ich.multimediatechnology.at/projekt-1/personen.php  
-* http://ich.multimediatechnology.at/projekt-1/person.php?pid=1 
-* http://ich.multimediatechnology.at/projekt-1/person.php?pid=2 
+* http://ich.multimediatechnology.at/projekt-1/index.php
+* http://ich.multimediatechnology.at/projekt-1/personen.php
+* http://ich.multimediatechnology.at/projekt-1/person.php?pid=1
+* http://ich.multimediatechnology.at/projekt-1/person.php?pid=2
 * http://ich.multimediatechnology.at/projekt-1/person.php?pid=3
 
 und so weiter. Das erfüllt schon das REST-Prinzip.
@@ -72,7 +72,7 @@ im Webserver umschreiben kann, mit der RewriteEngine von Apache.
 
 * http://ich.multimediatechnology.at/projekt-1/
 * http://ich.multimediatechnology.at/projekt-1/personen
-* http://ich.multimediatechnology.at/projekt-1/person/max_mustermann 
+* http://ich.multimediatechnology.at/projekt-1/person/max_mustermann
 * http://ich.multimediatechnology.at/projekt-1/person/nina_nocheinbeispiel
 * http://ich.multimediatechnology.at/projekt-1/person/klaus_maria_nachname
 
@@ -86,13 +86,13 @@ RewriteRule ^personen$     personen.php  [L]
 RewriteRule ^person/(.*)   person.php?slug=$1  [L]
 </plain>
 
-#### Umsetzung 
+#### Umsetzung
 
-die Umstellung einer bestehenden Applikation 
-auf diese URLs hat Auswirkungen falls sie relative Links 
+die Umstellung einer bestehenden Applikation
+auf diese URLs hat Auswirkungen falls sie relative Links
 verwendet haben, um z.B. auf Stylesheets zu verweisen. Deswegen rate ich von
 einer nachträglichen Umstellung der URLs ab – das ist sehr viel mehr Arbeit als man
-denkt. 
+denkt.
 
 ### Dokumente sollen Links auf andere Dokument enthalten
 
@@ -111,27 +111,27 @@ dieses Prinzip müssen Ihre Web-Applikationen auf jeden Fall erfüllen.
 
 Wie sollen diese Methoden verwendet werden? Jede Methode hat eine Bedeutung:
 
-* **GET** Eine Repräsentation einer Ressource soll geholt werden. Das verändert 
+* **GET** Eine Repräsentation einer Ressource soll geholt werden. Das verändert
   nichts an der Ressource, diese Methode ist also harmlos.
-* **POST** Eine Ressource (die bisher noch keine URL hatte) soll neu erzeugt 
-  werden. z.B. könnte ein POST auf `/dings/` eine neue Ressource mit der 
+* **POST** Eine Ressource (die bisher noch keine URL hatte) soll neu erzeugt
+  werden. z.B. könnte ein POST auf `/dings/` eine neue Ressource mit der
   URL `/dings/17` erzeugen
-* **PUT** Diese Methode dient zum Speichern einer Ressource unter der  angegebenen URL. 
-  Diese Methode steht bei Web-Formularen aber nicht zur Verfügung. Deswegen 
-  wird statt dessen meist ein POST auf eine übergeordnete Ressource verwendet. 
-* **DELETE** Diese Methode dient zum Löschen einer Ressource. Auch diese Methode 
-  steht bei Web-Formularen nicht zur Verfügung.  
+* **PUT** Diese Methode dient zum Speichern einer Ressource unter der  angegebenen URL.
+  Diese Methode steht bei Web-Formularen aber nicht zur Verfügung. Deswegen
+  wird statt dessen meist ein POST auf eine übergeordnete Ressource verwendet.
+* **DELETE** Diese Methode dient zum Löschen einer Ressource. Auch diese Methode
+  steht bei Web-Formularen nicht zur Verfügung.
 
 #### Umsetzung
 
 Bei der Programmierung mit simplem PHP ist wichtig, dass Sie GET und POST korrekt
 einsetzen.  Erst mit Frameworks wie Ruby on Rails oder dem ZEND Framework für
-PHP werden sie die anderen Methoden verwenden. 
+PHP werden sie die anderen Methoden verwenden.
 
 ### Ein Dokument – mehrere Repräsentationen
 
 Ein Dokument kann auf verschiedene Arten repräsentiert werden: z.B. kann die
-Darstellung einer Person in HTML, XML und JSON erfolgen. Die HTML-Variante kennen Sie 
+Darstellung einer Person in HTML, XML und JSON erfolgen. Die HTML-Variante kennen Sie
 schon:
 
 <htmlcode>
@@ -199,7 +199,7 @@ im http-Header:
 
 <plain caption="HTTP Request: Accept-Header verlangt html als Antwort">
 GET /mini/person/3 HTTP/1.1
-Host: ich.multimediatechnology.at 
+Host: ich.multimediatechnology.at
 Accept: text/html
 </plain>
 
@@ -207,7 +207,7 @@ Bzw.
 
 <plain caption="HTTP Request: Accept-Header verlangt xml als Antwort">
 GET /mini/person/3 HTTP/1.1
-Host: ich.multimediatechnology.at 
+Host: ich.multimediatechnology.at
 Accept: application/xml
 </plain>
 
@@ -215,8 +215,8 @@ Accept: application/xml
 
 Eine beliebte Vereinfachung ist die Verwendung von Endungen in der URL:
 
-* http://ich.multimediatechnology.at/projekt-1/person/83.html 
-* http://ich.multimediatechnology.at/projekt-1/person/83.xml 
+* http://ich.multimediatechnology.at/projekt-1/person/83.html
+* http://ich.multimediatechnology.at/projekt-1/person/83.xml
 * http://ich.multimediatechnology.at/projekt-1/person/83.json
 
 #### Umsetzung
@@ -227,8 +227,8 @@ bei der Verwendung von Frameworks umsetzten.
 ## Zustandslosigkeit = Statlessness.
 
 Zustandslosigkeit ist ein sehr wichtiges Prinzip im Web. Was das bedeutet zeigt
-man am einfachsten an einem Gegenbeispiel: Beim Suchen  im alten 
-Katalog der FH-Bibliotek hatte das Ergebnis eine sehr lange URL (hier mit dem Suchwort „Web“) 
+man am einfachsten an einem Gegenbeispiel: Beim Suchen  im alten
+Katalog der FH-Bibliotek hatte das Ergebnis eine sehr lange URL (hier mit dem Suchwort „Web“)
 
 
 `http://aleph20-prod-sh1.obvsg.at/F/VY5F42S4132QETN8I7DXHJNF4RSEE7Y7S7K3EKI2QU6R6XQK4B-50822?func=find-b&find_code=WRD&request=Web&adjacent=N&x=0&y=0&filter_code_1=WSP&filter_request_1=&filter_code_2=WEF&filter_request_2=&filter_code_5=WYR&filter_request_5=&filter_code_6=WYR&filter_request_6=&filter_code_7=WDA&filter_request_7=&filter_code_8=WZW&filter_request_8=`
@@ -237,7 +237,7 @@ Katalog der FH-Bibliotek hatte das Ergebnis eine sehr lange URL (hier mit dem Su
 
 Wenn ich diese URL zwei Tage später wieder verwende erhalte ich keine Antwort
 mehr, sondern die Fehlermeldung:
- 
+
 ![Abbildung 52: Fehlermeldung von ALEPHINO, einer Webapplikation mit zuviel State](/images/session-timeout-error.png)
 
 §
@@ -262,7 +262,7 @@ verwenden, wenn er unbedingt notwendig ist.
 
 §
 
-z.B. könnte man denken „Liste meiner ausgeliehenen Bücher“ sei von der Session abhängig. 
+z.B. könnte man denken „Liste meiner ausgeliehenen Bücher“ sei von der Session abhängig.
 Aber selbst hier könnte man eine fixe URL
 verwenden:
 
@@ -276,7 +276,7 @@ BibliothekarIn darf zugreifen. Alle anderen erhalten keinen Zugriff sondern den 
 
 **Achtung**: wir haben schon ein Szenario kennen gelernt, wo die
 Zeitbeschränkung von Sessions einen Sinn macht: Zum Verhindern von
-[Cross Site Request Forgeries - CSRF](/security/a8-csrf/).  Das
+[Cross Site Request Forgeries - CSRF](https://owasp.org/www-community/attacks/csrf).  Das
 ist aber nur bei Operationen sinnvoll, die etwas am Server ändern,
 bzw. die Daten abfragen die besonders geschützt werden müssen.
 
@@ -285,7 +285,7 @@ Die "Liste der Bücher mit dem Wert `Web` im Titel" ist nicht schützenswert.
 
 #### Umsetzung
 
-Diesen Aspekt von REST können und sollen Sie voll umsetzten. 
+Diesen Aspekt von REST können und sollen Sie voll umsetzten.
 Verwenden Sie nur die php-SESSION um den Zustand der Applikation zu speichern, und
 gehen Sie möglichst sparsam damit um.
 

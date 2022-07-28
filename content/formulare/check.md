@@ -62,6 +62,7 @@ CSS selektieren:
 
 ## Links
 
+- [MDN: Client-side form validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
 - [html5pattern](http://html5pattern.com/) - bewährte Pattern für die Eingabeprüfung
 - [:invalid](https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid)
 - [Attributes for Input Tags](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attributes)

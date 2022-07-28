@@ -161,7 +161,7 @@ Content-Security-Policy: default-src https: 'unsafe-inline'
 - Siehe [XSS (Cross Site Scripting) Prevention Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.md)
 - [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
 - Wir haben das Problem zuerst besprochen im Kaptiel [PHP DB Schreiben: Daten Bearbeiten](https://web-development.github.io/php-db-schreiben/daten-editieren/)
-
+- [Escaping im Template System twig für PHP](https://twig.symfony.com/doc/3.x/filters/escape.html)
 
 
 

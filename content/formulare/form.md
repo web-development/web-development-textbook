@@ -171,6 +171,53 @@ Achtung: beim Erstellen des Menüs muss man jede möglich Antwort bedenken. Auch
 
 §
 
+Im Menü kann man Zwischentitel einfügen:
+
+<htmlcode caption="Menü mit Zwischentitel">
+<select>
+  <option>--Your Favourite Animal--</option>
+  <optgroup label="Birds">
+    <option>Blue Jay</option>
+    <option>Cardinal</option>
+    <option>Hummingbird</option>
+  </optgroup>
+  <optgroup label="Sea Creatures">
+    <option>Shark</option>
+    <option>Clownfish</option>
+    <option>Whale</option>
+  </optgroup>
+  <optgroup label="Mammals">
+    <option>Lion</option>
+    <option>Squirrel</option>
+    <option>Quokka</option>
+  </optgroup>
+</select>
+</htmlcode>
+
+<form  action="/images/formulare/submitted.html">
+
+<select>
+  <option>--Your Favourite Animal--</option>
+  <optgroup label="Birds">
+    <option>Blue Jay</option>
+    <option>Cardinal</option>
+    <option>Hummingbird</option>
+  </optgroup>
+  <optgroup label="Sea Creatures">
+    <option>Shark</option>
+    <option>Clownfish</option>
+    <option>Whale</option>
+  </optgroup>
+  <optgroup label="Mammals">
+    <option>Lion</option>
+    <option>Squirrel</option>
+    <option>Quokka</option>
+  </optgroup>
+</select>
+</form>
+
+§
+
 Die Mehrfach-Auswahl in einem Menü mit `select` und `option`
 erfolgt mit dem Drücken der Steuerungs-Taste.
 

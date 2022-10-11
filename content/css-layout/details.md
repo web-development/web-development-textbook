@@ -1,6 +1,6 @@
 ---
 title: Details zu Layout
-order: 40
+order: 5
 ---
 
 In diesem Kapitel werden weitere Properties vorgestellt,
@@ -43,7 +43,7 @@ Ein Bild wird dabei wie ein Wort im Text behandelt, und nicht etwa frei auf der 
 
 <div class="resizable">
   <p style="background-color:#ddd">Ich bin ein blockbildender Tag, nämlich ein Pargraph P.
-  I am a block level element - p for paragraph.  Ich bin ein blockbildender Tag, nämlich ein Pargraph P. I am a block level element - p for paragraph. 
+  I am a block level element - p for paragraph.  Ich bin ein blockbildender Tag, nämlich ein Pargraph P. I am a block level element - p for paragraph.
   <img src="/images/css-layout/silhouette_hand.svg" style="height: 5ex;" alt="Hand!">
   Das Bild der Hand stammt von <a href="https://commons.wikimedia.org/wiki/File:Silhouette_hand.svg">SimonWaldherr</a>.
   Ich bin ein blockbildender Tag, nämlich ein Pargraph P.

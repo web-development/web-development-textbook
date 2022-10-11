@@ -1,20 +1,25 @@
-desc "Compile the site"
-task :compile => [:clean] do
-  puts "Compiling site"
+# frozen_string_literal: true
+
+require 'English'
+require 'English'
+
+desc 'Compile the site'
+task compile: [:clean] do
+  puts 'Compiling site'
   out = `LANG=en_US.UTF-8 bundle exec nanoc compile > logs/compile.log 2>&1`
 
-  if $?.to_i == 0
-    puts  "Compilation succeeded"
+  if $CHILD_STATUS.to_i.zero?
+    puts  'Compilation succeeded'
   else
-    abort "Compilation failed: #{$?.to_i}\n" +
+    abort "Compilation failed: #{$CHILD_STATUS.to_i}\n" \
           "#{out}\n"
   end
   sh './deploy.sh'
 end
 
-desc "start server"
+desc 'start server'
 task :start do
-  puts "Starting web server"
+  puts 'Starting web server'
   out = `LANG=en_US.UTF-8 bundle exec nanoc view & > logs/view.log 2>&1 `
 end
 
@@ -27,4 +32,4 @@ task :test do
   HTMLProofer.check_directory('output').run
 end
 
-task :default => 'compile'
+task default: 'compile'

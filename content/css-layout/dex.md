@@ -1,7 +1,7 @@
---- 
+---
 title: CSS - Layout
 index: true
-intro: Nachdem Sie nun einfache Formatierungen im CSS beherrschen lernen Sie wie sie das Layout der ganzen Seite beeinflussen können.
+intro: Nachdem Sie nun einfache Formatierungen im CSS beherrschen lernen Sie, wie sie das Layout der ganzen Seite beeinflussen können.
 ---
 
 ### Was Sie wissen sollten

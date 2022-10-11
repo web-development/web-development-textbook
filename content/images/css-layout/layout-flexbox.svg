@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 843.7 303.4" style="enable-background:new 0 0 843.7 303.4;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#DAE8FC;stroke:#6C8EBF;}
+	.st1{fill:#D5E8D4;stroke:#82B366;}
+	.st2{fill:#F8CECC;stroke:#B85450;}
+	.st3{fill:#FFF2CC;stroke:#D6B656;}
+	.st4{fill-rule:evenodd;clip-rule:evenodd;fill:#231F20;}
+	.st5{font-family:'Helvetica-Bold';}
+	.st6{font-size:15px;}
+</style>
+<g id="smartphone">
+	<path pointer-events="all" class="st0" d="M768.3,192.7h50.1V262h-50.1V192.7z"/>
+	<path pointer-events="all" class="st1" d="M768.8,265.8h49v78h-49V265.8z"/>
+	<path pointer-events="all" class="st2" d="M770,347h48.4v45.4H770V347z"/>
+	<path pointer-events="all" class="st3" d="M770,394.3h47.3v83.3H770V394.3L770,394.3z"/>
+	<path id="iphone" class="st4" d="M767,282v-92.6h53.1l0.1,92.6H767z M793.5,295.9c-2.2,0-3.9-1.8-3.9-3.9c0-2.2,1.8-3.9,3.9-3.9
+		c2.2,0,3.9,1.8,3.9,3.9C797.4,294.1,795.6,295.9,793.5,295.9z M788,182.5h11c0.4,0,0.8,0.3,0.8,0.7c0,0.4-0.3,0.7-0.8,0.7h-11
+		c-0.4,0-0.8-0.2-0.8-0.7C787.2,182.9,787.5,182.5,788,182.5z M793.5,177c0.4,0,0.8,0.3,0.8,0.8c0,0.4-0.3,0.8-0.8,0.8
+		c-0.4,0-0.8-0.3-0.8-0.8S793,177,793.5,177z M816.9,173.8h-47c-3.9,0-6.9,3.2-6.9,7v115.6c0,3.9,3,6.7,6.9,6.7h47
+		c3.9,0,7-2.9,7-6.8V180.8C823.9,176.9,820.8,173.8,816.9,173.8"/>
+</g>
+<g id="laptop_1_">
+	<path pointer-events="all" class="st0" d="M470.1,159.6h47.5v112.7h-47.5V159.6z"/>
+	<path pointer-events="all" class="st1" d="M520.7,158.7h51.1v114.7h-51.1V158.7z"/>
+	<path pointer-events="all" class="st2" d="M575,158.8h61.1v113.5H575V158.8z"/>
+	<path pointer-events="all" class="st3" d="M640.5,158.1h61.7v117.3h-61.7V158.1L640.5,158.1z"/>
+	<path id="laptop" class="st4" d="M708.2,287.3H464.1V142.8h244.1V287.3z M586.4,132.2c1.4,0,2.6,1.2,2.6,2.7s-1.2,2.6-2.6,2.6
+		c-1.4,0-2.6-1.2-2.6-2.6C583.8,133.4,584.9,132.2,586.4,132.2z M756.1,299.6h-31.2v-167c0-2.2-1.7-3.9-3.8-3.9H453.6
+		c-2.1,0-3.9,1.8-3.9,3.9v167h-33c-0.6,0-1.2,0.5-1.2,1.2v1.5c0,0.6,0.6,1.2,1.2,1.2h339.4c0.6,0,1.1-0.5,1.1-1.2v-1.5
+		C757.2,300.1,756.7,299.6,756.1,299.6"/>
+</g>
+<g id="Desktop">
+	<path id="path38" class="st4" d="M413.2,232.7H16.4V20.5h396.8V232.7z M423,2.6H6.3c-3.3,0-5.9,2.8-5.9,6v237.3
+		c0,3.1,2.6,5.4,5.9,5.4h171v29.3h0l-21.9,18.6c-0.8,0.3-1.4,1-1.4,1.8c0,1.1,0.9,1.9,2,1.9l117.5,0c1.1,0,2-0.9,2-2
+		c0-0.5-0.2-1-0.5-1.3h0.2l-22.7-18.7v-29.6H423c3.3,0,6.1-2.3,6.1-5.4V8.6C429.1,5.5,426.3,2.6,423,2.6"/>
+	<path pointer-events="all" class="st0" d="M23.3,31.7h74.6v72.5H23.3V31.7z"/>
+	<path pointer-events="all" class="st1" d="M102.8,31.1h80.4v73.8h-80.4V31.1z"/>
+	<path pointer-events="all" class="st2" d="M188.2,31.2h96.1v73h-96.1V31.2z"/>
+	<path pointer-events="all" class="st3" d="M288.4,30.5h120v72.4h-120V30.5L288.4,30.5z"/>
+</g>
+<text transform="matrix(1 0 0 1 468.424 71.4462)" class="st5 st6">Flexbox</text>
+</svg>

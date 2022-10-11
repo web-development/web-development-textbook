@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 461 176" style="enable-background:new 0 0 461 176;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#DAE8FC;stroke:#6C8EBF;}
+	.st1{fill:#D5E8D4;stroke:#82B366;}
+	.st2{fill:#F8CECC;stroke:#B85450;}
+	.st3{fill:#FFF2CC;stroke:#D6B656;}
+	.st4{fill-rule:evenodd;clip-rule:evenodd;fill:#231F20;}
+	.st5{font-family:'Helvetica-Bold';}
+	.st6{font-size:15px;}
+</style>
+<g id="laptop_1_">
+	<path pointer-events="all" class="st0" d="M37.6,17.5H270v40H37.6V17.5z"/>
+	<path pointer-events="all" class="st1" d="M37.6,61.2h232.3v40H37.6V61.2z"/>
+	<path pointer-events="all" class="st2" d="M37.6,105.2h233.2v21.7H37.6V105.2z"/>
+	<path pointer-events="all" class="st3" d="M37.6,130.5h231.7v56.2H37.6V130.5L37.6,130.5z"/>
+	<path id="laptop" class="st4" d="M276.2,159.9H32.1V15.4h244.1V159.9z M154.4,4.8c1.4,0,2.6,1.2,2.6,2.7s-1.2,2.6-2.6,2.6
+		c-1.4,0-2.6-1.2-2.6-2.6C151.8,6,152.9,4.8,154.4,4.8z M324.1,172.2h-31.2V5.2c0-2.2-1.7-3.9-3.8-3.9H21.6c-2.1,0-3.9,1.8-3.9,3.9
+		v167h-33c-0.6,0-1.2,0.5-1.2,1.2v1.5c0,0.6,0.6,1.2,1.2,1.2h339.4c0.6,0,1.1-0.5,1.1-1.2v-1.5C325.2,172.7,324.7,172.2,324.1,172.2
+		"/>
+</g>
+<g id="smartphone">
+	<path pointer-events="all" class="st0" d="M364.3,65.3h50.1v69.3h-50.1V65.3z"/>
+	<path pointer-events="all" class="st1" d="M364.8,138.4h49v78h-49V138.4z"/>
+	<path pointer-events="all" class="st2" d="M366,219.6h48.4V265H366V219.6z"/>
+	<path pointer-events="all" class="st3" d="M366,266.9h47.3v83.3H366V266.9L366,266.9z"/>
+	<path id="iphone" class="st4" d="M363,154.6V62h53.1l0.1,92.6H363z M389.5,168.5c-2.2,0-3.9-1.8-3.9-3.9c0-2.2,1.8-3.9,3.9-3.9
+		c2.2,0,3.9,1.8,3.9,3.9S391.6,168.5,389.5,168.5z M384,55.1h11c0.4,0,0.8,0.3,0.8,0.7s-0.3,0.7-0.8,0.7h-11c-0.4,0-0.8-0.2-0.8-0.7
+		C383.2,55.5,383.5,55.1,384,55.1z M389.5,49.6c0.4,0,0.8,0.3,0.8,0.8c0,0.4-0.3,0.8-0.8,0.8c-0.4,0-0.8-0.3-0.8-0.8
+		S389,49.6,389.5,49.6z M412.9,46.4h-47c-3.9,0-6.9,3.2-6.9,7V169c0,3.9,3,6.7,6.9,6.7h47c3.9,0,7-2.9,7-6.8V53.4
+		C419.9,49.5,416.8,46.4,412.9,46.4"/>
+</g>
+<text transform="matrix(1 0 0 1 343.04 27.8418)" class="st5 st6">Normal Flow</text>
+</svg>

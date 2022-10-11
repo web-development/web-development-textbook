@@ -1,11 +1,19 @@
 ---
 title: CSS für Layout
-order: 30
+order: 1
 ---
 
 Welche Gestaltungsmöglichkeiten bietet CSS für das Layout einer Webseite?
 
+In diesem Kapitel betrachten wir drei Möglichkeiten:
+
+* Normal Flow
+* Flexbox
+* Grid
+
 ## Normal Flow
+
+![normal flow on laptop and smartphone](/images/css-layout/layout-normal-flow.svg)
 
 Schon bisher wurden die Elemente unserer Webseite
 auf eine bestimmte Weise angeordnet: nach dem "normal flow" (siehe [MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Normal_Flow)):
@@ -15,24 +23,27 @@ deren Größe wir mit `width`, `padding`, `border` und `margin`
 beeinflussen können.
 
 Nicht-Blockbildente Elemente werden von links nach rechts auf Zeilen
-gesetzt, blockbildende Element von oben nach unten arragniert.
+gesetzt, blockbildende Element von oben nach unten arrangiert.
 Achtung: die Richtung hängt von der Sprache, bzw. dem [writing mode](https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode) ab.
 
-Mit einer zentrierten Box mit `margin: auto` kann man
-eine gut lesbare seite mit responsive layout erzeugen: [Demo](/images/css-layout/width-auto.html)
+Auf dem Smartphone und am Laptop ist die Webseite sehr ähnlich: nur einmal
+länger und schmäler, einmal kürzer und breiter.
 
 ## Flexbox
 
+![flexbox auf verschiedenene Geräten](/images/css-layout/layout-flexbox.svg)
+
+
 Seit [2014](https://caniuse.com/#search=flex) wird Flexbox in allen Browsern unterstützt.
 
-Flexbox arbeitet nur in einer Dimension. Es wird für kleinere Komponenten
+Flexbox wird für kleinere Komponenten
 in der Seite eingesetzt, zum Beispiel für eine Bildergalerie.
 
-[Demo-Seite](/images/flexbox/)
+Mit Flexbox kann man die Kinder eines Tags nebeneinander anordnen.
 
 ### Flexbox definieren
 
-Der Container legt die Richtung fest: entweder horizontal (in einer Zeile = `row`) oder vertikal
+Das Eltern-Element legt die Richtung fest: entweder horizontal (in einer Zeile = `row`) oder vertikal
 (in einer Spalte = `column`):
 
 <htmlcode>
@@ -55,6 +66,9 @@ __|__
 }
 </htmlcode>
 
+Siehe auch [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+
+
 ### Platz verteilen oder Elemente strecken
 
 Der Platz zwischen den Elementen kann auf verschiedene Art verteilt werden:
@@ -66,16 +80,19 @@ linksbündig, rechtsbündig, zentriert, mit Platz dazwischen oder Platz rundum.
 }
 </css>
 
-Siehe [justify-content](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#justify-content)
 
 Oder die Elemente können sich ausdehnen, um den Platz einzunehmen:
 
 <css>
-.project_partial {
-    flex-grow: 1;
-    flex-shrink: 1;
+#box1, #box3 {
+    flex: 1;
+}
+#box2 {
+    flex: 2;
 }
 </css>
+
+Siehe [justify-content](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#justify-content)
 
 Siehe [flex-grow](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#flex-grow)
 
@@ -90,52 +107,18 @@ können sie auf eine nächste Zeile umgebrochen werden:
 }
 </css>
 
-### Flexbox verschachteln
+Siehe [flex-wrap](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flex-wrap)
 
-Wenn man vertikale und horizontale Flexboxen ineinander schachtelt
-kann man auch ein zweidimensionales Layout erzielen - so wie mit
-CSS Grid. Das HTML Dokument muss aber dabei diese Struktur genau
-nachbauen.
-
-<div class="resizable">
-  <div style="display:flex; flex-direction: row;">
-    <nav style="border: 5px green solid;margin-right: 1px;">
-      Navi Navi Navi Navi Navi Navi Navi Navi Navi
-    </nav>
-    <div style="display:flex; flex-direction: column; border: 5px green solid;padding: 1px;">
-      <section style="border: 5px #ddd solid;margin-bottom: 1px;">
-        <p><b>
-          Flexbox  in Flexbox
-        </b></p>
-      </section>
-      <section style="border: 5px #ddd solid;">
-        <p>
-          Wird eine Flexbox in eine Flexbox geschachtelt, dann
-          braucht das entsprechend verschachtelete HTML Tags.
-          Wäre hier nicht CSS Grid eine einfachere Lösung?
-          Das sollte man überlegen!
-        </p>
-      </section>
-    </div>
-  </div>
-</div>
-
-Siehe auch [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
 ## CSS Grid
 
+![grid auf verschiedenene Geräten](/images/css-layout/layout-grid.svg)
+
+
 Seit [Frühjahr 2017](https://caniuse.com/#search=grid) wird CSS Grid in Browsern unterstützt.
-Damit legt man ein Gitternetz über die ganze Seite:
+Damit legt man ein Gitternetz über die ganze Seite, und kann dann die Kinder
+eines Elements in diesem Gitternetz positionieren.
 
-![Layout mit CSS Grid](/images/css-layout/grid.png)
-
-Das Grid wird normalerweise nicht angzeigt. Die hier gezeigte Ansicht
-mit den strichlierten Linien kann man in den Firefox Developertools mit
-einem Klick auf das grid-symbol aktivieren:
-
-![Grid Ansicht einschalten in Firefox](/images/css-layout/switch-on-grid.png)
-
-[Demo-Seite](/images/cssgrid/)
 
 ### Das Grid definieren
 
@@ -213,44 +196,14 @@ header {
 }
 
 section#description {
-grid-area: descriptionArea;
-background-color: white;
+  grid-area: descriptionArea;
+  background-color: white;
 }
 </css>
 
 Siehe auch [CSS Tricks: Complete Guide to CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
 
 Siehe auch [CSS Grid by Example](https://gridbyexample.com/examples/)
-
-## Absolute Positionierung
-
-Mit der Deklaration `position: absolute` wird ein Tag aus der normalen Darstellung
-herausgenommen und über dem restlichen Inhalt platziert.
-Dazu muss aber erst eine Koordinatensystem angelegt werden, auf das sich
-die Position bezieht. Das geschieht mit `position: relative` in einem übergeordneten
-Tag.
-
-<htmlcode>
-<div class="project_partial">
-
-  <img src="cover.jpg">
-
-  <div class="badge"></div>
-
-</div>
-__|__
-.project_partial {
-  position: relative;
-  background-color: #292927;
-}
-.project_partial .badge {
-  position: absolute;
-  background-image: url(badge_topleft.png);
-  /* top: 0px; left: 0px; */
-}
-</htmlcode>
-
-[Beispiel-Seite](/images/css-absolute/test.html)
 
 ## Viele Methoden
 
@@ -260,12 +213,13 @@ Methoden um das Layout der Seite zu beeinflussen.
 Für einen ersten Einstieg reichen die hier gezeigten,
 später sollten Sie noch [weitere Details](/css-layout/details) kennen lernen.
 
-Eine gute englischsprachige Quelle dazu ist [learnlayout.com](http://learnlayout.com/)
 
-Der Artikel [Use Cases For Flexbox](https://www.smashingmagazine.com/2018/10/flexbox-use-cases/) von Rachel Andrews erklärt gut in welchen Fällen man Grid und in welchen Fällen man Flexbox verwenden kann.
 
 ## Weitere Quellen
 
+- [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 - [Flexbugs](https://github.com/philipwalton/flexbugs) - bekannte Probleme mit Flexbox
 - [Flexboxfroggy.com](http://flexboxfroggy.com/) - Lernspiel mit Fröschen
 - [FlexboxDefense.com](http://www.flexboxdefense.com/) - Lernspiel mit Tower Defense
+- [learnlayout.com](http://learnlayout.com/)
+- [Use Cases For Flexbox](https://www.smashingmagazine.com/2018/10/flexbox-use-cases/) erklärt in welchen Fällen man Grid und in welchen Fällen man Flexbox verwenden kann

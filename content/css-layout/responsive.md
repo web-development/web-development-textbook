@@ -1,10 +1,49 @@
 ---
 title: Responsive Design
-order: 20
+order: 21
 ---
 
-Wie gehen wir mit der Herausforderung der verschiedenen
-Auflösungen und Pixeldichten um?
+Wie im Kapitel [Das Web und HTML](/das-web-und-html/) beschrieben gibt es viele verschiedene Ausgabegeräte für Webseiten. Für die Gestaltung des visuellen Layouts von Webseiten spielt dabei die die Größe des Geräts, die Auflösung und die Pixeldichte eine wichtige Rolle.## Verschiedene visuelle Ausgabegeräte
+
+Wenn wir nur Laptops und Smartphones vergleichen sehen wir schon große
+Unterschiede in der Größe in cm und der Auflösung in Pixel. Die Auflösung hat
+sich über viele Jahre erhöht, scheint nun aber ein Plateau erreicht zu haben:
+
+
+![Laptop vs. Smartphone - viele Möglichkeiten](/images/css-layout/res-and-img.jpg)
+
+## Verschiedene Pixel
+
+Mit [mydevice.io](https://www.mydevice.io/) kann man den aktuellen Browser
+vermessen. Die angezeigten Pixel sind die virtuellen CSS Pixel.
+
+![Laptop vs. Smartphone - ein konkretes Beispiel](/images/css-layout/res-and-mydevice.png )
+
+Der Faktor von "echten" Pixel zu Virtuellen CSS Pixeln wird als "CSS Pixel Ratio" bezeichnet.
+Der Laptop mit 1440 CSS Pixel auf 2880 echte Pixel hat eine CSS Pixel Ratio von 2.
+Das Smartphone mit 360 CSS Pixel auf 1080 echte Pixel hat eine CSS Pixel Ratio von 3.
+
+## CSS Pixel
+
+Im [CSS Standard](https://drafts.csswg.org/css-values-3/#px) findet sich folgende
+Definition und folgende Abbildung:
+
+> The reference pixel is the visual angle of one pixel on a device with a pixel density of 96dpi and a distance from
+> the reader of an arm’s length. For a nominal arm’s length of 28 inches, the visual angle is therefore about
+> 0.0213 degrees. For reading at arm’s length, 1px thus corresponds to about 0.26 mm (1/96 inch).
+>
+> The image below illustrates the effect of viewing distance on the size of a reference pixel: a reading distance
+> of 71 cm (28 inches) results in a reference pixel of 0.26 mm, while a reading distance of 3.5 m (12 feet)
+> results in a reference pixel of 1.3 mm.
+
+![Abbildung aus dem CSS Standard: definition des pixels als Winkel](/images/css-layout/css-pixel-definition.png)
+
+Mit [mydevice.io](https://www.mydevice.io/) kann man den aktuellen Browser
+vermessen. Die angezeigten Pixel sind die virtuellen CSS Pixel. Mit dem Faktor "pixel-ratio" kann man
+die physikalischen Pixel ausrechnen.
+
+By mydevice.io gibt es auch eine [ausführlichere Liste](https://www.mydevice.io/#compare-devices) von aktuellen
+Geräten.
 
 ## Responsive Design
 
@@ -63,11 +102,11 @@ Es gibt sogar mediaqueries für die Präferenz des "dark mode":
 @media (prefers-color-scheme: dark) {
   body {
     color: #ddd;
-    background-color: black; 
-  }  
+    background-color: black;
+  }
   h1,h2,h3 {
     color: #d39060;
-  }  
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -77,7 +116,7 @@ background-color: #ffffff;
 }
 h1,h2,h3 {
 color: #333333;
-}  
+}
 }
 </css>
 

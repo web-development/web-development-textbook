@@ -63,6 +63,13 @@ Die technische Umsetzung des verschiedenen Layouts ist relativ einfach: Mediaque
 
 Eine tiefere "Verschachtelung" gibt es in CSS nicht.
 
+
+§
+
+Voraussehtung für responsive design am Handy: man muss den [viewport](https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag) im meta tag setzen:
+
+    <meta name="viewport" content="width=500, initial-scale=1">
+
 ### Mobile First
 
 Luke Wroblewski schlug 2009 unter dem Slogan "Mobile First" vor, zuerst die mobile Version der Website zu gestalten, und davon dann die "größeren" Versionen abzuleiten [&rarr;](http://www.lukew.com/ff/entry.asp?933).

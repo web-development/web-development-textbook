@@ -38,13 +38,6 @@ Definition und folgende Abbildung:
 
 ![Abbildung aus dem CSS Standard: definition des pixels als Winkel](/images/css-layout/css-pixel-definition.png)
 
-Mit [mydevice.io](https://www.mydevice.io/) kann man den aktuellen Browser
-vermessen. Die angezeigten Pixel sind die virtuellen CSS Pixel. Mit dem Faktor "pixel-ratio" kann man
-die physikalischen Pixel ausrechnen.
-
-By mydevice.io gibt es auch eine [ausführlichere Liste](https://www.mydevice.io/#compare-devices) von aktuellen
-Geräten.
-
 ## Responsive Design
 
 Große Unterschiede im Platz kann man mit Mediaqueries in CSS behandeln. Die Verwendung von Mediaqueries wurde 2010 in einem Artikel von Ethan Marcotte in "A List Apart" unter dem Begriff "Responsive Webdesign" popularisiert [&rarr;](http://www.alistapart.com/articles/responsive-web-design/).
@@ -67,6 +60,8 @@ Die technische Umsetzung des verschiedenen Layouts ist relativ einfach: Mediaque
 }
 /* allgemein gültige Regeln */
 </css>
+
+Eine tiefere "Verschachtelung" gibt es in CSS nicht.
 
 ### Mobile First
 
@@ -122,146 +117,3 @@ color: #333333;
 
 siehe auch [MDN: media features](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Media_features) und [MDN: features queries](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports)
 
-## Bilder und Responsive Design
-
-Bilder waren lange Zeit ein Grund, warum das Layout von Webseiten nicht flexibel war: weil die Bilder nur für die Darstellung bei einer bestimmten Größe geeigenet waren. Das ist aber seit ca. 2010 anders.
-
-### Pixel
-
-Als Bildformate für `<img>` Tags in Webseiten wurden lange nur Pixel-Formate unterstützt. Diese Formate (jpg, png, gif) sind für die Darstellung bei einer bestimmten Größe gedacht. Die Vergrößerte Darstellung von Pixel-Bildern liefert keine guten Ergebnisse:
-
-![Abbildung 29: Ausschnitte aus einem Pixel Bild, vom Browser (Firefox) in 3 Stufen vergrößert dargestellt](/images/css-layout/pixel-image-zoom.png)
-
-Die Verkleinerte Darstellung ist eine Verschwendung: Wenn ich ein Bild herunterladen muss, dass doppelt So breit und
-doppelt so hoch ist, wie mein Browser darstellen kann, dann sind das viermal so viele Daten, und damit eine viermal
-so lange Wartezeit!
-
-Es gibt eine moderne Lösung für diese Problematik [Responsive Images](/grafik/images/) - diese werden wir später genauer kennen lernen.
-
-### Vektor
-
-Mit dem Format SVG steht auch ein vektor-basiertes Bildformat für das Web zur Verfügung. SVG-Bilder können in beliebiger Größe verwendet werden. Die Einbindung erfolgt mit dem img-Tag:
-
-    <img src="circle.svg">
-
-![Abbildung: Kreis in SVG-Darstelllung](/images/circle.svg)
-
-## Schriftgröße
-
-Die Schriftgröße im Browser unterliegt nur bedingte der Kontrolle durch HTML und CSS Code. Das „letzte Wort“ hat hier die LeserIn, die die Schrift größer oder kleiner stellen kann. z.B. in MSIE unter Ansicht → Schriftgrad, in Firefox mit der Tastenkombination `STRG +` oder `STRG –`.
-
-Je nach Schriftgröße und zur Verfügung stehendem Platz im Browser-Fenster wird der Browser die Absätze geeignet in Zeilen umbrechen, wie in Abbildung 31 gezeigt.
-
-![Abbildung 31: Darstellung von Text bei verschiedenen Fensterbreiten und Schriftgrößen](/images/css-layout/zeilenumbruch.png)
-
-## Zoomen
-
-Alle Browser bieten das Vergrößern und Verkleinern der Webseite an,
-meist mit einer Tastenkombination mit `+` bzw. `-`.
-Dabei werden die CSS Pixel vergrößert bzw. verkleinert. Die Größe des
-Viewport und die CSS pixel-ratio verändern sich also, dadurch werden
-andere Mediaqueries schlagend.
-
-## Beispiel
-
-Die [Demo Seite für CSS Grid](/images/cssgrid/#!/responsive) ist responsive.
-
-![/images/css-layout/example-responsive.png](/images/css-layout/example-responsive.png)
-
-§
-
-Für Smartphones ist kein Grid vorgesehen:
-
-<css>
-@media screen and (max-width: 660px)  {
-  .page_container {
-    padding: 10px;
-    max-width: 80em;
-    font-size: 18px;
-    line-height: 24px;
-  }
-  ...
-}
-</css>
-
-§
-
-Für Tablets gilt ein Grid mit zwei Spalten:
-
-<css>
-@media screen and (min-width: 660px) and (max-width: 1150px)  {
-
-    .page_container {
-      display: grid;
-
-      grid-template-columns: 2fr 3fr;
-      grid-template-rows: 60px 403px 1fr 1fr 60px 3fr;
-
-      grid-template-areas:  "w1        headline "
-                            "portrait  description"
-                            "w2        facts"
-                            "w2        navigation"
-                            "w2        stylename"
-                            "w2        css";
-    }
-    ....
-
-}
-</css>
-
-§
-
-für Desktops ein Grid mit drei Spalten:
-
-<css>
-@media screen and (min-width: 1200px)  {
-
-    .page_container {
-      display: grid;
-
-      grid-template-columns: 270px 5fr 3fr;
-      grid-template-rows: 60px 2fr 210px;
-
-      grid-template-areas:  "w1        headline     stylename"
-                            "portrait  description  css"
-                            "w2        facts        navigation";
-    }
-    ...
-
-}
-</css>
-
-§
-
-und als Easter Egg ist noch eine ganz verrücktes Grid dabei:
-
-![/images/css-layout/easteregg-responsive.png](/images/css-layout/easteregg-responsive.png)
-
-<css>
-@media screen and (min-width: 1150px) and (max-width: 1200px) {
-
-    .page_container {
-      height:1200px;
-      width:1200px;
-
-      display: grid;
-
-      grid-template-columns: 140fr 131fr 152fr 283fr 190fr 166fr;
-      grid-template-rows: 114fr 306fr 305fr 131fr 129fr 70fr;
-
-      background-color: black;
-      grid-gap: 25px 25px;
-
-      grid-template-areas:
-        "w1    w1           w2           w2           headline  headline"
-        "w4    description  description  description  facts     facts"
-        "w5    description  description  description  portrait  w11"
-        "w5    navigation   navigation   w6           w7        w7"
-        "gelb  navigation   navigation   w8           css       css"
-        "gelb  w9           w9           stylename    css       css"
-        "gelb  w9           w9           w10          w10       w10";
-    }
-    ...
-
-}
-</css>

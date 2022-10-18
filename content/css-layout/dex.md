@@ -6,13 +6,13 @@ intro: Nachdem Sie nun einfache Formatierungen im CSS beherrschen lernen Sie, wi
 
 ### Was Sie wissen sollten
 
+* Ich verstehe wie media queries, flexbox und css grid funktionieren.
 * Ich weiss wie verschiedene Auflösung und verschiedene Pixeldichte der Ausgabegeräte die Gestaltung von Webseiten schwierig machen.
 * Ich kenne mit Responsive Design die aktuelle Art mit dieser Schwierigkeit umzugehen.
-* Ich verstehe wie media queries, float und css grid funktionieren.
 
 ### Was Sie können sollten
 * Ich kann an einem bestehen CSS-Layout Veränderungen vornehmen.
-* Ich kann einen grafischen Entwurf mittels HTML und CSS umsetzen.
+* Ich kann einen grafischen Entwurf mittels HTML und CSS, flexbos und grid umsetzen.
 * Ich kann ein statisches Layout mit mediaqueries so erweitern, dass die Webseite bei wesentlich kleineren oder größeren Ausgabegeräten noch sinnvoll dargestellt werden kann.
 
 

@@ -63,10 +63,9 @@ Die technische Umsetzung des verschiedenen Layouts ist relativ einfach: Mediaque
 
 Eine tiefere "Verschachtelung" gibt es in CSS nicht.
 
-
 §
 
-Voraussehtung für responsive design am Handy: man muss den [viewport](https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag) im meta tag setzen:
+Voraussetzung für responsive design am Handy: man muss den [viewport](https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag) im meta tag setzen:
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -90,9 +89,9 @@ body { font-size: 13px; }
 }
 
 @supports not (display: grid) {
-div {
-float: right;
-}
+  div {
+    float: right;
+  }
 }
 </css>
 

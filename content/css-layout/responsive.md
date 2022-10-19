@@ -68,7 +68,7 @@ Eine tiefere "Verschachtelung" gibt es in CSS nicht.
 
 Voraussehtung für responsive design am Handy: man muss den [viewport](https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag) im meta tag setzen:
 
-    <meta name="viewport" content="width=500, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 ### Mobile First
 
@@ -112,13 +112,13 @@ Es gibt sogar mediaqueries für die Präferenz des "dark mode":
 }
 
 @media (prefers-color-scheme: light) {
-body {
-color: #333333;
-background-color: #ffffff;
-}
-h1,h2,h3 {
-color: #333333;
-}
+  body {
+    color: #333333;
+    background-color: #ffffff;
+  }
+  h1,h2,h3 {
+    color: #333333;
+  }
 }
 </css>
 

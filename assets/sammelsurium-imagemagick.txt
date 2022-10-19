@@ -1,0 +1,12 @@
+convert master-web-2021.png -fill "#ececec" -gravity Center -extent 3480x522  -gravity Center -fill "#ececec"  master-web-2021-wide.webp
+
+convert master-web-2021.png -fill black -gravity Center -extent 3480x522  -gravity Center -fill black  master-web-2021-wide.webp
+
+convert master-web-2021.png -background  "#ececec"  -gravity Center -extent 3480x522  -gravity Center -background  "#ececec"   master-web-2021-wide.webp
+
+convert master-web-2021.png -background  "#ececec"  -gravity Center -extent 1650x522  -gravity Center -background  "#ececec"   master-web-2021-wide.webp
+
+
+convert master-web-2021.png -background  "#ececec"  -gravity Center -extent 1650x522   master-web-2021-wide.webp
+
+convert master-web-2021.png -background  "#ececec"  -gravity Center -extent 60:19^   master-web-2021-ratio-caret.webp

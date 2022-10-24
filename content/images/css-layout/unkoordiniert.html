@@ -3,6 +3,13 @@
   <meta charset="utf-8">
   <title>Demo Seite für eine nicht gelungen Mischung von absolut und inline Positionierung</title>
   <style>
+  nav {
+    background-color: rgba(255,0,0,0.2);
+    position: absolute;
+    width: 220px;
+    top: 0px;
+    left: 0px;
+  }
   body {
     margin:0;
   }
@@ -12,14 +19,6 @@
     margin: 0 auto;
     padding: 0 10px;
     background-color: #ddd;
-  }
-
-  nav {
-    background-color: rgba(255,0,0,0.2);
-    position: absolute;
-    width: 220px;
-    top: 0px;
-    left: 0px;
   }
   </style>
 </head>
@@ -39,7 +38,8 @@
   <section>
     <h1>Inhalt der Seite</h1>
     <p>Der Inhalt befindet sich in einer
-      <kbd>section</kbd> die auf der Seite zentriert ist. Wenn man also die Breite des Browserfensters ändert, dann bewegt sich der zentrierte Teil, der Abstand zum linken Rand verändert sich. </p>
+      <kbd>section</kbd> die auf der Seite zentriert ist. Wenn man also die Breite des
+      Browserfensters ändert, dann bewegt sich der zentrierte Teil, der Abstand zum linken Rand verändert sich. </p>
   </section>
 </body>
 

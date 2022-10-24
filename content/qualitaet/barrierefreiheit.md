@@ -65,12 +65,10 @@ Von der Webseite [Digitales Österreich](https://www.digitales.oesterreich.gv.at
 
 ## Erste Schritte
 
-### Einfach und Semantisch
+### So einfach wie möglich
 
-Wir haben HTML, CSS, JavaScript in dieser Reihenfolge gelernt,
-wir haben die korrekte Verwendung der HTML Tags gelernt.  Das ist
-eine gute Basis für barrierefreie Webseiten.
-
+Wir lernen HTML, CSS, JavaScript in dieser Reihenfolge - das ist auch
+die Reihenfolge in der wir es anwenden:
 Wenn ein Effekt mit HTML, CSS oder JavaScript erzieht werden kann, dann
 verwende immer die einfachste Technologie.
 
@@ -104,40 +102,59 @@ Den Standardwert setzt man im `html`-Tag. In jedem Tag kann man lokal die Sprach
 
 Siehe auch [w3c: Why use the lang attribute?](https://www.w3.org/International/questions/qa-lang-why)
 
-### Landmarks und Überschriften
+
+### Semantisches HTML
+
+Die HTML-Tags die wir kennen gelernt haben geben dem Dokument nicht nur
+eine Struktur, sondern verleihen auch eine Bedeutung. Diese Bedeutung
+sollten wir immer nutzen:
+
+* für einen Link?  Verwende `<a href="https://.....">`, nicht `<span>` oder `<div>`
+* für eine Liste? Verwende `<li>`, nicht `<span>` oder `<div>`
+* für eine Überschrift? Verwende `<h1>`, nicht `<strong>` oder `<div>`
+* für einen Absend-Button? verwende `<input type="submit">`, nicht `<span>` oder `<div>`
+
+
+### Überschriften und Landmarks
 
 Einen Überblick über die Inhalte der Seite zu erhalten ist schwierig, wenn man
 nicht sehen kann. Screen Reader verwenden die Überschriften und sogenannte Landmarks
 um diesen Überblick zu schaffen.
 
-Damit das funktioniert, muss man die HTML-Tags korrekt verwenden, oder - falls das nicht geht - die
+Die Überschrift `h1` sollte nur einmal in der Seite verwendet werden und
+die gesamte Seite beschreiben.  Die weiteren Überschriften `h2`, `h3`, ...
+werden für die weiteren Gliederungsebenen verwendet.
+
+Für Bereiche der Seite die eine wichtige Rolle spielen (Navigation, Suche, Header, Main, Section, ...) sollte
+man die entsprechenden semantischen HTML-Tags verwenden.
+
+Falls das nicht funktioniert kann man die
 Rolle explizit mit dem `role` Attribut definieren:
 
-| Role          | HTML                     | Bedeutung                                                                                                                                                                     |
-| ------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| main          | MAIN-Tag                 | primary content of the page.                                                                                                                                                  |
-| region        | SECTION-Tag              | a perceivable section that is sufficiently important that users will likely want to be able to navigate to the section easily and to have it listed in a summary of the page. |
-| navigation    | NAV-Tag                  | links that are intended to be used for website or page content navigation.                                                                                                    |
-| search        | keine HTML-Entsprechung; | search functionality for content on the website.                                                                                                                              |
-| banner        | HEADER-Tag               | the logo or identity of the site sponsor, and site-specific search tool. A banner usually appears at the top of the page                                                      |
-| contentinfo   | FOOTER-Tag               | information such as copyrights and links to privacy and accessibility statements.                                                                                             |
-| complementary | ASIDE-Tag                | complementary to the main content at a similar level in the DOM hierarchy, but remains meaningful when separated from the main content.                                       |   |
-| form          | FORM-Tag                 | a form when no other named landmark is appropriate (e.g. main or search)                                                                                                      |
-
+| HTML-Tag                  | Role-Attribut           | Bedeutung                                                                                                                                                                      |
+|---------------------------|----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| main                      | main           | primary content of the page.                                                                                                                                                   |
+| section                   | region         | a perceivable section that is sufficiently important that users will likely want to be able to navigate to the section easily and to have it listed in a summary of the page.  |
+| nav                       | navigation     | links that are intended to be used for website or page content navigation.                                                                                                     |
+| keine HTML-Entsprechung;  | search         | search functionality for content on the website.                                                                                                                               |
+| header                    | banner         | the logo or identity of the site sponsor, and site-specific search tool. A banner usually appears at the top of the page                                                       |
+| footer                    | contentinfo    | information such as copyrights and links to privacy and accessibility statements.                                                                                              |
+| aside                     | complementary  | complementary to the main content at a similar level in the DOM hierarchy, but remains meaningful when separated from the main content.                                        |
+| form                      | form           | a form when no other named landmark is appropriate (e.g. main or search)                                                                                                       |
 {: class="table table-condensed table-bordered" style="width:auto"}
 
 <htmlcode>
 <form role="search">
   <input type="search" aria-label="search text" size="20">
   <input type="submit" value="Search"">
-</form> 
+</form>
 </htmlcode>
 
-Siehe auch [w3c: ARIA Landmarks Example](https://www.w3.org/TR/wai-aria-practices/examples/landmarks/index.html)
+Siehe auch [w3c: ARIA Landmarks Example](https://www.w3.org/WAI/ARIA/apg/example-index/landmarks/search.html)
 
 ### Textformatierung
 
-Die Empfehlung für die Schriftgröße ist mit der immer höheren Auflösung der Ausgabegeräte gewachsen. Im Jahr 2019 verwenden z.B. Die [Zeit Online](https://www.zeit.de/2016/51/bundesteilhabegesetz-inklusion-barrierefreiheit-gleichstellung) 20px, [Medium](https://medium.com/@damianjo/line-spacing-leading-the-way-for-accessibility-d94344b9e26c) 21px,
+Die Empfehlung für die Schriftgröße ist mit der immer höheren Auflösung der Ausgabegeräte gewachsen. Im Jahr 2022 verwenden z.B. Die [Zeit Online](https://www.zeit.de/2016/51/bundesteilhabegesetz-inklusion-barrierefreiheit-gleichstellung) 20px, [Medium](https://medium.com/@damianjo/line-spacing-leading-the-way-for-accessibility-d94344b9e26c) 21px,
 [Jeffrey Zeldman](http://www.zeldman.com/2016/12/14/font-size-widgets/) 21px.
 
 Ein Zeilenabstand 1.5x (mit `line-height` festgelegt) erhöht die Lesbarkeit.
@@ -145,15 +162,29 @@ Ein Zeilenabstand 1.5x (mit `line-height` festgelegt) erhöht die Lesbarkeit.
 Im Web gibt es weiterhin Probleme mit Blocksatz. Flattersatz ("linksbündig") führt zu
 zuverlässigeren Ergebnissen.
 
-Die Zeilenlänge sollte man von der Schriftgröße abhängig machen, oder gleich die relativ neue
-Einheit `ch` (Breite des Zeichens 0) in CSS verwenden, um die maximal zulässige Anzahl von Zeichen in einer Zeile
-festzulegen:
+Wie breit eine Spalte Text ist beeinflusst auch die Lesbarkeit. Man könnte dafür die Einheit `ch` (Breite des Zeichens 0)  verwenden,
+um die maximal zulässige Anzahl von Zeichen in einer Zei festzulegen:
 
 <css>
 p {
     max-width: 65ch;
 }
 </css>
+
+### Farben und Kontraste
+
+Farbenblindheit und Fabenfehlsichtigkeit betrifft ca. jede 20. Person.  Männer sind - aus genetischen Gründen
+- häufiger betroffen als Frauen.  Deswegen sollte man vermeiden, eine Information *nur* mit Farbe zu vermitteln:
+
+Schlechtes Beispiel: 🟢  vs. 🔴
+
+Gutes Beispiel:  ✅  vs.  ❌
+
+
+Für die Lesbarkeit von Text ist der Kontrast zwischen Text und Hintergrund wichtig. Die WCAG 1.4.3
+schreibt ein Kontrastverhältnis von mindestens 4,5:1 vor.  Das kann man einfach überprüfen mit dem
+[Contrast Checker](https://webaim.org/resources/contrastchecker/)
+
 
 ## Ist das Alles?
 

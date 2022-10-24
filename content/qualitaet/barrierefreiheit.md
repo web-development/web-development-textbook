@@ -171,7 +171,44 @@ p {
 }
 </css>
 
-### Farben und Kontraste
+### Alternativtext für Bilder
+
+Wenn ein Bild nur **dekorativ** ist, sollte man ein leeres alt-Attribut setzen:
+
+<htmlcode>
+<img src="zierleiste.png" alt="">
+</htmlcode>
+
+Bilder die **Information** liefern brauchen ein kurzes alt-Attribut.
+
+<htmlcode>
+<img src="fhs.png" alt="FH Salzburg in Puch Urstein, Ansicht des Haupteingangs.">
+</htmlcode>
+
+Falls das Bild als **Link** dient, ist es wichtiger das Link-Ziel zu beschreiben:
+
+<htmlcode>
+<a href="https://www.fh-salzburg.ac.at/"><img src="fhs.png" alt="Link: Homepage der FH Salzburg"></a>
+</htmlcode>
+
+
+Längere Informationen kann man in eine **Bildunterschrift** geben, wo sie Allen zugute kommen:
+
+<htmlcode>
+<figure>
+  <img src="anreise.png" alt="Landkarte">
+  <figcaption>
+    Anreise per S-Bahn von der Stadt Salzburg: S3 bis Haltestelle
+    Salzburg Süd. Zum Bahnsteig parallel führt der Salzachweg.
+    Folgen sie diesem Weg bis ca. 3 Minuten lang zur
+    Kreuzung mit der Austraße. Wenn Sie die Austraße überqueren
+    landen sie direkt am Eingang zum Gasthaus.
+  </figcaption>
+</figure>
+</htmlcode>
+
+
+###  Farben und Kontraste
 
 Farbenblindheit und Fabenfehlsichtigkeit betrifft ca. jede 20. Person.  Männer sind - aus genetischen Gründen
 - häufiger betroffen als Frauen.  Deswegen sollte man vermeiden, eine Information *nur* mit Farbe zu vermitteln:
@@ -214,3 +251,4 @@ es ist ein guter Start.  Das Web macht - ohne dass wir etwas tun müssen - schon
 - [19 WAI-ARIA attributes that every web developer should know](https://www.davidmacd.com/blog/wai-aria-accessbility-for-average-web-developers.html)
 - [The Accessibility Tree](https://whatsock.com/training/)
 - [Demystifying WAI-ARIA](https://www.davidmacd.com/blog/wai-aria-accessbility-for-average-web-developers.html)
+- [How to write better alt-text descriptions for accessibility](https://bighack.org/how-to-write-better-alt-text-descriptions-for-accessibility/)

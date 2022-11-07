@@ -7,114 +7,73 @@ Ein vollständiges Beispiel für eine Webseite mit Javascript-Programm, auch
 
 <htmlcode caption="Vollständige Webseite mit Javascript">
 <body id="farbfeld">
-  <h1>Farbwahl</h1>
-  <form>
-    <input type="button" value="Rot"  onclick="setcolor('red')">
-    <input type="button" value="Grün" onclick="setcolor('#0F0')">
-    <input type="button" value="Blau" onclick="setcolor('blue')">
-  </form>
   <script>
-  function setcolor( c ) {
-    b = document.getElementById('farbfeld');
-    b.style.backgroundColor = c
+  console.log("JavaScript is active");
+  function setcolor( color ) {
+    let area = document.getElementById('farbfeld');
+    area.style.backgroundColor = color;
+    console.log("color was changed to", color);
   }
   </script>
+  <h1>Farbwahl</h1>
+  <input type="button" value="Rot"  onclick="setcolor('red')">
+  <input type="button" value="Grün" onclick="setcolor('#0F0')">
+  <input type="button" value="Blau" onclick="setcolor('blue')">
 </body>
 </htmlcode>
 
-In dieser Webseite ist an vier Stellen Javascript zu finden. Im `script` Tag am Ende des body, und dreimal in einem Attribut des `input`-Tags. Wie Sie sehen ist Javascript sehr eng mit HTML und CSS verzahnt. 
+In dieser Webseite ist an vier Stellen Javascript zu finden. Im `script` Tag am Ende des body, und dreimal in einem Attribut des `input`-Tags. Wie Sie sehen ist Javascript sehr eng mit HTML und CSS verzahnt.
 
 Wer ein bestehende Website warten oder verändern will muss mindestens den bestehenden Javascript-Code erkennen können, um ihn nicht zu beschädigen. D.h. auch Leute die nur Design und keine Programmierung machen brauchen ein Grundverständnis von Javascript.
 
-Es ist also erst einmal zu klären wie Javascript in HTML eingebunden wird. 
-
-Einbindung von Javascript
---------------------------
-
-* externe Javascript-Datei
-* mit `<script>`-Tag
-* Javascript in einer URL
-* onevent-Attribute
-
-### Externe Javascript-Datei
-
-Man kann Javascript-Programme in eigenen Dateien speichern, diese haben traditionell die 
-Endung `.js`. Wir werden später eine Javascript-Library namens jQuery verwendet. 
-Mit dem `script`-Tag wird die externe Javascript-Datei eingebunden: 
+Betrachten wir nun die einzelnen Teile des Dokuments
 
 
-<htmlcode>
-  <script src="jquery.js"></script>
+## Der Script Tag
+
+Der HTML-Tag `<script>` enthält JavaScript Code.
+Dieser Code wird sofort ausgeführt wenn die Seite geladen wird.
+Im Beispiel betrifft das nur den Befehl `console.log`, der sofort
+eine Zeile in die Console der Developer Tools schrei:
+
+<htmlcode caption="Der Script-Tag">
+<script>
+console.log("JavaScript is active");
+function setcolor( color ) {
+  let area = document.getElementById('farbfeld');
+  area.style.backgroundColor = color;
+  console.log("color was changed to", color);
+}
+</script>
 </htmlcode>
 
-Wird der `script`-Tag auf diese Weise (mit dem Attribut src) verwendet, dann darf er 
-keinen Inhalt zwischen `<script>` und `</script>` enthalten. Achtung: 
-die Schreibweise ohne Ende-Tag: `<script src="jquery">` ist nicht erlaubt!
+Es wir noch eine Funktion `setcolor` definiert, aber nicht aufgerufen.
 
-Man kann das Javascript Programm auch von einem anderen Server laden, zum Beispiel von einem [CDN](https://de.wikipedia.org/wiki/Content_Delivery_Network).  Dann verwendet man zusätzlich noch das `integrity` attribut, um sicher zu Stellen dass genau der Javascript-Code geladen wird, den man haben wollte, und ihn niemand verändert hat:
-
-
-<htmlcode>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-</htmlcode>
-
-![](images/javascript-dom/sri.png)
-
-### Der &lt;script>-Tag 
-Javascript-Programme können im HTML-Code mit dem `script`-Tag eingebettet
-werden. Das Programm wird dann beim Aufbau der Seite ausgeführt, siehe auch
-[live im Browser](/images/javascript-dom/countdown.html)
-
-<htmlcode>
-  <h1>Selbstzerstörung</h1>
-  <script>
-      i=10;
-      while (i>0) {
-          document.write("<br>in " + i + " Millisekunden");
-          i--;
-      }
-  </script>
-  <p><strong>Peng!</strong>
-</htmlcode>
-
-Dieses Programm ist übrigens ein gutes Beispiel für ein veraltetes Javascript-Programm. Die Methode `document.write()`, der hier für die Ausgabe verwendet wird, wurde durch das DOM größteteils ersetzt. Nur sehr wenige Leute müssen bei sehr wenigen Gelegenheiten noch `document.write()` verwenden - z.B. die AutorInnen der Javascript-Libaries wie John Resig von jQuery.
-
-### Javascript in einer URL
-
-Als URL kann man auch ein kleines Javascript-Programm angeben, z. B. bei einem Link:
-
-<htmlcode>
-  <a href="javascript:location='http://www.google.at/'">zu Google nur mit Javascript</a>
-</htmlcode>
-
-Die “Javascript-in-einer-URL”- Schreibweise ist in HTML-Seiten nicht sehr sinnvoll, da sie für Browser ohne Javascript-Fähigkeit die Links unbrauchbar macht.  
-
-Hier eine Version die dem Prinzip der „graceful degradation“ entspricht. Sie funktioniert mit und ohne Javascript sinnvoll:
-
-<htmlcode>
-  <a href="http://www.google.at" onclick="ok=confirm('go?'); return ok;">google</a>
-</htmlcode>
-
-Ohne Javascript ist es ein ganz normaler Link zu google.
-
-Mit Javascript erscheint ein Dialog, je nach Antwort wird der Link entweder aufgerufen oder nicht. Das funktioniert gleich wie beim onsubmit-Attribut des form-Tags: Wenn der Event-Handler `false` zurückgibt wird das Event unterbrochen.
-
-<a href="http://www.google.at" onclick="ok=confirm('go?'); return ok;">google</a>
-
-###  Die onevent - Attribute ###
+## Die onevent - Attribute
 
 Meist werden Javascript-Programme so geschrieben, dass sie nicht gleich beim Laden der Seite starten, sondern erst wenn gewisse Ereignisse (Events) eintreten.
 Siehe [Crash Course Computer Science #26: Graphical User Interfaces](https://youtu.be/XIGSJshYb90?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo&t=316) für eine Erklärung von Event-Gesteuerter-Programmierung.
 
-Ein paar typische Events mit ihren typischen HTML-Tags:
+Im Beispiel-Programm findet man drei `onclick` attribute:
 
-§
+<htmlcode caption="Vollständige Webseite mit Javascript">
+<body id="farbfeld">
+  <input type="button" value="Rot"  onclick="setcolor('red')">
+  <input type="button" value="Grün" onclick="setcolor('#0F0')">
+  <input type="button" value="Blau" onclick="setcolor('blue')">
+</htmlcode>
+
+
+Beim Click auf den jeweiligen Button wird das Stück JavaScript Code im `onclick`-Attribut
+ausgeführt.
+
+## Beispiele für Events
 
 <htmlcode>
   <body onload="...">
 </htmlcode>
 
-Das Programm wird ausgeführt, nachdem die ganze Seite geladen und fertig dargestellt ist
+Der Code wird ausgeführt, nachdem die ganze Seite geladen und fertig dargestellt ist
 
 §
 
@@ -123,7 +82,7 @@ Das Programm wird ausgeführt, nachdem die ganze Seite geladen und fertig darges
   <a href="..." onmouseover="...">
 </htmlcode>
 
-Das Programm wird ausgeführt wenn die Maus über den Link bewegt wird (auch: `onmouseout`). (Achtung: funktioniert nicht auf Touch-Devices – so wie `:hover`)
+Der Code wird ausgeführt wenn die Maus über den Link bewegt wird (auch: `onmouseout`). (Achtung: funktioniert nicht auf Touch-Devices – genau wie `:hover`)
 
 
 §
@@ -131,30 +90,39 @@ Das Programm wird ausgeführt wenn die Maus über den Link bewegt wird (auch: `o
 
 <htmlcode>
   <input type="button" onclick="...">
-  <input type="submit" onclick="...">
 </htmlcode>
 
-Das Programm wird ausgeführt wenn auf den Button geklickt wird. Beim `type="submit"` muss das Javscript-Programm  `true` oder `false` zurückgeben um anzuzeigen ob die normale Submit-Funktion  wirklich ausgeführt werden soll. 
-
+Der Code wird ausgeführt wenn auf den Button geklickt wird.
 
 §
 
 
 <htmlcode>
-  <form onsubmit="...">
+  <script>
+    function check() {
+      if (....) {
+        // data ok, send it!
+        return true;
+      } else {
+        // data not ok, block the submission of the form
+        return false;
+      }
+    }
+  </script>
+  <form onsubmit="check()">
 </htmlcode>
 
-Das Programm wird ausgeführt wenn der Einsende-Knopf des Formulars betätigt wird, aber bevor die Daten wirklich gesendet werden. Falls der Javascript-Code false zurückgibt werden die Daten aber nicht versandt! 
+Der Code wird aufgerufen, wenn der Einsende-Knopf des Formulars betätigt wird, aber bevor die Daten wirklich gesendet werden.
+
+Falls der Javascript-Code  `false` zurückgibt werden die Daten aber nicht versandt!
 
 §
-
-
 
 <htmlcode>
   <a href="..." onclick="...">
 </htmlcode>
 
-Das Programm wird ausgeführt wenn der Link angeklickt wird. Falls der Javascript-Code false zurückgibt wird der Link aber nicht aktiviert!
+Der Code wird ausgeführt wenn der Link angeklickt wird. Falls der Javascript-Code false zurückgibt wird der Link aber nicht verfolgt, sondern der Browser bleibt auf der aktuellen Seite!
 
 §
 
@@ -162,7 +130,8 @@ Das Programm wird ausgeführt wenn der Link angeklickt wird. Falls der Javascrip
   <input onchange="...">
 </htmlcode>
 
-Das Programm wird ausgeführt wenn der Inhalt des Eingabefeldes verändert wurde
+Der Code wird ausgeführt wenn der Inhalt des Eingabefeldes verändert wurde
+und der Fokus auf das ncähste Feld weitergeht.
 
 §
 
@@ -179,14 +148,14 @@ Nur auf Geräten mit Touchscreen.
   <body onoffline="..." ononline="...">
 </htmlcode>
 
-Das Programm wird ausgeführt wenn das Gerät die Verbindung zum Internet
+Der Code wird ausgeführt wenn das Gerät die Verbindung zum Internet
 verliert, bzw. wieder erhält.
 
 
 Syntax von Javascript
 ----------------------
 
-Javascript hat eine ähnliche Schreibweise wie die Sprachen aus der C-Familie (C, C++, Java, Perl, PHP): Anweisung wird mit einem Strichpunkt (Semikolon) getrennt, Blöcke werden mit geschwungenen Klammern gebildet. 
+Javascript hat eine ähnliche Schreibweise wie die Sprachen aus der C-Familie (C, C++, Java, Perl, PHP): Semikolon am Ende des Statements, Blöcke werden mit geschwungenen Klammern gebildet.
 
 Javascript ist eine objektorientierte Programmiersprache. Was bedeutet objektorientierung? Die Grundidee ist, dass ein Objekt nicht nur eine Variable ist, die Daten speichert, sondern zusätzlich auch noch Methoden existieren können, die zu diesem Objekt gehören.
 
@@ -232,7 +201,7 @@ let b;    // neu, Variable
 const c;  // neu, Konstante
 </javascript>
 
-Die Details zu `let` und `const` lernen Sie später 
+Die Details zu `let` und `const` lernen Sie später
 im Kapitel [Variablen und Scope](/javascript/variablen/)
 
 
@@ -248,7 +217,7 @@ Variablen in Javascript können Zahlen, Strings, Arrays, Objekte enthalten – d
   a = undefined;    // typeof(a) == "undefined"
 </javascript>
 
-Bei Zahlen in Javascript wird nicht zwischen integer und float unterschieden: 
+Bei Zahlen in Javascript wird nicht zwischen integer und float unterschieden:
 bis 2<sup>53</sup> (9.007.199.254.740.992)  können Ganzzahlen gespeichert werden,
 darüber nur noch floats.  Die Details
 können Sie in [How numbers are encoded in JavaScript](http://www.2ality.com/2012/04/number-encoding.html) nachlesen.
@@ -279,7 +248,7 @@ Arrays in Javascript können wie in C# mit eckigen Klammern und Integer-Index au
 
 §
 
-Die Werte im Array können verschiedene Daten haben (String, Number, Boolean,...). Die Größe des Arrays ist nicht beschränkt, die aktuelle Länge des Arrays kann aus der Eigenschaft 
+Die Werte im Array können verschiedene Daten haben (String, Number, Boolean,...). Die Größe des Arrays ist nicht beschränkt, die aktuelle Länge des Arrays kann aus der Eigenschaft
 `.length ausgelesen werden.
 [Beispiel live im Browser](/images/javascript-dom/jsarray.html)
 
@@ -297,15 +266,15 @@ Die Werte im Array können verschiedene Daten haben (String, Number, Boolean,...
 
 ### Objekte
 
-Für das Erzeugen von Objekten gibt es zwei Schreibweisen: die JSON-Schreibweise mit geschwungenen Klammern eignet sich gut für einmalige Objekte. 
+Für das Erzeugen von Objekten gibt es zwei Schreibweisen: die JSON-Schreibweise mit geschwungenen Klammern eignet sich gut für einmalige Objekte.
 
 <javascript>
   var c;
   c = {"farbe" : "rot", "beschriftung": "int pi == 3", "verkauft": true};
 
-  alert("Das Shirt ist " + c.farbe ); // gibt “Das Shirt ist rot”  
+  alert("Das Shirt ist " + c.farbe ); // gibt “Das Shirt ist rot”
 
-  alert(typeof c); // gibt  "object"  
+  alert(typeof c); // gibt  "object"
 </javascript>
 
 Will man mehrere Objekte mit denselben Eigenschaften erzeugen, dann ist eine Klasse mit Konstruktor besser geeignet.
@@ -322,7 +291,7 @@ Will man mehrere Objekte mit denselben Eigenschaften erzeugen, dann ist eine Kla
 
   alert("Das Shirt ist " + d.farbe ); // gibt “Das Shirt ist rot”
 
-  alert(typeof d); // gibt  "object"  
+  alert(typeof d); // gibt  "object"
 </javascript>
 
 ### Zugriff auf Eigenschaften
@@ -401,15 +370,15 @@ index zu benötigen mit einer `for ... of` schleife:
 </javascript>
 
 
-### Funktionen 
+### Funktionen
 
 Funktionen sind in Javascript etwas simpler als in C#, da die
 Typ-Deklarationen entfallen.  Das Keyword `function` wird vor dem neu
 definierten Funktionsnamen verwendet:
 
 <javascript>
-  function add( a, b ) { 
-      return a+b; 
+  function add( a, b ) {
+      return a+b;
   }
 
   console.log(  add(40, 2)  );  // gibt 42

@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
   <head>
     <meta charset="utf-8">
+    <title>Erstes JavasScript Beispiel</title>
+    <style>
+      body { padding: 30px; }
+    </style>
   </head>
   <body id="farbfeld">
-    <h1>Farbwahl</h1>
-    <form>
-      <input type="button" value="Rot"  onclick="setcolor('red')" />
-      <input type="button" value="Grün" onclick="setcolor('#0F0')" />
-      <input type="button" value="Blau" onclick="setcolor('blue')" />
-    </form>
     <script>
-      function setcolor( c ) {
-      b = document.getElementById('farbfeld');
-      b.style.backgroundColor = c
+      console.log("JavaScript is active");
+      function setcolor( color ) {
+        let area = document.getElementById('farbfeld');
+        area.style.backgroundColor = color;
+        console.log("color was changed to", color);
       }
     </script>
+    <h1>Farbwahl</h1>
+    <input type="button" value="Rot"  onclick="setcolor('red')">
+    <input type="button" value="Grün" onclick="setcolor('#0F0')">
+    <input type="button" value="Blau" onclick="setcolor('blue')">
   </body>
 </html>

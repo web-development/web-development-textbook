@@ -3,47 +3,42 @@ title: DOM
 order: 30
 ---
 
-Lesen aus dem DOM 
+Lesen aus dem DOM
 -------------------
-Die wichtigsten Befehle zur Manipulation des DOM finden Sie im Objekten „document“ und in Objecten vom Typ „node“. 
-Ein Node ist ein Knoten DOM-Baum, entspricht also einem HTML-Tag oder einem Stück Text. 
-Die Attribute des HTML-Tags sind über `getAttribute` / `setAttribute` zugänglich und manipulierbar.
+Die wichtigsten Befehle zur Manipulation des DOM finden Sie im Objekten „document“ und in Objecten vom Typ „node“.
+Ein Node ist ein Knoten DOM-Baum, entspricht also einem HTML-Tag oder einem Stück Text.
 
-Hier eine Liste der wichtigen Objekte, Methoden, Eigenschaften für die DOM:
+
+## Eine Node finden
 
 <javascript>
-document.getElementById()     /* liefert 1 Node  */
-document.getElementsByTagName() /*       Array   */
-document.querySelectorAll()   /* liefert Array   */
-document.querySelector()      /* liefert 1 Node  */
+document.getElementById()            /* liefert 1 Node  */
+document.getElementsByTagName("li") /*       Array   */
+document.querySelectorAll("li a")  /* liefert mit CSS Selector ein Array   */
+document.querySelector("h1")      /* liefert mit CSS Selector nur die erste Node  */
+</javascript>
 
-document.createElement()
 
-node.parentNode   /* liefert 1 Node          */
-node.childNodes   /* liefert Array von Nodes */
+## Von Node zu Node weitergehen
+
+<javascript>
+let p = node.parentNode   /* liefert 1 Node          */
+let c = node.childNodes   /* liefert Array von Nodes */
+
 node.firstChild
 node.lastChild
 node.previousSibling
 node.nextSibling
-node.textContent
+</javascript>
+
+##  Daten auslesen und setzen
+
+<javascript>
 node.attributes
 node.innerHTML
-
-node.getElementById()            
-node.getElementsByTagName() 
-node.querySelectorAll() 
-node.querySelector() 
-
-node.appendChild()
-node.cloneNode()
-node.getAttribute()
-node.setAttribute()
-node.hasChildNodes()
-node.insertBefore()
-node.removeAttribute()
-node.removeChild()
-node.replaceChild()
+node.innerText
 </javascript>
+
 
 ### Simples Beispiel
 
@@ -99,45 +94,38 @@ Den eigentlichen Text der HTML-Seite kann man als data eines Text-Nodes auslesen
 <span id="v_25" class="vorname">Benjamin</span>
 </htmlcode>
 
-Das erste und einzige Kind des Span ist ein Text-Node:
-
-<javascript>
-let vn = document.getElementById("v_25").firstChild.data;
-</javascript>
-
-oder – etwas kürzer – über die Eigenschaft textContent:
 
 <javascript>
 let vn = document.getElementById("v_25").textContent;
 </javascript>
 
-`textContent` funktioniert auch bei Nodes die noch weitere verschachtelte 
+`textContent` funktioniert auch bei Nodes die noch weitere verschachtelte
 Tags enthalten und extrahiert immer den gesamten Text aus allen “Blättern” des DOM-Baums.
 
-Manipulation des DOM 
+Manipulation des DOM
 ----------------------
 Noch einmal eine Liste der wichtigen Objekte, Methoden, Eigenschaften die für das Erzeugen, Zerstören oder Verändern des DOM notwendig sind:
 
 <javascript>
-let node = document.createElement("h1");  
+let node = document.createElement("h1");
        // erzeugt eine Node, Tag-Name angeben
-node.innerHTML = "bla <strong>bla</strong> bla";                
-       // Zugriff auf den "Inhalt" der node als String, 
-       // ist of schneller als DOM manipulation! 
-node.appendChild(newchild);     
-       // fügt die newchild als Kind an 
-let newnode = node.cloneNode()    
-       // gibt eine Kopie der Node zurück, 
-       // die Kopie ist noch nicht im DOM Baum eingefügt! 
-node.insertBefore(newchild, oldchild)    
-       // fügt newchild als Kind von node ein, vor dem oldchild 
-let oldchild = node.removeChild(child)    
-       // löscht child als Kind von node, 
-       // gibt es als "frei schwebende" node zurück 
-node.replaceChild(newchild, oldchild)  
-       // ersetzt kind oldchild durch kind newchild 
-node.setAttribute('value', 42)  // setzt ein attribut 
-node.removeAttribute('value')   // löscht ein attribute 
+node.innerHTML = "bla <strong>bla</strong> bla";
+       // Zugriff auf den "Inhalt" der node als String,
+       // ist of schneller als DOM manipulation!
+node.appendChild(newchild);
+       // fügt die newchild als Kind an
+let newnode = node.cloneNode()
+       // gibt eine Kopie der Node zurück,
+       // die Kopie ist noch nicht im DOM Baum eingefügt!
+node.insertBefore(newchild, oldchild)
+       // fügt newchild als Kind von node ein, vor dem oldchild
+let oldchild = node.removeChild(child)
+       // löscht child als Kind von node,
+       // gibt es als "frei schwebende" node zurück
+node.replaceChild(newchild, oldchild)
+       // ersetzt kind oldchild durch kind newchild
+node.setAttribute('value', 42)  // setzt ein attribut
+node.removeAttribute('value')   // löscht ein attribute
 </javascript>
 
 ### Einfügen
@@ -178,12 +166,9 @@ Dieses div kann man dann clonen, falls man mehrere Pizzen braucht:
 [Beispiel live im Browser](/images/javascript-dom/example_js_add_to_form.html)
 
 
-
-
-
 Einfügen von Event Handlern
 -----------------------------
-Wir haben im Kapitel [Hintergründe](/javascript-dom/hintergrund/) schon gesehen, 
+Wir haben im Kapitel [Hintergründe](/javascript-dom/hintergrund/) schon gesehen,
 wie Event-Handler direkt im HTML definiert werden können:
 
 <htmlcode>
@@ -200,7 +185,7 @@ wie Event-Handler direkt im HTML definiert werden können:
 </script>
 </htmlcode>
 
-Mit der Methode `addEventListener` kann das auch von Javascript aus erfolgen. 
+Mit der Methode `addEventListener` kann das auch von Javascript aus erfolgen.
 
 ### Farb-Beispiel
 
@@ -240,11 +225,11 @@ So können wir zum Beispiel die Hintergrundfarbe des Buttons verwenden:
 
 <htmlcode>
 <form>
-  <input type="button" value="Rot"  
+  <input type="button" value="Rot"
          style="background-color:red"  id="r">
-  <input type="button" value="Grün" 
+  <input type="button" value="Grün"
          style="background-color:#0F0" id="g">
-  <input type="button" value="Blau" 
+  <input type="button" value="Blau"
          style="background-color:blue" id="b">
 </form>
 <script>
@@ -291,13 +276,13 @@ zuständig für das click-event am spam `.removthis` definieren.
 function removeMe(e){
   let me = e.target;
   let my_pizza = me.parentNode.parentNode;
-  my_pizza.parentNode.removeChild( my_pizza ); 
+  my_pizza.parentNode.removeChild( my_pizza );
 }
 document.querySelector(".removethis")
-        .addEventListener("click", removeMe); 
+        .addEventListener("click", removeMe);
 </javascript>
 
 ### Referenz
 
-* [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document) im Mozilla Developer Network 
-* [Node](https://developer.mozilla.org/en-US/docs/Web/API/Node) im Mozilla Developer Network 
+* [Document](https://developer.mozilla.org/en-US/docs/Web/API/Document) im Mozilla Developer Network
+* [Node](https://developer.mozilla.org/en-US/docs/Web/API/Node) im Mozilla Developer Network

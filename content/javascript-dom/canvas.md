@@ -14,7 +14,7 @@ let my_canvas = document.getElementById("c");
 let my_context = my_canvas.getContext("2d");
 </javascript>
 
-Wir verwenden erst einmal die 2-dimensionale Zeichenfläche des Canvas. Wenn Sie mehr von Computergrafik verstehen können Sie auch die 3d-Version, genannt „webgl“ verwenden. 
+Wir verwenden erst einmal die 2-dimensionale Zeichenfläche des Canvas. Wenn Sie mehr von Computergrafik verstehen können Sie auch die 3d-Version, genannt „webgl“ verwenden.
 
 Eine gute Möglichkeit Canvas auszuprobieren ist [dieses jsfiddle](http://jsfiddle.net/bjelline/Gu83s/).
 
@@ -63,28 +63,28 @@ my_context.stroke();
 Text auf den Canvas schreiben kann man mit dem font-Befehl:
 
 <javascript>
-my_context.font = "bold 12px sans-serif"; 
+my_context.font = "bold 12px sans-serif";
 my_context.fillText("hier bin ich", 10, 50);
 </javascript>
 
 Bilder die sich bereits in der Webseite befinden kann man in den Canvas kopieren:
 
 <javascript>
-let cat = document.getElementById("cat");   
+let cat = document.getElementById("cat");
 my_context.drawImage(cat, 0, 0);
 </javascript>
 
 §
 
-Man kann ganz neue Bilder laden. Achtung: da das Laden eines Bildes 
-einige Zeit dauert verwenden wir hier das onload Event: 
+Man kann ganz neue Bilder laden. Achtung: da das Laden eines Bildes
+einige Zeit dauert verwenden wir hier das onload Event:
 erst wenn das Bild fertig geladen ist wird es in den Canvas kopiert:
 
 <javascript>
-let cat = new Image();   
-cat.src = "images/cat.png";   
-cat.onload = function() {     
-  my_context.drawImage(cat, 0, 0);   
+let cat = new Image();
+cat.src = "images/cat.png";
+cat.onload = function() {
+  my_context.drawImage(cat, 0, 0);
 };
 </javascript>
 

@@ -34,7 +34,7 @@ Betrachten wir nun die einzelnen Teile des Dokuments
 Der HTML-Tag `<script>` enthält JavaScript Code.
 Dieser Code wird sofort ausgeführt wenn die Seite geladen wird.
 Im Beispiel betrifft das nur den Befehl `console.log`, der sofort
-eine Zeile in die Console der Developer Tools schrei:
+eine Zeile in die Console der Developer Tools schreibt:
 
 <htmlcode caption="Der Script-Tag">
 <script>
@@ -57,7 +57,6 @@ Siehe [Crash Course Computer Science #26: Graphical User Interfaces](https://you
 Im Beispiel-Programm findet man drei `onclick` attribute:
 
 <htmlcode caption="Vollständige Webseite mit Javascript">
-<body id="farbfeld">
   <input type="button" value="Rot"  onclick="setcolor('red')">
   <input type="button" value="Grün" onclick="setcolor('#0F0')">
   <input type="button" value="Blau" onclick="setcolor('blue')">
@@ -109,7 +108,7 @@ Der Code wird ausgeführt wenn auf den Button geklickt wird.
       }
     }
   </script>
-  <form onsubmit="check()">
+  <form onsubmit="return check();">
 </htmlcode>
 
 Der Code wird aufgerufen, wenn der Einsende-Knopf des Formulars betätigt wird, aber bevor die Daten wirklich gesendet werden.
@@ -119,19 +118,11 @@ Falls der Javascript-Code  `false` zurückgibt werden die Daten aber nicht versa
 §
 
 <htmlcode>
-  <a href="..." onclick="...">
-</htmlcode>
-
-Der Code wird ausgeführt wenn der Link angeklickt wird. Falls der Javascript-Code false zurückgibt wird der Link aber nicht verfolgt, sondern der Browser bleibt auf der aktuellen Seite!
-
-§
-
-<htmlcode>
   <input onchange="...">
 </htmlcode>
 
 Der Code wird ausgeführt wenn der Inhalt des Eingabefeldes verändert wurde
-und der Fokus auf das ncähste Feld weitergeht.
+und der Fokus auf das nächste Feld weitergeht.
 
 §
 
@@ -140,7 +131,6 @@ und der Fokus auf das ncähste Feld weitergeht.
 </htmlcode>
 
 Nur auf Geräten mit Touchscreen.
-
 
 §
 
@@ -157,7 +147,7 @@ Syntax von Javascript
 
 Javascript hat eine ähnliche Schreibweise wie die Sprachen aus der C-Familie (C, C++, Java, Perl, PHP): Semikolon am Ende des Statements, Blöcke werden mit geschwungenen Klammern gebildet.
 
-Javascript ist eine objektorientierte Programmiersprache. Was bedeutet objektorientierung? Die Grundidee ist, dass ein Objekt nicht nur eine Variable ist, die Daten speichert, sondern zusätzlich auch noch Methoden existieren können, die zu diesem Objekt gehören.
+Javascript ist eine objektorientierte Programmiersprache. Was bedeutet Objekt-Orientierung? Die Grundidee ist, dass ein Objekt nicht nur eine Variable ist, die Daten speichert, sondern zusätzlich auch noch Methoden existieren können, die zu diesem Objekt gehören.
 
 §
 
@@ -180,7 +170,7 @@ document.write("hi");
 Folgendes Beispiel verwendet die Methode `getElementById` des `document`-Objekts um ein bestimmtes Element in der Webseite auszuwählen, und dann die Eigenschaft `textContent`
 um den Text zu verändern:
 
-![Abbildung 58: Javascript Console in Firebug: Manipulation von Wikipedia](/images/javascript-dom/js-console.png)
+![Abbildung 58: Javascript Console in den Developer Tools: Manipulation von Wikipedia](/images/javascript-dom/js-console.png)
 
 
 ### Variablen
@@ -201,7 +191,7 @@ let b;    // neu, Variable
 const c;  // neu, Konstante
 </javascript>
 
-Die Details zu `let` und `const` lernen Sie später
+Die Details zu `let` und `const` lernen wir später
 im Kapitel [Variablen und Scope](/javascript/variablen/)
 
 
@@ -389,7 +379,3 @@ definierten Funktionsnamen verwendet:
 
 Sowohl für Variablen als auch für Funktionen wird meist "Camel Case" verwendet, mit
 einem kleinen Anfangsbuchstaben, z.b.  `addNumbers`,  `deleteAllTheListItems`.
-
-
-
-

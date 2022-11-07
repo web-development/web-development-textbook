@@ -379,3 +379,4 @@ definierten Funktionsnamen verwendet:
 
 Sowohl für Variablen als auch für Funktionen wird meist "Camel Case" verwendet, mit
 einem kleinen Anfangsbuchstaben, z.b.  `addNumbers`,  `deleteAllTheListItems`.
+^

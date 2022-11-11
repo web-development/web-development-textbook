@@ -59,9 +59,21 @@ WCAG definiert drei "Konformitätsstufen": A, AA, AAA.
 
 ### Gesetzeslage in Österreich
 
-Von der Webseite [Digitales Österreich](https://www.digitales.oesterreich.gv.at/barrierefreiheit), die vom "Bundesministerium für Digitalisierung und Wirtschaftsstandort" betrieben wird:
+Drei relevante Gesetze:
 
-Öffentliche Stellen in Österreich müssen seit 22. Dezember 2016 WCAG 2.0 AA-Konform sein.
+* Webzugänglichkeistgesetz 2018 - für öffentliche Stellen
+* Bundes-Behindertengleichstellungsgesetz - auch privatwirtschaftlicher Bereich
+* Barrierefreiheitsgesetz [2022 in Begutachtung](https://www.usp.gv.at/gesetzliche-neuerungen/Begutachtungsentwurf/barrierefreiheitsgesetz.html)
+
+Das Barrierefreiheitsgesetz wird Juni 2025 gelten und betrifft Alle:
+
+* Firmen die am EU Markt anbieten ab 10 Mitarbeitende und/oder 2 Mio € Jahresumsatz
+* Beweislast beim Unternehmen, Frist für Korrekturn oder vom Markt zu nehmen
+* Strafen im 5-stelligen € Bereich
+* Sozialsministerumservice SMS und 9 Länger
+* Betrifft Produkte, Dienstleistungen und Personenverkehrsdiesnte: Automaten, Smartphonse, E-Book-Lesegeräte, Online-Shops, Notrufsysteme, ....
+* Digitale Dienste benötigen eine Barrierefreiheitserklärung, [Beispiel](https://www.salzburg.gv.at/dienststellen/digitale-dienste/barrierefrei/erklaerung-barrierefreiheit)
+
 
 ## Erste Schritte
 

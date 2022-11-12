@@ -75,7 +75,7 @@ Ich habe also Änderungen (commits) in meinem lokal Repository, und andere Ände
 im remote Repository.  Wenn ich nun den Befehl `git pull` ausführe werden diese Änderungen
 zusammengefürt. Der englische Fachbegriff ist `merge`.
 
-![](images/git/basic-merging-2.png)
+![](/images/git/basic-merging-2.png)
 
 Bei der Zusammenführung entsteht ein neuer Commit (c6 im Bild) mit einer Commit Message.
 

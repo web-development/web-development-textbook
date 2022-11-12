@@ -46,7 +46,10 @@ Diese Regeln sind veraltet.  So empfiehlt das amerikanische National  Institute 
 * Es soll **keine weiteren  Regeln** für die Zusammensetzung des Passworts geben (z.b. nicht verlangen, dass es verschiedene Zeichentypen enthält, kein Verbot von Zeichen-Wiederholungen)
 * Es soll keinen Zwang geben das Passwort ohne Anlass zu Ändern. Ein guter Anlass ist wenn das Passwort öffentlich wurde.
 
+Siehe auch
 
+* **Kelley, Patrick Gage, Saranga Komanduri, Michelle L Mazurek, Richard Shay, Timothy Vidas, Lujo Bauer, Nicolas Christin, Lorrie Faith Cranor, and Julio Lopez. 2012. “Guess Again (and Again and Again): Measuring Password Strength by Simulating Password-Cracking Algorithms.”** In 2012 IEEE Symposium on Security and Privacy, 523–537. [https://doi.org/10.1109/SP.2012.38](https://doi.org/10.1109/SP.2012.38).
+* **Weir, Matt, Sudhir Aggarwal, Michael Collins, and Henry Stern. 2010. “Testing Metrics for Password Creation Policies by Attacking Large Sets of Revealed Passwords.” In Proceedings of the 17th ACM Conference on Computer and Communications Security, 162–175. CCS ’10. New York, NY, USA: Association for Computing Machinery. ISBN: 9781450302456. [https://doi.org/10.1145/1866307.1866327](https://doi.org/10.1145/1866307.1866327)
 
 ## Session ID wie Passwort schützen
 

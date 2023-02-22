@@ -15,8 +15,8 @@ require "uri"
 require "curb"
 require "json"
 
-class Nanoc3::Filter
-  class ResponsiveImages < Nanoc3::Filter
+class Nanoc::Filter
+  class ResponsiveImages < Nanoc::Filter
     identifier :responsive_images
     def run(content, params={} )
       @string = content.dup
@@ -71,7 +71,7 @@ class Nanoc3::Filter
     end
   end
 
-  class Peek < Nanoc3::Filter
+  class Peek < Nanoc::Filter
     identifier :peek
     def run(content, params={} )
       puts "#{content.length} bytes of content."
@@ -79,7 +79,7 @@ class Nanoc3::Filter
     end
   end
 
-  class NoSlides < Nanoc3::Filter
+  class NoSlides < Nanoc::Filter
     identifier :noslides
     def run(content, params={})
       @output =  content.dup.gsub(/^.*§.*$/,'');
@@ -87,7 +87,7 @@ class Nanoc3::Filter
     end
   end
 
-  class SlideBreaks < Nanoc3::Filter
+  class SlideBreaks < Nanoc::Filter
     identifier :slide_breaks
     def run(content, params={})
       @string = content.dup
@@ -127,7 +127,7 @@ class Nanoc3::Filter
   end
 
 
-  class Slides < Nanoc3::Filter
+  class Slides < Nanoc::Filter
     identifier :slides
     def run(content, params={})
       @string = content.dup
@@ -167,7 +167,7 @@ class Nanoc3::Filter
 
 
 
-  class PatternTester < Nanoc3::Filter
+  class PatternTester < Nanoc::Filter
     identifier :pattern_tester
 
     def run(content, params={})
@@ -216,7 +216,7 @@ class Nanoc3::Filter
   end
 
 
-  class CodeBlocks < Nanoc3::Filter
+  class CodeBlocks < Nanoc::Filter
     identifier :code_blocks
     LANGUAGES = { "ruby" => "ruby", "sql" => "sql", "javascript" => "javascript", "php" => "php",
                   "css" => "css", "plain" => "plain", "erb" => "ruby; html-script: true", "htmlcode" => "html",
@@ -292,13 +292,13 @@ class Nanoc3::Filter
   end
 end
 
-Nanoc3::Filter.register '::Nanoc3::Filter::PatternTester', :pattern_tester
-Nanoc3::Filter.register '::Nanoc3::Filter::CodeBlocks',    :code_blocks
-Nanoc3::Filter.register '::Nanoc3::Filter::Slides',        :slides
-Nanoc3::Filter.register '::Nanoc3::Filter::NoSlides',      :noslides
-Nanoc3::Filter.register '::Nanoc3::Filter::SlideBreaks',  :slide_breaks
-Nanoc3::Filter.register '::Nanoc3::Filter::Peek',          :peek
-Nanoc3::Filter.register '::Nanoc3::Filter::ResponsiveImages', :responsive_images
+# Nanoc::Filter.register '::Nanoc::Filter::PatternTester', :pattern_tester
+# Nanoc::Filter.register '::Nanoc::Filter::CodeBlocks',    :code_blocks
+# Nanoc::Filter.register '::Nanoc::Filter::Slides',        :slides
+# Nanoc::Filter.register '::Nanoc::Filter::NoSlides',      :noslides
+# Nanoc::Filter.register '::Nanoc::Filter::SlideBreaks',  :slide_breaks
+# Nanoc::Filter.register '::Nanoc::Filter::Peek',          :peek
+# Nanoc::Filter.register '::Nanoc::Filter::ResponsiveImages', :responsive_images
 
 preprocess do
   @chapterOrder = [
@@ -386,7 +386,7 @@ preprocess do
     item[:github_user] = @github_users[ item[:github] ]
   end
 
-  @site.config[:chapters] = @chapters
+  @config[:chapters] = @chapters
 end
 
 compile '/assets/*' do
@@ -405,12 +405,12 @@ filters = {
 
 # Index files in each content directory
 route "/*/dex" do
-  item.identifier.sub("dex/", "") + 'index.html'
+  item.identifier.to_s.sub("dex/", "") + 'index.html'
 end
 
 # Just the homepage
 route "/dex" do
-  item.identifier.sub("dex/", "") + 'index.html'
+  item.identifier.to_s.sub("dex/", "") + 'index.html'
 end
 
 compile '*' do
@@ -421,7 +421,7 @@ compile '*' do
   filter filters[item[:extension].to_sym] || item[:extension].to_sym
   if item[:homepage]
     layout 'home'
-  elsif item.identifier.match /\/dex\/$/
+  elsif item.identifier.to_s.match /\/dex\/$/
     filter :slide_breaks
     layout 'dex'
   else
@@ -437,11 +437,11 @@ route '*' do
   if item.binary? || item[:extension] == 'css' || item[:extension] == 'js' || item[:extension] == 'png' || item[:extension] == 'html' || item[:extension] == 'xml'
     # /foo/ -> /foo.ext
     #p item.identifier.chop + '.' + item[:extension]
-    item.identifier.chop + '.' + item[:extension]
+    item.identifier.to_s.chop + '.' + item[:extension]
   elsif item[:extension] == 'txt'
-    item.identifier.chop + '.' + item[:extension]
+    item.identifier.to_s.chop + '.' + item[:extension]
   elsif item[:extension] == 'html'
-    item.identifier.chop + '.' + item[:extension]
+    item.identifier.to_s.chop + '.' + item[:extension]
   else
     # /foo/ -> /foo/index.html
     item.identifier + 'index.html'
@@ -477,8 +477,8 @@ route '*', :rep => :slide do
     nil
   elsif item[:homepage]
     nil
-  elsif item.identifier.match /\/dex\/$/
-    item.identifier.gsub(/dex\//,'slide.html')
+  elsif item.identifier.to_s.match /\/dex\/$/
+    item.identifier.to_s.gsub(/dex\//,'slide.html')
   else
     # /foo/ -> /foo/index.html
     item.identifier + 'slide.html'

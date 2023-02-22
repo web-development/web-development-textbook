@@ -51,4 +51,4 @@ Die Lernergebnisse von Teil 2 sind:
 ## Literatur, andere Quellen
 
 - [Estelle Weyl](http://estelle.github.io/)
-- [Sara Soueidan](http://www.sarasoueidan.com/article-archives/)
+- [Sara Soueidan](https://www.sarasoueidan.com/blog/)

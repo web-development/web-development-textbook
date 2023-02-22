@@ -76,7 +76,7 @@
         %> vorige Präsentation:
         <a href="<%= prev.path %>/slide.html"><%= prev[:title] %></a> | <% end
         %>
-        <a href="<%= @item.rep_named(:default).path %>"
+        <a href="<%= @item.reps[:default].path %>"
           >zurück zum Buch-Kapitel [esc]</a
         >
         <% if @item[:next_item] %> <% next_item = @items[ @item[:next_item] ] %>
@@ -93,7 +93,7 @@
         %> vorige Präsentation:
         <a href="<%= prev.path %>/slide.html"><%= prev[:title] %></a> | <% end
         %>
-        <a href="<%= @item.rep_named(:default).path %>"
+        <a href="<%= @item.reps[:default].path %>"
           >zurück zum Buch-Kapitel [esc]</a
         >
         <% if @item[:next_item] %> <% next_item = @items[ @item[:next_item] ] %>

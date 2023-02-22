@@ -16,3 +16,5 @@ gem "listen"
 gem 'rb-fsevent'
 # gem 'guard-nanoc'      # ab nanoc 4
 # gem 'nanoc-redirector' # ab nanoc 4
+
+gem "webrick", "~> 1.8"

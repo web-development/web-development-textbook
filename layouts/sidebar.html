@@ -1,20 +1,20 @@
 <!-- sidebar -->
 <div id="sidebar" class="span3 offset1">
-        <div class="page-header"> 
+        <div class="page-header">
         <h2>Kapitel</h2>
         </div>
 
-        
+
         <ul class="nav nav-list">
-        <% if ! @site.config[:chapters].nil? then %>
-          <% @site.config[:chapters].each do |folder, chapter| %>
-          <li class="<% if folder == @item[:chapter] %>active<% end %> <%= if @site.config[:chapters][folder][:separator] then 'separator' end %>"><a href="/<%= folder %>/"><%= chapter[:title] %></a>
+        <% if ! @config[:chapters].nil? then %>
+          <% @config[:chapters].each do |folder, chapter| %>
+          <li class="<% if folder == @item[:chapter] %>active<% end %> <%= if @config[:chapters][folder][:separator] then 'separator' end %>"><a href="/<%= folder %>/"><%= chapter[:title] %></a>
               <ul class="sub">
-                <% if @site.config[:chapters][folder] %>
-                  <% if @site.config[:chapters][folder][:items] %>
-                    <% @site.config[:chapters][folder][:items].each do|i| %>
+                <% if @config[:chapters][folder] %>
+                  <% if @config[:chapters][folder][:items] %>
+                    <% @config[:chapters][folder][:items].each do|i| %>
                       <% if i[:title] && !(i[:filename] =~ /\/dex\.md$/) %>
-                      <li <% if @item[:filename] == i[:filename] %>class="active"<% end %>><a href="<%= i.path %>"><%= i[:title] %></a></li>
+                      <li <% if @item[:filename] == i[:filename] %>class="active"<% end %>><a href="<%= i.identifier %>"><%= i[:title] %></a></li>
                       <% end %>
                     <% end %>
                   <% end %>

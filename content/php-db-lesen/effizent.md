@@ -5,7 +5,7 @@ order: 30
 
 Ein wichtiges Grundprinzip beim Programmieren mit Datenbanken: Das Filtern
 und Berechnen der Daten möglichst in der Datenbank erledigen und möglichst
-wenige Daten zu PHP übermitteln. 
+wenige Daten zu PHP übermitteln.
 
 ### Filtern in der Datenbank
 
@@ -46,12 +46,18 @@ die benötigten Datensätze zu laden.
 
 Die Verwendung der richtigen Datentypen in der Datenbank erleichtert die
 Abfragen.  Zum Beipiel zum Speichern eines Datums sollte man den Typ `DATE` oder
-`TIMESTAMP` verwenden.  Das ermöglicht das Sortieren nach Datum und  Berechnungen wie 
+`TIMESTAMP` verwenden.  Das ermöglicht das Sortieren nach Datum und  Berechnungen wie
 „falls Datum nicht älter als 100 Tage ist“
 
 <sql>
-select titel,publicationdate from projects
-where datediff( curdate( ) , publicationdate ) <= 100; 
+SELECT
+  title,
+  publicationdate,
+  (current_date - publicationdate) AS age
+FROM projects where
+  (current_date - publicationdate) BETWEEN 0 AND 100
+  AND NOT(draft)
+ORDER BY publicationdate DESC;
 </sql>
 
 Diese SQL-Abfage zeigt Titel und Publikations-Datum aller Werke die in den

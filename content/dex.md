@@ -7,7 +7,7 @@ Softwareentwicklung für das World Wide Web<br>
 für das Informatik- oder Medieninformatik-Studium.
 
 Das Buch wurde ursprünglich von Brigitte Jellinek an der FH Salzburg
-zur Verwendung im Studiengang MultiMediaTechnology geschreiben. Seit
+zur Verwendung im Studiengang MultiMediaTechnology geschrieben. Seit
 2012 wird es unter CC-NC-SA Lizenz auf github publiziert.
 
 ### Aufbau
@@ -19,14 +19,14 @@ der Kapitel wird im Sommersemester behandelt.
 Das Sommersemester baut ausserdem auf eine Lehrveranstaltung Einführung in relationale Datenbanken
 und Einführung Computernetzwerke auf.
 
-### (Lern)ergebnisse
+### Lernergebnisse
 
 Das Ergebnis von Teil 1 dieses Kurses sollte sein:
 
 - Ich kann **statische Webseiten erstellen**.
 - Ich kann beschreiben wie das Web funktioniert, dabei die **Fachwörter** Browser, Webserver, HTTP, URL, HTML, CSS, Javascript richtig verwenden.
 - Ich kann HTML, CSS und Javascript **Code erkennen und lesen**, und weiss welche Aspekte der Website von welchem Code beeinflusst werden.
-- Ich kann in HTML, CSS und einfachem Javscript Code **Fehler suchen**, finden und beheben.
+- Ich kann in HTML, CSS und einfachem JavaScript Code **Fehler suchen**, finden und beheben.
 - Ich kann Text, Links, Aufzählungen, Überschriften, Tabellen und einfache Formulare in eine Webseite einfügen.
 - Ich kann mit CSS die Schriftarten, Farben, Zeilenabstände einer Seite verändern.
 - Ich kann mit CSS Grid und Flexbox das Layout einer Webseite bestimmen.

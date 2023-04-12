@@ -12,7 +12,7 @@ Server kann nicht erkennen ob Requests zusammen gehören.
 
 Mit der Einführung von Cookies, und damit von state, können
 wir nun erkennen, dass mehrere Requests zusammen gehören,
-vom selben Browser ausgelöst wurden. 
+vom selben Browser ausgelöst wurden.
 
 ![HTTP mit cookies wird "stateful"](/images/stateful-http-with-cookies.svg)
 
@@ -22,30 +22,30 @@ Session
 --------
 PHP hilft beim Erkennen und Verwenden von Sessions:
 
-Mit dem Befehle  `session_start()`[*](http://www.php.net/manual/de/function.session-start.php)  wird 
+Mit dem Befehle  `session_start()`[*](http://www.php.net/manual/de/function.session-start.php)  wird
 
-* …beim ersten Aufruf 
-  * automatisch ein Cookie gesetzt. 
+* …beim ersten Aufruf
+  * automatisch ein Cookie gesetzt.
   * Wenn im Array `$_SESSION` Daten gespeichert werden, sorgt PHP dafür, dass die Daten am Server permanent gespeichert werden.
-* …bei jedem weiteren Aufruf 
+* …bei jedem weiteren Aufruf
   * die Session an Hand des Cookies wieder identifiziert.
   * und die Daten wieder ins `$_SESSION`-Array geladen.
 
-Für unsere Applikation werden wir das `$_SESSION`-Array verwenden, um den `username` der angemeldeten Person zu speichern. 
+Für unsere Applikation werden wir das `$_SESSION`-Array verwenden, um den `username` der angemeldeten Person zu speichern.
 
 ### Struktur der Applikation mit Login
 
 
 Die folgende Tabelle zeigt die Seiten der Applikation, die für
-das Login nötig sind. 
+das Login nötig sind.
 Diesmal ist auch die Methode angegeben, da `login.php` verschiedene Aufgaben hat,
 je nachdem ob es mit GET oder POST aufgerufen wird.
 
 |Titel|Methode|Dateiname  |Parameter|Beschreibung|
 |+----|+------|+----------|+--------|+-----------|
-|Login Formular|GET    |`login.php`|         |Zeigt das Formular für den Login an        | 
-|Login|POST   |`login.php`|username, passwort|Prüft die Daten, setzt Username in der Session, dann Redirect zu index.php| 
-|Logout|POST   |`logout.php`| | Löschte Session und Session-Cookie, dann Redirect zu index.php | 
+|Login Formular|GET    |`login.php`|         |Zeigt das Formular für den Login an        |
+|Login|POST   |`login.php`|username, passwort|Prüft die Daten, setzt Username in der Session, dann Redirect zu index.php|
+|Logout|POST   |`logout.php`| | Löschte Session und Session-Cookie, dann Redirect zu index.php |
 {: class="table table-condensed table-bordered" style="width:auto"}
 
 ### session_start
@@ -61,7 +61,9 @@ Das Login-Formular (Dateiname `login.php`) sieht ganz einfach aus und sendet die
 
 ![Abbildung 147: Login-Formular der Applikation](/images/session/login-form.png)
 
-Username und Passwort werden überprüft, falls Sie passen wird der Username in der Session gespeichert. Mit dem Befehl `header("Location: index.php")` wird der Browser dann automatisch an die Hauptseite weitergeleitet. 
+Username und Passwort werden überprüft, falls Sie passen wird der Username in der Session gespeichert. Mit dem Befehl `header("Location: index.php")` wird der Browser dann automatisch an die Hauptseite weitergeleitet.
+
+§
 
 <php caption="Überprüfung von username und passwort">
 if ( strlen($username) > 0  and check_login( $username, $passwort ) ) {
@@ -94,7 +96,7 @@ $_SESSION = array();
 // Löscht das Session-Cookie.
 if (isset($_COOKIE[session_name()])) {
   setcookie(
-    session_name(),  // Cookie-Name war gleich Name der Session 
+    session_name(),  // Cookie-Name war gleich Name der Session
     '',             // Cookie-Daten. Achtung! Leerer String hier hilft nicht!
     time()-42000,  // Ablaufdatum in der Vergangenheit. Erst das löscht!
     '/'           // Wirkungsbereich des Cookies: der ganze Server
@@ -106,7 +108,7 @@ header("Location: index.php");
 
 ### Redirect / Weiterleitung
 
-Das Setzen und Löschen der Session-Cookies dauert immer einen Request länger als gedacht! Deswegen ist eine Weiterleitung mit `Location:` sinnvoll. 
+Das Setzen und Löschen der Session-Cookies dauert immer einen Request länger als gedacht! Deswegen ist eine Weiterleitung mit `Location:` sinnvoll.
 
 Die Weiterleitung funktioniert nur, wenn noch keine Ausgabe erfolgt ist, also vor dem Laden der header-include-Datei. Hier am Beispiel von login:
 
@@ -119,10 +121,10 @@ Die Weiterleitung funktioniert nur, wenn noch keine Ausgabe erfolgt ist, also vo
     $passwort = $_POST['passwort'];
 
     if ( strlen($username) > 0  and check_login( $username, $passwort ) ) {
-        $_SESSION['USER'] = $username;	
+        $_SESSION['USER'] = $username;
         header("Location: index.php");
         exit;
-    } 
+    }
 
     include "header.php";
 </php>
@@ -142,7 +144,7 @@ in der Datenbank, in der `config.php` Datei, in Umgebungsvariabeln.
 
 * `$_SESSION()` [PHP Doku](http://php.net/manual/en/reserved.variables.session.php)
 * `$_COOKIE()` [PHP Doku](http://php.net/manual/en/reserved.variables.cookies.php)
-* `header()` [PHP Doku](http://www.php.net/manual/de/function.header.php)  
+* `header()` [PHP Doku](http://www.php.net/manual/de/function.header.php)
 * `session_name()` [PHP Doku](http://www.php.net/manual/de/function.session-name.php)
-* `session_start()` [PHP Doku](http://www.php.net/manual/de/function.session-start.php)  
+* `session_start()` [PHP Doku](http://www.php.net/manual/de/function.session-start.php)
 * `setcookie()` [PHP Doku](http://www.php.net/manual/de/function.setcookie.php)

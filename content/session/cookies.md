@@ -40,7 +40,7 @@ gespeichert werden soll, und der Gültigkeitsbereich und Zeitraum:
 <javascript>
 Set-Cookie: style=gelb
 Set-Cookie: style=gelb; path=/admin/
-Set-Cookie: style=gelb; expires=Tue, 29-Mar-2015 19:30:42 GMT; path=/admin/
+Set-Cookie: style=gelb; expires=Tue, 29-Mar-2025 19:30:42 GMT; path=/admin/
 </javascript>
 
 
@@ -53,7 +53,7 @@ Der Zusatz `HttpOnly` zeigt an, dass das Cookie nicht von JavaScript aus gelesen
 verändert werden kann.
 
 <javascript>
-Set-Cookie: style=gelb; expires=Tue, 29-Mar-2015 19:30:42 GMT; path=/admin/;  Secure; HttpOnly
+Set-Cookie: style=gelb; expires=Tue, 29-Mar-2025 19:30:42 GMT; path=/admin/;  Secure; HttpOnly
 </javascript>
 
 

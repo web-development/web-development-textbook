@@ -9,11 +9,11 @@ auf jeder Bildschirmgröße gut funktioneirt.
 
 Für Photos kann man aber kein Vektorformat verwenden, da brauchen wir ein Pixelformat wie `webp` oder `jpg`.
 Mit diesen Pixelbildern kommen wir aber in Konflikt mit einer
-Grundeigenschaft des Web:  Sowohl [Auflösung als auch Pixeldichte](/css-layout/rahmenbedingungen/#slide-4) variieren stark.
+Grundeigenschaft des Web:  Sowohl Auflösung als auch Pixeldichte variieren stark.
 
 
-Besonders Mobile Geräte mit sehr [hoher Pixeldichte](/css-layout/rahmenbedingungen/#slide-4)
-stellen das Web Design vor ein Dilemma: 
+Besonders Mobile Geräte mit sehr hoher Pixeldichte
+stellen das Web Design vor ein Dilemma:
 
 - hohen Auflösung und Pixeldichte - soll ich riesige Bilder ausliefern?
 - Datenübertragung über das Handy-Netz ist langsam und teuer - kleine Bilder ausliefern?

@@ -8,6 +8,16 @@ erstes Bildformat `svg` gennen gelernt. Das ist praktisch, weil es
 auf jeder Bildschirmgröße gut funktioneirt.
 
 Für Photos kann man aber kein Vektorformat verwenden, da brauchen wir ein Pixelformat wie `webp` oder `jpg`.
+
+ACHTUNG: Der Einsatz von `gif` und `png` ist nicht mehr sinnvoll.
+
+* Animierte gifs wurden durch video ersetzt
+* Bilder mit wenigen Farben und klaren Kanten (inkl. Transparenz), für die
+man früher `.png` verwendet hat, werden nun als `.svg` gespeichert.
+
+
+## Problematik Pixeldichte und Auflösung
+
 Mit diesen Pixelbildern kommen wir aber in Konflikt mit einer
 Grundeigenschaft des Web:  Sowohl Auflösung als auch Pixeldichte variieren stark.
 
@@ -75,10 +85,16 @@ Beispiel das Bild mit einer Breite von 701.
 
 §
 
-Im Attribut `sizes` können auch Mediaqueries verwenden.
+Im Attribut `sizes` kann man Mediaqueries verwenden: erst die Bedingung in Klammern,
+dann die Größe die verwendet werden soll.
+
+
 
 <htmlcode>
-sizes="(max-width: 600px) 480px, 800px"
+sizes="(min-width: 1200px)) 1200px
+       ((min-width: 800px) and (max-width: 1200px)) 1000px,
+       ((min-width: 300px) and (max-width: 800px)) 500px,
+        (max-width: 300px) 200px"
 </htmlcode>
 
 ## Bilder erzeugen

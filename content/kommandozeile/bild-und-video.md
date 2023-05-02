@@ -61,6 +61,7 @@ $ du -h Bildschirmfoto.*
 
 Aus 1,6 Megabyte png wurden also 644 Kilobyte jpeg und 180 Kilobyte webp.
 Ein Faktor 10 Kompression zahlt sich auf jeden Fall aus!
+
 ### Bildgröße Verändern
 
 Oft erhält man Photos mit sehr hoher Auflösung:

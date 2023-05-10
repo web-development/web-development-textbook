@@ -36,7 +36,8 @@ Jedes Array kann in PHP auch Strings als Index enthalten.
 Ist das der Fall, dann wird es in JSON als Objekt dargestellt:
 
 <php>
-$array = array( "foo" => 10, "bar" => 30, "baz" => 30, 0 => "a");
+$array = array( "foo" => 10, "bar" => 30, "baz" => 30);
+$array[0] = "a";
 echo json_encode( $array );
 // {"foo":10,"bar":30,"baz":30,"0":"a"}
 </php>
@@ -80,7 +81,7 @@ print_r( $o );
 //   [0] => a
 // )
 echo "Wert von foo: " . $o['foo'];
-echo "Wert von 0: " . $o[0];  
+echo "Wert von 0: " . $o[0];
 </php>
 
 

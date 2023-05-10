@@ -1,6 +1,6 @@
 ---
 title: Landkarte
-order: 35
+order: 85
 ---
 
 <div class="alert"><strong>ToDo</strong> fertig stellen </div>
@@ -21,7 +21,7 @@ Zwei Varianten:
 <css>
   #map.static {
     background-size: cover;
-    background-image: url(map.png); 
+    background-image: url(map.png);
   }
 </css>
 

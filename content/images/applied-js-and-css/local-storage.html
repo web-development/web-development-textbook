@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="/assets/img/favicon.png">
+  <title>Demo-Seite: Variablen in JavaScript werden nicht dauerhaft gespeichert</title>
+  <style>
+    main {
+      max-width: 600px;
+      margin: 0 auto;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .flex {
+      display: flex;
+      gap: 5px;
+    }
+  </style>
+  </head>
+  <body  id="bg">
+    <main>
+
+      <nav class="flex">
+        <a href="no-storage.html">Variable</a>
+        |
+        <a href="local-storage.html">localStorage</a>
+        |
+        <a href="local-storage-event.html">mit Event</a>
+      </nav>
+
+      <h1>Lebenszeit von Variablen</h1>
+      <p>
+        Variablen in einem JavaScript Programm
+        im Browser werden nicht dauerhaft gespeichert,
+        und existieren in jedem Browser-Tab oder -Fenster separat.
+        LocalStorage bleibt bestehen.
+      </p>
+
+      <p>
+        Öffne  <a href="local-storage.html" target="_blank">diese Seite noch einmal</a>
+      </p>
+
+      <h2>Diese Seite</h2>
+
+      <p id="intro"></p>
+
+      <h3>Variable a</h3>
+
+      <div class="flex">
+        <button id="down">-</button>
+        <div>a = <span id="show_a"></span></div>
+        <button id="up">+</button>
+      </div>
+
+      <h3>LocalStorage Value zu Key "a"</h3>
+
+      <div class="flex">
+        <button id="down_localstorage">-</button>
+        <div>LocalStorage.getItem('a') = <span id="show_a_localstorage"></span></div>
+        <button id="up_localstorage">+</button>
+      </div>
+    </main>
+    <script>
+      let startedAt = new Date();
+      let dayAndTime = startedAt.toLocaleTimeString("de-AT", {hc: 'h24'})
+      let a = 0;
+
+
+      const show = (value) => {
+        document.getElementById('show_a').innerHTML = value;
+        console.log("variable a =", value);
+      };
+      const up = () => { a = a + 1; show(a); };
+      const down = () => { a = a - 1; show(a); };
+
+      const showLocalStorage = (value) => {
+        document.getElementById('show_a_localstorage').innerHTML = value;
+        console.log("a in localStorage =", value)
+      }
+
+      const getIntFromLocalStorage = (key) => {
+        let x = localStorage.getItem(key);
+        if(  x == null ) {
+          x = 0;
+        } else {
+          x = parseInt(x);
+        }
+        return x
+      }
+      const upLocalStorage = (ev) => {
+        x = getIntFromLocalStorage('a');
+        x = x + 1;
+        localStorage.setItem("a", x);
+        showLocalStorage(x);
+      };
+      const downLocalStorage = (ev) => {
+        x = getIntFromLocalStorage('a');
+        x = x - 1;
+        localStorage.setItem("a", x);
+        showLocalStorage(x);
+      };
+
+
+      document.getElementById('intro').innerText = `Seite geladen um ${dayAndTime}. Variable a und LocalStorage key "a" mit 0 initialisiert.`;
+      show(a);
+      showLocalStorage(localStorage.getItem('a'));
+
+      document.getElementById('up').addEventListener('click', up);
+      document.getElementById('down').addEventListener('click', down);
+
+      document.getElementById('up_localstorage').addEventListener('click', upLocalStorage);
+      document.getElementById('down_localstorage').addEventListener('click', downLocalStorage);
+
+
+      function createHex() {
+        var hexCode1 = "";
+        var hexValues1 = "0123456789abcdef";
+
+        for ( var i = 0; i < 6; i++ ) {
+          hexCode1 += hexValues1.charAt(Math.floor(Math.random() * hexValues1.length));
+        }
+        return hexCode1;
+      }
+
+      function generate() {
+
+        var deg = Math.floor(Math.random() *360);
+
+        var gradient = "linear-gradient(90deg, " + "#" + createHex() + ", white)";
+
+        document.getElementById("bg").style.background = gradient;
+
+        console.log(hexCode1, hexCode2);
+
+      }
+      document.onload = generate();
+
+    </script>
+    <script src="random-background-color.js"></script>
+  </body>
+  </html>
+

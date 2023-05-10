@@ -18,3 +18,8 @@ gem 'rb-fsevent'
 # gem 'nanoc-redirector' # ab nanoc 4
 
 gem "webrick", "~> 1.8"
+
+gem "adsf-live", "~> 1.4"
+group 'nanoc' do
+  gem 'nanoc-live'
+end

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="/assets/img/favicon.png">
+  <title>Demo-Seite: Variablen in JavaScript werden nicht dauerhaft gespeichert</title>
+  <style>
+    main {
+      max-width: 600px;
+      margin: 0 auto;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .flex {
+      display: flex;
+      gap: 5px;
+    }
+  </style>
+  </head>
+  <body  id="bg">
+    <main>
+      <nav class="flex">
+        <a href="no-storage.html">Variable</a>
+        |
+        <a href="local-storage.html">localStorage</a>
+        |
+        <a href="local-storage-event.html">mit Event</a>
+      </nav>
+      <h1>Lebenszeit von Variablen</h1>
+      <p>
+        Variablen in einem JavaScript Programm
+        im Browser werden nicht dauerhaft gespeichert,
+        und existieren in jedem Browser-Tab oder -Fenster separat.
+      </p>
+
+      <p>
+        Öffne  <a href="no-storage.html" target="_blank">diese Seite noch einmal</a>
+      </p>
+
+      <h2>Diese Seite</h2>
+
+      <p id="intro"></p>
+
+      <div class="flex">
+        <button id="up">+</button>
+        <div>a = <span id="show_a"></span></div>
+        <button id="down">-</button>
+      </div>
+    </main>
+    <script>
+      let startedAt = new Date();
+      let dayAndTime = startedAt.toLocaleTimeString("de-AT", {hc: 'h24'})
+      let a = 0;
+
+      const show = (value) => document.getElementById('show_a').innerHTML = a;
+      const up = () => { a = a + 1; show(a); }
+      function down () { a = a - 1; show(a); }
+
+
+      document.getElementById('intro').innerText = `Seite geladen um ${dayAndTime}. Variable a mit 0 initialisiert.`;
+      show(a);
+
+      document.getElementById('up').addEventListener('click', up);
+      document.getElementById('down').addEventListener('click', down);
+
+      function createHex() {
+        var hexCode1 = "";
+        var hexValues1 = "56789abcdef";
+
+        for ( var i = 0; i < 6; i++ ) {
+          hexCode1 += hexValues1.charAt(Math.floor(Math.random() * hexValues1.length));
+        }
+        return hexCode1;
+      }
+
+      function generate() {
+
+
+        var gradient = "linear-gradient(90deg, " + "#" + createHex() + ", white)";
+
+        document.getElementById("bg").style.background = gradient;
+
+        console.log(hexCode1, hexCode2);
+
+      }
+      document.onload = generate();
+
+    </script>
+
+  </body>
+  </html>
+

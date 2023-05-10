@@ -28,11 +28,9 @@ console.log( hs.alter() );  // 20
 
 ## Klassen
 
-In Javascript 2015 wurde eine neue Schreibweise für Objekte und Konstruktoren
-eingeführt. Die Funktionsweise der Objekte, Konstruktur-Funktionen und Prototypen
-wurde dadurch nicht verändert.
+In Javascript 2015 wurden Klassen in JavaScript eingeführt:
 
-<javascript caption="Methoden und Attribute definieren mit dem Prototyp">
+<javascript caption="Klasse mit Constructor und einer Methode">
 
 class Studiengang {
 
@@ -49,9 +47,11 @@ class Studiengang {
       " @ " + this.hs.name + ")";
   }
 
-} 
+}
 
 typeof Studiengang;  // function!
+
+
 
 mmtb = new Studiengang( "BSc MultiMediaTechnology", 2008, hs );
 mmtm = new Studiengang( "MSc MultiMediaTechnology", 2011, hs );
@@ -74,14 +74,7 @@ class Pet {
   }
 }
 
-class Mammal extends Pet {
-  constructor() {
-    super();
-    this.legs = 4;
-  }
-}
-
-class Dog extends Mammal {
+class Dog extends Pet {
   constructor (b) {
     super();
     this.breed = b;
@@ -97,16 +90,16 @@ d = new Dog("beagle");
 d.word    // wau
 d.sit()
 
-d.legs    // 4
 d.status  // sleeping
 </javascript>
 
 
 
-## Ohne Klassen-Schreibweise: Konstruktur-Funktion für mehrere gleiche Objekte
+## Contructor ohne Klasse
 
-Sollen mehrere gleichartige Objekte erzeugt werden, dann
-geschieht das in Javascript mit einer Konstruktur Funktion:
+Vor den Klassen gab es in JavaScript eine andere Art mehrere
+gleichartige Objekte zu erzeugen: die Constructor Funktion wurde
+als normale Funktion angelegt:
 
 <javascript caption="Konstruktor für Objekte">
 function Studiengang(name, seit, hochschule) {

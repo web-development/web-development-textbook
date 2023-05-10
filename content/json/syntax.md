@@ -81,14 +81,15 @@ Wie man in folgendem Beispiel sieht wird die Funktion
 und der Eintrag mit Wert `undefined` nicht serialisiert:
 
 <javascript caption="Serialisieren">
-  let o = {
+let o = {
   "a": "blabla",
   "b": 42,
   "c": true,
   "d": undefined,
   "e": null,
   "f": new Date(2036, 0, 2, 15, 4, 5),
-  "g": x => 2 * x
+  "g": x => 2 * x,
+  "h": [1, 2, 3]
 }
 let s = JSON.stringify(o);
 console.log(s);
@@ -147,10 +148,10 @@ console.log(o);
 console.log( o.f(o.data) );  // 84
 </javascript>
 
-In diesem Beispiel ist ganz klar was passiert - weil `javascript_string` ja
-lokal definiert wird.
+In diesem Beispiel kann man aus dem Code klar herauslesen was passieren wird,
+das ist unproblematisch.
 
-Für die Behandlung von "fremden" Daten ist `eval`
+Für die Behandlung von "fremden" Daten, z.B. Input über ein Web Formular, ist `eval`
 nicht geeignet!
 
 

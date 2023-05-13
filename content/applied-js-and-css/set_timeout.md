@@ -1,12 +1,12 @@
 ---
 title: setTimeout
-order: 51
+order: 65
 ---
 
-Bei der Vorstellung von asynchronen Funktionen haben wir gelernt:
-ein laufendes Javascript Programm wird nie unterbrochen.
-Erst wenn das aktuelle Programm zu Ende ist
-stellt sich die Frage ob eine Callback Funktion aufgerufen wird.
+Bei der Vorstellung der asynchronen Funktionen haben wir gelernt:
+Ein laufendes Javascript-Programm wird niemals unterbrochen.
+Erst wenn das aktuelle Programm beendet ist
+wird eine Callback-Funktion aufgerufen.
 
 Diese Prinzip kann man am Beispiel von `setTimeout` besonders gut sehen.
 
@@ -26,6 +26,8 @@ console.log("tock", Date.now());
 console.log("tick", Date.now());
 console.log("tock", Date.now());
 </javascript>
+
+(Programm in die Konsole kopieren und ausprobieren!)
 
 ## setTimeout mit null Sekunden
 

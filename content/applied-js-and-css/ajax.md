@@ -17,6 +17,8 @@ AJAX ist die englische Abkürzung für „Asynchrones Javascript und XML“. In
 diesem Kapitel lernen Sie was das genau bedeutet, und dass sich hinter dem X
 zum Schluss auch andere Format verbergen können
 
+### AJAX Beispiel: Autocomplete
+
 Ein Beispiel für die Verwendung von AJAX ist das in der Abbildung unten
 gezeigte Eingabefeld:
 schon während des Eintippens eines Suchwortes wird eine Anfrage an den Webserver
@@ -27,13 +29,10 @@ wird mit Javascript in einer `div` unterhalb des Eingabefelds angezeigt:
 
 Mit AJAX wird hier eine HTTP-Anfrage gesendet.
 
-Bei einer „normalen“ HTTP-Anfrage schaltet der Browser auf
-„Warten“, eine neue vollständige Webseite wird geladen und angezeigt.
-
 Asynchron heisst hier: der Request wird abgesetzt, das Javascript-Programm läuft sofort
 weiter, die UserIn kann weiterhin mit der Webseite interagieren. Erst wenn die Antwort
-des Servers vorliegt wird die normale Darstellung der Seite kurz unterbrochen und ein
-Javascript-Programm fügt die Daten in die Seite ein.
+des Servers vorliegt starte ein
+Javascript-Programm und fügt die Daten in die Seite ein.
 
 ### Im Javascript Programm: synchorn
 
@@ -68,7 +67,7 @@ eine ganze Sekunde?
 Es gibt nun in Javascript die Möglichkeit Funktionen
 zu schreiben die sich anders verhalten, nämlich asynchron.
 
-Hier ein Beispiel mit mehreren synchronen Funktionen  rechnen1, rechnen2, rechnen3, rechnen4,
+Hier ein Beispiel mit mehreren synchronen Funktionen  `rechnen1`, `rechnen2`, `rechnen3`, `rechnen4`,
 und einer asynchronen Funktion genannt `asynchronLaden`:
 
 <javascript caption="asynchron">
@@ -83,14 +82,13 @@ rechnen3();
 rechnen4();
 </javascript>
 
-Erst wenn rechnen1 fertig ist geht's weiter mit rechnen2, erste wenn rechnen2 fertig ist geht's weiter mit `asynchronLaden` - aber dann passiert etwas besonders:
+Erst wenn `rechnen1` fertig ist geht's weiter mit `rechnen2`. Erst wenn `rechnen2` fertig ist geht's weiter mit `asynchronLaden` - aber dann passiert etwas Besonderes:
 
-`asynchronLaden` will etwas sehr zeitaufwändiges tun - Daten von der URL mittels HTTP laden.
-Trotzdem scheint sie ganz schnell fertig zu sein, das Programm  geht gleich zu `rechnen3` als
-nächstes weiter, egal ob und wie schnell der Server auf den HTTP-Request antwortet. Wenn
-`rechnen3` feritg ist wird `rechnen4` ausgeführt, und dann endet das JavaScript programm.
+`asynchronLaden` will etwas sehr zeitaufwendiges tun - Daten von der URL per HTTP laden.
+Trotzdem scheint es sehr schnell zu gehen, das Programm geht direkt zu `rechnen3`  weiter, egal ob und wie schnell der Server auf die HTTP-Anfrage antwortet. Wenn
+`rechnen3` fertig ist wird `rechnen4` ausgeführt, und das JavaScript Programm endet.
 
-Aber eine Sekunde später passiert was neues:  Die Daten, die in `asynchronLaden`
+Aber eine Sekunde später passiert was Neues:  Die Daten, die in `asynchronLaden`
 angefragt wurden sind eingelangt - das ist irgendwie im Hintergrund passiert - und sind
 nun bereit zur Weiterverarbeitung.
 
@@ -104,7 +102,7 @@ Im letzten Code-Beispiel wird es nie passieren, dass zwischen `rechnen3`
 und `rechnen4` etwas anderes (z.B. `handleData`) passieren!
 
 Erst wenn dieses kleine Programm fertig durchgelaufen ist
-stellt sich die Frage ob das laden der Daten über HTTP fertig,
+stellt sich die Frage ob das Laden der Daten über HTTP fertig,
 und damit `handleData` dran ist.
 
 <javascript caption="asynchron">
@@ -155,10 +153,10 @@ Das X am Ende von AJAX steht für XML – das stimmt aber nicht: die Daten vom S
 können im XML-Format gesendet werden, aber genauso auch als HTML oder reiner
 Text oder JSON. Man könnte das X in AJAX auch als „X-beliebiges Format“ deuten.
 
-## Simples Javascript Beispiel
+### Simples Javascript Beispiel
 
 Im ersten AJAX Beispiel wird der Output eines PHP-Counters in eine HTML-Seite
-eingebunden.
+eingebunden. Für den HTTP Request verwenden wir den Befehl `fetch`[mdn](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
 
 <htmlcode caption="Counter einbinden mit Javascript">
 <html>
@@ -169,61 +167,21 @@ eingebunden.
 <body>
   <h1>Webseite</h1>
 
-  <p>mit total viel Inhalt</p>
-
-  <script>
-    function handleCounterData() {
-      console.log("Response wurde empfangen");
-      let counter = this.responseText;
-      // counter enhält jetzt den output des php programms
-    }
-
-    let ajaxRequest = new XMLHttpRequest();
-    ajaxRequest.addEventListener("load", handleCounterData);
-    ajaxRequest.open("GET", "counter_ajax.php");
-    ajaxRequest.send();  // asynchron!
-    console.log("abgesendet, sofort weiter");
-  </script>
-</body>
-</html>
-</htmlcode>
-
-Das `XMLHttpRequest` Objekt liefert verschiedene Events, hier wird nur für das `load` Event
-eine Funktion als Listener angebracht. Mit der `open` Methode wird der HTTP-Request
-konfiguriert, aber erst mit `send` wirklich abgeschickt. Da der Request asynchron erfolgt
-geht der Javascript-Interpreter sofort von `send` weiter zu `console.log` in der nächsten
-Zeile.
-
-Erst sehr viel später, wenn der HTTP-Response vorliegt, wird die Funktion
-`handleCounterData` aufgerufen. Die Funktion erhält das `XMLHttpRequest` Objekt
-in der Variable `this` und kann aus `this.responseText` die Antwort auslesen.
-
-## Fetch und Promises
-
-In modernem Javascript, in allen Browsern [ausser Internet Explorer](https://caniuse.com/#search=fetch), gibt es
-eine neue Schreibweise für AJAX-Request mit `fetch`[mdn](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch).
-
-<htmlcode caption="Counter einbinden mit Javascript">
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>AJAX counter</title>
-</head>
-<body>
-  <h1>Webseite</h1>
-
-  <p>mit total viel Inhalt</p>
+  <div id="output">0</div>
 
   <script>
     fetch("counter_ajax.php")
-      .then(function(response) {
+      .then((response) => {
         console.log("Response wird empfangen");
-        let counter = response.text();
-        return counter;
+        console.log(response.url);
+        console.log(response.headers.get('Content-Type'));
+        let promiseOfText = response.text();
+        return promiseOfText;
       })
-      .then(function(counter) {
-        console.log("counter wurde aus dem Response herausgelesen");
-        // ...
+      .then((text) => {
+        console.log("text wurde aus dem Response herausgelesen", text);
+        document.getElementById('output').innerHTML = text;
+        console.log("fertig!");
       });
     console.log("abgesendet, sofort weiter");
   </script>
@@ -231,250 +189,144 @@ eine neue Schreibweise für AJAX-Request mit `fetch`[mdn](https://developer.mozi
 </html>
 </htmlcode>
 
-Mit `fetch` wird die Reihenfolge des Ablaufs klarer, aber der Ablauf
-wird auch komplizierter: ein weiterer asynchroner Verarbeitungsschritt
-kommt dazu: aus dem Response wird erst der Text ausgelesen, das erfolgt
-wieder asynchron, erst dann kann der Text verwendet werden.
+Diesen Ablauf müssen wir genauer analysieren.
 
-## Promises
+### Promises
 
 Der Rückgabewert der funktion `fetch` ist eine **Promise**: ein Objekt,
 das den Umgang mit einer asynchrone Operation einfacher machen soll.
 
-
 <javascript>
-  <script>
-    let promise = fetch("counter_ajax.php");
-  </script>
+<script>
+  let promise = fetch("counter_ajax.php");
+</script>
 </javascript>
-
 
 Das Promise Objekt ist ein Platzhalter für das Ergebnis der Operation, das noch nicht
 bekannt ist. In anderen Programmiersprachen ist die Promise auch als
-Future oder Deferred bekannt, siehe [wikipedia](https://en.wikipedia.org/wiki/Futures_and_promises).
+Future oder deferred Task bekannt, siehe [wikipedia](https://en.wikipedia.org/wiki/Futures_and_promises).
 
 Mit der Methode `then()` kann eine Funktion als Callback angegeben
 werden, die aufgerufen wird wenn das Ergebnise vorliegt:
 
 <javascript>
-  promise.then(function(response) {
-    console.log("Response wird empfangen");
-    // tu ws mit response response
-  });
-console.log("abgesendet, sofort weiter");
+promise.then((response) => {
+  console.log("Response wird empfangen");
+  // tu was mit dem response objekt
+});
+</javascript>
+
+### Response Body
+
+Bei `fetch` muss mit dem Ergebnis einer asynchronen Operation
+eine weitere asynchrone Operation aufgerufen werden: Das Laden des
+gesamten Body des HTTP Response kann lange dauern. Deswegen
+erhalten wir nicht sofort den body, sondern wieder eine Promise:
+
+<javascript>
+promise.then((response) => {
+  console.log("Response wird empfangen");
+  let promiseOfText = response.text();
+  return promiseOfText;
+});
+</javascript>
+
+Es gibt drei Arten wie der Body ausgelesen werden kann -
+als text, json oder binary blob (z.B. beim Laden eines Bildes).
+
+<javascript>
+response.text();
+response.json();
+response.blob();
 </javascript>
 
 ### Chaining
 
-Angenommen mit dem Ergebnis einer asynchronen Operation soll
-eine weitere asynchrone Operation aufgerufen werden.
-
-Mit Promises funktionert das mittels "aneinanderhängen" = "chaining" mit `then`:
+Da nun die erste Callback Funktion wieder eine Promise zurückgibt,
+kann  wieder die Methode `then` verwendet werden:
 
 <javascript>
-fetch("counter_ajax.php")
-  .then(function(response) {
-    console.log("Response wird empfangen");
-    let counter = response.text();
-    return counter;
-  })
-  .then(function(counter) {
-    console.log("counter wurde aus dem Response herausgelesen");
-    // ...
-  });
+.then((response) => {
+  console.log("Response wird empfangen");
+  let promiseOfText = response.text();
+  return promiseOfText;
+})
+.then((text) => {
+  console.log("text wurde aus dem Response herausgelesen", text);
+  document.getElementById('output').innerHTML = text;
+  console.log("fertig!");
+});
 console.log("abgesendet, sofort weiter");
 </javascript>
 
-Dieser Code kann mit Arrow-Functions noch kürzer werden:
+
+### Kurze Version
+
+Wenn man alle Ausgaben auf die Console weg lässt
+wird der Code sehr kurz:
 
 <javascript>
 fetch("counter_ajax.php")
-  .then(response => response.text())
-  .then(function(counter) {
-    console.log("Text wurde aus dem Response herausgelesen");
-    // tu was mit counter
-  });
-console.log("abgesendet, sofort weiter");
+  .then(response => response.text() )
+  .then(text => document.getElementById('output').innerHTML = text );
 </javascript>
+
+
 
 ### Fehlerbehandlung
 
-Für die Fehlerbehandlung gibt es zwei Schreibweisen, die
-üblichere ist die Verwendet von `catch`:
+Für die Fehlerbehandlung gibt es die Methode `catch`:
 
 <javascript>
 fetch("counter_ajax.php")
   .then(response => response.text())
-  .then(function(counter) {
-    console.log("Text wurde aus dem Response herausgelesen");
-    // tu was mit counter
-  }).catch(function(error) {
+  .then(text => document.getElementById('output').innerHTML = text )
+  .catch(error => {
+	  document.getElementById('output').innerHTML = '#';
     console.log(error);
   });
-console.log("abgesendet, sofort weiter");
 </javascript>
 
-## Fehlerbehandlung bei fetch
+### Fehlerbehandlung von HTTP
 
-Achtung: wenn bei einem fetch der HTTP-Response z.B. 404 oder 500 ist
-löst das noch keine Exceltion aus, die mit `catch` gefangen werden kann.
+Zur Erinnerung: Bei einem HTTP Response wird ein Statuscode
+mitgeliefert, der Erfolg oder Fehler anzeigen kann, siehe auch
+[http-status-code.de](https://http-status-code.de/)
+
+
+
+Achtung: wenn bei einem `fetch` der HTTP-Response einen Statuscode
+für einen Fehler liefert, z.B. 404 oder 500 , dann
+löst das noch keine Exception aus, die mit `catch` gefangen werden könnte.
+
+Die Property `response.ok` zeigt an ob der HTTP Status im
+postivien Bereich (200-299) war.
+
 
 Das müsste man selbst behandeln:
 
 <javascript>
 fetch("counter_ajax.php")
-  .then(function(response){
-    console.log("response status is", response.status);
-    if (response.status !== 200) {
-        throw new Error("Not 200 response");
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
     }
     return response.text();
-  }).then(function(counter) {
-    console.log("Text wurde aus dem Response herausgelesen");
-    // tu was mit counter
-  }).catch(function(error) {
+  })
+  .then(text => document.getElementById('output').innerHTML = text )
+  .catch(error => {
+	  document.getElementById('output').innerHTML = '#';
     console.log(error);
   });
   console.log("abgesendet, sofort weiter");
 </javascript>
 
-Siehe auch
-
-## Autocomplete
-
-Wir werden in diesem Beispiel ein Autocomplete-Feld bauen.
-Beginnen wir mit dem Backend:
-
 ### Backend
 
-Am Server befindet sich eine Datenbank mit ca. 170.000 Städten.
-Mit der Anfrage
-
-`search.php?term=w`
-
-sollen nur die Städte, die mit w beginnen, geladen werden
-und als JSON-Array zurück gegeben werden:
-
-<javascript>
-[
-    "Wa,GH",
-    "WaKeeney,US",
-    "Waabs,DE",
-    "Waaia,AU",
-    "Waajid,SO",
-    "Waake,DE",
-    "Waakirchen,DE",
-    "Waal,DE",
-    ...
-    "Wüstenzell,DE",
-    "Wüstheuterode,DE",
-    "Wāhan Murad,PK",
-    "Wān Yampēng,MM",
-    "Wŏnsŏngil-tong,KR",
-    "Włocławek,PL",
-    "Włodawa,PL",
-    "Włoszczowa,PL",
-    "Wāsiţ,EG",
-    "Wąwolnica,PL"
-]
-</javascript>
-
-Das sind ca. 5000 Namen.
-
-Der Output des PHP-Programmes ist also JSON. Das muss mit dem HTTP Header `Content-Type`
-angekündgt werden:
+Das Backend ist im Fall des Counters sehr simpel: ein PHP-Programm
+das eine Zahl ausgibt.  Im einfachsten Fall also
 
 <php>
-header('Content-Type: application/json');
-// $cities aus der Datenbank holen
-echo json_encode($cities);
+<?php echo 42 ?>
 </php>
 
-### Frontend
-
-Für das Frontend kann man eine fertige Library verwenden,
-z.B. [JavaScript-autoComplete](https://github.com/Pixabay/JavaScript-autoComplete/):
-
-<javascript>
-new autoComplete({
-    selector: '#cityinput',
-    source: function(term, handle_response){
-      // schicke suchwort 'term' ans backend
-      // wenn die datenvorliegen, rufe die funktion handle_response auf
-    }
-});
-</javascript>
-
-## AJAX Beispiel mit API
-
-In diesem Beispiel werden Wetter-Daten von zwei Quellen angezeigt. Dabei
-sieht man einen wichtigen Unterschied:
-
-- auf http://openweathermap.org/ ist der Zugriff nur mit API key möglich, auch vom frontend aus
-- auf http://at-wetter.tk/ ist der Zugriff auch ohne API key möglich, aber nicht von einem fremden Frontend aus, weil [CORS](/cors/) nicht erlaubt ist.
-
-### Direkter Zugriff auf eine fremde API
-
-Um die API von http://openweathermap.org/ zu benutzen
-ist eine Anmeldung und ein API key notwendig. Das ermöglicht
-eine Beschränkung der Zugriffe: am Server kann mitgezählt werden
-mit welchem API Key wie viele Zugriffe erfolgt sind, und je nach
-dem limitiert oder verrechnet werden. Die Preise für die API
-sind nach Anzahl der Zugriffen gestaffelt, im Mai 2017 waren die Preise:
-
-![Preise von openweathermap.org](/images/openweathermap-preise.png)
-
-Beim Zugriff auf die API muss jeweils der API-Key als parameter
-mit gesendet werden:
-
-<javascript caption="Zugriff auf die openweathermap API">
-fetch("http://api.openweathermap.org/data/2.5/weather?&units=metric&q=London,uk&apikey=....")
-.then(function...
-</javascript>
-
-Die genaue Struktur der Daten und wie man sie zerlegt kann man entweder
-[der Dokumentation](https://openweathermap.org/weather-conditions#Weather-Condition-Codes-2) entnehmen, oder einfach in der console erforschen.
-
-ABER ACHTUNG: diese API ist (gratis) nur über http zugänglich.
-Die resultierende Webseite kann wieder nur auf http veröffentlicht werden, nicht
-auf https.
-
-Um die openweahtermap api auch über https verwenden zu können
-ist die nächste Lösung notwendig:
-
-### Zugriff auf eine API über lokales Backend
-
-Es gibt zwei Gründe, warum der direkte Zugriff vom Frontend
-auf die API verboten sein kann:
-
-Einen Grund haben wir schon bei openweathermap gesehen: die API ist über
-http zugänglich, das frontend wird auf https gehosted. So ist es verboten
-auf die API zuzugreifen.
-
-Der zweite mögliche Grund ist CORS. Das tritt zum Beispiel bei der API
-`at-wetter.tk` auf.
-Die Abfrage scheitert ohne sichtbare Fehlermeldung. In der console wird
-in manchen Browsern eine Meldung angezeigt:
-
-![CORS Fehlermeldung](/images/cors-error.png)
-
-In beiden Fällen ist die Lösung dieselbe: man muss die Daten
-über das eigene Backend laden.
-
-In PHP ist der Zugriff auf die API ohne Problem möglich:
-
-<php caption="zugriff auf die wetter-at.tk API">
-header('Content-Type: application/json');
-...
-$url = "http://at-wetter.tk/api/v1/station/11150/t/$date/7";
-$text=file_get_contents( $url );
-...
-</php>
-
-## Ausblick
-
-Das waren nur einige wenige Anwendungsbeispiele für AJAX,
-es gibt natürlich noch viel mehr.
-
-Aber bevor man sich in AJAX Abenteuer stürzt sollte man sich auch
-über die Probleme bewusst sein, dazu mehr im nächsten Kapitel.

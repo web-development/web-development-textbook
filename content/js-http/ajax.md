@@ -193,7 +193,7 @@ Diesen Ablauf müssen wir genauer analysieren.
 
 ### Promises
 
-Der Rückgabewert der funktion `fetch` ist eine **Promise**: ein Objekt,
+Der Rückgabewert der Funktion `fetch` ist eine **Promise**: ein Objekt,
 das den Umgang mit einer asynchrone Operation einfacher machen soll.
 
 <javascript>
@@ -215,6 +215,48 @@ promise.then((response) => {
   // tu was mit dem response objekt
 });
 </javascript>
+
+### fetch
+
+Die Funktion `fetch` kann nicht nur für einfache GET Requests eingesetzt werden,
+sondern bietet noch mehr Möglichkeiten:
+
+Sollen Cookies bei diesem Request mitgeschickt werden?
+
+<javascript>
+<script>
+  let promise = fetch("api.php",  {
+      credentials: 'same-origin'
+  });
+</script>
+</javascript>
+
+Beliebige zusätzliche HTTP Header einfügen.
+
+<javascript>
+<script>
+  let promise = fetch("api.php",  {
+      headers: {
+        "API-Key": "xxxxyyyy",
+      });
+</script>
+</javascript>
+
+POST Request mit Daten im JSON Format:
+
+<javascript>
+<script>
+  let promise = fetch("api.php",  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+</script>
+</javascript>
+
+
 
 ### Response Body
 
@@ -306,6 +348,8 @@ postivien Bereich (200-299) war.
 Das müsste man selbst behandeln:
 
 <javascript>
+button.disabled = true;
+
 fetch("counter_ajax.php")
   .then(response => {
     if (!response.ok) {
@@ -317,16 +361,18 @@ fetch("counter_ajax.php")
   .catch(error => {
 	  document.getElementById('output').innerHTML = '#';
     console.log(error);
-  });
-  console.log("abgesendet, sofort weiter");
+  })
+  .finally {
+    button.disabled = false;
+  };
 </javascript>
 
 ### Backend
 
-Das Backend ist im Fall des Counters sehr simpel: ein PHP-Programm
-das eine Zahl ausgibt.  Im einfachsten Fall also
+Das Backend ist im Fall des Counters sehr simpel - ein PHP-Programm
+das eine Zahl ausgibt.  Im einfachsten Fall also:
 
 <php>
-<?php echo 42 ?>
+<?php echo 42; ?>
 </php>
 

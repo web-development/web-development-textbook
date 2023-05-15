@@ -323,6 +323,7 @@ preprocess do
     "grafik",
     "javascript",
     "applied-js-and-css",
+    "js-http",
     "json",
     "xml",
     "---",

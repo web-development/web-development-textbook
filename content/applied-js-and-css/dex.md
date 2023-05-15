@@ -13,5 +13,3 @@ intro: An Hand einiger praktischer Beispiele lernen Sie plain old JavaScript bes
 - Ich kann komplexe Überprüfungen in einem Formular vornehmen, und das Absenden der Daten verhindern
 - Ich kann auf eine Scrollen der Webseite reagieren
 - Ich kann dynamische Formulare gestalten
-- Ich kann fetch / AJAX verwenden
-- Ich kann die Prinzipien "graceful degratation" und "progressive enhancement" erklären und anwenden

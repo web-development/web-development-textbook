@@ -1,8 +1,11 @@
 <ul class="sub">
-  <% if @config[:chapters][item[:chapter]] %>
-    <% @config[:chapters][item[:chapter]][:items].each do|i| %>
+  <% if @config[:chapters][@item[:chapter]] %>
+
+    <% @config[:chapters][@item[:chapter]][:items].each do |i| %>
       <% if i[:title] && !(i[:filename] =~ /\/dex\.md$/) %>
-      <li <% if @item[:filename] == i[:filename] %>class="active"<% end %>><a href="<%= i[:path] %>"><%= i[:title] %></a></li>
+      <% path = i[:filename].sub(/.md/, '').split(/\//).last %>
+      <li><a href="<%= path %>/"><%= i[:title] %></a>
+      </li>
       <% end %>
     <% end %>
   <% end %>

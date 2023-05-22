@@ -46,7 +46,7 @@ console.log("tock", Date.now());
 
 Zwei Ergebnisse wären möglich:
 
-```
+<shell>
 Variante A: passiert sofort
 tick
 0 Sekunden später?
@@ -60,7 +60,7 @@ tock
 tick
 tock
 0 Sekunden später?
-```
+</shell>
 
 ##  Auflösung setTimeout mit null Sekunden
 
@@ -85,4 +85,15 @@ console.log("tock", Date.now());
 // nicht 0 Sekunden später 1588059630669
 </javascript>
 
+
+## Ähnliche Befehle
+
+Es gibt drei Befehle in diesem Bereich:
+
+* Ungefähr nach x Sekunden eine Funktion starten: [setTimeout](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout)
+
+
+* Ungefähr alle x Sekunden eine Funktion starten: [setInterval](https://developer.mozilla.org/en-US/docs/Web/API/setInterval)
+
+* Ungefähr für jeden Frame einmal eine Funktion starten: [requestAnimationFrame](https://css-tricks.com/using-requestanimationframe/)
 

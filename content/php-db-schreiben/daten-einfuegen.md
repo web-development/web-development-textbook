@@ -40,7 +40,7 @@ funktioniert jetzt für MySQL:
 INSERT INTO werk (titel) VALUES ('That\'s it')
 </sql>
 
-Diese Automatik funktioniert aber leider **nur** für MySQL, 
+Diese Automatik funktioniert aber leider **nur** für MySQL,
 nicht aber für Postgres. Da müsste es heissen:
 
 <sql>
@@ -51,7 +51,7 @@ INSERT INTO werk (titel) VALUES ('That''s it')
 §
 
 Wenn Sie eine PHP-Version größer als 5.4.0 verwenden, brauchen
-Sie sich nicht mehr darum zu kümmern. Bei älteren Versionen 
+Sie sich nicht mehr darum zu kümmern. Bei älteren Versionen
 sollten Sie die `magic_quotes` abschalten:
 
 <code caption="In der Apache Konfiguration: magic quotes abschalten">
@@ -61,7 +61,7 @@ php_flag magic_quotes_gpc off
 
 ### Die Richtige Lösung
 
-Wenn die magic quotes abgeschalten sind, kann man das Problem besser lösen: mit prepared statements. 
+Wenn die magic quotes abgeschalten sind, kann man das Problem besser lösen: mit prepared statements.
 
 <php caption="Einfügen von Daten in die Datenbank mit prepared statements">
 
@@ -71,7 +71,7 @@ $sth = $dbh->prepare(
     (firstname, surname, email, profile_visible)
       VALUES
     (?, ?, ?, ?)");
-    
+
 // Variante 2: nur postgreSQL (mit DEFAULT für den autoincrement id-Wert)
 $sth = $dbh->prepare(
   "INSERT INTO users
@@ -93,7 +93,7 @@ $sth->execute(
     $_POST['email'],
     $_POST['profile_visible']
   )
-); 
+);
 
 // noch ohne Fehlerbehandlung
 </php>
@@ -113,14 +113,29 @@ deutsche Fehlermeldungen ausgeben.
 
 Falls das Einfügen der Daten funktioniert hat und in der Tabelle ein
 autoincrement-Feld als Primärschlüssel vorhanden ist, kann man den Wert des
-Schlüssels im neuen Datensatz mit 
-`lastInsertId`[*](http://php.net/manual/en/pdo.lastinsertid.php) 
-auslesen und weiter verwenden. 
+Schlüssels im neuen Datensatz mit
+`lastInsertId`[*](http://php.net/manual/en/pdo.lastinsertid.php)
+auslesen und weiter verwenden.
 
 <php caption="Primärschlüssel des neuen Datensatzes auslesen">
 $id = $dbh->lastInsertId();
 header("Location: person.php?id=$id");
 </php>
+
+
+§
+
+Postgres bietet noch eine Zweite Möglichkeit mit `RETURNING`:
+
+<php caption="Primärschlüssel des neuen Datensatzes zurückgeben">
+$sth = $dbh->prepare("INSERT INTO users (firstname, surname) VALUES (?,?) RETURNING id");
+$sth->execute(['Aliya', 'DaSilva']);
+$result = $sth->fetch();
+
+echo "I inserted $result->id";
+</php>
+
+§
 
 Auch hier ist eine Weiterleitung direkt nach dem POST-Request sinnvoll: Nach dem
 Einfügen des Datensatzes wird direkt auf die Anzeige des neuen Datensatzes

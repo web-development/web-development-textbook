@@ -11,6 +11,7 @@ Die OWASP beschreibt dieses Problem ungefähr so:
 > solcher Angriff zu schwerwiegendem Datenverlust oder bis zu einer Serverübernahme führen.
 > Applikationen, die Komponenten mit bekannten Schwachstellen einsetzen, können Schutzmaßnahmen unterlaufen und so zahlreiche Angriffe und Auswirkungen ermöglichen.
 
+
 ## Maßnahmen
 
 - Nur Komponenten inkludieren, die wirklich verwendet werden

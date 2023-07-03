@@ -18,7 +18,7 @@ sich nicht darauf verlassen dass so eine Prüfung bereits am Client passiert ist
 
 Gängige Fehleinschätzungen dieser Art sind:
 
-- Wenn ich keinen Link zu dieser Seite hin setzte, dann findet die Seite eh niemand.
+- Wenn ich keinen Link zu dieser Seite hin setze, dann findet die Seite eh niemand.
     - Das ist falsch!
 - Wenn ich die Daten in ein hidden-field im Formular schreibe, können sie nicht verändert werden
     - Das ist falsch!

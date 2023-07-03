@@ -29,21 +29,75 @@ Kreise, Ellipsen, Dreiecke und so weiter bauen kann:
 ![Bild der Dreiecks](/images/dreieck.png)
 
 <css>
-#triangle-up { 
-   width: 0; height: 0; 
-   border-left: 50px solid transparent; 
-   border-right: 50px solid transparent; 
-   border-bottom: 100px solid red; 
-} 
+#triangle-up {
+   width: 0; height: 0;
+   border-left: 50px solid transparent;
+   border-right: 50px solid transparent;
+   border-bottom: 100px solid red;
+}
 </css>
 
 An einem Standard für CSS Shapes wird gearbeitet, es gibt aber noch
 keine Implementierungen, siehe [Draft: CSS Shapes](https://drafts.csswg.org/css-shapes/).
 
+## Animation
+
+Mit Keyframes kann man Animationen definieren:
+
+<div id="motion-demo-space">
+<div id="motion-demo"></div>
+</div>
+<style>
+#motion-demo-space {
+   width: 450px;
+   height: 140px;
+   margin: 10px 0;
+   border-top: 1px gray solid;
+   border-bottom: 1px gray solid;
+}
+#motion-demo {
+  offset-path: path("M40,40 C50,100 400,0 400,100");
+  animation: move 3000ms infinite alternate ease-in-out;
+  width: 50px;
+  height: 40px;
+}
+
+@keyframes move {
+  0% {
+    offset-distance: 0%;
+    background: blue;
+  }
+  100% {
+    offset-distance: 100%;
+    background: cyan;
+  }
+}
+</style>
+
+<css>
+#motion-demo {
+  offset-path: path("M20,20 C20,100 200,0 200,100");
+  animation: move 3000ms infinite alternate ease-in-out;
+}
+
+@keyframes move {
+  0% {
+    offset-distance: 0%;
+    background: blue;
+  }
+  100% {
+    offset-distance: 100%;
+    background: cyan;
+  }
+}
+</css>
+
+
 ## Perspektive
 
-Seit 2013 liegt der Standard für CSS Transforms vor, er
-ist aber immer noch ein "Draft". In den Browsern sind [3D Transforms aber längst implementiert](http://caniuse.com/#search=perspective)
+Mit Transforms kann man ein bisschen 3d in HTML und CSS bringen:
+In den Browsern sind [3D Transforms](http://caniuse.com/#search=perspective)
+seit 2013 implementiert.
 
 ![Bild](/images/weather-app-transition.jpg)
 

@@ -66,7 +66,7 @@ wird mit einer Klasse `.shrunk` dargestellt:
 <css>
 header.shrunk {
   background-color: black;
-  padding: 15px 100px; 
+  padding: 15px 100px;
 }
 </css>
 
@@ -112,7 +112,7 @@ So lange wird der Übergang von der einen zur anderen Version des Headers dauern
 Nun müssen wir noch erfassen, ob gescrollt wurde, und je
 nachdem die `.shrunk` Klasse anwenden.
 
-Wie weit schon gescrollt wurde, kann man aus dem window-Objekt - 
+Wie weit schon gescrollt wurde, kann man aus dem window-Objekt -
 aus der Eigenschaft `pageYOffset` - auslesen. Man erhält eine
 Zahl, die Maßeinheit sind Pixel:
 
@@ -129,7 +129,7 @@ Event können wir reagieren:
 <javascript>
 window.addEventListener('scroll', function() {
   console.log(`scrolling has reached ${window.pageYOffset}`);
-}); 
+});
 </javascript>
 
 In diesen Eventlistener hinein kommt nun die Logik:
@@ -147,7 +147,8 @@ Keyboard) sehen wie sich der Header verwandelt.
 ## Ausblick: Mehr Spass beim Scrollen
 
 Im Webdesign wird das Scrollen gerne als Auslöser für
-Animationen verwendet.  
+Animationen verwendet.
 
+* [Space Elevator](https://neal.fun/space-elevator/)
 * [Scrollama.js](https://github.com/russellgoldenberg/scrollama#scrollamajs)
 * [Tutorial Parallax Scrolling](https://cssanimation.rocks/parallax/)

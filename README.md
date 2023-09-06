@@ -43,24 +43,15 @@ after a few seconds you can now view the page on http://localhost:3000
 Same as before: fork the repository
 https://github.com/web-development/web-development-textbook
 
-install ruby version 2.7.1 on your computer, for example
-with the ruby version manager rvm:
-
-  rvm install 2.7.1
-
-using ruby 2.7.1, install the dependencies on your computer
+install the right ruby version (see Gemfile) on your computer.
+With ruby you also get bundle. Now install the dependencies with bundle:
 
   bundle install
 
 run nanoc in the root folder like so:
 
-  bundle exec nanoc compile
-  bundle exec nanoc view
-
-after every change in the source code run
-
-  bundle exec nanoc compile
-
+  bundle exec nanoc live
+ 
 now edit the files in content/* and see the results at http://localhost:3000/
 
 When you are content with your changes, push up to your own github repository,

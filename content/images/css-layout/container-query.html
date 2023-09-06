@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Demo-Seite: Responsive Design mit Container Query</title>
+
+
+    <style>
+@font-face {
+  font-family: Biolinum;
+  src: url("/assets/fonts/LinBiolinum_R.woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: Biolinum;
+  src: url("/assets/fonts/LinBiolinum_RB.woff");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: Biolinum;
+  src: url("/assets/fonts/LinBiolinum_RI.woff");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: Biolinum;
+  src: url("/assets/fonts/LinBiolinum_RBI.woff");
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: Libertine;
+  src: url("/assets/fonts/LinLibertine_R.woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: Libertine;
+  src: url("/assets/fonts/LinLibertine_RB.woff");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: Libertine;
+  src: url("/assets/fonts/LinLibertine_RI.woff");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: Libertine;
+  src: url("/assets/fonts/LinLibertine_RBI.woff");
+  font-weight: bold;
+  font-style: italic;
+}
+
+body {
+    font-family: Libertine, serif;
+}
+h1,h2,h3 {
+    font-family: Biolinum, sans-serif;
+}
+
+pre,kbd,code {
+    font-family: "Courier New";
+}
+
+        section {
+            background-color: rgb(247, 242, 243);
+            border: 2px gray dashed;
+            padding: 12px;
+        }
+
+        .gridded {
+            display: grid;
+            grid-template-columns: 20fr 30fr 50fr;
+        }
+
+        .flexed {
+            display: flex;
+        }
+        .flexed > section {
+            flex: 1;
+        }
+
+        section {
+            container-type: inline-size;
+        }
+
+        h3, p {
+                font-size: 18px;
+            }
+
+        @container (min-width: 600px) {
+            h3 {
+                color: red;
+            }
+            h3, p {
+                font-size: 24px;
+            }
+        }
+
+        @container (max-width: 300px) {
+            h3 {
+                color: blue;
+            }
+            h3, p {
+                font-size: 14px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>Demo-Seite: Responsive Design mit Container Query</h1>
+
+        <p>Die strichlierte Box ist ein <kbd>section</kbd> Tag, der als Container dient.</p>
+        <pre>section {
+    container-type: inline-size;
+}</pre>
+        <p>Es wird unterschieden ob der Container eine Breite von unter 300px, über 600px oder dazwischen hat. Je nachdem werden
+            die Überschriften und der Text innerhalb des Containers anders dargestellt:
+        </p>
+        <pre>@container (max-width: 300px) {
+    h3 {
+        color: blue;
+    }
+    h3, p {
+        font-size: 14px;
+    }
+}
+</pre>
+        <h2>Nur eine Section</h2>
+        <section>
+            <h3>Überschrift</h3>
+            <p>
+                Ein bisschen Text. Und noch was.
+                Ein Satz geht noch.
+            </p>
+        </section>
+
+        <h2>Mehrere Sections in einem Grid</h2>
+        <div class="gridded">
+            <section>
+                <h3>Überschrift</h3>
+                <p>
+                    Ein bisschen Text. Und noch was.
+                    Ein Satz geht noch.
+                </p>
+            </section>
+            <section>
+                <h3>Überschrift</h3>
+                <p>
+                    Ein bisschen Text. Und noch was.
+                    Ein Satz geht noch.
+                </p>
+            </section>
+            <section>
+                <h3>Überschrift</h3>
+                <p>
+                    Ein bisschen Text. Und noch was.
+                    Ein Satz geht noch.
+                </p>
+            </section>
+        </div>
+
+
+        <h2>Mehrere Sections in einer Flexbox</h2>
+        <p>Status 1.September 2023: kaputt in Firefox, Chrome, Edge.</p>
+        <div class="flexed">
+            <section>
+                <h3>Überschrift</h3>
+                <p>
+                    Ein bisschen Text. Und noch was.
+                    Ein Satz geht noch.
+                </p>
+            </section>
+            <section>
+                <h3>Überschrift</h3>
+                <p>
+                    Ein bisschen Text. Und noch was.
+                    Ein Satz geht noch.
+                </p>
+            </section>
+            <section>
+                <h3>Überschrift</h3>
+                <p>
+                    Ein bisschen Text. Und noch was.
+                    Ein Satz geht noch.
+                </p>
+            </section>
+        </div>        
+    </main>
+</body>
+
+</html>

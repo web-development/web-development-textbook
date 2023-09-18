@@ -357,3 +357,9 @@ Siehe [Demo](/images/formulare/fieldset.html).
 </fieldset>
 </htmlcode>
 
+## Dialog mit mehr Formular
+
+Siehe [Demo](/images/formulare/dialog.html).
+
+
+

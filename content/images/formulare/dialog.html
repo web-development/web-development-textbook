@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Demo: Dialog</title>
+
+  <style>
+    button {
+      border: 1px solid black;
+      border-radius: 5px;
+    }
+
+    #styledDialog {
+      border: 1px solid black;
+      border-radius: 5px;
+      padding: 15px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      background-color: turquoise;
+      button {
+        background-color: violet;
+      }
+    }
+    #styledButton {
+      background-color: turquoise;
+
+    }
+
+    #mainForm {
+      max-width: 600px;
+      display: grid;
+      grid-template-columns: [labels] 1fr [controls]  3fr ;
+      grid-gap: 10px;
+
+      label {
+        grid-column: labels;
+        text-align: right;
+      }
+
+      button {
+        grid-column: controls;
+        max-width: 120px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Demo: Dialog</h1>
+
+  <dialog id="plainDialog">
+    <form method="dialog" onSubmit="console.log('submitting dialog'); return true">
+      <p>Hi, I'm a dialog.</p>
+      <p>
+        <label
+          >Favorite animal:
+          <select name="favAnimal" required>
+            <option></option>
+            <option>Brine shrimp</option>
+            <option>Red panda</option>
+            <option>Spider monkey</option>
+          </select>
+        </label>
+      </p>
+      <button value="ok">ok</button>
+      <button value="cancel">cancel</button>
+    </form>
+  </dialog>
+
+  <dialog id="styledDialog">
+    <form method="dialog" onSubmit="console.log('submitting dialog'); return true">
+      <p>Hi, I'm a dialog.</p>
+      <p>
+        <label
+          >Favorite animal:
+          <select name="favAnimal" required>
+            <option></option>
+            <option>Brine shrimp</option>
+            <option>Red panda</option>
+            <option>Spider monkey</option>
+          </select>
+        </label>
+      </p>
+      <button value="ok">ok</button>
+      <button value="cancel">cancel</button>
+    </form>
+  </dialog>
+
+
+  <form id="mainForm" action="#">
+
+    <label for="fullname">your Name</label> <input name="fullname">
+
+    <button onclick="plainDialog.showModal()">
+      Open Plain Dialog
+    </button>
+
+    <button id="styledButton" onclick="styledDialog.showModal()">
+      Open Styled Dialog
+    </button>
+
+  </form>
+
+  <script>
+    function handleCloseDialog(event) {
+      const dialog = event.target;
+      console.log("closed with the button", dialog.returnValue);
+
+      const form = dialog.querySelector("form");
+      const data = new FormData(form);
+      console.dir(data);
+      console.log("animal", data.get("favAnimal"));
+    }
+
+    document.getElementById('styledDialog').addEventListener("close", handleCloseDialog);
+    document.getElementById('plainDialog').addEventListener("close", handleCloseDialog);
+
+  </script>
+</body>
+
+</html>

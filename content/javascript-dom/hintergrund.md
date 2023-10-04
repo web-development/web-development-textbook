@@ -68,11 +68,11 @@ Anwendung von Javascript
 Lange Zeit waren kleine Javascript-Programme eine relative unabhängige Ergänzung für Web-Applikationen. Ein Beispiel dafür wäre ein [Data Table](https://datatables.net/)
 der in eine HTML Tabelle die Möglichkeit zum Sortieren nach eine Spalte einbaut.
 
-Große Web Applikationen wie outlook oder gmail zeigten aber bald, dass auch komplexe
+Große Webapplikationen wie Outlook im Web oder Gmail zeigten aber bald, dass auch komplexe
 Programme im Browser möglich sind. Um diese umzusetzen gibt es heute clientseitige
 Frameworks wie React, Vue oder Angular.
 
-Web Applikationen wurden seit ca. 2008 Schritt für Schritt mehr und mehr offline-fähige.
+Webapplikationen wurden seit ca. 2008 Schritt für Schritt mehr und mehr offline-fähige.
 Heute nennt man solche Applikationen "Progressive Web Apps" (PWA). [pwa.rocks](https://pwa.rocks)
 zeigt eine Sammlung solcher Apps.
 
@@ -90,7 +90,7 @@ der wiederum innerhalb eines  `ul`-Tag mit Klassen `nav` und `nav-list`.
 
 ![Abbildung: Bild des DOM, erzeugt mit den Firefox DeveloperTools](/images/javascript-dom/dom.png)
 
-Wenn man mit Javascript irgendeinen Teil der Webseite verändern will verändert man diesen Baum. Mögliche Veränderungen wären:
+Wenn man mit Javascript einen Teil der Webseite verändern will, verändert man diesen Baum. Mögliche Veränderungen wären:
 
 * Mache ein beliebiges Element des DOM unsichtbar (z. B. die ganze Liste)
 * Ändere den Style eines beliebigen Elements (z. B. die Schriftart der Überschrift)

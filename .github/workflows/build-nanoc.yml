@@ -3,7 +3,7 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: Deploy    
+    environment: Deploy
     steps:
       - name: apt update
         run: sudo apt-get update
@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.1 # Not needed with a .ruby-version file
+          ruby-version: 3.2.2 # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - name: compile
         run: bundle exec nanoc compile

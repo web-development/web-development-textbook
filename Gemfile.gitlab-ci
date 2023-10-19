@@ -2,16 +2,23 @@ source 'https://rubygems.org'
 
 ruby '3.2.2'
 
-#gem "rake"
+gem 'html-proofer'
+gem "rake"
 gem "curb"
 gem "curl"
-gem "nanoc", '~>3.8.0'
+gem "nanoc", '~>4.0'
 gem "kramdown"
-#gem "nokogiri"
-#gem "adsf"
+gem "nokogiri"
+gem "adsf"
 gem "mime-types"
 gem "json"
-#gem "listen"
-#gem 'rb-fsevent', '~> 0.9'
-#gem 'guard-nanoc'
-#
+gem "listen"
+gem 'rb-fsevent'
+
+
+gem "webrick", "~> 1.8"
+
+gem "adsf-live", "~> 1.4"
+group 'nanoc' do
+  gem 'nanoc-live'
+end

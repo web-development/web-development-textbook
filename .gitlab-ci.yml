@@ -3,7 +3,7 @@ pages:
     - ruby-3-2-2
   stage: deploy
   script:
-    - sudo apt-get install libcurl4 libcurl3-gnutls libcurl4-openssl-dev
+    - apt-get install libcurl4 libcurl3-gnutls libcurl4-openssl-dev
     - cp Gemfile.gitlab-ci Gemfile
     - bundle install  -j4
     - export LC_ALL=C.UTF-8

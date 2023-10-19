@@ -51,7 +51,7 @@ für verschiedene Größen angeboten. Der Inhalt und das HTML Dokument bleiben d
 
 §
 
-Die technische Umsetzung des verschiedenen Layouts ist relativ einfach: 
+Die technische Umsetzung des verschiedenen Layouts ist relativ einfach:
 
 * Mediaqueries erlauben eine "Verzweigung" auf Grund der Größe des Ausgabegeräts
 * Container Queries erlauben eine "Verzweigung" auf Grund der Größe die für ein bestimmtes Element zur Verfügung steht
@@ -81,9 +81,10 @@ zur Verfügung steht, dann wird die Überschrift auf Größe 28px gesetzt:
 <css caption="CSS mit Container Query">
 section {
   container-type: inline-size;
+  container-name: card;
 }
 
-@container (min-width: 700px) {
+@container card (min-width: 700px) {
   h2 {
     font-size: 28px;
   }
@@ -106,7 +107,7 @@ Luke Wroblewski schlug 2009 unter dem Slogan "Mobile First" vor, zuerst die mobi
 
 [Bild: (CC BY-NC) Sauce Babilonia](https://www.flickr.com/photos/saucef/7184615025)
 
-### Mediaqueries and Featurequeries
+### Mediaqueries, Containerqueries and Featurequeries
 
 <css caption="CSS Medaqueries Beispiel">
 @media print {
@@ -114,9 +115,12 @@ Luke Wroblewski schlug 2009 unter dem Slogan "Mobile First" vor, zuerst die mobi
 }
 
 @media screen {
-body { font-size: 13px; }
+  body { font-size: 13px; }
 }
 
+@container (min-width: 700px) {
+  h2 { font-size: 28px; }
+}
 @supports not (display: grid) {
   div {
     float: right;
@@ -126,7 +130,7 @@ body { font-size: 13px; }
 
 ### Dark Mode
 
-Es gibt sogar mediaqueries für die Präferenz des "dark mode":
+Es gibt sogar Mediaqueries für die Präferenz des "dark mode":
 
 <css caption="CSS Medaqueries für color-scheme">
 @media (prefers-color-scheme: dark) {

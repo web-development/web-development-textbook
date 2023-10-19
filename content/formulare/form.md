@@ -244,7 +244,7 @@ erfolgt mit dem Drücken der Steuerungs-Taste.
 Das Textfeld mit `datalist` kombiniert die Bequemlichkeit
 eines Menüs mit der Flexiblität eines Textfeldes: Man bekommt
 Vorschläge angeboten, kann aber auch etwas eintippen
-was nicht in der `datalist` angeführt ist. Siehe [Demo](/images/formulare/datalist.html).
+was nicht in der `datalist` angeführt ist.
 
 <htmlcode caption="Textfeld mit Datalist">
 <input id="city" placeholder="Name" list="list-of-cities">
@@ -256,6 +256,8 @@ was nicht in der `datalist` angeführt ist. Siehe [Demo](/images/formulare/datal
     <option value="Linz">
 </datalist>
 </htmlcode>
+
+Siehe [Demo](/images/formulare/datalist.html)
 
 ## Spezialisierte Eingabefelder
 
@@ -289,7 +291,10 @@ Neben dem Absende-Button gibt es noch andere Methoden wie ein Formular „abgese
 
 ## Zurücksetzen? Nein Danke!
 
-Den Zurücksetzen Button sollten Sie nur sehr selten einsetzen.
+Der Reset-Button löscht alle eingegeben Daten, und setzt
+das Formular auf den Anfangszustand zurück.
+
+Den Zurücksetzen Button werden Sie nur sehr selten einsetzen.
 
 <htmlcode caption="Zurück: bitte nicht verwenden">
 <input type="text"  name="bestellung" value="100 Stück Fidget Spinner">
@@ -301,7 +306,6 @@ Den Zurücksetzen Button sollten Sie nur sehr selten einsetzen.
 <input type="reset"  value="Zurücksetzen">
 </form>
 
-Warum? Denken Sie an Ihre eigene Erfahrung mit Web-Formularen zurück: Wie oft haben Sie auf einen Zurücksetzen Button gedrückt und dann gedacht „super, alles gelöscht, genau das wollte ich“, und wie oft haben Sie auf einen Zurücksetzen Button gedrückt und dann gedacht „Mist, das war ja gar nicht der Absende-Button, jetzt muss ich alles noch mal tippen.“
 
 ## Label
 
@@ -346,7 +350,6 @@ speziellem enctype an den Webserver geschickt werden. Das werden wir später im 
 
 ## Ordnung
 
-Siehe [Demo](/images/formulare/fieldset.html).
 
 <htmlcode caption="Visuelle Zusammenfassung mehrer Felder: fieldset + legend">
 <fieldset>
@@ -357,7 +360,11 @@ Siehe [Demo](/images/formulare/fieldset.html).
 </fieldset>
 </htmlcode>
 
+Siehe [Demo](/images/formulare/fieldset.html).
+
 ## Dialog mit mehr Formular
+
+Kann man erst mit JavaScript richtig benutzen.
 
 Siehe [Demo](/images/formulare/dialog.html).
 

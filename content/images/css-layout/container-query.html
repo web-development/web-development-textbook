@@ -75,7 +75,7 @@ pre,kbd,code {
 
         .gridded {
             display: grid;
-            grid-template-columns: 20fr 30fr 50fr;
+            grid-template-columns: 2fr 3fr 5fr;
         }
 
         .flexed {
@@ -87,13 +87,14 @@ pre,kbd,code {
 
         section {
             container-type: inline-size;
+            container-name: card;
         }
 
         h3, p {
                 font-size: 18px;
             }
 
-        @container (min-width: 600px) {
+        @container card (min-width: 600px) {
             h3 {
                 color: red;
             }
@@ -102,7 +103,7 @@ pre,kbd,code {
             }
         }
 
-        @container (max-width: 300px) {
+        @container card (max-width: 300px) {
             h3 {
                 color: blue;
             }
@@ -139,61 +140,74 @@ pre,kbd,code {
             <h3>Überschrift</h3>
             <p>
                 Ein bisschen Text. Und noch was.
-                Ein Satz geht noch.
+                Ein Satz geht noch. Wenn Text dargestellt wird, sollte
+                man ja darauf achten, das er nicht zu breit läuft. Das heisst, dass
+                die Zeile nicht zu lange wird. Sonst kann man das nicht mehr gut lesen.
             </p>
         </section>
 
         <h2>Mehrere Sections in einem Grid</h2>
         <div class="gridded">
             <section>
-                <h3>Überschrift</h3>
+                <h3>Überschrift in 2fr</h3>
                 <p>
                     Ein bisschen Text. Und noch was.
-                    Ein Satz geht noch.
+                    Ein Satz geht noch. Wenn Text dargestellt wird, sollte
+                    man ja darauf achten, das er nicht zu breit läuft. Das heisst, dass
+                    die Zeile nicht zu lange wird. Sonst kann man das nicht mehr gut lesen.
                 </p>
             </section>
             <section>
-                <h3>Überschrift</h3>
+                <h3>Überschrift in 3fr</h3>
                 <p>
                     Ein bisschen Text. Und noch was.
-                    Ein Satz geht noch.
+                    Ein Satz geht noch. Wenn Text dargestellt wird, sollte
+                    man ja darauf achten, das er nicht zu breit läuft. Das heisst, dass
+                    die Zeile nicht zu lange wird. Sonst kann man das nicht mehr gut lesen.
                 </p>
             </section>
             <section>
-                <h3>Überschrift</h3>
+                <h3>Überschrift in 5fr</h3>
                 <p>
                     Ein bisschen Text. Und noch was.
-                    Ein Satz geht noch.
+                    Ein Satz geht noch. Wenn Text dargestellt wird, sollte
+                    man ja darauf achten, das er nicht zu breit läuft. Das heisst, dass
+                    die Zeile nicht zu lange wird. Sonst kann man das nicht mehr gut lesen.
                 </p>
             </section>
         </div>
 
 
         <h2>Mehrere Sections in einer Flexbox</h2>
-        <p>Status 1.September 2023: kaputt in Firefox, Chrome, Edge.</p>
         <div class="flexed">
             <section>
-                <h3>Überschrift</h3>
+                <h3>Überschrift flex 1</h3>
                 <p>
                     Ein bisschen Text. Und noch was.
-                    Ein Satz geht noch.
+                    Ein Satz geht noch. Wenn Text dargestellt wird, sollte
+                    man ja darauf achten, das er nicht zu breit läuft. Das heisst, dass
+                    die Zeile nicht zu lange wird. Sonst kann man das nicht mehr gut lesen.
                 </p>
             </section>
             <section>
-                <h3>Überschrift</h3>
+                <h3>Überschrift flex 1</h3>
                 <p>
                     Ein bisschen Text. Und noch was.
-                    Ein Satz geht noch.
+                    Ein Satz geht noch. Wenn Text dargestellt wird, sollte
+                    man ja darauf achten, das er nicht zu breit läuft. Das heisst, dass
+                    die Zeile nicht zu lange wird. Sonst kann man das nicht mehr gut lesen.
                 </p>
             </section>
             <section>
-                <h3>Überschrift</h3>
+                <h3>Überschrift flex 1</h3>
                 <p>
                     Ein bisschen Text. Und noch was.
-                    Ein Satz geht noch.
+                    Ein Satz geht noch. Wenn Text dargestellt wird, sollte
+                    man ja darauf achten, das er nicht zu breit läuft. Das heisst, dass
+                    die Zeile nicht zu lange wird. Sonst kann man das nicht mehr gut lesen.
                 </p>
             </section>
-        </div>        
+        </div>
     </main>
 </body>
 

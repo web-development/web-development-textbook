@@ -10,12 +10,12 @@ die Darstellung des HTML-Dokuments als Baum:
 
 Bei der Beschreibung des Baumes verwendet man folgende Fachbegriffe:
 
-* Elemente, 
-* Texte, 
+* Elemente,
+* Texte,
 * Nodes
-* Eltern-Element, 
+* Eltern-Element,
 * Kinder
-* Vorfahren, 
+* Vorfahren,
 * Nachkommen
 
 Universal Selector
@@ -25,7 +25,7 @@ Der Selektor `*` wählt alle Elemente des Baums aus:
 
 ![Document Object Model und Selektor](/images/css/selector-universal.png)
 
-Type Selector 
+Type Selector
 ---------
 
 Über den Namen des HTML-Tags wählt man alle Elemente dieses Typs aus,
@@ -39,10 +39,10 @@ zum Beispiel wählt `li`  alle Listen-Elemente aus:
 ![Document Object Model und Selektor](/images/css/selector-type.png)
 
 
-Group Selector
+Selector List
 ---------
 
-Mehrere Selektoren können mit Kommas zu einem neuen Selektor gruppiert werden.
+Mehrere Selektoren können mit Kommas zu einer Liste gruppiert werden.
 Das Komma entspricht einem "Oder": selektiert werden Tags die entweder `h1` sind,
 oder `h2`, oder `a`:
 
@@ -58,10 +58,15 @@ oder `h2`, oder `a`:
 siehe weiter Unten.)
 
 
-Descendant Selector
+Descendant Combinator
 ---------
 
-Hier wird ein Element ausgewählt, das Nachkomme eines anderen Elements ist.
+Hier werden zwei Selektoren mit einem Leerzeichen dazwischen
+geschrieben.
+
+
+Im Beispiel unten werden alle `a` Tags ausgewählt, die Nachkomme
+eines `div` sind:
 
 Achtung: `div` wird nur zur Auswahl benützt, wird aber selber nicht ausgewählt!
 
@@ -72,8 +77,40 @@ Achtung: `div` wird nur zur Auswahl benützt, wird aber selber nicht ausgewählt
 
 ![Document Object Model und Selektor](/images/css/selector-desc.png)
 
-(Achtung Falle: für Links mit dem `a` Tag gelten noch zusätzliche Regeln,
-siehe weiter Unten.)
+
+Verschachteltes CSS
+-------------------
+
+(Neu in 2023)
+
+Auch hier wird ein Element ausgewählt, das Nachkomme eines anderen Elements ist.
+
+Achtung: `div` wird nur zur Auswahl benützt, wird aber selber nicht ausgewählt!
+
+<css>
+  div {
+    & a {
+      color: red;
+    }
+  }
+</css>
+
+![Document Object Model und Selektor](/images/css/selector-desc.png)
+
+Praktisch: man kann die Deklarationen für `div` auch mit
+rein schreiben:
+
+<css>
+  div {
+    border: 1px gray solid;
+    padding: 10px;
+    & a {
+      color: red;
+    }
+  }
+</css>
+
+[Demo: Verschachteltes CSS](/images/css/nested.html)
 
 
 Links formatieren
@@ -88,19 +125,6 @@ Die Default Einstellung der Browser entspricht ungefähr folgendem CSS:
   a:link    { color:blue; }
   a:visited { color:#FF00FF; }
 </css>
-
-Achtung: `:any-link` ist noch experimentell, und wird (im Herbst 2019) von
-Internet Explorer und Edge noch nicht akzeptiert. Siehe [caniuse](https://caniuse.com/#search=%3Aany-link).
-
-Für Internet Explorer und Edge müsste man also schreiben:
-
-
-<css>
-  a:link, a:visited { text-decoration: underline; }
-  a:link    { color:blue; }
-  a:visited { color:#FF00FF; }
-</css>
-
 
 §
 
@@ -121,8 +145,9 @@ Im folgenden Beispiel werden die Links mit einem Icon markiert:
 ### Interaktion
 
 Die Pseudo-Klassen `:hover` und `:active` gelten  bevor ein Link wirklich geladen wird:
-`:hover` schlägt an wenn die Maus sich über dem Element befindet. Danache 
-wird `:active` wirksam, wenn der Link wirklich mit Klick oder Touch ausgelöst wird:
+`:hover` schlägt an wenn die Maus sich über dem Element befindet. Auf Touch-Geräten hat es keine Wirkung.
+
+`:active` wird wirksam, wenn der Link wirklich mit Klick oder Touch ausgelöst wird:
 
 
 [Demo](/images/css/hover-active.html)

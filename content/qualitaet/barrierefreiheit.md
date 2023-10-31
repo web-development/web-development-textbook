@@ -63,15 +63,14 @@ Drei relevante Gesetze:
 
 * Webzugänglichkeistgesetz 2018 - für öffentliche Stellen
 * Bundes-Behindertengleichstellungsgesetz - auch privatwirtschaftlicher Bereich
-* Barrierefreiheitsgesetz [2022 in Begutachtung](https://www.usp.gv.at/gesetzliche-neuerungen/Begutachtungsentwurf/barrierefreiheitsgesetz.html)
+* Barrierefreiheitsgesetz [2023 beschlossen](https://www.usp.gv.at/gesetzliche-neuerungen/Bundesgesetzblatt/barrierefreiheitsgesetz.html)
 
-Das Barrierefreiheitsgesetz wird Juni 2025 gelten und betrifft Alle:
+Das Barrierefreiheitsgesetz wird Juni 2025 vollständig gelten und betrifft Alle:
 
 * Firmen die am EU Markt anbieten ab 10 Mitarbeitende und/oder 2 Mio € Jahresumsatz
-* Beweislast beim Unternehmen, Frist für Korrekturn oder vom Markt zu nehmen
+* Beweislast beim Unternehmen, Frist für Korrekturen oder vom Markt zu nehmen
 * Strafen im 5-stelligen € Bereich
-* Sozialsministerumservice SMS und 9 Länger
-* Betrifft Produkte, Dienstleistungen und Personenverkehrsdiesnte: Automaten, Smartphonse, E-Book-Lesegeräte, Online-Shops, Notrufsysteme, ....
+* Betrifft Produkte, Dienstleistungen und Personenverkehrsdienste: Automaten, Smartphonse, E-Book-Lesegeräte, Online-Shops, Notrufsysteme, ....
 * Digitale Dienste benötigen eine Barrierefreiheitserklärung, [Beispiel](https://www.salzburg.gv.at/dienststellen/digitale-dienste/barrierefrei/erklaerung-barrierefreiheit)
 
 

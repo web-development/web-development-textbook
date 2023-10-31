@@ -165,7 +165,8 @@ Siehe auch [w3c: ARIA Landmarks Example](https://www.w3.org/WAI/ARIA/apg/example
 
 ### Textformatierung
 
-Die Empfehlung für die Schriftgröße ist mit der immer höheren Auflösung der Ausgabegeräte gewachsen. Im Jahr 2022 verwenden z.B. Die [Zeit Online](https://www.zeit.de/2016/51/bundesteilhabegesetz-inklusion-barrierefreiheit-gleichstellung) 20px, [Medium](https://medium.com/@damianjo/line-spacing-leading-the-way-for-accessibility-d94344b9e26c) 21px,
+Die Empfehlung für die Schriftgröße ist mit der immer höheren Auflösung der Ausgabegeräte gewachsen. Im Jahr 2022 verwenden z.B.
+[Smashing Magazin](https://www.smashingmagazine.com/2017/12/building-better-ui-designs-layout-grids/)  21px, [Medium](https://medium.com/@damianjo/line-spacing-leading-the-way-for-accessibility-d94344b9e26c) 20px,
 [Jeffrey Zeldman](http://www.zeldman.com/2016/12/14/font-size-widgets/) 21px.
 
 Ein Zeilenabstand 1.5x (mit `line-height` festgelegt) erhöht die Lesbarkeit.

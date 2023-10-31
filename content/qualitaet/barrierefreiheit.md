@@ -35,7 +35,7 @@ stellt das gut dar (verwendet unter CC)
 Es gibt vielleicht wenig Menschen, die nur einen Arm haben. Aber es gibt
 schon sehr viel mehr Menschen die vorübergehend nur einen Arm benutzen können,
 z.B. weil ein Arm im Gips ist. Und es gibt sehr viele Menschen, die gerade
-nur einen Arm frei haben.  Wie zum Beispiel Scott Hanselman in [diesem Video](https://www.youtube.com/watch? v=fjE4I1XNzRs) aus dem Oktober 2020.  (Seine anderen Videos über [Computer Stuff they didn't teach you](https://www.youtube.com/playlist?list=PL0M0zPgJ3HSesuPIObeUVQNbKqlw5U2Vr) sind auch sehr empfehlenswert)
+nur einen Arm frei haben.  Wie zum Beispiel Scott Hanselman in [diesem Video](https://www.youtube.com/watch?v=fjE4I1XNzRs) zur Benutzung eines Xbox Adaptive Controllers.
 
 ## Richtlinien zur Barrierefreiheit im Web
 

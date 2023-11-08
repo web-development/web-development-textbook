@@ -5,7 +5,7 @@ order: 90
 
 Im Kapitel [CSS Selektoren](/css/basic-selectors/) haben Sie CSS schon
 einige Selektoren
-kennen gelernt. In der CSS 2.1 Spezifikation werden u.a. 
+kennen gelernt. In der CSS 2.1 Spezifikation werden u.a.
 folgende Schreibweisen für Selektoren beschrieben:
 
 |Name|Muster |Beschreibung|
@@ -104,6 +104,11 @@ Wenn man mehrere Selektoren kombiniert hat das Komma die geringste Präzedenz:
 
 
 ![Document Object Model und Selektor](/images/css-layout/selector-precedence.png)
+
+
+Neu 2024: `has()`
+--------------
+
 
 
 CSS Selektoren Üben

@@ -158,7 +158,7 @@ Zum Beispiel das Objekt `document` ist bei Javascript im Browser immer vorhanden
 // diese Eigenschaft speichert die aktuelle URL
 // wenn man einen neuen Wert in location speichert
 // surft der Browser hin
-document.location = "http://io9.com";
+document.location = "https://boardgamegeek.com/";
 
 // die Methode write
 // (über)schreibt die webseite
@@ -238,8 +238,7 @@ Arrays in Javascript können wie in C# mit eckigen Klammern und Integer-Index au
 
 §
 
-Die Werte im Array können verschiedene Daten haben (String, Number, Boolean,...). Die Größe des Arrays ist nicht beschränkt, die aktuelle Länge des Arrays kann aus der Eigenschaft
-`.length ausgelesen werden.
+Im Array können verschiedene Datentypen gespeichert werden (String, Number, Boolean,...). Die Größe des Arrays ist nicht beschränkt, die aktuelle Länge des Arrays kann aus der Eigenschaft `.length`` ausgelesen werden.
 [Beispiel live im Browser](/images/javascript-dom/jsarray.html)
 
 <javascript>
@@ -327,7 +326,7 @@ index zu benötigen mit einer `for ... of` schleife:
   let windy = false;
   let rainy = true;
 
-  if (! windy && ( rainy || sunny )) {
+  if (! windy && ( rainy || ! sunny )) {
       console.log("Umbrella !");
   } else {
       console.log("No umbrella !");

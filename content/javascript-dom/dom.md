@@ -5,7 +5,7 @@ order: 30
 
 Lesen aus dem DOM
 -------------------
-Die wichtigsten Befehle zur Manipulation des DOM finden Sie im Objekten „document“ und in Objecten vom Typ „node“.
+Die wichtigsten Befehle zur Manipulation des DOM finden Sie im Objekten „document“ und in Objekten vom Typ „node“.
 Ein Node ist ein Knoten DOM-Baum, entspricht also einem HTML-Tag oder einem Stück Text.
 
 
@@ -34,9 +34,9 @@ node.nextSibling
 ##  Daten auslesen und setzen
 
 <javascript>
-node.attributes
-node.innerHTML
-node.innerText
+node.innerHTML = "<p>neu und <strong>wichtig</strong></p>"
+node.innerText = "nur text";
+node.style.backgroundColor = "red";
 </javascript>
 
 
@@ -46,16 +46,15 @@ Ein bestimmter Tag wird über die ID ausgewählt und sein Style-Attribut gesetzt
 
 <javascript>
 let d = document.getElementById("person_25");
-d.setAttribute("style", "display:none");
+d.style.display = "none";
 </javascript>
 
 Diese beiden Zeilen könnten auch zu einer kombiniert werden:
 
 <javascript>
-document.getElementById("person_25").setAttribute("style", "display:none");
+document.getElementById("person_25").style.display = "none";
 </javascript>
 
-Achtung: Falls der Tag schon ein Style-Attribute hatte wurde dieses überschrieben.  Der Wert des Attributes ist ein einfacher String.
 
 ### Manipulieren der Klassen
 
@@ -75,7 +74,8 @@ if( document.getElementById("person_25").classList.contains('sichtbar') ) {
 
 ### Selektieren
 
-Man kann CSS-Selektoren verwenden um Element auszuwählen, und zwar mit der Methode `document.querySelectorAll()`:
+Man kann CSS-Selektoren verwenden um Element auszuwählen, und zwar mit den Methode `document.querySelectorAll()` (liefert alle ndoes) und
+`document.querySelector()`  (liefert erste node)
 
 <javascript>
 let inputs = document.querySelectorAll("input");
@@ -96,11 +96,11 @@ Den eigentlichen Text der HTML-Seite kann man als data eines Text-Nodes auslesen
 
 
 <javascript>
-let vn = document.getElementById("v_25").textContent;
+let vn = document.getElementById("v_25").innerText;
 </javascript>
 
-`textContent` funktioniert auch bei Nodes die noch weitere verschachtelte
-Tags enthalten und extrahiert immer den gesamten Text aus allen “Blättern” des DOM-Baums.
+`innerText` funktioniert auch bei Nodes die noch weitere verschachtelte
+Tags enthalten und extrahiert immer den gesamten Text aus allen sichtbaren “Blättern” des DOM-Baums.
 
 Manipulation des DOM
 ----------------------
@@ -142,14 +142,14 @@ Mit `cloneNode` kann man einen ganzen Teil-Baum duplizieren, und wo anders wiede
 
 <htmlcode>
   <div class="pizza">
-    <p>
-      <select name="pizzatype[]">
-        <option>Magaritha</option>
-        <option>Vegetarian</option>
-        <option>Quattro Staggione</option>
-      </select>
+    <p>
+      <select name="pizzatype[]">
+        <option>Magaritha</option>
+        <option>Vegetarian</option>
+        <option>Quattro Staggione</option>
+    </select>
       ...
-    </p>
+    </p>
   </div>
 </htmlcode>
 
@@ -257,11 +257,11 @@ Im HTML-Code fügen wir dafür einen span-Tag ein:
 
 <htmlcode>
  <div class="pizza">
-    <p>
+    <p>
       <span class="removethis">x</span>
-      <select name="pizzatype[]">…</select>
+      <select name="pizzatype[]">…</select>
       …
-    </p>
+    </p>
   </div>
 </htmlcode>
 

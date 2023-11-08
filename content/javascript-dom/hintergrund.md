@@ -6,7 +6,7 @@ order: 10
 Anwendungsgebiet
 ----------------
 
-Javascript ist eine Programmiersprache die in HTML eingebettet und vom Browser interpretiert wird. Im Browser ist der Wirkungsbereich von Javascript auf das Fenster und das aktuelle Dokument beschränkt – es kann nicht die Festplatte formatieren oder Excel starten. 
+Javascript ist eine Programmiersprache die in HTML eingebettet und vom Browser interpretiert wird. Im Browser ist der Wirkungsbereich von Javascript auf das Fenster und das aktuelle Dokument beschränkt – es kann nicht die Festplatte formatieren oder Excel starten.
 
 Laut [TIOBE Index](https://www.tiobe.com/tiobe-index/) ist Javascript auf Platz 6 oder 7 der Programmiersprachen, aber bei [Stackoverflow](https://insights.stackoverflow.com/survey/2018/#technology) ist es die beliebteste Programmiersprache.
 
@@ -15,19 +15,18 @@ Typische Verwendung
 
 Neben der Verwendung für kleine Effekte im Browser hat Javascript noch weitere wichtige Anwendungsgebiete:
 
-* Zum Nachladen von Daten („AJAX“, fetch) – das macht das Web viel interaktiver und angenehmer in der Benutzung.
+* Zum Nachladen von Daten ( HTTP Requests mit `fetch`, manchmal „AJAX“ genannt) – das macht das Web viel interaktiver und angenehmer in der Benutzung.
 
-* Mit Javascript können Webseiten auch „offline“ – also ohne Verbindung zum Internet und dem Webserver – weiterarbieten. Am Smartphone wird diese Art von Webseiten als  „progressive Web App“  bezeichnet.
+* Mit Javascript können Webseiten auch „offline“ – also ohne Verbindung zum Internet und dem Webserver – weiterarbieten. Diese Art von Webseiten wird als  „progressive Web App“  bezeichnet.
 
-* Der Server Node JS ist ein (Web)Server, den man mit Javascript programmieren kann. Er wird besonders für Realtime-Applikationen im Web eingesetzt, z.B. für Chats oder Spiele.
+* Der Server Node JS ist ein (Web)Server, den man mit Javascript programmieren kann. Damit kann man also auch das Backend in JavaScript programmieren.
+
+* Mit [Electron](https://www.electronjs.org/de/) kann ein Programm in JavaScript schreiben, die Oberfläche dazu mit Web-Technologien bauen, und es dann wie ein "normales" Windows Programm / MacOS Programm ausliefern. z.B. VS Code.
 
 * Javascript wird in einigen Programmen als Makro-Sprache verwendet, z.B. in Indesign, Illustrator und in Unity.
 
 * Die No-SQL Datenbanken CouchDB und MongoDB verwendet Javascript als Abfragesprache.
 
-Und nur noch historisch interessant:
-
-* Unter dem Namen Actionscript wurde früher eine Variante von Javascript in Flash verwendet.
 
 Javascript und Java
 --------------------
@@ -40,10 +39,10 @@ Es gibt noch eine zweite Programmiersprache mit sehr ähnlichem Namen: Java. Die
 | Wer hat’s erfunden?  | Netscape / Brendan Eich  | Sun / James Gosling |
 |                      | Interpretiert Sprache    | Kompilierte Sprache |
 | Typen                | Wenige Datentypen, Probleme werden erst zur Laufzeit erkannt | Datentypen und Klassen werden streng unterschieden und zur Compilezeit geprüft |
-|  Objektorientierung |  Objekte und Prototypen (Klassen als "syntactic sugar") |  Objekte und Klassen |
-| Verwendung           | Im Webbrowser, am Webserver (node.js), in Flash, in Illustrator und Indesign | Überall (Chipkarten, am Server, im Browser, im Handy) |
-| Projekte | Früher nur winzige Projekte (z.B: Animations-Effekt),  in den letzten Jahren: JS Frontend als wichtiger Teil einer Webappliaktion wie Facebook, Gmail, etc. | Alle, auch Großprojekte mit vielen Jahren Entwicklungszeit |
-| Wer |  Manchmal auch Web-DesignerInnen | Nur hauptberufliche ProgrammiererInnen |
+|  Objektorientierung |  Objekte, Prototypen, später auch Klassen |  Objekte und Klassen |
+| Verwendung           | Im Webbrowser, am Webserver (node.js), auf Deskstops, Handies,... | Überall (Android, Chipkarten, am Webserver) |
+| Projekte | Früher nur winzige Projekte (z.B: Animations-Effekt),  in den letzten Jahren: Web als GUI für viele Applikationen, viel JavaScript (z.B. Facebook, Gmail, etc. | Alle, auch Großprojekte mit vielen Jahren Entwicklungszeit |
+| Wer |  Manchmal auch Web-Designer*innen | Nur hauptberufliche Programmierer*innen |
 {: class="table table-condensed table-bordered" style="width:auto"}
 
 
@@ -52,17 +51,14 @@ Geschichte von Javascript
 
 Javascript wurde ursprünglich bei Netscape von Brendan Eich erfunden, und dann von verschiedenen Herstellern weiterentwickelt. Es war eines der Schlachtfelder im Browser-War: Microsoft und Netscape versuchten durch verschiedene Implementierungen die Position des eigenen Browsers zu verbessern und Webseiten im "gegnerischen" Browser unbrauchbar zu machen.
 
-Erst nachträglich gab es (partielle) Einigung auf Standards. Mit dem ECMA-Standard 262 wurde die Syntax fixiert. Sie wird von der Arbeitsgruppe ECMA TC39, in der u.a. Personen von Browser-Herstellern vertreten sind weiter entwickelt.  
+Erst nachträglich gab es (partielle) Einigung auf Standards. Mit dem ECMA-Standard 262 wurde die Syntax fixiert. Sie wird von der Arbeitsgruppe [ECMA TC39](https://tc39.es/), in der u.a. Personen von Browser-Herstellern vertreten sind weiter entwickelt.
 
 Mit dem „Document Object Model“ (DOM) wurde der Zugriff auf die Webseite vereinheitlicht.
-Libraries wie jQuery ebenen die letzten Unterschiede in den Browser-Implementierungen noch aus.
-
-Die Entwicklung dieser API ist nun Teil von HTML5 und liegt beim W3C. Unter den Stichwort „HTML5“ sind auch viele Neuerungen in Javascript, viele neue APIs gemeint: File API, Websockets,  Storage, WebGL, ...
-
-Die aktuelle Version die Sie erlernen ist die Untermenge von ''ECMA Script ES8'', die derzeit schon im Browsern unterstützt wird.
+Die Entwicklung der DOM und weiterer APIs (File API, Websockets, Storage, WebGL) liegt beim W3C.
 
 
-Anwendung von Javascript
+
+Anwendung und Grenzen von Javascript
 -----------------
 
 Lange Zeit waren kleine Javascript-Programme eine relative unabhängige Ergänzung für Web-Applikationen. Ein Beispiel dafür wäre ein [Data Table](https://datatables.net/)
@@ -70,12 +66,13 @@ der in eine HTML Tabelle die Möglichkeit zum Sortieren nach eine Spalte einbaut
 
 Große Web Applikationen wie outlook oder gmail zeigten aber bald, dass auch komplexe
 Programme im Browser möglich sind. Um diese umzusetzen gibt es heute clientseitige
-Frameworks wie React, Vue oder Angular.
+Frameworks wie React, Vue, Svelte oder Angular. Diese werden derzeit in Richtung
+Backend weiterentwickelt: next.js, nuxt.js, SvleteKit.
 
-Web Applikationen wurden seit ca. 2008 Schritt für Schritt mehr und mehr offline-fähige.
-Heute nennt man solche Applikationen "Progressive Web Apps" (PWA). [pwa.rocks](https://pwa.rocks)
-zeigt eine Sammlung solcher Apps.
-
+Für Applikationen die besonders hohe Anforderungen an Performance stellen reicht
+JavaScript nicht aus - dafür muss man dann eine kompilierte Sprache und WebAssembly
+verwenden wie z.B. [Figma](https://www.figma.com/de/blog/webassembly-cut-figmas-load-time-by-3x/) oder
+[Photoshop](https://web.dev/articles/ps-on-the-web?hl=en).
 
 
 Document Object Model

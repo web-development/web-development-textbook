@@ -5,9 +5,10 @@ order: 40
 
 Zeichnen im Canvas
 -------------------
-Der Canvas-Tag stellt eine rechteckige Zeichenfläche zur Verfügung. Es handelt sich dabei um eine Matrix von Pixeln, siehe SVG für Vektor-Grafik.
+Der Canvas-Tag stellt eine rechteckige Zeichenfläche zur Verfügung. Es handelt sich dabei um eine Matrix von Pixeln.
+Wenn man Vektor-Grafik braucht muss man SVG statt dessen verwenden.
 
-Der Canvas wird durch zwei Objekte in Javascript repräsentiert: ein Canvas-Objekt und ein Context-Objekt. Zuerste müssen wir diese beiden Objekte finden und in Variablen speichern:
+Der Canvas wird durch zwei Objekte in Javascript repräsentiert: ein Canvas-Objekt und ein Context-Objekt. Zuerst müssen wir diese beiden Objekte finden und in Variablen speichern:
 
 <javascript>
 let my_canvas = document.getElementById("c");
@@ -49,7 +50,8 @@ Achsenparallelle Rechtecke zeichnet man mit fillRect:
 my_context.fillRect(50, 50, 20, 20);
 </javascript>
 
-Linien ziehen kann man mit moveTo und lineTo. Die Linie erscheint erst, wenn man die abschließende Stroke-Methode aufruft:
+Linien ziehen kann man mit `moveTo` (den Zeichenstift bewegen) und `lineTo` (eine linie von der aktuellen Position zur
+angegeben Position ziehen). Die Linie erscheint erst, wenn man die abschließende Stroke-Methode aufruft:
 
 <javascript>
 my_context.moveTo(10, 20);
@@ -60,7 +62,7 @@ my_context.stroke();
 
 §
 
-Text auf den Canvas schreiben kann man mit dem font-Befehl:
+Text auf den Canvas schreiben kann man mit dem `fillText`-Befehl:
 
 <javascript>
 my_context.font = "bold 12px sans-serif";

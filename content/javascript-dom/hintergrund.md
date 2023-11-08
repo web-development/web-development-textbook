@@ -23,8 +23,6 @@ Neben der Verwendung für kleine Effekte im Browser hat Javascript noch weitere 
 
 * Mit [Electron](https://www.electronjs.org/de/) kann ein Programm in JavaScript schreiben, die Oberfläche dazu mit Web-Technologien bauen, und es dann wie ein "normales" Windows Programm / MacOS Programm ausliefern. z.B. VS Code.
 
-* Javascript wird in einigen Programmen als Makro-Sprache verwendet, z.B. in Indesign, Illustrator und in Unity.
-
 * Die No-SQL Datenbanken CouchDB und MongoDB verwendet Javascript als Abfragesprache.
 
 

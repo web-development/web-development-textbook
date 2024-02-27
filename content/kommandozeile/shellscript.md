@@ -15,7 +15,7 @@ Ein Shellscript beginnt mit der magischen ersten Zeile.
 Achtung: davor kann nichts anderes sein, nicht einmal Kommentar.
 
 <shell>
-#!/bin/bash
+#!/usr/bin/bash
 
 # hier kann ein Kommentar sein, das ist ok
 echo "Hallo Welt"
@@ -28,7 +28,7 @@ Die Ausgabe erfolgt mit `echo`.
 Mit den passenden Zugriffsrechte
 
 <shell>
-chmod u+rx meinscript
+chmod +x meinscript
 </shell>
 
 kann man das Skript starten
@@ -85,6 +85,14 @@ Boolsche Operatoren
     - `!` für Verneinung
     - `&&` für und
     - `||` für oder
+
+Beispiel für Boolsche Operatoren
+
+<shell>
+if [ $ALTER -ge 18 ] && [ $ALTER -lt 24 ]; then
+    echo "In den USA darfst du noch keinen Alkohol trinken"
+fi
+</shell>
 
 ## Kontrollstrukturen: Schleife
 
@@ -189,12 +197,12 @@ vorhandnen Wert plus den Pfad zum bin-Ordner in meinem Home-Verzeichnis.
 Wenn die Pfad-Variable so getzt ist,
 kann ich Skripts aus meinem bin-Ordner von überall aus aufrufen.
 
-Wenn in meinem `bin` Ordner die Skripte `create_algodat_project` und `mksizes`
+Wenn in meinem `bin` Ordner die Skripte `mkalgodatproject` und `mksizes`
 liegen kann ich sie so verwenden, egal "wo" ich bin:
 
 <shell>
 cd ~/dev/studium/Jellinek_Brigitte_algodat
-create_algodat_project 05 01
+mkalgodatproject 5 1
 cd ~/dev/studium/Jellinke_Brigitte_wp2/pizza
 mksizes pizza.jpg
 </shell>

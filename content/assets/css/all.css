@@ -945,7 +945,7 @@ select,
 }
 label input[type="checkbox"],
 label input[type="radio"] {
-  display: inline;
+  display: inline-block;
 }
 label input,
 label textarea,
@@ -4868,4 +4868,38 @@ a[name]:before {
 }
 .slide .beschriftung {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+}
+
+
+
+input[type="checkbox"].fancy {
+  appearance: none;
+  position: relative;
+  width: 1em;
+  height: 1em;
+  border: 2px solid gray;
+  /* Adjusts the position of the checkboxes on the text baseline */
+  vertical-align: -2px;
+  /* Set here so that Windows' High-Contrast Mode can override */
+  color: green;
+}
+
+input[type="checkbox"].fancy::before {
+  content: "✔";
+  position: absolute;
+  font-size: 1.2em;
+  right: -1px;
+  top: -0.3em;
+  visibility: hidden;
+}
+
+input[type="checkbox"].fancy:checked::before {
+  /* Use `visibility` instead of `display` to avoid recalculating layout */
+  visibility: visible;
+}
+
+input[type="checkbox"].fancy:disabled {
+  border-color: black;
+  background: #ddd;
+  color: gray;
 }

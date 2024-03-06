@@ -3,6 +3,24 @@ title: CSS und Formular
 order: 17
 ---
 
+
+## Eingabefelder und Styling
+
+Einige Eingabefelder kann man mit CSS gut umgestalten:
+
+Siehe [MDN: Styling web forms](https://developer.mozilla.org/en-US/docs/Learn/Forms/Styling_web_forms).
+
+Bei einigen Eingabefelder kann man mit `appearance: none` die Darstellung zurücksetzen,
+und danach mit CSS  neu gestalten:
+
+<label><input type="checkbox" class=""> default checkbox</label>
+<label><input type="checkbox" class="fancy"> fancy checkbox</label>
+
+Für die sehr komplexen Eingabeelement (Select/option, date, color, ...) kann man Web-Components
+als Ersatz verwenden, zum Beispiel [better-select](https://siit-dev.github.io/better-select/vanilla/).
+
+
+## Layout für ein Formular
 Wie ordne ich die Beschriftungen und Eingabefelder
 eines Formualares an?
 

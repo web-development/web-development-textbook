@@ -1,5 +1,5 @@
 ---
-title: In PHP Daten aus Web-Formularen verarbeiten
+title: Daten aus dem Web-Formularen prüfen
 order: 50
 ---
 Der Zusammenhang zwischen Web-Formular, http-Request und den Arrays `$_POST` und `$_GET` in PHP sollte Ihnen schon klar sein.

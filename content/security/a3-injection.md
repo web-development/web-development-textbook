@@ -75,6 +75,8 @@ Unabhängig von den oben genannten Punkt gilt noch die Empfehlung:
 
 ## Cross Site Scripting (XSS)
 
+Diese Attacke haben wir schon im Kapitel [Daten Editieren](/php-db-schreiben/daten-editieren/#slide-9) besprochen:
+
 Diese Attacke erfolgt nicht direkt  (AngreiferIn : Opfer), sondern es braucht drei Personen:
 
 - Hilda Harmlos stellt eine Webseite mit XSS-Schwachstelle aufs Netz, zum Beispiel mit einem Forum.

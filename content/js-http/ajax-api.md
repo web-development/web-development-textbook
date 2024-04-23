@@ -16,7 +16,7 @@ ist eine Anmeldung und ein API key notwendig. Das ermöglicht
 eine Beschränkung der Zugriffe: am Server kann mitgezählt werden
 mit welchem API Key wie viele Zugriffe erfolgt sind, und je nach
 dem limitiert oder verrechnet werden. Die Preise für die API
-sind nach Anzahl der Zugriffen gestaffelt, im Mai 2017 waren die Preise:
+sind nach Anzahl der Zugriffen gestaffelt, im April 2023 waren die Preise:
 
 ![Preise von openweathermap.org](/images/openweathermap-preise.png)
 

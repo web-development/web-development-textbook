@@ -100,7 +100,6 @@ oder `requestAnimationFrame` selbst ausprogrammiert kann die Grafikkarte nicht v
 <css>
 header {
   transition: padding 2s, background-color 2s;
-  /* transition: all 2s; */
 }
 </css>
 
@@ -127,9 +126,11 @@ Keyboard - wird das `scroll`-Event am window-Objekt ausgelöst. Auf dieses
 Event können wir reagieren:
 
 <javascript>
-window.addEventListener('scroll', function() {
+function didScroll() {
   console.log(`scrolling has reached ${window.pageYOffset}`);
-});
+}
+
+window.addEventListener('scroll', didScroll);
 </javascript>
 
 In diesen Eventlistener hinein kommt nun die Logik:

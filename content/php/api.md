@@ -98,7 +98,7 @@ echo $data['main']['temp'];
 
 ## Siehe auch
 
-* [JSON](http://localhost:3000/json/)
+* [JSON](/json/)
 
 
 

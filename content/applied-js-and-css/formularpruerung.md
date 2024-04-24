@@ -4,52 +4,83 @@ order: 10
 ---
 
 Im [Kapitel über Formulare](/formulare/) haben Sie gelernt,
-wie Sie mit Javascript die Daten eines Webformulars prüfen können
+wie Sie mit Javascript die einzelnen Eingabfelder eines Webformulars prüfen können
 bevor das Formular abgesendet wird.
 
-Das Submit-Event des Formulars wird nun in der jQuery Schreibweise
-behandelt, der boolsche Rückgabewert bleibt in der Bedeutung gleich:
-`return false` verhindert das Absenden des Formulars.
+## Komplexe Überprüfung
 
-TODO: jquery entfernen
+Mit JavaScript kann man noch komplexere Überprüfungen programmieren.
+Dazu braucht man das `submit` event, das vom Formular gefeuert wird,
+bevor die Daten gesendet werden.
+
+Zum Beispiel soll in folgendem Formular sicher gestellt werden,
+dass mindestens 1 Stück bestellt wird:
+
+<htmlcode>
+<form>
+  <label for="schokolade">Tafeln Schokolade:</label>
+  <input type="number" name="schokolade" id="schokolade" value="0">
+  <label for="schweinsbraten">Portionen Schweinsbraten:</label>
+  <input type="number" name="schweinsbraten" id="schweinsbraten" value="0">
+  <label for="kaffee">Tassen Kaffee:</label>
+  <input type="number" name="kaffee" id="kaffee" value="0">
+  <button type="submit">Bestellen</button>
+  </form>
+</htmlcode>
+
+## Abfangen des submit Events
+
+
+Die Überprüfung erfolgt im submit - Event:
 
 <javascript>
-$("form").submit(function(){
+document.querySelector("form").addEventListener("submit", function(event) {
   // ...
-  return ok;
+  if (!ok) {
+    event.preventDefault(); // Verhindert das Absenden des Formulars, wenn `ok` false ist
+  }
 });
 </javascript>
 
-Der Wert eines Eingabefeldes kann mit der jQuery Methode `val()` ausgelesen
-werden:
+
+## Eingabefelder Prüfen:
+
+Der Wert eines Eingabefeldes kann mit `.value` ausgelesen werden:
 
 <javascript>
-$("input[name=schokolade]").val()    // ein Wert
+document.querySelector('input[name="schokolade"]').value;
 </javascript>
 
-Das [fertige Programm](/images/form-jquery.html)
-zeigt die Fehlermeldungen jeweils beim betroffenen Eingabefeld an:
+Achtung: dieser Wert ist immer ein String!
+
+## Fertiges Programm:
+
+Das fertige Programm
+zeigt die Fehlermeldungen auch an:
 
 <javascript>
-$("form").submit(function(){
+document.querySelector("form").addEventListener("submit", function(event) {
   var ok = true;
-  $("span.error").remove();
 
-gesamt_zahl = parseInt( $("input[name=schokolade]").val() )
-    + parseInt( $("input[name=schweinsbraten]").val() ) + parseInt( \$("input[name=kaffee]").val() );
+  // Entfernen alle Fehlermeldungen
+  document.getElementById("display_errors").innerHTML = "";
 
-if(gesamt_zahl == 0) {
-\$('form').before(
-'<span class="error">Mindest-Bestellmenge 1!</span>'
-);
-ok = false;
-}
+  console.log(document.querySelector("input[name=schokolade]").value);
+  // Berechnen der Gesamtsumme
+  var gesamtZahl = parseInt(document.querySelector("input[name=schokolade]").value)
+      + parseInt(document.querySelector("input[name=schweinsbraten]").value)
+      + parseInt(document.querySelector("input[name=kaffee]").value);
 
-$i = $("input[name=adresse]");
-if($i.val() == "") {
-    $i.after('<span class="error">Lieferadresse angeben</span>');
-ok = false;
-}
-return ok;
+  // Überprüfen der Gesamtsumme
+  if(gesamtZahl === 0) {
+    document.getElementById("display_errors").innerHTML += "<p>Mindest-Bestellmenge 1!</p>";
+    ok = false;
+  }
+
+  // Verhindern des Formularabsendens, wenn ok false ist
+  if (!ok) {
+    event.preventDefault();
+  }
+  return ok;
 });
 </javascript>

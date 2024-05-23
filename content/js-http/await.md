@@ -25,7 +25,7 @@ function f2() {
 Auch anonyme Funktionen und Arrow Functions können async sein:
 
 <javascript caption="asynchrone arrow function">
-const f1 = async f1() => {
+const f1 = async () => {
   console.log("ich kann await");
 }
 

@@ -3,77 +3,235 @@ title: Indexes
 order: 20
 ---
 
-<sql caption="Eine Abfrage die sehr lange dauert">
-# SELECT name, time, yes_rsvp_count FROM events ORDER BY yes_rsvp_count DESC LIMIT 10;
-         name         |        time         | yes_rsvp_count
-----------------------+---------------------+----------------
- Facebook. Twitter. V | 2014-04-24 22:30:00 |            614
- Future of 21st Centu | 2013-05-01 22:30:00 |            598
- The AppNexus Ad Plat | 2012-11-12 23:30:00 |            550
- Programmable Big Dat | 2014-05-01 22:30:00 |            496
- Open-Source Database | 2014-05-08 22:30:00 |            450
- Future of NoSQL & Ne | 2014-05-13 22:30:00 |            444
- Bridging the gap, OL | 2014-05-06 22:30:00 |            414
- Throw Some Keys on I | 2014-07-14 22:30:00 |            334
- Resolving the Cloud  | 2012-11-15 23:30:00 |            326
- Creator of MySQL: My | 2013-05-30 22:30:00 |            325
- (10 rows)
+Mit `\timing` kann man in `psql` einschalten, dass die Zeit für die Abfrage angezeigt wird:
 
-Time: 674.327 ms
+<sql caption="Eine Abfrage mit timing">
+select vendorid,tpep_pickup_datetime,passenger_count from taxi_trips limit 10;
+ vendorid | tpep_pickup_datetime | passenger_count
+----------+----------------------+-----------------
+        1 | 2019-01-01 00:46:40  |               1
+        1 | 2019-01-01 00:59:47  |               1
+        2 | 2018-12-21 13:48:30  |               3
+        2 | 2018-11-28 15:52:25  |               5
+        2 | 2018-11-28 15:56:57  |               5
+        2 | 2018-11-28 16:25:49  |               5
+        2 | 2018-11-28 16:29:37  |               5
+        1 | 2019-01-01 00:21:28  |               1
+        1 | 2019-01-01 00:32:01  |               1
+        1 | 2019-01-01 00:57:32  |               2
+(10 rows)
+
+Time: 0.296 ms
 </sql>
 
 §
 
-Warum dauert diese Abfrage so lange? Das können wir mit dem Befehl `EXPLAIN` erforschen:
+Hier sortieren wir die Tabelle nach einer Integer-Spalte:
+
+<sql caption="Eine Abfrage die sehr lange dauert">
+select vendorid,tpep_pickup_datetime,passenger_count from taxi_trips order by passenger_count desc limit 10;
+ vendorid | tpep_pickup_datetime | passenger_count
+----------+----------------------+-----------------
+        2 | 2019-01-21 03:46:51  |               9
+        2 | 2019-01-30 18:34:12  |               9
+        2 | 2019-01-13 04:13:24  |               9
+        2 | 2019-01-19 16:45:25  |               9
+        2 | 2019-01-05 13:12:29  |               9
+        2 | 2019-01-21 19:20:28  |               9
+        2 | 2019-01-07 03:19:36  |               9
+        2 | 2019-01-10 00:43:10  |               9
+        2 | 2019-01-05 13:12:29  |               9
+        2 | 2019-01-30 22:17:51  |               9
+(10 rows)
+
+Time: 2785.204 ms (00:02.785)
+</sql>
+
+Warum dauert diese Abfrage so lange?
+
+## Query Planner und EXPLAIN
+
+SQL ist eine deklarative Programmiersprache, d.h. wir beschreiben nur
+welche Daten wir haben wollen, aber nicht wie diese Daten gefunden werden.
+
+Der **Query Planner** setzt die deklarative Beschreibung um in ein
+imperatives Programm, das die Daten wirklich lädt.
+
+Mit dem Befehl `EXPLAIN` können wir sehen was der Query Planner plant:
 
 <sql>
-# explain SELECT name, time, yes_rsvp_count FROM events ORDER BY yes_rsvp_count DESC LIMIT 10;
-                                 QUERY PLAN
-----------------------------------------------------------------------------
- Limit  (cost=30988.25..30988.28 rows=10 width=54)
-   ->  Sort  (cost=30988.25..32504.05 rows=606317 width=54)
-         Sort Key: yes_rsvp_count
-         ->  Seq Scan on events  (cost=0.00..17885.96 rows=606317 width=54)
+explain select vendorid,tpep_pickup_datetime,passenger_count from taxi_trips order by passenger_count desc limit 10;
+                                    QUERY PLAN
+-----------------------------------------------------------------------------------
+ Limit ...
+   ->  Sort  ...
+         Sort Key: passenger_count DESC
+         ->  Seq Scan on taxi_trips  ...
 (4 rows)
 </sql>
 
+Was können wir aus dem Plan herauslesen:
+
+* zum Schluss werden mit LIMIt nur 10 Zeilen ausgegeben
+* davor muss ortiert werden, und zwar nach der Spalte `passenger_count`**Seq Scan**
+* und afür muss mit **sequential scan** jede Zeile der angesehen werden.
+
+§
+
+Mit dem Plan wird auch schon eine Abschätzung gemacht, wie lange die Abfrage dauern wird.
+Dafür verwendet der Query Planner Informationen wie die Anzahl der Zeilen (`rows`) in einer Tabelle
+oder Information über den Datentyp  der Spalten und ihren Platzbedarf (`width`):
+
+<sql>
+explain select vendorid,tpep_pickup_datetime,passenger_count from taxi_trips order by passenger_count desc limit 10;
+                                    QUERY PLAN
+-----------------------------------------------------------------------------------
+ Limit  (... rows=10 width=16)
+   ->  Sort  (... rows=15335369 width=16)
+         Sort Key: passenger_count DESC
+         ->  Seq Scan on taxi_trips  (... rows=15335369 width=16)
+(4 rows)
+</sql>
+
+§
+
+Der Query Planner schätz die Gesamt-Kosten mit fikiven Zahle ab (keine Sekunden oder Millisekunden).
+
+
+<sql>
+explain select vendorid,tpep_pickup_datetime,passenger_count from taxi_trips order by passenger_count desc limit 10;
+                                    QUERY PLAN
+-----------------------------------------------------------------------------------
+ Limit  (cost=729549.50..729549.53 rows=10 width=16)
+   ->  Sort  (cost=729549.50..767887.92 rows=15335369 width=16)
+         Sort Key: passenger_count DESC
+         ->  Seq Scan on taxi_trips  (cost=0.00..398157.69 rows=15335369 width=16)
+(4 rows)
+</sql>
+
+Die angegeben Kosten sind fiktive Zahlen, keine Sekunden oder Millisekunden.
+
+
+## EXPLAIN ANALYZE
+
+Die Query `EXPLAIN ANALYZE` führt dann die Abfrage wirklich durch, und misst wie
+lange es wirklich gedauert hat (in Millisekunden) und wie viel Hauptspeicher dafür benutzt wurde:
+
+<sql>
+explain analyze select vendorid,tpep_pickup_datetime,passenger_count from taxi_trips order by passenger_count desc limit 10;
+                                                              QUERY PLAN
+---------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=729549.50..729549.53 rows=10 width=16) (actual time=3732.133..3732.134 rows=10 loops=1)
+   ->  Sort  (cost=729549.50..767887.92 rows=15335369 width=16) (actual time=3732.131..3732.132 rows=10 loops=1)
+         Sort Key: passenger_count DESC
+         Sort Method: top-N heapsort  Memory: 25kB
+         ->  Seq Scan on taxi_trips  (cost=0.00..398157.69 rows=15335369 width=16) (actual time=0.045..2355.460 rows=15335584 loops=1)
+ Planning time: 0.161 ms
+ Execution time: 3732.223 ms
+</sql>
+
+Welcher Sortier-Algorithmus wurde verwendet?
+
+Was könnte man tun, um diese Abfrage zu beschleunigen?
+
 ## Index erzeugen
 
+Die Antwort ist: wir könnten einen sortieren Baum verwenden, der nach den  Werte von passenger_count sortiert
+ist und auf die ganzen Datensätze verweist.
+
+Das nennt man in SQL einen Index. Er wird so erzeugt:
+
 <sql>
-# CREATE INDEX yes_rsvp_count ON events(yes_rsvp_count);
-CREATE INDEX
-Time: 1212.178 ms
+CREATE INDEX passenger_count_idx ON taxi_trips(passenger_count);
+Time: 27368.964 ms (00:27.369)
 </sql>
+
+Man muss also nicht wissen wie ein Baum funktioniert, man muss nur sagen:
+ich will dass die Spalte `passenger_count` irgendwie schneller Abgefragt werden kann.
 
 §
 
-<sql>
-# explain SELECT name, time, yes_rsvp_count FROM events ORDER BY yes_rsvp_count DESC;
-                                           QUERY PLAN
-------------------------------------------------------------------------------------------------
- Index Scan Backward using yes_rsvp_count on events  (cost=0.42..57684.59 rows=606317 width=54)
-(1 row)
-</sql>
-
-§
+Ist die Abfrage nun wirklich schneller?
 
 <sql>
-SELECT substring(name from 1 for 20) AS name, time, yes_rsvp_count FROM events ORDER BY yes_rsvp_count DESC LIMIT 10;
-         name         |        time         | yes_rsvp_count
-----------------------+---------------------+----------------
- Facebook. Twitter. V | 2014-04-24 22:30:00 |            614
- Future of 21st Centu | 2013-05-01 22:30:00 |            598
- The AppNexus Ad Plat | 2012-11-12 23:30:00 |            550
- Programmable Big Dat | 2014-05-01 22:30:00 |            496
- Open-Source Database | 2014-05-08 22:30:00 |            450
- Future of NoSQL & Ne | 2014-05-13 22:30:00 |            444
- Bridging the gap, OL | 2014-05-06 22:30:00 |            414
- Throw Some Keys on I | 2014-07-14 22:30:00 |            334
- Resolving the Cloud  | 2012-11-15 23:30:00 |            326
- Champions League FIN | 2014-05-24 18:30:00 |            325
+select vendorid,tpep_pickup_datetime,passenger_count from taxi_trips order by passenger_count desc limit 10;
+ vendorid | tpep_pickup_datetime | passenger_count
+----------+----------------------+-----------------
+        2 | 2019-01-30 22:17:51  |               9
+        2 | 2019-01-30 18:34:12  |               9
+        2 | 2019-01-21 19:20:28  |               9
+        2 | 2019-01-21 03:46:51  |               9
+        2 | 2019-01-19 16:45:25  |               9
+        2 | 2019-01-13 04:13:24  |               9
+        2 | 2019-01-10 00:43:10  |               9
+        2 | 2019-01-07 03:19:36  |               9
+        2 | 2019-01-05 13:12:29  |               9
+        2 | 2019-01-30 22:17:51  |               9
 (10 rows)
 
-Time: 0.775 ms
+Time: 4.103 ms
+</sql>
+
+Zur Erinnerung: das war ohne Index `Time: 2785.204 ms (00:02.785)`
+
+§
+
+Wie sieht der neue Query Plan aus?
+
+Zur Erinnerung: das war der Query Plan ohne Index:
+
+<sql>
+explain select vendorid,tpep_pickup_datetime,passenger_count from taxi_trips order by passenger_count desc limit 10;
+                                    QUERY PLAN
+-----------------------------------------------------------------------------------
+ Limit  (cost=729549.50..729549.53 rows=10 width=16)
+   ->  Sort  (cost=729549.50..767887.92 rows=15335369 width=16)
+         Sort Key: passenger_count DESC
+         ->  Seq Scan on taxi_trips  (cost=0.00..398157.69 rows=15335369 width=16)
+(4 rows)
+</sql>
+
+So sieht der  Query Plan mit Index aus:
+
+<sql>
+explain select vendorid,tpep_pickup_datetime,passenger_count from taxi_trips order by passenger_count desc limit 10;
+                                                        QUERY PLAN
+---------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.43..1.20 rows=10 width=16)
+   ->  Index Scan Backward using passenger_count_idx on taxi_trips  (cost=0.43..1172028.16 rows=15335742 width=16)
+</sql>
+
+
+**Index Scan Backward** heisst also: wir verwenden den bestehenden Index (=Baum) um Rückwärts (absteigend) die
+Werte von passenger_count auszulesen.  Wenn wir 10 gefunden haben brechen wir ab.
+
+§
+
+Zu Erinnerung: so sah `EXPLAIN ANALYZE` ohne Index aus:
+
+<sql>
+explain analyze select vendorid,tpep_pickup_datetime,passenger_count from taxi_trips order by passenger_count desc limit 10;
+                                                              QUERY PLAN
+---------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=729549.50..729549.53 rows=10 width=16) (actual time=3732.133..3732.134 rows=10 loops=1)
+   ->  Sort  (cost=729549.50..767887.92 rows=15335369 width=16) (actual time=3732.131..3732.132 rows=10 loops=1)
+         Sort Key: passenger_count DESC
+         Sort Method: top-N heapsort  Memory: 25kB
+         ->  Seq Scan on taxi_trips  (cost=0.00..398157.69 rows=15335369 width=16) (actual time=0.045..2355.460 rows=15335584 loops=1)
+ Planning time: 0.161 ms
+ Execution time: 3732.223 ms
+</sql>
+
+Und so sieht es mit Index aus:
+
+<sql>
+explain analyze select vendorid,tpep_pickup_datetime,passenger_count from taxi_trips order by passenger_count desc limit 10;
+                                                                              QUERY PLAN
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.43..1.20 rows=10 width=16) (actual time=0.048..0.115 rows=10 loops=1)
+   ->  Index Scan Backward using passenger_count_idx on taxi_trips  (cost=0.43..1172028.16 rows=15335742 width=16) (actual time=0.047..0.113 rows=10 loops=1)
+ Planning time: 0.064 ms
+ Execution time: 0.130 ms
 </sql>
 
 ## Die Datenstruktur hinter dem Index: B-Baum
@@ -83,8 +241,8 @@ Datenstruktur: einen [B-Baum](https://de.wikipedia.org/wiki/B-Baum).
 
 ![B-Baum](/images/php-db-optimierung/b-baum.svg)
 
-Der B-Baum ist sortiert, ausbalanziert, und seine Knoten haben jeweils viele
-Kinder.
+Der B-Baum ist sortiert, ausbalanziert, und seine Knoten haben jeweils **viele**
+Kinder. (das B steht also nicht für binär!)
 
 Mit dem Wissen über die Datenstruktur gewinnen wir ein besserer Verständnis für
 die Fähigkeiten und Grenzen eines Index:
@@ -97,11 +255,11 @@ Besonders effizient ist der Index wenn alle Daten der Abfrage schon
 direkt im Baum gespeichert sind, und nicht nochmal separat gelesen werden müssen:
 
 <sql>
-# SELECT name, time, yes_rsvp_count FROM events ORDER BY yes_rsvp_count DESC LIMIT 10; 
-# SELECT yes_rsvp_count FROM events ORDER BY yes_rsvp_count DESC LIMIT 10; 
+SELECT vendorid,tpep_pickup_datetime,passenger_count FROM taxi_trips ORDER BY yes_rsvp_count DESC LIMIT 10;
+SELECT passenger_count FROM events ORDER BY taxi_trips DESC LIMIT 10;
 </sql>
 
-Die erste Abfrage braucht einen Zugriff auf die vollständigen Daten der Tabelle um 
+Die erste Abfrage braucht einen Zugriff auf die vollständigen Daten der Tabelle um
 name und time auszulesen. Die zweite Abfrage findet alle nötigen Daten direkt im Index.
 
 Manche Datenbank bieten die Möglichkeit zusätzliche Attribute in den Index aufzunehmen,
@@ -138,11 +296,13 @@ Hier ein Beispiel: eine Tabelle mit Namen und Länderkürzel von ca. 170.000 St�
 
 §
 
-Nun legen wir einen Index an:
+Nun legen wir einen "general inverted index" - abgekürzt gin - an:
 
 <sql>
 CREATE INDEX trgm_idx_city_name ON city USING gin(name gin_trgm_ops);
 </sql>
+
+Über diese Datenstruktur lernen Sie mehr in der Lehrveranstaltung "Information Retrieval" im 6.Semester.
 
 §
 
@@ -171,6 +331,4 @@ Danach ist die Abfage wesentlich schneller:
 
 ## Siehe auch
 
-- [Latency Numbers Every Programmer Should Know ](https://gist.github.com/jboner/2841832)
-- [Latency Numbers, Humanized](https://gist.github.com/hellerbarde/2843375#file-latency_humanized-markdown)
-- [prezi](https://prezi.com/pdkvgys-r0y6/latency-numbers-for-programmers-web-development/)
+- [GIN indexes in der Postgres Doku](https://www.postgresql.org/docs/current/gin-intro.html)

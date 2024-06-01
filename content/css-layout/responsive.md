@@ -42,16 +42,22 @@ Definition und folgende Abbildung:
 
 ## Responsive Design
 
-Große Unterschiede im Platz kann man mit Mediaqueries in CSS behandeln. Die Verwendung von Mediaqueries wurde 2010 in einem Artikel von Ethan Marcotte in "A List Apart" unter dem Begriff "Responsive Webdesign" popularisiert [&rarr;](http://www.alistapart.com/articles/responsive-web-design/).
+Große Unterschiede im Platz kann man mit Mediaqueries in CSS behandeln. Die Verwendung von Mediaqueries wurde 2010 in einem [Artikel von Ethan Marcotte](http://www.alistapart.com/articles/responsive-web-design/) in "A List Apart" unter dem Begriff "Responsive Webdesign" popularisiert.
 
-In diesem ersten Beispiel von responsive Design werden drei verschiedene Layouts
-für verschiedene Größen angeboten. Der Inhalt und das HTML Dokument bleiben dabei gleich.
+In seinem ersten Beispiel von responsive Design werden drei verschiedene Layouts
+für verschiedene Größen angeboten. Der Inhalt und das HTML Dokument bleiben dabei gleich:
 
-![Das erste Beispiel für "Responsive Webdesign": Darstellung der Seite auf verschiedenen Breiten](/images/css-layout/responsive.png)
+![Das erste Beispiel für "Responsive Webdesign": Darstellung der Seite auf verschiedenen Breiten](/images/css-layout/2010-responsive.png)
 
 §
 
-Die technische Umsetzung des verschiedenen Layouts ist relativ einfach: 
+Bei diesem [Beispiel](https://www.bundesschatz.at/) aus dem Jahr 2024 sind die Breiten 640px, 1090px und 1655px (in CSS Pixel). Die Bilder werden mit doppelter Pixeldichte angezeigt, siehe [Responsive Images](/grafik/images/)
+
+![Beispiel für Responsive Webdesign aus 2024](/images/css-layout/2024-responsive-design.png)
+
+§
+
+Die technische Umsetzung des verschiedenen Layouts ist relativ einfach:
 
 * Mediaqueries erlauben eine "Verzweigung" auf Grund der Größe des Ausgabegeräts
 * Container Queries erlauben eine "Verzweigung" auf Grund der Größe die für ein bestimmtes Element zur Verfügung steht
@@ -59,8 +65,7 @@ Die technische Umsetzung des verschiedenen Layouts ist relativ einfach:
 
 ### Media Query
 
-Auf einem Ausgabegerät das mindestens 480 CSS Pixel breit ist
-wird die Breite der Bilder auf 100px gesetzt.
+Auf einem Ausgabegerät, das mindestens 480 CSS Pixel breit ist, wird die Breite der Bilder auf 100 Pixel gesetzt.
 
 <css caption="CSS mit Mediaquery">
 @media screen and (max-width: 480px) {
@@ -75,8 +80,7 @@ wird die Breite der Bilder auf 100px gesetzt.
 
 ### Container Query
 
-Wenn für das Section Element mindestens 700 CSS Pixel Breite
-zur Verfügung steht, dann wird die Überschrift auf Größe 28px gesetzt:
+Wenn das Section-Element mindestens 700 CSS-Pixel breit ist, wird die Überschrift auf 28px gesetzt.
 
 <css caption="CSS mit Container Query">
 section {

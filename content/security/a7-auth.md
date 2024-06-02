@@ -87,47 +87,8 @@ Statt dessen wir nur ein **Hash** des Passworts gespeichert.
 Beim Login wir das eingegebene Passwort dann wieder mit derselben Hash-Funktion
 behandelt, und mit dem gespeicherten Wert verglichen.
 
-PHP stellt eine geeignete Hash-Funktion zur Verfügung: [password_hash](https://www.php.net/manual/de/function.password-hash.php).
+PHP stellt eine geeignete Hash-Funktion zur Verfügung: [password_hash](https://www.php.net/manual/de/function.password-hash.php).  Siehe auch [/security/a2-crypto/](A2 - Cryptographic Failures)
 
-
-### starke Algorithmen?
-
-Was passiert, wenn ich nicht `password_hash`, sondern einen veralteten Algorithmus verwende?
-Ein Beispiel aus einem Projekt: hier wurde der Algorithmus `sha1`
-verwendet um das Passwort zu verschleiern, wenn sich jemand
-versucht einzuloggen wird das so geprüft:
-
-<php>
-$passwordhashed = sha1($password);
-
-$stmt = $db->prepare('SELECT * FROM `users` WHERE username = ? AND password = ?');
-$stmt->execute(array($username, $passwordhashed));
-</php>
-
-In der Datenbank sehen die Daten so aus:
-
-<plain>
-INSERT INTO `users` (`id`, `username`, `password`) VALUES
-(1, 'student', '08df1a7479ca768d03481fb6534ebe844cc2a2d5'),
-(2, 'admin', 'dd94709528bb1c83d08f3088d4043f4742891f4f');
-</plain>
-
-Das sieht ja erst mal gut aus: falls diese Datenbank in falsche Hände gerät
-sind die Passwörter nicht direkt lesbar.
-
-
-### sha1 ist ein schwacher Algorithmus
-
-Nimmt man den gehashten Passwort String
-des admin-users, und googelt danach, so findet man direkt diese Seite:
-
-
-![](/images/security/sha1.png)
-
-![](/images/security/sha2.png)
-
-
-Mehr zum Speichern von Passwörtern im [OWASP Password Storage Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html)
 
 ## Neue Session bei Login / Logout / neuen Rechten
 

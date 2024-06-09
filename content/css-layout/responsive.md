@@ -133,26 +133,40 @@ body { font-size: 13px; }
 Es gibt sogar mediaqueries für die Präferenz des "dark mode":
 
 <css caption="CSS Medaqueries für color-scheme">
-@media (prefers-color-scheme: dark) {
-  body {
-    color: #ddd;
-    background-color: black;
-  }
-  h1,h2,h3 {
-    color: #d39060;
-  }
+:root {
+  color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: light) {
-  body {
-    color: #333333;
-    background-color: #ffffff;
+  .element {
+    color: black;
+    background-color: white;
   }
-  h1,h2,h3 {
-    color: #333333;
+}
+
+@media (prefers-color-scheme: dark) {
+  .element {
+    color: white;
+    background-color: black;
   }
 }
 </css>
 
-siehe auch [MDN: media features](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Media_features) und [MDN: features queries](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports)
+oder, seit 2024 noch kürzer:
+
+<css caption="light-dark Funktion für Farben">
+:root {
+  color-scheme: light dark;
+}
+
+.element {
+  color: light-dark(black, white);
+  background-color: light-dark(white, black);
+}
+</css>
+
+siehe auch
+* [MDN: media features](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#Media_features)
+* [MDN: features queries](https://developer.mozilla.org/en-US/docs/Web/CSS/@supports)
+* [MDN: color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme)
 

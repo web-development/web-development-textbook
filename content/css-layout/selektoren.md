@@ -13,7 +13,8 @@ folgende Schreibweisen für Selektoren beschrieben:
 |Universal selector|*|Stimmt mit jedem Element überein.|
 |Type selectors|E|Stimmt mit jedem E-Element überein|
 |Grouping|E, F, G|Stimmt mit jedem E-, sowie jedem F-, sowie jedem G-Element überein. E, F und G könnten auch komplexere Selektoren sein!|
-|Descendant selectors|E F|Stimmt mit jedem F-Element überein, das ein Nachfahre eines E-Elements ist, also z.B. `<E>bla <div> <F>hier</F> </div> </E>`.|
+|Descendant selectors|E F|Stimmt mit jedem F-Element überein, das ein Nachfahre eines E-Elements ist, also z.B. das F in `<E>bla <div> <F>hier</F> </div> </E>`.|
+|Has pseudo class|E:has(F)|Stimmt mit jedem E-Element überein, das einen Nachfahren E hat, also z.B. das E in `<E>bla <div> <F>hier</F> </div> </E>`.|
 |Child selectors|E > F|Stimmt mit allen F-Elementen überein, die Kindelemente eines Elements E sind, also z.B. `<E>bla <span>bla</span> <F>hier</F> </E>` .|
 |The link pseudo-classes|:link :visited|Stimmt mit Links überein, deren Ziel noch nicht besucht wurde (`:link`), oder deren Ziel bereits besucht wurde (`:visited`).|
 |The dynamic pseudo-classes|:active :hover :focus|Stimmt während bestimmter Interaktionen überein: auswahl, Maus-Cursor,....|
@@ -76,6 +77,31 @@ Es gibt noch eine Hand voll weiterer Pseudo Classes:
 
 
 ![Document Object Model und Selektor](/images/css-layout/selector-firstchild.png)
+
+
+Has Pseudo Class
+-------
+
+Die Pseudo Class `:has()` ist die Umkehrung des Descendant Selectors:  Mit `div:has(a)` wird der `div` Tag selektiert, falls er einen `a` Tag als Nachkommen hat.
+
+![Document Object Model und has psuedo class](/images/css/selector-has.png)
+
+In `:has(...)` kann man auch kompliziertere Selektoren verwenden, zum Beispiel `select:has(option[value=""]:checked)`.  Hier wird ein Select-Tag selektiert, falls von seinen optionen diejenige ausgewählt ist, die den Leeren Wert hat. Siehe [Demo](/images/css/example-has.html).
+
+
+<htmlcode>
+<style>
+select:has(option[value=""]:checked) {
+  border-color: #ddd;
+  color: #ddd;
+}
+</style>
+<select id="place_type" name="place_type">
+  <option value>--- Any Place Type ---</option>
+  <option value="River">River</option>
+  <option value="Lake">Lake</option>
+</select>
+</htmlcode>
 
 
 Adjacent selector

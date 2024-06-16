@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Example: using the :has() selector</title>
+  <style>
+    body {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+
+    select,
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    select:has(option[value=""]:checked) {
+      color: #ddd;
+      border-color: #ddd;
+    }
+
+    select:has(option[value=""]:not(:checked)) {
+      color: black;
+      border-color: black;
+    }
+
+    #filter-form {
+      width: 250px;
+      padding: 20px;
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+  <form id="filter-form">
+    <h3>Filter Fishing Spots</h3>
+    <label for="place_type">Place Type</label>
+    <select id="place_type" name="place_type">
+      <option value>--- Any Place Type ---</option>
+      <option value="River">River</option>
+      <option value="Lake">Lake</option>
+    </select>
+    <label for="bottom_conditions">Bottom Conditions</label>
+    <select id="bottom_conditions" name="bottom_conditions">
+      <option value>--- Any Bottom Conditions ---</option>
+      <option value="Gravel">Gravel</option>
+      <option value="Mixed">Mixed</option>
+    </select>
+    <label for="species">Species</label>
+    <select id="species" name="species">
+      <option value>--- Any Species ---</option>
+      <option value="Grayling">Grayling</option>
+      <option value="Asp">Asp</option>
+      <option value="Brown Trout">Brown Trout</option>
+      <option value="Wels Catfish">Wels Catfish</option>
+      <option value="Rainbow Trout">Rainbow Trout</option>
+      <option value="Danube Salmon">Danube Salmon</option>
+      <option value="Brook Trout">Brook Trout</option>
+      <option value="Bleak">Bleak</option>
+      <option value="Roach">Roach</option>
+      <option value="Carp">Carp</option>
+      <option value="Pike">Pike</option>
+      <option value="Bream">Bream</option>
+      <option value="Barbel">Barbel</option>
+      <option value="Perch">Perch</option>
+      <option value="Zander">Zander</option>
+      <option value="Burbot">Burbot</option>
+      <option value="Tench">Tench</option>
+      <option value="Rudd">Rudd</option>
+      <option value="Chub">Chub</option>
+      <option value="Whitefish">Whitefish</option>
+    </select>
+    <label for="season">Season</label>
+    <select id="season" name="season">
+      <option value>--- Any Season ---</option>
+      <option value="Spring">Spring</option>
+      <option value="Winter">Winter</option>
+      <option value="Summer">Summer</option>
+      <option value="Autumn">Autumn</option>
+    </select>
+    <button type="button" onclick="applyFilters()">Apply
+      Filters</button>
+  </form>
+</body>
+</html>

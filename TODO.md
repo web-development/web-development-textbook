@@ -1,3 +1,21 @@
+
+mehr CSS:
+
+im grid: place-items: center
+https://cssbattle.dev/
+
+
+modal dialog ohne javasciprt schon im 1.smeester
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog?retiredLocale=de
+
+ebenso popover
+
+coole touch events testen: https://patrickhlauke.github.io/touch/
+
+
+
+
+
 * achtung: link zum nächsten kapitel funktioniert nicht in der folienansicht, wenn das nächste ein dex.md ist. weils davon keine folie gibt.
 
 * neue Security Kapitel ausformulieren

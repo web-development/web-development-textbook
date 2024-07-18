@@ -3,7 +3,8 @@ title: Details zu Layout
 order: 500
 ---
 
-In diesem Kapitel werden weitere Properties vorgestellt,
+In diesem Kapitel werden weitere 
+Properties vorgestellt,
 die das Layout mit CSS ermöglichen.
 
 ### Text

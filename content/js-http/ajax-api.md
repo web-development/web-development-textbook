@@ -62,7 +62,7 @@ In PHP ist der Zugriff auf die API ohne Problem möglich:
 <php caption="zugriff auf die wetter-at.tk API">
 header('Content-Type: application/json');
 ...
-$url = "http://at-wetter.tk/api/v1/station/11150/t/$date/7";
+$url = "http://api.openweathermap.org/data/2.5/weather?&units=metric&q=London,uk&apikey=$key";
 $text=file_get_contents( $url );
 ...
 </php>

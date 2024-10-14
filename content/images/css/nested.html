@@ -1,59 +1,113 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Demo Seite für verschachteltes CSS</title>
-  </head>
-  <body>
-    <h1>Demo: verschachteltes CSS</h1>
 
+<head>
+  <meta charset="utf-8">
+  <title>Demo Seite für verschachteltes CSS</title>
+</head>
+
+<body>
+  <style>
+    body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    section {
+      max-width: 60ch;
+    }
+
+    style.show::before {
+      content: "<style>";
+      color: green;
+      display: block;
+    }
+
+    style.show {
+      display: block;
+      padding: 0px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      white-space: pre;
+      margin: 20px 0;
+    }
+
+    style.show::after {
+      display: block;
+      content: "<⁄style>";
+      color: green;
+    }
+  </style>
+  <section class="mit">
+    <h2>Verschachteltes CSS mit &amp;</h2>
+    <div> This div contains <a href="#">links</a> and other stuff.
+      This div contains <a href="#">links</a> and other stuff. This
+      div contains <a href="#">links</a> and other stuff. This div
+      contains <a href="#">links</a> and other stuff. Not much,
+      really. Just some <a href="#">links</a> and other stuff. Just
+      some <a href="#">links</a> and other stuff. Just some <a
+        href="#">links</a> and other stuff. Just some <a
+        href="#">links</a> and other stuff. </div>
+    <p> This p contains <a href="#">links</a> and other stuff. This p
+      contains <a href="#">links</a> and other stuff. This p contains
+      <a href="#">links</a> and other stuff. This p contains <a
+        href="#">links</a> and other stuff. It's a bit boring. Just
+      some <a href="#">links</a> and other stuff. Just some <a
+        href="#">links</a> and other stuff. Just some <a
+        href="#">links</a> and other stuff. </p>
     <style class="show">
-      div {
-        border: 1px gray solid;
-        padding: 10px;
-        & a {
-          color: red;
+      .mit {
+        & div {
+          border: 1px gray solid;
+          padding: 10px;
+
+          & a {
+            color: red;
+          }
+        }
+
+        & p {
+          border: 1px blue solid;
+          padding: 10px;
         }
       }
+    </style>
+  </section>
+  <section class="ohne">
+    <h2>Verschachteltes CSS ohne &amp;</h2>
+    <div> This div contains <a href="#">links</a> and other stuff.
+      This div contains <a href="#">links</a> and other stuff. This
+      div contains <a href="#">links</a> and other stuff. This div
+      contains <a href="#">links</a> and other stuff. Not much,
+      really. Just some <a href="#">links</a> and other stuff. Just
+      some <a href="#">links</a> and other stuff. Just some <a
+        href="#">links</a> and other stuff. Just some <a
+        href="#">links</a> and other stuff. </div>
+    <p> This p contains <a href="#">links</a> and other stuff. This p
+      contains <a href="#">links</a> and other stuff. This p contains
+      <a href="#">links</a> and other stuff. This p contains <a
+        href="#">links</a> and other stuff. It's a bit boring. Just
+      some <a href="#">links</a> and other stuff. Just some <a
+        href="#">links</a> and other stuff. Just some <a
+        href="#">links</a> and other stuff. </p>
+    <style class="show">
+      .ohne {
+        div {
+          border: 1px gray solid;
+          padding: 10px;
 
-      p {
-        border: 1px blue solid;
-        padding: 10px;
+          a {
+            color: orange;
+          }
+        }
+
+        p {
+          border: 1px lightskyblue solid;
+          padding: 10px;
+        }
       }
     </style>
-    <style>
-      style.show  {
-        display: block;
-        border: 1px green solid;
-        padding: 0px;
-        font-family: 'Consolas', 'Courier New', monospace;
-        white-space: pre;
-        margin: 20px 0;
-      }
-    </style>
+  </section>
+</body>
 
-    <div>
-      This div contains <a href="#">links</a> and other stuff.
-      This div contains <a href="#">links</a> and other stuff.
-      This div contains <a href="#">links</a> and other stuff.
-      This div contains <a href="#">links</a> and other stuff.
-      Not much, really.
-      Just some <a href="#">links</a> and other stuff.
-      Just some <a href="#">links</a> and other stuff.
-      Just some <a href="#">links</a> and other stuff.
-      Just some <a href="#">links</a> and other stuff.
-    </div>
-
-
-    <p>
-      This p contains <a href="#">links</a> and other stuff.
-      This p contains <a href="#">links</a> and other stuff.
-      This p contains <a href="#">links</a> and other stuff.
-      This p contains <a href="#">links</a> and other stuff.
-      It's a bit boring.
-      Just some <a href="#">links</a> and other stuff.
-      Just some <a href="#">links</a> and other stuff.
-      Just some <a href="#">links</a> and other stuff.
-    </p>
-  </body>
 </html>

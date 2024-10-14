@@ -110,6 +110,18 @@ rein schreiben:
   }
 </css>
 
+Und man kann das kaufmännische Und weglassen:
+
+<css>
+  div {
+    border: 1px gray solid;
+    padding: 10px;
+    a {
+      color: red;
+    }
+  }
+</css>
+
 [Demo: Verschachteltes CSS](/images/css/nested.html)
 
 

@@ -168,7 +168,7 @@
   color: #fff;
 }
 .deck-container .slide a, .deck-container .slide a:hover, .deck-container .slide a:focus, .deck-container .slide a:active, .deck-container .slide a:visited {
-  color: #599;
+  color: #3A6969;
   text-decoration: none;
 }
 .deck-container .slide a:hover, .deck-container .slide a:focus {
@@ -179,7 +179,7 @@
   opacity: 0.5;
 }
 .deck-container .deck-prev-link, .deck-container .deck-prev-link:hover, .deck-container .deck-prev-link:focus, .deck-container .deck-prev-link:active, .deck-container .deck-prev-link:visited, .deck-container .deck-next-link, .deck-container .deck-next-link:hover, .deck-container .deck-next-link:focus, .deck-container .deck-next-link:active, .deck-container .deck-next-link:visited {
-  color: #599;
+  color: #3A6969;
 }
 .deck-container .deck-prev-link:hover, .deck-container .deck-prev-link:focus, .deck-container .deck-next-link:hover, .deck-container .deck-next-link:focus {
   opacity: 1;

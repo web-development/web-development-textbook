@@ -11,12 +11,12 @@ sofort zu prüfen und Rückmeldung zu geben.
 ## Tags für Formulare
 
 Mit den HTML-Attributen `required`, `minlength`, `maxlength`, und einigen mehr kann
-man die Eingabe in einem Text-Eingabefehld prüfen:
+man die Eingabe in einem Text-Eingabefeld prüfen:
 
 <htmlcode caption="Einfaches Formular">
 <form method="get" action="bestellung.php">
   ...
-  <input type="text"  name="fullname" minlength="2" maxlength="200">
+  <input type="text"  name="fullname" required minlength="4" maxlength="8">
   ...
   <input type="submit" value="Bestellen">
 </form>
@@ -26,16 +26,18 @@ man die Eingabe in einem Text-Eingabefehld prüfen:
 So sieht das Formular im Browser aus:
 
 <form method="get" action="bestellung.php">
-  <input type="text"  name="fullname" minlength="2" maxlength="200">
+  <input type="text"  name="fullname" required  minlength="4" maxlength="8">
   <input type="submit" value="Bestellen">
 </form>
+
+
 
 ## pattern
 
 Mit dem Attribut `pattern` kann man ein "Muster" für den eigegebenen String vorgeben.
-Dieses "Muster" besteht im einfachsten fall aus einem Stück Text, im komplizierten
-Fall aus einer Folge von Sonderzeichen.  Es handelt sich um eine eigene kleine Programmiersprache,
-einer sogenannten "Regular Expression".
+Dieses "Muster" besteht im einfachsten Fall aus einem Stück Text, im komplizierten
+Fall aus einer Folge von Sonderzeichen.  Es handelt sich um eine eigene kleine Programmiersprache
+mit dem Namen "Regular Expression".
 
 
 <htmlcode caption="Formular mit pattern">
@@ -55,7 +57,7 @@ CSS selektieren:
 
 <css>
 :invalid {
-  background-color: pink;
+  box-shadow: 0px 0px 5px red;
 }
 </css>
 

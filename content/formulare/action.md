@@ -8,7 +8,7 @@ drücken? Meist werden Sie an den Webserver zur weiteren Verarbeitung geschickt.
 Diese action wird direkt im `<form>`-Tag angegeben.
 
 <htmlcode>
-<form action="http://multimediatechnology.at/~fhs666/pizza/bestellung.php">
+<form action="https://users.ct.fh-salzburg.ac.at/~bjelline/pizza/bestellung.php">
 </htmlcode>
 
 Für die Verarbeitung der Daten braucht man ein serverseitiges  Programm - hier
@@ -72,7 +72,7 @@ Die URL wird zusammengestellt aus:
     * Eingegebener / angeklickter Wert
 
 Falls dabei Sonderzeichen vorkommen  (z.B. Leerzeichen, Zeilenumbrüche, Umlaute,
-Fragezeichen, kaufmännisches Und) werden diese wie folgt encodiert: 
+Fragezeichen, kaufmännisches Und) werden diese wie folgt encodiert:
 
 Statt
 Leerzeichen wird ein `+` oder `%20` gesetzt, bei allen anderen Zeichen wird ein `%`
@@ -122,7 +122,7 @@ im Skype-Chat weitergegen habe, sind dritten bekannt, wie [diese Untersuchung vo
 Das "geheimhalten" einer URL ist also keine geeignete Sicherheitsmaßnahme!
 Wenn ich eine Webseite vor Zugriffen schützen will brauche ich dazu Passwörter
 und https, siehe [Authentisieren nach RFC 2617](/http/http/#slide-18)
-und [HTTPS](/http/http/slide.html#slide-19), beide im Kapitel HTTP, und 
+und [HTTPS](/http/http/slide.html#slide-19), beide im Kapitel HTTP, und
 das [Kapitel über Sessions](/session/).
 
 
@@ -134,7 +134,7 @@ Ein lehrreiches Beispiel aus der Frühzeit des Web: es gab einst Webshops, die d
 <form action="order.php" method="GET">
   Anzahl: <input name="anzahl"> <br>
   Adresse: <textarea name="adresse"></textarea><br>
-  Preis: 1.000.000 DM  
+  Preis: 1.000.000 DM
   <input type="hidden" name="preis" value="1000000">
   <input type="submit" value="Bestellung absenden">
 </form>
@@ -151,6 +151,6 @@ Wenn nun das Programm `order.php` einfach den Preis aus der URL übernimmt und
 auf die Rechnung schreibt, wird der Airbus recht günstig (für die KundIn)
 verkauft.
 
-Merke: Alle Eingaben die eine Web-Applikation erhält sind mit extremer Skepsis zu betrachten! 
+Merke: Alle Eingaben die eine Web-Applikation erhält sind mit extremer Skepsis zu betrachten!
 
 

@@ -4,20 +4,67 @@
 <head>
     <meta charset="utf-8">
     <title>Demo: Fieldset</title>
+    <style>
+        main {
+            max-width: 600px;
+        }
+        label {
+            display: block;
+        }
+        #output {
+            margin-top: 3em;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+        }
+        #output > * {
+            background-color: lightcyan;
+        }
+        b {
+            text-align: right;
+        }
+    </style>
 </head>
 
 <body>
+    <main>
     <h1>Demo: Fieldset</h1>
 
 
     <form action="#">
         <fieldset>
             <legend>Kreditkarte</legend>
-            <input name="nr" placeholder="0000 0000 0000 0000">
-            <label><input type="radio" name="kk" value="Master"> Master</label>
-            <label><input type="radio" name="kk" value="Visa"> Visa</label>
+            <lable>Nummer: <input name="nr" placeholder="0000 0000 0000 0000"></lable>
+            <lable>Person: <input name="card_holder"></lable>
+            <label><input type="radio" name="card_type" value="Mastercard"> Mastercard</label>
+            <label><input type="radio" name="card_type" value="Visa"> Visa</label>
         </fieldset>
+
+        <fieldset>
+            <legend>Adresse</legend>
+            <label>Strasse und Hausnummer: <input name="strasse"></label>
+            <label>Postleitzahl: <input name="plz"></label>
+            <label>Ort: <input name="ort"></label>
+        </fieldset>
+
+        <input type="submit">
+        <a href="?">zurück zum leeren Formular</a>
     </form>
+
+    <section id="output">
+
+    </section>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const out = document.getElementById('output');
+
+
+        urlParams.forEach((value, key) => {
+            out.innerHTML += "<strong>" + key + "</strong>";
+            out.innerHTML += "<span>" + value + "</span>";
+        });
+    </script>
+</main>
 </body>
 
 </html>

@@ -7,7 +7,7 @@ Im [Grundkurs HTML](/das-web-und-html/html-grundkurs/) haben wir als
 erstes Bildformat `svg` gennen gelernt. Das ist praktisch, weil es
 auf jeder Bildschirmgröße gut funktioneirt.
 
-Für Photos kann man aber kein Vektorformat verwenden, da brauchen wir ein Pixelformat wie `webp` oder `jpg`.
+Für Photos kann man aber kein Vektorformat verwenden, da brauchen wir ein Pixelformat wie `webp`, `avif` oder `jpg`.
 
 ACHTUNG: Der Einsatz von `gif` und `png` ist nicht mehr sinnvoll.
 
@@ -15,6 +15,32 @@ ACHTUNG: Der Einsatz von `gif` und `png` ist nicht mehr sinnvoll.
 * Bilder mit wenigen Farben und klaren Kanten (inkl. Transparenz), für die
 man früher `.png` verwendet hat, werden nun als `.svg` gespeichert.
 
+## Aktuelle Bildformate: webp und avif
+
+Wenn man nicht sicher ist, ob jpg, webp oder avif das beste Format
+für ein bestimmtes Bild wären, kann man das Bild in alle drei Formate
+konvertieren und dann die Dateigröße vergleichen.
+
+Hier ein paar Beispiele, die mit dem [Cloudinary Website Image Analysis Tool](erstellt wurden):
+
+Ein Logo mit Schrift - könnte hier `png` geeignet sein?
+
+![nein, avif ist am besten](/images/grafik/image-analysis-schriftlogo.png)
+
+Ein zweites Logo.
+
+![avif ist am besten](/images/grafik/image-analysis-logo2.png)
+
+
+Ein Bild das mit dem Computer erzeugt wurde:
+
+![avif ist wieder am besten](/images/grafik/image-analysis-cg.png)
+
+Und schließlich ein Foto:
+
+![avif ist immer noch am besten](/images/grafik/image-analysis-photo.png)
+
+In all diesen Fällen ist avif besser als webp, und webp besser als jpg.
 
 ## Problematik Pixeldichte und Auflösung
 

@@ -59,7 +59,7 @@ class Nanoc::Filter
       end
 
       return "" if set.length < 2
-      # puts "        srcset for #{file}: #{set.length} versions"
+      puts "        srcset for #{file}: #{set.length} versions"
       %Q{srcset="#{set.join ', '}" }
     end
 
@@ -487,4 +487,3 @@ route '*', :rep => :slide do
 end
 
 layout '*', :erb
-

@@ -24,7 +24,7 @@ Man gibt alle Daten für die SSH Verbindung in Kurzschreibweise an:  user@host:p
 
 
 
-![](/images/kommandozeile/vcsode-remote-terminal.png)
+![](/images/kommandozeile/vscode-remote-terminal.png)
 
 
 

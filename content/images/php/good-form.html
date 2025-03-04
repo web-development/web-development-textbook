@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Original Formular mit Eingabeprüfung am Client</title>
+</head>
+
+<body style="background-color: white; color:black;">
+  <nav>
+    <b>Das Formular</b> | <a
+      href="bad-form.html">Das böse Formular</a>
+  </nav>
+
+  <h1>Das Formular</h1>
+  <p>Das ist das Formular, das ich gebaut habe.
+    Ich will, dass alle Leute benutzen. Aber ....
+    ich kann niemanden zwingen. Die Leute können sich auch
+    selber ein  <a
+    href="bad-form.html">anderes Formular</a> bauen.
+  </p>
+  <form action="check-form.html" method="get">
+    <label>Anzahl: <input name="anzahl" type="number" style="width: 3em;"
+        required></label>
+    <label>E-Mail Adresse: <input name="adresse" required pattern=".*@.*" title="Valide E-Mail Adresse" ></label>
+    <input type="submit" value="Senden">
+  </form>
+</body>
+
+</html>

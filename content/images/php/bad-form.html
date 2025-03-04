@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Neues Formulars ohne Prüfung</title>
+  <style>
+    body {
+      background-color: black;
+      color:green;
+    }
+    a:visited {
+      color: yellowgreen;
+    }
+    a:link {
+      color: yellow;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <a href="good-form.html">Das Formular</a> | <b>Das böse Formular</b>
+  </nav>
+  <h1>Das böse Formular</h1>
+
+  <p>Jemand hat dieses Formular gebaut, und verwendet
+    es statt   <a
+    href="good-form.html">meinem Original-Formular</a>.
+  </p>
+  <form action="check-form.html" method="get">
+    <label>Anzahl: <input name="anzahl" type="text"></label>
+    <input type="submit" value="Senden">
+  </form>
+</body>
+
+</html>

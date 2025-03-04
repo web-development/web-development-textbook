@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Daten aus dem Formular</title>
+</head>
+
+<body style="background-color: white; color:black;">
+  <nav>
+    <a href="good-form.html">Das Formular</a> | <a
+      href="bad-form.html">Das böse Formular</a>
+  </nav>
+
+  <h1>Die Daten</h1>
+  <div id="output"></div>
+  <script>
+    console.log("let's go!")
+    // Access the URL of the current window
+    var url = window.location.href;
+
+    // Create a URLSearchParams object, it represents the get-parameters
+    var urlParams = new URLSearchParams(new URL(url).search);
+
+    // Create a list element to display the parameters
+    var listContainer = document.createElement('ul');
+    document.getElementById('output').appendChild(listContainer);
+
+    // Iterate over all keys and values directly to build the list
+    urlParams.forEach(function(value, key) {
+      var text = key + "=" + value;
+      console.log(text)
+        var listItem = document.createElement('li');
+        listItem.textContent = text;
+        listContainer.appendChild(listItem);
+    });
+
+  </script>
+</body>
+
+</html>

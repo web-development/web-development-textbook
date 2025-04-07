@@ -10,62 +10,65 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
-require "cgi"
-require "uri"
-require "curb"
-require "json"
+require 'cgi'
+require 'uri'
+require 'curb'
+require 'json'
 
 class Nanoc::Filter
   class ResponsiveImages < Nanoc::Filter
     identifier :responsive_images
-    def run(content, params={} )
+    def run(content, _params = {})
       @string = content.dup
 
-      @pending = ""
-      @output = ""
+      @pending = ''
+      @output = ''
 
       until @string.empty?
         # looking for        <img src="/images/balken.png" alt="Bild der Balkengrafik" />
-        match = scan_until /<img src="([^"]*)"([^>]*)\/>/
+        match = scan_until(%r{<img src="([^"]*)"([^>]*)/>})
 
-        break if !match
+        break unless match
+
         file, rest = match.captures
-        #puts "found a proper image #{file}"
-        #@output << match[0]
+        # puts "found a proper image #{file}"
+        # @output << match[0]
 
         @output << match.pre_match
 
-        @output << %Q{<img src="#{file}" }
+        @output << %(<img src="#{file}" )
         @output << srcset(file)
         @output << rest
-        @output << ">"
+        @output << '>'
       end # until @string.empty?
 
       @output << @string
-      @output << ""
+      @output << ''
 
       @output
     end
 
     def srcset(file)
-      pattern = "content" + file.gsub('.', '*.')
+      pattern = 'content' + file.gsub('.', '*.')
       files = Dir.glob(pattern)
       set = files.map do |filename|
         if match = filename.match(/@(\d)x/)
-          "#{filename.gsub('content','')} #{match[1]}x"
+          "#{filename.gsub('content', '')} #{match[1]}x"
         else
-          "#{filename.gsub('content','')} 1x"
+          "#{filename.gsub('content', '')} 1x"
         end
       end
 
-      return "" if set.length < 2
+      return '' if set.length < 2
+
       puts "        srcset for #{file}: #{set.length} versions"
-      %Q{srcset="#{set.join ', '}" }
+      %(srcset="#{set.join ', '}" )
     end
 
     def scan_until(regex)
       match = @string.match(regex)
       return unless match
+
       @string = match.post_match
       match
     end
@@ -73,7 +76,7 @@ class Nanoc::Filter
 
   class Peek < Nanoc::Filter
     identifier :peek
-    def run(content, params={} )
+    def run(content, _params = {})
       puts "#{content.length} bytes of content."
       content
     end
@@ -81,31 +84,31 @@ class Nanoc::Filter
 
   class NoSlides < Nanoc::Filter
     identifier :noslides
-    def run(content, params={})
-      @output =  content.dup.gsub(/^.*§.*$/,'');
+    def run(content, _params = {})
+      @output = content.dup.gsub(/^.*§.*$/, '')
       @output
     end
   end
 
   class SlideBreaks < Nanoc::Filter
     identifier :slide_breaks
-    def run(content, params={})
+    def run(content, _params = {})
       @string = content.dup
 
-      @pending = ""
-      @output = %Q{<div id="slide-1" title="Folie Nr. 1"></div>}
+      @pending = ''
+      @output = %(<div id="slide-1" title="Folie Nr. 1"></div>)
       i = 2
 
       until @string.empty?
-        match = scan_until /^(<h[123].*?>|<hr>+|^(<p>)*§(<.p>)*)$/m
+        match = scan_until(/^(<h[123].*?>|<hr>+|^(<p>)*§(<.p>)*)$/m)
 
-        break if !match
+        break unless match
 
         @output << match.pre_match
 
-        @output << %Q{\n<a class="slide_break" id="slide-#{i}" href="slide.html#slide-#{i}"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. #{i}">▻</a>\n\n}
+        @output << %(\n<a class="slide_break" id="slide-#{i}" href="slide.html#slide-#{i}"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. #{i}">▻</a>\n\n)
         i += 1
-        if match[0] =~ /§/ then
+        if match[0] =~ /§/
           # discard match
         else
           @output << match[0]
@@ -113,7 +116,7 @@ class Nanoc::Filter
       end # untile @string.empty?
 
       @output << @string
-      @output << ""
+      @output << ''
 
       @output
     end
@@ -121,30 +124,30 @@ class Nanoc::Filter
     def scan_until(regex)
       match = @string.match(regex)
       return unless match
+
       @string = match.post_match
       match
     end
   end
 
-
   class Slides < Nanoc::Filter
     identifier :slides
-    def run(content, params={})
+    def run(content, _params = {})
       @string = content.dup
 
-      @output = %Q{<div class="slide">}
-      @pending = ""
+      @output = %(<div class="slide">)
+      @pending = ''
 
       until @string.empty?
-        match = scan_until /^(<h[123].*?>|<hr>+|^(<p>)*§(<.p>)*)$/m
+        match = scan_until(/^(<h[123].*?>|<hr>+|^(<p>)*§(<.p>)*)$/m)
 
-        break if !match
+        break unless match
 
         @output << match.pre_match
 
-        @output << %Q{</div>\n<div class="slide">\n\n}
-        if match[0] =~ /§/ then
-          #puts "ignore #{match[0]}"
+        @output << %(</div>\n<div class="slide">\n\n)
+        if match[0] =~ /§/
+          # puts "ignore #{match[0]}"
           # discard match
         else
           @output << match[0]
@@ -152,7 +155,7 @@ class Nanoc::Filter
       end
 
       @output << @string
-      @output << "</div>"
+      @output << '</div>'
 
       @output
     end
@@ -160,24 +163,23 @@ class Nanoc::Filter
     def scan_until(regex)
       match = @string.match(regex)
       return unless match
+
       @string = match.post_match
       match
     end
   end
 
-
-
   class PatternTester < Nanoc::Filter
     identifier :pattern_tester
 
-    def run(content, params={})
+    def run(content, _params = {})
       @string = content.dup
 
-      @output = ""
-      @pending = ""
+      @output = ''
+      @pending = ''
 
       until @string.empty?
-        match = scan_until /(<patterntester(?: name="(.*?)")?(?: pattern="(.*?)")?>|\z)/m
+        match = scan_until(/(<patterntester(?: name="(.*?)")?(?: pattern="(.*?)")?>|\z)/m)
 
         @pending << match.pre_match
         flush
@@ -191,6 +193,7 @@ class Nanoc::Filter
     def scan_until(regex)
       match = @string.match(regex)
       return unless match
+
       @string = match.post_match
       match
     end
@@ -201,38 +204,39 @@ class Nanoc::Filter
 
     def replace_with_link(name, pattern)
       match = scan_until %r{</patterntester>}
-      if match and match.pre_match then
-        data = match.pre_match;
-        data_params = data.split(/\n/).map{|d| "list[]=#{d}" }.join("&")
-        out = "<a href='/images/match.html?pattern=#{u_esc(pattern)}&listname=#{u_esc name}&#{u_esc data_params}'>RegEx Tester: /#{CGI.escapeHTML(pattern).gsub(/\|/, "&#124;")}/</a>"
-        @output << out
-      end
+      return unless match and match.pre_match
+
+      data = match.pre_match
+      data_params = data.split(/\n/).map { |d| "list[]=#{d}" }.join('&')
+      out = "<a href='/images/match.html?pattern=#{u_esc(pattern)}&listname=#{u_esc name}&#{u_esc data_params}'>RegEx Tester: /#{CGI.escapeHTML(pattern).gsub(
+        /\|/, '&#124;'
+      )}/</a>"
+      @output << out
     end
 
     def flush
       @output << @pending
-      @pending = ""
+      @pending = ''
     end
   end
 
-
   class CodeBlocks < Nanoc::Filter
     identifier :code_blocks
-    LANGUAGES = { "ruby" => "ruby", "sql" => "sql", "javascript" => "javascript", "php" => "php",
-                  "css" => "css", "plain" => "plain", "erb" => "ruby; html-script: true", "htmlcode" => "html",
-                  "markup" => "xml", "xml" => "xml", "shell" => "shell", "yaml" => "yaml", "dtd"=> "html", "apache" => "ruby" }
+    LANGUAGES = { 'ruby' => 'ruby', 'sql' => 'sql', 'javascript' => 'javascript', 'php' => 'php',
+                  'css' => 'css', 'plain' => 'plain', 'erb' => 'ruby; html-script: true', 'htmlcode' => 'html',
+                  'markup' => 'xml', 'xml' => 'xml', 'shell' => 'shell', 'yaml' => 'yaml', 'dtd' => 'html', 'apache' => 'ruby' }
 
-    def run(content, params={})
+    def run(content, _params = {})
       @string = content.dup
 
-      @output = ""
-      @pending = ""
+      @output = ''
+      @pending = ''
 
-      languages = LANGUAGES.keys.join("|")
+      languages = LANGUAGES.keys.join('|')
 
       until @string.empty?
         # match = scan_until /(\+(\S.+?\S?)\+|<(#{languages})(?: filename=["']([^"']*)["'])?(?: caption=["']([^"']*)["'])?>|\z)/m
-        match = scan_until /(<(#{languages})(?: filename=["']([^"']*)["'])?(?: caption=["']([^"']*)["'])?>|\z)/m
+        match = scan_until(/(<(#{languages})(?: filename=["']([^"']*)["'])?(?: caption=["']([^"']*)["'])?>|\z)/m)
 
         @pending << match.pre_match
 
@@ -253,41 +257,43 @@ class Nanoc::Filter
     def scan_until(regex)
       match = @string.match(regex)
       return unless match
+
       @string = match.post_match
       match
     end
 
     def generate_brushes(tag, replace, filename, caption)
       match = scan_until %r{</#{tag}>}
-      if match and match.pre_match then
-        code = match.pre_match;
-        if code.match(/<\/javascript>/)  then
-          puts "this is an ERROR!"
-        elsif match = code.match(/^__\|__$/)  then
-          code1 = match.pre_match
-          code2 = match.post_match
-          @output << %{<div class="example twopane">\n}
-          @output << %{<div class="filename">#{filename}</div>\n} if filename
-          @output << %{<h4 class="caption">#{replace.capitalize} Code <small>#{caption}</small></h4>\n} if caption
-          @output << %{<pre class="lang-#{replace} prettyprint linenums left">}
-          @output << CGI.escapeHTML(code1) << %{</pre>}
-          @output << %{<pre class="lang-#{replace} prettyprint linenums right">}
-          @output << CGI.escapeHTML(code2) << %{</pre>}
-          @output << %{<div class="clearfix"></div></div>\n}
-        else
-          @output << %{<div class="example">\n}
-          @output << %{<div class="filename">#{filename}</div>\n} if filename
-          @output << %{<h4 class="caption">#{replace.capitalize} Code <small>#{caption}</small></h4>\n} if caption
-          @output << %{<pre class="lang-#{replace} prettyprint linenums">}
-          @output << CGI.escapeHTML(code) << %{</pre>}
-          @output << %{</div>\n}
-        end
+      return unless match and match.pre_match
+
+      code = match.pre_match
+      code = code.gsub(/^\n*/, '')
+      if code.match(%r{</javascript>})
+        puts 'this is an ERROR!'
+      elsif match = code.match(/^__\|__$/)
+        code1 = match.pre_match
+        code2 = match.post_match
+        @output << %(<div class="example twopane">\n)
+        @output << %(<div class="filename">#{filename}</div>\n) if filename
+        @output << %(<h4 class="caption">#{replace.capitalize} Code <small>#{caption}</small></h4>\n) if caption
+        @output << %(<pre><code class="language-#{replace} linenums left">)
+        @output << CGI.escapeHTML(code1) << %(</code></pre>)
+        @output << %(<pre><code class="language-#{replace} linenums right">)
+        @output << CGI.escapeHTML(code2) << %(</code></pre>)
+        @output << %(<div class="clearfix"></div></div>\n)
+      else
+        @output << %(<div class="example">\n)
+        @output << %(<div class="filename">#{filename}</div>\n) if filename
+        @output << %(<h4 class="caption">#{replace.capitalize} Code <small>#{caption}</small></h4>\n) if caption
+        @output << %(<pre><code class="language-#{replace}  linenums">)
+        @output << CGI.escapeHTML(code) << %(</code></pre>)
+        @output << %(</div>\n)
       end
     end
 
     def flush
       @output << @pending
-      @pending = ""
+      @pending = ''
     end
   end
 end
@@ -302,89 +308,88 @@ end
 
 preprocess do
   @chapterOrder = [
-    "das-web-und-html",
-    "css",
-    "css-layout",
-    "urls",
-    "formulare",
-    "javascript-dom",
-    "jquery",
-    "---",
-    "kommandozeile",
-    "git",
-    "http",
-    "php-vorbereitung",
-    "php",
-    "php-db-lesen",
-    "session",
-    "php-db-schreiben",
-    "php-db-optimierung",
-    "---",
-    "grafik",
-    "javascript",
-    "applied-js-and-css",
-    "js-http",
-    "json",
-    "xml",
-    "---",
-    "security",
-    "wordpress",
-    "apache",
-    "advanced-javascript",
-    "mobile",
-    "qualitaet"
+    'das-web-und-html',
+    'css',
+    'css-layout',
+    'urls',
+    'formulare',
+    'javascript-dom',
+    'jquery',
+    '---',
+    'kommandozeile',
+    'git',
+    'http',
+    'php-vorbereitung',
+    'php',
+    'php-db-lesen',
+    'session',
+    'php-db-schreiben',
+    'php-db-optimierung',
+    '---',
+    'grafik',
+    'javascript',
+    'applied-js-and-css',
+    'js-http',
+    'json',
+    'xml',
+    '---',
+    'security',
+    'wordpress',
+    'apache',
+    'advanced-javascript',
+    'mobile',
+    'qualitaet'
   ]
 
   @chapters = {}
 
   @github_users = {
-    "bjelline" =>  nil
+    'bjelline' => nil
   }
 
   @items.each do |item|
     item[:chapter] = item[:filename].split('/')[1]
-    item[:chapter_title] = item[:chapter].gsub(/-/, " ").gsub(/Qualitaet/, 'Qualität')   # .upcase
-    item[:github] = "bjelline"
+    item[:chapter_title] = item[:chapter].gsub(/-/, ' ').gsub(/Qualitaet/, 'Qualität') # .upcase
+    item[:github] = 'bjelline'
   end
 
-  @github_users.each do |username, wat|
-    #request = Curl::Easy.http_get("https://api.github.com/users/"+username)
-    #request.perform
-    @github_users[ username ] = {} #JSON.parse(request.body_str)
+  @github_users.each do |username, _wat|
+    # request = Curl::Easy.http_get("https://api.github.com/users/"+username)
+    # request.perform
+    @github_users[username] = {} # JSON.parse(request.body_str)
   end
 
-
-  @groupedItems = @items.group_by {|item| item[:chapter]}
+  @groupedItems = @items.group_by { |item| item[:chapter] }
 
   @orderedItems = []
 
   last_folder = 0
   @chapterOrder.each do |folder|
-    if folder == "---" then
-      @chapters[ last_folder ][ :separator ] = true
+    if folder == '---'
+      @chapters[last_folder][ :separator ] = true
     else
-      myitems = @groupedItems[ folder ]
-      @chapters[ folder ] = {}
-      if ! @groupedItems[folder].nil? then
-        @chapters[ folder ][ :items ] = @groupedItems[folder].sort_by {|i| i.attributes[:order] || 0 }
-        @orderedItems = @orderedItems + @chapters[ folder ][ :items ]
+      @groupedItems[folder]
+      @chapters[folder] = {}
+      unless @groupedItems[folder].nil?
+        @chapters[folder][ :items ] = @groupedItems[folder].sort_by { |i| i.attributes[:order] || 0 }
+        @orderedItems += @chapters[folder][:items]
       end
-      @chapters[ folder ][ :title ] = folder.gsub(/-/, " ").gsub(/Qualitaet/,"Qualität").split(' ').map {|w| w.capitalize }.join(' ')
-      @chapters[ folder ][ :folder ] = folder
-      if last_folder != 0 and @chapters[ last_folder ] then
-        @chapters[ last_folder ][ :separator ] = false
-      end
+      @chapters[folder][ :title ] = folder.gsub(/-/, ' ').gsub(/Qualitaet/, 'Qualität').split(' ').map do |w|
+        w.capitalize
+      end.join(' ')
+      @chapters[folder][ :folder ] = folder
+      @chapters[last_folder][ :separator ] = false if last_folder != 0 and @chapters[last_folder]
     end
-    last_folder=folder
+    last_folder = folder
   end
 
   @items.each do |item|
     i = item[:ordinal_index] = @orderedItems.index(item)
     if i
-      item[:next_item]     = @orderedItems[ i+1 ].identifier if @orderedItems[ i+1 ]
-      item[:previous_item] = @orderedItems[ i-1 ].identifier if @orderedItems[ i-1 ]
+      item[:next_item]     = @orderedItems[i + 1].identifier if @orderedItems[i + 1]
+      item[:previous_item] = @orderedItems[i - 1].identifier if @orderedItems[i - 1]
     end
-    item[:github_user] = @github_users[ item[:github] ]
+    item[:github_user] = @github_users[item[:github]]
   end
 
   @config[:chapters] = @chapters
@@ -399,19 +404,19 @@ compile '/images/*' do
 end
 
 filters = {
-  :markdown => :kramdown,
-  :md       => :kramdown,
-  :html     => :erb
+  markdown: :kramdown,
+  md: :kramdown,
+  html: :erb
 }
 
 # Index files in each content directory
-route "/*/dex" do
-  item.identifier.to_s.sub("dex/", "") + 'index.html'
+route '/*/dex' do
+  item.identifier.to_s.sub('dex/', '') + 'index.html'
 end
 
 # Just the homepage
-route "/dex" do
-  item.identifier.to_s.sub("dex/", "") + 'index.html'
+route '/dex' do
+  item.identifier.to_s.sub('dex/', '') + 'index.html'
 end
 
 compile '*' do
@@ -422,7 +427,7 @@ compile '*' do
   filter filters[item[:extension].to_sym] || item[:extension].to_sym
   if item[:homepage]
     layout 'home'
-  elsif item.identifier.to_s.match /\/dex\/$/
+  elsif item.identifier.to_s.match(%r{/dex/$})
     filter :slide_breaks
     layout 'dex'
   else
@@ -434,10 +439,10 @@ compile '*' do
 end
 
 route '*' do
-  #p [item.identifier, item[:extension], item.binary?]
+  # p [item.identifier, item[:extension], item.binary?]
   if item.binary? || item[:extension] == 'css' || item[:extension] == 'js' || item[:extension] == 'png' || item[:extension] == 'html' || item[:extension] == 'xml'
     # /foo/ -> /foo.ext
-    #p item.identifier.chop + '.' + item[:extension]
+    # p item.identifier.chop + '.' + item[:extension]
     item.identifier.to_s.chop + '.' + item[:extension]
   elsif item[:extension] == 'txt'
     item.identifier.to_s.chop + '.' + item[:extension]
@@ -449,20 +454,20 @@ route '*' do
   end
 end
 
-compile '/assets/*', :rep => :slide do
+compile '/assets/*', rep: :slide do
   # don’t filter or layout
 end
 
-compile '/images/*', :rep => :slide  do
+compile '/images/*', rep: :slide do
 end
 
-compile '*', :rep => :slide do
+compile '*', rep: :slide do
   filter :pattern_tester
   filter :code_blocks
   filter :kramdown
   filter :responsive_images
 
-  #filter filters[item[:extension].to_sym] || item[:extension].to_sym
+  # filter filters[item[:extension].to_sym] || item[:extension].to_sym
   filter :slides
   if item[:homepage]
     # noop
@@ -473,13 +478,13 @@ compile '*', :rep => :slide do
   filter :includes
 end
 
-route '*', :rep => :slide do
+route '*', rep: :slide do
   if item.binary? || item[:extension] == 'css' || item[:extension] == 'js' || item[:extension] == 'png' || item[:extension] == 'xml' || item[:extension] == 'html'
     nil
   elsif item[:homepage]
     nil
-  elsif item.identifier.to_s.match /\/dex\/$/
-    item.identifier.to_s.gsub(/dex\//,'slide.html')
+  elsif item.identifier.to_s.match(%r{/dex/$})
+    item.identifier.to_s.gsub(%r{dex/}, 'slide.html')
   else
     # /foo/ -> /foo/index.html
     item.identifier + 'slide.html'

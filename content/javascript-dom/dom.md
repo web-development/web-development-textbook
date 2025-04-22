@@ -55,12 +55,15 @@ Diese beiden Zeilen könnten auch zu einer kombiniert werden:
 document.getElementById("person_25").style.display = "none";
 </javascript>
 
+Aber dann kann man den Fall, dass person_25 nicht gefunden wird
+nicht behandeln. Falls ein Fehler auftritt: "Uncaught TypeError: can't access property style, document.getElementById(...) is null"
+bricht das Programm an dieser Stelle ab, es gibt nur eine Ausgabe
+in der Console aber keine Fehlermeldung für die/den User*in.
 
 ### Manipulieren der Klassen
 
 Statt den Style direkt zu manipulieren, könnte
 man eine Klasse setzen:
-
 
 <javascript>
 document.getElementById("person_25").classList.add('sichtbar');

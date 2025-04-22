@@ -52,6 +52,7 @@ Bei Objekten oder Arrays zeigt sich die Beschränktheit:
 const myArray = [1,2,3];
 myArray[0] = 100;  // einen Wert zu ändern ist erlaubt
 myArray.push(4);   // einen Wert hinzu zu fügen ist erlaubt
+myArray.splice(2, 1); // nach dem 2.Element ein Element entfernen ist erlaubt
 myArray = [5,6,7]; // Uncaught TypeError: invalid assignment to const 'myArray'
 
 const myObject = { farbe: 'grün', anzahl : 4 }
@@ -138,27 +139,17 @@ function logFullUser(user) {
   console.dir(user);
 }
 logFullUser(user);
-// full information about the user: debugger eval code:11:11
-// Object { id: 42, displayName: "jdoe", fullName: {…} }
+full information about the user: debugger eval code:11:11
+Object { id: 42, displayName: "jdoe", fullName: {…} }
 
-function logFirstName({ fullName: { firstName: name } }) {
-  console.log("Hello", name);
-}
-logFirstName(user); // Hello Jane
 function logUserId({ id }) {
   console.log("the user id is", id);
 }
 logUserId(user); // the user id is 42
 </javascript>
 
-
-
-
-
 ## Siehe auch
+
 
 * [MDN: Destructuring](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/Destructuring)
 * [MDN: Object initializer](https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/Object_initializer) zu shorthand property names
-
-
-

@@ -57,6 +57,16 @@ Diese Guidelines basieren auf [4 Grundprinzipien](https://www.w3.org/TR/UNDERSTA
 
 WCAG definiert drei "Konformitätsstufen": A, AA, AAA.
 
+§
+
+Zum Einstieg eine Illustration von Intopia dazu:
+
+![](/images/qualitaet/map-intopia.png)
+
+Siehe auch das [ausführliche Poster](/images/qualitaet/2019-WCAG2.1-Map-Intopia-plus-reading-order.pdf)
+Damit kann man sich einen Überblick verschaffen, bevor man [die einzelnen Guidelines](https://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv.html) durcharbeitet.
+
+
 ### Gesetzeslage in Österreich
 
 Drei relevante Gesetze:

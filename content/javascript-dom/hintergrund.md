@@ -8,22 +8,19 @@ Anwendungsgebiet
 
 Javascript ist eine Programmiersprache die in HTML eingebettet und vom Browser interpretiert wird. Im Browser ist der Wirkungsbereich von Javascript auf das Fenster und das aktuelle Dokument beschränkt – es kann nicht die Festplatte formatieren oder Excel starten.
 
-Laut [TIOBE Index](https://www.tiobe.com/tiobe-index/) ist Javascript auf Platz 6 oder 7 der Programmiersprachen, aber bei [Stackoverflow](https://insights.stackoverflow.com/survey/2018/#technology) ist es die beliebteste Programmiersprache.
+Laut [TIOBE Index](https://www.tiobe.com/tiobe-index/) ist Javascript auf Platz 6 oder 7 der Programmiersprachen, aber bei [Stackoverflow](https://survey.stackoverflow.co/2024/technology#2-programming-scripting-and-markup-languages) ist es die 2.-beliebteste Programmiersprache.
 
 Typische Verwendung
 -------------------
 
 Neben der Verwendung für kleine Effekte im Browser hat Javascript noch weitere wichtige Anwendungsgebiete:
 
-* Zum Nachladen von Daten ( HTTP Requests mit `fetch`, manchmal „AJAX“ genannt) – das macht das Web viel interaktiver und angenehmer in der Benutzung.
-
-* Mit Javascript können Webseiten auch „offline“ – also ohne Verbindung zum Internet und dem Webserver – weiterarbieten. Diese Art von Webseiten wird als  „progressive Web App“  bezeichnet.
-
+* Zum Nachladen von Daten (HTTP Requests mit `fetch`, früher „AJAX“ genannt) – das macht das Web viel interaktiver und angenehmer in der Benutzung.
+* Mit Javascript können Webseiten auch „offline“ – also ohne Verbindung zum Internet und dem Webserver – weiterarbeiten. Diese Art von Webseiten wird als  „progressive Web App“  bezeichnet.
 * Der Server Node JS ist ein (Web)Server, den man mit Javascript programmieren kann. Damit kann man also auch das Backend in JavaScript programmieren.
-
 * Mit [Electron](https://www.electronjs.org/de/) kann ein Programm in JavaScript schreiben, die Oberfläche dazu mit Web-Technologien bauen, und es dann wie ein "normales" Windows Programm / MacOS Programm ausliefern. z.B. VS Code.
-
 * Die No-SQL Datenbanken CouchDB und MongoDB verwendet Javascript als Abfragesprache.
+* Da Javascript lange das "Monopol" im Browser hatte, ist es Ziel-Sprache für Transpiler: die Sprachen [Elm](https://elm-lang.org/), [CoffeeScript](https://coffeescript.org) und [TypeScript](https://www.typescriptlang.org/) werden nach Javascript übersetzt, und können erst so im Browser laufen.
 
 
 Javascript und Java
@@ -38,7 +35,7 @@ Es gibt noch eine zweite Programmiersprache mit sehr ähnlichem Namen: Java. Die
 |                      | Interpretiert Sprache    | Kompilierte Sprache |
 | Typen                | Wenige Datentypen, Probleme werden erst zur Laufzeit erkannt | Datentypen und Klassen werden streng unterschieden und zur Compilezeit geprüft |
 |  Objektorientierung |  Objekte, Prototypen, später auch Klassen |  Objekte und Klassen |
-| Verwendung           | Im Webbrowser, am Webserver (node.js), auf Deskstops, Handies,... | Überall (Android, Chipkarten, am Webserver) |
+| Verwendung           | Im Webbrowser, am Webserver (z.B. mit node.js), in einzelnen Programmen | Überall (Android, Chipkarten, am Webserver) |
 | Projekte | Früher nur winzige Projekte (z.B: Animations-Effekt),  in den letzten Jahren: Web als GUI für viele Applikationen, viel JavaScript (z.B. Facebook, Gmail, etc. | Alle, auch Großprojekte mit vielen Jahren Entwicklungszeit |
 | Wer |  Manchmal auch Web-Designer*innen | Nur hauptberufliche Programmierer*innen |
 {: class="table table-condensed table-bordered" style="width:auto"}

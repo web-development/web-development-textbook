@@ -3,6 +3,130 @@ title: setTimeout
 order: 65
 ---
 
+
+Wie kann man in Javascript mit der Zeit arbeiten? Eine Uhr bauen?
+Die Zeit stoppen?
+
+Dafür lernen wir nun zwei Methoden kennen.
+
+## setTimeout
+
+Die Metode `setTimeout` gehört zum `window` Objekt im Browser.
+
+Mit dieser Methode kann man einen Funktionsaufruf "in die Zukunft" schicken:
+
+<javascript>
+function later () {
+  console.log("this will happen in 1 second.");
+}
+
+setTimeout(later, 1000);
+</javascript>
+
+Das erste Argument ist eine Funktion, die in der Zukunft aufgerufen
+werden soll. Das zweite Argument gibt die Zeit in Millisekunden an.
+
+## mit Arrow Function
+
+Man kann die Funktion auch als Arrow-Function schreiben:
+
+<javascript>
+setTimeout(() => {
+  console.log("this will happen in 1 second.");
+}, 1000);
+</javascript>
+
+## Das ist synchron
+
+Mit der `setTimout` Methode lernen wir die erste
+asynchrone Methode kennen.
+
+Bei allen anderen Funktionen
+war es immer so, dass erst nachdem die Methode ihre
+Arbeit beendet hat der nächste Befehl ausgeführt wird:
+
+<javascript>
+function now () {
+  console.log("2");
+}
+
+console.log("1");
+now();
+console.log("3");
+</javascript>
+
+Deswegen ist der Output hier 1, 2, 3.
+
+## Das ist asynchron
+
+Da `setTimout` asynchron arbeitet, ist die
+Reihenfolge hier anders:
+
+<javascript>
+function later () {
+  console.log("2? will happen in 1 second.");
+}
+
+console.log("1");
+setTimeout(later, 1000);
+console.log("3");
+</javascript>
+
+Der Output ist 1, 3.  Und sehr viel später dann: 2? will happen in 1 second.
+
+
+## timeout abbestellen
+
+Wenn man den timer nicht mehr braucht, kann man ihn
+mit `clearTimeout` wieder löschen:
+
+<javascript>
+function later () {
+  console.log("will happen in 1 second.");
+}
+
+let t = setTimeout(later, 1000);
+
+clearTimeout(t);
+</javascript>
+
+Hier wird es nie zu dem Output kommen.
+
+
+## Intervall
+
+Mit der Methode `setInterval` können wir eine Funktion
+wiederholt aufrufen lassen:
+
+<javascript>
+function again () {
+  console.log("another second is over.");
+}
+
+setTimeout(again, 1000);
+</javascript>
+
+## interval abbestellen
+
+Genau wie bei `setTimeout` und `clearTimeout`
+gibt es zu `setInterval` ein `clearInterval`:
+
+<javascript>
+let counter = 0;
+let i;
+
+function again () {
+  counter++;
+  console.log(counter, " seconds");
+  if (counter > 10) clearInterval(i);
+}
+
+i = setInterval(again, 1000);
+</javascript>
+
+
+# Vertiefung: Asynchron
+
 Bei der Vorstellung der asynchronen Funktionen haben wir gelernt:
 Ein laufendes Javascript-Programm wird niemals unterbrochen.
 Erst wenn das aktuelle Programm beendet ist

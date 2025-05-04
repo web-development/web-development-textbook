@@ -3,196 +3,167 @@ title: Module
 order: 45
 ---
 
-Wie kann man Javascript-Code in größere Einheiten
-organisieren?  Wo doch die Sprache keine Unterstütztung
-für Namespaces oder Kapselung bietet?
+Neben Funktionen und Klassen gibt es noch eine weitere
+Möglichkeit Javascript Code zu strukturieren: Module.
 
-Eine Lösung für diese Fragestellung ist der Modul-Pattern,
-hier beschrieben nach [Stefanov(2010): Javascript Patterns](http://shop.oreilly.com/product/9780596806767.do), Kapitel 5.
-Siehe auch [Osmani(2012): Learning JavaScript Design Patterns](http://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript).
 
-## Viele Skripte, ein Namensraum
+## Javascript ohne Module
 
-Häuft werden in einer Webseite Javascript-Programm aus
-verschiedenen Quellen kombiniert.  Die Webseite
-enthält z.B. 
+Im "klassischen" Javascript kann Code aus verschiedenen
+Datei geladen und zu einem Programm zusammen gesetzt werden.
+Dabei gibt es nur einen Namensraum für den gesamten Code:
 
-* Javascript der Website selbst, zu Prüfung von Formulardaten und für Animationen
-* für Zugriffs-Statistiken, z.B. [Google Analytics](http://support.google.com/googleanalytics/bin/answer.py?hl=en&answer=174090)
-* für das Teilen von Inhalten auf Sozialen Netzwerkden, z.B. [Facebook-Like-Button](https://developers.connect.facebook.com/docs/reference/plugins/like/)
-* für Feedback zu Webseite z.B. [UserVoice](http://uservoice.com)
-* für Kommentare auf der Webseite, z.B.  [Disqus](http://docs.disqus.com/developers/universal/)
-* für das Einbinden einer Landkarte, z.B. mit [Leaflet](http://leafletjs.com/) oder [Openlayers](http://openlayers.org/)
+<htmlcode>
+<h1>Diekt in der HTML Datei</h1>
+<script>let a = 10;</script>
+<script src="meinskript.js"></script>
+<script>
+console.log("kann b sehen", b);
+b += 10;
+console.log("kann b verändern", b);
+</script>
+</htmlcode>
 
-Mit ein bisschen Copy-und-Paste kann man die verschiedenen
-Programme schnell in die eigene Webseite einbauen. All diese
-Programme laufen dann im selben Javascript Interpreter ab,
-und benutzen einen gemeinsamen globalen Namensraum.
 
-## Namensraum imitieren
-
-Um einen Namensraum zu imitieren kann man ein Objekt in Javascript verwenden.
-
-Die linke Version erzeugt 5 globale Namen. Oder, um genauer zu sein: sie
-erzeugt 3 Eigenschaften und 2 Methoden des `window`-Objekts. Würde ein
-anderes Programm ebenfalls ein Funktion `f()` definieren, so würde
-die spätere Definition erhalten bleiben.
-
-In der rechten Version wird nur ein globaler Name angelegt: `APP`.
-Alle weiteren Namen sind dann in diesem Objekt versteckt. Würde
-ein anderes Programm in der Webseite auch eine Funktion `f()` definieren
-dann wäre das kein Problem mehr.
-
-<javascript caption="Ein globales Namensraum-Objekt statt vieler globalen Variablen">
-// globale Variabeln 
-
-var KONSTANTE = 3.141;
-var variable = 3;
-function Ding(){
-  return this;
-}
-function f(x){
-  return 2*x;
-}
-
-var objekt = new Ding();
-__|__
-// ein Namensraum-Objekt
-var APP = {}
-APP.KONSTANTE = 3.141;
-APP.variable = 3;
-APP.Ding = function() {
-  return this;
-}
-APP.f = function(x) {
-  return 2*x;
-}
-
-APP.objekt = new APP.Ding();
+<javascript caption="Datei meinskript.js">
+let b = 2000;
+console.log("kann a sehen", a);
+a += 10;
+console.log("kann a verändern", a);
 </javascript>
 
-## Nachteile des Objekts als Namensraum
 
-Wenn man modernes Javascript (z.B. ES6) oder ES5 mit "use strict" verwendet,
-dann erhält man Fehlermeldungen beim Zugriff auf nicht deklarierte Variablen.
-
-Das Objekt als Namensraum kann das nicht bieten: ein nicht existierendes Attribut des Objekt
-liefert einfach den Wert `undefined`, aber keinen Fehler:
-
-![Kein Error im namensraum](/images/js-namensraum.png)
+[Demo](/images/javascript/no-module.html)
 
 
-## Namensräume anlegen
+### Probleme ohne Module
 
-Namensräume können auch verschachtelt werden:
+Dieser gemeinsame Namensraum bringt viele Probleme:
+z.B. wenn ich ein fertiges Skript verwenden will,
+aber zufällig die gleichen Variablennamen oder Funktionsnamen
+selber schon verwendet habe.
 
-<javascript caption="Verschachtelte Namensräume">
-var GAME =  GAME || {};
-GAME.Player = ...
-GAME.Master = ...
-</javascript>
+## Javascript mit Modulen
+
+Um Module im Browser zu verwenden, muss im `script` Tag
+das Attribut `type` gesetzt sein:
+
+<htmlcode>
+<script type="module">
+  let a = 1;
+</script>
+</htmlcode>
+
+
+## import
+
+
+Das Einbinden von externem Code erfolgt nun nicht mehr mit
+dem `script` Tag, sondern mit einem `import` Statement:
+
+<htmlcode>
+<script type="module">
+  let a = 1;
+
+  import { b, setB } from './meinmodule.js';
+</script>
+</htmlcode>
+
+
+
+Dabei wird genau angegeben, welche Variablen, Funktionen, Klassen
+ich aus der anderen Datei verwenden will.
 
 §
 
-Die erste Zeile enthält eine Vorsichtsmaßnahme: Falls
-`GAME` schon definiert wäre, dann wird die alten Definition
-nicht überschrieben.  Dabei macht man sich die
-[Kurzschulssauswertung](http://de.wikipedia.org/wiki/Kurzschlussauswertung)
-des Oder-Operators zu nutze.
-
-Folgender Code zeigt eine alternative Schreibweise
-für diese Zuweisung:
-
-<javascript caption="Schreibweisen für Default-Wert">
-var GAME = GAME || {};
+Nur die importierten Dinge sind dann zugänglich:
 
 
+<htmlcode>
+<script type="module">
+  let a = 1;
+
+  import { b, setB } from './meinmodule.js';
+
+  console.log(b);  // Variable ist lesbar
+  // b += 10;      // funktioniert nicht, importiert ist wie const
+  setB(42);        // Funktion kann aufgerufen werden
+</script>
+</htmlcode>
+
+Eine Zuweisung auf die Variable `b` ist aber nicht möglich,
+sie verhält sich hier wie eine `const`.
 
 
 
-__|__
-var GAME;
-if( GAME ) {
-  // GAME = GAME;
-} else {
-  GAME = {};
+## export
+
+In der importierten Datei sind vielleicht viele Variablen, Klassen,
+Funktionen vorhanden. Aber nur diejenigen, die eine
+einer `export` Deklaration haben stehen für einen Import zur Verfügung:
+
+<javascript caption="Datei meinmodule.js">
+export let b = 10;
+
+let c = 'super secret';
+
+</javascript>
+
+Die Variable `b` wird exportiert. Hier ist sie wirklich eine Variable, und kann
+ verändert werden.
+
+Die Variable `c` wird nicht exportiert, und kann
+in der HTML-Datei oder in anderen Modulen nicht verwendet werden.
+
+## export von Funktionen
+
+<javascript caption="Datei meinmodule.js">
+export let b = 10;
+
+let c = 'super secret';
+
+export function setB( newValue ) {
+  b = newValue;
 }
 </javascript>
 
+Die Funktion `setB`  wird exportiert. Sie hat Zugriff auf die
+Variable `b` und kann sie verändern.
 
-## Sofort ausgewertete Funktionen
+## export Deklarationen zusammenfassen
 
-Eine andere Methode um den globalen Namensraum sauber zu halten
-sind die sogenannten "sofort augewerteten Funktionen" ("immediately invoked funktion" oder "immediate function").
+Man könnte die export-Deklarationen am Ende
+des Module zusammenfassen:
 
-Dabei wird eine Funktion definiert und sofort - und nur einmal - aufgerufen.
-Nur der Rückgabewert wird ein einer globalen Variable `g` gespeichert.
 
-Beachten sie dabei die Klammern rund um die Funktions-Definition:
+<javascript caption="Datei meinmodule.js">
+let b = 10;
 
-<javascript caption="Schreibweise für sofort ausgewertete Funktionen">
-var g = (function(){
-  return 42;
-})();
-</javascript>
+let c = 'super secret';
 
-§
+function setB( newValue ) {
+  b = newValue;
+}
 
-Hier eine komplexere Version. Die vielen Variablen und Funktionen die innerhalb
-der sofort ausgewertete Funktion definiert sind, bleiben unsichtbar. Sie
-sind "von aussen" nicht zugänglich.
-
-<javascript caption="sofort ausgwertete Funktion">
-var g = (function(){
-  var a,b,c;
-  function d(x) {
-    return 2*x;
-  }
-  function Ding(v) {
-    this.value = v;
-  }
-
-  a = 10;
-  b = d( a );
-  c = new Ding(b);
-
-  return a;
-})();
+export { b, setB };
 </javascript>
 
 
-## Module
+## Module zur Strukturierung
 
-Namensräume und sofort augewertete Funktionen werden verwendet um
-sogenannte Module zu bauen. Das Modul bündelt alle Namen unter
-einem Namensraum und bietet die Möglichkeit von privaten und
-öffentlichen Eigenschaften und Funktionen.
+Mit diesem einfachen Mechanismus der Module kann man
+nun die Probleme des gemeinsamen Namensraumes vermeiden,
+und größere Programme in Teile zerlegen.
 
-In diesem Beispiel ist das Modul ein Objekt:
-
-
-<javascript caption="Schreibweise für ein Modul: ein Objekt">
-var APP = (function(){
-  var a,b,f;      // private 
-  var c,d,g;      // öffentlich
-  f = function() {  
-    // private Funktion
-  };
-  g = function() {  
-    // öffentliche Funktion
-  };
-  return {
-    c: c,
-    d: d,  
-    g: g
-  };
-})();
-</javascript>
+Da in einem Modul alle importe und export explizit angeführt
+sind, muss man (fast) nichts über das restliche Programm
+wissen, um ein einzelnes Module zu verstehen.
 
 
-## Siehe Auch
+
+## Siehe auch
 
 
-* [Stefanov(2010): Javascript Patterns](http://shop.oreilly.com/product/9780596806767.do), Kapitel 5.
-* [Osmani(2012): Learning JavaScript Design Patterns](http://addyosmani.com/resources/essentialjsdesignpatterns/book/#modulepatternjavascript)
-* [Wikipedia: Immediately-invoked function](https://en.wikipedia.org/wiki/Immediately-invoked_function_expression)
+* [Demo](/images/javascript/module.html)
+* [Module](https://developer.mozilla.org/de/docs/Web/JavaScript/Guide/Modules) in der MDN
+

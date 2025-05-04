@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="/assets/img/favicon.png">
+  <title>Demo-Seite: Javascript und Module</title>
+  <style>
+    main {
+      max-width: 600px;
+      margin: 0 auto;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .flex {
+      display: flex;
+      gap: 5px;
+    }
+  </style>
+  </head>
+  <body  id="bg">
+    <main>
+      <nav class="flex">
+        <b>ohne Module</b>
+        |
+        <a href="module.html">mit Modul</a>
+
+      </nav>
+      <h1>Variablen in Javascript ohne Module</h1>
+
+      <script>
+        let a = 1;
+      </script>
+      <script src="meinscript.js"></script>
+      <script>
+        console.log("direkt im html kann ich variable b sehen:", b);
+        b += 10;
+        console.log("direkt im html kann ich variable b sehen:", b);
+      </script>
+      <p>
+        javascript-code der mit normalen script-tags geladen wird
+        befindet sich gemeinsam in einem globalen namensraum.
+      </p>
+    </main>
+
+
+  </body>
+  </html>
+

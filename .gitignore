@@ -6,3 +6,7 @@ tmp
 *.swp
 .vscode/**/*
 logs/*
+# SpecStory explanation file
+.cursorindexingignore
+.specstory/
+crash.log

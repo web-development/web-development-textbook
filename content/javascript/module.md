@@ -5,12 +5,34 @@ order: 45
 
 Neben Funktionen und Klassen gibt es noch eine weitere
 Möglichkeit Javascript Code zu strukturieren: Module.
+Wozu braucht man sie? Dazu ein Blick zurück in die Geschichte
+von Javascript:
+
+## Eine Webseite, viele Skripte
+
+Häufig werden in einer Webseite Javascript-Programm aus
+verschiedenen Quellen kombiniert.  Die Webseite
+enthält z.B.
+
+* Javascript der Website selbst, zu Prüfung von Formulardaten und für Animationen
+* für Zugriffs-Statistiken, z.B. [Google Analytics](https://support.google.com/analytics/answer/9304153?hl=en&ref_topic=14088998&sjid=18275927634933066193-EU#zippy=%2Cweb%2Cadd-the-google-tag-directly-to-your-web-pages)
+* für das Teilen von Inhalten aus Sozialen Netzwerkden, z.B. [Instagram Embed](https://developers.facebook.com/docs/instagram-platform/embed-button/)
+* für Feedback zu Webseite z.B. [UserVoice](http://uservoice.com)
+* für Kommentare auf der Webseite, z.B.  [Disqus](http://docs.disqus.com/developers/universal/)
+* für das Einbinden einer Landkarte, z.B. mit [maplibre.js](https://maplibre.org/)
+
+Mit ein bisschen Copy-und-Paste kann man die verschiedenen
+Programme schnell in die eigene Webseite einbauen.
+
+Aber achtung: all diese
+Programme laufen dann im selben Javascript Interpreter ab,
+und benutzen einen gemeinsamen globalen Namensraum.
 
 
 ## Javascript ohne Module
 
-Im "klassischen" Javascript kann Code aus verschiedenen
-Datei geladen und zu einem Programm zusammen gesetzt werden.
+Im "klassischen" Javascript kann Code mit dem `script` Tag aus verschiedenen
+Dateien geladen und zu einem Programm zusammen gesetzt werden.
 Dabei gibt es nur einen Namensraum für den gesamten Code:
 
 <htmlcode>

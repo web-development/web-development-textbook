@@ -10,3 +10,5 @@ logs/*
 .cursorindexingignore
 .specstory/
 crash.log
+# SpecStory explanation file
+.specstory/.what-is-this.md

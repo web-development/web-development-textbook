@@ -77,6 +77,8 @@ das Attribut `type` gesetzt sein:
 </htmlcode>
 
 
+
+
 ## import
 
 
@@ -91,10 +93,18 @@ dem `script` Tag, sondern mit einem `import` Statement:
 </script>
 </htmlcode>
 
-
-
 Dabei wird genau angegeben, welche Variablen, Funktionen, Klassen
 ich aus der anderen Datei verwenden will.
+
+Achtung: schon die HTML-Datei muss eine http oder https URL haben,
+ebenso die geladenen Javascript Dateien.
+
+Mit einer file-URL erhält man eine Fehlermeldung:
+
+![](/images/javascript/module-error-file-url.png)
+
+> Quellübergreifende (Cross-Origin) Anfrage blockiert: Die Gleiche-Quelle-Regel verbietet das Lesen der externen Ressource auf file:///...boardgame-counter/counter-7b.js. (Grund: CORS-Anfrage war nicht http).
+> A Modul-Quell-URI ist in diesem Dokument nicht erlaubt: "file:///...index-7b.html".
 
 §
 

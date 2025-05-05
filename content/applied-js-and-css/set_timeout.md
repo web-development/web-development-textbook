@@ -103,7 +103,7 @@ function again () {
   console.log("another second is over.");
 }
 
-setTimeout(again, 1000);
+setInterval(again, 1000);
 </javascript>
 
 ## interval abbestellen

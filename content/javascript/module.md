@@ -181,6 +181,20 @@ export { b, setB };
 </javascript>
 
 
+## Developer Tools
+
+Achtung: wenn wir Module verwenden gibt es kaum noch echte
+globale Variablen, die wir in den Developer Tools, in der Konsole
+direkt ausgeben können.
+
+Statt dessen muss man auf den echten Debugger zurückgreifen,
+und einen Breakpoint setzen:
+
+
+![Debugger in den Developer Tools](/images/javascript/debugger-breakpoint.png)
+
+
+
 ## Module zur Strukturierung
 
 Mit diesem einfachen Mechanismus der Module kann man

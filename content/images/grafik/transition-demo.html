@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="/assets/img/favicon.png">
+  <title>Demo-Seite: Animation mit CSS Transition</title>
+  <style>
+    .ui {
+      display: flex;
+      gap: 10px;
+      padding: 10px 0;
+    }
+
+    .box {
+      background-color: black;
+      color: white;
+      width: 150px;
+      height: 50px;
+      transition: width 1s, background-color 2s;
+
+      &.big {
+        width: 600px;
+      }
+      &.big.red { background-color: red; }
+      &.big.green { background-color: green; }
+      &.big.blue { background-color: blue; }
+    }
+    button {
+      width: 100px;
+      font-size: 40px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Demo: Animation mit CSS Transition</h1>
+  <div class="ui">
+    <button class="make_big">Groß</button>
+    <button class="make_small">Klein</button>
+    <div class="box red"> in the box
+    </div>
+  </div>
+
+  <div class="ui">
+    <button class="make_big">Groß</button>
+    <button class="make_small">Klein</button>
+    <div class="box green"> in the box
+    </div>
+  </div>
+
+  <div class="ui">
+    <button class="make_big">Groß</button>
+    <button class="make_small">Klein</button>
+    <div class="box blue"> in the box
+    </div>
+  </div>
+
+
+  <script>
+    for( let ui of document.querySelectorAll('.ui') ) {
+      ui.querySelector('.make_big').addEventListener('click', () => {
+        ui.querySelector('.box').classList.add('big');
+      })
+      ui.querySelector('.make_small').addEventListener('click', () => {
+        ui.querySelector('.box').classList.remove('big');
+      })
+    }
+  </script>
+</body>
+</html>

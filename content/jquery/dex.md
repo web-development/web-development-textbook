@@ -4,6 +4,12 @@ index: true
 intro: Mit der einfachen Schreibweise von jQuery lernen Sie schneller und einfacher Javascript-Programm zu erstellen.
 ---
 
+
+jQuery ist ein Javascript Library, die in den Jahren 2005-2015 sehr dominant
+war. Auch heute wird sie noch viel in Legacy-Projekten verwendet. Für Projekte
+mit komplexem Frontend wurde sie durch Frontend-Framework wie Svelte, Angular, Vue oder react/next.js
+abgelöst.
+
 # Was Sie wissen sollten
 
 - Ich kann die Fachbegriffe „unobstrusive Javascript“ / „graceful degradation“ / „progressive enhancement“ erklären

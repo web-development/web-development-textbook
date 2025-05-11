@@ -298,15 +298,15 @@ class Nanoc::Filter
   end
 end
 
-# Nanoc::Filter.register '::Nanoc::Filter::PatternTester', :pattern_tester
-# Nanoc::Filter.register '::Nanoc::Filter::CodeBlocks',    :code_blocks
-# Nanoc::Filter.register '::Nanoc::Filter::Slides',        :slides
-# Nanoc::Filter.register '::Nanoc::Filter::NoSlides',      :noslides
-# Nanoc::Filter.register '::Nanoc::Filter::SlideBreaks',  :slide_breaks
-# Nanoc::Filter.register '::Nanoc::Filter::Peek',          :peek
-# Nanoc::Filter.register '::Nanoc::Filter::ResponsiveImages', :responsive_images
-
 preprocess do
+  config[:nanoc_version_info] = Nanoc::Core.version_information.strip
+  config[:nanoc_version_info_major_minor_patch] = Nanoc::Core.version_information.strip.scan(/\d+/).take(3).join('.')
+  config[:nanoc_version_info_major_minor] = Nanoc::Core.version_information.strip.scan(/\d+/).take(2).join('.')
+  config[:nanoc_version_info_major] = Nanoc::Core.version_information.strip.scan(/\d+/).first
+
+  config[:gem_version_info]   = Gem::VERSION
+  config[:ruby_version_info]  = `ruby --version`.strip
+
   @chapterOrder = [
     'das-web-und-html',
     'css',

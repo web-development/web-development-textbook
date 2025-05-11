@@ -1,0 +1,154 @@
+<style>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #fefefe;
+  font-family: sans-serif;
+}
+
+main {
+  width: 90%;
+  margin: 50px auto;
+}
+
+header {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 50px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: wrap;
+}
+
+.card {
+  width: 20%;
+  background: #fff;
+  border: 1px solid #ccc;
+  margin-bottom: 50px;
+  transition: 0.3s;
+}
+
+.card-header {
+  text-align: center;
+  padding: 50px 10px;
+  background: linear-gradient(to right, #ff41ff, #ff4b2b);
+  color: #fff;
+}
+
+.card-body {
+  padding: 30px 20px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.card-body .btn {
+  display: block;
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(to right, #ff41ff, #ff4b2b);
+  text-decoration: none;
+  margin-top: 30px;
+  padding: 10px 5px;
+  transition: 0.3s;
+}
+
+.card-body .btn:hover {
+  transform: scale(1.1);
+}
+
+.card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 40px -10px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive media queries */
+
+@media screen and (max-width: 1000px) {
+  .card {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .container {
+    width: 100%;
+  }
+
+  .heading {
+    padding: 20px;
+    font-size: 30px;
+  }
+
+  .card {
+    width: 80%;
+  }
+}
+</style>
+
+</head>
+<body>
+  <main>
+
+<div class="row">
+
+  <div class="card">
+    <div class="card-header">
+      <h1>Angular</h1>
+    </div>
+    <div class="card-body">
+      <p>
+        Angular lets you start small on a well-lit path and supports you as your team and apps grow.
+      </p>
+      <a href="https://angular.dev/" class="btn">Learn more</a>
+    </div>
+  </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h1>React</h1>
+        </div>
+        <div class="card-body">
+          <p>
+            The library for web and native user interfaces
+          </p>
+          <a href="https://react.dev/" class="btn">Learn more</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <h1>Vue</h1>
+        </div>
+        <div class="card-body">
+          <p>
+            The Progressive
+JavaScript Framework
+          </p>
+          <a href="https://vuejs.org/" class="btn">Learn more</a>
+        </div>
+      </div>
+
+
+
+      <div class="card">
+        <div class="card-header">
+          <h1>Svelte</h1>
+        </div>
+        <div class="card-body">
+          <p>
+            Cybernetically enhanced web apps
+          </p>
+          <a href="https://svelte.dev/" class="btn">Learn more</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

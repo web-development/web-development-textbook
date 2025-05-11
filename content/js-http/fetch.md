@@ -21,20 +21,17 @@ verwendet wird: als asynchroner Request.
 
 ## Wozu fetch
 
-Ein Beispiel für die Verwendung von `fetch` ist das in der Abbildung unten
-gezeigte Eingabefeld für Tags: schon während des Eintippens eines Suchwortes (hier: "webd")
-wird eine Anfrage an den Webserver geschickt. Dieser antwortet mit einer Liste von vorgeschlagenen Tags.
-Diese Liste wird unterhalb des Eingabefelds angezeigt:
-
+Ein Beispiel für die Verwendung von `fetch` ist das Eingabefeld für Tags in der Abbildung unten.
+Schon während man ein Wort eintippt (zum Beispiel die 4 Buchstaben „webd“),
+wird eine Anfrage an den Server geschickt.
+Der Server antwortet mit passenden Vorschlägen.
+Diese werden direkt unter dem Eingabefeld angezeigt.
 
 ![Abbildung 50: Vorschläge für die Eingabe werden über AJAX geladen](/images/js-http/autocomplete.png)
 
 Mit `fetch` wird hier eine HTTP-Anfrage gesendet.
 
-Asynchron heisst hier: der Request wird abgesetzt, das Javascript-Programm läuft sofort
-weiter, man kann weiterhin mit der Webseite interagieren. Erst wenn die Antwort
-des Servers vorliegt starte ein
-Javascript-Programm und fügt die Daten in die Seite ein.
+*Asynchron* bedeutet hier: Das JavaScript schickt den Request los und macht dann sofort weiter – es wartet nicht auf die Antwort. Die Webseite bleibt benutzbar. Sobald die Antwort vom Server da ist, wird ein weiteres JavaScript-Programm gestartet, das die Daten in die Seite einfügt.
 
 ### Asynchrone HTTP Requests
 
@@ -43,33 +40,28 @@ wie in der obigen Abbildung gezeigt. Folgende Abbildung ist ein
 [Sequenz Diagramm](http://de.wikipedia.org/wiki/Sequenzdiagramm), die Zeit
 läuft von oben nach unten.
 
-Zuerst wird die Webseite mit dem Formular geladen: der Browser schickt die
-Anfrage an den Server und erhält eine Antwort. Was immer zuvor im Browser
-angezeigt wurde wird - nach Ankunft des HTTP Response - gelöscht, die neue
-Seite wird im Browser dargestellt. Diese Verhalten des Browsers ist uns
-schon bekannt.
-
-Nun kommt der neue Teil: das Eintippten des ersten Buchstabens ins
-Eingabefeld löst ein Javascript-Programm aus, das einen AJAX-Request absetzt.
-Am Netzwerk ist das ein ganz normaler HTTP Request, für den Server gibt
-es keinen Unterschied zu jedem anderen Request.
-
-Was anders ist, ist das Verhalten des Browsers: Das Absenden des Requests
-bleibt die Webseite bestehen und bleibt interaktiv - das Absenden passiert
-meist von der UserIn unbemerkt.
-
-Wenn die Daten des Response
-einlangen wird **nicht** die Seite gelöscht, sondern es wird eine
-Javascript-Funktion in der Seite aufgerufen, die die Daten entgegen nimmt.
-Für das Autocomple-Verhalten bestehen die Daten aus einer Liste von Vorschlägen,
-die Javascript-Funktion zeigt diese Vorschläge unterhalb des Eingabefeldes an.
 
 ![Ablauf](/images/js-http/fetch-sequence-diagram.svg)
 
+Zuerst tippt ein Mensch die URL ein, daraufhin lädt der Browser die Webseite mit dem Formular:
+Er schickt eine Anfrage an den Server und bekommt eine Antwort. Sobald die Antwort da ist,
+zeigt der Browser die neue Seite an und ersetzt damit den vorherigen Inhalt. Dieses Verhalten kennen wir bereits.
+
+Jetzt kommt der neue Teil: Wenn man den ersten Buchstaben ins Eingabefeld tippt, startet ein JavaScript-Programm.
+Dieses schickt im Hintergrund eine Anfrage an den Server – mit dem `fetch` Befehl. Technisch ist das ein ganz
+normaler HTTP-Request, der für den Server aussieht wie jeder andere auch.
+
+Der Unterschied liegt beim Verhalten des Browsers: Die Seite bleibt sichtbar und benutzbar.
+Die Anfrage läuft unbemerkt im Hintergrund ab.
+
+Wenn die Antwort vom Server ankommt, wird nicht die ganze Seite neu geladen.
+Stattdessen ruft JavaScript eine Funktion auf, die die Daten verarbeitet.
+Für die Autovervollständigung ist das meist eine Liste von Vorschlägen, die dann direkt unter dem Eingabefeld angezeigt wird.
+
 ### Simples Javascript Beispiel
 
-Im ersten `fetch` Beispiel wird der Output eines PHP-Counters in eine HTML-Seite
-eingebunden.
+Diese Javascript Beispiel ist noch einfacher: mit einem  `fetch` Befehl wird der Output eines PHP-Programmes
+in eine HTML-Seite eingebunden.
 
 ![Demo](https://users.ct.fh-salzburg.ac.at/~bjelline/counter/index.html)
 
@@ -123,34 +115,25 @@ werden, die aufgerufen wird wenn das Ergebnise vorliegt:
 function handle_response(response) {
   console.log("Response wird empfangen");
   // tu was mit dem response objekt
+  // z.B. Aufruf von response.text() oder response.json() oder response.blob();
 }
 promise.then(handle_response);
 </javascript>
 
 
-## Response Body
+## Response
 
-Bei `fetch` muss mit dem Ergebnis einer asynchronen Operation
-eine weitere asynchrone Operation aufgerufen werden: Das Laden des
-gesamten Body des HTTP Response kann lange dauern. Deswegen
-erhalten wir nicht sofort den body, sondern wieder eine Promise:
+Die Methoden `response.text()` und `response.json()` und `response.blob()`
+liefern wieder eine Promise:
 
 <javascript>
-promise.then((response) => {
+function handle_text(text) {
   console.log("Response wird empfangen");
   let promiseOfText = response.text();
   return promiseOfText;
-});
+}
 </javascript>
 
-Es gibt drei Arten wie der Body ausgelesen werden kann -
-als text, json oder binary blob (z.B. beim Laden eines Bildes).
-
-<javascript>
-response.text();
-response.json();
-response.blob();
-</javascript>
 
 ### Chaining
 
@@ -158,21 +141,21 @@ Da nun die erste Callback Funktion wieder eine Promise zurückgibt,
 kann  wieder die Methode `then` verwendet werden:
 
 <javascript>
-.then((response) => {
-  console.log("Response wird empfangen");
-  let promiseOfText = response.text();
-  return promiseOfText;
-})
-.then((text) => {
-  console.log("text wurde aus dem Response herausgelesen", text);
-  document.getElementById('output').innerHTML = text;
-  console.log("fertig!");
-});
-console.log("abgesendet, sofort weiter");
+function handle_response(response) {
+  return response.text();
+}
+
+function handle_text(text) {
+  let p = document.createElement("p");
+  p.innerHTML = `Zugriffe: <b>${text}</b>`;
+  document.querySelector("body").appendChild(p);
+}
+
+fetch("counter.php").then(handle_response).then(handle_text);
 </javascript>
 
 
-### Kurze Version
+### Schreibweise mit Arrow Functions
 
 Wenn man alle Ausgaben auf die Console weg lässt
 wird der Code sehr kurz:
@@ -180,71 +163,30 @@ wird der Code sehr kurz:
 <javascript>
 fetch("counter_ajax.php")
   .then(response => response.text() )
-  .then(text => document.getElementById('output').innerHTML = text );
-</javascript>
-
-
-
-### Fehlerbehandlung
-
-Für die Fehlerbehandlung gibt es die Methode `catch`:
-
-<javascript>
-fetch("counter_ajax.php")
-  .then(response => response.text())
-  .then(text => document.getElementById('output').innerHTML = text )
-  .catch(error => {
-	  document.getElementById('output').innerHTML = '#';
-    console.log(error);
+  .then(text => {
+    let p = document.createElement("p");
+    p.innerHTML = `Zugriffe: <b>${text}</b>`;
+    document.querySelector("body").appendChild(p);
   });
 </javascript>
 
-### Fehlerbehandlung von HTTP
 
-Zur Erinnerung: Bei einem HTTP Response wird ein Statuscode
-mitgeliefert, der Erfolg oder Fehler anzeigen kann, siehe auch
-[http-status-code.de](https://http-status-code.de/)
+## Fehlerbehandlung
 
-
-
-Achtung: wenn bei einem `fetch` der HTTP-Response einen Statuscode
-für einen Fehler liefert, z.B. 404 oder 500 , dann
-löst das noch keine Exception aus, die mit `catch` gefangen werden könnte.
-
-Die Property `response.ok` zeigt an ob der HTTP Status im
-postivien Bereich (200-299) war.
-
-
-Das müsste man selbst behandeln:
+Ein normaler `try - catch` Block funktioniert bei `fetch ... then` nicht.
+Statt dessen muss macn eine `catch` methode ans Ende der Chain anhängen:
 
 <javascript>
-button.disabled = true;
-
 fetch("counter_ajax.php")
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    return response.text();
-  })
-  .then(text => document.getElementById('output').innerHTML = text )
-  .catch(error => {
-	  document.getElementById('output').innerHTML = '#';
-    console.log(error);
-  })
-  .finally {
-    button.disabled = false;
-  };
+  .then(response => response.text() )
+  .then(text => {
+      let p = document.createElement("p");
+      p.innerHTML = `Zugriffe: <b>${text}</b>`;
+      document.querySelector("body").appendChild(p);
+  }).catch(error => {
+      console.log(error);
+  });
 </javascript>
-
-### Backend
-
-Das Backend ist im Fall des Counters sehr simpel - ein PHP-Programm
-das eine Zahl ausgibt.  Im einfachsten Fall also:
-
-<php>
-<?php echo 42; ?>
-</php>
 
 
 ## Siehe auch

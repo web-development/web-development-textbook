@@ -3,14 +3,70 @@ title: Async/Await
 order: 51
 ---
 
-Sie kennen nun Promises als Art mit Asynchronität umzugehen.
+Sie kennen nun Promises und `then()` als Art mit Asynchronität umzugehen.
 
-Nun lernen wir eine zweite Schreibweise für promises.
+Nun lernen wir eine zweite Schreibweise für Promises.
+
+## await statt then
+
+Bei der verwendung von `await` braucht man keine
+Callback-Funktionen oder Arrow-Funktionen mehr - der Code
+sieht wieder aus wie syncroner Code:
+
+<htmlcode caption="await">
+<script type="module">
+  const response = await fetch("counter.php");
+  const counter = await response.text();
+
+  let p = document.createElement("p");
+  p.innerHTML = `Zugriffe auf diese Seite: <b>${counter}</b>`;
+  document.querySelector("body").appendChild(p);
+</script>
+</htmlcode>
+
+## Was bedeutet await?
+
+Das keyword **await** wird auf eine **promise** angewandt:
+
+<javascript caption="await">
+  const promise = fetch("counter_ajax.php");
+  const response = await promise;
+</javascript>
+
+`await` wartet nicht aktiv auf das Ergebnis. Stattdessen wird die Ausführung der aktuellen Funktion
+an dieser Stelle **pausiert**, und in der Zwischenzeit kann anderer JavaScript-Code ausgeführt werden.
+
+Wenn der andere Code fertig ausgeführt ist, und das Ergebnis der Promise verfügbar ist,
+läuft die pausierte Funktion weiter.
+
+Das bedeutet: Die Aussage: "Ein Javascript Programm wird nie unterbrochen".
+stimmt so nicht mehr. An jeder Stelle mit `await` kann die Ausführung unterbrochen werden –
+und in der Zeit kann ein anderes JavaScript-Programm laufen.
+
+## async await und Fehlerbehandlung.
+
+Bei Promises mussten wir die `.catch` Methode
+ans Ende der `.then` Chain anhängen um einen Fehler abzufangen.
+
+Mit async/await können wir wieder die "normale" `try` `catch` Schreibweise verwenden:
+
+<javascript caption="await mit Fehlerbehandlung">
+try {
+  const response = await fetch("counter.php");
+  const counter = await response.text();
+
+  let p = document.createElement("p");
+  p.innerHTML = `Zugriffe auf diese Seite: <b>${counter}</b>`;
+  document.querySelector("body").appendChild(p);
+} catch (error) {
+  console.error("Fehler beim Laden des Zählers:", error);
+}
+</javascript>
+
 
 ## Warnhinweis
 
-Die Schreibweise mit await funktioniert im Browser, aber
-nur innerhalb einer Funktion die als `async` ausgewiesen ist:
+Im Browser kann man `await` direkt im Hauptteil eines JavaScript-Moduls verwenden. Innerhalb einer Funktion funktioniert `await` aber nur, wenn die Funktion mit dem Schlüsselwort `async` markiert ist
 
 <javascript caption="asynchrone funktion">
 async function f1() {
@@ -35,82 +91,16 @@ const f2 = () => {
 </javascript>
 
 
-## await statt then
-
-<javascript caption="await">
-function f2() {
-  fetch("counter_ajax.php")
-  .then(response => response.text())
-  .then(text => document.getElementById('output').innerHTML = text );
-}
-
-async function f1() {
-  const response = await fetch("counter_ajax.php");
-  const text = await response.text();
-  document.getElementById('output').innerHTML = text;
-}
-</javascript>
-
-## was bedeutet await?
-
-Das keyword **await** wird auf eine **promise** angewandt:
-
-<javascript caption="await">
-  const promise = fetch("counter_ajax.php");
-  const response = await promise;
-</javascript>
-
-`await` wartet nicht "aktiv" auf das Ergebnis, sondern die Ausführung
-dieser Funktion wird pausiert, und **anderer** JavaScript Code kann
-derweilen ausgeführt werden.
-
-Wenn der andere Code fertig ausgeführt ist, und die Promise ein
-Ergebnis liefert, dann wird die Ausführung fortgeführt.
-
-## async await und Fehlerbehandlung.
-
-Bei Promises mussten wir die `.catch` methode
-ans Ende der `.then` Chain anhängen um einen Fehler abzufangen.
-Mit async/await können wir wieder die "normale" `try` `catch` Schreibweise verwenden:
-
-<javascript caption="await">
-function f2() {
-  fetch("counter_ajax.php")
-    .then(response => response.text())
-    .then(text => document.getElementById('output').innerHTML = text )
-    .catch(error => {
-      document.getElementById('output').innerHTML = '#';
-      console.log(error);
-    });
-}
-
-async function f1() {
-  try {
-    const response = await fetch("counter_ajax.php");
-    const text = await response.text();
-    document.getElementById('output').innerHTML = text;
-  } catch (error) {
-    document.getElementById('output').innerHTML = '#';
-    console.log(error);
-  }
-}
-</javascript>
-
-## Tipp
-
-In folgendem Beispiel wird das "load" event verwendet,
-um eine asynchrone Funktion zu starten.
+## Beispiel: DOMContentLoaded
 
 
-<javascript caption="load event und async">
-window.addEventListener("load", async () => {
-  await doTheThing();
-  console.log("Thing is Done.");
+<javascript>
+document.addEventListener('DOMContentLoaded', async () => {
+  const response = await fetch("counter.php");
 });
-
-async function doTheThing() {
-  // ...
-}
 </javascript>
 
 
+## Siehe auch
+
+* [MDN: await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await)

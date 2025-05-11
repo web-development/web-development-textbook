@@ -159,6 +159,9 @@ Mit Keyframes kann man Animationen definieren:
 }
 </style>
 
+Der Pfad wird [wie in SVG](/grafik/svg/#slide-6) geschrieben. Es gibt ein
+praktisches Tool zum [Visualisieren und Editieren des Pfads](https://svg-path-visualizer.netlify.app/#M20%2C20%20C20%2C100%20200%2C0%20200%2C100)
+
 <css>
 #motion-demo {
   offset-path: path("M20,20 C20,100 200,0 200,100");

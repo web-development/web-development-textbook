@@ -4,9 +4,9 @@ order: 20
 ---
 
 <svg width="200" height="200" style="float:left;">
-    <circle cx="100" cy="100" r="80"                 
+    <circle cx="100" cy="100" r="80"
             stroke="black" stroke-width="2" fill="#4e9a06" />
-    <rect x="80"   y="100" width="90" height="90" 
+    <rect x="80"   y="100" width="90" height="90"
           stroke="black" stroke-width="2" fill="#204a87" opacity="0.75" />
 </svg>
 
@@ -26,9 +26,9 @@ im Browser nativ dargestellt.
 
 <xml caption="Einbindung von SVG in HTML (Inline-SVG)">
 <svg width="200" height="200" style="float:left;">
-  <circle cx="100" cy="100" r="80"                 
+  <circle cx="100" cy="100" r="80"
           stroke="black" stroke-width="2" fill="#4e9a06" />
-  <rect x="80"   y="100" width="90" height="90" 
+  <rect x="80"   y="100" width="90" height="90"
         stroke="black" stroke-width="2" fill="#204a87" />
 </svg>
 </xml>
@@ -75,11 +75,11 @@ Das Rechteck wird die Position seiner oberen linken Ecke, seiner Breite und sein
 Kreis über Mittelpunkt und Radius, die Ellipse über Mittelpunkt und zwei Halbradien.
 
 <xml caption="Kreis und Ellipse">
-<circle  cx="144" cy="38" r="18" 
-        stroke="#4e9a06" stroke-width="2" 
+<circle  cx="144" cy="38" r="18"
+        stroke="#4e9a06" stroke-width="2"
         fill="#4e9a06"   fill-opacity="0.6"  />
-<ellipse cx="170" cy="43" rx="27" ry="15" 
-        stroke="#73d216" stroke-width="2" 
+<ellipse cx="170" cy="43" rx="27" ry="15"
+        stroke="#73d216" stroke-width="2"
         fill="#73d216" fill-opacity="0.6" />
 </xml>
 
@@ -88,16 +88,16 @@ Kreis über Mittelpunkt und Radius, die Ellipse über Mittelpunkt und zwei Halbr
 Viele Attribute kann man alternativ auch über CSS definieren.
 
 <xml caption="Attribute per CSS">
-<circle r="80px" cx="150px" cy="100px" 
+<circle r="80px" cx="150px" cy="100px"
     style="stroke: #4e9a06; stroke-width: 2px; fill: #4e9a06; fill-opacity:0.6;" />
-<ellipse cx="390" cy="100" rx="300" ry="80" 
+<ellipse cx="390" cy="100" rx="300" ry="80"
     style="stroke: #73d216; stroke-width: 2px; fill: #73d216; fill-opacity:0.6;" />
 </xml>
 
 <svg width="700" height="200">
-<circle r="80px" cx="150px" cy="100px" 
+<circle r="80px" cx="150px" cy="100px"
     style="stroke: #4e9a06; stroke-width: 2px; fill: #4e9a06; fill-opacity:0.6;" />
-<ellipse cx="390" cy="100" rx="300" ry="80" 
+<ellipse cx="390" cy="100" rx="300" ry="80"
     style="stroke: #73d216; stroke-width: 2px; fill: #73d216; fill-opacity:0.6;" />
 </svg>
 
@@ -124,8 +124,8 @@ Folgende Befehle erwarten eine fixe Anzahl von Koordinaten:
 |    H,h    | HLineTo    | x         | Ziehe eine horizontale Linie zur angegebenen Koordinate |
 |    V,v    | VLineTo    | y         | Ziehe eine vertikale Linie zur angegebenen Koordinate   |
 |    Z,z    | Close Path |           | Schliesse den Pfad (gehe zurück zum Anfangspunkt)       |
-
 {: class="table table-condensed table-bordered" style="width:auto"}
+
 
 §
 
@@ -147,8 +147,8 @@ wird hier die Wiederholung durch Klammern und ein + dargestellt:
 |    L,l    | LineTo                   | (x y)+                          | Ziehe gerade Linie zu den angegebenen Punken                   |
 |    Q,q    | quadratic Bézier curveto | (x1 y1 x y)+                    | Kurve zu x,y mit x1,y1 als Stützpunkt der beiden Tangenten     |
 |    C,c    | cubic Bézier curveto     | <nobr>(x1 y1 x2 y2 x y)+</nobr> | Kurve zu x,y mit x1,y1 und x2,y2 als Stützpunkte der Tangenten |
-
 {: class="table table-condensed table-bordered" style="width:auto"}
+
 
 ### Farbe
 
@@ -185,7 +185,7 @@ Pfad mit Sonnenstrahlen anwendet:
     C322,35.4,315.5,72.5,302.6,107.8z M-41.8-17.5l-261-94.5c12.8-35.4,31.6-68,55.8-96.9L-34.1-30.8C-37.5-26.8-40.1-22.3-41.8-17.5z
      M41.7-17.7c-1.8-4.8-4.4-9.3-7.8-13.3l212-179.2c24.3,28.8,43.3,61.3,56.3,96.6L41.7-17.7z M-22.2-40.8l-139.6-240
     c32.7-19,68.1-32,105.2-38.6L-8-46.1C-13-45.2-17.8-43.4-22.2-40.8z M22-40.9c-4.4-2.6-9.2-4.3-14.2-5.1l47.1-273.6
-    c37.2,6.4,72.7,19.2,105.4,38L22-40.9z"/>  
+    c37.2,6.4,72.7,19.2,105.4,38L22-40.9z"/>
   </g>
 </svg>
 
@@ -207,7 +207,7 @@ beliebigen Pfades gesetzt werden.
   <g transform="scale(0.5,0.5)">
     <defs>
       <path id="my_path"
-            d="M 100,200 
+            d="M 100,200
                C 200,100 300,  0 400,100
                C 500,200 600,300 700,200
                C 800,100 900,100 900,100" />
@@ -248,7 +248,7 @@ lokales Koordinatensystem definieren.
 <svg width="700" height="200">
   <defs>
       <marker id="pointy"
-        viewBox="0 0 10 10" refX="0" refY="5" 
+        viewBox="0 0 10 10" refX="0" refY="5"
         markerUnits="strokeWidth" markerWidth="4" markerHeight="3"
         orient="auto">
         <path d="M 0 0 L 10 5 L 0 10 z" />
@@ -283,10 +283,10 @@ animiert:
 <xml caption="SVG Animation">
   <textPath xlink:href="#my_path" startOffset="500">
     Choo, choo, I'm a little train
-    <animate attributeType="XML" attributeName="startOffset" 
+    <animate attributeType="XML" attributeName="startOffset"
       from="1000" to="-600"
       dur="10s" repeatCount="indefinite" />
-  </textPath>  
+  </textPath>
 </xml>
 
 So sieht das Ergebnis aus:
@@ -295,7 +295,7 @@ So sieht das Ergebnis aus:
   <g transform="scale(0.5,0.5)">
     <defs>
       <path id="my_path"
-            d="M 100,200 
+            d="M 100,200
                C 200,100 300,  0 400,100
                C 500,200 600,300 700,200
                C 800,100 900,100 900,100" />

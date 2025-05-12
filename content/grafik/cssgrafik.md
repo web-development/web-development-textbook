@@ -181,6 +181,18 @@ praktisches Tool zum [Visualisieren und Editieren des Pfads](https://svg-path-vi
 </css>
 
 
+## Transform
+
+Achtung, Verwechslungsgefahr: `transition` macht die Animation, hat also eine
+Zeitkomponente. Die transform-Properties verändert die Darstellung einer DOM-Node, haben keine Zeitkomponente:
+
+
+* MDN: [scale](https://developer.mozilla.org/de/docs/Web/CSS/transform-function/scale)
+* MDN: [rotate](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotate)
+* MDN: [translate](https://developer.mozilla.org/en-US/docs/Web/CSS/translate)
+* MDN: [transform](https://developer.mozilla.org/en-US/docs/Web/CSS/transform) - alles in einem
+
+
 ## Perspektive
 
 Mit Transforms kann man ein bisschen 3d in HTML und CSS bringen:
@@ -198,4 +210,9 @@ für ihr Problem wählen. Bei Grafik kann das ganz oft einfaches HTML + CSS sein
 
 ## Siehe auch
 
-* [Animation mit CSS](https://tobiasahlin.com/moving-letters/ ) von Tobias Ahlin
+* MDN: [scale](https://developer.mozilla.org/de/docs/Web/CSS/transform-function/scale)
+* MDN: [rotate](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/rotate)
+* MDN: [translate](https://developer.mozilla.org/en-US/docs/Web/CSS/translate)
+* MDN: [transform](https://developer.mozilla.org/en-US/docs/Web/CSS/transform)
+* [SVG Path Visualizer](https://svg-path-visualizer.netlify.app/#M20%2C20%20C20%2C100%20200%2C0%20200%2C100)
+* [Text Animation mit CSS+JS](https://tobiasahlin.com/moving-letters/) von Tobias Ahlin

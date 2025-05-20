@@ -4834,14 +4834,15 @@ pre {
   line-height: 1.5;
 }
 
-.example.twopane pre {
-  width: 42%;
-  float: left;
-}
+.example.twopane {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
-.example.twopane pre li,
-.example.twopane pre {
-  font-size: 12px !important;
+
+  pre li,
+  pre {
+    font-size: 12px !important;
+  }
 }
 
 pre.left {

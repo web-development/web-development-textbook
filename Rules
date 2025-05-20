@@ -5,10 +5,10 @@
 # * The order of rules is important: for each item, only the first matching
 #   rule is applied.
 #
-# * Item identifiers start and end with a slash (e.g. “/about/” for the file
-#   “content/about.html”). To select all children, grandchildren, … of an
-#   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
-#   because “*” matches zero or more characters.
+# * Item identifiers start and end with a slash (e.g. "about/" for the file
+#   "content/about.html"). To select all children, grandchildren, … of an
+#   item, use the pattern "about/*/"; "about/*" will also select the parent,
+#   because "*" matches zero or more characters.
 
 require 'cgi'
 require 'uri'
@@ -61,7 +61,7 @@ class Nanoc::Filter
 
       return '' if set.length < 2
 
-      puts "        srcset for #{file}: #{set.length} versions"
+      # puts "        srcset for #{file}: #{set.length} versions"
       %(srcset="#{set.join ', '}" )
     end
 
@@ -220,11 +220,15 @@ class Nanoc::Filter
     end
   end
 
+  # Handle Display of Source Code
   class CodeBlocks < Nanoc::Filter
     identifier :code_blocks
-    LANGUAGES = { 'ruby' => 'ruby', 'sql' => 'sql', 'javascript' => 'javascript', 'php' => 'php',
-                  'css' => 'css', 'plain' => 'plain', 'erb' => 'ruby; html-script: true', 'htmlcode' => 'html',
-                  'markup' => 'xml', 'xml' => 'xml', 'shell' => 'shell', 'yaml' => 'yaml', 'dtd' => 'html', 'apache' => 'ruby' }
+    LANGUAGES = { 'ruby' => 'ruby', 'sql' => 'sql', 'javascript' => 'javascript',
+                  'typescript' => 'typescript', 'php' => 'php',
+                  'css' => 'css', 'plain' => 'plain', 'erb' => 'ruby; html-script: true',
+                  'htmlcode' => 'html',
+                  'markup' => 'xml', 'xml' => 'xml', 'shell' => 'shell', 'yaml' => 'yaml',
+                  'dtd' => 'html', 'apache' => 'ruby' }.freeze
 
     def run(content, _params = {})
       @string = content.dup
@@ -241,6 +245,7 @@ class Nanoc::Filter
         @pending << match.pre_match
 
         if match[1] # whole <language> tag
+          # puts "found language #{match[2]}" if match[2] == 'javascript'
           flush
           generate_brushes match[2], LANGUAGES[match[2]], match[3], match[4]
         else
@@ -396,11 +401,11 @@ preprocess do
 end
 
 compile '/assets/*' do
-  # don’t filter or layout
+  # don't filter or layout
 end
 
 compile '/images/*' do
-  # don’t filter or layout
+  # don't filter or layout
 end
 
 filters = {
@@ -455,7 +460,7 @@ route '*' do
 end
 
 compile '/assets/*', rep: :slide do
-  # don’t filter or layout
+  # don't filter or layout
 end
 
 compile '/images/*', rep: :slide do

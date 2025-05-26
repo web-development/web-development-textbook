@@ -61,7 +61,7 @@ Jede PHP-Datei im Webspace ist grundsätzlich direkt über HTTP aufrufbar. Daher
 Mit der Funktion `check_permissions` haben wir hier eine zentrale
 Stelle geschaffen, an der alle Zugriffsrechte konfiguriert werden können.
 
-## Vermeidung von unsichere direkten Referenzen
+## Vermeidung  von unsichere direkten Referenzen
 
 - Nicht die Keys aus der Datenbank preisgeben, sondern durch "slugs" ersetzen
 - Nicht die Dateinamen in der URL preisgeben, sondern einen Code. Das serverseite Programm selbst speichert die echten Dateinamen

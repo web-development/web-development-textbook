@@ -1,24 +1,24 @@
 ---
-title: AJAX Irrwege
+title: fetch Irrwege
 order: 60
 ---
 
-Wie im vorigen Kapitel gelernt ist AJAX die englische Abkürzung für „Asynchrones
-Javascript und XML“. Mit AJAX kann man Webseiten verbessern – man kann sie aber
+Wie im vorigen Kapitel gelernt ist fetch die Methode um asynchrone HTTP Requests
+zu machen. Mit fetch kann man Webseiten verbessern – man kann sie aber
 auch verschlechtern.
 
-## AJAX statt Links - die Idee
+## fetch statt Links - die Idee
 
-Stellen Sie sich vor Sie haben eine Website mit 5 statischen HTML-Seiten, die
-durch einfache Links verbunden sind. 
+Stellen dir vor du haat eine Website mit 5 statischen HTML-Seiten, die
+durch einfache Links verbunden sind.
 
 [Demo Seite](/images/ajax-good/)
 
-Wenn man AJAX kennen lernt, kommt man vielleicht
-auf die Idee: statt normaler Links lädt man die neue Seite nur noch mit AJAX und ersetzt dann den Inhalt der aktuellen Seite. Was spricht dafür?
+Wenn man fetch kennen lernt, kommt man vielleicht
+auf die Idee: statt normaler Links lädt man die neue Seite nur noch mit fetch und ersetzt dann den Inhalt der aktuellen Seite. Was spricht dafür?
 
 - Keine Code-Wiederholung: head, footer muss nur einmal, in der erste Seite, gespeichert werden
-- die einzelnen Seite wir kleiner, das Laden der Seite entsprechend schneller
+- die einzelnen Seite wir kleiner, das Laden der Seite vielleicht schneller
 - es entfällt das erneute checken/laden von CSS und Javascript Ressourcen.
 
 ## Beispiel
@@ -26,7 +26,7 @@ auf die Idee: statt normaler Links lädt man die neue Seite nur noch mit AJAX un
 Nun surfen wir durch diese Site und beobachten in den Developer Tools welche http-Requests
 gemacht werden: [Demo Seite](/images/ajax-bad/)
 
-![AJAX statt normaler Links - in den developer tools](/images/ajax-bad.png)
+![fetch statt normaler Links - in den developer tools](/images/ajax-bad.png)
 
 Beim Anklicken des „Links“ wird jeweils ein GET
 Request abgesetzt. Aber: die URL in der Adresszeile des Browsers bleibt immer
@@ -42,7 +42,7 @@ Das hat viele Auswirkungen, unter anderem:
 - Google „sieht“ den Text der einzelnen Seite zwar, aber kann immer nur auf das Deckblatt verweisen.
 
 Vergleicht man Vor- und Nachteile sieht man schnell, dass in diesem Fall die
-Version ohne AJAX (ganz normale Links) besser wäre.
+Version ohne fetch (ganz normale Links) besser wäre.
 
 
 ## Single Page Apps
@@ -50,12 +50,13 @@ Version ohne AJAX (ganz normale Links) besser wäre.
 Um das Problem der "fehlendes URLs" zu lösen gibt es in der
 "History API" die Methoden `pushState` und `replaceState`.
 
-Damit kann man für die verschiedenen Zustände innerhalb ein und deselben
-HTML Dokuments jeweis eine URL definieren. Damit funktionieren das
+Damit kann man für die verschiedenen Zustände innerhalb eines
+HTML Dokuments jeweils eine URL definieren. Damit funktionieren das
 verlinken, Lesezeichen setzen, u.s.w. wieder.
 
 Webseite die Javascript und pushState in dieser Weise nutzen nennt
 man "Single Page Apps" (SPA).
+
 
 ## Siehe auch
 

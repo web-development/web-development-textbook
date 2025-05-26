@@ -49,9 +49,7 @@ Ich verändere die URL, und versuche so die Anzeige von interessanten Dateien im
 
 ## Jede PHP-Datei, Jede URL ist ein Einstiegspunkt
 
-Jede einzelne PHP-Datei die im Webspace liegt kann auch direkt
-über HTTP aufgerufen werden. Es bietet sich deswegen an in jeder
-PHP-Datei zuerst die Zugriffsrechte zu prüfen.
+Jede PHP-Datei im Webspace ist grundsätzlich direkt über HTTP aufrufbar. Daher empfiehlt es sich, gleich zu Beginn jeder Datei die Zugriffsrechte zu überprüfen.
 
 <php caption="Prüfung der Zugriffsrechte am Anfang jeder PHP-Datei">
 <?php

@@ -208,6 +208,11 @@ Von David DeSandro gibt es ein ausführliches [Tutorial](http://desandro.github.
 Im Zweifelsfall sollten Sie immer die einfachste technische Lösung
 für ihr Problem wählen. Bei Grafik kann das ganz oft einfaches HTML + CSS sein.
 
+## Vertiefung
+
+* Parallax Animation [Beispiel](https://palermo.ddd.live/)
+* Page Transitions mit [ViewTransiations](https://developer.mozilla.org/en-US/docs/Web/API/View_Transition_API) oder [swup.js](https://swup.js.org/getting-started/demos/)
+
 ## Siehe auch
 
 * MDN: [scale](https://developer.mozilla.org/de/docs/Web/CSS/transform-function/scale)
@@ -216,3 +221,5 @@ für ihr Problem wählen. Bei Grafik kann das ganz oft einfaches HTML + CSS sein
 * MDN: [transform](https://developer.mozilla.org/en-US/docs/Web/CSS/transform)
 * [SVG Path Visualizer](https://svg-path-visualizer.netlify.app/#M20%2C20%20C20%2C100%20200%2C0%20200%2C100)
 * [Text Animation mit CSS+JS](https://tobiasahlin.com/moving-letters/) von Tobias Ahlin
+
+

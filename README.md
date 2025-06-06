@@ -3,6 +3,9 @@
 A german language Textbook on Web Development. Developed on github, published at
 http://web-development.github.io
 
+I try to keep up to date with baseline features (e.g. [baseline 2025](https://web.dev/baseline/2025?hl=en)),
+and keep an I out for interop (e.g. [interop 2025](https://wpt.fyi/interop-2025) will be relevant in 2026)
+
 ## Similar Projects
 
 https://github.com/getify/You-Dont-Know-JS - only Javascript, in English

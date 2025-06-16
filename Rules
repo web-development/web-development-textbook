@@ -224,7 +224,7 @@ class Nanoc::Filter
   class CodeBlocks < Nanoc::Filter
     identifier :code_blocks
     LANGUAGES = { 'ruby' => 'ruby', 'sql' => 'sql', 'javascript' => 'javascript',
-                  'typescript' => 'typescript', 'php' => 'php',
+                  'typescript' => 'typescript', 'php' => 'php', 'csharp' => 'csharp',
                   'css' => 'css', 'plain' => 'plain', 'erb' => 'ruby; html-script: true',
                   'htmlcode' => 'html',
                   'markup' => 'xml', 'xml' => 'xml', 'shell' => 'shell', 'yaml' => 'yaml',

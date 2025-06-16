@@ -65,8 +65,9 @@ Diese Ersetzung wird mit der Funktion
 `htmlspecialchars`[&rarr;](http://www.php.net/manual/en/function.htmlspecialchars.php) vorgenommen:
 
 <php>
-htmlspecialchars( $person->firstname );
+htmlspecialchars( $person->description );
 </php>
+
 §
 
 Zusammenfassend sieht die Darstellung des Eingabeformulars so aus:

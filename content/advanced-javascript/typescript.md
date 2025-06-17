@@ -208,18 +208,26 @@ in Javascript:
 ## Typen für die DOM
 
 Für die DOM und die DOM Manipulation braucht es auch Typen.
-Die bringt Typscript schon mit:
+Die bringt Typscript schon mit, und baut damit genau
+die DOM Spezifikation nach. Die kann man am einfachsten
+in [MDN:HTMLElement](https://developer.mozilla.org/de/docs/Web/API/HTMLElement) nachlesen.
 
 <typescript>
 getElementById(elementId: string): HTMLElement | null;
 </typescript>
 
-Im eigenen Programm kann man diese Typen dann verwenden:
+Im eigenen Programm kann man diese Typen dann verwenden.
 
 <typescript>
-let myNode: HTMLElement;
+const myNode = document.getElementById("hansi") as HTMLElement;  // ist sicher nicht null
 
-myNode = document.getElementById("hansi") as HTMLElement
+const myButton = document.getElementById("hansi");
+
+if (myButton instanceof HTMLButtonElement) {
+  myButton.disabled = true;
+} else {
+  console.warn("Warning: Button with ID 'hansi' was not found in the DOM or is not a button element.");
+}
 </typescript>
 
 

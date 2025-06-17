@@ -15,7 +15,7 @@ try {
   $dbh->exec("INSERT INTO staff (id, first, last) VALUES (42, 'Alyssa', 'Hacker')");
   $dbh->exec("INSERT INTO salarychange (id, amount, changedate) VALUES (42, 50000, NOW())");
   $dbh->commit();
-  
+
 } catch (Exception $e) {
   $dbh->rollBack();
   echo "Error: " . $e->getMessage();
@@ -25,4 +25,6 @@ try {
 Bei einem realen Beispiel würde man nicht die `exec` Methode verwenden,
 sondern wahrscheinlich prepared Statements. Aber die generelle Vorgehensweise
 bleibt gleich.
+
+
 

@@ -94,7 +94,7 @@ TypeScript erweitert diese Liste um einige weitere, darunter:
 Mit eckigen Klammern wird ein Array gebildet.
 
 
-### ein erster type und javascript
+### ein erster Type
 
 Betrachten wir einen ersten selbst definiertes Typ in Typescript,
 und wie das Programm nach der Übersetzung in Javascript aussieht:
@@ -166,11 +166,11 @@ enum WindowStates { Open, Closed, Minimized }
 </csharp>
 
 in Typescript ist der WindowState ein String, und braucht
-entsprechend seiner Länger mehr oder weniger byte im Speicher.
+entsprechend seiner Länge mehr oder weniger Byte im Speicher.
 In C# wird der Enum intern als `int` gespeichert, braucht
 also eine fixe anzahl bytes.
 
-Typescript Unions lassen sich nicht zur Laufzeit auflisten, C# enums schon:
+Typescript Unions lassen sich **nicht** zur Laufzeit auflisten, C# enums schon:
 
 <csharp>
 Enum.GetValues(typeof(WindowStates));
@@ -179,7 +179,7 @@ Enum.GetValues(typeof(WindowStates));
 ### Union verschiedener Formen
 
 Unions können auch direkt für Funktionsparameter verwendet werden.
-Unions können typen vereinigen, die verschiedene Formen im Speicher haben:
+Unions können Typen vereinigen, die verschiedene Formen im Speicher haben:
 
 <typescript>
 function getLength(obj: string | any[]) {
@@ -202,6 +202,25 @@ in Javascript:
 | undefined | `typeof x === "undefined"`           |
 | function  | `typeof f === "function"`            |
 | array     | `Array.isArray(a)`                   |
+
+
+
+## Typen für die DOM
+
+Für die DOM und die DOM Manipulation braucht es auch Typen.
+Die bringt Typscript schon mit:
+
+<typescript>
+getElementById(elementId: string): HTMLElement | null;
+</typescript>
+
+Im eigenen Programm kann man diese Typen dann verwenden:
+
+<typescript>
+let myNode: HTMLElement;
+
+myNode = document.getElementById("hansi") as HTMLElement
+</typescript>
 
 
 ## Duck-Typing

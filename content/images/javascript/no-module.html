@@ -35,9 +35,16 @@
         console.log("direkt im html kann ich variable b sehen:", b);
       </script>
       <p>
-        javascript-code der mit normalen script-tags geladen wird
-        befindet sich gemeinsam in einem globalen namensraum.
+        Javascript-code der mit normalen script-tags geladen wird
+        befindet sich gemeinsam in einem globalen Namensraum.  Hier z.B: Variablen a
+        wird direkt in diesem HTML Dokument gesetzt, und in myscript.js erhöht.
+        Variable b wird in myscript.js gesetzt, und hier im HTML Dokument
+        erhöht.
       </p>
+      <p id="output"></p>
+      <script>
+        document.getElementById('output').appendChild(document.createTextNode(`a = ${a} und b = ${b}`));
+      </script>
     </main>
 
 

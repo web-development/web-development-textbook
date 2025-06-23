@@ -42,8 +42,16 @@
 
       </script>
       <p>
-        javascript-code der mit normalen script-tags geladen wird
-        befindet sich gemeinsam in einem globalen namensraum.
+        Aus einem Javscript-Modul wird nur das
+        übernommen, was explizit mit import genannt wird.
+
+        In diesem Fall:
+
+        <ul>
+          <li>Die Variable b im Module kann nur als Konstante importiert werden</li>
+          <li>Die Funktion setB() wird importiert</li>
+        </ul>
+
       </p>
     </main>
 

@@ -24,7 +24,7 @@ enthält z.B.
 Mit ein bisschen Copy-und-Paste kann man die verschiedenen
 Programme schnell in die eigene Webseite einbauen.
 
-Aber achtung: all diese
+Aber Achtung: all diese
 Programme laufen dann im selben Javascript Interpreter ab,
 und benutzen einen gemeinsamen globalen Namensraum.
 

@@ -10,7 +10,8 @@ Für ein großes Web Projekt liefert [OWASP Application Security Verification St
 
 
 Für den Einstieg werden wir  die [OWASP Top 10 von 2021](https://owasp.org/Top10/)
-betrachten. Wir werden es speziell auf PHP, Postgres, Apache anwenden.
+betrachten. Wir werden es speziell auf PHP, Postgres, Apache anwenden. Wenn man generative AI
+verwendet sollte man weiter noch die [TOP 10 FOR GEN AI](https://genai.owasp.org/llm-top-10/) kenne.
 
 Was Sie können sollten
 

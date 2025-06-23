@@ -4,7 +4,7 @@ order: 70
 ---
 
 API steht für Application Programming Interface. Eine API im Web ist
-ein Programm auf einem anderen Webserver, das wir aufrufen können, und da
+ein Programm auf einem anderen Webserver, das wir aufrufen können, und das
 Daten liefert.
 
 drei Beispiele:

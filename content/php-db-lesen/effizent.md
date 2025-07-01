@@ -17,7 +17,7 @@ $sth = $dbh->query("SELECT * FROM person");  // SO NICHT!
 $personen = $sth->fetchAll();
 foreach( $personen as $person ) {
   if ( $person->profile_visible ) {
-    echo "$person->firstname $person->email</br>\n";
+    # do something with $person->firstname
   }
 }
 </php>

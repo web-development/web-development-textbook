@@ -49,6 +49,13 @@ gratis, für höhere Zugriffszahlen muss man bezahlen.
 Ein API Key ist genau so wichtig und geheim wie ein Passwort und
 soll also auch nicht im git repository gespeichert werden.
 
+Einzige Ausnahme: es gibt einige API Keys die im Frontend  verwendet
+werden müssen, z.B. für Google Maps. Diesen Key kann man gar nicht geheim halten,
+aber es gibt andere Methoden um eine Wiederverwendung durch Fremde
+zu vermeiden. z.B. funktioniert der Key nur wenn er auf einer bestimmten
+Domain eingesetzt wird.
+
+
 ## Beispiel openweathermap
 
 Um die API von [http://openweathermap.org/](http://openweathermap.org/) zu benutzen

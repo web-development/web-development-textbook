@@ -221,3 +221,7 @@ Es gibt drei Befehle in diesem Bereich:
 
 * Ungefähr für jeden Frame einmal eine Funktion starten: [requestAnimationFrame](https://css-tricks.com/using-requestanimationframe/)
 
+
+## Siehe auch
+
+* [JavaScript Visualizer 9000](https://www.jsv9000.app/) visualisiert Call Stack, Task Queue und Microtask Queue

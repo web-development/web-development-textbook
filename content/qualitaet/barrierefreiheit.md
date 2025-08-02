@@ -274,3 +274,4 @@ es ist ein guter Start.  Das Web macht - ohne dass wir etwas tun müssen - schon
 - [The Accessibility Tree](https://whatsock.com/training/)
 - [Demystifying WAI-ARIA](https://www.davidmacd.com/blog/wai-aria-accessbility-for-average-web-developers.html)
 - [How to write better alt-text descriptions for accessibility](https://bighack.org/how-to-write-better-alt-text-descriptions-for-accessibility/)
+- [Accessability im Style Guide von Github](https://primer.style/accessibility/semantic-html/)

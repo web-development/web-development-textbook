@@ -202,8 +202,8 @@ section#description {
 </css>
 
 Siehe auch [CSS Tricks: Complete Guide to CSS Grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
-
 Siehe auch [CSS Grid by Example](https://gridbyexample.com/examples/)
+Siehe auch [Animating CSS Grid](https://css-tricks.com/animating-css-grid-how-to-examples/)
 
 ## Viele Methoden
 

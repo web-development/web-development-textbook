@@ -8,14 +8,6 @@ nachschlagen.
 
 HTML hat sich in den ca. 20 Jahren seines Bestehens weit entwickelt. Die Version 5 wurde im Jahr 2014 veröffentlicht, danach gab es keine neuen Nummern mehr.
 
-§
-
-In den Jahren davor wurde auch XHTML neben HTML verwendet. Das X von XHTML
-steht für die Kompatibilität mit XML  <!-- XE "XML" -->  . Die Dateien haben dabei weiterhin die
-Endung .htm oder .html (nur sehr selten oder .xhtm, .xhtml). Im Unterschied zu HTML war
-XHTML strenger in der Schreibweise. Am Web finden Sie sowohl Tutorials zu HTML als
-auch zu XHTML – lassen Sie sich davon nicht verwirren, sondern lernen
-sie nur aktuelle HTML5.
 
 
 Arbeitsablauf
@@ -28,9 +20,6 @@ Der Arbeitsablauf beim Erstellen von HTML ist eine endlose Schleife:
 4. Neu Laden, das Ergebnis betrachten
 5. meistens: nicht zufrieden mit dem Ergebnis sein, zurück zu 1.
 
-Es gibt verschiedene Online-Tools um HTMl auszuprobieren:
-
-* [Slowparse](http://toolness.github.com/slowparse/demo/) erklärt die Struktur von HTML, hilft Fehler zu finden
 
 Zeichensatz
 -----------
@@ -40,7 +29,7 @@ ISO 8859-1 (Latin-1)  oder im Format utf-8. Mit Latin-1 ist man auf das
 lateineische Alphabet mit westeuropäischen Sonderzeichen beschränkt - man kann
 im selben Dokument nicht auch grieschische, hebräische, arabische, japanische
 Zeichen darstellen.  Mit utf-8 hat man den gesamten Zeichensatz der Menschheit
-zur Verfügung. Mein Empfehlung lautet: immer utf-8 verwenden.
+zur Verfügung. Deswegen sollte man immer utf-8 verwenden.
 
 
 
@@ -48,14 +37,14 @@ zur Verfügung. Mein Empfehlung lautet: immer utf-8 verwenden.
 
 So sieht das in Visual Studio Code aus wenn alles gut läuft:
 VS Code glaubt dass die Datei als utf-8 speichern soll,
-und der meta-tag sagt das auch.
+und der meta-tag im HTML Code sagt das auch.
 
 
 
 Sonderzeichen
 -------------
 
-Sonderzeichen in HTML nennt man „character entities  <!-- XE "character entities" -->  “. Sie haben
+Sonderzeichen in HTML nennt man „character entities“. Sie haben
 die From `&entityname;`
 
 Folgende Character Entities müssen Sie verwenden:
@@ -70,8 +59,7 @@ Folgende Character Entities müssen Sie verwenden:
 {: class="table table-condensed table-bordered" style="width:auto"}
 
 
-Folgende Character Entities können Sie vermeiden, indem Sie das Zeichen selbst im Code
-verwenden:
+Folgende Character Entities gibt es zwar, aber man kann auch einfach die Umlaute und das scharfe ß direkt verwenden:
 
 |Gewünschtes Zeichen | Character Entity|
 |:--------:|:-------:|
@@ -83,20 +71,20 @@ verwenden:
 HTML-Tags
 ---------
 
-Die gewünschte Formatierung des Textes wird mit HTML-Tags  <!-- XE "Tag" -->  angegeben
+Die gewünschte Formatierung des Textes wird mit HTML-Tags   angegeben
 
 1.  Tags sind zwischen spitzen Klammern eingeschlossen (kleiner-gleich und größer-gleich Zeichen).
 2.  Zu (fast) jedem "Anfangs-Tag" gibt es einen "End-Tag", der sich nur durch
 den Schrägstrich vom Anfangs-Tag unterscheidet.  Z. B. `<p>`hier der Absatz`</p>`.
-3.  Nur in XHTML müssen "alleinstehende" Tags mit einem Schrägstrich am Ende
-geschrieben werden:  `<br />` In HTML5 schreibt man diesen Tag (wieder) als `<br>`
-4.  In XHTML werden Tags immer klein geschrieben, bei HTML ist  die Groß- oder Kleinschreibung egal.
+3.  In einer älterne Version von HTML mussten "alleinstehende" Tags mit einem Schrägstrich am Ende
+geschrieben werden:  `<br />` Heute schreibt man diesen Tag als `<br>`
+4.  Bei HTML ist die Groß- oder Kleinschreibung egal.
 
 
 Whitespace
 ---------
 
-Sogenannter "whitespace  <!-- XE "whitespace" -->  " - das sind mehrere Leerzeichen,
+Sogenannter "whitespace" - das sind mehrere Leerzeichen,
 Tabulatoren und Zeilenumbrüche hintereinander – wird vom Browser völlig ignoriert. Ob Sie
 also in Ihrer HTML-Datei ein Leerzeichen oder 7 Leerzeilen einfügen macht keinen
 Unterschied. (gar kein Leerzeichen oder ein Leerzeichen macht schon einen Unterschied)
@@ -126,10 +114,12 @@ Attribute
 ---------
 
 Manche Tags können Attribute enthalten. Ein Beispiel ist der Tag `<img>` der ein
-Bild  in die Seite einfügt (Englisch: Image). Die wichtigsten Attribute von
+Bild  in die Seite einfügt. Die wichtigsten Attribute von
 `<img>` sind `src`   (von Source = Quelle),  `alt`     (Alternative
-Darstellung, Ersatztext), und `loading` (`eager` heisst sofort laden, `lazy` erst später laden, wenn es
-in den sichtbaren Bereich kommt.).
+Darstellung, Ersatztext), und `loading`.
+
+* `loading="eager"` - das Bild wird auf jeden Fall sofort geladen
+* `loading="lazy"` - das Bild wird erst geladen, wenn es in den sichtbaren Bereich scrollt
 
 <htmlcode>
 <img src="neu.svg" alt="Das ist neu!" loading="lazy">
@@ -137,10 +127,9 @@ in den sichtbaren Bereich kommt.).
 
 Es ist egal, in welcher Reihenfolge Sie die Attribute schreiben.
 
-
-Der Wert eines Attributes muß in XHTML immer in Anführungszeichen geschrieben
-werden, in HTML kann man die Anführungszeichen weglasse, dann endet der Wert
-beim nächsten Leerzeichen.
+Der Wert eines Attributes wird in Anführungszeichen geschrieben.
+Wenn man keine Anführungszeichen schreibt, endet der Wert beim nächsten Leerzeichen
+oder beim Ende des Tags:
 
 <htmlcode>
 <img alt="Das ist neu!" src="neu.svg">
@@ -149,15 +138,16 @@ beim nächsten Leerzeichen.
 
 __|__
 <img
-  alt="Das ist Neu!"
-  src="neu.svg"
-  width=50 height=15>
+  src=neu.svg
+  alt="Das ist Neu!">
 </htmlcode>
 
 ACHTUNG: ein häufiger Fehler ist es, das zweite Anführungszeichen zu vergessen:
 
 <htmlcode>
-  <img alt="Das ist neu!" src="neu.svg">
+  <img alt="Das ist neu!" src="neu.svg>
+  Hier wäre noch Text
+  <strong>aber er wird jetzt nicht mehr angezeigt!</strong>
 </htmlcode>
 
 
@@ -168,7 +158,7 @@ Kompatibilität
 --------------
 
 Jeder Browser (egal ob Chrome, Firefox, Safari, Microsoft Internet Explorer, Opera,...) kann
-jedes HTML-Dokument darstellen. Mit jedem Editor (egal ob Notepade, vim, Dreamweaver, WebStrom, Eclipse,... ) kann jedes HTML-Dokument bearbeitet werden.
+jedes HTML-Dokument darstellen. Mit jedem Editor (egal ob Notepade, vim, WebStrom, VS Code,... ) kann jedes HTML-Dokument bearbeitet werden.
 
 So soll das Web funktionieren.
 
@@ -328,8 +318,8 @@ und eine <em>interessante</em> Sache.         (betont, meist kursiv)
 
 §
 
-Physische Tags geben die genaue Darstellung vor. Das sind eigentlich „altmodische
-Tags“,  besonders der font-Tag wurde schon um das Jahr 2000 herum durch Stylesheets
+Physische Tags geben die genaue Darstellung vor. Heute sind sie
+durch Stylesheets
 vollständig ersetzt, und sollte möglichst nicht mehr verwendet werden. Sie werden
 diese Tag in „alten“ Dokumenten aber noch finden:
 
@@ -340,14 +330,13 @@ Eine <i>schräge</i> Sache                    (VERALTET!)
 <font color="red">rot</font>                 (VERALTET!)
 </htmlcode>
 
-Heute verwendet man CSS im `style`-Attribut statt dessen.  Das lernen wir später.
 
 
 Bilder
 ------
 
 Bilder werden in separaten Dateien gespeichert, in der HTML-Datei erfolgt nur ein Verweis
-auf die Datei des Bildes.  <!-- XE "Bild" --> Als Attribut src  <!-- XE "src" -->   im img-Tag können Sie eine
+auf die Datei des Bildes.  Als Attribut src   im img-Tag können Sie eine
 absolute oder relative URL angeben:
 
 <htmlcode caption="Bilder">
@@ -362,7 +351,7 @@ absolute oder relative URL angeben:
 </htmlcode>
 
 Für Blinde, Suchmaschinen, Browser die keine Bilder darstellen können, u.s.w. gibt man für
-jedes Bild einen Alternativtext  <!-- XE "Alternativtext" -->   (Attribut alt  <!-- XE "alt" -->  ) an. Mit dem Firefox AddOn
+jedes Bild einen Alternativtext  (Attribut alt ) an. Mit dem Firefox AddOn
 „Web Developer“ kann man testen wie die Seite mit ALT statt Bildern aussieht.
 Abbildung 10 zeigt die Verwendung dieses Features am Beispiel eines Wetterberichts.
 
@@ -379,69 +368,49 @@ unterstützt:
 Vektor-Format, das Bild kann beliebig groß oder klein dargestellt werden. Sehr beliebt für Icons, siehe auch [iconssear.ch](https://iconsear.ch/)
 
 
-### gif and apng
+### gif
 
 ![Beispiel für ein gif Bild: Animation](/images/das-web-und-html/example-gif.gif)
 
 (Bild: Internet Meme, Quelle unbekannt)
 
-Palette von 255 Farben plus einer Transparenz-Farbe (kein Alpha). Ein „animiertes
-Gif“ enthält mehrere Bilder, die der Reihe nach angezeigt werden .
+Das gif format ist sehr eingeschränkt: Es kann nur eine
+palette von 255 Farben plus einer Transparenz-Farbe darstellen. Ein „animiertes
+Gif“ enthält mehrere Bilder, die der Reihe nach angezeigt werden.
 
-Wurde früher für Bilder mit klaren Kanten, einfärbigen Flächen, wenigen
-Farben verwendet, z. B. Comics, Logos.  Das macht man heute mit SVG.
-So bleiben nur die animierten gifs als Anwendungfall, und selbst durch
-animierte png oder durch Video ersetzt.
+Heute werden statt des animierten gifs Videos verwendet, damit erreicht
+man eine kleiner Dateigröße.
 
-![Beispiel für ein animiertes png Bild: Animation](/images/das-web-und-html/example-apng.apng)
-
-### jpg
+### jpg, webp, avif
 
 ![Beispiel für ein jpg Bild: verschiedene Kompression](/images/das-web-und-html/example-jpg.jpg)
 
 (Bild von [Michael Gäbler und AzaToth](https://commons.wikimedia.org/wiki/File:Felis_silvestris_silvestris_small_gradual_decrease_of_quality.png), CC-SA)
 
-Millionen von Farben, variable Kompression, keine Transparenz.
+Ein jpeg kann Millionen von Farben darstellen, bietet variable Kompression aber keine Transparenz.
 Besonders geeignet für Bilder mit Farbverläufen, z. B. Photos.
 
 In Wirklichkeit würde man die Kompressionsrate nicht so extrem hoch
 setzen wie im linken Drittel des Bildes.
 
-Die Variante "progressive jpg" macht die Wartezeit beim Laden des Bildes interessanter.
+Heute ist jpeg nicht mehr relevant, statt dessen werden webp oder avif verwenden.
+Sie haben die gleichen Stärken wie jpg, komprimieren aber noch besser
+und können auch alpha Transparenz und Animation.
 
-
-
-### png
-
-![Beispiel für ein PNG Bild: Würfel mit Alpha-Transparnz](/images/das-web-und-html/example-png.png)
-
-(Bild von [Ed g2s](https://commons.wikimedia.org/wiki/File:PNG_transparency_demonstration_1.png), CC-SA)
-Weniger Kompression als JPG, aber Alpha-Transparenz.
 
 
 ### Weitere Formate
 
 Es gibt noch viele weitere Bildformate die im Web benutzt werden können - mit etwas Aufwand.
-Aber für den Anfang reichen svg, jpg und png aus. Diese Formate werden sicher von allen
+Aber für den Anfang reichen svg und webp aus. Diese Formate werden sicher von allen
 Browsern unterstützt.
 
-
-
-§
-
-Ideal wäre, das Format auszuwählen, in dem das Bild nichts an Qualität verliert, und die
-Dateigröße möglichst gering ist.
-
-Weitere Arten Bilder zu erstellen werden wir später genauer betrachten: Mit
-responsive images kann man verschieden große Bilder für verschiedene
-Ausgabegeräte anbieten. Mit dem
-canvas-Tag und Javascript kann man Bilder zeichnen.
 
 
 Links
 -----
 
-Als Attribut href  <!-- XE "href" -->   des Link  <!-- XE "Link" -->  können Sie eine absolute oder relative
+Als Attribut href  des Link  können Sie eine absolute oder relative
 URL angeben:
 
 <htmlcode caption="Links">
@@ -452,15 +421,14 @@ Link zu Webseite im selben Ordner (relative URL)
 Link zu E-Mail Adresse
     <a href="mailto:aa@bb.cc">Mail</a>
 Bild als Link
-    <a href="seite2.htm"><img src="mehr.svg"alt="zur Seite 2"></a>
+    <a href="seite2.htm"><img src="mehr.svg" alt="zur Seite 2"></a>
 </htmlcode>
 
 Gesamt-Struktur einer Webseite
 ------------------------------
 
-Eine HTML Seite hat ein Grundgerüst.  <!-- XE "Doctype" -->    <!-- XE "head" -->    <!-- XE "body" -->   aus
-`DOCTYPE`, `html`, `head` und `body`. Der erste Tag ist der `DOCTYPE`, er gibt die Version von
-HTML an, die verwendet wird. Es folgt der `html`-Tag. Innerhalb des `html`-Tags gibt es erst
+Eine HTML Seite hat ein Grundgerüst   aus
+`DOCTYPE`, `html`, `head` und `body`. Der erste Tag ist der `DOCTYPE`. Es folgt der `html`-Tag. Innerhalb des `html`-Tags gibt es erst
 einen `head` und dann einen `body`-Tag – nicht mehr und nicht weniger.
 Hier am Beispiel von HTML5:
 
@@ -477,30 +445,13 @@ Hier am Beispiel von HTML5:
 </html>
 </htmlcode>
 
-Bei XHTML ist der DOCTYPE sehr viel komplizierter. Der meta-Tag für die Auswahl des
-Charactersets ist ebenfalls komplizierter.
-
-<htmlcode caption="Grundgerüst eines XHTML Dokuments">
-<!DOCTYPE html
-     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Eine Webseite</title>
-</head>
-<body>
-     Hier die Tags, die Sie schon kennen.
-</body>
-</html>
-</htmlcode>
 
 Achtung: es kann nur einen head und einen body geben, keine Wiederholungen!
 
 Listen
 ------
 
-Listen  <!-- XE "Liste" -->    <!-- XE "ul" -->    <!-- XE "ol" -->    <!-- XE "li" -->   werden mit zwei verschachtelten Tags
+Listen   werden mit zwei verschachtelten Tags
 gebaut: der li-Tag für den einzelnen Listen-Punkt, und der ol- oder ul-Tag für die gesamte
 Liste.
 
@@ -518,8 +469,8 @@ Liste.
 Tabellen
 --------
 
-Um eine Tabelle  <!-- XE "Tabelle" -->    <!-- XE "table" -->    <!-- XE "tr" -->    <!-- XE "td" -->    <!-- XE "th" -->   zu erzeugen
-müssen Sie die Tags ´table´, ´tr´ (Table Row = Tabellenhzeile) und ´td´ (Table Data)
+Um eine Tabelle   zu erzeugen
+müssen Sie die Tags ´table´, ´tr´ (Table Row = Tabellenzeile) und ´td´ (Table Data)
 richtig ineinander verschachteln
 
     <table style="border-collapse:collapse;">
@@ -540,7 +491,7 @@ sichtbar geschalten.
 
     <style>td {  border:2px #ddd solid; padding: 5px; }</style>
 
-HTML-Tabellen wurden früher in Webseiten für das Layout  <!-- XE "Layout:mit Tabellen" -->   der
+HTML-Tabellen wurden früher in Webseiten für das Layout   der
 Seite verwendet, diese Tabellenlayouts sind noch auf älteren Webseiten zu
 finden.  Dazu noch ein Literaturhinweis:
 

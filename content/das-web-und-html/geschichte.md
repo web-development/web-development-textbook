@@ -5,12 +5,12 @@ order: 10
 
 Viele moderne Erfindungen sind das Ergebnis von Teamarbeit und langen
 Planungsprozessen. Nicht so das World Wide Web: es geht auf eine einzelne Person zurück.
-**Tim Berners-Lee**,  <!-- XE "Berners-Lee:Tim" -->  gebürtiger Engländer und studierter Physiker, hat
-es in den Jahren 1989, 1990, 1991 als EDV-Mitarbeiter am CERN  <!-- XE "CERN" -->   in der
+**Tim Berners-Lee**,  gebürtiger Engländer und studierter Physiker, hat
+es in den Jahren 1989, 1990, 1991 als EDV-Mitarbeiter am CERN  in der
 Schweiz entwickelt.
 
 Zu dieser Zeit – Anfang der 90er Jahre – war das Internet ein rein akademisches Projekt mit
-sehr geringen Bandbreite,  <!-- XE "Bandbreite" -->  wie folgendes „fact sheet“ aus der Zeit
+sehr geringen Bandbreite, wie folgendes „fact sheet“ aus der Zeit
 dokumentiert:
 
 §
@@ -52,10 +52,11 @@ Textmodus ohne grafische Oberfläche.
 
 ![Abbildung 1: Der erste grafische Webbrowser, Tim Berners-Lee, die erste Webseite des CERN im Line mode browser](/images/das-web-und-html/berners-lee-browser.png)
 
-Berners-Lee definierte als Eckpunkte die technischen Standards des Web  und programmierte – gemeinsam mit KollegInnen – die erste Software. In der Abbildung oben
- ist links Tim Berners-Lee mit dem ersten grafischen Webbrowser abgebildet. Dieser
+Berners-Lee definierte als Eckpunkte die technischen Standards des Web  und programmierte – gemeinsam
+mit Kolleg*innen – die erste Software. In der Abbildung oben
+ist links Tim Berners-Lee mit dem ersten grafischen Webbrowser abgebildet. Dieser
 Browser ist gemeinsam mit dem Betriebssystem NeXT verschwunden. Rechts ist ein
-Screenshot des Line Mode Browsers  <!-- XE "Line Mode Browsers" -->    <!-- XE "Browser:Line Mode" -->
+Screenshot des Line Mode Browsers
 zu sehen, der die damalige Homepage des CERN anzeigt. Der Line Mode Browser
 funktionierte ohne Grafik. Links konnten mit Nummern aufgerufen werden.
 
@@ -65,7 +66,7 @@ Dieses Lehrbuch handelt hauptsächlich von der **Technik** des Web.
 Verlieren Sie dabei nicht aus den Augen, wie wichtig das Web ist, und wie sehr
 es unsere Gesellschaft schon verändert hat. Das Web ist heute überall:
 
-![Abbildung 2: das Web ist überall: vom ältesten zum neusten Gerät, in Bildung und Arbeit, 3. und 1. Welt](/images/das-web-und-html/web-on-many-devices.png)
+![Abbildung 2: das Web ist überall: auf verschiedenen Geräten, in Bildung und Arbeit, rund um die Welt](/images/das-web-und-html/web-on-many-devices.png)
 
 §
 
@@ -99,8 +100,8 @@ wenn Amazon doch überallhin liefert?
 
 ![Abbildung: Wikipedia 2001 und 2012](/images/das-web-und-html/wikipedia.png)
 
-Im Jahr 2000 war eine Enzyklopädie noch das teuer bezahlte Werk von wenigen
-ExpertInnen. 2001 wurde Wikipedia gestartet. Die Erfindung der Wikipedia hat
+Im Jahr 2000 war eine Enzyklopädie noch ein teuer bezahltes Werk, geschrieben von wenigen
+Expert*innen. 2001 wurde Wikipedia gestartet. Die Erfindung der Wikipedia hat
 nicht nur den Markt für Enzyklopädien zerstört, sondern auch unsere Vorstellung
 verändert wie Wissen gesammelt werden kann.
 
@@ -108,11 +109,21 @@ verändert wie Wissen gesammelt werden kann.
 
 ![Abbildung: Facebook 2004 und 2010](/images/das-web-und-html/facebook.png)
 
-Dass ich am Web speichern kann wer meine FreundInnen sind, um dann mit diesen FreundInnen kurze "Status-meldungen" auszutausche - das wurde erst im 21.Jahrhundert erfunden. Wie geht es weiter?
+Dass ich am Web speichern kann wer meine FreundInnen sind, um dann mit diesen FreundInnen kurze "Status-meldungen"
+auszutausche - das wurde erst im 21.Jahrhundert erfunden. Durch Algorithmen, die die Aufmerksamkeit
+der User*innen binden sollen, hat sich der Inhalt von Social Media stark verändert. Wie geht es weiter?
+
+$
+
+![Abbildung: YouTube 2005 und der Preisträger des TikTok Short Film Competition beim Cannes Film Festival 2022](/images/das-web-und-html/video.jpg)
+
+Video kam erst spät auf das Web, weil es viel Bandbreite braucht. 2005 startete YouTube.
+Nach vielen Jahren als eindeutiges Monopol hat es seit kurzem einen ernsten Konkurrenten.
+TikTok hat 2024 ca 1,6 Milliarden User, YouTube 2,5 Milliarden. Wie geht es weiter?
+
 
 Weitere Quellen
 --------------
 
-* [Internet Growth](http://growthchart.weebly.com/) by Mark Schueler
 * [The Birth of the Web](https://home.cern/science/computing/birth-web) am Cern
-  * [Line Mode Browser Emulator](http://line-mode.cern.ch/www/hypertext/WWW/TheProject.html) zeigt die Webseite
+* [Line Mode Browser Emulator](http://line-mode.cern.ch/www/hypertext/WWW/TheProject.html) zeigt die Webseite

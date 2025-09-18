@@ -232,6 +232,13 @@ body {
   background-color: #ffffff;
 }
 
+@media print {
+  .do-not-print {
+    display: none  !important;
+  }
+}
+
+
 @media (prefers-color-scheme: dark) {
   body {
     color: #ddd;

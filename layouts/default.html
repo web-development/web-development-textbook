@@ -8,7 +8,7 @@
       <h2 class="title" id="slide-0">
         <%= @item[:title] %>
       </h2>
-      <a href="<%= @item.reps[:slide].path %>">als Präsentation ▻</a>
+      <a href="<%= @item.reps[:slide].path %>" class="do-not-print">als Präsentation ▻</a>
     </div>
     <% end %> <%= yield %> <%= render 'article_footer' %>
   </div>

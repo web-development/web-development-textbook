@@ -106,7 +106,7 @@ class Nanoc::Filter
 
         @output << match.pre_match
 
-        @output << %(\n<a class="slide_break" id="slide-#{i}" href="slide.html#slide-#{i}"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. #{i}">▻</a>\n\n)
+        @output << %(\n<a class="slide_break do-not-print" id="slide-#{i}" href="slide.html#slide-#{i}"  title="Wechsle zur Präsentations-Ansicht, Folie Nr. #{i}">▻</a>\n\n)
         i += 1
         if match[0] =~ /§/
           # discard match

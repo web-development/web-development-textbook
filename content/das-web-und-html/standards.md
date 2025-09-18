@@ -3,89 +3,73 @@ title: Drei Standards definieren das Web
 order: 20
 ---
 
-Für diese Lehrbuch ist eine technische Sicht auf das World Wide Web die relevante. 
-Das World Wide Web ist also ein verteiltes (Client/Server) Informationssystem, 
-das durch folgende drei Standards definiert wird:
+Für diese Lehrbuch ist eine technische Sicht auf das World Wide Web die relevante.
+Am Ende dieses Kapitels kommen wir zu so einer technisches Definition.
 
-* URL  <!-- XE "URL" -->   (Uniform Resource Locators) ursprünglich [RFC 1738](http://www.w3.org/Addressing/rfc1738.txt)
-* HTTP  <!-- XE "HTTP" -->   (Hypertext Transfer Protocol) ursprünglich [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616.html)
-* HTML  <!-- XE "HTML" -->    <!-- XE "XHTML" -->   (Hypertext Markup Language) 
-
-Die aktuelle Version von HTTP ist 1.2, wir befinden uns gerade im Übergang auf HTTP 2.0
-HTML verwenden wir in der Version 5. 
-
-Rund um diese drei Standards ordnen sich weitere wichtige Begriffe an:
-
-Client/Server
--------------
-
-Das Client  <!-- XE "Client" -->  /Server  <!-- XE "Server" -->   Prinzip ist ein allgemeines Prinzip wie 
-Dienste in einem Computernetzwerk aufgebaut sein können: Ein Server ist ein Computer der 
-einen bestimmten Dienst anbietet, ein Client ist der „Kunde“, also der Computer der den 
-Dienst in Anspruch nimmt.
-Nach diesem Prinzip funktionieren Web, E-Mail, SFTP:
-
-| Dienst | Client | Server |
-|:--------|:-------|:-------|
-|Web|Webbrowser  <!-- XE "Webbrowser" --> - lädt Webseiten vom Server und stellt sie dar|Webserver  <!-- XE "Webserver" -->   – liefert auf Anfrage die Webseiten|
-|E-Mail|E-Mail  <!-- XE "E-Mail" --> Programm – lädt E-Mails vom Server, zeigt sie an, kann neue E-Mails an einen Server schicken der sie zustellt, …|Mailserver – speichert E-Mail in verschiedenen Postfächern, leitet E- Mail weiter (an den Server der EmpfängerIn)|
-|SFTP|SFTP-Client  <!-- XE "SFTP" -->   – lädt Dateien (verlüsselt) von einem Server herunter oder auf einen Server hinauf|SFTP-Server – speichert Dateien|
-{: class="table table-condensed table-bordered" style="width:auto"}
+Aber zuerst beginnen wir mit ein paar allgemein bekannten Fachwörtern:
 
 
-Eine Alternative zu Client/Server ist Peer-zu-Peer  <!-- XE "Peer-zu-Peer" -->  . Dabei sind alle 
-beteiligten Computer gleichberechtigt, es gibt keine verschiedenen Rollen. Nach diesem 
-Prinzip funktionieren Datei-Tauschbörsen.
+Das Internet
+------------
 
+Das Internet ist ein Zusammenschluss von Computernetzwerken zu einem weltweiten Verbund.
+Nach ersten technischen Versuchen in den 1970er Jahren
+wurden in den 1980er Jahren zunächst Computer an US-amerikanischen Hochschulen angeschlossen.
+Anschließend wurden auch Hochschulen weltweit angeschlossen.
+
+![Karte des ARPA-Netzwerks im Jahre 1973 (public domain)](/images/das-web-und-html/arpanet.jpg)
+
+Ab Anfang der 1990er Jahre erhielten auch andere Organisationen, Firmen und Privatpersonen
+Zugang.   2025 haben weltweit mehr als die Hälfte aller Menschen Zugang zum Internet.
+
+Der Internetzugang eröffnet viele Möglichkeiten: das Versenden von E-Mails oder Nachrichten,
+Audio- und Video-Streaming, Online-Games  und eben auch das Web.
 
 Webbrowser
 ----------
 
-Ein Webbrowser, oder kurz Browser  <!-- XE "Browser" -->  , ist ein Programm, das bei Eingabe 
-einer URL über HTTP eine HTML-Webseite laden und anzeigen kann, es ist also der Client 
-zum World Wide Web. 
-Es gibt sehr viele verschiedene Webbrowser. Die folgende Abbildung zeigt vier davon: den Browser 
-„Mosaic“ <!-- XE "Mosaic" -->    <!-- XE "Browser:Mosaic" -->  , der im Jahre 1993 als zweiter Webbrowser 
-mit grafischer Oberflächen stark zur Verbreitung des World Wide Web beigetragen hat,  und 
-die Browser Opera  <!-- XE "Opera" -->    <!-- XE "Browser:Opera" -->,   Mozilla  <!-- XE "Mozilla" -->    <!-- XE "Browser:Mozilla" -->  
-und Chrome (in Versionen aus verschiedenen Jahren).
- 
-![Webbrowser: Mosaic (1993), Opera(2004) und Mozilla(2004), Chrome(2011)](/images/das-web-und-html/browsers.png)
+Ein Webbrowser, oder kurz Browser, ist ein Programm, das Informationen aus dem Internet lädt
+und anzeigt.
+
+Es gibt sehr viele verschiedene Webbrowser. Die folgende Abbildung zeigt vier davon: den Browser
+„Mosaic“ , der im Jahre 1993 als zweiter Webbrowser
+mit grafischer Oberflächen stark zur Verbreitung des World Wide Web beigetragen hat,  und
+die Browser Opera,   Firefox  und Chrome (in Versionen aus verschiedenen Jahren).
+
+![Webbrowser: Mosaic (1993), Opera(2004), Firefox(2021) und Chrome(2021)](/images/das-web-und-html/browsers.png)
 
 §
 
-Alle eben erwähnten Browser haben gemeinsam, dass sie auf einem typischen „Büro-
-Computer“ eingesetzt werden, einem Computer mit grafischer Oberfläche und einem Farb-
-Monitor. 
-Es gibt aber auch „exotischere“ Browser. Die nächste Abbildung zeigt den Browser lynx,
-der nur Text darstellt, aber keine Bilder. Daneben sehen Sie eine 
-„Braille  <!-- XE "Braille" -->   Ausgabezeile“, ein Gerät, das eine Zeile Text in eine Zeile 
-Blindenschrift übersetzt. Mit diesem Webbrowser und diesem Ausgabegerät können Blinde 
-im Web surfen. 
-    
+Alle eben erwähnten Browser haben gemeinsam, dass sie auf einem Computer mit Monitor oder
+einem Laptope eingesetzt werden.
+Es gibt aber auch „exotischere“ Browser. Die nächste Abbildung zeigt den Browser Lynx, der nur Text, aber keine Bilder darstellt. Daneben sehen Sie eine […]
+Die „Braille-Ausgabezeile“ ist ein Gerät, das eine Zeile Text in Blindenschrift übersetzt. Dieses Gerät wird heute kaum noch benutzt. Stattdessen wird die Anzeige des Computers von einer AI-Stimme vorgelesen.
+
 ![Text-Only Browser "lynx" und Braille Ausgabegerät](/images/das-web-und-html/anderebrowser.png)
 
 §
 
-In den letzten Jahren haben mobile Geräte mit Internetzugang stark an Bedeutung 
-zugenommen: Smartphones und Tablets. 
+Seit ca 2017 werden mehr Webbrowser auf Smartphones als Webbrowser auf Computern benutzt. Achtung: das Diagramm
+zeigt den Anteil, die absolte Zahl ist gestiegen.
 
-![Anteil Desktop-Mobile-Tablet laut StatsCounter](/images/das-web-und-html/statcounter2009-2020.png)
+![Anteil Desktop-Mobile-Tablet laut StatsCounter](/images/das-web-und-html/statcounter2009-2025.png)
 
-Statistik von [StatsCounter](https://gs.statcounter.com/platform-market-share/desktop-mobile-tablet/worldwide/#monthly-200901-202008)
+Statistik von [StatsCounter](https://gs.statcounter.com/platform-market-share/desktop-mobile-tablet/worldwide/#monthly-200901-202509)
 
-Auf diesen neuen Geräten gibt es auch Webbrowser - teilweise spezialisierte Software (Android Browser), teilweise
-adaptionen der klassischen Desktop Browser (Firefox).
- 
+Auch auf Android-Smartphones gibt es die verschiedenen Browser: Chrome, Firefox, ... Auf iPhones gibt
+ein Monopol für Safari: Es gibt zwar andere Browser, aber sie müssen alle dieselbe Software für
+die Darstellung, die "Rendering Engine" verwenden. (Stand Sommer 2025)
+
 ![Browser auf Smartphones, 2010](/images/das-web-und-html/browser-am-smartphone.jpg)
 
 Webseite
 --------
 
-Die Dokumente, die im Webbrowser dargestellt werden nennt man Webseiten. Eine Webseite  <!-- XE "Webseite" -->    <!-- XE "Seite" -->   ist – technisch gesehen – ein Dokument im HTML-Format. 
+Die Dokumente, die im Webbrowser dargestellt werden nennt man Webseiten.
 
-Eine Webseite kann – im Gegensatz zu einer Seite in einem Buch – beliebig lang sein. Ist 
-die Seite zu groß / zu lang für das Browser-Fenster, dann erscheint ein Scrollbalken  <!-- XE "Scrollen" -->  mit dem man den Rest der Seite erreichen kann, wie in der nächsten Abbildung gezeigt.
+Eine Webseite kann – im Gegensatz zu einer Seite in einem Buch – beliebig lang sein. Ist
+die Seite zu groß / zu lang für das Browser-Fenster, dann erscheint ein Scrollbalken
+mit dem man den Rest der Seite erreichen kann, wie in der nächsten Abbildung gezeigt.
 
 ![Ein Browser zeigt eine lange Webseite an](/images/das-web-und-html/lange-seite.png)
 
@@ -93,56 +77,67 @@ die Seite zu groß / zu lang für das Browser-Fenster, dann erscheint ein Scroll
 Website
 -------
 
-Als Webseite wird also ein Dokument bezeichnet. Verwechseln Sie diesen Begriff nicht mit 
-dem englischen Wort Website  <!-- XE "Website" -->  . Eine Website besteht aus mehreren 
-Webseiten, die zusammen gehören und untereinander verlinkt sind. Achtung: es gibt kein Wort <strike>Webside</strike>. 
+Eine Webseite ist also ein Dokument. Verwechseln Sie diesen Begriff nicht mit
+dem englischen Wort Website. Eine Website besteht aus mehreren
+Webseiten, die zusammen gehören und untereinander verlinkt sind.
+Achtung: es gibt kein Wort <strike>Webside</strike>.
 
- 
+![Vier Webseiten die zur selben website gehören](/images/das-web-und-html/website.png)
+
+
+Webseite und HTML
+-----
+
+Eine Webseite besteht in erste Linie aus HTML-Code. Den Code kann man
+in jedem Browser sehen, wenn man die "Developer Tools" öffnet, mit der Taste F12,
+oder mit Ctrl+Shift+I oder Command+Option+I (auf Mac):
+
+In diesem Bild sieht man einen Teil einer Webseite, und darunter, in den
+Developer Tools, den entsprechenden HTML Code:
+
+![](/images/das-web-und-html/html-devtools.png)
 
 Webserver
 ---
 
-Als Webserver bezeichnet man entweder den ganzen Computer, 
-oder speziell nur die Software, die eine Webseite liefert. 
+Als Webserver bezeichnet man entweder den ganzen Computer,
+oder speziell nur die Software, die eine Webseite liefert.
 
 Es gibt zwei Open Source Projekte die
 meist als Webserver verwendet werden und auf allen
 Betriebssystemen laufen:
 
-* Apache
-* nginx
+* Apache Webserver ("a patchy webserver")
+* nginx ("Engine X")
 
-Von Microsoft gibt es noch den Internet Information Server (IIS),
-der nur auf Windows läuft.
+![Logo der webserver Apache und nginx](/images/das-web-und-html/server.png)
+
 
 URL
 ---
 
-Eine URL  <!-- XE "URL" -->   ist die Adresse eines Dokuments am Web oder in einem anderen 
-Online-Informationssystem. Ein Beispiel:
+Eine URL  ist die Adresse einer Webseite. Ein einfaches Beispiel:
 
-    http://multimediatechnology.at:80/web-communities/#master
+    https://www.fh-salzburg.ac.at/studium/ct/multimediatechnology-bachelor#c5164
 
 Diese URL zerfällt in 4 Teile:
 
-`http`  das Übertragungsprotokoll 
+`https`  Dieser erste Teil wird als "Schema" berzeichnet. hier wird Übertragungsprotokoll HTTP in der verschlüsselten Variante (S) angegeben
 
-`multimediatechnology.at`  Domain Name des Webservers
+`www.fh-salzburg.ac.at`  der Webserver
 
-`80` Port am Server. Wenn es  Port 80 ist kann man :80 weglassen. 
+`/studium/ct/multimediatechnology-bachelor` wird vom Webserver interpretiert, meist eine Pfad-Angabe. In diesem Fall aber nicht, da die Seite von einem Content-Management-System (TYPO3) erstellt wird.
 
-`/web-communities/` Wird vom Webserver interpretiert, meist eine Pfad-Angabe. In diesem Fall aber nicht, da die Seite von einem Content-Management-System (Wordpress) erstellt wird.
-
-`master` Textmarke innerhalb des Dokuments – wird vom Browser interpretiert wenn das Dokument dargestellt wird
+`c5164` Textmarke innerhalb des Dokuments – wird vom Browser interpretiert wenn das Dokument dargestellt wird
 
 §
 
-Im Zusammenhang mit Web-Formularen werden wir oft mit URLs zu tun haben die 
-Parameter enthalten:
+Eine URL mit Parametern:
 
-    http://www.google.com/search?q=schokolade&ie=utf-8&oe=utf-8
+    https://www.google.com/search?q=schokolade&ie=utf-8&oe=utf-8
 
-Mit den Fragezeichen, dem kaufmännischen Und und dem Ist-Gleich-Zeichen werden hier Parameter  <!-- XE "Parameter" -->   an die URL angefügt.  
+Mit den Fragezeichen, dem kaufmännischen Und und dem Ist-Gleich-Zeichen werden hier Parameter
+an die URL angefügt.
 
 | Parameter | Wert |
 |:----------|:-----|
@@ -150,54 +145,85 @@ Mit den Fragezeichen, dem kaufmännischen Und und dem Ist-Gleich-Zeichen werden 
 | ie         | utf-8 |
 | oe         | utf-8 |
 
+
+§
+
+HTTP ist nicht das einzig mögliche Schema, hier ein paar weitere Beispiele:
+
+* mailto:brigitte.jellinek@example.com
+* tel:+1-816-555-1212
+* javascript:alert('Hallo')
+* data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'
+%3e%3cpath d='M22 38V51L32 32l19-19v12C44 26 43 10 38 0 52 15 49 39 22 38z'/%3e
+%3c/svg%3e
+
 §
 
 Das war nur eine informelle Darstellung der Syntax einer URL. Die ganze Wahrheit
-finden wir im Dokument [RFC 1738](http://www.w3.org/Addressing/rfc1738.txt).
-Dort wird Die Syntax in [Backus-Naur-Form](http://de.wikipedia.org/wiki/Backus-Naur-Form) beschrieben.
+findest du im Dokument [RFC 1738](https://www.w3.org/Addressing/rfc1738.txt).
 
 
-§
+Client und Server
+-------------
 
-HTTP-URLs sind nicht die einzigen URLs, ein Beispiel mit einem anderen 
-Übertragungsprotokoll:  
+Die Begriffe Client   und Server  werden in einem Computernetzwerk verwendet,
+wenn zwei Computer mit unterschiedlichen Rollen miteinander Daten austauschen.
 
-    mailto:brigitte.jellinek@fh-salzburg.ac.at
+* Ein Server ist ein Computer der einen bestimmten Dienst anbietet,
+* ein Client ist der „Kunde“, also der Computer der den Dienst in Anspruch nimmt.
+
+Nach diesem Prinzip funktionieren Web, E-Mail, SFTP:
+
+| Dienst | Client | Server |
+|:--------|:-------|:-------|
+|Web|Webbrowser   - lädt Webseiten vom Server und stellt sie dar|Webserver  <!-- XE "Webserver" -->   – liefert auf Anfrage die Webseiten|
+|E-Mail|E-Mail Programm (nicht webmail!) – lädt E-Mails vom Server, zeigt sie an, kann neue E-Mails an einen Server schicken der sie zustellt, …|Mailserver – speichert E-Mail in verschiedenen Postfächern, leitet E- Mail weiter (an den Server der Empfänger*in)|
+|SFTP|SFTP-Client     – lädt Dateien (verlüsselt) von einem Server herunter oder auf einen Server hinauf|SFTP-Server – speichert Dateien|
+{: class="table table-condensed table-bordered" style="width:auto"}
+
+
+Eine Alternative Arbeitsteilung zu Client/Server ist Peer-zu-Peer. Dabei sind alle
+beteiligten Computer gleichberechtigt, es gibt keine verschiedenen Rollen. Nach diesem
+Prinzip funktionieren Datei-Tauschbörsen wie eDonkey.
 
 
 HTTP
 ----
 
-Das Hypertext Transfer Protocol  <!-- XE "Hypertext Transfer Protocol" -->    <!-- XE "HTTP" -->   ist ein 
-relativ simples Protokoll, das immer TCP  <!-- XE "TCP" -->   -Verbindungen verwendet. Alle 
+Das Hypertext Transfer Protocol ist ein
+relativ simples Protokoll in einem Computernetzwerk. Alle
 Aktivität wird vom Client (=Browser) initiiert.  In der einfachsten Form sieht
-HTTP so aus (hier 9 Schritte am Beispiel der URL `http://multimediatechnology.at/web-communities/#master`):
+HTTP so aus (hier 9 Schritte am Beispiel der URL `https://www.fh-salzburg.ac.at/studium/ct/multimediatechnology-bachelor#c5164`
 
- 
+
 1.	Eine URL wird in den Browser eingetippt, oder ein Link wird im Browser angeklickt
-2.	Der Browser analysiert die URL und ermittelt daraus den Domain Namen des Webservers (`multimediatechnology.at`), löst diese über DNS zur IP-Adresse auf, das Ergebnis lautet `193.170.119.85`
-3.	Der Browser baut eine TCP-Verbindung zu `193.170.119.85`, Port 80 auf
-4.	Er sendet einen HTTP-Request:  `GET /web-communities/ HTTP/1.0\n\n`
-5.	Der Webserver nimmt die Anfrage entgegen und analysiert sie. Meistens interpretiert er sie als Aufforderung, eine bestimmte Datei von der Platte zu lesen. In diesem Fall aber wird ein PHP Programm gestartet, dass Daten aus einer MySQL Datenbank abfragt und als HTML aufbereitet.
-6.	Der Webserver schickt einen HTTP-Response an den Browser, diese enthält einen Statuscode, z. B. `200 OK`, einige Zusatzinformationen und dann die eigentlichen Daten des Dokuments (den erzeugten HTML-Code)
+2.	Der Browser analysiert die URL und ermittelt daraus den Domain Namen des Webservers (`www.fh-salzburg.ac.at`), löst diese über DNS zur IP-Adresse auf, das Ergebnis lautet `193.170.193.57`
+3.	Der Browser baut eine TCP-Verbindung zu `193.170.193.57`, Port 443 auf
+4.	Er sendet einen HTTP-Request:  `GET /studium/ct/multimediatechnology-bachelor HTTP/1.0\n\n`
+5.	Der Webserver nimmt die Anfrage entgegen und analysiert sie. Meistens interpretiert er sie als Aufforderung, eine bestimmte Datei von der Platte zu lesen. In diesem Fall aber wird ein PHP Programm gestartet, dass Daten aus einer Datenbank abfragt und als HTML aufbereitet.
+6.	Der Webserver schickt einen HTTP-Response an den Browser, diese enthält einen Statuscode, z. B. `200 OK`, einige Zusatzinformationen und dann die eigentlichen Daten der Webseite als HTML
 7.	Der Browser nimmt das Dokument in Empfang und stellt es dar
-8.	Der Browser scrollt das Dokument bis zur Textmarke `master`
+8.	Der Browser scrollt das Dokument bis zur Textmarke `c5164`
 9.	Der Browser beendet die TCP-Verbindung
 
-§
 
-Die nächste Anfrage des Clients kann sich an einen anderen Server, oder wieder an 
-denselben Server richten. Die nächste Anfrage, die der Server beantwortet, kann vom selben 
-Client kommen, oder von einem anderen Client. Keiner der beiden (Client und Server) muß 
-speichern mit wem er gerade Daten ausgetauscht hat, um die nächste Anfrage 
-durchführen/beantworten zu können. Ein Protokoll mit dieser Eigenschafft nennt man 
-"zustandslos" ("stateless").  <!-- XE "stateless" -->    <!-- XE "zustandslos" -->  Dadurch ist es sehr einfach einen Server zu programmieren. 
+Das war ein sehr einfachs Beispiel, wie das Protokoll ablaufen kann.
+Einen tieferen Einblick in HTTP erhalten Sie im Kapitel [http](/http/).
 
-Das war ein sehr einfachs Beispiel, wie das Protokoll ablaufen kann. Einen tieferne Einblick in HTTP erhalten Sie im Kapitel [http](/http/).
 
-Quellen und weiter Lektüre
+
+Was ist das Web - aus technischer Sicht
 ---------
 
-* [Aufstieg und Fall des PCs](http://www.asymco.com/2012/01/17/the-rise-and-fall-of-personal-computing/)  
-* [HTML5 Candidate Recommendation](https://www.w3.org/TR/html5/)
-* [RFC 7540 - HTTP/2](https://tools.ietf.org/html/rfc7540)
+
+Das World Wide Web ist also ein verteiltes (Client/Server) Informationssystem,
+das durch folgende drei Standards definiert wird:
+
+* URL (Uniform Resource Locators) [RFC 1738](http://www.w3.org/Addressing/rfc1738.txt)
+* HTTP (Hypertext Transfer Protocol) [RFC 9110](https://www.rfc-editor.org/rfc/rfc9110.html)
+* HTML (Hypertext Markup Language) [HTML Living Standard](https://html.spec.whatwg.org/multipage/)
+
+Webbrowser und Webserver können jederzeit neu geschreiben werden, sie müssen sich nur
+an die Standards halten.
+
+

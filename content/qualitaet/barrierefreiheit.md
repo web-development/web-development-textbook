@@ -261,6 +261,7 @@ es ist ein guter Start.  Das Web macht - ohne dass wir etwas tun müssen - schon
 
 ## Vertiefung
 
+- [Alt Text as Poetry](https://alt-text-as-poetry.net/)
 - [Accessibility Lecture](https://github.com/microsoft/Web-Dev-For-Beginners/tree/main/1-getting-started-lessons/3-accessibility) in a Microsoft Curriculum
 - [Design für Alle](https://de.wikipedia.org/wiki/Design_f%C3%BCr_Alle)
 - [edx Kurs: Introduction to Web Accessibility by W3C](https://www.edx.org/course/web-accessibility-introduction)

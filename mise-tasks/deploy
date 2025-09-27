@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#MISE description="compile and deploy to github pages"
+
+MESSAGE=`git log -1 --pretty=format:"%s"`
+bundle exec nanoc compile
+echo $MESSAGE
+
+echo "✅ Services deployed."
+
+# cp -a output/* ../web-development.github.io/
+# cd ../web-development.github.io
+# git add .
+# git commit -m $MESSAGE
+# git push
+# cd ../web-development-textbook

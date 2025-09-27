@@ -373,6 +373,7 @@ Unter der Adresse [https://jakearchibald.github.io/svgomg/](https://jakearchibal
 
 Fertige Icons und Illustrationen:
 
+- [Bytesize Icons](https://github.com/danklammer/bytesize-icons)
 - [Icon Search](https://iconsear.ch/)
 - [undraw](https://undraw.co/illustrations)
 - [drawkit](https://www.drawkit.io/)

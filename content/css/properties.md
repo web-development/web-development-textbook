@@ -39,15 +39,26 @@ Webfonts
 
 Als Schriften kann man einerseits Schriftarten verwenden, die am Client schon
 installiert sind, und andererseits kann man auf Schriften verweisen, die im Web
-gespeichert sind.  Eine praktische Möglichkeit Webfonts aus den Web zu laden
+gespeichert sind.
+
+
+
+
+Auf [modernfontstacks.com](https://modernfontstacks.com/) gibt es eine gute Übersicht über die installierten Schriften auf den häufigsten Betriebssystemen, dort kann man einfach einen Wert für `font-family` kopieren, z.B:
+
+<css>
+font-family: 'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', P052, serif;
+</css>
+
+
+
+Eine praktische Möglichkeit Webfonts aus den Web zu laden
 bietet [https://fonts.google.com/](https://fonts.google.com/)
 
 Bei Google-Fonts findet man nur Schriftarten die man kostenlos verwenden kann.  Es gibt aber auch Fonts für die
 man Lizenzgebühren zahlen muss.
 
-Tipp beim Laden von Webfont: um zu vermeiden, dass Text während der Ladezeit
-gar nicht(FOIT), oder mit einem anderen Font dargestellt wird(FOUT), im `@font-face` block
-`font-display: fallback;` setzen.  Siehe [css-tricks](https://css-tricks.com/almanac/properties/f/font-display/)
+
 
 Absätze
 ---------

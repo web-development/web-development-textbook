@@ -207,6 +207,14 @@ Siehe auch [CSS Tricks: Complete Guide to CSS Grid](https://css-tricks.com/snipp
 Siehe auch [CSS Grid by Example](https://gridbyexample.com/examples/)
 Siehe auch [Animating CSS Grid](https://css-tricks.com/animating-css-grid-how-to-examples/)
 
+
+## Subgrid
+
+Mit Flexbox kann man nur die Positionierung der Kinder eines Elements beeinflussen.
+Mit Grid kann man auch die Enkelkinder positionieren, mit subgrid:
+
+Siehe [Artikel von Rachel Andrew im Smashing Magazine](https://www.smashingmagazine.com/2018/07/css-grid-2/)
+
 ## Viele Methoden
 
 Neben den drei hier gezeigten gibt es noch viele weitere

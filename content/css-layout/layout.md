@@ -11,6 +11,8 @@ In diesem Kapitel betrachten wir drei Möglichkeiten:
 * Flexbox
 * Grid
 
+Dazu gibt es eine [Demo Seite](/images/css-layout/layout-demo/compare.html)
+
 ## Normal Flow
 
 ![normal flow on laptop and smartphone](/images/css-layout/layout-normal-flow.svg)
@@ -33,13 +35,10 @@ länger und schmäler, einmal kürzer und breiter.
 
 ![flexbox auf verschiedenene Geräten](/images/css-layout/layout-flexbox.svg)
 
+Mit Flexbox kann man die Kinder entlang einer Achse anordnen - als nebeneinander wie hier gezeigt,
+oder untereinander.
 
-Seit [2014](https://caniuse.com/#search=flex) wird Flexbox in allen Browsern unterstützt.
 
-Flexbox wird für kleinere Komponenten
-in der Seite eingesetzt, zum Beispiel für eine Bildergalerie.
-
-Mit Flexbox kann man die Kinder eines Tags nebeneinander anordnen.
 
 ### Flexbox definieren
 
@@ -47,20 +46,20 @@ Das Eltern-Element legt die Richtung fest: entweder horizontal (in einer Zeile =
 (in einer Spalte = `column`):
 
 <htmlcode>
-<div class="project">
-  <div class="project_partial">...</div>
-  <div class="project_partial">...</div>
-  <div class="project_partial">...</div>
-  <div class="project_partial">...</div>
-  <div class="project_partial">...</div>
-  <div class="project_partial">...</div>
-</div>
+<main>
+  <section>...</section>
+  <section>...</section>
+  <section>...</section>
+  <section>...</section>
+  <section>...</section>
+  <section>...</section>
+</main>
 __|__
-.project {
+main {
   display: flex;
   flex-direction: row;
 }
-.project_partial {
+section {
   width: 160px;
   height: 275px;
 }
@@ -100,6 +99,9 @@ Siehe [flex-grow](https://css-tricks.com/snippets/css/a-guide-to-flexbox/#flex-g
 
 Wenn zu viele Elemente für eine Zeile vorhanden sind,
 können sie auf eine nächste Zeile umgebrochen werden:
+
+![flexbox mit wrap](/images/css-layout/layout-flexbox.svg)
+
 
 <css>
 .projects {

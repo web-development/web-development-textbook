@@ -1,15 +1,25 @@
 #!/usr/bin/env bash
 #MISE description="compile and deploy to github pages"
 
+set -e  # Exit on any error
+
+# Function to cleanup on exit
+cleanup() {
+    popd
+    echo " error, exiting"
+}
+
+# Trap exit and cleanup
+trap cleanup EXIT
+
 MESSAGE=`git log -1 --pretty=format:"%s"`
 bundle exec nanoc compile
-echo $MESSAGE
+cp -a output/* ../web-development.github.io/
+pushd ../web-development.github.io
+git add .
+git commit -m "$MESSAGE"
+git push
+popd
 
-echo "✅ Services deployed."
 
-# cp -a output/* ../web-development.github.io/
-# cd ../web-development.github.io
-# git add .
-# git commit -m $MESSAGE
-# git push
-# cd ../web-development-textbook
+echo "✅ pushed to github pages, see https://web-development.github.io"

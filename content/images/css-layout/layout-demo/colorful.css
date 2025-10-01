@@ -1,0 +1,31 @@
+body {
+  font-family: Arial, sans-serif;
+  font-size: 22px;
+}
+header {
+  background-color: lightblue;
+  border: 1px solid blue;
+
+}
+section.a {
+  display: block;
+  background-color: lightgreen;
+  border: 1px solid green;
+
+}
+section.b {
+  display: block;
+  background-color: pink;
+  border: 1px solid red;
+
+}
+footer {
+  background-color: #fff2cc;
+  border: 1px solid #d9a60e;
+
+}
+
+header, section, footer {
+  padding: 10px;
+
+}

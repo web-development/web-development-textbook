@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Demo Page for CSS Layout options</title>
+    <link rel="stylesheet" href="colorful.css">
+    <style>
+      body {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      header, footer {
+        width: 500px;
+      }
+      section.a { flex: 2 }
+      section.a::before { content: "(this has flex 2, so it should be wider.) " }
+      section.b { flex: 1 }
+      section.b::before { content: "(this has flex 1, so it should be narrower.) " }
+    </style>
+  </head>
+  <body>
+    <header><h1>This is Flex with wrap</h1></header>
+    <section class="a">A, or a, is the first letter and the first vowel letter of the Latin alphabet. It is similar in shape to the Ancient Greek letter alpha, from which it derives.[3] The uppercase version consists of the two slanting sides of a triangle, crossed in the middle by a horizontal bar. The lowercase version is often written in one of two forms: the double-storey a and single-storey ɑ.</section>
+    <section class="b">B, or b, is the second letter of the Latin alphabet. It represents the voiced bilabial stop in many languages, including English. In some other languages, it is used to represent other bilabial consonants. </section>
+    <section class="a">A, or a, is the first letter and the first vowel letter of the Latin alphabet. It is similar in shape to the Ancient Greek letter alpha, from which it derives.[3] The uppercase version consists of the two slanting sides of a triangle, crossed in the middle by a horizontal bar. The lowercase version is often written in one of two forms: the double-storey a and single-storey ɑ.</section>
+    <section class="b">B, or b, is the second letter of the Latin alphabet. It represents the voiced bilabial stop in many languages, including English. In some other languages, it is used to represent other bilabial consonants. </section>
+    <footer>footer footer footer</footer>
+  </body>
+</html>

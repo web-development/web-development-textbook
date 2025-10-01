@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Demo Page for CSS Layout options</title>
+    <style>
+      header {
+        background-color: lightblue;
+        border: 1px solid blue;
+
+      }
+      section.a {
+        display: block;
+        background-color: lightgreen;
+        border: 1px solid green;
+
+      }
+      section.b {
+        display: block;
+        background-color: pink;
+        border: 1px solid red;
+
+      }
+      footer {
+        background-color: #fff2cc;
+        border: 1px solid yellow;
+
+      }
+
+      body {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: 300px 300px 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <header></header>
+    <section class="a">a</section>
+    <section class="b">b</section>
+    <section class="a">a</section>
+    <section class="b">b</section>
+    <footer>footer footer footer</footer>
+  </body>
+</html>

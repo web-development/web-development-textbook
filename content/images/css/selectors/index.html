@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>CSS Selectors and the DOM - a visualisation</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">{
+    "imports": {
+      "application": "./application.js",
+      "vis-network": "./vis-network.js",
+      "vis-data/peer/esm/vis-data.js": "./vis-data.js"
+    }
+  }</script>
+  <link rel="modulepreload" href="application.js">
+  <link rel="modulepreload" href="vis-network.js">
+  <link rel="modulepreload" href="vis-data.js">
+  <script type="module">
+    console.log("JavaScript is here");
+  </script>
+</head>
+
+<body>
+  <div id="app">
+  <header>
+    <h1>DOM|CSS Visualizer</h1>
+  </header>
+  <main>
+    <section class="col1">
+      <h2>HTML</h2>
+      <div><textarea class="html-input">&lt;body&gt;
+  &lt;h1 class=&quot;abc&quot;&gt;&lt;/h1&gt;
+  &lt;p&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li class=&quot;test abc&quot;&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;img&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;p&gt;&lt;/p&gt;
+&lt;/body&gt;
+      </textarea></div>
+      <h2>CSS</h2>
+      <div class="input-wrap"><textarea id="selector_input" autocomplete="off"
+          autocorrect="off" spellcheck="false"
+          class="input">.abc</textarea>
+
+      </div>
+      <h2>Specificity</h2>
+      <div class="specificity"><span class="type-a">0</span><span
+          class="type-b">0</span><span class="type-c">0</span></div>
+    </section>
+    <section>
+      <h2>DOM Tree</h2>
+      <div id="tree"></div>
+    </section>
+  </main>
+  <footer><iframe></iframe>
+    <p> Inspired by <a
+        href="https://specificity.keegan.st/">Specificity
+        Calculator</a></p>
+  </footer>
+</div>
+</body>
+
+</html>

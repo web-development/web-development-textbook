@@ -32,7 +32,7 @@ Type Selector
 zum Beispiel wählt `li`  alle Listen-Elemente aus:
 
 <css>
-  li { color: red; }
+  li { color: yellow; }
 </css>
 
 
@@ -48,7 +48,7 @@ oder `h2`, oder `a`:
 
 
 <css>
-  h1,h2,a { color: red; }
+  h1,h2,a { color: yellow; }
 </css>
 
 
@@ -66,12 +66,12 @@ geschrieben.
 
 
 Im Beispiel unten werden alle `a` Tags ausgewählt, die Nachkomme
-eines `div` sind:
+eines `section` sind:
 
-Achtung: `div` wird nur zur Auswahl benützt, wird aber selber nicht ausgewählt!
+Achtung: `section` wird nur zur Auswahl benützt, wird aber selber nicht ausgewählt!
 
 <css>
-  div a { color: red; }
+  section a { color: yellow; }
 </css>
 
 
@@ -81,31 +81,31 @@ Achtung: `div` wird nur zur Auswahl benützt, wird aber selber nicht ausgewählt
 Verschachteltes CSS
 -------------------
 
-(Neu in 2023)
-
 Auch hier wird ein Element ausgewählt, das Nachkomme eines anderen Elements ist.
 
-Achtung: `div` wird nur zur Auswahl benützt, wird aber selber nicht ausgewählt!
+Achtung: `section` wird nur zur Auswahl benützt, wird aber selber nicht ausgewählt!
 
 <css>
-  div {
+  section {
     & a {
-      color: red;
+      color: yellow;
     }
   }
 </css>
 
 ![Document Object Model und Selektor](/images/css/selector-desc.png)
 
-Praktisch: man kann die Deklarationen für `div` auch mit
+§
+
+Praktisch: man kann die Deklarationen für `section` auch mit
 rein schreiben:
 
 <css>
-  div {
+  section {
     border: 1px gray solid;
     padding: 10px;
     & a {
-      color: red;
+      color: yellow;
     }
   }
 </css>
@@ -113,11 +113,11 @@ rein schreiben:
 Und man kann das kaufmännische Und weglassen:
 
 <css>
-  div {
+  section {
     border: 1px gray solid;
     padding: 10px;
     a {
-      color: red;
+      color: yellow;
     }
   }
 </css>
@@ -168,4 +168,5 @@ Die Pseudo-Klassen `:hover` und `:active` gelten  bevor ein Link wirklich gelade
 Und noch viel mehr
 -----------
 
-Im Kapitel [CSS Selektoren im Detail](/css-layout/selektoren/) geht es weiter.
+* Im Kapitel [CSS Selektoren im Detail](/css-layout/selektoren/) geht es weiter.
+* [Selektor Demo](/images/css/selectors/vis.html) - mit dieser Seite wurden die Illustrationen erstellt

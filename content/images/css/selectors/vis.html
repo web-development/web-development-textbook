@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>CSS Selectors and the DOM - a visualisation</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">{
+    "imports": {
+      "application": "./application.js",
+      "vis-network": "./vis-network.js",
+      "vis-data/peer/esm/vis-data.js": "./vis-data.js",
+      "specificity": "./specificity.js",
+      "css-tree": "./css-tree.js"
+    }
+  }</script>
+  <link rel="modulepreload" href="application.js">
+  <link rel="modulepreload" href="vis-network.js">
+  <link rel="modulepreload" href="vis-data.js">
+  <link rel="modulepreload" href="specificity.js">
+  <link rel="modulepreload" href="css-tree.js">
+  <script type="module">
+    import {DOMCSSVisualizer} from "application";
+
+    // Initialize the application when DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      new DOMCSSVisualizer(
+        document.querySelector('.html-input'),
+        document.querySelector('#selector_input'),
+        document.querySelector('.specificity'),
+        document.querySelector('#tree'),
+        document.querySelector('iframe'),
+      );
+    });
+  </script>
+</head>
+
+<body>
+  <div id="app">
+  <header>
+    <h1>DOM|CSS Visualizer</h1>
+  </header>
+  <main>
+    <section class="col1">
+      <h2>HTML</h2>
+      <div><textarea class="html-input">&lt;body&gt;
+  &lt;nav&gt;Navigation&lt;/nav&gt;
+  &lt;h1&gt;Überschrift&lt;/h1&gt;
+  &lt;section class=&quot;intro&quot;&gt;
+    &lt;h2&gt;Dies und Das&lt;/h2&gt;
+    &lt;ol&gt;
+      &lt;li&gt;&lt;a href=&quot;#bla&quot;&gt;erster Link&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#blu&quot;&gt;zweiter link&lt;/a&gt;&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/section&gt;
+&lt;/body&gt;</textarea></div>
+
+      <h2>Specificity</h2>
+      <div class="specificity"><span class="type-a">0</span><span
+          class="type-b">0</span><span class="type-c">0</span></div>
+        <h2>Page</h2>
+        <iframe></iframe>
+    </section>
+    <section class="col1">
+      <h2>CSS</h2>
+      <div class="input-wrap">
+        <label>
+          Selector
+        <input id="selector_input" aclass="input" value="*">
+    </label>
+      </div>
+      </section>
+
+    <section>
+      <h2>DOM Tree</h2>
+      <div id="tree"></div>
+    </section>
+
+  </main>
+  <footer>
+    <p> Inspired by <a
+        href="https://specificity.keegan.st/">Specificity
+        Calculator</a></p>
+  </footer>
+</div>
+</body>
+
+</html>

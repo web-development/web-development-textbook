@@ -72,7 +72,7 @@ Es gibt noch eine Hand voll weiterer Pseudo Classes:
 
 
 <css>
-  li:first-child { color: yellow; }
+  :first-child { color: yellow; }
 </css>
 
 
@@ -82,11 +82,15 @@ Es gibt noch eine Hand voll weiterer Pseudo Classes:
 Has Pseudo Class
 -------
 
-Die Pseudo Class `:has()` ist die Umkehrung des Descendant Selectors:  Mit `div:has(a)` wird der `div` Tag selektiert, falls er einen `a` Tag als Nachkommen hat.
+Die Pseudo Class `:has()` ist die Umkehrung des Descendant Selectors:  Mit `section:has(a)` wird der `section` Tag selektiert, falls er einen `a` Tag als Nachkommen hat.
 
 ![Document Object Model und has psuedo class](/images/css/selector-has.png)
 
-In `:has(...)` kann man auch kompliziertere Selektoren verwenden, zum Beispiel `select:has(option[value=""]:checked)`.  Hier wird ein Select-Tag selektiert, falls von seinen optionen diejenige ausgewählt ist, die den Leeren Wert hat. Siehe [Demo](/images/css/example-has.html).
+
+§
+Innerhalb von has kann man auch kompliziertere Selektoren verwenden, zum Beispiel `select:has(option[value=""]:checked)`
+
+Hier wird ein Select-Tag selektiert, falls von seinen optionen diejenige ausgewählt ist, die den Leeren Wert hat. Siehe [Demo](/images/css/example-has.html)
 
 
 <htmlcode>
@@ -104,20 +108,6 @@ select:has(option[value=""]:checked) {
 </htmlcode>
 
 
-Adjacent selector
----------
-
-Dieser Selector wählt das direkte Geschwister-Node aus.
-
-<css>
-  p + h1 { color: yellow; }
-  li + li { color: yellow; }
-</css>
-
-
-![Document Object Model und Selektor](/images/css-layout/selector-adj.png)
-
-
 
 Kombinationen von Selektoren
 ---------
@@ -125,15 +115,14 @@ Kombinationen von Selektoren
 Wenn man mehrere Selektoren kombiniert hat das Komma die geringste Präzedenz:
 
 <css>
-  p, div a { color: yellow; }
+  p, section a { color: yellow; }
 </css>
 
+Diesen Selektor liest mal als: entweder wird der Absatz p selektiert, oder ein a innerhalb einer Section. (und nicht: es wird ein Link selektiert, der entweder in einem Absatz oder einer Section ist)
 
 ![Document Object Model und Selektor](/images/css-layout/selector-precedence.png)
 
 
-Neu 2024: `has()`
---------------
 
 
 
@@ -141,6 +130,7 @@ CSS Selektoren Üben
 -------
 
 
+* [Selektor Demo](/images/css/selectors/vis.html) - mit dieser Seite wurden die Illustrationen erstellt
 * [css diner - css üben mit japanischem essen](http://flukeout.github.io/)
 * [try selectors - von w3schools](https://www.w3schools.com/cssref/trysel.asp)
 

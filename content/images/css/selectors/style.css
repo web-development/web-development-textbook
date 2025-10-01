@@ -720,6 +720,7 @@ h2 {
   margin:.5em 0
 }
 main {
+  gap: 1em;
   flex-grow:1;
   display:flex
 }
@@ -746,7 +747,7 @@ footer {
   background-color:#ff0
 }
 iframe {
-  display:none
+  /* display:none */
 }
 
 #selector_input {
@@ -755,10 +756,16 @@ iframe {
   font-family:monospace;
   padding:10px;
   min-height: 56px;
-  background: #002b36;
-  color: #fff;
+
   white-space: pre-wrap;
   word-break: break-word;
+  border: none;
+  text-align: right;
+
+}
+label {
+  text-align: right;
+  display: block;
 }
 
 .html-input {

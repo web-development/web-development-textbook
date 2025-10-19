@@ -51,32 +51,74 @@ Der Child Selector ist auf direkte Kinder beschränkt.
 
 ![Document Object Model und Selektor](/images/css-layout/selector-child.png)
 
+Attribute Selector
+------------------
+
+
+Mit dem Attribute Selector kann man Attribute und Werte angeben. Entweder Hier selektieren wir einen Link, dessen href-Attribut mit mailto beginnt:
+
+
+<css>
+  a[href^="mailto"] { color: yellow; }
+</css>
+
+
+![Document Object Model und Selektor](/images/css-layout/attr-selector.png)
+
+
+Es gibt mehrere Varianten dieses Selektors:
+
+<css>
+  a[href]                       /* Attribut existiert */
+  a[href="https://example.com"] /* Attribut hat genau diesen Wert  */
+  a[href^="mailto"]             /* Wert beginnt mit ... */
+  a[href$=".svg"]               /* Wert endet mit ... */
+  a[href*="www"]                /* Wert enthält ... */
+</css>
+
+
+
+
+
 Pseudo Classes
 ---------
 
-Wir haben im Zusammenhang mit Links schon die Pseudo Classes `:link` und
+Wir haben im Zusammenhang mit Links schon die Pseudo Classes  `:any-link`, `:link` und
 `:visited` kennen gelernt, und im Zusammenhang mit Interaktion `:hover` und
 `:focus`.
 
 Es gibt noch eine Hand voll weiterer Pseudo Classes:
 
-* `:first-child` selektiert ein Element nur, wenn es das erste Kind seiner Eltern-Node ist
-* `:first-letter`  selektiert nur den ersten Buchstaben!  Das funktioniert auch,
-  wenn der Buchstabe gar keine eigenen Node in der DOM ist!
-* `:first-word`  selektiert das erste Wort.  Das funktioniert auch,
-  wenn das Wort      gar keine eigenen Node in der DOM ist!
-* `::selection` der aktuell ausgewählte Bereich, siehe [css-tricks](http://css-tricks.com/examples/DifferentSelectionColors/)
+* `::first-child` selektiert ein Element nur, wenn es das erste Kind seiner Eltern-Node ist
 * `:nth-child(odd)` wählt jedes zweite Element aus - 1,3,5,...
 * `:nth-child(even)` wählt jedes zweite Element aus - 2,4,6,...
 
 
-
 <css>
-  :first-child { color: yellow; }
+  ::first-child { color: yellow; }
 </css>
 
 
 ![Document Object Model und Selektor](/images/css-layout/selector-firstchild.png)
+
+
+Pseudo Classes ohne DOM Node
+---------
+
+Folgende Pseudo Classes selektieren keine DOM Nodes, sondern nur Teile davon:
+
+* `::first-letter`  selektiert nur den ersten Buchstaben
+* `::first-letter`  selektiert die erste Zeile
+* `::selection` der aktuell ausgewählte Bereich, siehe [css-tricks](http://css-tricks.com/examples/DifferentSelectionColors/)
+
+
+
+<css>
+  n::first-line { color: yellow; }
+</css>
+
+
+![Document Object Model und Selektor](/images/css-layout/selector-firstline.png)
 
 
 Has Pseudo Class

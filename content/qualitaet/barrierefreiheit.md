@@ -73,7 +73,7 @@ Drei relevante Gesetze:
 
 * Webzugänglichkeistgesetz 2018 - für öffentliche Stellen
 * Bundes-Behindertengleichstellungsgesetz - auch privatwirtschaftlicher Bereich
-* Barrierefreiheitsgesetz [2023 beschlossen](https://www.usp.gv.at/gesetzliche-neuerungen/Bundesgesetzblatt/barrierefreiheitsgesetz.html)
+* Barrierefreiheitsgesetz [2025 in Kraft](https://www.usp.gv.at/aktuelles/gesetzliche-neuerungen/archiv-fuer-gesetzliche-neuerungen/archiv-bgbl-2023/barrierefreiheitsgesetz.html)
 
 Das Barrierefreiheitsgesetz wird Juni 2025 vollständig gelten und betrifft Alle:
 
@@ -175,9 +175,9 @@ Siehe auch [w3c: ARIA Landmarks Example](https://www.w3.org/WAI/ARIA/apg/example
 
 ### Textformatierung
 
-Die Empfehlung für die Schriftgröße ist mit der immer höheren Auflösung der Ausgabegeräte gewachsen. Im Jahr 2022 verwenden z.B.
-[Smashing Magazin](https://www.smashingmagazine.com/2017/12/building-better-ui-designs-layout-grids/)  21px, [Medium](https://medium.com/@damianjo/line-spacing-leading-the-way-for-accessibility-d94344b9e26c) 20px,
-[Jeffrey Zeldman](http://www.zeldman.com/2016/12/14/font-size-widgets/) 21px.
+Die Empfehlung für die Schriftgröße ist mit der immer höheren Auflösung der Ausgabegeräte gewachsen. Im Jahr 2025 verwenden z.B.
+[Smashing Magazin](https://www.smashingmagazine.com/2017/12/building-better-ui-designs-layout-grids/) 20px, [Medium](https://medium.com/@damianjo/line-spacing-leading-the-way-for-accessibility-d94344b9e26c) 20px,
+[Jeffrey Zeldman](https://zeldman.com/2024/11/30/how-to-join-blue-beanie-day-wear-and-share/) 21px.
 
 Ein Zeilenabstand 1.5x (mit `line-height` festgelegt) erhöht die Lesbarkeit.
 
@@ -230,19 +230,65 @@ Längere Informationen kann man in eine **Bildunterschrift** geben, wo sie Allen
 </htmlcode>
 
 
+
+### Tab-Reihenfolge
+
+Ohne Maus oder Touchscreen kann man einen Browser auch bedienen:
+Dafür gibt es einen eigenen Cursor, den "Fokus". Er wird durch
+einen blaue Umrandung angezeigt.
+
+Der Fokus kann auf
+Eingabefeldern oder Links liegen.
+
+Mit der Tabulator-Taste kann
+der Fokus bewegt werden. Mit der Enter-Taste wird das Element auf
+dem der Fokus liegt aktiviert: z.B. ein Link wird aufgerufen, ein Button
+gedrückt, eine Dropdown-Liste geöffnet.
+
+<video controls muted playsinline poster="/images/barrierefreiheit/preview.png">
+  <source src="/images/barrierefreiheit/focus.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+
+### Beschriftungen für Formulare
+
+Alle Eingabefelder in einem Formular brauchen eine sichtbare Beschriftung
+mit `label`.  (Nicht nur einen Placeholder oder default Value):
+
+<htmlcode>
+<p>Schlechtes Beispiel: <input name="bad" placeholder="50kg"></p>
+<p>Gutes Beispiel: <label>Gewicht: <input name="good" placeholder="50kg"></p></label>
+</htmlcode>
+
+Siehe [MDN WCAG Guide: Text labels and names](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Guides/Understanding_WCAG/Text_labels_and_names?utm_source=devtools&utm_medium=a11y-panel-checks-text-label#form_elements_must_be_labeled)
+
+
 ###  Farben und Kontraste
 
-Farbenblindheit und Fabenfehlsichtigkeit betrifft ca. jede 20. Person.  Männer sind - aus genetischen Gründen
-- häufiger betroffen als Frauen.  Deswegen sollte man vermeiden, eine Information *nur* mit Farbe zu vermitteln:
+Farbenblindheit und Fabenfehlsichtigkeit betrifft ca. jede 20. Person.  Männer sind - aus genetischen Gründen - häufiger betroffen als Frauen.  Deswegen sollte man vermeiden, eine Information *nur* mit Farbe zu vermitteln:
 
 Schlechtes Beispiel: 🟢  vs. 🔴
 
 Gutes Beispiel:  ✅  vs.  ❌
 
+Oft weiss man gar nicht, dass man farbenblind ist, siehe [Test](https://www.farbsehschwaeche.de/materialien/tests-farbsehschwaechen-farbenblindheit).
+
 
 Für die Lesbarkeit von Text ist der Kontrast zwischen Text und Hintergrund wichtig. Die WCAG 1.4.3
 schreibt ein Kontrastverhältnis von mindestens 4,5:1 vor.  Das kann man einfach überprüfen mit dem
 [Contrast Checker](https://webaim.org/resources/contrastchecker/)
+
+## Developer Tools
+
+Mit dem Tab "Barrierefreiheit" in den Firefox Developer Tools
+kann man die eigene Seite Testen und Probleme entdecken:
+
+![](/images/barrierefreiheit/developertools.png)
+
+In diesem Beispiel wird ein Problem mit dem Kontrast gefunden,
+und zwei Eingabefelder deren Beschriftung fehlt.
+
 
 
 ## Ist das Alles?
@@ -251,7 +297,7 @@ Nein, das ist noch nicht Alles was man über Accessability wissen sollte.  Aber
 es ist ein guter Start.  Das Web macht - ohne dass wir etwas tun müssen - schon vieles richtig.
 
 
-## Testing und Werkzeuge
+## Weitere Werkzeuge
 
 - [Wave Tool](http://wave.webaim.org/extension/) als AddOn für Firefox und Chrome.
 - [Axe Core](https://www.axe-core.org/) als AddOn für Firefox und Chrome.

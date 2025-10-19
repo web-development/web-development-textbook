@@ -748,6 +748,7 @@ footer {
 }
 iframe {
   /* display:none */
+  min-height: 300px;
 }
 
 #selector_input {

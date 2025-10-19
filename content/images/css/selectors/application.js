@@ -117,7 +117,7 @@ export class DOMCSSVisualizer {
     const selector = this.selectorInput.value;
 
     // Update specificity display
-    this.updateSpecificity(selector);
+    // this.updateSpecificity(selector);
 
     // Set up iframe content
     let startNode = this.iframeDoc.body;
@@ -130,6 +130,7 @@ export class DOMCSSVisualizer {
     this.iframeDoc.head.appendChild(this.style);
 
     // Apply selector highlighting
+    console.log("setting style selector to", selector);
     this.style.textContent = `${selector} { background-color: rgb(255, 255, 0); }`;
 
     // Clear and rebuild tree

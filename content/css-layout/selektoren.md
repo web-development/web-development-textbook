@@ -108,7 +108,7 @@ Pseudo Classes ohne DOM Node
 Folgende Pseudo Classes selektieren keine DOM Nodes, sondern nur Teile davon:
 
 * `::first-letter`  selektiert nur den ersten Buchstaben
-* `::first-letter`  selektiert die erste Zeile
+* `::first-line`  selektiert die erste Zeile
 * `::selection` der aktuell ausgewählte Bereich, siehe [css-tricks](http://css-tricks.com/examples/DifferentSelectionColors/)
 
 

@@ -63,6 +63,13 @@ Die technische Umsetzung des verschiedenen Layouts ist relativ einfach:
 * Container Queries erlauben eine "Verzweigung" auf Grund der Größe die für ein bestimmtes Element zur Verfügung steht
 
 
+### Viewport
+
+Voraussetzung für responsive design am Handy: man muss den [viewport](https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag) im meta tag setzen:
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 ### Media Query
 
 Auf einem Ausgabegerät, das mindestens 480 CSS Pixel breit ist, wird die Breite der Bilder auf 100 Pixel gesetzt.
@@ -80,6 +87,14 @@ Auf einem Ausgabegerät, das mindestens 480 CSS Pixel breit ist, wird die Breite
 
 ### Container Query
 
+In folgendem Beispiel enthält eine Section-tag einen h2-Tag:
+
+<htmlcode>
+  <section>
+    <h2>Überschrift</h2>
+  </section>
+</htmlcode>
+
 Wenn das Section-Element mindestens 700 CSS-Pixel breit ist, wird die Überschrift auf 28px gesetzt.
 
 <css caption="CSS mit Container Query">
@@ -96,11 +111,6 @@ section {
 
 [Ausführliche Demo](/images/css-layout/container-query.html)
 
-### Viewport
-
-Voraussetzung für responsive design am Handy: man muss den [viewport](https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag) im meta tag setzen:
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 ### Mobile First
 
@@ -110,7 +120,11 @@ Luke Wroblewski schlug 2009 unter dem Slogan "Mobile First" vor, zuerst die mobi
 
 [Bild: (CC BY-NC) Sauce Babilonia](https://www.flickr.com/photos/saucef/7184615025)
 
-### Mediaqueries and Featurequeries
+### Weitere Mediaqueries and Featurequeries
+
+Mediaqueries können auch das Ausgabemedium abfragen, im Beispiel unten: print oder screen?
+
+Mit Featurequeries kann man Abfragen ob der Browser bestimmte Eigenschaften hat, im Beispiel: ob er grid versteht.
 
 <css caption="CSS Medaqueries Beispiel">
 @media print {

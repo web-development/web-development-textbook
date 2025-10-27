@@ -58,6 +58,72 @@ oder `h2`, oder `a`:
 siehe weiter Unten.)
 
 
+Class Selector
+---------
+
+Klassen-Namen können wir als Developer*innen einfach erfinden, und an beliebigen
+html-tags verwenden. Damit kann man verschiedene "Varianten" eines Tags erstelle,
+hier sind z.B. zwei "normale" Absätze und einer der wichtig ist:
+
+<htmlcode>
+  <h2>Dies und Das</h2>
+  <p>Dies</p>
+  <p class="wichtig">und</p>
+  <p>Das</p>
+</htmlcode>
+
+
+<css>
+  .wichtig { color: yellow; }
+</css>
+
+
+![Document Object Model und Selektor](/images/css/selector-class.png)
+
+
+
+ID Selector
+---------
+
+Auch ID-Attribute können wir als Developer*innen einfach erfinden, und an beliebigen
+html-tags verwenden. Aber: in einem HTML Dokument darf jede ID nur einmal vorkommen.
+
+Jedes ID-Attribut ist gleichzeitig eine "Textmarke" und kann in der URL mit dem Rautezeichen `#` aufgerufen werden.
+
+Wenn folgendes Dokument unter der URL `http://example.com/page.html` erreichbar ist:
+
+<htmlcode>
+  <body>
+    <header>
+      <nav id="menu">Navigation...</nav>
+      <h1>Überschrift</h1>
+    </header>
+    <main>
+      ...
+    </main>
+    <footer id="c">
+      copyright (c) ...
+    </footer>
+  </body>
+</htmlcode>
+
+Gibt es zwei Textmarken:
+
+* `http://example.com/page.html#menu`
+* `http://example.com/page.html#c`
+
+
+Der Selektor beginnt ebenfalls mit diesem Zeichen:
+
+<css>
+  #menu { color: yellow; }
+</css>
+
+
+![Document Object Model und Selektor](/images/css/selector-id.png)
+
+
+
 Descendant Combinator
 ---------
 

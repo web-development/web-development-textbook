@@ -30,7 +30,6 @@ Mit CSS Grid:
 ![Demo: CSS Grid und Formular](/images/formulare/grid-layout-form.png)
 
 
-[Demo: CSS Grid und Formular](/images/formulare/grid-form.html)
 
 
 §
@@ -127,7 +126,6 @@ form > fieldset {
 Ein fieldset Tag der ein direktes Kind eines form Tags ist,
 soll zwei Spalten überspannen.
 
-[Demo: CSS Grid und Formular](/images/formulare/grid-form.html)
 
 
 

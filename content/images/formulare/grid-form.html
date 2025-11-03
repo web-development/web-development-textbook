@@ -3,29 +3,52 @@
 <head>
   <title>Demo Seite für ein Formular mit CSS Grid</title>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     main {
       width: 40em;
       margin: 0 auto;
     }
-    form {
-      display: grid;
-      grid-template-columns: [labels] auto [controls] 1fr;
-      grid-auto-flow: row;
-      grid-gap: 10px;
+    label, input[type=submit] {
+      display: block;
     }
+    @media screen and (min-width: 500px){
+      form {
+        display: grid;
+        grid-template-columns: [labels] auto [controls] 1fr;
+        grid-auto-flow: row;
+        grid-gap: 10px;
+      }
 
-    form > fieldset {
-      grid-column: span 2;
+      form > fieldset {
+        grid-column: span 2;
+      }
+      form > input[type=submit] {
+        grid-column: controls;
+      }
     }
-    form > input[type=submit] {
-      grid-column: controls;
+    @media screen and (max-width: 500px) {
+      label {
+        margin-top: 1em;
+        border-top-left-radius: 5px;
+        padding: 2px 0 0 2px;
+        background-image: linear-gradient(to right, #ddd, transparent);
+      }
+      form {
+        max-width: 95vw;
+      }
+      input[type=radio], input[type=checkbox] {
+        width: unset;
+      }
+      input, textarea {
+        width: 90vw;
+      }
     }
   </style>
 </head>
 <body>
   <main>
-  <h1>Formular</h1>
+  <h1>Demo: Formular im Grid</h1>
   <p>Mit automatischem Layout mit CSS Grid. Das Grid definiert nur
   zwei Spalten mit Namen "label" und "control", die zeilen entstehen
   automatisch durch das einfügen der Elemente.</p>

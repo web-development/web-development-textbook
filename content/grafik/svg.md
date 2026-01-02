@@ -311,6 +311,28 @@ So sieht das Ergebnis aus:
   </g>
 </svg>
 
+## SVG in CSS verwenden
+
+SVG kann als `mask` oder `clip-path` verwendet werden.
+
+Clip-Path erwartet einen "Basic Shape" als Wert. Hier mann man einen SVG-Path angeben. Mehr auf [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/clip-path).
+
+Mask erwartet ein Bild als Wert. Mehr auf [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/mask).
+
+<css>
+clip-path: path('M20,0H30A10,10 0,0,1 40,10V20A10,10 0,0,0 50,30H90A10,10 0,0,1 100,40V90A10,10 0,0,1 90,100H10A10,10 0,0,1 0,90V20A20,20 0,0,1 20,0Z');
+
+mask: url("mask.svg");
+</css>
+
+<div style="display:flex">
+<div style="box-sizing: border-box;clip-path: path('M20,0H30A10,10 0,0,1 40,10V20A10,10 0,0,0 50,30H90A10,10 0,0,1 100,40V90A10,10 0,0,1 90,100H10A10,10 0,0,1 0,90V20A20,20 0,0,1 20,0Z');width: 100px;background-color:rgb(232, 124, 74);aspect-ratio: 1 / 1;margin: 4px;font-size:8px;">SVG als clip-path. Der Inhalt dieses Tags wird einfach verdeckt, der Text ist also nicht vollständig lesbar. Nochmal: SVG als clip-path. Der Inhalt dieses Tags wird einfach verdeckt, der Text ist also nicht vollständig lesbar.</div>
+
+<div style="box-sizing: border-box;mask: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cpath%20d%3D%22M20%2C0H30A10%2C10%200%2C0%2C1%2040%2C10V20A10%2C10%200%2C0%2C0%2050%2C30H90A10%2C10%200%2C0%2C1%20100%2C40V90A10%2C10%200%2C0%2C1%2090%2C100H10A10%2C10%200%2C0%2C1%200%2C90V20A20%2C20%200%2C0%2C1%2020%2C0Z%22%20fill%3D%22%23fff%22%20%2F%3E%3C%2Fsvg%3E') no-repeat center / contain;width: 100px;background-color:rgb(232, 124, 74);aspect-ratio: 1 / 1;margin: 4px;font-size:8px;">SVG als mask. Der Inhalt dieses Tags wird einfach verdeckt, der Text ist also nicht vollständig lesbar. Nochmal: SVG als mask. Der Inhalt dieses Tags wird einfach verdeckt, der Text ist also nicht vollständig lesbar.</div>
+</div>
+
+
+
 ## SVG mit Javascript erzeugen
 
 ### createElement

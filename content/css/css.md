@@ -165,7 +165,7 @@ die Verwendung des Tags `em` der für "Betonung" steht.
 Für Längen- und Größen-Angaben gibt es viele Maßeinheiten:
 
 - vw (Hundertstel der Viewport-Breite),
-- vh (Hunderstel der Viewport-Höhe),
+- vh (Hundertstel der Viewport-Höhe),
 - px (Pixel),
 - rem (Höhe des Großbuchstaben M im root-Element),
 - em (Höhe des Großbuchstaben M im Eltern-Element),
@@ -176,7 +176,7 @@ Für Längen- und Größen-Angaben gibt es viele Maßeinheiten:
 - in (Inch)
 - und noch [viele mehr](https://developer.mozilla.org/de/docs/Web/CSS/length)
 
-Einige davon sind relativ (em = relativ zur Schriftgröße, px = relativ zur Pixel-Größe am aktuellen Ausgabemedium), andere absolut (Centimeter, Inch). Die absoluten Angaben kann man nur bei der Ausgabe auf Papier sinnvoll verwenden. [Demo](/images/css-masse.html)
+Einige davon sind relativ (em = relativ zur Schriftgröße, vw = relativ zur Auflösung des aktuellen Ausgabegeräts), andere absolut (Centimeter, Inch). Die absoluten Angaben kann man nur bei der Ausgabe auf Papier sinnvoll verwenden. [Demo](/images/css-masse.html)
 
 ### Farben
 

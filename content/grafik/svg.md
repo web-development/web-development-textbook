@@ -331,7 +331,7 @@ mask: url("mask.svg");
 <div style="box-sizing: border-box;mask: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Cpath%20d%3D%22M20%2C0H30A10%2C10%200%2C0%2C1%2040%2C10V20A10%2C10%200%2C0%2C0%2050%2C30H90A10%2C10%200%2C0%2C1%20100%2C40V90A10%2C10%200%2C0%2C1%2090%2C100H10A10%2C10%200%2C0%2C1%200%2C90V20A20%2C20%200%2C0%2C1%2020%2C0Z%22%20fill%3D%22%23fff%22%20%2F%3E%3C%2Fsvg%3E') no-repeat center / contain;width: 100px;background-color:rgb(232, 124, 74);aspect-ratio: 1 / 1;margin: 4px;font-size:8px;">SVG als mask. Der Inhalt dieses Tags wird einfach verdeckt, der Text ist also nicht vollständig lesbar. Nochmal: SVG als mask. Der Inhalt dieses Tags wird einfach verdeckt, der Text ist also nicht vollständig lesbar.</div>
 </div>
 
-
+Dieses Beispiel wurde mit dem [Corner Inverter](https://corner-inverter.douiri.org/) gebaut.
 
 ## SVG mit Javascript erzeugen
 

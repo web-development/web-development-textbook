@@ -5,9 +5,9 @@ order: 40
 Die Funktion zum Senden von E-Mail heißt mail:
 
 <php>
-mail(  
-   "bjelli@horus.at", 
-   "Just another SPAM", 
+mail(
+   "bjelli@horus.at",
+   "Just another SPAM",
    "Das ist der Text in der E-Mail"
 );
 </php>
@@ -19,10 +19,31 @@ $text <<<Ende
    Lieber Newsletter-Kunde!
    wir freuen uns, dass Sie unseren
    Newsletter zum Thema $thema
-   abonniert haben. 
+   abonniert haben.
 Ende;
 mail("bjelli@horus.at", "Just another $thema-Newsletter", $text);
 </php>
+
+Wenn man englische Überschriften und Texte versendet ist das schon gut genug.
+Für andere Sprachen und Emojis braucht man encoding für die Überschrift
+und ein paar zusätzliche Header:
+
+
+<php>
+function mail_utf8($to, $subject, $message)
+{
+    $encoded_subject = "=?UTF-8?B?" . base64_encode($subject) . "?=";
+
+    $headers = [
+        "MIME-Version: 1.0",
+        "Content-Type: text/plain; charset=utf-8",
+        "Content-Transfer-Encoding: 8bit"
+    ];
+
+    return mail($to, $encoded_subject, $message, implode("\r\n", $headers));
+}
+</php>
+
 
 Wie die Mail vom PHP-Interpreter versandt wird, ist in der PHP- Konfiguration festgelegt. Die Konfigurations-Datei hat den Namen php.ini. Wenn man PHP auf dem eigenen Computer betreibt, kann man den SMTP-Server des Providers eintragen um die ausgehende Mail über diesen Server zu versenden:
 

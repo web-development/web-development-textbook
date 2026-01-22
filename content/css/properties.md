@@ -53,11 +53,17 @@ font-family: 'Iowan Old Style', 'Palatino Linotype', 'URW Palladio L', P052, ser
 
 
 Eine praktische Möglichkeit Webfonts aus den Web zu laden
-bietet [https://fonts.google.com/](https://fonts.google.com/)
+bietet [https://fonts.google.com/](https://fonts.google.com/).
+Man kann sie auch herunterladen und im eigenen Webspace hosten.
+[google-webfont-helper von Mario Ranftl](https://gwfh.mranftl.com/fonts)
 
 Bei Google-Fonts findet man nur Schriftarten die man kostenlos verwenden kann.  Es gibt aber auch Fonts für die
 man Lizenzgebühren zahlen muss.
 
+Wenn man einen Font von einem fremden lädt kann das natürlich schief gehen. Deshalb  sollte man
+einen zweiten Font angeben der im Notfall immer verwendet werden kann. Mit dem CSS properties
+`size-adjust` kann man die Fonts auf dieselbe Größe bringen, das tool
+[css size adjust tester](https://textlab.dev/tools/css-size-adjust-tester) hilft dabei.
 
 
 Absätze

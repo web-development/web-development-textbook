@@ -80,7 +80,7 @@ auch komplizierte Bedingungen zusammen bauen:
 * mindestens einmal: mit einem Plus
 * Einmal oder Keinmal: mit einem Fragezeichen
 
-ausserdem kann man noch Klammern verwenden - so wie man sie aus
+außerdem kann man noch Klammern verwenden - so wie man sie aus
 mathematischen Ausdrücken kennt.
 
 Ein paar Beispiele:

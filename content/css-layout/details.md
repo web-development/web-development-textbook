@@ -121,7 +121,7 @@ das Bild nach links, der Text rutscht rechts davon nach oben.
 
 §
 
-Werden statt Bildern andere Elemente gefloatat muss ausserdem
+Werden statt Bildern andere Elemente gefloatat muss außerdem
 noch eine Breite gesetzt werden:
 
 [Beispiel als Demo-Seite](/images/css-layout/floatp.html)

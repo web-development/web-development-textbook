@@ -16,7 +16,7 @@ Das Buch ist in Kapitel eingeteilt die meist einer Woche der Lehrveranstaltung
 entsprechen. Die ersten 7 Kapitel entsprechen dem Wintersemester, der Rest
 der Kapitel wird im Sommersemester behandelt.
 
-Das Sommersemester baut ausserdem auf eine Lehrveranstaltung Einführung in relationale Datenbanken
+Das Sommersemester baut außerdem auf eine Lehrveranstaltung Einführung in relationale Datenbanken
 und Einführung Computernetzwerke auf.
 
 ### Lernergebnisse

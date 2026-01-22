@@ -50,7 +50,7 @@ Die „Braille-Ausgabezeile“ ist ein Gerät, das eine Zeile Text in Blindensch
 §
 
 Seit ca 2017 werden mehr Webbrowser auf Smartphones als Webbrowser auf Computern benutzt. Achtung: das Diagramm
-zeigt den Anteil, die absolte Zahl ist gestiegen.
+zeigt den Anteil, die absolute Zahl ist gestiegen.
 
 ![Anteil Desktop-Mobile-Tablet laut StatsCounter](/images/das-web-und-html/statcounter2009-2025.png)
 

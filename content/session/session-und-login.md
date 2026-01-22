@@ -28,7 +28,7 @@ Mit dem Befehle  `session_start()`[*](http://www.php.net/manual/de/function.sess
   * automatisch ein Cookie gesetzt.
   * Wenn im Array `$_SESSION` Daten gespeichert werden, sorgt PHP dafür, dass die Daten am Server permanent gespeichert werden.
 * …bei jedem weiteren Aufruf
-  * die Session an Hand des Cookies wieder identifiziert.
+  * die Session anhand des Cookies wieder identifiziert.
   * und die Daten wieder ins `$_SESSION`-Array geladen.
 
 Für unsere Applikation werden wir das `$_SESSION`-Array verwenden, um den `username` der angemeldeten Person zu speichern.

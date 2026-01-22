@@ -22,7 +22,7 @@ Als identifizierbar wird eine natürliche Person angesehen, die direkt oder indi
 
 §
 
-Die Verarbeitung personenbezogener Daten ist per Default **verboten**, und nur auf Grund einer Erlaubnis zulässig ist. Diese sind im Artikel 6 aufgeführt:
+Die Verarbeitung personenbezogener Daten ist per Default **verboten**, und nur aufgrund einer Erlaubnis zulässig ist. Diese sind im Artikel 6 aufgeführt:
 
 - Die betroffene Person hat ihre Einwilligung gegeben;
 - die Verarbeitung ist für die Erfüllung eines Vertrags oder zur Durchführung vorvertraglicher Maßnahmen erforderlich;
@@ -100,7 +100,7 @@ Laut einer Umfrage von [welt.de](https://www.welt.de/finanzen/article193326155/D
 Im Jänner 2019 verhängt die französische Datenschutzbehörde eine Rekordstrafe von € 50 Mio gegen Google. Grund war eine [Beschwerde](https://www.heise.de/newsticker/meldung/DSGVO-Beschwerden-gegen-Android-Instagram-Whatsapp-und-Facebook-Max-Schrems-legt-los-4058386.html) von [noyb](https://noyb.eu/breaking-cnil-verhangt-eine-strafe-uber-e-50-mio-an-google-basierend-auf-einer-beschwerde-von-noyb/?lang=de) und der französischen NGO „La Quadrature du Net”.
 
 Im Jänner 2021 wurde Grindr in Norwegen zu € 10 Mio Strafe verurteilt, ebenfalls
-auf Grund einer Klage von [noyb](https://noyb.eu/de/eu10-mio-strafe-fuer-grindr-nach-dsgvo-beschwerde).
+aufgrund einer Klage von [noyb](https://noyb.eu/de/eu10-mio-strafe-fuer-grindr-nach-dsgvo-beschwerde).
 
 ## Privacy by Design, Privacy by Default
 

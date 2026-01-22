@@ -25,7 +25,7 @@ HTML-Code des Formulars aus:
 <form action="mailto:ich@priv.at" method="POST" enctype="text/plain">
 </htmlcode>
 
-Achtung: diese Art die Daten zu senden ist sehr fehleranfällig: hierfür muß am Client-Computer nicht nur der Browser funktionieren, sondern auch das E-Mail Programm. Das E-Mail Programm muß richtig konfiguriert sein. Das ist auf vielen Computern am Internet nicht der Fall, oft werden die Daten also nicht erfolgreich versandt sondern gehen verloren.
+Achtung: diese Art die Daten zu senden ist sehr fehleranfällig: hierfür muss am Client-Computer nicht nur der Browser funktionieren, sondern auch das E-Mail Programm. Das E-Mail Programm muss richtig konfiguriert sein. Das ist auf vielen Computern am Internet nicht der Fall, oft werden die Daten also nicht erfolgreich versandt sondern gehen verloren.
 
 
 ![Formular per E-Mail oder über den Webserver senden](/images/formulare/mail-or-http.png)

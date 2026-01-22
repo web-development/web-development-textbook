@@ -10,7 +10,7 @@ der Jahre wurde es zu einem Content Management System ausgebaut, das auch für a
 Arten von Webseiten geeignet ist.
 
 Die Abbildung zeigt wie unterschiedlich Wordpress mit verschiedenen "Themes" aussieht
-an Hand von vier Beispielen: 
+anhand von vier Beispielen: 
 
 * Das Standard-Theme [Twenty Sixteen](https://wordpress.org/themes/twentysixteen/) (ohne Inhalt)
 * [Ron Mayhews Photo Blog](https://ronmayhewphotography.wordpress.com/) mit dem [Avid Theme](https://wordpress.com/themes/avid/)

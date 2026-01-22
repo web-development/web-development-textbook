@@ -416,7 +416,7 @@ class Counter {
 }
 </javascript>
 
-Dem Konstruktur übergeben wir nun keine DOM-Node mehr,
+Dem Konstruktor übergeben wir nun keine DOM-Node mehr,
 sondern eine Funktion. Hier als Arrow Function:
 
 <javascript>

@@ -1,5 +1,5 @@
 ---
-title: Besondere Javascript-Schreibwesen in jQuery
+title: Besondere Javascript-Schreibweisen in jQuery
 order: 20
 ---
 jQuery Code ist auf den ersten Blick nicht einfach lesbar. Wenn man ein paar Grundprinzipien verstanden hat profitiert man aber von den ungewohnten Schreibweisen: der Code bleibt relativ kurz.

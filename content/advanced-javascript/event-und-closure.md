@@ -7,7 +7,7 @@ Dieses Kapitel ist ein Tutorial zu folgenden Projekt:
 Ein SVG-Editor soll programmiert werden, mit dem man
 Kreise und Rechtecke im Browser erzeugen und positioniern kann.
 
-An diesem Beipiel wird die Behandlung von Event und
+An diesem Beispiel wird die Behandlung von Event und
 die Notwendigkeit von Closures erläutert.
 
 Der Fokus in diesem Kapitel liegt auf der Drag und Drop Funktionalität.
@@ -23,7 +23,7 @@ erzeugt werden können.
 
 ### Editor
 
-Die Konstruktur-Funktion des **Editor** Objekts nimmt folgende Argumente
+Die Konstruktor-Funktion des **Editor** Objekts nimmt folgende Argumente
 
 * `css_selector` - ein String, wird als CSS-Selector interpretiert. Der Inhalt des ausgewählten DOM-Elements wird gelöscht, statt dessen wird der Editor angezeigt
 * `w` - optional eine Zahl oder ein String der eine Zahl enthält. Breite des Editors. Default Wert 600.
@@ -36,8 +36,8 @@ Das **Editor** Objekt hat folgende Attribute:
 
 Das **Editor** Objekt hat folgende Methoden
 
-* `rectangle` - Erzeugt ein Objekt mit dem `Rectangle`-Konstruktur, fügt es in der renderlist ein
-* `circle` - Erzeugt ein Objekt mit dem `Circle`-Konstruktur, fügt es in der renderlist ein
+* `rectangle` - Erzeugt ein Objekt mit dem `Rectangle`-Konstruktor, fügt es in der renderlist ein
+* `circle` - Erzeugt ein Objekt mit dem `Circle`-Konstruktor, fügt es in der renderlist ein
 
 §
 
@@ -74,7 +74,7 @@ Position eines `<circles>` über die Attribute `cx` und `cy` gesetzt, die Positi
 `<rect>` über `x` und `y`.  Diese Unterschiede werden durch die neu erstellen Javascript-Objekte
 möglichst verborgen.
 
-Die Signatur der Konstruktur-Funktion sind:
+Die Signatur der Konstruktor-Funktion sind:
 
 * Rectangle(x,y,w,h,att,canvas)
 * Circle(x,y,r,att, canvas )

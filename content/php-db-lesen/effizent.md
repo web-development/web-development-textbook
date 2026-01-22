@@ -45,7 +45,7 @@ die benötigten Datensätze zu laden.
 ### Datentypen der Datenbank
 
 Die Verwendung der richtigen Datentypen in der Datenbank erleichtert die
-Abfragen.  Zum Beipiel zum Speichern eines Datums sollte man den Typ `DATE` oder
+Abfragen.  Zum Beispiel zum Speichern eines Datums sollte man den Typ `DATE` oder
 `TIMESTAMP` verwenden.  Das ermöglicht das Sortieren nach Datum und  Berechnungen wie
 „falls Datum nicht älter als 100 Tage ist“
 

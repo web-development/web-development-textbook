@@ -41,7 +41,7 @@ Manchmal schafft man es, auf Anhieb ein schönes, lesbares, funktionierendes Pro
 Aber das ist eher der Ausnahmefall.
 
 Ein Programm wieder und wieder zu verändert, bis es endlich funktionert, nennt man **Debugging**.
-Oft ist hier Schluss - das Programm funktioniert ja schliesslich! Aber auch wenn die Funktionalität
+Oft ist hier Schluss - das Programm funktioniert ja schließlich! Aber auch wenn die Funktionalität
 fertig gestellt ist kann man das Programm weiter verbessern: besser lesbar machen, besser veränderbar, besser wartbar.
 
 Eine Veränderung am Programm, die die Funktionalität unverändert lässt, und andere Aspekte

@@ -38,7 +38,7 @@ DocumentRoot "/xampp/htdocs
 </apache>
 
 
-Es gibt hunderte von verschiedenen Konfigurations-Anweisungen für Apache, glücklicherweise muß man nur wenige davon kennen und verstehen um mit Apache erfolgreich arbeiten zu können.
+Es gibt hunderte von verschiedenen Konfigurations-Anweisungen für Apache, glücklicherweise muss man nur wenige davon kennen und verstehen um mit Apache erfolgreich arbeiten zu können.
 
 
 ## Konfigurations-Änderung wirksam machen

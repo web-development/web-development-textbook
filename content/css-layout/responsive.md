@@ -59,8 +59,8 @@ Bei diesem [Beispiel](https://www.bundesschatz.at/) aus dem Jahr 2024 sind die B
 
 Die technische Umsetzung des verschiedenen Layouts ist relativ einfach:
 
-* Mediaqueries erlauben eine "Verzweigung" auf Grund der Größe des Ausgabegeräts
-* Container Queries erlauben eine "Verzweigung" auf Grund der Größe die für ein bestimmtes Element zur Verfügung steht
+* Mediaqueries erlauben eine "Verzweigung" aufgrund der Größe des Ausgabegeräts
+* Container Queries erlauben eine "Verzweigung" aufgrund der Größe die für ein bestimmtes Element zur Verfügung steht
 
 
 ### Viewport

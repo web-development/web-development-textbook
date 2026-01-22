@@ -16,7 +16,7 @@ Datei `/home/stud007/public_html/mini/index.php`
 
 §
 
-Mit mod_rewrite kann man die URL komplett von der Struktur des Filesystems trennen. Wenn man die mod_rewrite - Regeln in eine `.htaccess` -Datei im Ordner `mini` schreibt dann gelten diese Regeln natürlich nur für URLs die mit `http://ich.multimediatechnology.at/mini/` beginnen. Das Endergebnis der Umschreibung wird schliesslich ganz normal als URL interpretiert.
+Mit mod_rewrite kann man die URL komplett von der Struktur des Filesystems trennen. Wenn man die mod_rewrite - Regeln in eine `.htaccess` -Datei im Ordner `mini` schreibt dann gelten diese Regeln natürlich nur für URLs die mit `http://ich.multimediatechnology.at/mini/` beginnen. Das Endergebnis der Umschreibung wird schließlich ganz normal als URL interpretiert.
 
 §
 

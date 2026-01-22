@@ -39,7 +39,7 @@ Die Header, die mit Accept beginnen, können (laut Standard) dem Aushandeln von 
 
       Accept: text/html;q=0.9,text/plain;q=0.8,*/*;q=0.1 
 
-bedeutet laut Standard, daß der Client das Dokument lieber als HTML als als Plain Text erhalten würde. Im realen Web wird aber unter einer URL immer nur ein Dokumententyp angeboten. Wenn man eine PDF-Version der gleichen Information anbietet, dann geschieht dies unter einer anderen URL.
+bedeutet laut Standard, dass der Client das Dokument lieber als HTML als als Plain Text erhalten würde. Im realen Web wird aber unter einer URL immer nur ein Dokumententyp angeboten. Wenn man eine PDF-Version der gleichen Information anbietet, dann geschieht dies unter einer anderen URL.
 
 Accept-Language würde dem Aushandeln der Sprache dienen. Dazu müssten die UserInnen aber im Browser die Sprach-Präferenz konfigurieren:
 

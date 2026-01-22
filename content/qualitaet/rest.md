@@ -268,7 +268,7 @@ verwenden:
 
 `http://alephino.fh-salzburg.ac.at/alipac/entlehnte/fhs007`
 
-Auf diese URL muß es nun Zugriffsbeschränkungen geben: nur ich und die
+Auf diese URL muss es nun Zugriffsbeschränkungen geben: nur ich und die
 BibliothekarIn darf zugreifen. Alle anderen erhalten keinen Zugriff sondern den Statuscode
 `403 Access Denied`. Die BibliothekarIn hat aber Zugriff auf alle URLs dieser Form.
 

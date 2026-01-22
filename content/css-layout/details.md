@@ -9,7 +9,7 @@ die das Layout mit CSS ermöglichen.
 
 ### Text
 
-Die Darstellung einer HTML-Seite durch den Browser erfolgt von oben nach unten, je nach Sprache von links nach rechts oder von rechts nach links. Dabei wird zwischen blockbildenden Tags und nicht-blockbildenden Tags unterschieden. In folgendem Beipiel wird
+Die Darstellung einer HTML-Seite durch den Browser erfolgt von oben nach unten, je nach Sprache von links nach rechts oder von rechts nach links. Dabei wird zwischen blockbildenden Tags und nicht-blockbildenden Tags unterschieden. In folgendem Beispiel wird
 der blockbindente Tag `p` und der inline-Tag `span` verwendet.
 
     p { background-color:#CCCCCC; }
@@ -141,7 +141,7 @@ herausgenommen und über dem restlichen Inhalt der Seite platziert.
 Wenn man nicht explizit ein Koordinatensystem mit `position: relative` angibt,
 dann gilt die linke obere Ecke des Browserfensters als Ursprung.
 
-Das führt oft zu Verwirrung, zum Beipiel wenn der meiste Inhalt der Seite
+Das führt oft zu Verwirrung, zum Beispiel wenn der meiste Inhalt der Seite
 zentriert ist, sich also je nach Fensterbreite verschriebt, und dann ein Element
 absolut darauf platziert wird.
 

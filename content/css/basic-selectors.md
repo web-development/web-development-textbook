@@ -194,7 +194,7 @@ Und man kann das kaufmännische Und weglassen:
 Links formatieren
 --------------
 
-Der Browser unterscheidet bei der Darstellugn von Links zwischen denen  die schon einmal besucht wurden (visited) und neuen Links (link).
+Der Browser unterscheidet bei der Darstellung von Links zwischen denen  die schon einmal besucht wurden (visited) und neuen Links (link).
 
 Die Default Einstellung der Browser entspricht ungefähr folgendem CSS:
 

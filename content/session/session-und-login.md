@@ -87,7 +87,7 @@ Das Logout erfolgt ebenfalls mit der Methode POST:
 
 §
 
-Das Logout ist etwas umständlich zu Programmieren: das Cookie, das von PHP gesetzt wurde, muß man nun selbst löschen. Dazu wird das „Ablaufdatum“ des Cookies auf ein Datum in der Vergangenheit gesetzt, dann wird der Browser es löschen.
+Das Logout ist etwas umständlich zu Programmieren: das Cookie, das von PHP gesetzt wurde, muss man nun selbst löschen. Dazu wird das „Ablaufdatum“ des Cookies auf ein Datum in der Vergangenheit gesetzt, dann wird der Browser es löschen.
 
 <php>
 // Löschen aller Session-Variablen.

@@ -71,7 +71,7 @@ Details zu einigen wichtigen Befehlen in der Javascript-Referenz bei Mozilla:
 
 ## Vererbung
 
-Eine Konstruktur-Funktion kann von einem Objekt erben, und zwar über den Prototypen:
+Eine Konstruktor-Funktion kann von einem Objekt erben, und zwar über den Prototypen:
 
 <javascript caption="Vererbung von Attributen">
   // ----- Pet ---------

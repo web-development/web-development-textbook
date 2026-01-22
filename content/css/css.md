@@ -31,7 +31,7 @@ Sie können beliebig Zeilenumbrüche und Whitespace einfügen, beides wird ignor
 
 Eine Stylesheet-Regel („Rule“) besteht aus einem Selektor gefolgt von einer geschwungenen Klammer die eine oder mehrere Deklarationen enthalten kann.
 
-Der einfachste Selektor besteht aus dem Namen eines einzelnen HTML-Tags. Es gibt aber auch komplexere Selektoren, wie im Beipiel "h1,h2".
+Der einfachste Selektor besteht aus dem Namen eines einzelnen HTML-Tags. Es gibt aber auch komplexere Selektoren, wie im Beispiel "h1,h2".
 
 Eine Deklaration besteht immer aus einem property, gefolgt von einem doppelpunkt, einem Wert und einem Strickpunkt. Der Wert kann wie im Beispiel bei der ersten Deklaration gezeigt komplex aufgebaut sein.
 

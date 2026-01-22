@@ -78,7 +78,7 @@ die Eigenschaften des MouseEvents zeigt:
 
 Es gibt noch eine besondere Art eine Funktion in Javascript aufzurufen: mit `new`.
 Damit wird die Funktion als Konstruktor für ein Objekt verwendet. Es ist üblich
-Konstruktur-Funktionen mit großen Anfangsbuchstaben zu benennen.
+Konstruktor-Funktionen mit großen Anfangsbuchstaben zu benennen.
 
 <javascript caption="Objekte mit einer Konstruktor-Funktion">
   function Studiengang(name, seit) {
@@ -90,7 +90,7 @@ Konstruktur-Funktionen mit großen Anfangsbuchstaben zu benennen.
   mmtm = new Studiengang( "MSc MultiMediaTechnology", 2011 );
 </javascript>
 
-Innerhalb der Konstruktur-Funktion `Studiengang` ist bereits
+Innerhalb der Konstruktor-Funktion `Studiengang` ist bereits
 ein neues Objekt vorhanden, und über `this` zugänglich. Dieses
 Objekt ist auch automatisch Rückgabewert der Funktion.
 

@@ -75,7 +75,7 @@ Der Teil der Konfiguration, der im `<Location>`-Tag eingeschlossen ist gilt nur 
 
 Die Schreibwiese bei FilesMatch ist einen „Pattern" - ein Suchmusters. Patterns und Pattern-Matching werden Sie in Javascript, in PHP und in vielen Konfigurationsdateien wieder verwenden.
 
-Das Dollar-Zeichen am Ende des Patterns bedeutet, dass `bak` am Ende des Dateinamens stehen muß. Eine Datei mit Namen test.bak.txt wäre also nicht betroffen. Vor dem Punkt muß man einen Backslash `\` schreiben, weil der Punkt alleine als Joker gelten würde. Der Pattern `.bak$` (ohne Backslash) würde also auch den Dateinamen schlabberdibak oder bik_bak erkennen, weil der Punkt für das i oder den Unterstich stehen könnte.
+Das Dollar-Zeichen am Ende des Patterns bedeutet, dass `bak` am Ende des Dateinamens stehen muss. Eine Datei mit Namen test.bak.txt wäre also nicht betroffen. Vor dem Punkt muss man einen Backslash `\` schreiben, weil der Punkt alleine als Joker gelten würde. Der Pattern `.bak$` (ohne Backslash) würde also auch den Dateinamen schlabberdibak oder bik_bak erkennen, weil der Punkt für das i oder den Unterstich stehen könnte.
 
 ## HTTP Auth mit Apache
 
@@ -91,7 +91,7 @@ In dem Ordner, der gesperrt werden soll, wird eine Datei .htaccess angelegt:
 </apache>
 
 
-  Achtung: der Pfad zur Passwort-Datei (AuthUserFile) muß vollständig angegeben werde! Die Passwort-Datei sieht so aus:
+  Achtung: der Pfad zur Passwort-Datei (AuthUserFile) muss vollständig angegeben werde! Die Passwort-Datei sieht so aus:
 
 
 <apache>
@@ -116,7 +116,7 @@ Diese Datei können Sie mit einem Generator am Web erzeugen oder mit dem Program
 
 Diese Methode funktioniert auch auf dem Webserver users.multimediatechnology.at. Wenn Sie einen eigenen Apache Server betreiben, können Sie diese Authentisierungmethode mit verschiedenen Backends verwenden (LDAP, Datenbank, ...) - dafür gibt es verschiedene Apache Module. 
 
-Mit der HTTP-Authentisierung ist das HTTP-Protokoll (genau wie bei der Verwendung von Cookies) nicht mehr stateless. http-Auth hat gegenüber Cookies den Vorteil, dass die Eingabe von Username und Passwort über ein Browser-Fenster erfolgt und nicht implementiert werden muß. 
+Mit der HTTP-Authentisierung ist das HTTP-Protokoll (genau wie bei der Verwendung von Cookies) nicht mehr stateless. http-Auth hat gegenüber Cookies den Vorteil, dass die Eingabe von Username und Passwort über ein Browser-Fenster erfolgt und nicht implementiert werden muss. 
 
 ![Authentisierungs-Popup in Firefox](/images/firefox-auth.png)
 ![Authentisierungs-Popup in Chrome](/images/chrome-auth.png)

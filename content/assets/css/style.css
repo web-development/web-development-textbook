@@ -1,3 +1,76 @@
+body {
+  font-family: 'Libertine', serif;
+  font-feature-settings: "liga", "dlig";
+  font-display: swap;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Biolinum', sans-serif;
+}
+
+
+@font-face {
+  font-family: Biolinum;
+  src: url("../fonts/LinBiolinum_R.woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: Biolinum;
+  src: url("../fonts/LinBiolinum_RB.woff");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: Biolinum;
+  src: url("../fonts/LinBiolinum_RI.woff");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: Biolinum;
+  src: url("../fonts/LinBiolinum_RBI.woff");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Libertine;
+  src: url("../fonts/LinLibertine_R.woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: Libertine;
+  src: url("../fonts/LinLibertine_RB.woff");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: Libertine;
+  src: url("../fonts/LinLibertine_RI.woff");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: Libertine;
+  src: url("../fonts/LinLibertine_RBI.woff");
+  font-weight: bold;
+  font-style: italic;
+}
+
+
+
+
+a:any-link {
+  color: #005D8F;
+  text-decoration: none;
+}
+a:any-link:hover {
+  color: #0088cc;
+  text-decoration: underline;
+}
+
 .resizable {
   resize: both;
   overflow: scroll;
@@ -16,7 +89,7 @@
   font-size: 80% !important;
 }
 
- .slide  .resizable img[src$="svg"] {
+.slide  .resizable img[src$="svg"] {
   width: auto !important;
 }
 
@@ -47,9 +120,7 @@
 }
 
 header {
-  position: fixed;
-  background-color: white;
-  z-index: 1;
+
 }
 
 article {
@@ -88,4 +159,58 @@ pre.right {
 
 a[name]:before {
    content: "";
+}
+
+li, dt, dd, td, th {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+
+div.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.row82 {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  gap: 20px;
+  grid-template-areas: "main sidebar";
+
+  #sidebar {
+    grid-area: sidebar;
+  }
+}
+
+
+
+
+.icon-plus, .icon-minus {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+  font-size: 24px;
+  font-weight: bold;
+  font-style: normal;
+  vertical-align: text-top;
+  margin-right: 0.3em;
+}
+
+.icon-plus::before {
+  content: "+";
+}
+.icon-minus::before {
+  content: "-";
+}
+
+
+img {
+  height: auto;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+  max-width: min(100vh, 100%);
+  max-height: 100vh;
+
 }

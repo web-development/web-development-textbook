@@ -11,7 +11,7 @@ Ein erstes längeres Beispiel zeigt wie eng HTML und PHP vermischt werden:
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"> 
+  <meta charset="utf-8">
   <title>Beispielseite für ein PHP-Programm</title>
 </head><body>
   <h1>PHP-Beispiel</h1>
@@ -45,7 +45,7 @@ ein, wo der PHP-Code war; das Ergebnis sieht wie folgt aus:
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"> 
+  <meta charset="utf-8">
   <title>Beispielseite für ein PHP-Programm</title>
 </head><body>
   <h1>PHP-Beispiel</h1>
@@ -65,7 +65,7 @@ sogar Kontrollstrukturen in einem anderen Teil fortgesetzt werden:
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"> 
+  <meta charset="utf-8">
   <title>Beispielseite für ein PHP-Programm</title>
 </head><body>
   <h1>Wilde Mischung</h1>
@@ -141,11 +141,11 @@ wird ist dabei wieder eine Abwägungsfrage, auf die es keine fixe Antwort gibt.
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"> 
+  <meta charset="utf-8">
   <title>Beispielseite für ein PHP-Programm</title>
 </head><body>
   <h1>PHP-Beispiel</h1>
-   
+
   <?php
     echo "<p>$entfernung km in $h:$min sind $kmh km/h</p>";
     if( $kmh > 130 ) {
@@ -156,10 +156,10 @@ wird ist dabei wieder eine Abwägungsfrage, auf die es keine fixe Antwort gibt.
 </html>
 </htmlcode>
 
-## Includes
+## Require
 
 Bei PHP-Applikationen mit mehr als einer Datei empfiehlt sich die
-Verwendung von `include` um Duplizierung von Code zu vermeiden.
+Verwendung von `require` um Duplizierung von Code zu vermeiden.
 PHP-Code, der mehrmals verwendet wird,
 kann z.B. als Funktionen in eine Datei phpfunctions.php ausgelagert werden:
 
@@ -188,7 +188,7 @@ den Titel der Seite dynamisch generieren zu können:
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8"> 
+  <meta charset="utf-8">
   <title>Brigittes totale Web-App: <?php echo $pagetitle ?></title>
   <link rel="stylesheet" href="style.css" />
 </head><body>
@@ -220,19 +220,19 @@ da hier gar keine Variablen oder PHP-Code verwendet werden:
 In der “Haupt-Datei” index.php werden alle diese Einzelteile zusammengefügt:
 
 <php caption="Datei index.php">
-<?php   
-  include "phpfunctions.php";   // kein Output!
+<?php
+  require "phpfunctions.php";   // kein Output!
   $pagetitle = "Berechnung der Geschwindigkeit";
   $entfernung = 296;
   $h = 2;
   $min = 40;
   $kmh = calc($entfernung, $h, $min);
-  include "header.php";    // erster Output von HTML
+  require "header.php";    // erster Output von HTML
   echo "  <p>$entfernung km in $h:$min sind $kmh km/h</p>";
   if( $kmh > 130 ) {
       echo("  <p><b>Das ist zu schnell!</b></p>");
   }
-  include "footer.php" 
+  require "footer.php"
 ?>
 </php>
 
@@ -271,7 +271,7 @@ und doppelten Anführungszeichen - ist das "heredoc" Schreibweise[&rarr;](http:/
 
 <php caption="Beispiel für heredoc">
 echo <<<EOT
-My name is $lastname, $firstname $lastname. 
+My name is $lastname, $firstname $lastname.
 I am printing some $foo->foo.
 Now, I am printing some {$foo->bar[1]}.
 I can't mess up this string
@@ -314,7 +314,7 @@ Je nach verwendeten Operatoren und Funktionen werden die Typen konvertiert:
   $foo = $foo + 2;    // $foo is now an integer (2)
   $foo = $foo + 1.3;  // $foo is now a float (3.3)
   $bar = 5 + "10 Little Piggies"; // $bar is an integer (15)
-  $baz = 5 . "10 Small Pigs";     // $baz is a longer string "510 ..." 
+  $baz = 5 . "10 Small Pigs";     // $baz is a longer string "510 ..."
 ?>
 </php>
 
@@ -325,7 +325,7 @@ Betrachten wir die letzten zwei Zeilen des Codes genauer:
 <php>
 <?php
   $bar = 5 + "10 Little Piggies"; // $bar is an integer (15)
-  $baz = 5 . "10 Small Pigs";     // $baz is a longer string "510 ..." 
+  $baz = 5 . "10 Small Pigs";     // $baz is a longer string "510 ..."
 ?>
 </php>
 
@@ -341,10 +341,10 @@ Der Operator bestimmt also den Typ!
 §
 
 In Javascript ist es
-genau umgekehrt: da entscheidet der Datentyp  
+genau umgekehrt: da entscheidet der Datentyp
 über die Bedeutung des Operators:
 
-![Abbildung: Bespiel für den Operator + in Javascript (Firebug)](/images/php-javascript-plus.png)
+![Abbildung: Bespiel für den Operator + in Javascript (Firebug)](/images/php/javascript-plus.png)
 
 ## Arrays
 

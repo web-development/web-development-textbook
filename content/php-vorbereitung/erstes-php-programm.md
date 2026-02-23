@@ -31,15 +31,15 @@ Der Browser zeigt den PHP-Teil des Code aber nicht an,
 erst mit Ansicht-&gt;Quelltext kann man den Code sehen wie in Abbildung 122 gezeigt.
 
 
-![Abbildung 126: So funktioniert PHP nicht: falsche Dateiendung](/images/image328.png)
+![Abbildung 126: So funktioniert PHP nicht: falsche Dateiendung](/images/php/falsche-endung.png)
 
 §
 
 Wenn Sie die richtige Dateiendung verwenden (.php) und die Seite über einen Webserver
-betrachten (z.B. http://localhost) kann immer noch ein Fehler im PHP-Programm auftreten.
+betrachten (z.B. http://localhost:4000) kann immer noch ein Fehler im PHP-Programm auftreten.
 Die Fehlermeldung des Interpreters wird dann im Browser angezeigt wie in Abbildung 123 gezeigt.
 
-![Abbildung 127: So funktioniert PHP nicht: Fehler im Programm](/images/image329.png)
+![Abbildung 127: So funktioniert PHP nicht: Fehler im Programm](/images/php/error-in-php.png)
 
 §
 
@@ -48,15 +48,15 @@ Testlauf: richtige Datei-Endung, richtiger Beginn der URL mit
 **http://localhost/**, und keine Fehler im Programm:
 
 
-![Abbildung 128: So funktioniert PHP: Webserver, richtige Endung, richtiger Programmcode](/images/image330.png)
+![Abbildung 128: So funktioniert PHP: Webserver, richtige Endung, richtiger Programmcode](/images/php/php-runs.png)
 
 Mit Ansicht-&gt;Quelltext kann man nun im Browser nur noch den HTML-Code sehen, niemals aber den PHP-Quellcode!
 
 PHP Versionen
 --------------
 Der Befehl phpinfo() liefert Informationen zur PHP-Installation. In der letzten Abbildung sehen
-Sie z.B. dass PHP in der Version 5.0.5 verwendet wird - eine veraltete Version. Im Jahr
-2019 sollten Sie nur mindestens PHP 7 verwenden.
+Sie z.B. dass PHP in der Version 8.5.2 verwendet wird - das ist eine aktuelle Version. Im Jahr
+2026 sollten Sie nur mindestens PHP 8.5 verwenden.
 
 Zwischen den verschiedenen PHP-Versionen gibt es eklatante Unterschiede,
 verschiedene PHP-Versionen sind **nicht** **kompatibel**.
@@ -64,18 +64,10 @@ Wenn ihr Webspace-Vermieter auf eine
 neue PHP-Version umstellt, müssen Sie eventuell den Code Ihres Programmes
 anpassen!
 
-In der PHP-Dokumentation sind diese Unterschiede bei den einzelnen Befehlen
-aufgeführt, z.B. bei der Funktion [ldap_sort](http://php.net/manual/de/function.ldap-sort.php) ist in der Dokumentation angegeben:
-
-    PHP 4 >= 4.2.0, PHP 5, PHP 7
-
-    Warnung: Dieses Feature ist seit PHP 7.0.0 DEPRECATED (veraltet). Sich auf diese Funktion zu verlassen ist in keiner Weise empfehlenswert.
-
-Die Funktion existiert also seit PHP 4 Version 4.2.0 und wird nach PHP 7 abgeschafft.
 
 §
 
-Wenn Sie Webspace mieten liegt die Entscheidung über die PHP Version aber nicht bei Ihnen:
+Wenn Sie Webspace mieten liegt die Entscheidung über die PHP Version nicht bei Ihnen:
 wenn Ihr Webspace-Provider nur einen veraltete PHP-Interpreter anbietet
 können Sie das nicht ändern!
 Das sollten Sie auf jeden Fall klären bevor Sie den Mietvertrag abschließen.
@@ -85,15 +77,7 @@ die am Webspace installiert ist.
 
 Dokumentation
 --------------
-Die Dokumentation zu PHP finden Sie auf http://php.net.
+Die Dokumentation zu PHP finden Sie auf [http://php.net/manual/de](http://php.net/manual/de).
 
-![Abbildung 129: Eine Funktion in der Doku auf php. net nachschlagen](/images/image331.png)
-
-§
-
-Hilfreich sind auch die Kommentare der UserInnen am Ende jeder Doku-Seite. Hier finden Sie oft Erklärungen zu einzelnen Features, die in der Dokumentation "vergessen" wurden, oder Anwendungsbeispiele:
-
-![Abbildung 130: Kommentare von UserInnen in der Doku auf php. Net](/images/image332.png)
-
-Die Dokumentation kann man auch herunterladen und lokal installieren, dann enthält sie aber nicht die Kommentare.
+![Abbildung 129: Eine Funktion in der Doku auf php.net nachschlagen](/images/php/php-manual-de.png)
 

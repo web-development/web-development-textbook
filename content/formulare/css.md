@@ -129,4 +129,6 @@ soll zwei Spalten überspannen.
 
 
 
+## Eingabe Valide?
 
+Siehe [:valid and :user-valid](https://web.dev/articles/user-valid-and-user-invalid-pseudo-classes) in MDN

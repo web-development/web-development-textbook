@@ -10,7 +10,7 @@ Arten Daten aus der Datenbank lesen.
 Einzelne Daten aus der Datenbank lesen
 ---------------------------------------
 Für die Datei `index.php` müssen wir die Anzahl der Profile und Projekte anzeigen.
-Mit der SQL-Funktion `COUNT()` können 
+Mit der SQL-Funktion `COUNT()` können
 wir die Anzahl der gefundenen Datensätze bestimmen[*](http://www.postgresql.org/docs/current/static/functions-aggregate.html):
 
 <php caption="Beispiel aus index.php">
@@ -31,7 +31,7 @@ $anz_personen = $dbh->query("SELECT COUNT(*) AS anzahl FROM users WHERE profile_
 </php>
 
 Damit spart man sich zwei der drei Variablen, macht aber
-die Fehlersuche etwas schwieriger.  
+die Fehlersuche etwas schwieriger.
 
 
 Viele Datensätze lesen
@@ -50,7 +50,7 @@ $personen = $sth->fetchAll();
 Die SQL-Anfrage wird hier als String an die `query()`-Methode des Datenbankhandler
 übergeben.  Der Rückgabewert von query ist ein Statement-Handle `$sth` (ähnlich
 dem Datenbank-Handle).  Zu diesem Zeitpunkt wurden noch keine Daten von der
-Datenbank zu PHP übertragen. 
+Datenbank zu PHP übertragen.
 
 §
 
@@ -64,13 +64,13 @@ Anfangsposition[*](http://www.postgresql.org/docs/8.1/static/queries-limit.html)
 
 In der Datenbank sind Personen, deren Profil nicht angezeigt werden soll, mit
 `profile_visible = false` gekennzeichnet. Im SQL-Statement wird sicher gestellt, dass
-nur sichtbare Profil angezeigt werden. 
+nur sichtbare Profil angezeigt werden.
 
 §
 
 Das eigentliche Lesen der Daten aus der Datenbank geschieht erst nach dem
-`query()` mit der Methode `fetchAll()`[*](http://www.php.net/manual/en/pdostatement.fetchall.php). 
-Der Rückgabewert von `fetchAll()` ist ein Array mit Objekten. 
+`query()` mit der Methode `fetchAll()`[*](http://www.php.net/manual/en/pdostatement.fetchall.php).
+Der Rückgabewert von `fetchAll()` ist ein Array mit Objekten.
 Hier der Output von `print_r($personen)`:
 
 <php caption="Output von print_r($personen)">
@@ -155,7 +155,7 @@ der Applikation weiter gegeben.
 §
 
 Wir haben in personen.php nur sichtbare Profile angezeigt,
-und auch nur auf sichtbare Profile verlinkt. Das schützt nicht davor, 
+und auch nur auf sichtbare Profile verlinkt. Das schützt nicht davor,
 dass jemand einfach eine URL mit ganz anderer id „von Hand“ eingibt!
 
 `http://meinedomain.at/person.php?id=666`
@@ -201,9 +201,9 @@ if( $person->isfemale ) {
 }
 
 // ====================== Ausgabe ===================
-include "header.php";
+require "header.php";
 ?>
-<p> 
+<p>
   <?php echo $anrede ?>
   <?php echo $person->firstname ?>
   <?php echo $person->surname ?>
@@ -219,7 +219,7 @@ In der Datei `psuche.php` wird ein Formular zur Suche nach Namen angezeigt:
 
 <htmlcode caption="Such-Formular in psuche.php">
 <form action="psuche.php" method="get">
-  Suche nach einer Person mit dem Namen <input name="suchwort"> 
+  Suche nach einer Person mit dem Namen <input name="suchwort">
   <input type="submit">
 </form>
 </htmlcode>
@@ -227,8 +227,8 @@ In der Datei `psuche.php` wird ein Formular zur Suche nach Namen angezeigt:
 Die eigentliche Suche geschieht über das WHERE-Statement  in SQL:
 
 <sql>
-... 
-WHERE profile_visible=1 
+...
+WHERE profile_visible=1
   AND (surname LIKE '%$suchwort%' OR firstname LIKE '%$suchwort%')
 </sql>
 
@@ -252,9 +252,9 @@ $personen = $query->fetchAll(PDO::FETCH_OBJ);
 </php>
 
 Ab Version 9.5 gibt es eine effizientere Methode mit
-`TABLESAMPLE` [*](http://www.postgresql.org/docs/devel/static/sql-select.html#SQL-FROM), 
+`TABLESAMPLE` [*](http://www.postgresql.org/docs/devel/static/sql-select.html#SQL-FROM),
 
-In anderen relationalen Datenbanken gibt es dafür andere Lösungen.  
+In anderen relationalen Datenbanken gibt es dafür andere Lösungen.
 
 
 ### Neue Befehle in diesem Kapitel:

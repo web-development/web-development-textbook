@@ -58,9 +58,10 @@ sendmail_from = someuser@fh-salzburg.ac.at
 </php>
 
 Der Befehl `phpinfo()` gibt die ganze Konfiguration von PHP aus. Hier kann man auch die Mail-Konfiguration nachlesen:
+`sendmail_from`, `sendmail_path`, `SMTP` und `smpt_port` - siehe [Dokumentation](https://www.php.net/manual/en/mail.configuration.php).
 
 
+![Abbildung 138: Konfiguration von PHP für Mail](/images/php/php-info-mail-config.png)
 
-![Abbildung 138: Konfiguration von PHP für Mail](/images/php-info.png)
 
 

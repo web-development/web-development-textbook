@@ -53,7 +53,7 @@ Jede PHP-Datei im Webspace ist grundsätzlich direkt über HTTP aufrufbar. Daher
 
 <php caption="Prüfung der Zugriffsrechte am Anfang jeder PHP-Datei">
 <?php
-  include "functions.php";
+  require "functions.php";
   check_permissions();
   // ....
 </php>
@@ -105,7 +105,7 @@ Eine denkbar schlechte Implementiereung dieser Galerie wäre:
 <htmlcode caption="Beliebiger Zugriff auf Dateien - NICHT SO PROGRAMMIEREN!">
   <img src="<?= $_GET['img'] ?>">
   <?php
-  include $_GET['text'];  // nicht so programmieren!!!
+  require $_GET['text'];  // nicht so programmieren!!!
   ?>
 </htmlcode>
 

@@ -130,7 +130,7 @@ Mit einem "Markdown Parser" wird das Markdown-Format gelesen und
 in HTML übersetzt:
 
 <php>
-include 'Parsedown.php';
+require 'Parsedown.php';
 $Parsedown = new Parsedown();
 echo $Parsedown->text('## Hello HTML!');
 </php>

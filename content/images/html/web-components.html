@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <title>Test HTML</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1/lite-youtube.min.js"></script>
+
+  <style>
+    lite-youtube {
+      width: 270px;
+      height: 480px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Example Web Component</h1>
+  <p>Look at the source code to see the &lt;lite-youtube&gt; tag.</p>
+
+    <lite-youtube
+      videotitle="The Navigation API" videoStartAt="47"
+    videoid="fEq2AqigM7I">
+      <img slot="image" src="navigation-api.png">
+        <a class="lite-youtube-fallback" href="https://www.youtube.com/shorts/fEq2AqigM7I?t=47&feature=share">Watch on YouTube</a>
+    </lite-youtube>
+</body>
+
+</html>

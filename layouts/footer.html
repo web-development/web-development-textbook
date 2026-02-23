@@ -1,62 +1,71 @@
 
   <div class="row">
     <div class="span12" id="legal">
-        <p class="copyright">veröffentlicht unter <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/at/deed.de">creative commons by-nc-sa</a> in den Jahren 2012-2025 von <a href="#">Brigitte Jellinek</a>.</p>
+        <p class="copyright">veröffentlicht unter <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/at/deed.de">creative commons by-nc-sa</a> in den Jahren 2012-2026 von <a href="#">Brigitte Jellinek</a>.</p>
         <p class="do-not-print">Zum Weiterentwickeln dieser Seite: <a href="https://github.com/web-development/web-development-textbook">Projekt forken</a> oder <a href="https://github.com/web-development/web-development-textbook/blob/master/<%= @item[:filename] %>">Kommentar zu dieser Seite</a></p>
     </div>
   </div>
 
 </div> <!-- class="container" -->
-<script
-			  src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
-			  integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
-			  crossorigin="anonymous"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const nav = document.querySelector("ul.nav");
+    const items = nav.querySelectorAll(":scope > li");
+
+    function setItem(li, open) {
+      const sub = li.querySelector(":scope > ul");
+      const icon = li.querySelector(":scope > i");
+      if (sub) sub.style.display = open ? "" : "none";
+      if (icon) { icon.className = open ? "icon-minus" : "icon-plus"; }
+    }
+
+    function setAll(open) {
+      items.forEach(li => setItem(li, open));
+      saveState();
+    }
+
+    function saveState() {
+      localStorage.setItem("nav-state",
+        Array.from(items, li => li.querySelector(":scope > i")?.classList.contains("icon-minus") ? "+" : "-").join("")
+      );
+    }
+
+    items.forEach(li => {
+      const icon = document.createElement("i");
+      icon.className = "icon-plus";
+      li.querySelector(":scope > a")?.before(icon);
+      li.style.listStyle = "none";
+    });
+
+    const stored = localStorage.getItem("nav-state");
+    if (stored) {
+      stored.split("").forEach((ch, i) => { if (items[i]) setItem(items[i], ch === "+"); });
+    } else {
+      setAll(false);
+    }
+    items.forEach(li => { if (li.classList.contains("active")) setItem(li, true); });
+
+    const controls = document.createElement("li");
+    controls.style.listStyle = "none";
+    controls.innerHTML = '<a href="#">open all</a> | <a href="#">close all</a>';
+    nav.prepend(controls);
+    controls.children[0].addEventListener("click", (e) => { e.preventDefault(); setAll(true); });
+    controls.children[1].addEventListener("click", (e) => { e.preventDefault(); setAll(false); });
+
+    nav.addEventListener("click", (e) => {
+      if (e.target.tagName !== "I") return;
+      e.preventDefault();
+      const li = e.target.parentElement;
+      setItem(li, e.target.classList.contains("icon-plus"));
+      saveState();
+    });
+  });
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/css.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/shell.min.js"></script>
 <script>hljs.highlightAll();</script>
-<script>
-  $(document).ready(function(){
-    function save_state(){
-      var stored = "";
-      $('ul.nav > li').each(function(i,e){
-        if( $(e).find("i").attr('class') == 'icon-plus' ) {
-          stored += "-";
-        }  else {
-          stored += "+";
-        }
-      });
-      localStorage.setItem('nav-state', stored);
-    }
-    $('ul.nav > li > a').prepend("<i class='icon-plus'></i>");
-
-    // init state
-    var stored = localStorage.getItem('nav-state');
-    if ( stored ) {
-      var data = stored.split("");
-      $('ul.nav > li').each(function(i,e){
-        if( data[i] == "+" ) {
-          $(e).find(">ul").show();
-          $(e).find("i").removeClass('icon-plus').addClass('icon-minus');
-        } else {
-          $(e).find(">ul").hide();
-        }
-      });
-    } else {
-      $('ul.nav ul.sub').hide();
-    }
-    $('ul.nav li.active ul.sub').show();
-    $('ul.nav li.active i').removeClass('icon-plus').addClass('icon-minus');
-
-    $('ul.nav i').click(function(){
-      $this = $(this);
-      $this.toggleClass('icon-plus').toggleClass('icon-minus');
-      $this.parent().next('ul').toggle();
-      save_state();
-      return false;
-    });
-  });
-</script>
 </body>
 </html>

@@ -110,12 +110,12 @@ header("Location: index.php");
 
 Das Setzen und Löschen der Session-Cookies dauert immer einen Request länger als gedacht! Deswegen ist eine Weiterleitung mit `Location:` sinnvoll.
 
-Die Weiterleitung funktioniert nur, wenn noch keine Ausgabe erfolgt ist, also vor dem Laden der header-include-Datei. Hier am Beispiel von login:
+Die Weiterleitung funktioniert nur, wenn noch keine Ausgabe erfolgt ist, also vor dem Laden der header-Datei. Hier am Beispiel von login:
 
 <php>
 <?php
     $pagetitle = "Login";
-    include "functions.php";
+    require "functions.php";
 
     $username = $_POST['username'];
     $passwort = $_POST['passwort'];
@@ -126,7 +126,7 @@ Die Weiterleitung funktioniert nur, wenn noch keine Ausgabe erfolgt ist, also vo
         exit;
     }
 
-    include "header.php";
+    require "header.php";
 </php>
 
 Eine Weiterleitung nach der Behandlung eines POST-Requests ist allgemein sinnvoll.

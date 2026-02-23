@@ -41,7 +41,11 @@ php -S localhost:4000
 
 dann lautet die URL `http://localhost:4000/order-mail/index.html`
 
-Wenn ich den Webserver im Ordner `oder-mail` starte:
+
+§
+
+Angenommen ich habe eine Datei mit Pfad `dev/webprog2abgabe/order-mail/index.html`
+Wenn ich den Webserver im Ordner `order-mail` starte:
 
 <shell>
 cd dev
@@ -52,6 +56,13 @@ php -S localhost:4000
 
 
 dann lautet die URL nur  `http://localhost:4000/index.html`
+
+Besonderer Dateiname: index
+-----
+
+Die Dateien `index.html` und `index.php` haben eine besondere Bedeutung am Webserver:
+Wenn die URL nur auf einen Ordner verweist, z.B. `http://localhost:4000/order-mail/`
+und dieser Ordner eine Datei `index.html` enthält, dann wird diese Datei angezeigt:
 
 
 ![php webserver starten, pfad und url](/images/php-apache/url.png)
@@ -65,7 +76,8 @@ Apache
 Apache ist eine Webserver-Software. Es ist freie Software (free as in freedom,
 not free as in beer). Das Apache-Projekt startete 1995 um statt NCSA Webserver, der schon durch viele Patches verbessert wurde, einen neuen Webserver von Grund auf zu programmieren. Der Name leitet sich aber noch von „a patchy webserver“ ab.
 
-Im Gegensatz zu anderen freien Software Projekten waren in der Apache Group von Anfang an Programmierer aus großen Firmen vertreten, und zwar im offiziellen Auftrag dieser Firme
+Im Gegensatz zu anderen freien Software Projekten waren in der Apache Group von Anfang an Programmierer aus großen Firmen vertreten, und zwar im offiziellen Auftrag dieser Firmen.
+
 
 Heute betreibt die "Apache Group" neben dem Webserver noch viele weitere
 wichtige Open Source Software Projekte.

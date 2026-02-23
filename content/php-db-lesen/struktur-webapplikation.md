@@ -15,12 +15,12 @@ Die folgende Tabelle zeigt alle (geplanten) Seiten der Applikation im Überblick
 
 |Titel|Dateiname|Parameter|Beschreibung|
 |+----|+--------|+--------|+-----------|
-|Home |`index.php`|         |Zeigt Gesamtzahl der Personen und Werke an, sowie Bilder von 10 zufälligen Werken| 
+|Home |`index.php`|         |Zeigt Gesamtzahl der Personen und Werke an, sowie Bilder von 10 zufälligen Werken|
 |Personen|`personen.php`|   |Zeigt alle sichtbaren Profile an, mit Links zu  person.php|
 |Personensuche|`psuche.php`|   |Zeigt Ein Such-Formular für Personen an|
 |Personensuche|`psuche.php`| suchwort  |Zeigt alle sichtbaren Profile an, wo Vor- oder Nachname like suchwort|
 |Profil einer Person|`person.php`|id (Schlüssel der Person)| Zeigt Details zu einer bestimmten Person an: Anzahl der Werke und Username|
-|Werke| `werke.php`|        |Zeigt alle sichtbaren Werke an, mit Links zu werk.php| 
+|Werke| `werke.php`|        |Zeigt alle sichtbaren Werke an, mit Links zu werk.php|
 |Details zu einem Werk| `werk.php`|id (Schlüssel des Werks)| Zeigt Details zu einer bestimmten Werk an: Titel, Datum der Publikation, eventuell eine Liste der Beteiligten Personen und ihrer Rollen|
 |Werksuche|`wsuche.php`|   |Zeigt Ein Such-Formular für Werke an|
 |Werksuche|`wsuche.php`| suchwort  |Zeigt alle sichtbaren Werke an, wo Titel like suchwort|
@@ -29,19 +29,19 @@ Die folgende Tabelle zeigt alle (geplanten) Seiten der Applikation im Überblick
 §
 
 Jede einzelne Seite ist mit Hilfe von includes aufgebaut. Dabei werden immer die
-Dateien `functions.php` (mit dem Aufbau der Datenbank-Verbindung), `header.php` und 
+Dateien `functions.php` (mit dem Aufbau der Datenbank-Verbindung), `header.php` und
 `footer.php` inkluidert.
 
 <php>
 <?
   $pagetitle = "Titel der Seite";
-  include "functions.php";
+  require "functions.php";
 
   // hier passiert die eigentliche Arbeit
-  
-  include "header.php";
+
+  require "header.php";
   // und hier die Ausgabe
-  include "footer.php";
+  require "footer.php";
 ?>
 </php>
 
@@ -69,8 +69,13 @@ In der Datei `psuche.php` wird ein Formular zur Suche nach Vornamen angezeigt:
 
 <htmlcode>
 <form action="psuche.php" method="get">
-  Suche nach einer Person mit Namen <input name="suchwort"> 
+  Suche nach einer Person mit Namen <input name="suchwort">
   <input type="submit">
 </form>
 </htmlcode>
 
+
+Siehe auch
+--------------
+
+Die Rolle der URL in der Web-Architektur: Ahmad Alfy’s [Your URL Is Your State](https://alfy.blog/2025/10/31/your-url-is-your-state.html)

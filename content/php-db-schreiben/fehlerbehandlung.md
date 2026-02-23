@@ -12,15 +12,15 @@ und das Einfügen fehlschlagen. Wie behandelt man diesen Fall in PHP?
 
 Folgende Beschreibung ist aus dem [PHP Handbuch](http://www.php.net/manual/de/language.exceptions.php) übernommen:
 
-PHP 5 hat ein Exceptionmodell ähnlich dem anderer Programmiersprachen. Eine Exception kann in PHP 
-geworfen (`throw`) und abgefangen (`catch`) werden. Um das Fangen potentieller Exceptions zu 
-ermöglichen, wird der jeweilige Code mit einem `try`-Block umschlossen. 
+PHP 5 hat ein Exceptionmodell ähnlich dem anderer Programmiersprachen. Eine Exception kann in PHP
+geworfen (`throw`) und abgefangen (`catch`) werden. Um das Fangen potentieller Exceptions zu
+ermöglichen, wird der jeweilige Code mit einem `try`-Block umschlossen.
 
-Die normale Programmausführung (wenn keine Exception innerhalb des `try`-Blockes geworfen wird) 
-wird nach dem letzten `catch`-Block fortgesetzt. 
+Die normale Programmausführung (wenn keine Exception innerhalb des `try`-Blockes geworfen wird)
+wird nach dem letzten `catch`-Block fortgesetzt.
 Exceptions können innerhalb eines `catch`-Blockes geworfen (oder weitergeworfen) werden.
 
-Wenn eine Exception geworfen wird, wird der Programmcode der auslösenden Anweisung nicht ausgeführt, 
+Wenn eine Exception geworfen wird, wird der Programmcode der auslösenden Anweisung nicht ausgeführt,
 und PHP versucht, den ersten passenden `catch`-Block zu finden. Falls eine Exception gar
 nicht abgefangen wird, wird ein fataler Fehler mit einer "Uncaught Exception ..."-Nachricht ausgegeben
 
@@ -66,7 +66,7 @@ oder bei einzelnen Abfragen.
 <php caption="Datenbank-Abfrage mit Exception Handling als Fehlerbehandlung">
 $get_id = $_GET['id'];
 try{
-  include "config.php";
+  require "config.php";
 
   if( ! $DSN ) {
     throw(new Exception( "DB nicht konfiguriert. config.php anlegen!" ));
@@ -96,11 +96,11 @@ try{
   $projects = $sth->fetchAll();
 
 } catch( Exception $e ) {
-  include "header.php";
+  require "header.php";
   echo "<h1>Problem mit der Datenbank</h1>" ;
   echo "<p>Bitte versuchen Sie es später wieder.</p>" ;
   echo "<!--" . $e->getMessage() . "-->";
-  include "footer.php";
+  require "footer.php";
   exit;
 }
 
@@ -115,6 +115,6 @@ tun hat.
 ## Exkurs: Exceptions in Javascript
 
 Die Verwendung und Schreibweise ist in Javascript so ähnlich, dass es sich
-gar nicht lohnt näher darauf einzugehen. Siehe 
+gar nicht lohnt näher darauf einzugehen. Siehe
 [Rauschmayer(2012): Ausnahmebehandlung in JavaScript in mag.js Nr.1](http://www.magjs.de/2012-01/rauschmayer/rauschmayer.html)
 

@@ -1,3 +1,6 @@
+Datenbanken Basics, themen von
+https://github.com/supabase/agent-skills/tree/main/skills/supabase-postgres-best-practices/references
+
 
 mehr CSS:
 

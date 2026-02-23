@@ -51,7 +51,7 @@ Port über den UNIX-Socket aufbauen, den Pfad zum socket gibt man unter
 Hier eine konkrete Implementierung des Verbindungs-Aufbaus:
 
 <php caption="Verbindungs-Aufbau">
-include "config.php";
+require_once "config.php";
 $dbh = new PDO($DSN, $DB_USER, $DB_PASS);
 </php>
 
@@ -134,7 +134,7 @@ Die sollte man ganz normal committen.
 In folgenden Code werden mit der Methode `setAttribute` noch zwei Optionen nach dem Verbindungsaufbau gesetzt:
 
 <php caption="Optionen für den Verbindungs-Aufbau">
-include "config.php";
+require_once "config.php";
 $dbh = new PDO($DSN, $DB_USER, $DB_PASS);
 $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 $dbh->setAttribute(PDO::ATTR_ERRMODE,            PDO::ERRMODE_EXCEPTION);

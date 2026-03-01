@@ -1,15 +1,26 @@
 ---
 title: Struktur einer Web-Applikation
-order: 15
+order: 25
 ---
 
 An einem Beispiel lernen wir nun den typischen Aufbau einer einfachen Web-Applikation
 kennen. Die fertige Applikation soll Werke und Personen aus einem
-Gemeinschafts-Portfolio anzeigen:
+Portfolio anzeigen:
 
 ![Abbildung 144: Homepage der Mini-Applikation](/images/dbapp-home.png)
 
-§
+
+## Idee und erste Skizzen
+
+
+![](https://commons.wikimedia.org/wiki/File:Batch_uploader_for_small_GLAM_projects_-_wireframe_-_03.png)
+
+
+## Wireframes, Prototype
+
+![](https://commons.wikimedia.org/wiki/File:Wolfplex-Wiki-WorkshopsIdeaList-wireframe-20130929-v02.png)
+
+## Aufbau der Applikation
 
 Die folgende Tabelle zeigt alle (geplanten) Seiten der Applikation im Überblick. Zu jeder Seite wird der Titel angeführt (wird auf der Seite angezeigt), der Dateiname der PHP-Datei (wichtig für die Verlinkung), eventuell notwendige Parameter und eine Beschreibung was die Seite anzeigt.
 
@@ -26,24 +37,6 @@ Die folgende Tabelle zeigt alle (geplanten) Seiten der Applikation im Überblick
 |Werksuche|`wsuche.php`| suchwort  |Zeigt alle sichtbaren Werke an, wo Titel like suchwort|
 {: class="table table-condensed table-bordered" style="width:auto"}
 
-§
-
-Jede einzelne Seite ist mit Hilfe von includes aufgebaut. Dabei werden immer die
-Dateien `functions.php` (mit dem Aufbau der Datenbank-Verbindung), `header.php` und
-`footer.php` inkluidert.
-
-<php>
-<?
-  $pagetitle = "Titel der Seite";
-  require "functions.php";
-
-  // hier passiert die eigentliche Arbeit
-
-  require "header.php";
-  // und hier die Ausgabe
-  require "footer.php";
-?>
-</php>
 
 Verlinkung
 ----------

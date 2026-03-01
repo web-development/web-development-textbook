@@ -214,3 +214,29 @@ img {
   max-height: 100vh;
 
 }
+
+
+.table-bordered {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  border-collapse: collapse;
+
+  th, td {
+    border: 2px solid #ddd;
+    padding: 3px 10px
+  }
+}
+
+.table-striped {
+  & tbody tr:nth-child(odd) td,
+  & tbody tr:nth-child(odd) th {
+    background-color: #f9f9f9;
+  }
+}
+
+.table {
+  & tbody tr:hover td,
+  & tbody tr:hover th {
+    background-color: #f5f5f5;
+  }
+}

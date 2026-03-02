@@ -219,7 +219,7 @@ Zufällige Datensätze auswählen
 
 Wie kann man zufällige Datensätze auswählen?
 
-<php caption="Abfrage von zufälligen Datensätzen in einer großen Tabelle">
+<php caption="Abfrage von 10 zufälligen Datensätzen in einer großen Tabelle">
 $query =$dbh->query(
   "SELECT * FROM users
     TABLESAMPLE BERNOULLI (1)
@@ -232,13 +232,11 @@ $personen = $query->fetchAll(PDO::FETCH_OBJ);
 
 Für sehr kleine Tabellen funktioniert diese Methode besser:
 
-<php caption="Abfrage von zufälligen Datensätzen in einer großen Tabelle">
+<php caption="Abfrage von 3 zufälligen Datensätzen in einer kleinen Tabelle">
 $query =$dbh->query(
   "SELECT * FROM users
-    TABLESAMPLE BERNOULLI (1)
-    WHERE profile_visible
-    ORDER BY lastname
-    LIMIT 10;"
+    ORDER BY RANDOM()
+    LIMIT 3;"
 );
 $personen = $query->fetchAll(PDO::FETCH_OBJ);
 </php>
@@ -255,4 +253,5 @@ Postgres
 
   * [LIMIT anzahl OFFSET anfangsposition](http://www.postgresql.org/docs/current/static/functions-aggregate.html)
   * [COUNT(*)](http://www.postgresql.org/docs/8.1/static/queries-limit.html)
+  * [RANDOM()](https://www.postgresql.org/docs/17/functions-math.html#FUNCTIONS-MATH-RANDOM-TABLE)
   * [TABLESAMPLE](http://www.postgresql.org/docs/devel/static/sql-select.html#SQL-FROM)

@@ -240,3 +240,26 @@ img {
     background-color: #f5f5f5;
   }
 }
+
+.pagination {
+  ul {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    li {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 5px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+    li:first-child::marker {
+      content: "← ";
+    }
+    li:last-child::marker {
+      content: "→ ";
+    }
+  }
+
+
+}

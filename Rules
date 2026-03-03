@@ -319,11 +319,7 @@ preprocess do
     'urls',
     'formulare',
     'javascript-dom',
-    'jquery',
     '---',
-    'kommandozeile',
-    'git',
-    'http',
     'php-vorbereitung',
     'php',
     'php-db-lesen',
@@ -343,7 +339,11 @@ preprocess do
     'apache',
     'advanced-javascript',
     'mobile',
-    'qualitaet'
+    'qualitaet',
+    '---',
+    'kommandozeile',
+    'git',
+    'http',
   ]
 
   @chapters = {}

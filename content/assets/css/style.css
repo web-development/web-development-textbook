@@ -180,6 +180,16 @@ div.container {
 
   #sidebar {
     grid-area: sidebar;
+
+    ul {
+      padding-left: 0;
+      li.separator {
+        margin-bottom: 2em;
+      }
+    }
+    ul.sub {
+      padding-left: 40px;
+    }
   }
 }
 
@@ -262,4 +272,16 @@ img {
   }
 
 
+}
+
+blockquote {
+  font-size: 1.2em;
+  font-family: 'Biolinum', sans-serif;
+  border-left: 5px solid rgb(73, 162, 210);
+  background-color: rgba(73, 162, 210, 0.1);
+  padding-left: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
 }

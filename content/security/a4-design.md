@@ -1,6 +1,6 @@
 ---
-title: A4 - Insecure design
-order: 25
+title: A06 - Insecure design
+order: 60
 ---
 
 Neu in OWASP 2021 als [Platz 4 der OWASP Top 10 2021: Insecure Design](https://owasp.org/Top10/A04_2021-Insecure_Design/).

@@ -1,6 +1,6 @@
 ---
-title: A7 - Identification and Authentication Failures
-order: 40
+title: A07 - Identification and Authentication Failures
+order: 70
 ---
 
 Auf [Platz 7 der OWASP Top 10 2021: Identification and Authentication Failures](https://owasp.org/Top10/A07_2021-Identification_and_Authentication_Failures/).

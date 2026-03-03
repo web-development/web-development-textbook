@@ -1,6 +1,6 @@
 ---
-title: A6 - Komponenten
-order: 35
+title: A03 - Software Supply Chain Failures
+order: 30
 ---
 
 Auf [Platz 6 der OWASP Top 10 2021: Anfällige und veraltete Komponenten ](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/)

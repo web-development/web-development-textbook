@@ -1,6 +1,6 @@
 ---
-title: A2 - Cryptographic Failures
-order: 15
+title: A04 - Cryptographic Failures
+order: 40
 ---
 
 Auf [Platz 2 der OWASP Top 10 2021: Cryptographic Failures](https://owasp.org/Top10/A02_2021-Cryptographic_Failures/).

@@ -1,6 +1,6 @@
 ---
-title: A9 - Monitoring
-order: 50
+title: A09 - Security Logging and Alerting Failures
+order: 90
 ---
 
 Auf [Platz 9 der OWASP Top 10 2021: Unzureichendes Logging & Monitoring](https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/)

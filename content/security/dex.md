@@ -9,7 +9,7 @@ Die OWASP gibt dazu regelmäßig Empfehlungen heraus.
 Für ein großes Web Projekt liefert [OWASP Application Security Verification Standard](https://github.com/OWASP/ASVS/blob/master/4.0/OWASP%20Application%20Security%20Verification%20Standard%204.0.2-de.pdf) eine vollständige Checkliste.
 
 
-Für den Einstieg werden wir  die [OWASP Top 10 von 2021](https://owasp.org/Top10/)
+Für den Einstieg werden wir  die [OWASP Top 10 von 2025](https://owasp.org/Top10/)
 betrachten. Wir werden es speziell auf PHP, Postgres, Apache anwenden. Wenn man generative AI
 verwendet sollte man weiter noch die [TOP 10 FOR GEN AI](https://genai.owasp.org/llm-top-10/) kenne.
 
@@ -31,5 +31,5 @@ auf die Gegenmaßnahmen beschränken.
 
 Quellen
 
-- [OWASP Top 10, 2021](https://owasp.org/Top10/)
+- [OWASP Top 10, 2025](https://owasp.org/Top10/)
 - [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)

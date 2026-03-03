@@ -1,6 +1,6 @@
 ---
-title: A5 - Fehlkonfiguration
-order: 30
+title: A02 - Fehlkonfiguration
+order: 20
 ---
 
 Auf [Platz 5 der OWASP Top 10 2021: Security Misconfiguration](https://owasp.org/www-project-top-ten/2017/de/A6_2017-Sicherheitsrelevante_Fehlkonfiguration).

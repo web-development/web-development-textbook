@@ -332,7 +332,6 @@ preprocess do
     'applied-js-and-css',
     'js-http',
     'json',
-    'xml',
     '---',
     'security',
     'wordpress',
@@ -344,6 +343,7 @@ preprocess do
     'kommandozeile',
     'git',
     'http',
+    'xml',
   ]
 
   @chapters = {}

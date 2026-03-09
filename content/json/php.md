@@ -11,17 +11,18 @@ Der PHP Befehl lautet `json_encode`.
 
 Welche Datenstrukturen von PHP lassen sich zu JSON serialisieren?
 
+![encode](/images/json/mapping-php-to-json.svg)
+
 ## Objekt
 
 Ein PHP Objekt lässt sich als JSON Objekt darstellen:
 
 <php>
 $object = new stdClass();
-$object->foo = 10;
-$object->bar = "zwanzig";
-$object->baz = 30;
+$object->name = "Alice";
+$object->foo = 30;
 echo json_encode( $object );
-// {"foo":10,"bar":"zwanzig","baz":30}
+// {"foo":30,"name":"Alice"}
 </php>
 
 ## Array
@@ -30,9 +31,9 @@ Ein "normales" Array mit Integer als Index lässt sich
 direkt auf JSON abbilden:
 
 <php>
-$array = array( "a", "b", "c" );
+$array = array( "Apple", "Banana" );
 echo json_encode( $array );
-// ["a","b","c"]
+// ["Apple","Banana"]
 </php>
 
 ## Assoziatives Array
@@ -41,53 +42,59 @@ Jedes Array kann in PHP auch Strings als Index enthalten.
 Ist das der Fall, dann wird es in JSON als Objekt dargestellt:
 
 <php>
-$array = array( "foo" => 10, "bar" => 30, "baz" => 30);
-$array[0] = "a";
+$array = array( "foo" => 30, "name" => "Alice");
 echo json_encode( $array );
-// {"foo":10,"bar":30,"baz":30,"0":"a"}
+// {"foo":30,"name":"Alice"}
 </php>
 
 In JSON gibt es keine Entsprechung für das Assoziative Array
-in PHP. Deswegen wird es als Objekt dargestellt.  Wenn man
-dieses Objekt wieder in JSON zurück wandelt erhält man aber
-ein PHP Objekt mit einer Property "0":
+in PHP. Deswegen wird es als Objekt dargestellt.
+
+## Deserialisierung
+
+Wie sollen nun JSON-Objekt zu PHP übersetzt werden? Als Objekt oder als Assoziatives Array?
+
+![decode](/images/json/mapping-json-obj-to-php.svg)
+
+Hier gibt es zwei Varianten, die man über das zweite Argumente von `json_decode` unterscheidet.
+
+
+### decode false
+
+`false` als zweites Argument oder gar kein zweites Argument bewirkt, dass
+alle JSON-Objekte zu PHP-Objekten übersetzt werden
+
+
+
 
 <php>
-$array = array( "foo" => 10, "bar" => 30, "baz" => 30, 0 => "a");
-$string = json_encode( $array );
-// {"foo":10,"bar":30,"baz":30,"0":"a"}
+$string = '{"name":"Alice"}';
 $o = json_decode( $string );
 var_export( $o );
 //  stdClass Object
 //  (
-//    [foo] => 10
-//    [bar] => 30
-//    [baz] => 30
-//    [0] => a
+//    [name] => Alice
 //  )
-echo "Wert von foo: " . $o->foo;
-echo "Wert von 0: " . $o->{'0'};
+echo "Wert von name: " . $o->name;
+// Alice
 </php>
 
-§
 
-Im zweiten Argument von `json_decode` kann man angeben ob
-**alle** Objekte als Assoziative Arrays decodiert werden sollen - das
-ist meist die bessere Lösung:
+### decode true
+
+`true` als zweites Argument bewirkt, dass
+**alle** Objekte als assoziative Arrays decodiert werden.
 
 <php>
-$string = '{"foo":10,"bar":30,"baz":30,"0":"a"}';
+$string = '{"name":"Alice"}';
 $o = json_decode( $string, true );
 print_r( $o );
 // Array
 // (
-//   [foo] => 10
-//   [bar] => 30
-//   [baz] => 30
-//   [0] => a
+//   [name] => "Alice"
 // )
-echo "Wert von foo: " . $o['foo'];
-echo "Wert von 0: " . $o[0];
+echo "Wert von name: " . $o['name'];
+// Alice
 </php>
 
 
@@ -103,7 +110,7 @@ echo json_encode($data);
 </php>
 
 
-## Deserialierung
+## Aus einer JSON Datei
 
 Mit dem Befehl `file_get_contents` kann man den gesamten Inhalt einer Datei lesen:
 

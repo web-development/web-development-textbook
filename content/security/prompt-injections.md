@@ -90,4 +90,6 @@ Das Problem ist nicht "gelöst", es gibt nur mehrere Maßnahmen die es lindern:
 In diesem online game versucht man das LLM dazu zu bringen ein Passwort preis zu geben. Mit jedem Level wird die Verteidigung stärker: [Gandalf](https://gandalf.lakera.ai/baseline)
 
 
+## Siehe auch
 
+* [Der System Prompt von Claude Code](https://cchistory.mariozechner.at/) im Vergleich, [aufbereitet von Mario Zechner](https://mariozechner.at/posts/2025-08-03-cchistory/)

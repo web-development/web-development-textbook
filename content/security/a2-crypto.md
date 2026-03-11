@@ -3,7 +3,7 @@ title: A04 - Cryptographic Failures
 order: 40
 ---
 
-Auf [Platz 2 der OWASP Top 10 2021: Cryptographic Failures](https://owasp.org/Top10/A02_2021-Cryptographic_Failures/).
+Auf [Platz 4 der OWASP Top 10 2025: Cryptographic Failures](https://owasp.org/Top10/2025/A04_2025-Cryptographic_Failures/).
 
 Fehler bei der Verschlüsselung oder fehlende Verschlüsselung kann dazu führen
 dass sensible Daten zugänglich werden.

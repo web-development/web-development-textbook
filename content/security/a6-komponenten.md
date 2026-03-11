@@ -3,7 +3,7 @@ title: A03 - Software Supply Chain Failures
 order: 30
 ---
 
-Auf [Platz 6 der OWASP Top 10 2021: Anfällige und veraltete Komponenten ](https://owasp.org/Top10/A06_2021-Vulnerable_and_Outdated_Components/)
+Auf [Platz 3 der OWASP Top 10 2025: Supply Chain Failures](https://owasp.org/Top10/2025/A03_2025-Software_Supply_Chain_Failures/)
 
 Die OWASP beschreibt dieses Problem ungefähr so:
 

@@ -3,7 +3,7 @@ title: A06 - Insecure design
 order: 60
 ---
 
-Neu in OWASP 2021 als [Platz 4 der OWASP Top 10 2021: Insecure Design](https://owasp.org/Top10/A04_2021-Insecure_Design/).
+Neu in OWASP 2021 als [Platz 6 der OWASP Top 10 2025: Insecure Design](https://owasp.org/Top10/2025/A06_2025-Insecure_Design/).
 
 In diese Kategorie fallen Probleme die schon in der Architektur des Systems oder im Entwurf angelegt
 sind.

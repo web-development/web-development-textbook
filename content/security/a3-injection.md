@@ -3,7 +3,7 @@ title: A05 - Injection + XSS
 order: 50
 ---
 
-Auf [Platz 3 der OWASP Top 10 2021: Injection](https://owasp.org/Top10/A03_2021-Injection/)
+Auf [Platz 5 der OWASP Top 10 2025: Injection](https://owasp.org/Top10/2025/A05_2025-Injection/)
 
 Injection-Schwachstellen tauchen auf, wenn eine Anwendung nicht vertrauenswürdige Daten an einen Interpreter weiterleitet. Injection Schwachstellen sind weit verbreitet, wir haben schon  SQL-Injection und Cross Site Scripting (XSS) kennen gelernt.
 

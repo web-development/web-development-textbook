@@ -3,7 +3,7 @@ title: A02 - Fehlkonfiguration
 order: 20
 ---
 
-Auf [Platz 5 der OWASP Top 10 2021: Security Misconfiguration](https://owasp.org/www-project-top-ten/2017/de/A6_2017-Sicherheitsrelevante_Fehlkonfiguration).
+Auf [Platz 2 der OWASP Top 10 2025: Security Misconfiguration](https://owasp.org/Top10/2025/A02_2025-Security_Misconfiguration/).
 
 Sicherheitsrelevante Fehlkonfiguration kann auf jeder Ebene der Anwendung, inkl. Plattform, Web- und Anwendungsserver, Frameworks oder Programmcode vorkommen. Die Zusammenarbeit zwischen Entwickler*innen und Administrator*innen ist wichtig, um eine sichere Konfiguration aller Ebenen zu gewährleisten.
 

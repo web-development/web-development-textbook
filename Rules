@@ -334,16 +334,12 @@ preprocess do
     'json',
     '---',
     'security',
-    'wordpress',
-    'apache',
     'advanced-javascript',
-    'mobile',
     'qualitaet',
     '---',
     'kommandozeile',
     'git',
     'http',
-    'xml',
   ]
 
   @chapters = {}

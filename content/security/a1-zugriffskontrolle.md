@@ -3,7 +3,7 @@ title: A01 - Zugriffskontrolle
 order: 10
 ---
 
-Auf [Platz 1 der OWASP Top 10 2021: Fehler in der Zugriffskontrolle](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
+Auf [Platz 1 der OWASP Top 10 2025: Fehler in der Zugriffskontrolle](https://owasp.org/Top10/2025/A01_2025-Broken_Access_Control/)
 
 Die OWASP beschreibt dieses Problem allgemein so:
 

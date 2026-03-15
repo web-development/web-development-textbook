@@ -19,8 +19,8 @@ Ein PHP Objekt lässt sich als JSON Objekt darstellen:
 
 <php>
 $object = new stdClass();
-$object->name = "Alice";
 $object->foo = 30;
+$object->name = "Alice";
 echo json_encode( $object );
 // {"foo":30,"name":"Alice"}
 </php>

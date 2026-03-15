@@ -8,18 +8,18 @@ das als Parameter die `id` der Person erhält, die gelöscht werden soll:
 
 <php caption="Skript person_delete.php mit Sicherheitslücke!">
 $id   = $_POST['id'];
-$dbh->exec("DELETE FROM users WHERE id=$id" );  
+$dbh->exec("DELETE FROM users WHERE id=$id" );
 // Beispielcode mit Sicherheitslücke - NICHT verwenden!
 </php>
 
 §
 
-Dieses Programm ist anfällig für folgende Attacke. Alyssa P. Hacker (eine fiktive Hackerin) 
+Dieses Programm ist anfällig für folgende Attacke. Alyssa P. Hacker (eine fiktive Hackerin)
 benützt nicht das HTML-Formular unserer Applikation, sondern schreibt selbst ein Formular.
 In dem Formular setzt sie den Parameter `id` auf Wert `9 OR 1=1`.
 
 <htmlcode caption="Formular für die Attacke auf das Skript person_delete.php">
-<form method="post" 
+<form method="post"
       action="http://somedomain.at/person_delete.php">
     <input type="hidden" value="9 OR 1=1" name="id"/>
     <input type="submit" value="del all"/>
@@ -38,12 +38,18 @@ Und dieses Statement löscht nicht einen Datensatz sondern alle Datensätze. Die
 Art von Attacke auf eine Web-Applikation nennt man „SQL Injection“, weil Alyssa
 es gschafft hat ihr SQL hinein zu "injiziert".
 
-### SQL Injection verhindern
+§
 
-Dieses Problem kann vermeiden indem man die Eingabe genau überprüft. In diesem
+![](/images/unprepared.svg)
+
+Der Server erhält jeweils fertige SQL Queries, er hat keine Chance zu erkennen, dass etwas verdächtiges passiert.
+
+### SQL Injection verhindern - mit Eingabeprüfung
+
+Dieses Problem könnte man vermeiden indem man die Eingabe genau überprüft. In diesem
 Beispiel also: nur wenn es sich bei `id` um eine ganze Zahl handelt darf diese
-verwendet werde. Das kann man auf verschiedene Arten prüfen, 
-z.B. mit der Funktion `filter_var`: 
+verwendet werde. Das kann man auf verschiedene Arten prüfen,
+z.B. mit der Funktion `filter_var`:
 
 <php caption="Eingabeprüfung mit filter_var">
 if( ! $id = filter_var( $_GET['id'], FILTER_VALIDATE_INT ) ) {
@@ -51,7 +57,7 @@ if( ! $id = filter_var( $_GET['id'], FILTER_VALIDATE_INT ) ) {
   echo("variable id is false!");
   exit;
 }
-$dbh->exec("DELETE FROM users WHERE id=$id" );  
+$dbh->exec("DELETE FROM users WHERE id=$id" );
 </php>
 
 §
@@ -69,24 +75,28 @@ if( ! preg_match( '/^\d+$/', $id ) ) {
 </php>
 
 
+### SQL Injection verhindern - mit Prepared Statments
+
+Der zweite, und viel bessers Ansatz, ist die Verwendung von „Prepared Statements“ in der Datenbank.
+Dabei wird der SQL-Interpreter der Datenbank gänzlich umgangen.
+
+![](/images/prepared.svg)
+
+
+Als erster Schritt wird
+ein SQL-Statement mit Fragezeichen als Platzhalter an den Datenbank-Server geschickt. Dieses
+SQL-Statement wird vom Datenbank-Server sofort geparset und kompiliert. Dabei stellt der
+Server fest, welche Datentypen er für jeden Platzhalter braucht.
+
+In einem zweiten Schritt werden die fehlenden Daten gesendet.
+
+Das Schöne daran: die einzufügenden Daten werden binär an den
+Datenbankserver übertragen. Nur wenn der Datentyp passt werden sie auch
+akzeptiert und verwendet.
+
 §
 
-Der zweite Ansatz ist die Verwendung von „Prepared Statements“ in der Datenbank.
-Dabei wird der SQL-Interpreter der Datenbank gänzlich umgangen. 
-
-Als erster Schritt wird mit `prepare`[*](http://www.php.net/manual/en/pdo.prepare.php) 
-ein SQL-Statement mit Fragenzeichen als Platzhalter vorbereitet. Dieses
-SQL-Statement wird vom Datenbank-Server sofort geparset und compiliert. 
-
-Mit `execute`[*](http://www.php.net/manual/en/pdostatement.execute.php) 
-wird das Statement ausgeführt, dabei werden die Platzhalter durch echte Daten
-ersetzt.  Das Schöne daran: es wird dabei nicht mehr ein SQL-Statement als
-String gebaut, sondern die einzufügenden Daten werden binär an den
-Datenbankserver übertragen. Darin enthaltene SQL-Fragement werden niemals
-als SQL interpretiert, nd können keinen Schaden
-anrichten.
-
-§
+Der PHP-Befehl für Schritt 1 heißt `prepare`, Schritt zwei heißt `execute`.
 
 <php caption="DELETE mit prepared statement">
 $sth = $dbh->prepare("DELETE FROM users WHERE id = ?");
@@ -95,6 +105,21 @@ $sth->execute(array($id));
 
 `execute` kann auch mehrfach ausgeführt werden, das ist effektiver als eine
 normale query zu wiederholen.
+
+
+### Trennung von Code und Daten
+
+Prepared Statments ermöglichen die Trennung von Code und Daten: Als
+Programmierer*in schreibe ich den Code und sende ihn mit `prepare` an die
+Datenbank.
+
+Was immer die User*innen als Input liefern ist nur noch Daten.
+Niemals kann ihr Input als Code missverstanden werden.
+
+Eine solche Trennung wäre in vielen Fällen erstrebenswert: so gibt
+es bei LLMs dieselbe [Injection](https://owasp.org/www-community/attacks/PromptInjection) Problematik, aber  keine Möglichkeit
+Code und Daten zu trennen.
+
 
 ### SQL Injection gibt es nicht nur bei DELETE
 
@@ -105,11 +130,11 @@ vorgesehen haben.
 
 <php caption="SELECT mit Sicherheitslücke!">
 $id   = $_POST['id'];
-$dbh->exec("SELECT * FROM comments WHERE id=$id");  
+$dbh->query("SELECT * FROM comments WHERE id=$id");
 // Beispielcode mit Sicherheitslücke - NICHT verwenden!
 </php>
 
-Die Attacke mit `1=1` ermöglicht das Lesen von Datensätzen aus derselben Tabelle:
+Die Attacke mit `1=1` ermöglicht das Lesen aller Datensätze aus der Tabelle:
 
 <sql>
 SELECT * FROM comments WHERE id=9 OR 1=1
@@ -121,8 +146,8 @@ Aber es gibt auch komplexere Attacken, die Daten aus anderen Tabellen oder
 ganz anderen Informationsquellen lesen:
 
 <php caption="verwundbarer code">
-$query = "SELECT id, name FROM cities WHERE name = '$name'";
-$dbh->query($query);
+$sql = "SELECT id, name FROM cities WHERE name = '$name'";
+$dbh->query($sql);
 </php>
 
 <shell caption="attacke">
@@ -132,15 +157,15 @@ hallo' UNION SELECT id, password FROM users WHERE '' LIKE '%
 Wird hier eine Query zusammen gebaut, die eine zweite Tabelle ausliest:
 
 <sql>
-  SELECT id, name FROM cities WHERE name = 'hallo' 
-  UNION 
+  SELECT id, name FROM cities WHERE name = 'hallo'
+  UNION
   SELECT id, password FROM users WHERE '' LIKE '%'
 </sql>
 
 §
 
 Wir hätten also nie `query` verwenden sollen, sondern von Anfang an
-immer prepared Statements! 
+immer prepared Statements!
 
 <php caption="sicherer code">
 $query = "SELECT id, name FROM cities WHERE name=?";

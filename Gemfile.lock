@@ -77,6 +77,8 @@ GEM
     nanoc-checking (1.0.2)
       nanoc-cli (~> 4.12, >= 4.12.4)
       nanoc-core (~> 4.12, >= 4.12.4)
+    nanoc-checking-checks-vnu (1.2.0)
+      nanoc-checking (~> 1.0.0)
     nanoc-cli (4.12.15)
       cri (~> 2.15)
       diff-lcs (~> 1.3)
@@ -158,6 +160,7 @@ DEPENDENCIES
   listen
   mime-types
   nanoc (~> 4.0)
+  nanoc-checking-checks-vnu (~> 1.2)
   nanoc-live
   nokogiri
   rake

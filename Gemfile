@@ -23,3 +23,5 @@ group 'nanoc' do
   gem 'nanoc-live'
 end
 
+
+gem "nanoc-checking-checks-vnu", "~> 1.2"

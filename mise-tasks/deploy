@@ -19,7 +19,6 @@ pushd ../web-development.github.io
 git add .
 git commit -m "$MESSAGE"
 git push
-popd
 
 
 echo "✅ pushed to github pages, see https://web-development.github.io"

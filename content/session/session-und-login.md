@@ -31,7 +31,29 @@ Mit dem Befehle  `session_start()`[*](http://www.php.net/manual/de/function.sess
   * die Session anhand des Cookies wieder identifiziert.
   * und die Daten wieder ins `$_SESSION`-Array geladen.
 
-Für unsere Applikation werden wir das `$_SESSION`-Array verwenden, um den `username` der angemeldeten Person zu speichern.
+
+`session_start()` muss in jeder Seite der Applikation ausgeführt werden. Da wir in jeder Seite  `functions.php` Datei mit `require` einbinden ist das ein guter Ort um `session_start()` auszuführen.
+
+
+
+### Was speichert man in der Session?
+
+In der Session speichert man möglichst wenig. Die meisten Daten liegen in der Datenbank.
+
+Die minimale Version ist: im `$_SESSION`-Array  nur die `user_id` der angemeldeten Person speichern.
+
+Alle weiteren Daten holt man dann aus der Datenbank, wo es eine `users` Tabelle gibt.
+
+Weitere Informationen die eventuell nur in der Session gespeichert sind: Zwischenergebnisse von Mehrseitigen Formularen, Warenkörbe die noch nicht zur Kassa gebracht wurden, Statusmeldungen die auf der nächsten Seite angezeigt werden sollen.s
+
+
+### Session und Interface
+
+Für die Benutzung der Seite macht die Session einen großen Unterschied: wenn ich eingeloggt bin habe ich mehr Möglichkeiten, das sieht man zum Beispiel in der Navigationsleiste:
+
+![Abbildung 146: Anzeige des Usernamens und Login/Logout-Möglichkeit](/images/session/above_and_below.png)
+
+Beim Programmieren der Seite bedeutet das: je nach Inhalt der Session zeigen wir verschiedene Elemente an.
 
 ### Struktur der Applikation mit Login
 
@@ -48,12 +70,6 @@ je nachdem ob es mit GET oder POST aufgerufen wird.
 |Logout|POST   |`logout.php`| | Löschte Session und Session-Cookie, dann Redirect zu index.php |
 {: class="table table-condensed table-bordered" style="width:auto"}
 
-### session_start
-
-`session_start()` wird in `functions.php` ausgeführt, also bei jedem Aufruf einer der Seiten der Applikation. Die Applikation zeigt direkt in der Navigationsleiste die Login/Logout-Möglichkeit  an:
-
-
-![Abbildung 146: Anzeige des Usernamens und Login/Logout-Möglichkeit](/images/session/login-logout.png)
 
 ### Login
 
@@ -73,7 +89,7 @@ if ( strlen($username) > 0  and check_login( $username, $passwort ) ) {
 }
 </php>
 
-Nach dem gelungen Login kann man jede beliebige Seite der Applikation aufrufen, immer wird im Array `$_SESSION` der Username gespeichert sein. So kann er z.B. in der Navigations-Leiste angezeigt werden.
+Nach dem gelungen Login kann man jede beliebige Seite der Applikation aufrufen, immer wird im Array `$_SESSION` der Username gespeichert sein.
 
 ### Logout
 

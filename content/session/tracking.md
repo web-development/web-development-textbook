@@ -61,7 +61,9 @@ Sie schreiben vor, dass Tracking nur nach Zustimmung erlaubt ist.
 ## Siehe auch
 
 * [Datenschutz](/qualitaet/datenschutz/)
-
+* [Web Beacons](https://en.wikipedia.org/wiki/Web_beacon)
+* [Mozilla Explains: Cookies and Supercookies](https://blog.mozilla.org/firefox/mozilla-explains-cookies-and-supercookies/)
+* Video [200ms: The Life of a Programmatic RTB Ad Impression](https://www.youtube.com/watch?v=9NNvHAoRBNs)
 
 
 

@@ -10,14 +10,14 @@ Rund um die Identifizierung und Authentifizierung und das Session-Management tre
 Ein Angriff mittels "Credential Stuffing" ist einfach umzusetzen: ein kleines
 Programm probiert automatisch das Login mit den bekanntesten Passwörtern aus.
 
-Als Benutzer*in des Internet empfiehlt sich auf jeden Fall: neues Passwort für jedes
-neue Login das ich anlege. Mit Hilfe eine [Passwort-Managers](https://prism-break.org/de/all/#password-managers).
+Als Benutzer*in des Internets empfiehlt sich auf jeden Fall: neues Passwort für jedes
+neue Login, das ich anlege. Mit Hilfe eines [Passwort-Managers](https://prism-break.org/de/all/#password-managers).
 
 Hier ein paar Maßnahmen, die man als Entwickler*in auch schon im ersten PHP-Projekt umsetzen kann:
 
 ## Keine Information in Fehlermeldungen preisgeben
 
-Authentisierung kann aus vielen Gründen fehl schlagen:
+Authentisierung kann aus vielen Gründen fehlschlagen:
 
 - der Username existiert gar nicht
 - dieser Account ist gesperrt
@@ -27,24 +27,24 @@ Egal was die Gründe sind: die Rückmeldung an die User*in muss immer genau glei
 
 "Login Fehlgeschlagen - Falscher Username oder Falsches Passwort"
 
-Warum? Die Information, ob ein bestimmter Username im System exisitiert ist wertvoll! Es
+Warum? Die Information, ob ein bestimmter Username im System existiert, ist wertvoll! Es
 ist ja bereits die Hälfte der nötigen Information für ein Login. Deswegen soll man die Existenz
 von Usernamen genau so geheim halten wie die Passwörter.
 
 
-## Weg mit alten Passwort Regeln
+## Weg mit alten Passwortregeln
 
-Oft werden strenge Passwort Regeln verwendet:
+Oft werden strenge Passwortregeln verwendet:
 
-"Das Passwort muss mindestens einen Großbuchstaben, einen Kleinbuchstaben, ein Sonderzeichen und zwei verscheidene Ziffern enthalten und darf nicht länger als 8 Zeichen sein"
+"Das Passwort muss mindestens einen Großbuchstaben, einen Kleinbuchstaben, ein Sonderzeichen und zwei verschiedene Ziffern enthalten und darf nicht länger als 8 Zeichen sein"
 
-Diese Regeln sind veraltet.  So empfiehlt das amerikanische National  Institute of Standards and Technology seit 2017 in [NIST 800-63 ](https://pages.nist.gov/800-63-3/sp800-63b.html#memsecret):
+Diese Regeln sind veraltet. So empfiehlt das amerikanische National Institute of Standards and Technology seit 2017 in [NIST 800-63](https://pages.nist.gov/800-63-3/sp800-63b.html#memsecret):
 
 * Passwörter sollen mindestens 8 oder mehr Zeichen lang sein
 * Passwörter sollen bis zu 64 Zeichen lang sein können
 * "Bekannte" Passwörter sollen verboten sein. Das kann man z.B. mit [der haveibeenpwned API](https://haveibeenpwned.com/API/v2#SearchingPwnedPasswordsByRange) implementieren
-* Es soll **keine weiteren  Regeln** für die Zusammensetzung des Passworts geben (z.b. nicht verlangen, dass es verschiedene Zeichentypen enthält, kein Verbot von Zeichen-Wiederholungen)
-* Es soll keinen Zwang geben das Passwort ohne Anlass zu Ändern. Ein guter Anlass ist wenn das Passwort öffentlich wurde.
+* Es soll **keine weiteren Regeln** für die Zusammensetzung des Passworts geben (z. B. nicht verlangen, dass es verschiedene Zeichentypen enthält, kein Verbot von Zeichen-Wiederholungen)
+* Es soll keinen Zwang geben, das Passwort ohne Anlass zu ändern. Ein guter Anlass ist, wenn das Passwort öffentlich wurde.
 
 Siehe auch
 
@@ -59,15 +59,15 @@ Das Protokoll HTTP ist stateless. Wenn man trotzdem User*innen authentifizieren
 will,  muss bei jedem Request eine authentifizierende Information, zum Beispiel eine Session-ID,
 mitgeschickt werden. Dies geschieht zum Beispiel in einem Cookie.
 
-Wenn es gelingt diese Information abzuhören und wieder zu verwenden,
-dann erhält man den gleichen Zugang wie die eigentliche UserIn. Diese
-Art der Angriffs nennt man "Replay Attacke" - ein Request wird abgehört und
+Wenn es gelingt, diese Information abzuhören und wieder zu verwenden,
+dann erhält man den gleichen Zugang wie die eigentliche Benutzerin bzw. der eigentliche Benutzer. Diese
+Art der Angriffe nennt man „Replay-Attacke“ – ein Request wird abgehört und
 gleich wieder verwendet.
 
-Um Passwörter ebenso wie Session Ids und Cookies vor dem Abhören zu
-schützen muss man den gesamten HTTP-Request verschlüssen - das ist über SSL/TLS möglich.
+Um Passwörter ebenso wie Session-IDs und Cookies vor dem Abhören zu
+schützen, muss man den gesamten HTTP-Request verschlüsseln – das ist über SSL/TLS möglich.
 
-Ein weiterer Punkt wo diese Informationen eventuell aufscheinen sind Logfiles.
+Ein weiterer Punkt, an dem diese Informationen eventuell auftauchen, sind Logfiles.
 Auch beim Logging sollte man diese Informationen vorher ausfiltern oder verschlüsseln:
 
 
@@ -75,16 +75,16 @@ Auch beim Logging sollte man diese Informationen vorher ausfiltern oder verschl�
 
 Es ist sehr schwierig, ein sicheres Authentifizierungs- und Session-Management zu implementieren. Man sollte nicht auf eigene Lösungen setzen - Diese haben dann oft Fehler bei Abmeldung und Passwortmanagement, bei der Wiedererkennung der Benutzer*innen, bei Timeouts, Sicherheitsabfragen usw. Das Auffinden dieser Fehler kann sehr schwierig sein, besonders wenn es sich um individuelle Implementierungen handelt.
 
-PHP liefert nur ein Session-System. Frameworks wie [Symphony](https://symfony.com/doc/current/security.html#c-encoding-passwords) oder [Laravel](https://laravel.com/docs/7.x/authentication) liefern
-fertige Lösungen für den gesamten Login Prozess.
+PHP liefert nur ein Session-System. Frameworks wie [Symfony](https://symfony.com/doc/current/security.html#c-encoding-passwords) oder [Laravel](https://laravel.com/docs/7.x/authentication) liefern
+fertige Lösungen für den gesamten Login-Prozess.
 
 
 ## Selbst implementieren: Passwörter speichern
 
 Passwörter sollten niemals im Klartext in der Datenbank gespeichert werden.
-Statt dessen wir nur ein **Hash** des Passworts gespeichert.
+Stattdessen wird nur ein **Hash** des Passworts gespeichert.
 
-Beim Login wir das eingegebene Passwort dann wieder mit derselben Hash-Funktion
+Beim Login wird das eingegebene Passwort dann wieder mit derselben Hash-Funktion
 behandelt, und mit dem gespeicherten Wert verglichen.
 
 PHP stellt eine geeignete Hash-Funktion zur Verfügung: [password_hash](https://www.php.net/manual/de/function.password-hash.php).  Siehe auch [/security/a2-crypto/](A2 - Cryptographic Failures)
@@ -116,9 +116,9 @@ In PHP geht das mit folgenden Befehlen:
 
 Komplexere Maßnahmen wären:
 
-- Zwei Faktor Authentisierung
+- Zwei-Faktor-Authentisierung
 - Automatische Prüfung der neu eingegebenen Passwörter mit der "Have I Been Pwned" API, z.B. mit [hibp-php](https://packagist.org/packages/icawebdesign/hibp-php)
 
-Die OWAAS bietet noch mehr Informationen zu diesem Thema an
+Die OWASP bietet noch mehr Informationen zu diesem Thema an
 im [Authentication Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md)
 und im [Session Management Cheat Sheet](https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Session_Management_Cheat_Sheet.md).

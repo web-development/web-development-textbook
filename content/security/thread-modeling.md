@@ -22,7 +22,7 @@ Zuerst betrachten wir zwei Schritte aus der Definition von [Threat Modeling](htt
 > capabilities provided by the application and valuing them is more difficult. Less concrete things, such
 > as reputation and goodwill are the most difficult to measure, but are often the most critical.
 
-Ein Beispiel als Diagram:
+Ein Beispiel als Diagramm:
 
 ![Beispiel Threat Model Diagramm aus dem Threat Modeling Cookbook](/images/security/cryptowallet.vsdx.svg)
 

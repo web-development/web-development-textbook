@@ -5,13 +5,13 @@ order: 40
 
 Auf [Platz 4 der OWASP Top 10 2025: Cryptographic Failures](https://owasp.org/Top10/2025/A04_2025-Cryptographic_Failures/).
 
-Fehler bei der Verschlüsselung oder fehlende Verschlüsselung kann dazu führen
+Fehler bei der Verschlüsselung oder fehlende Verschlüsselung kann dazu führen,
 dass sensible Daten zugänglich werden.
 
 ## Maßnahmen
 
 1. Klassifizierung der Daten die verarbeitet, gespeichert oder übertragen werden. Welche Daten sind aufgrund von Datenschutzgesetzen, behördlichen Vorschriften oder Geschäftsanforderungen sensibel?
-2. Sicherstellen, dass vertrauliche Daten bei der Übertragung ("in transit") und Speicherung ("at rest")  durch geeignet Verschlüsselung geschützt werden.
+2. Sicherstellen, dass vertrauliche Daten bei der Übertragung („in transit“) und Speicherung („at rest“) durch geeignete Verschlüsselung geschützt werden.
 3. Kein unnötiges Speichern vertraulicher Daten. Löschung nicht mehr benötigter Daten. Daten, die es nicht gibt, können auch nicht gestohlen werden.
 4. Sicherstellen, dass starke Algorithmen und Schlüssel verwendet werden.
 5. Sicherstellen, dass Passwörter mit einem speziell für Passwortschutz entwickelten Algorithmus gespeichert werden.
@@ -23,7 +23,7 @@ Was passiert, wenn ich das nicht tue, sondern einen veralteten Algorithmus verwe
 
 ### Beispiel Passwort Hash
 
-Auch wenn man noch nichts über Kryptographie weis, kann man mit dem Befehl
+Auch wenn man noch nichts über Kryptographie weiß, kann man mit dem Befehl
 `password_hash` in PHP garantiert einen guten Algorithmus verwenden.
 
 Ein Beispiel aus einem Projekt: hier wurde der Algorithmus `sha1`
@@ -51,8 +51,8 @@ sind die Passwörter nicht direkt lesbar.
 
 ### sha1 ist ein schwacher Algorithmus
 
-Nimmt man den gehashten Passwort String
-des admin-users, und googelt danach, so findet man direkt diese Seite:
+Nimmt man die gehashte Passwort-Zeichenkette
+des Admin-Users und googelt danach, findet man direkt diese Seite:
 
 
 ![](/images/security/sha1.png)

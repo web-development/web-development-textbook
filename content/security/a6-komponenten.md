@@ -7,7 +7,7 @@ Auf [Platz 3 der OWASP Top 10 2025: Supply Chain Failures](https://owasp.org/Top
 
 Die OWASP beschreibt dieses Problem ungefähr so:
 
-> Web Applikationen verwenden Komponenten wie z.B. Bibliotheken, Frameworks oder andere Softwaremodule. Wenn eine verwundbare Komponente ausgenutzt wird, kann ein
+> Web-Applikationen verwenden Komponenten wie z. B. Bibliotheken, Frameworks oder andere Softwaremodule. Wenn eine verwundbare Komponente ausgenutzt wird, kann ein
 > solcher Angriff zu schwerwiegendem Datenverlust oder bis zu einer Serverübernahme führen.
 > Applikationen, die Komponenten mit bekannten Schwachstellen einsetzen, können Schutzmaßnahmen unterlaufen und so zahlreiche Angriffe und Auswirkungen ermöglichen.
 

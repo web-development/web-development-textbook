@@ -12,7 +12,7 @@ von dem sie kamen - da kann nichts Schlimmes passieren?
 
 ## Eine Webseite
 
-Betrachten wir diese Webseite: Sie besteht aus Text, Bildern, ein paar Videos von YouTube und ein paar Photos von Instagram:
+Betrachten wir diese Webseite: Sie besteht aus Text, Bildern, ein paar Videos von YouTube und ein paar Fotos von Instagram:
 
 ![](/images/cookies/webpage-with-trackers.svg)
 
@@ -23,7 +23,7 @@ Wenn ich diese Webseite in meinem Browser lade, werden mehrere HTTP-Requests aus
 
 * Der HTTP-Request, mit dem die Banner-Werbung von der Domain `adsafeprot.com` geladen wird, erhält als Antwort nicht nur die Bilddatei mit dem Werbebanner, sondern auch ein Cookie von (und für) `adsafeprot.com`.
 * Beim Laden der Video-Datei von `youtube.com` wird ein Cookie von `youtube.com` gesetzt.
-* Beim Laden des ersten Photos von `instagram.com` wird ein Cookie von `instagram.com` gesetzt.
+* Beim Laden des ersten Fotos von `instagram.com` wird ein Cookie von `instagram.com` gesetzt.
 
 Diese Cookies werden auch "Third-Party-Cookies" genannt, da sie von einer "dritten Partei" kommen, also nicht von der Webseite, die ich aufgerufen habe.
 
@@ -36,7 +36,7 @@ Nun surfe ich weiter im Web, manchmal mit Link zur nächsten Seite, manchmal mit
 
 Beim ersten Mal, wenn ich so einem Tracker begegne, wird ein Cookie mit einer ID gesetzt, und der Tracker weiß noch nichts über mich. Beim zweiten Mal sendet mein Browser automatisch das Cookie wieder an den Tracker, nun weiß er schon zwei Datenpunkte über mich....
 
-Wenn ich zusätzlich noch direkt einen Dienst der Tracker verwende, mich z.B. bei YouTube oder Insta einlogge, dann können die gesammelten Surf-Daten mit meinen bereits bekannten Daten kombiniert werden.
+Wenn ich zusätzlich noch direkt einen Dienst nutze, den die Tracker betreiben, mich z. B. bei YouTube oder Insta einlogge, dann können die gesammelten Surf-Daten mit meinen bereits bekannten Daten kombiniert werden.
 
 
 ## Wie viele Tracker tracken mich?

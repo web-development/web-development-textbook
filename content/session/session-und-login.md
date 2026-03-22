@@ -3,18 +3,18 @@ title: Session und Login
 order: 20
 ---
 
-HTTP ist "statelesse" - jeder HTTP Request ist ein isoliertes Ereignis, der
-Server kann nicht erkennen ob Requests zusammen gehören.
+HTTP ist "stateless" – jeder HTTP-Request ist ein isoliertes Ereignis, der
+Server kann nicht erkennen, ob Requests zusammengehören.
 
 ![HTTP als "stateless protocol"](/images/stateless-http.svg)
 
 §
 
 Mit der Einführung von Cookies, und damit von state, können
-wir nun erkennen, dass mehrere Requests zusammen gehören,
+wir nun erkennen, dass mehrere Requests zusammengehören,
 vom selben Browser ausgelöst wurden.
 
-![HTTP mit cookies wird "stateful"](/images/stateful-http-with-cookies.svg)
+![HTTP mit Cookies wird "stateful"](/images/stateful-http-with-cookies.svg)
 
 Wir nennen diese Folge von Requests dann eine "Session".
 
@@ -22,7 +22,7 @@ Session
 --------
 PHP hilft beim Erkennen und Verwenden von Sessions:
 
-Mit dem Befehle  `session_start()`[*](http://www.php.net/manual/de/function.session-start.php)  wird
+Mit dem Befehl `session_start()`[*](http://www.php.net/manual/de/function.session-start.php) wird
 
 * …beim ersten Aufruf
   * automatisch ein Cookie gesetzt.
@@ -32,7 +32,7 @@ Mit dem Befehle  `session_start()`[*](http://www.php.net/manual/de/function.sess
   * und die Daten wieder ins `$_SESSION`-Array geladen.
 
 
-`session_start()` muss in jeder Seite der Applikation ausgeführt werden. Da wir in jeder Seite  `functions.php` Datei mit `require` einbinden ist das ein guter Ort um `session_start()` auszuführen.
+`session_start()` muss in jeder Seite der Applikation ausgeführt werden. Da wir in jeder Seite die `functions.php`-Datei mit `require` einbinden, ist das ein guter Ort, um `session_start()` auszuführen.
 
 
 
@@ -44,7 +44,7 @@ Die minimale Version ist: im `$_SESSION`-Array  nur die `user_id` der angemeldet
 
 Alle weiteren Daten holt man dann aus der Datenbank, wo es eine `users` Tabelle gibt.
 
-Weitere Informationen die eventuell nur in der Session gespeichert sind: Zwischenergebnisse von Mehrseitigen Formularen, Warenkörbe die noch nicht zur Kassa gebracht wurden, Statusmeldungen die auf der nächsten Seite angezeigt werden sollen.s
+Weitere Informationen, die eventuell nur in der Session gespeichert sind: Zwischenergebnisse von mehrseitigen Formularen, Warenkörbe, die noch nicht zur Kasse gebracht wurden, Statusmeldungen, die auf der nächsten Seite angezeigt werden sollen.
 
 
 ### Session und Interface
@@ -67,7 +67,7 @@ je nachdem ob es mit GET oder POST aufgerufen wird.
 |+----|+------|+----------|+--------|+-----------|
 |Login Formular|GET    |`login.php`|         |Zeigt das Formular für den Login an        |
 |Login|POST   |`login.php`|username, passwort|Prüft die Daten, setzt Username in der Session, dann Redirect zu index.php|
-|Logout|POST   |`logout.php`| | Löschte Session und Session-Cookie, dann Redirect zu index.php |
+|Logout|POST   |`logout.php`| | Löscht Session und Session-Cookie, dann Redirect zu index.php |
 {: class="table table-condensed table-bordered" style="width:auto"}
 
 
@@ -77,7 +77,7 @@ Das Login-Formular (Dateiname `login.php`) sieht ganz einfach aus und sendet die
 
 ![Abbildung 147: Login-Formular der Applikation](/images/session/login-form.png)
 
-Username und Passwort werden überprüft, falls Sie passen wird der Username in der Session gespeichert. Mit dem Befehl `header("Location: index.php")` wird der Browser dann automatisch an die Hauptseite weitergeleitet.
+Username und Passwort werden überprüft; falls sie passen, wird der Username in der Session gespeichert. Mit dem Befehl `header("Location: index.php")` wird der Browser dann automatisch an die Hauptseite weitergeleitet.
 
 §
 
@@ -89,7 +89,7 @@ if ( strlen($username) > 0  and check_login( $username, $passwort ) ) {
 }
 </php>
 
-Nach dem gelungen Login kann man jede beliebige Seite der Applikation aufrufen, immer wird im Array `$_SESSION` der Username gespeichert sein.
+Nach dem gelungenen Login kann man jede beliebige Seite der Applikation aufrufen; immer wird im Array `$_SESSION` der Username gespeichert sein.
 
 ### Logout
 
@@ -147,16 +147,16 @@ Die Weiterleitung funktioniert nur, wenn noch keine Ausgabe erfolgt ist, also vo
 
 Eine Weiterleitung nach der Behandlung eines POST-Requests ist allgemein sinnvoll.
 
-In diesem Beispiel wird eine funktion `check_login` aufgerufen die man
-selbst implementieren muss.  So kann man z.B. username und passwort mit Daten
-vergleichen die an verschiedenen Stellen gespeichert sein können:
-in der Datenbank, in der `config.php` Datei, in Umgebungsvariabeln.
+In diesem Beispiel wird eine Funktion `check_login` aufgerufen, die man
+selbst implementieren muss. So kann man z. B. Username und Passwort mit Daten
+vergleichen, die an verschiedenen Stellen gespeichert sein können:
+in der Datenbank, in der `config.php`-Datei, in Umgebungsvariablen.
 
 
 ![Abbildung 148: Login mit einer Weiterleitung](/images/session/login-flow.svg)
 
 
-### Neue PHP Befehle
+### Neue PHP-Befehle
 
 * `$_SESSION()` [PHP Doku](http://php.net/manual/en/reserved.variables.session.php)
 * `$_COOKIE()` [PHP Doku](http://php.net/manual/en/reserved.variables.cookies.php)

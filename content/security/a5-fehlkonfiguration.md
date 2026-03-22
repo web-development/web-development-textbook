@@ -8,27 +8,27 @@ Auf [Platz 2 der OWASP Top 10 2025: Security Misconfiguration](https://owasp.org
 Sicherheitsrelevante Fehlkonfiguration kann auf jeder Ebene der Anwendung, inkl. Plattform, Web- und Anwendungsserver, Frameworks oder Programmcode vorkommen. Die Zusammenarbeit zwischen Entwickler*innen und Administrator*innen ist wichtig, um eine sichere Konfiguration aller Ebenen zu gewährleisten.
 
 In größeren Projekten / Firmen ist eine Arbeitsteilung üblich zwischen
-Entwicklung (Development) und Systemadmistration (Operations).
+Entwicklung (Development) und Systemadministration (Operations).
 
 ## Ebenen
 
-Für eine Web-Applikation muss man dabei mindestens folgende Schichte beachten:
+Für eine Web-Applikation muss man dabei mindestens folgende Schichten beachten:
 
 - Physikalische Sicherheit (Wer kann den Server ein- und ausschalten, zerlegen,...)
-- Virtualisierungs-Schicht, z.B. VMWare
-- Betriebssystem, z.B. Ubuntu, CentOS, Debian
-- Datenbank, z.B. PosgreSQL, MySQL, MongoDB
-- Interpreter, z.B. PHP, Ruby, node.js
-- Webserver, z.B. Apache, nginx
-- Framework, z.B. Laravel, Rails
-- Fremd-Applikation, z.B. Wordpress, Redmine
+- Virtualisierungs-Schicht, z. B. VMware
+- Betriebssystem, z. B. Ubuntu, CentOS, Debian
+- Datenbank, z. B. PostgreSQL, MySQL, MongoDB
+- Interpreter, z. B. PHP, Ruby, node.js
+- Webserver, z. B. Apache, nginx
+- Framework, z. B. Laravel, Rails
+- Fremd-Applikation, z. B. WordPress, Redmine
 - Selbstgeschriebene Applikation
 
-Jeder dieser Schichten gilt es richtig zu konfigurieren
+Jede dieser Schichten gilt es, richtig zu konfigurieren
 und Sicherheits-Updates einzuspielen.
 
-Wenn es eine Arbeitsteilung zwischen Development und Operations gibt
-ist zu klären wer für welche Schicht zuständig ist.
+Wenn es eine Arbeitsteilung zwischen Development und Operations gibt,
+ist zu klären, wer für welche Schicht zuständig ist.
 
 ## Konfiguration + Hardening
 
@@ -42,8 +42,8 @@ Dafür gibt es oft schon fertige Konfigurationen, oder Tutorials. Ein guter Such
 ## Sicherheitsupdates
 
 Keine Software ist sicher, in jeder Software werden Sicherheitsprobleme
-entdeckt. Die relevante Fragen sind: werden Sicherheitsprobleme die
-bekannt werden möglichst schnell behoben? Und in Folge: Wenn ein Update
+entdeckt. Die relevanten Fragen sind: Werden Sicherheitsprobleme, die
+bekannt werden, möglichst schnell behoben? Und in Folge: Wenn ein Update
 zur Verfügung steht, wird es möglichst schnell installiert?
 
 - [Heise Security](http://www.heise.de/security/)

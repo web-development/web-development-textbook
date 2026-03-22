@@ -3,22 +3,22 @@ title: Web Security
 intro: Sie erhalten einen Einblick in die Sicherheits-Probleme von Web-Applikationen.
 ---
 
-Die Sicherheit von Web Applikationen ist ein komplexes Thema.
+Die Sicherheit von Web-Applikationen ist ein komplexes Thema.
 Die OWASP gibt dazu regelmäßig Empfehlungen heraus.
 
-Für ein großes Web Projekt liefert [OWASP Application Security Verification Standard](https://github.com/OWASP/ASVS/blob/master/4.0/OWASP%20Application%20Security%20Verification%20Standard%204.0.2-de.pdf) eine vollständige Checkliste.
+Für ein großes Web-Projekt liefert [OWASP Application Security Verification Standard](https://github.com/OWASP/ASVS/blob/master/4.0/OWASP%20Application%20Security%20Verification%20Standard%204.0.2-de.pdf) eine vollständige Checkliste.
 
 
-Für den Einstieg werden wir  die [OWASP Top 10 von 2025](https://owasp.org/Top10/)
-betrachten. Wir werden es speziell auf PHP, Postgres, Apache anwenden. Wenn man generative AI
-verwendet sollte man weiter noch die [TOP 10 FOR GEN AI](https://genai.owasp.org/llm-top-10/) kenne.
+Für den Einstieg werden wir die [OWASP Top 10 von 2025](https://owasp.org/Top10/)
+betrachten. Wir werden es speziell auf PHP, Postgres und Apache anwenden. Wenn man generative AI
+verwendet, sollte man außerdem die [TOP 10 FOR GEN AI](https://genai.owasp.org/llm-top-10/) kennen.
 
 Was Sie können sollten
 
-- Sie können SQL-Injection Probleme erkennen und mittels prepared Statements vermeiden
-- Sie können XSS Probleme erkennen und durch geeignetes Escapen des Outputs und eine Content Security Policy vermeiden
+- Sie können SQL-Injection-Probleme erkennen und mittels Prepared Statements vermeiden
+- Sie können XSS-Probleme erkennen und durch geeignetes Escapen des Outputs und eine Content Security Policy vermeiden
 - Sie können eine Authentisierung mit Passwort und Cookie in PHP implementieren
-- Sie können Sicherheitsproblem beim Speichern von Passwörter und sensitiven Daten erkennen und vermeiden
+- Sie können Sicherheitsprobleme beim Speichern von Passwörtern und sensiblen Daten erkennen und vermeiden
 - Sie können erkennen, wenn eine Applikation den Zugriffsschutz nicht konsequent für jede URL überprüft, und das Problem beheben
 
 Die OWASP beschreibt bei den Top 10 nicht nur den Angriff selbst, sondern den gesamten Angriffsweg bis

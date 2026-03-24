@@ -20,21 +20,24 @@ Dazu wird die Umgebungsvariable PATH gelesen und analysiert. Diese Variable enth
 /Users/bjelline/.composer/vendor/bin/:/opt/homebrew/opt/postgresql@17/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/usr/local/share/dotnet:/Users/bjelline/.cargo/bin:/Applications/iTerm.app/Contents/Resources/utilities:/Users/bjelline/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin/
 ```
 
-Dieses Beispiel von einem Mac Computer enthält viele Pfad-Angaben, getrennt durch Doppelpunkte.
+Dieses Beispiel stammt von einem Mac und enthält viele Pfad-Angaben. Auf Mac und Linux wird der  Doppelpunkt als Trennzeichen verwendet.
 
 ```
-C:\Windows\system32;C:\Windows;C:\Program Files\Git\cmd;;C:\Program Files\dotnet\;C:\ProgramData\chocolatey\bin;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\php;C:\Users\bjelline\AppData\Local\Programs\Microsoft VS Code\bin
+C:\Windows\system32;C:\Windows;C:\Program Files\Git\cmd;C:\Program Files\dotnet\;C:\ProgramData\chocolatey\bin;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\php;C:\Users\bjelline\AppData\Local\Programs\Microsoft VS Code\bin
 ```
 
-Dieses Beispiel von einem Windows Computer enthält viele Pfad-Angaben, getrennt durch Semikolons.
+Dieses Beispiel stammt von einem Windows Computer und enthält viele Pfad-Angaben. Auf Windows wird das Semikolon als Trennzeichen verwendet.
 
 
 
 Auf beiden Systemen geht die Kommandozeile auf der Suche nach dem Programm `createdb` gleich vor: sie sucht im ersten angegebenen Ordner nach ausführbaren Dateien mit den Namen `createdb` (auf Windows auch nach `createdb.exe` oder `createdb.bat`). Falls sie im ersten Ordner nichts findet geht die Suche im 2.Ordner weiter.
 
-Falls ein passendes Programm gefunden wird, wird es gestartet.
+Das erste passendes Programm, das gefunden wird, wird es gestartet.
 
-Falls nicht wird eine Fehlermeldung ausgegeben.
+Falls keines gefunden wird, wird eine Fehlermeldung ausgegeben.
+
+Hinweis: Wenn ich zwei verschiedene Programm-Versionen installiert habe entscheidet die Reihenfolge im PATH welches Programm gestartet wird!
+
 
 ## Wie setzt man die PATH Variable unter Windows
 
@@ -56,7 +59,7 @@ Hier ein Beispiel auf Windows 11:
 
 ## Wie setzt man die PATH Variable auf Mac oder Linux
 
-Dazu muss man wissen welche Shell man benutzt. das findet man mit dem Befehl `ps` heraus, da werden die laufenden Prozesse angezeigt. Auf Mac is die shell wahrscheinlich bash oder zsh, auf linux gibt es noch mehr optionen.
+Dazu muss man wissen welche Shell man benutzt. das findet man mit dem Befehl `ps` heraus, da werden die laufenden Prozesse angezeigt. Auf Mac ist die Shell wahrscheinlich `bash` oder `zsh`, auf linux gibt es noch mehr gängige Optionen.
 
 Jede Shell hat eine eigene Datei mit erstem Buchstaben `.` und letzten Buchstaben `rc`. Also z.B. `.bashrc` oder `.zshrc` u.s.w.
 
@@ -66,3 +69,37 @@ Die Datei wird beim Start der Shell ausgeführt. Hier fügt man einen Befehl ein
 2. Schritt: Start-Datei der Shell editieren.  Ich füge mit meinem Editor in die Datei `.zshrc` ein: `export PATH="/Applications/Visual Studio Code.app/Contents/Resources/app/bin/:$PATH"`
 3. Schritt: eine neue Shell starten, z.B. indem man ein neues Terminal-Fenster öffent. Erst in der neuen Shell wirkt der neue Wert von PATH
 
+
+## Überblick Windows vs. Mac/Linux
+
+
+|                   | Windows                   | macOS / Linux                           |
+|-------------------|---------------------------|-----------------------------------------|
+| Trennzeichen      | Semikolon `;`             | Doppelpunkt `:`                         |
+| Variable aufrufen | `%PATH%`                  | `$PATH`                                 |
+| Variable setzen (permanent)     | Systemeigenschaften / GUI | Shell-Konfigurationsdatei (z.B. `.zshrc`) |
+| Variable setzen (temporär) | `set PATH=...`              | `export PATH=...`                         |
+{: class="table table-condensed table-bordered" style="width:auto"}
+
+
+
+## Umgebungsvariablen
+
+Die Variable PATH ist nur ein Beispiel für eine Umgebungsvariable. Diese Variablen kann ich global oder für ein einzelne Session setzen, sie stehen dann den Programmen dich dort gestartet werden zur Verfügung.
+
+Beispiele für Umgebungsvariablen:
+
+* PATH - hier schon ausführlich beschrieben: wo werden ausführbare Programme gesucht
+* LANG - konfiguriert die Sprache und Zeichenkodierung der Ausgabe, z.b. LANG=de_AT.UTF-8
+* PATHEXT - nur Windows: Endungen von ausführbaren Programmen,  z.B.  `.COM;.EXE;.BAT;.CMD`
+
+
+## Weiter Anwendungsgebiete
+
+Du wirst Umgebungsvariablen und PATH in vielen Anwendungfällen brauchen, nicht nur wie hier im Beispiel beim verwenden einer Datenbank.
+Zwei Beispiele:
+
+* Beim builden von C++ Projekten werden Umgebungsvariablen verwendet um die richtigen Libraries einzubinden
+* Beim Betrieb von Web Applikationen werden Umgebungsvariablen für die Konfiguration verwendet
+* [Weitere Beispiele mit Linux](https://wiki.ubuntuusers.de/Umgebungsvariable/typische_Anwendungsf%C3%A4lle/)
+* [Umgebungsvariablen im Andriod Game Development](https://developer.android.com/games/agde/quickstart?hl=de)

@@ -1,5 +1,5 @@
 ---
-title: A05 - Injection + XSS
+title: A05 - Injection
 order: 50
 ---
 

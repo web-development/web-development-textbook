@@ -77,15 +77,14 @@ Was kann die Folge einer solchen Attacke sein?  Die Bandbreite ist groß:
 
 Das Problem ist nicht „gelöst“; es gibt nur mehrere Maßnahmen, die es lindern:
 
-1. Strikte Trennung von Instruktionen (von den Programmierer*innen festgelegt) und Daten (Input von User*innen)
+1. Strikte(re) Trennung von Instruktionen (von den Programmierer*innen festgelegt) und Daten (Input von User*innen)
 2. Minimale Rechte für Tools (Least Privilege)
 3. Ausgabe validieren und begrenzen
-4. Input-Härtung für RAG und Uploads
+4. Input-Härtung für RAG und Uploads, also Überprüfung ob der Input verdächtige STrings enthält
 5. Monitoring und Tests
 
 
 ## Praktisches Beispiel
-
 
 In diesem online game versucht man das LLM dazu zu bringen ein Passwort preis zu geben. Mit jedem Level wird die Verteidigung stärker: [Gandalf](https://gandalf.lakera.ai/baseline)
 
@@ -93,3 +92,4 @@ In diesem online game versucht man das LLM dazu zu bringen ein Passwort preis zu
 ## Siehe auch
 
 * [Der System Prompt von Claude Code](https://cchistory.mariozechner.at/) im Vergleich, [aufbereitet von Mario Zechner](https://mariozechner.at/posts/2025-08-03-cchistory/)
+* OWASP [LLM Prompt Injection Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html)

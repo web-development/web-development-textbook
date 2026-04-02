@@ -1,0 +1,183 @@
+von https://about.gitlab.com/de-de/blog/2025-owasp-top-10-whats-changed-and-why-it-matters/
+
+
+
+Die OWASP Top 10 2025: Vollständige Aufschlüsselung
+A01: Broken Access Control
+Was es ist
+
+Fehler bei der Durchsetzung von Richtlinien, die verhindern, dass Nutzende außerhalb ihrer vorgesehenen Berechtigungen handeln – was zu unbefugtem Zugriff führt.
+Auswirkungen auf das System
+
+    Unbefugte Informationsoffenlegung
+    Vollständige Datenzerstörung oder -modifikation
+    Privilege Escalation (Nutzende erlangen Admin-Rechte)
+    Einsehen oder Bearbeiten der Accounts anderer Nutzender
+    API-Zugriff von nicht autorisierten oder nicht vertrauenswürdigen Quellen
+
+Relevante CWEs
+
+    CWE-22: Path Traversal
+    CWE-200: Exposure of Sensitive Information to an Unauthorized Actor
+    CWE-352: Cross-Site Request Forgery (CSRF)
+
+A02: Security Misconfiguration
+Was es ist
+
+Systeme, Applikationen oder Cloud-Services, die aus Security-Perspektive fehlerhaft konfiguriert sind.
+Auswirkungen auf das System
+
+    Offenlegung sensibler Informationen durch Fehlermeldungen
+    Unbefugter Zugriff über Default-Accounts
+    Unnötige Services oder Features aktiviert
+    Veraltete Security-Patches
+    Server sendet keine Security-Header oder -Direktiven
+
+Relevante CWEs
+
+    CWE-16: Configuration
+    CWE-521: Weak Password Requirements
+    CWE-798: Use of Hard-coded Credentials
+
+A03: Software Supply Chain Failures
+Was es ist
+
+Ausfälle oder Kompromittierungen beim Erstellen, Verteilen oder Aktualisieren von Software – durch Schwachstellen oder böswillige Änderungen in Dependencies, Tools oder Build-Prozessen.
+Auswirkungen auf das System
+
+    Kompromittierte Packages, die Backdoors einschleusen
+    Schädlicher Code, der während Build-Prozessen injiziert wird
+    Verwundbare Dependencies, die sich durch die Applikation kaskadieren
+    Nutzung von Komponenten aus nicht vertrauenswürdigen Quellen in Production
+    Änderungen in der Supply Chain werden nicht nachverfolgt
+
+Relevante CWEs
+
+    CWE-1395: Dependency on Vulnerable Third-Party Component
+    CWE-1104: Use of Unmaintained Third Party Components
+
+A04: Cryptographic Failures
+Was es ist
+
+Fehler im Zusammenhang mit fehlender Kryptographie, unzureichend starker Kryptographie, Leaking von kryptographischen Schlüsseln und verwandten Fehlern.
+Auswirkungen auf das System
+
+    Offenlegung sensibler Daten (Passwörter, Kreditkarten, Gesundheitsdaten)
+    Man-in-the-Middle-Angriffe
+    Datenpanne durch schwache Verschlüsselung
+    Schlüssel-Kompromittierung mit systemweiter Exposition
+    Verstoß gegen regulatorische Compliance-Anforderungen (DSGVO, PCI DSS)
+
+Relevante CWEs
+
+    CWE-327: Use of a Broken or Risky Cryptographic Algorithm
+    CWE-330: Use of Insufficiently Random Values
+
+A05: Injection
+Was es ist
+
+Systemschwachstellen, die es Angreifenden ermöglichen, Schadcode oder -befehle (SQL, NoSQL, OS-Befehle, LDAP usw.) in Programme einzuschleusen.
+Auswirkungen auf das System
+
+    Datenverlust oder -korruption durch SQL-Injection
+    Vollständige Datenbank-Kompromittierung
+    Server-Übernahme durch Command-Injection
+    Cross-Site-Scripting-(XSS)-Angriffe
+    Informationsoffenlegung
+    Denial of Service
+
+Relevante CWEs
+
+    CWE-89: SQL Injection
+    CWE-78: OS Command Injection
+
+A06: Insecure Design
+Was es ist
+
+Schwächen im Design, die verschiedene Fehler repräsentieren – ausgedrückt als fehlendes oder unwirksames Kontrolldesign. Architekturelle Mängel statt Implementierungs-Bugs.
+Auswirkungen auf das System
+
+    Schwache Passwort-Reset-Flows
+    Fehlende Autorisierungsschritte
+    Fehlerhafte Business-Logik, die Umgehungen ermöglicht
+    Unzureichendes Threat Modeling, das blinde Flecken erzeugt
+    Design-Patterns, die unter Angriffsszenarien versagen
+
+Relevante CWEs
+
+    CWE-209: Generation of Error Messages Containing Sensitive Information
+    CWE-522: Insufficiently Protected Credentials
+    CWE-656: Reliance on Security Through Obscurity
+
+A07: Authentication Failures
+Was es ist
+
+Schwachstellen, die es Angreifenden ermöglichen, Systeme dazu zu bringen, ungültige oder fehlerhafte Identitäten als legitim zu erkennen.
+Auswirkungen auf das System
+
+    Account-Übernahme und Credential Stuffing
+    Session Hijacking
+    Erfolgreiche Brute-Force-Angriffe
+    Ausnutzung schwacher Passwort-Recovery-Mechanismen
+    Multi-Faktor-Authentifizierungs-Bypass
+
+Relevante CWEs
+
+    CWE-287: Improper Authentication
+    CWE-306: Missing Authentication for Critical Function
+    CWE-521: Weak Password Requirements
+
+A08: Software or Data Integrity Failures
+Was es ist
+
+Code und Infrastruktur, die nicht verhindern, dass ungültiger oder nicht vertrauenswürdiger Code/Daten als vertrauenswürdig und valide behandelt werden.
+Auswirkungen auf das System
+
+    Unsignierte Updates, die Schadcode-Injection ermöglichen
+    Insecure Deserialization, die zu Remote Code Execution führt
+    CI/CD-Pipeline-Kompromittierung
+    Ausnutzung von Auto-Update-Mechanismen
+    Manipulierte Software-Artefakte
+
+Relevante CWEs
+
+    CWE-345: Insufficient Verification of Data Authenticity
+    CWE-346: Origin Validation Error
+    CWE-347: Improper Verification of Cryptographic Signature
+
+A09: Security Logging & Alerting Failures
+Was es ist
+
+Unzureichendes Logging und Monitoring mit inadäquatem Alerting, was schnelle Reaktion erschwert.
+Auswirkungen auf das System
+
+    Angriffe bleiben über längere Zeiträume unentdeckt
+    Breach-Investigation wird unmöglich
+    Compliance-Verstöße durch fehlende Audit-Trails
+    Verzögerte Incident-Response
+    Unfähigkeit, das Ausmaß einer Kompromittierung zu bestimmen
+
+Relevante CWEs
+
+    CWE-117: Improper Output Neutralization for Logs
+    CWE-532: Insertion of Sensitive Information into Log File
+    CWE-778: Insufficient Logging
+
+A10: Mishandling of Exceptional Conditions
+Was es ist
+
+Programme, die ungewöhnliche und unvorhersehbare Situationen nicht verhindern, erkennen und darauf reagieren – was zu Abstürzen, unerwartetem Verhalten oder Schwachstellen führt.
+Auswirkungen auf das System
+
+    Informationsoffenlegung durch zu detaillierte Fehlermeldungen
+    Denial of Service durch unbehandelte Exceptions
+    Zustandskorruption durch fehlerhafte Error-Behandlung
+    Ausnutzung von Race Conditions
+    Systeme, die bei Fehlern offen statt geschlossen schalten
+    Applikationsabstürze, die sensible Daten exponieren
+
+Relevante CWEs
+
+    CWE-248: Uncaught Exception
+    CWE-390: Detection of Error Condition Without Action
+    CWE-391: Unchecked Error Condition

@@ -1,20 +1,51 @@
-pages:
+stages:
+  - build
+  - deploy
+
+build:
   image: ruby:3.2.2
-  stage: deploy
+  stage: build
   script:
     - apt-get install -y libcurl4 libcurl3-gnutls libcurl4-openssl-dev
-    - bundle install  -j4
+    - bundle install -j4
     - export LC_ALL=C.UTF-8
     - export LANG=C
     - export LANGUAGE=C.UTF-8
-    - echo $LC_ALL $LANG $LANGUAGE
-    - locale
     - nanoc compile
+  artifacts:
+    paths:
+      - output/
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_COMMIT_BRANCH == "main"
+
+pages:
+  stage: deploy
+  needs: [build]
+  script:
     - mkdir -p public
     - cp -a output/* public/
   artifacts:
     paths:
       - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_COMMIT_BRANCH == "main"
+
+deploy-github:
+  image: alpine/git
+  stage: deploy
+  needs: [build]
+  script:
+    - git config --global user.email "ci@gitlab"
+    - git config --global user.name "GitLab CI"
+    - git clone --depth=1 https://x-access-token:${GITHUB_TOKEN}@github.com/web-development/web-development.github.io.git _gh_deploy
+    - rm -rf _gh_deploy/*
+    - cp -a output/. _gh_deploy/
+    - cd _gh_deploy
+    - git add -A
+    - git diff --cached --quiet || git commit -m "Deploy ${CI_COMMIT_SHORT_SHA} from GitLab"
+    - git push
   rules:
     - if: $CI_COMMIT_BRANCH == "master"
     - if: $CI_COMMIT_BRANCH == "main"

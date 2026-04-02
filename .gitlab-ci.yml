@@ -33,7 +33,9 @@ pages:
     - if: $CI_COMMIT_BRANCH == "main"
 
 deploy-github:
-  image: alpine/git
+  image:
+    name: alpine/git
+    entrypoint: [""]
   stage: deploy
   needs: [build]
   script:
@@ -44,7 +46,7 @@ deploy-github:
     - cp -a output/. _gh_deploy/
     - cd _gh_deploy
     - git add -A
-    - git diff --cached --quiet || git commit -m "Deploy ${CI_COMMIT_SHORT_SHA} from GitLab"
+    - git diff --cached --quiet || git commit -m "${CI_COMMIT_MESSAGE}"
     - git push
   rules:
     - if: $CI_COMMIT_BRANCH == "master"

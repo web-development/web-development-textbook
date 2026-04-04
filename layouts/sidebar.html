@@ -1,26 +1,29 @@
 <!-- sidebar -->
 <div id="sidebar" class="span3 offset1 do-not-print">
         <div class="page-header">
-        <h2>Kapitel</h2>
+        <h3>Kapitel</h3>
         </div>
 
 
         <ul class="nav nav-list">
         <% if ! @config[:chapters].nil? then %>
           <% @config[:chapters].each do |folder, chapter| %>
-          <li class="<% if folder == @item[:chapter] %>active<% end %> <%= if @config[:chapters][folder][:separator] then 'separator' end %>"><a href="/<%= folder %>/"><%= chapter[:title] %></a>
+          <li class="<% if folder == @item[:chapter] %>parent<% end %> <%= if @config[:chapters][folder][:separator] then 'separator' end %>">
+            <details <%= if folder == @item[:chapter] then 'open' end %>>
+              <summary><a href="/<%= folder %>/" <% if folder == @item[:chapter] && @item[:filename].end_with?('/dex.md') %>class="active"<% end %> ><%= chapter[:title] %></a><span class="caret"></span></summary>
               <ul class="sub">
                 <% if @config[:chapters][folder] %>
                   <% if @config[:chapters][folder][:items] %>
                     <% @config[:chapters][folder][:items].each do|i| %>
                       <% if i[:title] && !(i[:filename] =~ /\/dex\.md$/) %>
-                      <li <% if @item[:filename] == i[:filename] %>class="active"<% end %>><a href="<%= i.identifier %>"><%= i[:title] %></a></li>
+                      <li><a <% if @item[:filename] == i[:filename] %>class="active"<% end %> href="<%= i.identifier %>"><%= i[:title] %></a></li>
                       <% end %>
                     <% end %>
                   <% end %>
                 <% end %>
               </ul>
-            </li>
+            </details>
+          </li>
           <% end %>
         <% end %>
         </ul>

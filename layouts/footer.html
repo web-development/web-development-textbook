@@ -9,55 +9,46 @@
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const nav = document.querySelector("ul.nav");
-    const items = nav.querySelectorAll(":scope > li");
-
-    function setItem(li, open) {
-      const sub = li.querySelector(":scope > ul");
-      const icon = li.querySelector(":scope > i");
-      if (sub) sub.style.display = open ? "" : "none";
-      if (icon) { icon.className = open ? "icon-minus" : "icon-plus"; }
-    }
+    const insertHere = document.querySelector(
+      '#sidebar .page-header'
+    );
+    if (!nav) return;
+    const detailsList = Array.from(nav.querySelectorAll(":scope > li > details"));
 
     function setAll(open) {
-      items.forEach(li => setItem(li, open));
+      detailsList.forEach(d => { d.open = open; });
       saveState();
     }
 
     function saveState() {
-      localStorage.setItem("nav-state",
-        Array.from(items, li => li.querySelector(":scope > i")?.classList.contains("icon-minus") ? "+" : "-").join("")
-      );
+      localStorage.setItem("nav-state", detailsList.map(d => d.open ? "+" : "-").join(""));
     }
-
-    items.forEach(li => {
-      const icon = document.createElement("i");
-      icon.className = "icon-plus";
-      li.querySelector(":scope > a")?.before(icon);
-      li.style.listStyle = "none";
-    });
 
     const stored = localStorage.getItem("nav-state");
     if (stored) {
-      stored.split("").forEach((ch, i) => { if (items[i]) setItem(items[i], ch === "+"); });
-    } else {
-      setAll(false);
+      stored.split("").forEach((ch, i) => { if (detailsList[i]) detailsList[i].open = ch === "+"; });
     }
-    items.forEach(li => { if (li.classList.contains("active")) setItem(li, true); });
 
-    const controls = document.createElement("li");
-    controls.style.listStyle = "none";
-    controls.innerHTML = '<a href="#">open all</a> | <a href="#">close all</a>';
-    nav.prepend(controls);
-    controls.children[0].addEventListener("click", (e) => { e.preventDefault(); setAll(true); });
-    controls.children[1].addEventListener("click", (e) => { e.preventDefault(); setAll(false); });
+    detailsList.forEach(d => d.addEventListener("toggle", saveState));
 
-    nav.addEventListener("click", (e) => {
-      if (e.target.tagName !== "I") return;
-      e.preventDefault();
-      const li = e.target.parentElement;
-      setItem(li, e.target.classList.contains("icon-plus"));
-      saveState();
-    });
+    const openLink = document.createElement("a");
+    openLink.href = "#";
+    openLink.textContent = "open all";
+    openLink.addEventListener("click", (e) => { e.preventDefault(); setAll(true); });
+
+    const closeLink = document.createElement("a");
+    closeLink.href = "#";
+    closeLink.textContent = "close all";
+    closeLink.addEventListener("click", (e) => { e.preventDefault(); setAll(false); });
+
+    const controls = document.createElement("p");
+    controls.append(openLink, " | ", closeLink);
+    nav.parentNode.insertBefore(controls,nav);
+    console.log("will insert new controls before nav");
+
+    console.log(controls);
+    console.log(nav);
+
   });
 </script>
 <script>

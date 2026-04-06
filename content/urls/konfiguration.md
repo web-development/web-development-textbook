@@ -5,7 +5,7 @@ order: 20
 
 Die Konfiguration des Webservers wird hier am Beispiel von Apache gezeigt.
 Andere Webserver, z.B: Internet Information Server von Microsoft oder nginx
-(ausgesprochen "engine x") 
+(ausgesprochen "engine x")
 verfügen auch über diese Fähigkeiten, werden aber anders konfiguriert.
 
 ## Betriebssystem des Webservers
@@ -14,19 +14,19 @@ Viele Webserver werden auf einem UNIX-Betriebssystem betrieben. Die UNIX-Dateisy
 Ein Link auf die Datei `bild.JPG` funktioniert unter Windows oder MacOS auch
 dann, wenn er `bild.jpg` geschreiben wird.
 
-Liegt die Datei aber dann am (UNIX-)Webserver, so funktioniert der Link nicht mehr! 
+Liegt die Datei aber dann am (UNIX-)Webserver, so funktioniert der Link nicht mehr!
 `bild.jpg` und `bild.JPG` sind zwei unterschiedliche Dateien!
 
 ## Webspace und Ordner
 Im einfachsten Fall wird im Webserver ein Ordner spezifiziert, der als Ausgangspunkt für den Webspace dient.
 
-* URL `http://multimediatechnology.at/wp-content/themes/mmt_blog_theme_2007/images/mmtlogo-400.png`
-* Pfad im Dateisystem `/var/www/virthosts/multimediatechnology.at/wp-content/themes/mmt_blog_theme_2007/images/mmtlogo-400.png`
+* URL `http://www.example.com/wp-content/themes/mmt_blog_theme_2007/images/mmtlogo-400.png`
+* Pfad im Dateisystem `/var/www/virthosts/www.example.com/wp-content/themes/mmt_blog_theme_2007/images/mmtlogo-400.png`
 
 Die Apache-Konfiguration dazu sieht so aus:
 
-    <VirtualHost mediacube.at>
-    DocumentRoot /var/www/virthosts/multimediatechnology.at/
+    <VirtualHost www.example.com>
+    DocumentRoot /var/www/virthosts/www.example.com/
     </VirtualHost>
 
 ## Standard-Dokument
@@ -35,8 +35,8 @@ Endet eine URL auf einen Schrägstrich, dann verweist sie eigentlich auf einen g
 
 |URL                      |Pfad im Dateisystem|
 |+------------------------|+------------------|
-|http://mediacube.at/     |/var/www/virthosts/mediacube.at/index.html|
-|http://mediacube.at/pix/ |/var/www/virthosts/mediacube.at/pix/index.html|
+|http://www.example.com/     |/var/www/virthosts/www.example.com/index.html|
+|http://www.example.com/pix/ |/var/www/virthosts/www.example.com/pix/index.html|
 {: class="table table-condensed table-bordered" style="width:auto"}
 
 
@@ -63,13 +63,13 @@ Die entsprechenden Apache-Konfigurationsanweisung dazu sind:
 Auf UNIX-Servern mit vielen Accounts ist es üblich, dass  für jeden Account
 automatisch ein Webspace exsitert. Dieser Webspace befindet sich innerhalb des
 Home-Verzeichnisses des jeweiligen Accounts. Z.B. könnte eine Studentin den
-Username fhs303030 habe und das Home-Verzeichnis `/home/store/fhs303030/`. Ihr
-Webspace ist im Unter-Ordner `public_html`: 
+Username user303030 habe und das Home-Verzeichnis `/home/store/user303030/`. Ihr
+Webspace ist im Unter-Ordner `public_html`:
 
 |URL                      |Pfad im Dateisystem|
 |+------------------------|+------------------|
-|http://multimediatechnology.at/~fhs303030/test.html |/home/store/fhs303030/public_html/test.html|
-|http://multimediatechnology.at/~fhs111111/test.html |/home/store/fhs111111/public_html/test.html|
+|http://www.example.com/~user303030/test.html |/home/store/user303030/public_html/test.html|
+|http://www.example.com/~user111111/test.html |/home/store/user111111/public_html/test.html|
 {: class="table table-condensed table-bordered" style="width:auto"}
 
 Die Apache Konfigurationsanweisung lautet:
@@ -85,13 +85,13 @@ nicht die Position der Dokumente im Dateisystem! Der Ordnername `public_html` wi
 
 Der Link von einem User-Webspace zum nächsten funktioniert also so:
 
-    http://multimediatechnology.at/~fhs303030/test.html   
-                              +    ../~fhs111111/test   =
-    http://multimediatechnology.at/~fhs111111/test
+    http://www.example.com/~user303030/test.html
+                              +    ../~user111111/test   =
+    http://www.example.com/~user111111/test
 
 Oder relative zum Webserver:
 
-    http://multimediatechnology.at/~fhs303030/test.html   
-                              +   /~fhs111111/test   =
-    http://multimediatechnology.at/~fhs111111/test
+    http://www.example.com/~user303030/test.html
+                              +   /~user111111/test   =
+    http://www.example.com/~user111111/test
 

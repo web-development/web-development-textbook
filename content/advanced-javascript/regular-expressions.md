@@ -221,7 +221,7 @@ usa
 Der Plus-Operator erlaubt eine Wiederholung des vorigen Zeichens. Um also `"i"` und `"iiii"` und `"wir sind die Ritter die ni sagen"` zu matchen:
 
 <javascript>
-/i+/  
+/i+/
 </javascript>
 
 Der Operator kann auch auf Zeichenklassen oder Gruppen angewandt werden.
@@ -249,7 +249,7 @@ andere Alternative gewählt werden:
 
 ## Übung
 
-Eine kurze Übung in [TDDbin](https://tddbin.com/): [Längenangaben finden](https://gitlab.mediacube.at/snippets/43)
+Eine kurze Übung in [TDDbin](https://tddbin.com/): [Längenangaben finden](https://gitlab.ct.fh-salzburg.ac.at/snippets/43)
 
 ## Irgend ein Zeichen
 
@@ -264,7 +264,7 @@ bei Pfadangaben hat das Fragezeichen `?` diese Funktion!
 NA
 MMT
 mmt
-   
+
 ___
 MMT-B
 </patterntester>
@@ -299,7 +299,7 @@ Der Stern-Operator dient auch der Vervielfältigung: das davor stehende Zeichen
 kann nullmal, einmal oder mehrmals vorkommen:
 
 <javascript>
-/i*/  
+/i*/
 </javascript>
 
 ## Fragezeichen-Operator: einmal oder keinmal
@@ -307,7 +307,7 @@ kann nullmal, einmal oder mehrmals vorkommen:
 Der Frage-Operator erlaubt 0 oder 1 vorkommen des Zeichens.
 
 <javascript>
-/\d?/  
+/\d?/
 </javascript>
 
 <patterntester name="Ziffern" pattern="^\d?$">
@@ -353,7 +353,7 @@ if( match = locale.match(/(de|fr)_(DE|CH)/ ) {
 
 ## Übung
 
-Eine längere Übung in [TDDbin](https://tddbin.com/): [Längenangaben finden](https://gitlab.mediacube.at/snippets/43)
+Eine längere Übung in [TDDbin](https://tddbin.com/): [Längenangaben finden](https://gitlab.ct.fh-salzburg.ac.at/snippets/43)
 
 ## Operatoren sind gierig
 
@@ -380,7 +380,7 @@ Wie kann man das gierige Verhalten der Operatoren umgehen?
 Die "altmodisch" Methode ist eine Komplement-Klasse:
 
 <javascript>
-/o[^o]*o/    
+/o[^o]*o/
 </javascript>
 
 Hier wird ein erstes o gematched, dann kommen (null bis viele) zeichen
@@ -400,8 +400,8 @@ In modernen RegEx Engines gibt es nicht-gierige Varianten der
 Operatoren: ein Fragezeichen wird nachgestellt
 
 <javascript>
-/o(.*?)o/    
-/o(.+?)o/    
+/o(.*?)o/
+/o(.+?)o/
 </javascript>
 
 <patterntester name="BlaBla" pattern="_.*?_">
@@ -449,7 +449,7 @@ Ein häufiger Anwendungsfall von RegEx ist "Suchen und Ersetzen"
 
 <javascript>
 s = "Voldemort hat keine Nase";
-s.replace(/Voldemort/, 
+s.replace(/Voldemort/,
           "Er, dessen Name nicht genannt werden darf,");
 </javascript>
 
@@ -458,7 +458,7 @@ Ende der RegEx kann man alle Ersetzungen durchführen:
 
 <javascript>
 s = "Voldemort hat keine Nase. Voldemort ist verschwunden.";
-s.replace(/Voldemort/g, 
+s.replace(/Voldemort/g,
           "Er, dessen Name nicht genannt werden darf,");
 </javascript>
 
@@ -467,7 +467,7 @@ von Regular Expressions:
 
 <javascript>
 s = "Harry greift Voldemort an. Voldemorts Zauberstab bricht.";
-s.replace(/Voldemort/g, 
+s.replace(/Voldemort/g,
           "Er, dessen Name nicht genannt werden darf,");
 </javascript>
 
@@ -489,7 +489,7 @@ if (preg_match ( "/en|sk|zh|us|uk/", \$locale_code )){ ...
 </php>
 
 <php caption="Suchen mit RegEx in PHP">
-preg_match( "/regex/i", "string in dem ich suche") 
+preg_match( "/regex/i", "string in dem ich suche")
 </php>
 
 ## Tools

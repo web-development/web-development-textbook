@@ -87,7 +87,7 @@ Stattdessen wird nur ein **Hash** des Passworts gespeichert.
 Beim Login wird das eingegebene Passwort dann wieder mit derselben Hash-Funktion
 behandelt, und mit dem gespeicherten Wert verglichen.
 
-PHP stellt eine geeignete Hash-Funktion zur Verfügung: [password_hash](https://www.php.net/manual/de/function.password-hash.php).  Siehe auch [/security/a2-crypto/](A2 - Cryptographic Failures)
+PHP stellt eine geeignete Hash-Funktion zur Verfügung: [password_hash](https://www.php.net/manual/de/function.password-hash.php).  Siehe auch [/security/a4-crypto/](A4 - Cryptographic Failures)
 
 
 ## Neue Session bei Login / Logout / neuen Rechten

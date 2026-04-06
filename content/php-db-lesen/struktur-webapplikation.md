@@ -13,12 +13,12 @@ Portfolio anzeigen:
 ## Idee und erste Skizzen
 
 
-![](https://commons.wikimedia.org/wiki/File:Batch_uploader_for_small_GLAM_projects_-_wireframe_-_03.png)
+[example from wikimedia commons](https://commons.wikimedia.org/wiki/File:Batch_uploader_for_small_GLAM_projects_-_wireframe_-_03.png)
 
 
 ## Wireframes, Prototype
 
-![](https://commons.wikimedia.org/wiki/File:Wolfplex-Wiki-WorkshopsIdeaList-wireframe-20130929-v02.png)
+[example from wikimedia commons](https://commons.wikimedia.org/wiki/File:Wolfplex-Wiki-WorkshopsIdeaList-wireframe-20130929-v02.png)
 
 ## Aufbau der Applikation
 

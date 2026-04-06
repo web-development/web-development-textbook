@@ -9,7 +9,7 @@ wenige Daten zu PHP übermitteln.
 
 ### Filtern in der Datenbank
 
-Folgender Ansatz ist also ineffizent,
+Folgender Ansatz ist also ineffizient,
 besonders wenn viele Daten in der Datenbank gespeichert sind:
 
 <php caption="Ineffiziente Abfrage der Datenbank">

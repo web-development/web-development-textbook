@@ -10,7 +10,7 @@ auferlegen kann.
 
 §
 
-Ein Constraint kennen Sie schon:
+Zwei Constraint kennen Sie schon:
 
 
 <sql>
@@ -42,7 +42,64 @@ wir die Fehlermeldung:
   Detail: Key (name)=(Marketing) already exists.
 </plain>
 
-Der Primärschlüssel muss eindeutig sein.  Das ist ein **unique constraint**.
+Der Primärschlüssel muss eindeutig sein.
+
+
+
+## References
+
+Was bedeutet die Fehlermeldung am Ende?
+
+<sql>
+CREATE TABLE departments (
+  dep_id SERIAL PRIMARY KEY,
+  dep_name VARCHAR(20)
+);
+CREATE TABLE employees (
+  name VARCHAR(20),
+  dep_id integer NULL REFERENCES departments(dep_id)
+);
+INSERT INTO employees VALUES('Brigitte Jellinek', 99)
+[23503] ERROR: insert or update on table "employees"
+  violates foreign key constraint "employees_dep_id_fkey"
+  Detail: Key (dep_id)=(99) is not present in table "departments".
+</sql>
+
+
+## Referenzielle Integrität
+
+Mit einem **foreign key constraint** kann man die Existenz des Fremdschlüssels
+in der anderen Tabelle sicher stellen.
+
+Hier verweist die Spalte `dep_id` in der Tabelle `employees` auf
+die Spalte `dep_id` in der Tabelle `departments`.
+
+`dep_id` ist also der Primary Key von `departments` und ein Foreign Key in `employees`.
+
+Mit dem Keyword `REFERENCES` wird diese Beziehung als Constrait festgelegt, es ist
+nicht möglich in `employees` eine `dep_id` zu benutzen, die in `departments` nicht existiert.
+
+<sql>
+CREATE TABLE departments (
+  dep_id SERIAL PRIMARY KEY,
+  dep_name VARCHAR(20)
+);
+CREATE TABLE employees (
+  name VARCHAR(20),
+  dep_id integer NULL REFERENCES departments(dep_id)
+);
+</sql>
+
+Fremdschlüssel sind auch gute Kanditeten für einen Index: Wenn man
+die Abfrage machen will "Welche Leute arbeiten im Department 7" ist
+es gut einen Index auf `dep_id` in `employees`  zu haben.
+
+
+
+
+## Unique Constraint
+
+Dass der Primärschlüssel eindeutig sein muss ist ein Beispiel für  ein **unique constraint**.
 
 §
 
@@ -95,52 +152,5 @@ Indexes:
 </plain>
 
 
-## References
-
-Was bedeutet die Fehlermeldung am Ende?
-
-<sql>
-CREATE TABLE departments (
-  dep_id SERIAL PRIMARY KEY,
-  dep_name VARCHAR(20)
-);
-CREATE TABLE employees (
-  name VARCHAR(20),
-  dep_id integer NULL REFERENCES departments(dep_id)
-);
-INSERT INTO employees VALUES('Brigitte Jellinek', 99)
-[23503] ERROR: insert or update on table "employees"
-  violates foreign key constraint "employees_dep_id_fkey"
-  Detail: Key (dep_id)=(99) is not present in table "departments".
-</sql>
-
-
-## Referenzielle Integrität
-
-Mit einem **foreign key constraint** kann man die Existenz des Fremdschlüssels
-in der anderen Tabelle sicher stellen.
-
-Hier verweist die Spalte `dep_id` in der Tabelle `employees` auf
-die Spalte `dep_id` in der Tabelle `departments`.
-
-`dep_id` ist also der Primary Key von `departments` und ein Foreign Key in `employees`.
-
-Mit dem Keyword `REFERENCES` wird diese Beziehung als Constrait festgelegt, es ist
-nicht möglich in `employees` eine `dep_id` zu benutzen, die in `departments` nicht existiert.
-
-<sql>
-CREATE TABLE departments (
-  dep_id SERIAL PRIMARY KEY,
-  dep_name VARCHAR(20)
-);
-CREATE TABLE employees (
-  name VARCHAR(20),
-  dep_id integer NULL REFERENCES departments(dep_id)
-);
-</sql>
-
-Fremdschlüssel sind auch gute Kanditeten für einen Index: Wenn man
-die Abfrage machen will "Welche Leute arbeiten im Department 7" ist
-es gut einen Index auf `dep_id` in `employees`  zu haben.
 
 

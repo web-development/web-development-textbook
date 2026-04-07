@@ -141,6 +141,10 @@ body, p, li, dt, dd {
 pre {
   font-size: 15px;
   line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+
+  max-width: 90ch;
 }
 
 .example.twopane pre {

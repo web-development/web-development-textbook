@@ -70,7 +70,7 @@ Beim Zugriff auf die API muss jeweils der API-Key als parameter
 mit gesendet werden. Sonst ist es aber wirklich nur ein GET Request
 and eine URL. So einen einfachen HTTP Request kann man mit `file_get_contents()` durchführen.
 
-<php caption="zugriff auf die API von geosphere.at">
+<php>
 ...
 require "config.php";
 $lat = 47.723; // Breitengrad

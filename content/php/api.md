@@ -56,7 +56,7 @@ zu vermeiden. z.B. funktioniert der Key nur wenn er auf einer bestimmten
 Domain eingesetzt wird.
 
 
-## Beispiel openweathermap
+## Beispiel Openweathermap
 
 Um die API von [http://openweathermap.org/](http://openweathermap.org/) zu benutzen
 ist eine Anmeldung und ein API key notwendig. Die Preise für die API
@@ -64,7 +64,7 @@ sind nach Anzahl der Zugriffen gestaffelt, im April 2023 waren die Preise:
 
 ![Preise von openweathermap.org](/images/openweathermap-preise.png)
 
-## Mit PHP auf openweathermap zugreifen
+## Abfrage von Openweathermap
 
 Beim Zugriff auf die API muss jeweils der API-Key als parameter
 mit gesendet werden. Sonst ist es aber wirklich nur ein GET Request
@@ -108,99 +108,169 @@ echo $data['main']['temp'];
 </php>
 
 
-## mit PHP einen POST Request senden
+## Beispiel Gemini
 
 Die API von Gemini ist etwas komplexer: man braucht einen POST-Request und JSON
-im Body des Requests.  Hierfür kann man `curl` verwenden.  Curl ist eigentlich eine
-C Library, man kann sie direkt als Kommandozeilen-Befehl verwenden, sie ist
-aber auch in PHP eingebaut aber etwas umständlich zu benutzen.
+im Body des Requests.  Dann kann man verschiedene KI-Modelle verwenden, um mit
+Text, Code, Bild, Video und Audio  zu arbeiten (multimodal).
+
+
+## POST Request senden
+
+Für das Senden von POST Requests braucht man zusätzlich zum Befehl `file_get_contents` einen `stream context`.
 
 So kann man einen POST Request machen, der Daten als JSON verschickt, und die
 zurückgegebenen JSON-Daten wieder in PHP Datenstrukturen übersetzt:
 
 <php caption="POST Request, JSON rein und JSON raus">
-function post_request($url, $data) {
+function post_and_decode_json(string $url, array $data): array
+{
+    $options = [
+        'http' => [
+            'method'  => 'POST',
+            'header'  => "Content-Type: application/json\r\n",
+            'content' => json_encode($data),
+            'ignore_errors' => true
+        ]
+    ];
 
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-    curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+    $context  = stream_context_create($options);
+    $response = file_get_contents($url, false, $context);
 
-    $result_string = curl_exec($ch);
-    $error = curl_error($ch);
-    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-
-    if ($error) {
-        throw new Exception('cURL error: ' . $error . ' with http_code:' . $http_code);
+    if ($response === false) {
+        throw new Exception("Failed to connect to the API.");
     }
 
-    if ($http_code !== 200) {
-        throw new Exception('HTTP error: ' . $http_code . 'raw_response: '. $result_string);
+    $decoded = json_decode($response, true);
+
+    if (json_last_error() !== JSON_ERROR_NONE) {
+        throw new Exception("Failed to decode API response: "
+            . json_last_error_msg()
+        );
     }
 
-    $result_data = json_decode($result_string, true);
-
-    if(json_last_error() === JSON_ERROR_NONE){
-        return $result_data;
-    }
-
-    throw new Exception('Invalid JSON response from API ' . json_last_error_msg(). 'raw_response: '. $result_string);
+    return $decoded;
 }
 </php>
 
+## Mit Gemini Text generieren
 
-## die Gemini API
 
-Die Gemini API erwartert eine komplexe Datenstruktur als Input und
-liefert eine komplexe Datenstruktur als Output:
+In diesem einfachen Beispiel verwenden wir das Model "gemini-2.5-flash" um Text zu generieren.
+
 
 <php>
+require "config.php";
+require "functions.php";
 
-    $prompt = "Erstelle eine Multiple-Choice-Quizfrage zum Thema {$topic} mit dem Schwierigkeitsgrad {$difficulty}. Verwende die Sprache Deusch, und eine positive Frage, keine Verneinung. Gib vier Antwortmöglichkeiten (a, b, c, d) an und markiere die richtige Antwort. Formatiere die Ausgabe als JSON mit den Schlüsseln 'question', 'options' und 'answer'.";
+$url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' . $GEMINI_API_KEY;
 
-    $url = 'https://generativelanguage.googleapis.com/'
-         . 'v1beta/models/gemini-2.0-flash:generateContent?key=' . $GEMINI_API_KEY;
-    $data = [
-        'contents' => [
-            [
-                'parts' => [
-                    ['text' => $prompt]
-                ]
+$prompt = "Wähle eine europäische Hauptstadt aus, und beschreibe sie in drei Sätzen ohne ihren Namen zu nennen. Gib nur die drei Sätze zurück, ohne weitere Erklärungen oder Einleitungen. Die Antwort soll auf Deutsch sein.";
+
+$data = [
+    'contents' => [
+        [
+            'parts' => [
+                ['text' => $prompt]
             ]
         ]
-    ];
-    $result = post_request($url, $data);
+    ]
+];
 
-    // echo "<pre>";
-    // print_r($result);
-    // echo "</pre>";
+$result = post_and_decode_json($url, $data);
 
-    if (isset($result['candidates'][0]['content']['parts'][0]['text'])) {
-        $api_response = $result['candidates'][0]['content']['parts'][0]['text'];
+echo "Antwort von Gemini:\n";
+echo "<pre>";
+print_r($result);
+echo "</pre>";
 
-        $api_response = str_replace('```json', '', $api_response);
-        $api_response = str_replace('```', '', $api_response);
 
-        // echo "<pre>";
-        // print_r($api_response);
-        // echo "</pre>";
-
-        // Attempt to parse the expected JSON format. If it fails, return the raw text.
-        $json_data = json_decode($api_response, true);
-        if (json_last_error() === JSON_ERROR_NONE) {
-            return $json_data;
-        } else {
-            throw new Exception('Invalid JSON response from API ' . json_last_error_msg());
-        }
-
-    } else {
-        throw new Exception('Unexpected API response format: ' . $result);
-    }
+if (isset($result['candidates'][0]['content']['parts'][0]['text'])) {
+    $answer = trim($result['candidates'][0]['content']['parts'][0]['text']);
+    echo "Die Antwort ist $answer";
+} else {
+    throw new Exception('Unexpected response format.');
+}
 </php>
 
+[Demo](https://users.ct.fh-salzburg.ac.at/~bjelline/quiz-backend/testing.php)
 
+
+## Antwort von Gemini
+
+Die Antwort ist immer eine komplexe JSON-Struktur
+
+![](/images/php/gemini-good.png)
+
+
+
+
+## Fehler von Gemini
+
+Nicht immer bekommt man eine antwort
+
+![](/images/php/gemini-bad.png)
+
+
+
+## Mit Gemini JSON generieren
+
+Wenn man strukturierte Daten haben will, kann man ein JSON-Schema vorgeben.
+Gemini antwortet dann dem Schema entwprechend.
+
+<php>
+$schema = [
+    'type' => 'object',
+    'properties' => [
+        'question' => ['type' => 'string'],
+        'options'  => [
+            'type' => 'array',
+            'items' => ['type' => 'string'],
+            'minItems' => 4,
+            'maxItems' => 4
+        ],
+        'answer'   => ['type' => 'string', 'description' => 'The correct option (a, b, c, or d)']
+    ],
+    'required' => ['question', 'options', 'answer']
+];
+
+// Use the 2.5-flash model (or 3-flash-preview)
+$url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' . $GEMINI_API_KEY;
+
+$data = [
+    'contents' => [
+        ['parts' => [['text' => "Erstelle eine Multiple-Choice-Quizfrage zum Thema {$topic}."]]]
+    ],
+    'generationConfig' => [
+        'response_mime_type' => 'application/json',
+        'response_schema'    => $schema,
+    ]
+];
+
+$result = post_and_decode_json($url, $data);
+
+echo "Antwort von Gemini:\n<pre>";
+print_r($result);
+echo "</pre>";
+
+if (isset($result['candidates'][0]['content']['parts'][0]['text'])) {
+    $json_string = $result['candidates'][0]['content']['parts'][0]['text'];
+    $json_data = json_decode($json_string, true);
+
+    if (json_last_error() === JSON_ERROR_NONE) {
+        echo "Parsed JSON:\n";
+        echo "<pre>";
+        print_r($json_data);
+        echo "</pre>";
+    }
+} else {
+    throw new Exception('API Failure or Invalid JSON');
+}
+</php>
+
+## Antwort von Gemini
+
+![](/images/php/gemini-schema.png)
 
 ## Siehe auch
 

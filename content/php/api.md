@@ -268,6 +268,9 @@ if (isset($result['candidates'][0]['content']['parts'][0]['text'])) {
 }
 </php>
 
+[Demo](https://users.ct.fh-salzburg.ac.at/~bjelline/quiz-backend/testing-schema.php)
+
+
 ## Antwort von Gemini
 
 ![](/images/php/gemini-schema.png)

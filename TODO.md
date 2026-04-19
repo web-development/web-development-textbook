@@ -2,6 +2,7 @@ https://blog.gitbutler.com/the-great-css-expansion
 
 popover aufnehmen?
 
+https://developer.mozilla.org/en-US/blog/mdn-front-end-deep-dive/#why_we_rebuilt_mdns_frontend  - als web component beispiel, aber brauch man lit?
 
 §
 

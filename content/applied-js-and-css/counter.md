@@ -369,7 +369,7 @@ let myCounter = new Counter(0);
 
 Welche DOM-Node für die Ausgabe verwendet wird sollte
 für jedes Objekt anders sein. Und die Counter-Klasse sollte
-sich nur um die Logik des zählens kümmern, und möglichst wenig
+sich nur um die Logik des Zählens kümmern, und möglichst wenig
 über die DOM wissen müssen.
 
 Deswegen übergeben wir die DOM-Node als Argument im Constructor:
@@ -511,8 +511,11 @@ aber dabei nichts an der Funktionsweise geändert.
 
 Das nennt man "Refactoring".
 
-Refactoring in der Programmierung ist genau so wichtig
-wie die Überarbeitung eines wichtigen Textes oder mehrere Skizzen
-bis ein Bild entsteht.
+Refactoring wird in der Programmierung viel eingesetzt.
+Es ist genau so wichtig
+wie die Überarbeitung eines wichtigen Textes, oder das
+anfertigen mehrerer Skizzen bis ein Bild entsteht.
+
+Der erste Entwurf ist nicht gleich wie das Endergebnis.
 
 

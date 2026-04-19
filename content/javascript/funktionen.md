@@ -37,20 +37,12 @@ auf eine Variable zugewiesen werden:
 
 <javascript caption="Funktionen definieren">
   function r1( s, x ) {
-    let result = "";
-    while( x ) {
-      result += s;
-      x--;
-    }
+    ...
     return result;
   }
 
   let r2 = function ( s, x ) {
-    let result = "";
-    while( x ) {
-      result += s;
-      x--;
-    }
+    ...
     return result;
   }
 
@@ -66,11 +58,7 @@ Funktionen: die Arrow Function
 
 <javascript caption="Arrow Function">
   let f1 = ( s, x ) => {
-    let result = "";
-    while( x ) {
-      result += s;
-      x--;
-    }
+    ...
     return result;
   }
 </javascript>
